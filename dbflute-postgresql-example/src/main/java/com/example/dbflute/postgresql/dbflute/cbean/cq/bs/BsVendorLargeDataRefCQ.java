@@ -74,66 +74,30 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _largeDataRefId;
-    public ConditionValue getLargeDataRefId() {
-        if (_largeDataRefId == null) { _largeDataRefId = nCV(); }
-        return _largeDataRefId;
-    }
+    public ConditionValue getLargeDataRefId()
+    { if (_largeDataRefId == null) { _largeDataRefId = nCV(); }
+      return _largeDataRefId; }
     protected ConditionValue getCValueLargeDataRefId() { return getLargeDataRefId(); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList() { return _largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_ExistsReferrer_VendorLargeDataRefSelfList", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList() { return _largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_NotExistsReferrer_VendorLargeDataRefSelfList", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList() { return _largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_SpecifyDerivedReferrer_VendorLargeDataRefSelfList", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList() { return _largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_InScopeRelation_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_InScopeRelation_VendorLargeDataRefSelfList." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_InScopeRelation_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_InScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_InScopeRelation_VendorLargeDataRefSelfList", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList() { return _largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_NotInScopeRelation_VendorLargeDataRefSelfList", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap;
-    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList() { return _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap; }
-    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) {
-        if (_largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap == null) { _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap.size() + 1);
-        _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListMap.put(ky, sq); return "largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList." + ky;
-    }
-    protected Map<String, Object> _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap;
-    public Map<String, Object> getLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter() { return _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap; }
-    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(Object vl) {
-        if (_largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap == null) { _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap.size() + 1);
-        _largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameterMap.put(ky, vl); return "largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList() { return xgetSQueMap("largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList(VendorLargeDataRefCQ sq) { return xkeepSQue("largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList", sq); }
+    public Map<String, Object> getLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter() { return xgetSQuePmMap("largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList"); }
+    public String keepLargeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfListParameter(Object pm) { return xkeepSQuePm("largeDataRefId_QueryDerivedReferrer_VendorLargeDataRefSelfList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -150,27 +114,16 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_LargeDataRefId_Desc() { regOBD("large_data_ref_id"); return this; }
 
     protected ConditionValue _largeDataId;
-    public ConditionValue getLargeDataId() {
-        if (_largeDataId == null) { _largeDataId = nCV(); }
-        return _largeDataId;
-    }
+    public ConditionValue getLargeDataId()
+    { if (_largeDataId == null) { _largeDataId = nCV(); }
+      return _largeDataId; }
     protected ConditionValue getCValueLargeDataId() { return getLargeDataId(); }
 
-    protected Map<String, VendorLargeDataCQ> _largeDataId_InScopeRelation_VendorLargeDataMap;
-    public Map<String, VendorLargeDataCQ> getLargeDataId_InScopeRelation_VendorLargeData() { return _largeDataId_InScopeRelation_VendorLargeDataMap; }
-    public String keepLargeDataId_InScopeRelation_VendorLargeData(VendorLargeDataCQ sq) {
-        if (_largeDataId_InScopeRelation_VendorLargeDataMap == null) { _largeDataId_InScopeRelation_VendorLargeDataMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataId_InScopeRelation_VendorLargeDataMap.size() + 1);
-        _largeDataId_InScopeRelation_VendorLargeDataMap.put(ky, sq); return "largeDataId_InScopeRelation_VendorLargeData." + ky;
-    }
+    public Map<String, VendorLargeDataCQ> getLargeDataId_InScopeRelation_VendorLargeData() { return xgetSQueMap("largeDataId_InScopeRelation_VendorLargeData"); }
+    public String keepLargeDataId_InScopeRelation_VendorLargeData(VendorLargeDataCQ sq) { return xkeepSQue("largeDataId_InScopeRelation_VendorLargeData", sq); }
 
-    protected Map<String, VendorLargeDataCQ> _largeDataId_NotInScopeRelation_VendorLargeDataMap;
-    public Map<String, VendorLargeDataCQ> getLargeDataId_NotInScopeRelation_VendorLargeData() { return _largeDataId_NotInScopeRelation_VendorLargeDataMap; }
-    public String keepLargeDataId_NotInScopeRelation_VendorLargeData(VendorLargeDataCQ sq) {
-        if (_largeDataId_NotInScopeRelation_VendorLargeDataMap == null) { _largeDataId_NotInScopeRelation_VendorLargeDataMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_largeDataId_NotInScopeRelation_VendorLargeDataMap.size() + 1);
-        _largeDataId_NotInScopeRelation_VendorLargeDataMap.put(ky, sq); return "largeDataId_NotInScopeRelation_VendorLargeData." + ky;
-    }
+    public Map<String, VendorLargeDataCQ> getLargeDataId_NotInScopeRelation_VendorLargeData() { return xgetSQueMap("largeDataId_NotInScopeRelation_VendorLargeData"); }
+    public String keepLargeDataId_NotInScopeRelation_VendorLargeData(VendorLargeDataCQ sq) { return xkeepSQue("largeDataId_NotInScopeRelation_VendorLargeData", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -187,10 +140,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_LargeDataId_Desc() { regOBD("large_data_id"); return this; }
 
     protected ConditionValue _dateIndex;
-    public ConditionValue getDateIndex() {
-        if (_dateIndex == null) { _dateIndex = nCV(); }
-        return _dateIndex;
-    }
+    public ConditionValue getDateIndex()
+    { if (_dateIndex == null) { _dateIndex = nCV(); }
+      return _dateIndex; }
     protected ConditionValue getCValueDateIndex() { return getDateIndex(); }
 
     /** 
@@ -208,10 +160,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_DateIndex_Desc() { regOBD("date_index"); return this; }
 
     protected ConditionValue _dateNoIndex;
-    public ConditionValue getDateNoIndex() {
-        if (_dateNoIndex == null) { _dateNoIndex = nCV(); }
-        return _dateNoIndex;
-    }
+    public ConditionValue getDateNoIndex()
+    { if (_dateNoIndex == null) { _dateNoIndex = nCV(); }
+      return _dateNoIndex; }
     protected ConditionValue getCValueDateNoIndex() { return getDateNoIndex(); }
 
     /** 
@@ -229,10 +180,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_DateNoIndex_Desc() { regOBD("date_no_index"); return this; }
 
     protected ConditionValue _timestampIndex;
-    public ConditionValue getTimestampIndex() {
-        if (_timestampIndex == null) { _timestampIndex = nCV(); }
-        return _timestampIndex;
-    }
+    public ConditionValue getTimestampIndex()
+    { if (_timestampIndex == null) { _timestampIndex = nCV(); }
+      return _timestampIndex; }
     protected ConditionValue getCValueTimestampIndex() { return getTimestampIndex(); }
 
     /** 
@@ -250,10 +200,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_TimestampIndex_Desc() { regOBD("timestamp_index"); return this; }
 
     protected ConditionValue _timestampNoIndex;
-    public ConditionValue getTimestampNoIndex() {
-        if (_timestampNoIndex == null) { _timestampNoIndex = nCV(); }
-        return _timestampNoIndex;
-    }
+    public ConditionValue getTimestampNoIndex()
+    { if (_timestampNoIndex == null) { _timestampNoIndex = nCV(); }
+      return _timestampNoIndex; }
     protected ConditionValue getCValueTimestampNoIndex() { return getTimestampNoIndex(); }
 
     /** 
@@ -271,10 +220,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_TimestampNoIndex_Desc() { regOBD("timestamp_no_index"); return this; }
 
     protected ConditionValue _nullableDecimalIndex;
-    public ConditionValue getNullableDecimalIndex() {
-        if (_nullableDecimalIndex == null) { _nullableDecimalIndex = nCV(); }
-        return _nullableDecimalIndex;
-    }
+    public ConditionValue getNullableDecimalIndex()
+    { if (_nullableDecimalIndex == null) { _nullableDecimalIndex = nCV(); }
+      return _nullableDecimalIndex; }
     protected ConditionValue getCValueNullableDecimalIndex() { return getNullableDecimalIndex(); }
 
     /** 
@@ -292,10 +240,9 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_NullableDecimalIndex_Desc() { regOBD("nullable_decimal_index"); return this; }
 
     protected ConditionValue _nullableDecimalNoIndex;
-    public ConditionValue getNullableDecimalNoIndex() {
-        if (_nullableDecimalNoIndex == null) { _nullableDecimalNoIndex = nCV(); }
-        return _nullableDecimalNoIndex;
-    }
+    public ConditionValue getNullableDecimalNoIndex()
+    { if (_nullableDecimalNoIndex == null) { _nullableDecimalNoIndex = nCV(); }
+      return _nullableDecimalNoIndex; }
     protected ConditionValue getCValueNullableDecimalNoIndex() { return getNullableDecimalNoIndex(); }
 
     /** 
@@ -313,27 +260,16 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public BsVendorLargeDataRefCQ addOrderBy_NullableDecimalNoIndex_Desc() { regOBD("nullable_decimal_no_index"); return this; }
 
     protected ConditionValue _selfParentId;
-    public ConditionValue getSelfParentId() {
-        if (_selfParentId == null) { _selfParentId = nCV(); }
-        return _selfParentId;
-    }
+    public ConditionValue getSelfParentId()
+    { if (_selfParentId == null) { _selfParentId = nCV(); }
+      return _selfParentId; }
     protected ConditionValue getCValueSelfParentId() { return getSelfParentId(); }
 
-    protected Map<String, VendorLargeDataRefCQ> _selfParentId_InScopeRelation_VendorLargeDataRefSelfMap;
-    public Map<String, VendorLargeDataRefCQ> getSelfParentId_InScopeRelation_VendorLargeDataRefSelf() { return _selfParentId_InScopeRelation_VendorLargeDataRefSelfMap; }
-    public String keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq) {
-        if (_selfParentId_InScopeRelation_VendorLargeDataRefSelfMap == null) { _selfParentId_InScopeRelation_VendorLargeDataRefSelfMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_selfParentId_InScopeRelation_VendorLargeDataRefSelfMap.size() + 1);
-        _selfParentId_InScopeRelation_VendorLargeDataRefSelfMap.put(ky, sq); return "selfParentId_InScopeRelation_VendorLargeDataRefSelf." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getSelfParentId_InScopeRelation_VendorLargeDataRefSelf() { return xgetSQueMap("selfParentId_InScopeRelation_VendorLargeDataRefSelf"); }
+    public String keepSelfParentId_InScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq) { return xkeepSQue("selfParentId_InScopeRelation_VendorLargeDataRefSelf", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap;
-    public Map<String, VendorLargeDataRefCQ> getSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf() { return _selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap; }
-    public String keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq) {
-        if (_selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap == null) { _selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap.size() + 1);
-        _selfParentId_NotInScopeRelation_VendorLargeDataRefSelfMap.put(ky, sq); return "selfParentId_NotInScopeRelation_VendorLargeDataRefSelf." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf() { return xgetSQueMap("selfParentId_NotInScopeRelation_VendorLargeDataRefSelf"); }
+    public String keepSelfParentId_NotInScopeRelation_VendorLargeDataRefSelf(VendorLargeDataRefCQ sq) { return xkeepSQue("selfParentId_NotInScopeRelation_VendorLargeDataRefSelf", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -366,8 +302,7 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorLargeDataRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorLargeDataRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -383,8 +318,7 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorLargeDataRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorLargeDataRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -411,31 +345,17 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public VendorLargeDataCQ queryVendorLargeData() {
         return getConditionQueryVendorLargeData();
     }
-    protected VendorLargeDataCQ _conditionQueryVendorLargeData;
     public VendorLargeDataCQ getConditionQueryVendorLargeData() {
-        if (_conditionQueryVendorLargeData == null) {
-            _conditionQueryVendorLargeData = xcreateQueryVendorLargeData();
-            xsetupOuterJoinVendorLargeData();
-        }
-        return _conditionQueryVendorLargeData;
+        String prop = "vendorLargeData";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendorLargeData()); xsetupOuterJoinVendorLargeData(); }
+        return xgetQueRlMap(prop);
     }
     protected VendorLargeDataCQ xcreateQueryVendorLargeData() {
-        String nrp = resolveNextRelationPath("vendor_large_data_ref", "vendorLargeData");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        VendorLargeDataCQ cq = new VendorLargeDataCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("vendorLargeData");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("vendor_large_data_ref", "vendorLargeData"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new VendorLargeDataCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendorLargeData", nrp);
     }
-    protected void xsetupOuterJoinVendorLargeData() {
-        VendorLargeDataCQ cq = getConditionQueryVendorLargeData();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("large_data_id", "large_data_id");
-        registerOuterJoin(cq, joinOnMap, "vendorLargeData");
-    }
-    public boolean hasConditionQueryVendorLargeData() {
-        return _conditionQueryVendorLargeData != null;
-    }
+    protected void xsetupOuterJoinVendorLargeData() { xregOutJo("vendorLargeData"); }
+    public boolean hasConditionQueryVendorLargeData() { return xhasQueRlMap("vendorLargeData"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -445,31 +365,17 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     public VendorLargeDataRefCQ queryVendorLargeDataRefSelf() {
         return getConditionQueryVendorLargeDataRefSelf();
     }
-    protected VendorLargeDataRefCQ _conditionQueryVendorLargeDataRefSelf;
     public VendorLargeDataRefCQ getConditionQueryVendorLargeDataRefSelf() {
-        if (_conditionQueryVendorLargeDataRefSelf == null) {
-            _conditionQueryVendorLargeDataRefSelf = xcreateQueryVendorLargeDataRefSelf();
-            xsetupOuterJoinVendorLargeDataRefSelf();
-        }
-        return _conditionQueryVendorLargeDataRefSelf;
+        String prop = "vendorLargeDataRefSelf";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendorLargeDataRefSelf()); xsetupOuterJoinVendorLargeDataRefSelf(); }
+        return xgetQueRlMap(prop);
     }
     protected VendorLargeDataRefCQ xcreateQueryVendorLargeDataRefSelf() {
-        String nrp = resolveNextRelationPath("vendor_large_data_ref", "vendorLargeDataRefSelf");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        VendorLargeDataRefCQ cq = new VendorLargeDataRefCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("vendorLargeDataRefSelf");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("vendor_large_data_ref", "vendorLargeDataRefSelf"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new VendorLargeDataRefCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendorLargeDataRefSelf", nrp);
     }
-    protected void xsetupOuterJoinVendorLargeDataRefSelf() {
-        VendorLargeDataRefCQ cq = getConditionQueryVendorLargeDataRefSelf();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("self_parent_id", "large_data_ref_id");
-        registerOuterJoin(cq, joinOnMap, "vendorLargeDataRefSelf");
-    }
-    public boolean hasConditionQueryVendorLargeDataRefSelf() {
-        return _conditionQueryVendorLargeDataRefSelf != null;
-    }
+    protected void xsetupOuterJoinVendorLargeDataRefSelf() { xregOutJo("vendorLargeDataRefSelf"); }
+    public boolean hasConditionQueryVendorLargeDataRefSelf() { return xhasQueRlMap("vendorLargeDataRefSelf"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -478,61 +384,32 @@ public class BsVendorLargeDataRefCQ extends AbstractBsVendorLargeDataRefCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorLargeDataRefCQ> _scalarConditionMap;
-    public Map<String, VendorLargeDataRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorLargeDataRefCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorLargeDataRefCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorLargeDataRefCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorLargeDataRefCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorLargeDataRefCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorLargeDataRefCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorLargeDataRefCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorLargeDataRefCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorLargeDataRefCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorLargeDataRefCQ> _myselfExistsMap;
-    public Map<String, VendorLargeDataRefCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorLargeDataRefCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorLargeDataRefCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorLargeDataRefCQ> _myselfInScopeMap;
-    public Map<String, VendorLargeDataRefCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorLargeDataRefCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorLargeDataRefCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorLargeDataRefCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

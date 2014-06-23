@@ -20,6 +20,10 @@ import org.seasar.dbflute.exception.SQLFailureException;
 import org.seasar.dbflute.jdbc.SqlLogHandler;
 import org.seasar.dbflute.jdbc.SqlLogInfo;
 import org.seasar.dbflute.jdbc.StatementConfig;
+import org.seasar.dbflute.unit.core.cannonball.CannonballCar;
+import org.seasar.dbflute.unit.core.cannonball.CannonballFinalizer;
+import org.seasar.dbflute.unit.core.cannonball.CannonballOption;
+import org.seasar.dbflute.unit.core.cannonball.CannonballRun;
 import org.seasar.dbflute.unit.core.thread.ThreadFireExecution;
 import org.seasar.dbflute.unit.core.thread.ThreadFireOption;
 import org.seasar.dbflute.unit.core.thread.ThreadFireResource;
@@ -146,9 +150,9 @@ public class VendorJDBCTest extends UnitContainerTestCase {
         final boolean sensitive = TestingResultSetType.SCROLL_SENSITIVE.equals(resultSetType);
 
         // ## Act ##
-        threadFire(new ThreadFireExecution<Void>() {
-            public Void execute(ThreadFireResource resource) {
-                long threadId = resource.getThreadId();
+        cannonball(new CannonballRun() {
+            public void drive(CannonballCar car) {
+                long threadId = car.getThreadId();
                 log("threadId: " + threadId);
                 if (threadId % 2 == 0) {
                     PurchaseSummaryMemberPmb pmb = new PurchaseSummaryMemberPmb();
@@ -188,23 +192,25 @@ public class VendorJDBCTest extends UnitContainerTestCase {
                     member.setBirthdate(updateDate);
                     memberBhv.varyingQueryUpdate(member, cb, new UpdateOption<MemberCB>().allowNonQueryUpdate());
                 }
-                return null;
             }
-        }, new ThreadFireOption().commitTx().threadCount(2).repeatCount(1));
-        performNewTransaction(new TransactionPerformer() {
-            public boolean perform() {
-                UpdateOption<MemberCB> option = new UpdateOption<MemberCB>().disableCommonColumnAutoSetup();
-                option.specify(new SpecifyQuery<MemberCB>() {
-                    public void specify(MemberCB cb) {
-                        cb.specify().columnBirthdate();
-                        cb.specify().columnUpdateUser();
-                        cb.specify().columnUpdateDatetime();
+        }, new CannonballOption().commitTx().threadCount(2).repeatCount(1).finalizer(new CannonballFinalizer() {
+            public void run() {
+                performNewTransaction(new TransactionPerformer() {
+                    public boolean perform() {
+                        UpdateOption<MemberCB> option = new UpdateOption<MemberCB>().disableCommonColumnAutoSetup();
+                        option.specify(new SpecifyQuery<MemberCB>() {
+                            public void specify(MemberCB cb) {
+                                cb.specify().columnBirthdate();
+                                cb.specify().columnUpdateUser();
+                                cb.specify().columnUpdateDatetime();
+                            }
+                        });
+                        memberBhv.varyingBatchUpdateNonstrict(beforeList, option);
+                        return true;
                     }
                 });
-                memberBhv.varyingBatchUpdateNonstrict(beforeList, option);
-                return true;
             }
-        });
+        }));
     }
 
     private enum TestingResultSetType {

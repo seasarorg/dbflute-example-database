@@ -89,10 +89,9 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _escapedJavaDocCode;
-    public ConditionValue getEscapedJavaDocCode() {
-        if (_escapedJavaDocCode == null) { _escapedJavaDocCode = nCV(); }
-        return _escapedJavaDocCode;
-    }
+    public ConditionValue getEscapedJavaDocCode()
+    { if (_escapedJavaDocCode == null) { _escapedJavaDocCode = nCV(); }
+      return _escapedJavaDocCode; }
     protected ConditionValue getCValueEscapedJavaDocCode() { return getEscapedJavaDocCode(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
     public BsWhiteEscapedJavaDocCQ addOrderBy_EscapedJavaDocCode_Desc() { regOBD("ESCAPED_JAVA_DOC_CODE"); return this; }
 
     protected ConditionValue _escapedJavaDocName;
-    public ConditionValue getEscapedJavaDocName() {
-        if (_escapedJavaDocName == null) { _escapedJavaDocName = nCV(); }
-        return _escapedJavaDocName;
-    }
+    public ConditionValue getEscapedJavaDocName()
+    { if (_escapedJavaDocName == null) { _escapedJavaDocName = nCV(); }
+      return _escapedJavaDocName; }
     protected ConditionValue getCValueEscapedJavaDocName() { return getEscapedJavaDocName(); }
 
     /** 
@@ -147,8 +145,7 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteEscapedJavaDocCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteEscapedJavaDocCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -164,8 +161,7 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteEscapedJavaDocCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteEscapedJavaDocCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -183,61 +179,32 @@ public class BsWhiteEscapedJavaDocCQ extends AbstractBsWhiteEscapedJavaDocCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteEscapedJavaDocCQ> _scalarConditionMap;
-    public Map<String, WhiteEscapedJavaDocCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteEscapedJavaDocCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteEscapedJavaDocCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteEscapedJavaDocCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteEscapedJavaDocCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteEscapedJavaDocCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteEscapedJavaDocCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteEscapedJavaDocCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteEscapedJavaDocCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteEscapedJavaDocCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteEscapedJavaDocCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteEscapedJavaDocCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteEscapedJavaDocCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteEscapedJavaDocCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteEscapedJavaDocCQ> _myselfExistsMap;
-    public Map<String, WhiteEscapedJavaDocCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteEscapedJavaDocCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteEscapedJavaDocCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteEscapedJavaDocCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteEscapedJavaDocCQ> _myselfInScopeMap;
-    public Map<String, WhiteEscapedJavaDocCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteEscapedJavaDocCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteEscapedJavaDocCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteEscapedJavaDocCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

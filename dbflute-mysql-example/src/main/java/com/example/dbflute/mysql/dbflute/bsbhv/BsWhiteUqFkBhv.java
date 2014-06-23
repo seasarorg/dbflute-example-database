@@ -134,10 +134,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhiteUqFk> ENTITY doSelectEntity(WhiteUqFkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteUqFkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteUqFk> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteUqFkCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
 
     protected <ENTITY extends WhiteUqFk> ENTITY doSelectEntityWithDeletedCheck(WhiteUqFkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteUqFkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -314,16 +302,10 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhiteUqFk> ListResultBean<ENTITY> doSelectList(WhiteUqFkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteUqFkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -359,17 +341,10 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhiteUqFk> PagingResultBean<ENTITY> doSelectPage(WhiteUqFkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteUqFkCB>() {
-            public int callbackSelectCount(WhiteUqFkCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteUqFkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -399,10 +374,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     protected <ENTITY extends WhiteUqFk> void doSelectCursor(WhiteUqFkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteUqFkCB>() {
-            public void callbackSelectCursor(WhiteUqFkCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteUqFkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -438,9 +410,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -615,23 +585,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected NestedReferrerListGateway<WhiteUqFkRef> doLoadWhiteUqFkRefByFkToPkIdList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> option) {
-        final WhiteUqFkRefBhv referrerBhv = xgetBSFLR().select(WhiteUqFkRefBhv.class);
-        return helpLoadReferrerInternally(whiteUqFkList, option, new InternalLoadReferrerCallback<WhiteUqFk, Long, WhiteUqFkRefCB, WhiteUqFkRef>() {
-            public Long getPKVal(WhiteUqFk et)
-            { return et.getUqFkId(); }
-            public void setRfLs(WhiteUqFk et, List<WhiteUqFkRef> ls)
-            { et.setWhiteUqFkRefByFkToPkIdList(ls); }
-            public WhiteUqFkRefCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhiteUqFkRefCB cb, List<Long> ls)
-            { cb.query().setFkToPkId_InScope(ls); }
-            public void qyOdFKAsc(WhiteUqFkRefCB cb) { cb.query().addOrderBy_FkToPkId_Asc(); }
-            public void spFKCol(WhiteUqFkRefCB cb) { cb.specify().columnFkToPkId(); }
-            public List<WhiteUqFkRef> selRfLs(WhiteUqFkRefCB cb) { return referrerBhv.selectList(cb); }
-            public Long getFKVal(WhiteUqFkRef re) { return re.getFkToPkId(); }
-            public void setlcEt(WhiteUqFkRef re, WhiteUqFk le)
-            { re.setWhiteUqFkByFkToPkId(le); }
-            public String getRfPrNm() { return "whiteUqFkRefByFkToPkIdList"; }
-        });
+        return helpLoadReferrerInternally(whiteUqFkList, option, "whiteUqFkRefByFkToPkIdList");
     }
 
     /**
@@ -723,23 +677,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected NestedReferrerListGateway<WhiteUqFkRef> doLoadWhiteUqFkRefByFkToUqCodeList(List<WhiteUqFk> whiteUqFkList, LoadReferrerOption<WhiteUqFkRefCB, WhiteUqFkRef> option) {
-        final WhiteUqFkRefBhv referrerBhv = xgetBSFLR().select(WhiteUqFkRefBhv.class);
-        return helpLoadReferrerInternally(whiteUqFkList, option, new InternalLoadReferrerCallback<WhiteUqFk, String, WhiteUqFkRefCB, WhiteUqFkRef>() {
-            public String getPKVal(WhiteUqFk et)
-            { return et.getUqFkCode(); }
-            public void setRfLs(WhiteUqFk et, List<WhiteUqFkRef> ls)
-            { et.setWhiteUqFkRefByFkToUqCodeList(ls); }
-            public WhiteUqFkRefCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhiteUqFkRefCB cb, List<String> ls)
-            { cb.query().setFkToUqCode_InScope(ls); }
-            public void qyOdFKAsc(WhiteUqFkRefCB cb) { cb.query().addOrderBy_FkToUqCode_Asc(); }
-            public void spFKCol(WhiteUqFkRefCB cb) { cb.specify().columnFkToUqCode(); }
-            public List<WhiteUqFkRef> selRfLs(WhiteUqFkRefCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(WhiteUqFkRef re) { return re.getFkToUqCode(); }
-            public void setlcEt(WhiteUqFkRef re, WhiteUqFk le)
-            { re.setWhiteUqFkByFkToUqCode(le); }
-            public String getRfPrNm() { return "whiteUqFkRefByFkToUqCodeList"; }
-        });
+        return helpLoadReferrerInternally(whiteUqFkList, option, "whiteUqFkRefByFkToUqCodeList");
     }
 
     // ===================================================================================
@@ -753,22 +691,16 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
      * @param whiteUqFkList The list of whiteUqFk. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractUqFkIdList(List<WhiteUqFk> whiteUqFkList) {
-        return helpExtractListInternally(whiteUqFkList, new InternalExtractCallback<WhiteUqFk, Long>() {
-            public Long getCV(WhiteUqFk et) { return et.getUqFkId(); }
-        });
-    }
+    public List<Long> extractUqFkIdList(List<WhiteUqFk> whiteUqFkList)
+    { return helpExtractListInternally(whiteUqFkList, "uqFkId"); }
 
     /**
      * Extract the value list of (single) unique key uqFkCode.
      * @param whiteUqFkList The list of whiteUqFk. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<String> extractUqFkCodeList(List<WhiteUqFk> whiteUqFkList) {
-        return helpExtractListInternally(whiteUqFkList, new InternalExtractCallback<WhiteUqFk, String>() {
-            public String getCV(WhiteUqFk et) { return et.getUqFkCode(); }
-        });
-    }
+    public List<String> extractUqFkCodeList(List<WhiteUqFk> whiteUqFkList)
+    { return helpExtractListInternally(whiteUqFkList, "uqFkCode"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -795,23 +727,15 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected void doInsert(WhiteUqFk et, InsertOption<WhiteUqFkCB> op) {
-        assertObjectNotNull("whiteUqFk", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whiteUqFk", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteUqFkCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -839,16 +763,12 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         doUpdate(whiteUqFk, null);
     }
 
-    protected void doUpdate(WhiteUqFk et, final UpdateOption<WhiteUqFkCB> op) {
-        assertObjectNotNull("whiteUqFk", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhiteUqFk>() {
-            public int callbackDelegateUpdate(WhiteUqFk let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhiteUqFk et, UpdateOption<WhiteUqFkCB> op) {
+        assertObjectNotNull("whiteUqFk", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteUqFkCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -859,15 +779,10 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     protected WhiteUqFkCB createCBForSpecifiedUpdate()
     { WhiteUqFkCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -882,25 +797,15 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         doInsertOrUpdate(whiteUqFk, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteUqFk et, final InsertOption<WhiteUqFkCB> iop, final UpdateOption<WhiteUqFkCB> uop) {
-        assertObjectNotNull("whiteUqFk", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteUqFk, WhiteUqFkCB>() {
-            public void callbackInsert(WhiteUqFk let) { doInsert(let, iop); }
-            public void callbackUpdate(WhiteUqFk let) { doUpdate(let, uop); }
-            public WhiteUqFkCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhiteUqFkCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhiteUqFk et, InsertOption<WhiteUqFkCB> iop, UpdateOption<WhiteUqFkCB> uop) {
+        assertObjectNotNull("whiteUqFk", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -924,24 +829,15 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected void doDelete(WhiteUqFk et, final DeleteOption<WhiteUqFkCB> op) {
-        assertObjectNotNull("whiteUqFk", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhiteUqFk>() {
-            public int callbackDelegateDelete(WhiteUqFk let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whiteUqFk", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteUqFkCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteUqFkCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -987,10 +883,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -1032,10 +925,7 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -1070,9 +960,8 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -1091,15 +980,10 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -1135,20 +1019,16 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhiteUqFk, WhiteUqFkCB> sp, InsertOption<WhiteUqFkCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhiteUqFk et = newEntity();
-        WhiteUqFkCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhiteUqFk et = newEntity(); WhiteUqFkCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhiteUqFkCB createCBForQueryInsert()
     { WhiteUqFkCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1177,15 +1057,12 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryUpdate(WhiteUqFk et, WhiteUqFkCB cb, UpdateOption<WhiteUqFkCB> op) {
-        assertObjectNotNull("whiteUqFk", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whiteUqFk", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1203,15 +1080,11 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryDelete(WhiteUqFkCB cb, DeleteOption<WhiteUqFkCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1454,108 +1327,19 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteUqFkCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteUqFkCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteUqFk> void delegateSelectCursor(WhiteUqFkCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteUqFk> List<ENTITY> delegateSelectList(WhiteUqFkCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhiteUqFk et, InsertOption<WhiteUqFkCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteUqFk et, UpdateOption<WhiteUqFkCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteUqFk et, UpdateOption<WhiteUqFkCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteUqFk et, DeleteOption<WhiteUqFkCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteUqFk et, DeleteOption<WhiteUqFkCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhiteUqFk> ls, InsertOption<WhiteUqFkCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteUqFk> ls, UpdateOption<WhiteUqFkCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteUqFk> ls, UpdateOption<WhiteUqFkCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteUqFk> ls, DeleteOption<WhiteUqFkCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteUqFk> ls, DeleteOption<WhiteUqFkCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhiteUqFk et, WhiteUqFkCB inCB, ConditionBean resCB, InsertOption<WhiteUqFkCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteUqFk et, WhiteUqFkCB cb, UpdateOption<WhiteUqFkCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteUqFkCB cb, DeleteOption<WhiteUqFkCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteUqFk> typeOfSelectedEntity()
-    { return WhiteUqFk.class; }
-
-    protected WhiteUqFk downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteUqFk.class); }
-
-    protected WhiteUqFkCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteUqFkCB.class); }
-
+    protected Class<WhiteUqFk> typeOfSelectedEntity() { return WhiteUqFk.class; }
+    protected WhiteUqFk downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteUqFk.class); }
+    protected WhiteUqFkCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteUqFkCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteUqFk> downcast(List<? extends Entity> ls)
-    { return (List<WhiteUqFk>)ls; }
-
+    protected List<WhiteUqFk> downcast(List<? extends Entity> ls) { return (List<WhiteUqFk>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteUqFkCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhiteUqFkCB>)op; }
-
+    protected InsertOption<WhiteUqFkCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteUqFkCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteUqFkCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhiteUqFkCB>)op; }
-
+    protected UpdateOption<WhiteUqFkCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteUqFkCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteUqFkCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhiteUqFkCB>)op; }
-
+    protected DeleteOption<WhiteUqFkCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteUqFkCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhiteUqFk, WhiteUqFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhiteUqFk, WhiteUqFkCB>)sp; }

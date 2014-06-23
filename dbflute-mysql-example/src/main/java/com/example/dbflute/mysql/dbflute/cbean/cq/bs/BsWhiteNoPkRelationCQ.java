@@ -89,10 +89,9 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _productId;
-    public ConditionValue getProductId() {
-        if (_productId == null) { _productId = nCV(); }
-        return _productId;
-    }
+    public ConditionValue getProductId()
+    { if (_productId == null) { _productId = nCV(); }
+      return _productId; }
     protected ConditionValue getCValueProductId() { return getProductId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     public BsWhiteNoPkRelationCQ addOrderBy_ProductId_Desc() { regOBD("PRODUCT_ID"); return this; }
 
     protected ConditionValue _productName;
-    public ConditionValue getProductName() {
-        if (_productName == null) { _productName = nCV(); }
-        return _productName;
-    }
+    public ConditionValue getProductName()
+    { if (_productName == null) { _productName = nCV(); }
+      return _productName; }
     protected ConditionValue getCValueProductName() { return getProductName(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     public BsWhiteNoPkRelationCQ addOrderBy_ProductName_Desc() { regOBD("PRODUCT_NAME"); return this; }
 
     protected ConditionValue _productHandleCode;
-    public ConditionValue getProductHandleCode() {
-        if (_productHandleCode == null) { _productHandleCode = nCV(); }
-        return _productHandleCode;
-    }
+    public ConditionValue getProductHandleCode()
+    { if (_productHandleCode == null) { _productHandleCode = nCV(); }
+      return _productHandleCode; }
     protected ConditionValue getCValueProductHandleCode() { return getProductHandleCode(); }
 
     /** 
@@ -152,10 +149,9 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     public BsWhiteNoPkRelationCQ addOrderBy_ProductHandleCode_Desc() { regOBD("PRODUCT_HANDLE_CODE"); return this; }
 
     protected ConditionValue _productStatusCode;
-    public ConditionValue getProductStatusCode() {
-        if (_productStatusCode == null) { _productStatusCode = nCV(); }
-        return _productStatusCode;
-    }
+    public ConditionValue getProductStatusCode()
+    { if (_productStatusCode == null) { _productStatusCode = nCV(); }
+      return _productStatusCode; }
     protected ConditionValue getCValueProductStatusCode() { return getProductStatusCode(); }
 
     /** 
@@ -173,10 +169,9 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     public BsWhiteNoPkRelationCQ addOrderBy_ProductStatusCode_Desc() { regOBD("PRODUCT_STATUS_CODE"); return this; }
 
     protected ConditionValue _latestPurchaseDatetime;
-    public ConditionValue getLatestPurchaseDatetime() {
-        if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
-        return _latestPurchaseDatetime;
-    }
+    public ConditionValue getLatestPurchaseDatetime()
+    { if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
+      return _latestPurchaseDatetime; }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return getLatestPurchaseDatetime(); }
 
     /** 
@@ -210,8 +205,7 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteNoPkRelationCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteNoPkRelationCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -227,8 +221,7 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteNoPkRelationCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteNoPkRelationCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -246,13 +239,8 @@ public class BsWhiteNoPkRelationCQ extends AbstractBsWhiteNoPkRelationCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteNoPkRelationCQ> _scalarConditionMap;
-    public Map<String, WhiteNoPkRelationCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteNoPkRelationCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteNoPkRelationCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteNoPkRelationCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

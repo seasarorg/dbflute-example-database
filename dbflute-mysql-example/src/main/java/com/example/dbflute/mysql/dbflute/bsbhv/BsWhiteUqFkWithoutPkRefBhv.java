@@ -134,10 +134,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     }
 
     protected <ENTITY extends WhiteUqFkWithoutPkRef> ENTITY doSelectEntity(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteUqFkWithoutPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteUqFkWithoutPkRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
 
     protected <ENTITY extends WhiteUqFkWithoutPkRef> ENTITY doSelectEntityWithDeletedCheck(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteUqFkWithoutPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         List Select
@@ -245,16 +233,10 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     }
 
     protected <ENTITY extends WhiteUqFkWithoutPkRef> ListResultBean<ENTITY> doSelectList(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteUqFkWithoutPkRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -290,17 +272,10 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     }
 
     protected <ENTITY extends WhiteUqFkWithoutPkRef> PagingResultBean<ENTITY> doSelectPage(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteUqFkWithoutPkRefCB>() {
-            public int callbackSelectCount(WhiteUqFkWithoutPkRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -330,10 +305,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     protected <ENTITY extends WhiteUqFkWithoutPkRef> void doSelectCursor(WhiteUqFkWithoutPkRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteUqFkWithoutPkRefCB>() {
-            public void callbackSelectCursor(WhiteUqFkWithoutPkRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteUqFkWithoutPkRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -369,9 +341,7 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -465,15 +435,8 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
      * @param whiteUqFkWithoutPkRefList The list of whiteUqFkWithoutPkRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<WhiteUqFkWithoutPk> pulloutWhiteUqFkWithoutPk(List<WhiteUqFkWithoutPkRef> whiteUqFkWithoutPkRefList) {
-        return helpPulloutInternally(whiteUqFkWithoutPkRefList, new InternalPulloutCallback<WhiteUqFkWithoutPkRef, WhiteUqFkWithoutPk>() {
-            public WhiteUqFkWithoutPk getFr(WhiteUqFkWithoutPkRef et)
-            { return et.getWhiteUqFkWithoutPk(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(WhiteUqFkWithoutPk et, List<WhiteUqFkWithoutPkRef> ls)
-            { et.setWhiteUqFkWithoutPkRefList(ls); }
-        });
-    }
+    public List<WhiteUqFkWithoutPk> pulloutWhiteUqFkWithoutPk(List<WhiteUqFkWithoutPkRef> whiteUqFkWithoutPkRefList)
+    { return helpPulloutInternally(whiteUqFkWithoutPkRefList, "whiteUqFkWithoutPk"); }
 
     // ===================================================================================
     //                                                                      Extract Column
@@ -518,51 +481,11 @@ public abstract class BsWhiteUqFkWithoutPkRefBhv extends AbstractBehaviorReadabl
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteUqFkWithoutPkRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteUqFkWithoutPkRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteUqFkWithoutPkRef> void delegateSelectCursor(WhiteUqFkWithoutPkRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteUqFkWithoutPkRef> List<ENTITY> delegateSelectList(WhiteUqFkWithoutPkRefCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteUqFkWithoutPkRef> typeOfSelectedEntity()
-    { return WhiteUqFkWithoutPkRef.class; }
-
-    protected WhiteUqFkWithoutPkRef downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteUqFkWithoutPkRef.class); }
-
-    protected WhiteUqFkWithoutPkRefCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteUqFkWithoutPkRefCB.class); }
-
+    protected Class<WhiteUqFkWithoutPkRef> typeOfSelectedEntity() { return WhiteUqFkWithoutPkRef.class; }
+    protected WhiteUqFkWithoutPkRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteUqFkWithoutPkRef.class); }
+    protected WhiteUqFkWithoutPkRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteUqFkWithoutPkRefCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteUqFkWithoutPkRef> downcast(List<? extends Entity> ls)
-    { return (List<WhiteUqFkWithoutPkRef>)ls; }
+    protected List<WhiteUqFkWithoutPkRef> downcast(List<? extends Entity> ls) { return (List<WhiteUqFkWithoutPkRef>)ls; }
 }

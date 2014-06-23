@@ -134,10 +134,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectEntity(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteTableExceptGenRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteTableExceptGenRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
 
     protected <ENTITY extends WhiteTableExceptGenRef> ENTITY doSelectEntityWithDeletedCheck(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteTableExceptGenRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected <ENTITY extends WhiteTableExceptGenRef> ListResultBean<ENTITY> doSelectList(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteTableExceptGenRefCB>() {
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected <ENTITY extends WhiteTableExceptGenRef> PagingResultBean<ENTITY> doSelectPage(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteTableExceptGenRefCB>() {
-            public int callbackSelectCount(WhiteTableExceptGenRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     protected <ENTITY extends WhiteTableExceptGenRef> void doSelectCursor(WhiteTableExceptGenRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteTableExceptGenRefCB>() {
-            public void callbackSelectCursor(WhiteTableExceptGenRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteTableExceptGenRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -512,11 +482,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
      * @param whiteTableExceptGenRefList The list of whiteTableExceptGenRef. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractGenRefIdList(List<WhiteTableExceptGenRef> whiteTableExceptGenRefList) {
-        return helpExtractListInternally(whiteTableExceptGenRefList, new InternalExtractCallback<WhiteTableExceptGenRef, Long>() {
-            public Long getCV(WhiteTableExceptGenRef et) { return et.getGenRefId(); }
-        });
-    }
+    public List<Long> extractGenRefIdList(List<WhiteTableExceptGenRef> whiteTableExceptGenRefList)
+    { return helpExtractListInternally(whiteTableExceptGenRefList, "genRefId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -543,23 +510,15 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected void doInsert(WhiteTableExceptGenRef et, InsertOption<WhiteTableExceptGenRefCB> op) {
-        assertObjectNotNull("whiteTableExceptGenRef", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whiteTableExceptGenRef", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteTableExceptGenRefCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -587,16 +546,12 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         doUpdate(whiteTableExceptGenRef, null);
     }
 
-    protected void doUpdate(WhiteTableExceptGenRef et, final UpdateOption<WhiteTableExceptGenRefCB> op) {
-        assertObjectNotNull("whiteTableExceptGenRef", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhiteTableExceptGenRef>() {
-            public int callbackDelegateUpdate(WhiteTableExceptGenRef let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhiteTableExceptGenRef et, UpdateOption<WhiteTableExceptGenRefCB> op) {
+        assertObjectNotNull("whiteTableExceptGenRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteTableExceptGenRefCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -607,15 +562,10 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     protected WhiteTableExceptGenRefCB createCBForSpecifiedUpdate()
     { WhiteTableExceptGenRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -630,25 +580,15 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         doInsertOrUpdate(whiteTableExceptGenRef, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteTableExceptGenRef et, final InsertOption<WhiteTableExceptGenRefCB> iop, final UpdateOption<WhiteTableExceptGenRefCB> uop) {
-        assertObjectNotNull("whiteTableExceptGenRef", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB>() {
-            public void callbackInsert(WhiteTableExceptGenRef let) { doInsert(let, iop); }
-            public void callbackUpdate(WhiteTableExceptGenRef let) { doUpdate(let, uop); }
-            public WhiteTableExceptGenRefCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhiteTableExceptGenRefCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhiteTableExceptGenRef et, InsertOption<WhiteTableExceptGenRefCB> iop, UpdateOption<WhiteTableExceptGenRefCB> uop) {
+        assertObjectNotNull("whiteTableExceptGenRef", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -672,24 +612,15 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected void doDelete(WhiteTableExceptGenRef et, final DeleteOption<WhiteTableExceptGenRefCB> op) {
-        assertObjectNotNull("whiteTableExceptGenRef", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhiteTableExceptGenRef>() {
-            public int callbackDelegateDelete(WhiteTableExceptGenRef let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whiteTableExceptGenRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteTableExceptGenRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -735,10 +666,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -780,10 +708,7 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -818,9 +743,8 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -839,15 +763,10 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -883,20 +802,16 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB> sp, InsertOption<WhiteTableExceptGenRefCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhiteTableExceptGenRef et = newEntity();
-        WhiteTableExceptGenRefCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhiteTableExceptGenRef et = newEntity(); WhiteTableExceptGenRefCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhiteTableExceptGenRefCB createCBForQueryInsert()
     { WhiteTableExceptGenRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -925,15 +840,12 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected int doQueryUpdate(WhiteTableExceptGenRef et, WhiteTableExceptGenRefCB cb, UpdateOption<WhiteTableExceptGenRefCB> op) {
-        assertObjectNotNull("whiteTableExceptGenRef", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whiteTableExceptGenRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -951,15 +863,11 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     protected int doQueryDelete(WhiteTableExceptGenRefCB cb, DeleteOption<WhiteTableExceptGenRefCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1202,108 +1110,19 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteTableExceptGenRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteTableExceptGenRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteTableExceptGenRef> void delegateSelectCursor(WhiteTableExceptGenRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteTableExceptGenRef> List<ENTITY> delegateSelectList(WhiteTableExceptGenRefCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhiteTableExceptGenRef et, InsertOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteTableExceptGenRef et, UpdateOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteTableExceptGenRef et, UpdateOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteTableExceptGenRef et, DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteTableExceptGenRef et, DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhiteTableExceptGenRef> ls, InsertOption<WhiteTableExceptGenRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteTableExceptGenRef> ls, UpdateOption<WhiteTableExceptGenRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteTableExceptGenRef> ls, UpdateOption<WhiteTableExceptGenRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteTableExceptGenRef> ls, DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteTableExceptGenRef> ls, DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhiteTableExceptGenRef et, WhiteTableExceptGenRefCB inCB, ConditionBean resCB, InsertOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteTableExceptGenRef et, WhiteTableExceptGenRefCB cb, UpdateOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteTableExceptGenRefCB cb, DeleteOption<WhiteTableExceptGenRefCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteTableExceptGenRef> typeOfSelectedEntity()
-    { return WhiteTableExceptGenRef.class; }
-
-    protected WhiteTableExceptGenRef downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteTableExceptGenRef.class); }
-
-    protected WhiteTableExceptGenRefCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteTableExceptGenRefCB.class); }
-
+    protected Class<WhiteTableExceptGenRef> typeOfSelectedEntity() { return WhiteTableExceptGenRef.class; }
+    protected WhiteTableExceptGenRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteTableExceptGenRef.class); }
+    protected WhiteTableExceptGenRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteTableExceptGenRefCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteTableExceptGenRef> downcast(List<? extends Entity> ls)
-    { return (List<WhiteTableExceptGenRef>)ls; }
-
+    protected List<WhiteTableExceptGenRef> downcast(List<? extends Entity> ls) { return (List<WhiteTableExceptGenRef>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteTableExceptGenRefCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhiteTableExceptGenRefCB>)op; }
-
+    protected InsertOption<WhiteTableExceptGenRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteTableExceptGenRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteTableExceptGenRefCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhiteTableExceptGenRefCB>)op; }
-
+    protected UpdateOption<WhiteTableExceptGenRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteTableExceptGenRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteTableExceptGenRefCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhiteTableExceptGenRefCB>)op; }
-
+    protected DeleteOption<WhiteTableExceptGenRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteTableExceptGenRefCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB>)sp; }

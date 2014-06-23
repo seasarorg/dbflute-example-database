@@ -89,27 +89,16 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _purchaseReferrerId;
-    public ConditionValue getPurchaseReferrerId() {
-        if (_purchaseReferrerId == null) { _purchaseReferrerId = nCV(); }
-        return _purchaseReferrerId;
-    }
+    public ConditionValue getPurchaseReferrerId()
+    { if (_purchaseReferrerId == null) { _purchaseReferrerId = nCV(); }
+      return _purchaseReferrerId; }
     protected ConditionValue getCValuePurchaseReferrerId() { return getPurchaseReferrerId(); }
 
-    protected Map<String, PurchaseCQ> _purchaseReferrerId_InScopeRelation_PurchaseMap;
-    public Map<String, PurchaseCQ> getPurchaseReferrerId_InScopeRelation_Purchase() { return _purchaseReferrerId_InScopeRelation_PurchaseMap; }
-    public String keepPurchaseReferrerId_InScopeRelation_Purchase(PurchaseCQ sq) {
-        if (_purchaseReferrerId_InScopeRelation_PurchaseMap == null) { _purchaseReferrerId_InScopeRelation_PurchaseMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_purchaseReferrerId_InScopeRelation_PurchaseMap.size() + 1);
-        _purchaseReferrerId_InScopeRelation_PurchaseMap.put(ky, sq); return "purchaseReferrerId_InScopeRelation_Purchase." + ky;
-    }
+    public Map<String, PurchaseCQ> getPurchaseReferrerId_InScopeRelation_Purchase() { return xgetSQueMap("purchaseReferrerId_InScopeRelation_Purchase"); }
+    public String keepPurchaseReferrerId_InScopeRelation_Purchase(PurchaseCQ sq) { return xkeepSQue("purchaseReferrerId_InScopeRelation_Purchase", sq); }
 
-    protected Map<String, PurchaseCQ> _purchaseReferrerId_NotInScopeRelation_PurchaseMap;
-    public Map<String, PurchaseCQ> getPurchaseReferrerId_NotInScopeRelation_Purchase() { return _purchaseReferrerId_NotInScopeRelation_PurchaseMap; }
-    public String keepPurchaseReferrerId_NotInScopeRelation_Purchase(PurchaseCQ sq) {
-        if (_purchaseReferrerId_NotInScopeRelation_PurchaseMap == null) { _purchaseReferrerId_NotInScopeRelation_PurchaseMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_purchaseReferrerId_NotInScopeRelation_PurchaseMap.size() + 1);
-        _purchaseReferrerId_NotInScopeRelation_PurchaseMap.put(ky, sq); return "purchaseReferrerId_NotInScopeRelation_Purchase." + ky;
-    }
+    public Map<String, PurchaseCQ> getPurchaseReferrerId_NotInScopeRelation_Purchase() { return xgetSQueMap("purchaseReferrerId_NotInScopeRelation_Purchase"); }
+    public String keepPurchaseReferrerId_NotInScopeRelation_Purchase(PurchaseCQ sq) { return xkeepSQue("purchaseReferrerId_NotInScopeRelation_Purchase", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -126,10 +115,9 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     public BsWhitePurchaseReferrerCQ addOrderBy_PurchaseReferrerId_Desc() { regOBD("PURCHASE_REFERRER_ID"); return this; }
 
     protected ConditionValue _purchaseReferrerName;
-    public ConditionValue getPurchaseReferrerName() {
-        if (_purchaseReferrerName == null) { _purchaseReferrerName = nCV(); }
-        return _purchaseReferrerName;
-    }
+    public ConditionValue getPurchaseReferrerName()
+    { if (_purchaseReferrerName == null) { _purchaseReferrerName = nCV(); }
+      return _purchaseReferrerName; }
     protected ConditionValue getCValuePurchaseReferrerName() { return getPurchaseReferrerName(); }
 
     /** 
@@ -163,8 +151,7 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhitePurchaseReferrerCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhitePurchaseReferrerCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -180,8 +167,7 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhitePurchaseReferrerCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhitePurchaseReferrerCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -205,31 +191,17 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     public PurchaseCQ queryPurchase() {
         return getConditionQueryPurchase();
     }
-    protected PurchaseCQ _conditionQueryPurchase;
     public PurchaseCQ getConditionQueryPurchase() {
-        if (_conditionQueryPurchase == null) {
-            _conditionQueryPurchase = xcreateQueryPurchase();
-            xsetupOuterJoinPurchase();
-        }
-        return _conditionQueryPurchase;
+        String prop = "purchase";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryPurchase()); xsetupOuterJoinPurchase(); }
+        return xgetQueRlMap(prop);
     }
     protected PurchaseCQ xcreateQueryPurchase() {
-        String nrp = resolveNextRelationPath("white_purchase_referrer", "purchase");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        PurchaseCQ cq = new PurchaseCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("purchase");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_purchase_referrer", "purchase"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new PurchaseCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "purchase", nrp);
     }
-    protected void xsetupOuterJoinPurchase() {
-        PurchaseCQ cq = getConditionQueryPurchase();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("PURCHASE_REFERRER_ID", "PURCHASE_ID");
-        registerOuterJoin(cq, joinOnMap, "purchase");
-    }
-    public boolean hasConditionQueryPurchase() {
-        return _conditionQueryPurchase != null;
-    }
+    protected void xsetupOuterJoinPurchase() { xregOutJo("purchase"); }
+    public boolean hasConditionQueryPurchase() { return xhasQueRlMap("purchase"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -238,61 +210,32 @@ public class BsWhitePurchaseReferrerCQ extends AbstractBsWhitePurchaseReferrerCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhitePurchaseReferrerCQ> _scalarConditionMap;
-    public Map<String, WhitePurchaseReferrerCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhitePurchaseReferrerCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhitePurchaseReferrerCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhitePurchaseReferrerCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhitePurchaseReferrerCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhitePurchaseReferrerCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhitePurchaseReferrerCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhitePurchaseReferrerCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhitePurchaseReferrerCQ> _queryMyselfDerivedMap;
-    public Map<String, WhitePurchaseReferrerCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhitePurchaseReferrerCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhitePurchaseReferrerCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhitePurchaseReferrerCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhitePurchaseReferrerCQ> _myselfExistsMap;
-    public Map<String, WhitePurchaseReferrerCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhitePurchaseReferrerCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhitePurchaseReferrerCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhitePurchaseReferrerCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhitePurchaseReferrerCQ> _myselfInScopeMap;
-    public Map<String, WhitePurchaseReferrerCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhitePurchaseReferrerCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhitePurchaseReferrerCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhitePurchaseReferrerCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

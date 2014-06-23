@@ -119,10 +119,7 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -155,19 +152,14 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNotPk> ENTITY doSelectEntity(WhiteNotPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteNotPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNotPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteNotPk> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteNotPkCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -194,14 +186,10 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
 
     protected <ENTITY extends WhiteNotPk> ENTITY doSelectEntityWithDeletedCheck(WhiteNotPkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteNotPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNotPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         List Select
@@ -230,16 +218,10 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNotPk> ListResultBean<ENTITY> doSelectList(WhiteNotPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteNotPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNotPkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -275,17 +257,10 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNotPk> PagingResultBean<ENTITY> doSelectPage(WhiteNotPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteNotPkCB>() {
-            public int callbackSelectCount(WhiteNotPkCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteNotPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -315,10 +290,7 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
     protected <ENTITY extends WhiteNotPk> void doSelectCursor(WhiteNotPkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteNotPkCB>() {
-            public void callbackSelectCursor(WhiteNotPkCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteNotPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -354,9 +326,7 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -465,7 +435,7 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
      */
     public void insert(WhiteNotPk whiteNotPk) {
         assertObjectNotNull("whiteNotPk", whiteNotPk);
-        delegateInsert(whiteNotPk, null);
+        delegateInsertNoPK(whiteNotPk, null);
     }
 
     // ===================================================================================
@@ -507,56 +477,11 @@ public abstract class BsWhiteNotPkBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteNotPkCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteNotPkCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteNotPk> void delegateSelectCursor(WhiteNotPkCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteNotPk> List<ENTITY> delegateSelectList(WhiteNotPkCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-    protected int delegateInsert(WhiteNotPk et, InsertOption<WhiteNotPkCB> op) {
-        // only filtering for extension is supported (filtering for common columns is unsupported)
-        assertEntityNotNull(et); filterEntityOfInsert(et, op);
-        return invoke(createInsertEntityCommand(et, op));
-    }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteNotPk> typeOfSelectedEntity()
-    { return WhiteNotPk.class; }
-
-    protected WhiteNotPk downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteNotPk.class); }
-
-    protected WhiteNotPkCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteNotPkCB.class); }
-
+    protected Class<WhiteNotPk> typeOfSelectedEntity() { return WhiteNotPk.class; }
+    protected WhiteNotPk downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteNotPk.class); }
+    protected WhiteNotPkCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteNotPkCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteNotPk> downcast(List<? extends Entity> ls)
-    { return (List<WhiteNotPk>)ls; }
+    protected List<WhiteNotPk> downcast(List<? extends Entity> ls) { return (List<WhiteNotPk>)ls; }
 }

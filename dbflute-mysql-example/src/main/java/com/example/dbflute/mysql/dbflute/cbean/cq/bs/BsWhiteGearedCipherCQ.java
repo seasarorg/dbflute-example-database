@@ -89,10 +89,9 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _cipherId;
-    public ConditionValue getCipherId() {
-        if (_cipherId == null) { _cipherId = nCV(); }
-        return _cipherId;
-    }
+    public ConditionValue getCipherId()
+    { if (_cipherId == null) { _cipherId = nCV(); }
+      return _cipherId; }
     protected ConditionValue getCValueCipherId() { return getCipherId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     public BsWhiteGearedCipherCQ addOrderBy_CipherId_Desc() { regOBD("CIPHER_ID"); return this; }
 
     protected ConditionValue _cipherInteger;
-    public ConditionValue getCipherInteger() {
-        if (_cipherInteger == null) { _cipherInteger = nCV(); }
-        return _cipherInteger;
-    }
+    public ConditionValue getCipherInteger()
+    { if (_cipherInteger == null) { _cipherInteger = nCV(); }
+      return _cipherInteger; }
     protected ConditionValue getCValueCipherInteger() { return getCipherInteger(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     public BsWhiteGearedCipherCQ addOrderBy_CipherInteger_Desc() { regOBD("CIPHER_INTEGER"); return this; }
 
     protected ConditionValue _cipherVarchar;
-    public ConditionValue getCipherVarchar() {
-        if (_cipherVarchar == null) { _cipherVarchar = nCV(); }
-        return _cipherVarchar;
-    }
+    public ConditionValue getCipherVarchar()
+    { if (_cipherVarchar == null) { _cipherVarchar = nCV(); }
+      return _cipherVarchar; }
     protected ConditionValue getCValueCipherVarchar() { return getCipherVarchar(); }
 
     /** 
@@ -152,10 +149,9 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     public BsWhiteGearedCipherCQ addOrderBy_CipherVarchar_Desc() { regOBD("CIPHER_VARCHAR"); return this; }
 
     protected ConditionValue _cipherDate;
-    public ConditionValue getCipherDate() {
-        if (_cipherDate == null) { _cipherDate = nCV(); }
-        return _cipherDate;
-    }
+    public ConditionValue getCipherDate()
+    { if (_cipherDate == null) { _cipherDate = nCV(); }
+      return _cipherDate; }
     protected ConditionValue getCValueCipherDate() { return getCipherDate(); }
 
     /** 
@@ -173,10 +169,9 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     public BsWhiteGearedCipherCQ addOrderBy_CipherDate_Desc() { regOBD("CIPHER_DATE"); return this; }
 
     protected ConditionValue _cipherDatetime;
-    public ConditionValue getCipherDatetime() {
-        if (_cipherDatetime == null) { _cipherDatetime = nCV(); }
-        return _cipherDatetime;
-    }
+    public ConditionValue getCipherDatetime()
+    { if (_cipherDatetime == null) { _cipherDatetime = nCV(); }
+      return _cipherDatetime; }
     protected ConditionValue getCValueCipherDatetime() { return getCipherDatetime(); }
 
     /** 
@@ -210,8 +205,7 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -227,8 +221,7 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteGearedCipherCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -246,61 +239,32 @@ public class BsWhiteGearedCipherCQ extends AbstractBsWhiteGearedCipherCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteGearedCipherCQ> _scalarConditionMap;
-    public Map<String, WhiteGearedCipherCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteGearedCipherCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteGearedCipherCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteGearedCipherCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteGearedCipherCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteGearedCipherCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteGearedCipherCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteGearedCipherCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteGearedCipherCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteGearedCipherCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteGearedCipherCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteGearedCipherCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteGearedCipherCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteGearedCipherCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteGearedCipherCQ> _myselfExistsMap;
-    public Map<String, WhiteGearedCipherCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteGearedCipherCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteGearedCipherCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteGearedCipherCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteGearedCipherCQ> _myselfInScopeMap;
-    public Map<String, WhiteGearedCipherCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteGearedCipherCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteGearedCipherCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteGearedCipherCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

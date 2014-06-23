@@ -89,10 +89,9 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _fooCode;
-    public ConditionValue getFooCode() {
-        if (_fooCode == null) { _fooCode = nCV(); }
-        return _fooCode;
-    }
+    public ConditionValue getFooCode()
+    { if (_fooCode == null) { _fooCode = nCV(); }
+      return _fooCode; }
     protected ConditionValue getCValueFooCode() { return getFooCode(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     public BsWhiteAllInOneClsCompoundPkRefCQ addOrderBy_FooCode_Desc() { regOBD("FOO_CODE"); return this; }
 
     protected ConditionValue _barCode;
-    public ConditionValue getBarCode() {
-        if (_barCode == null) { _barCode = nCV(); }
-        return _barCode;
-    }
+    public ConditionValue getBarCode()
+    { if (_barCode == null) { _barCode = nCV(); }
+      return _barCode; }
     protected ConditionValue getCValueBarCode() { return getBarCode(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     public BsWhiteAllInOneClsCompoundPkRefCQ addOrderBy_BarCode_Desc() { regOBD("BAR_CODE"); return this; }
 
     protected ConditionValue _quxCode;
-    public ConditionValue getQuxCode() {
-        if (_quxCode == null) { _quxCode = nCV(); }
-        return _quxCode;
-    }
+    public ConditionValue getQuxCode()
+    { if (_quxCode == null) { _quxCode = nCV(); }
+      return _quxCode; }
     protected ConditionValue getCValueQuxCode() { return getQuxCode(); }
 
     /** 
@@ -168,8 +165,7 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteAllInOneClsCompoundPkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteAllInOneClsCompoundPkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -185,8 +181,7 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteAllInOneClsCompoundPkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteAllInOneClsCompoundPkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -213,31 +208,17 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     public WhiteAllInOneClsElementCQ queryWhiteAllInOneClsElementAsFoo() {
         return getConditionQueryWhiteAllInOneClsElementAsFoo();
     }
-    protected WhiteAllInOneClsElementCQ _conditionQueryWhiteAllInOneClsElementAsFoo;
     public WhiteAllInOneClsElementCQ getConditionQueryWhiteAllInOneClsElementAsFoo() {
-        if (_conditionQueryWhiteAllInOneClsElementAsFoo == null) {
-            _conditionQueryWhiteAllInOneClsElementAsFoo = xcreateQueryWhiteAllInOneClsElementAsFoo();
-            xsetupOuterJoinWhiteAllInOneClsElementAsFoo();
-        }
-        return _conditionQueryWhiteAllInOneClsElementAsFoo;
+        String prop = "whiteAllInOneClsElementAsFoo";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteAllInOneClsElementAsFoo()); xsetupOuterJoinWhiteAllInOneClsElementAsFoo(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteAllInOneClsElementCQ xcreateQueryWhiteAllInOneClsElementAsFoo() {
-        String nrp = resolveNextRelationPath("white_all_in_one_cls_compound_pk_ref", "whiteAllInOneClsElementAsFoo");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteAllInOneClsElementCQ cq = new WhiteAllInOneClsElementCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteAllInOneClsElementAsFoo");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_all_in_one_cls_compound_pk_ref", "whiteAllInOneClsElementAsFoo"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteAllInOneClsElementCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteAllInOneClsElementAsFoo", nrp);
     }
-    protected void xsetupOuterJoinWhiteAllInOneClsElementAsFoo() {
-        WhiteAllInOneClsElementCQ cq = getConditionQueryWhiteAllInOneClsElementAsFoo();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("FOO_CODE", "CLS_ELEMENT_CODE");
-        registerOuterJoin(cq, joinOnMap, "whiteAllInOneClsElementAsFoo");
-    }
-    public boolean hasConditionQueryWhiteAllInOneClsElementAsFoo() {
-        return _conditionQueryWhiteAllInOneClsElementAsFoo != null;
-    }
+    protected void xsetupOuterJoinWhiteAllInOneClsElementAsFoo() { xregOutJo("whiteAllInOneClsElementAsFoo"); }
+    public boolean hasConditionQueryWhiteAllInOneClsElementAsFoo() { return xhasQueRlMap("whiteAllInOneClsElementAsFoo"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -247,31 +228,17 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     public WhiteAllInOneClsElementCQ queryWhiteAllInOneClsElementAsBar() {
         return getConditionQueryWhiteAllInOneClsElementAsBar();
     }
-    protected WhiteAllInOneClsElementCQ _conditionQueryWhiteAllInOneClsElementAsBar;
     public WhiteAllInOneClsElementCQ getConditionQueryWhiteAllInOneClsElementAsBar() {
-        if (_conditionQueryWhiteAllInOneClsElementAsBar == null) {
-            _conditionQueryWhiteAllInOneClsElementAsBar = xcreateQueryWhiteAllInOneClsElementAsBar();
-            xsetupOuterJoinWhiteAllInOneClsElementAsBar();
-        }
-        return _conditionQueryWhiteAllInOneClsElementAsBar;
+        String prop = "whiteAllInOneClsElementAsBar";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteAllInOneClsElementAsBar()); xsetupOuterJoinWhiteAllInOneClsElementAsBar(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteAllInOneClsElementCQ xcreateQueryWhiteAllInOneClsElementAsBar() {
-        String nrp = resolveNextRelationPath("white_all_in_one_cls_compound_pk_ref", "whiteAllInOneClsElementAsBar");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteAllInOneClsElementCQ cq = new WhiteAllInOneClsElementCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteAllInOneClsElementAsBar");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_all_in_one_cls_compound_pk_ref", "whiteAllInOneClsElementAsBar"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteAllInOneClsElementCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteAllInOneClsElementAsBar", nrp);
     }
-    protected void xsetupOuterJoinWhiteAllInOneClsElementAsBar() {
-        WhiteAllInOneClsElementCQ cq = getConditionQueryWhiteAllInOneClsElementAsBar();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("BAR_CODE", "CLS_ELEMENT_CODE");
-        registerOuterJoin(cq, joinOnMap, "whiteAllInOneClsElementAsBar");
-    }
-    public boolean hasConditionQueryWhiteAllInOneClsElementAsBar() {
-        return _conditionQueryWhiteAllInOneClsElementAsBar != null;
-    }
+    protected void xsetupOuterJoinWhiteAllInOneClsElementAsBar() { xregOutJo("whiteAllInOneClsElementAsBar"); }
+    public boolean hasConditionQueryWhiteAllInOneClsElementAsBar() { return xhasQueRlMap("whiteAllInOneClsElementAsBar"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -280,13 +247,8 @@ public class BsWhiteAllInOneClsCompoundPkRefCQ extends AbstractBsWhiteAllInOneCl
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteAllInOneClsCompoundPkRefCQ> _scalarConditionMap;
-    public Map<String, WhiteAllInOneClsCompoundPkRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteAllInOneClsCompoundPkRefCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteAllInOneClsCompoundPkRefCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteAllInOneClsCompoundPkRefCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

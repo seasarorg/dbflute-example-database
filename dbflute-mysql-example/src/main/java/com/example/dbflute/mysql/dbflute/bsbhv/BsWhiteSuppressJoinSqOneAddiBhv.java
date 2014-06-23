@@ -134,10 +134,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> ENTITY doSelectEntity(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteSuppressJoinSqOneAddiCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressJoinSqOneAddiCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
 
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> ENTITY doSelectEntityWithDeletedCheck(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteSuppressJoinSqOneAddiCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressJoinSqOneAddiCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> ListResultBean<ENTITY> doSelectList(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteSuppressJoinSqOneAddiCB>() {
-            public List<ENTITY> callbackSelectList(WhiteSuppressJoinSqOneAddiCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> PagingResultBean<ENTITY> doSelectPage(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteSuppressJoinSqOneAddiCB>() {
-            public int callbackSelectCount(WhiteSuppressJoinSqOneAddiCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     protected <ENTITY extends WhiteSuppressJoinSqOneAddi> void doSelectCursor(WhiteSuppressJoinSqOneAddiCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteSuppressJoinSqOneAddiCB>() {
-            public void callbackSelectCursor(WhiteSuppressJoinSqOneAddiCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteSuppressJoinSqOneAddiCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -590,23 +560,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected NestedReferrerListGateway<WhiteSuppressJoinSqOne> doLoadWhiteSuppressJoinSqOneList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList, LoadReferrerOption<WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne> option) {
-        final WhiteSuppressJoinSqOneBhv referrerBhv = xgetBSFLR().select(WhiteSuppressJoinSqOneBhv.class);
-        return helpLoadReferrerInternally(whiteSuppressJoinSqOneAddiList, option, new InternalLoadReferrerCallback<WhiteSuppressJoinSqOneAddi, Integer, WhiteSuppressJoinSqOneCB, WhiteSuppressJoinSqOne>() {
-            public Integer getPKVal(WhiteSuppressJoinSqOneAddi et)
-            { return et.getOneAddiId(); }
-            public void setRfLs(WhiteSuppressJoinSqOneAddi et, List<WhiteSuppressJoinSqOne> ls)
-            { et.setWhiteSuppressJoinSqOneList(ls); }
-            public WhiteSuppressJoinSqOneCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhiteSuppressJoinSqOneCB cb, List<Integer> ls)
-            { cb.query().setOneAddiId_InScope(ls); }
-            public void qyOdFKAsc(WhiteSuppressJoinSqOneCB cb) { cb.query().addOrderBy_OneAddiId_Asc(); }
-            public void spFKCol(WhiteSuppressJoinSqOneCB cb) { cb.specify().columnOneAddiId(); }
-            public List<WhiteSuppressJoinSqOne> selRfLs(WhiteSuppressJoinSqOneCB cb) { return referrerBhv.selectList(cb); }
-            public Integer getFKVal(WhiteSuppressJoinSqOne re) { return re.getOneAddiId(); }
-            public void setlcEt(WhiteSuppressJoinSqOne re, WhiteSuppressJoinSqOneAddi le)
-            { re.setWhiteSuppressJoinSqOneAddi(le); }
-            public String getRfPrNm() { return "whiteSuppressJoinSqOneList"; }
-        });
+        return helpLoadReferrerInternally(whiteSuppressJoinSqOneAddiList, option, "whiteSuppressJoinSqOneList");
     }
 
     // ===================================================================================
@@ -620,11 +574,8 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
      * @param whiteSuppressJoinSqOneAddiList The list of whiteSuppressJoinSqOneAddi. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Integer> extractOneAddiIdList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList) {
-        return helpExtractListInternally(whiteSuppressJoinSqOneAddiList, new InternalExtractCallback<WhiteSuppressJoinSqOneAddi, Integer>() {
-            public Integer getCV(WhiteSuppressJoinSqOneAddi et) { return et.getOneAddiId(); }
-        });
-    }
+    public List<Integer> extractOneAddiIdList(List<WhiteSuppressJoinSqOneAddi> whiteSuppressJoinSqOneAddiList)
+    { return helpExtractListInternally(whiteSuppressJoinSqOneAddiList, "oneAddiId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -651,23 +602,15 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected void doInsert(WhiteSuppressJoinSqOneAddi et, InsertOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -695,16 +638,12 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         doUpdate(whiteSuppressJoinSqOneAddi, null);
     }
 
-    protected void doUpdate(WhiteSuppressJoinSqOneAddi et, final UpdateOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhiteSuppressJoinSqOneAddi>() {
-            public int callbackDelegateUpdate(WhiteSuppressJoinSqOneAddi let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhiteSuppressJoinSqOneAddi et, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op) {
+        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -715,15 +654,10 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     protected WhiteSuppressJoinSqOneAddiCB createCBForSpecifiedUpdate()
     { WhiteSuppressJoinSqOneAddiCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -738,25 +672,15 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         doInsertOrUpdate(whiteSuppressJoinSqOneAddi, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteSuppressJoinSqOneAddi et, final InsertOption<WhiteSuppressJoinSqOneAddiCB> iop, final UpdateOption<WhiteSuppressJoinSqOneAddiCB> uop) {
-        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB>() {
-            public void callbackInsert(WhiteSuppressJoinSqOneAddi let) { doInsert(let, iop); }
-            public void callbackUpdate(WhiteSuppressJoinSqOneAddi let) { doUpdate(let, uop); }
-            public WhiteSuppressJoinSqOneAddiCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhiteSuppressJoinSqOneAddiCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhiteSuppressJoinSqOneAddi et, InsertOption<WhiteSuppressJoinSqOneAddiCB> iop, UpdateOption<WhiteSuppressJoinSqOneAddiCB> uop) {
+        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -780,24 +704,15 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected void doDelete(WhiteSuppressJoinSqOneAddi et, final DeleteOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhiteSuppressJoinSqOneAddi>() {
-            public int callbackDelegateDelete(WhiteSuppressJoinSqOneAddi let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteSuppressJoinSqOneAddiCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -843,10 +758,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -888,10 +800,7 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -926,9 +835,8 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -947,15 +855,10 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -991,20 +894,16 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB> sp, InsertOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhiteSuppressJoinSqOneAddi et = newEntity();
-        WhiteSuppressJoinSqOneAddiCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhiteSuppressJoinSqOneAddi et = newEntity(); WhiteSuppressJoinSqOneAddiCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhiteSuppressJoinSqOneAddiCB createCBForQueryInsert()
     { WhiteSuppressJoinSqOneAddiCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1033,15 +932,12 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected int doQueryUpdate(WhiteSuppressJoinSqOneAddi et, WhiteSuppressJoinSqOneAddiCB cb, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whiteSuppressJoinSqOneAddi", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1059,15 +955,11 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     protected int doQueryDelete(WhiteSuppressJoinSqOneAddiCB cb, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1310,108 +1202,19 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteSuppressJoinSqOneAddiCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteSuppressJoinSqOneAddiCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteSuppressJoinSqOneAddi> void delegateSelectCursor(WhiteSuppressJoinSqOneAddiCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteSuppressJoinSqOneAddi> List<ENTITY> delegateSelectList(WhiteSuppressJoinSqOneAddiCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhiteSuppressJoinSqOneAddi et, InsertOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteSuppressJoinSqOneAddi et, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteSuppressJoinSqOneAddi et, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteSuppressJoinSqOneAddi et, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteSuppressJoinSqOneAddi et, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhiteSuppressJoinSqOneAddi> ls, InsertOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteSuppressJoinSqOneAddi> ls, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteSuppressJoinSqOneAddi> ls, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteSuppressJoinSqOneAddi> ls, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteSuppressJoinSqOneAddi> ls, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhiteSuppressJoinSqOneAddi et, WhiteSuppressJoinSqOneAddiCB inCB, ConditionBean resCB, InsertOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteSuppressJoinSqOneAddi et, WhiteSuppressJoinSqOneAddiCB cb, UpdateOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteSuppressJoinSqOneAddiCB cb, DeleteOption<WhiteSuppressJoinSqOneAddiCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteSuppressJoinSqOneAddi> typeOfSelectedEntity()
-    { return WhiteSuppressJoinSqOneAddi.class; }
-
-    protected WhiteSuppressJoinSqOneAddi downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteSuppressJoinSqOneAddi.class); }
-
-    protected WhiteSuppressJoinSqOneAddiCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteSuppressJoinSqOneAddiCB.class); }
-
+    protected Class<WhiteSuppressJoinSqOneAddi> typeOfSelectedEntity() { return WhiteSuppressJoinSqOneAddi.class; }
+    protected WhiteSuppressJoinSqOneAddi downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteSuppressJoinSqOneAddi.class); }
+    protected WhiteSuppressJoinSqOneAddiCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteSuppressJoinSqOneAddiCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteSuppressJoinSqOneAddi> downcast(List<? extends Entity> ls)
-    { return (List<WhiteSuppressJoinSqOneAddi>)ls; }
-
+    protected List<WhiteSuppressJoinSqOneAddi> downcast(List<? extends Entity> ls) { return (List<WhiteSuppressJoinSqOneAddi>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSuppressJoinSqOneAddiCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-
+    protected InsertOption<WhiteSuppressJoinSqOneAddiCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSuppressJoinSqOneAddiCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSuppressJoinSqOneAddiCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-
+    protected UpdateOption<WhiteSuppressJoinSqOneAddiCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSuppressJoinSqOneAddiCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSuppressJoinSqOneAddiCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-
+    protected DeleteOption<WhiteSuppressJoinSqOneAddiCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSuppressJoinSqOneAddiCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB>)sp; }

@@ -89,10 +89,9 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _noPkId;
-    public ConditionValue getNoPkId() {
-        if (_noPkId == null) { _noPkId = nCV(); }
-        return _noPkId;
-    }
+    public ConditionValue getNoPkId()
+    { if (_noPkId == null) { _noPkId = nCV(); }
+      return _noPkId; }
     protected ConditionValue getCValueNoPkId() { return getNoPkId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
     public BsWhiteNoPkCQ addOrderBy_NoPkId_Desc() { regOBD("NO_PK_ID"); return this; }
 
     protected ConditionValue _noPkName;
-    public ConditionValue getNoPkName() {
-        if (_noPkName == null) { _noPkName = nCV(); }
-        return _noPkName;
-    }
+    public ConditionValue getNoPkName()
+    { if (_noPkName == null) { _noPkName = nCV(); }
+      return _noPkName; }
     protected ConditionValue getCValueNoPkName() { return getNoPkName(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
     public BsWhiteNoPkCQ addOrderBy_NoPkName_Desc() { regOBD("NO_PK_NAME"); return this; }
 
     protected ConditionValue _noPkInteger;
-    public ConditionValue getNoPkInteger() {
-        if (_noPkInteger == null) { _noPkInteger = nCV(); }
-        return _noPkInteger;
-    }
+    public ConditionValue getNoPkInteger()
+    { if (_noPkInteger == null) { _noPkInteger = nCV(); }
+      return _noPkInteger; }
     protected ConditionValue getCValueNoPkInteger() { return getNoPkInteger(); }
 
     /** 
@@ -168,8 +165,7 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteNoPkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteNoPkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -185,8 +181,7 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteNoPkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteNoPkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -204,13 +199,8 @@ public class BsWhiteNoPkCQ extends AbstractBsWhiteNoPkCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteNoPkCQ> _scalarConditionMap;
-    public Map<String, WhiteNoPkCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteNoPkCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteNoPkCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteNoPkCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

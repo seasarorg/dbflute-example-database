@@ -134,10 +134,7 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected <ENTITY extends VendorConstraintNameAutoRef> ENTITY doSelectEntity(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorConstraintNameAutoRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends VendorConstraintNameAutoRef> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
 
     protected <ENTITY extends VendorConstraintNameAutoRef> ENTITY doSelectEntityWithDeletedCheck(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorConstraintNameAutoRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -314,16 +302,10 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected <ENTITY extends VendorConstraintNameAutoRef> ListResultBean<ENTITY> doSelectList(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorConstraintNameAutoRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -359,17 +341,10 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected <ENTITY extends VendorConstraintNameAutoRef> PagingResultBean<ENTITY> doSelectPage(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, VendorConstraintNameAutoRefCB>() {
-            public int callbackSelectCount(VendorConstraintNameAutoRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -399,10 +374,7 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     protected <ENTITY extends VendorConstraintNameAutoRef> void doSelectCursor(VendorConstraintNameAutoRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorConstraintNameAutoRefCB>() {
-            public void callbackSelectCursor(VendorConstraintNameAutoRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(VendorConstraintNameAutoRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -438,9 +410,7 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -534,45 +504,24 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
      * @param vendorConstraintNameAutoRefList The list of vendorConstraintNameAutoRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<VendorConstraintNameAutoFoo> pulloutVendorConstraintNameAutoFoo(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
-        return helpPulloutInternally(vendorConstraintNameAutoRefList, new InternalPulloutCallback<VendorConstraintNameAutoRef, VendorConstraintNameAutoFoo>() {
-            public VendorConstraintNameAutoFoo getFr(VendorConstraintNameAutoRef et)
-            { return et.getVendorConstraintNameAutoFoo(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(VendorConstraintNameAutoFoo et, List<VendorConstraintNameAutoRef> ls)
-            { et.setVendorConstraintNameAutoRefList(ls); }
-        });
-    }
+    public List<VendorConstraintNameAutoFoo> pulloutVendorConstraintNameAutoFoo(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList)
+    { return helpPulloutInternally(vendorConstraintNameAutoRefList, "vendorConstraintNameAutoFoo"); }
 
     /**
      * Pull out the list of foreign table 'VendorConstraintNameAutoBar'.
      * @param vendorConstraintNameAutoRefList The list of vendorConstraintNameAutoRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<VendorConstraintNameAutoBar> pulloutVendorConstraintNameAutoBar(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
-        return helpPulloutInternally(vendorConstraintNameAutoRefList, new InternalPulloutCallback<VendorConstraintNameAutoRef, VendorConstraintNameAutoBar>() {
-            public VendorConstraintNameAutoBar getFr(VendorConstraintNameAutoRef et)
-            { return et.getVendorConstraintNameAutoBar(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(VendorConstraintNameAutoBar et, List<VendorConstraintNameAutoRef> ls)
-            { et.setVendorConstraintNameAutoRefList(ls); }
-        });
-    }
+    public List<VendorConstraintNameAutoBar> pulloutVendorConstraintNameAutoBar(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList)
+    { return helpPulloutInternally(vendorConstraintNameAutoRefList, "vendorConstraintNameAutoBar"); }
 
     /**
      * Pull out the list of foreign table 'VendorConstraintNameAutoQux'.
      * @param vendorConstraintNameAutoRefList The list of vendorConstraintNameAutoRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<VendorConstraintNameAutoQux> pulloutVendorConstraintNameAutoQux(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
-        return helpPulloutInternally(vendorConstraintNameAutoRefList, new InternalPulloutCallback<VendorConstraintNameAutoRef, VendorConstraintNameAutoQux>() {
-            public VendorConstraintNameAutoQux getFr(VendorConstraintNameAutoRef et)
-            { return et.getVendorConstraintNameAutoQux(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(VendorConstraintNameAutoQux et, List<VendorConstraintNameAutoRef> ls)
-            { et.setVendorConstraintNameAutoRefList(ls); }
-        });
-    }
+    public List<VendorConstraintNameAutoQux> pulloutVendorConstraintNameAutoQux(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList)
+    { return helpPulloutInternally(vendorConstraintNameAutoRefList, "vendorConstraintNameAutoQux"); }
 
     // ===================================================================================
     //                                                                      Extract Column
@@ -582,22 +531,16 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
      * @param vendorConstraintNameAutoRefList The list of vendorConstraintNameAutoRef. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractConstraintNameAutoRefIdList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
-        return helpExtractListInternally(vendorConstraintNameAutoRefList, new InternalExtractCallback<VendorConstraintNameAutoRef, Long>() {
-            public Long getCV(VendorConstraintNameAutoRef et) { return et.getConstraintNameAutoRefId(); }
-        });
-    }
+    public List<Long> extractConstraintNameAutoRefIdList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList)
+    { return helpExtractListInternally(vendorConstraintNameAutoRefList, "constraintNameAutoRefId"); }
 
     /**
      * Extract the value list of (single) unique key constraintNameAutoUnique.
      * @param vendorConstraintNameAutoRefList The list of vendorConstraintNameAutoRef. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<String> extractConstraintNameAutoUniqueList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList) {
-        return helpExtractListInternally(vendorConstraintNameAutoRefList, new InternalExtractCallback<VendorConstraintNameAutoRef, String>() {
-            public String getCV(VendorConstraintNameAutoRef et) { return et.getConstraintNameAutoUnique(); }
-        });
-    }
+    public List<String> extractConstraintNameAutoUniqueList(List<VendorConstraintNameAutoRef> vendorConstraintNameAutoRefList)
+    { return helpExtractListInternally(vendorConstraintNameAutoRefList, "constraintNameAutoUnique"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -624,23 +567,15 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected void doInsert(VendorConstraintNameAutoRef et, InsertOption<VendorConstraintNameAutoRefCB> op) {
-        assertObjectNotNull("vendorConstraintNameAutoRef", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("vendorConstraintNameAutoRef", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<VendorConstraintNameAutoRefCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -668,16 +603,12 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         doUpdate(vendorConstraintNameAutoRef, null);
     }
 
-    protected void doUpdate(VendorConstraintNameAutoRef et, final UpdateOption<VendorConstraintNameAutoRefCB> op) {
-        assertObjectNotNull("vendorConstraintNameAutoRef", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<VendorConstraintNameAutoRef>() {
-            public int callbackDelegateUpdate(VendorConstraintNameAutoRef let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(VendorConstraintNameAutoRef et, UpdateOption<VendorConstraintNameAutoRefCB> op) {
+        assertObjectNotNull("vendorConstraintNameAutoRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<VendorConstraintNameAutoRefCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -688,15 +619,10 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     protected VendorConstraintNameAutoRefCB createCBForSpecifiedUpdate()
     { VendorConstraintNameAutoRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -711,25 +637,15 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         doInsertOrUpdate(vendorConstraintNameAutoRef, null, null);
     }
 
-    protected void doInsertOrUpdate(VendorConstraintNameAutoRef et, final InsertOption<VendorConstraintNameAutoRefCB> iop, final UpdateOption<VendorConstraintNameAutoRefCB> uop) {
-        assertObjectNotNull("vendorConstraintNameAutoRef", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB>() {
-            public void callbackInsert(VendorConstraintNameAutoRef let) { doInsert(let, iop); }
-            public void callbackUpdate(VendorConstraintNameAutoRef let) { doUpdate(let, uop); }
-            public VendorConstraintNameAutoRefCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(VendorConstraintNameAutoRefCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(VendorConstraintNameAutoRef et, InsertOption<VendorConstraintNameAutoRefCB> iop, UpdateOption<VendorConstraintNameAutoRefCB> uop) {
+        assertObjectNotNull("vendorConstraintNameAutoRef", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -753,24 +669,15 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected void doDelete(VendorConstraintNameAutoRef et, final DeleteOption<VendorConstraintNameAutoRefCB> op) {
-        assertObjectNotNull("vendorConstraintNameAutoRef", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<VendorConstraintNameAutoRef>() {
-            public int callbackDelegateDelete(VendorConstraintNameAutoRef let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("vendorConstraintNameAutoRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<VendorConstraintNameAutoRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -816,10 +723,7 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -861,10 +765,7 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -899,9 +800,8 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -920,15 +820,10 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -964,20 +859,16 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected int doQueryInsert(QueryInsertSetupper<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB> sp, InsertOption<VendorConstraintNameAutoRefCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        VendorConstraintNameAutoRef et = newEntity();
-        VendorConstraintNameAutoRefCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        VendorConstraintNameAutoRef et = newEntity(); VendorConstraintNameAutoRefCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected VendorConstraintNameAutoRefCB createCBForQueryInsert()
     { VendorConstraintNameAutoRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1006,15 +897,12 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected int doQueryUpdate(VendorConstraintNameAutoRef et, VendorConstraintNameAutoRefCB cb, UpdateOption<VendorConstraintNameAutoRefCB> op) {
-        assertObjectNotNull("vendorConstraintNameAutoRef", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("vendorConstraintNameAutoRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1032,15 +920,11 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     protected int doQueryDelete(VendorConstraintNameAutoRefCB cb, DeleteOption<VendorConstraintNameAutoRefCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1283,108 +1167,19 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(VendorConstraintNameAutoRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(VendorConstraintNameAutoRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends VendorConstraintNameAutoRef> void delegateSelectCursor(VendorConstraintNameAutoRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends VendorConstraintNameAutoRef> List<ENTITY> delegateSelectList(VendorConstraintNameAutoRefCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(VendorConstraintNameAutoRef et, InsertOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(VendorConstraintNameAutoRef et, UpdateOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(VendorConstraintNameAutoRef et, UpdateOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(VendorConstraintNameAutoRef et, DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(VendorConstraintNameAutoRef et, DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<VendorConstraintNameAutoRef> ls, InsertOption<VendorConstraintNameAutoRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<VendorConstraintNameAutoRef> ls, UpdateOption<VendorConstraintNameAutoRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<VendorConstraintNameAutoRef> ls, UpdateOption<VendorConstraintNameAutoRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<VendorConstraintNameAutoRef> ls, DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<VendorConstraintNameAutoRef> ls, DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(VendorConstraintNameAutoRef et, VendorConstraintNameAutoRefCB inCB, ConditionBean resCB, InsertOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(VendorConstraintNameAutoRef et, VendorConstraintNameAutoRefCB cb, UpdateOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(VendorConstraintNameAutoRefCB cb, DeleteOption<VendorConstraintNameAutoRefCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<VendorConstraintNameAutoRef> typeOfSelectedEntity()
-    { return VendorConstraintNameAutoRef.class; }
-
-    protected VendorConstraintNameAutoRef downcast(Entity et)
-    { return helpEntityDowncastInternally(et, VendorConstraintNameAutoRef.class); }
-
-    protected VendorConstraintNameAutoRefCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, VendorConstraintNameAutoRefCB.class); }
-
+    protected Class<VendorConstraintNameAutoRef> typeOfSelectedEntity() { return VendorConstraintNameAutoRef.class; }
+    protected VendorConstraintNameAutoRef downcast(Entity et) { return helpEntityDowncastInternally(et, VendorConstraintNameAutoRef.class); }
+    protected VendorConstraintNameAutoRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, VendorConstraintNameAutoRefCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<VendorConstraintNameAutoRef> downcast(List<? extends Entity> ls)
-    { return (List<VendorConstraintNameAutoRef>)ls; }
-
+    protected List<VendorConstraintNameAutoRef> downcast(List<? extends Entity> ls) { return (List<VendorConstraintNameAutoRef>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorConstraintNameAutoRefCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<VendorConstraintNameAutoRefCB>)op; }
-
+    protected InsertOption<VendorConstraintNameAutoRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorConstraintNameAutoRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorConstraintNameAutoRefCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<VendorConstraintNameAutoRefCB>)op; }
-
+    protected UpdateOption<VendorConstraintNameAutoRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorConstraintNameAutoRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorConstraintNameAutoRefCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<VendorConstraintNameAutoRefCB>)op; }
-
+    protected DeleteOption<VendorConstraintNameAutoRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorConstraintNameAutoRefCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB>)sp; }

@@ -89,10 +89,9 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _manyId;
-    public ConditionValue getManyId() {
-        if (_manyId == null) { _manyId = nCV(); }
-        return _manyId;
-    }
+    public ConditionValue getManyId()
+    { if (_manyId == null) { _manyId = nCV(); }
+      return _manyId; }
     protected ConditionValue getCValueManyId() { return getManyId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_ManyId_Desc() { regOBD("MANY_ID"); return this; }
 
     protected ConditionValue _manyName;
-    public ConditionValue getManyName() {
-        if (_manyName == null) { _manyName = nCV(); }
-        return _manyName;
-    }
+    public ConditionValue getManyName()
+    { if (_manyName == null) { _manyName = nCV(); }
+      return _manyName; }
     protected ConditionValue getCValueManyName() { return getManyName(); }
 
     /** 
@@ -131,27 +129,16 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_ManyName_Desc() { regOBD("MANY_NAME"); return this; }
 
     protected ConditionValue _suppressJoinSqId;
-    public ConditionValue getSuppressJoinSqId() {
-        if (_suppressJoinSqId == null) { _suppressJoinSqId = nCV(); }
-        return _suppressJoinSqId;
-    }
+    public ConditionValue getSuppressJoinSqId()
+    { if (_suppressJoinSqId == null) { _suppressJoinSqId = nCV(); }
+      return _suppressJoinSqId; }
     protected ConditionValue getCValueSuppressJoinSqId() { return getSuppressJoinSqId(); }
 
-    protected Map<String, WhiteSuppressJoinSqCQ> _suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap;
-    public Map<String, WhiteSuppressJoinSqCQ> getSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq() { return _suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap; }
-    public String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq) {
-        if (_suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap == null) { _suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap.size() + 1);
-        _suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSqMap.put(ky, sq); return "suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqCQ> getSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq() { return xgetSQueMap("suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq"); }
+    public String keepSuppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq) { return xkeepSQue("suppressJoinSqId_InScopeRelation_WhiteSuppressJoinSq", sq); }
 
-    protected Map<String, WhiteSuppressJoinSqCQ> _suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap;
-    public Map<String, WhiteSuppressJoinSqCQ> getSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq() { return _suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap; }
-    public String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq) {
-        if (_suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap == null) { _suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap.size() + 1);
-        _suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSqMap.put(ky, sq); return "suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqCQ> getSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq() { return xgetSQueMap("suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq"); }
+    public String keepSuppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq(WhiteSuppressJoinSqCQ sq) { return xkeepSQue("suppressJoinSqId_NotInScopeRelation_WhiteSuppressJoinSq", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -168,27 +155,16 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     public BsWhiteSuppressJoinSqManyCQ addOrderBy_SuppressJoinSqId_Desc() { regOBD("SUPPRESS_JOIN_SQ_ID"); return this; }
 
     protected ConditionValue _manyOneId;
-    public ConditionValue getManyOneId() {
-        if (_manyOneId == null) { _manyOneId = nCV(); }
-        return _manyOneId;
-    }
+    public ConditionValue getManyOneId()
+    { if (_manyOneId == null) { _manyOneId = nCV(); }
+      return _manyOneId; }
     protected ConditionValue getCValueManyOneId() { return getManyOneId(); }
 
-    protected Map<String, WhiteSuppressJoinSqManyOneCQ> _manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap;
-    public Map<String, WhiteSuppressJoinSqManyOneCQ> getManyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne() { return _manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap; }
-    public String keepManyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne(WhiteSuppressJoinSqManyOneCQ sq) {
-        if (_manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap == null) { _manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap.size() + 1);
-        _manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOneMap.put(ky, sq); return "manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyOneCQ> getManyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne() { return xgetSQueMap("manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne"); }
+    public String keepManyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne(WhiteSuppressJoinSqManyOneCQ sq) { return xkeepSQue("manyOneId_InScopeRelation_WhiteSuppressJoinSqManyOne", sq); }
 
-    protected Map<String, WhiteSuppressJoinSqManyOneCQ> _manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap;
-    public Map<String, WhiteSuppressJoinSqManyOneCQ> getManyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne() { return _manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap; }
-    public String keepManyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne(WhiteSuppressJoinSqManyOneCQ sq) {
-        if (_manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap == null) { _manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap.size() + 1);
-        _manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOneMap.put(ky, sq); return "manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyOneCQ> getManyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne() { return xgetSQueMap("manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne"); }
+    public String keepManyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne(WhiteSuppressJoinSqManyOneCQ sq) { return xkeepSQue("manyOneId_NotInScopeRelation_WhiteSuppressJoinSqManyOne", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -221,8 +197,7 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSuppressJoinSqManyCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteSuppressJoinSqManyCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -238,8 +213,7 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSuppressJoinSqManyCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteSuppressJoinSqManyCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -257,61 +231,32 @@ public class BsWhiteSuppressJoinSqManyCQ extends AbstractBsWhiteSuppressJoinSqMa
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteSuppressJoinSqManyCQ> _scalarConditionMap;
-    public Map<String, WhiteSuppressJoinSqManyCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteSuppressJoinSqManyCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteSuppressJoinSqManyCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteSuppressJoinSqManyCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteSuppressJoinSqManyCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteSuppressJoinSqManyCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteSuppressJoinSqManyCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteSuppressJoinSqManyCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteSuppressJoinSqManyCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteSuppressJoinSqManyCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteSuppressJoinSqManyCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteSuppressJoinSqManyCQ> _myselfExistsMap;
-    public Map<String, WhiteSuppressJoinSqManyCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteSuppressJoinSqManyCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteSuppressJoinSqManyCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteSuppressJoinSqManyCQ> _myselfInScopeMap;
-    public Map<String, WhiteSuppressJoinSqManyCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteSuppressJoinSqManyCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteSuppressJoinSqManyCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteSuppressJoinSqManyCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

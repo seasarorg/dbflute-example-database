@@ -89,10 +89,9 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _masterQuxId;
-    public ConditionValue getMasterQuxId() {
-        if (_masterQuxId == null) { _masterQuxId = nCV(); }
-        return _masterQuxId;
-    }
+    public ConditionValue getMasterQuxId()
+    { if (_masterQuxId == null) { _masterQuxId = nCV(); }
+      return _masterQuxId; }
     protected ConditionValue getCValueMasterQuxId() { return getMasterQuxId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
     public BsWhiteVariantRelationMasterQuxCQ addOrderBy_MasterQuxId_Desc() { regOBD("MASTER_QUX_ID"); return this; }
 
     protected ConditionValue _masterQuxName;
-    public ConditionValue getMasterQuxName() {
-        if (_masterQuxName == null) { _masterQuxName = nCV(); }
-        return _masterQuxName;
-    }
+    public ConditionValue getMasterQuxName()
+    { if (_masterQuxName == null) { _masterQuxName = nCV(); }
+      return _masterQuxName; }
     protected ConditionValue getCValueMasterQuxName() { return getMasterQuxName(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
     public BsWhiteVariantRelationMasterQuxCQ addOrderBy_MasterQuxName_Desc() { regOBD("MASTER_QUX_NAME"); return this; }
 
     protected ConditionValue _quxTypeCode;
-    public ConditionValue getQuxTypeCode() {
-        if (_quxTypeCode == null) { _quxTypeCode = nCV(); }
-        return _quxTypeCode;
-    }
+    public ConditionValue getQuxTypeCode()
+    { if (_quxTypeCode == null) { _quxTypeCode = nCV(); }
+      return _quxTypeCode; }
     protected ConditionValue getCValueQuxTypeCode() { return getQuxTypeCode(); }
 
     /** 
@@ -168,8 +165,7 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteVariantRelationMasterQuxCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteVariantRelationMasterQuxCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -185,8 +181,7 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteVariantRelationMasterQuxCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteVariantRelationMasterQuxCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -204,61 +199,32 @@ public class BsWhiteVariantRelationMasterQuxCQ extends AbstractBsWhiteVariantRel
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteVariantRelationMasterQuxCQ> _scalarConditionMap;
-    public Map<String, WhiteVariantRelationMasterQuxCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteVariantRelationMasterQuxCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteVariantRelationMasterQuxCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteVariantRelationMasterQuxCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteVariantRelationMasterQuxCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteVariantRelationMasterQuxCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterQuxCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteVariantRelationMasterQuxCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationMasterQuxCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteVariantRelationMasterQuxCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteVariantRelationMasterQuxCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteVariantRelationMasterQuxCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteVariantRelationMasterQuxCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteVariantRelationMasterQuxCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteVariantRelationMasterQuxCQ> _myselfExistsMap;
-    public Map<String, WhiteVariantRelationMasterQuxCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteVariantRelationMasterQuxCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteVariantRelationMasterQuxCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteVariantRelationMasterQuxCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteVariantRelationMasterQuxCQ> _myselfInScopeMap;
-    public Map<String, WhiteVariantRelationMasterQuxCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteVariantRelationMasterQuxCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteVariantRelationMasterQuxCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteVariantRelationMasterQuxCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -134,10 +134,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntity(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteVariantRelationMasterFoo> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
 
     protected <ENTITY extends WhiteVariantRelationMasterFoo> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteVariantRelationMasterFoo> ListResultBean<ENTITY> doSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteVariantRelationMasterFoo> PagingResultBean<ENTITY> doSelectPage(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public int callbackSelectCount(WhiteVariantRelationMasterFooCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     protected <ENTITY extends WhiteVariantRelationMasterFoo> void doSelectCursor(WhiteVariantRelationMasterFooCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteVariantRelationMasterFooCB>() {
-            public void callbackSelectCursor(WhiteVariantRelationMasterFooCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteVariantRelationMasterFooCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -590,23 +560,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected NestedReferrerListGateway<WhiteVariantRelationReferrer> doLoadWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList, LoadReferrerOption<WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer> option) {
-        final WhiteVariantRelationReferrerBhv referrerBhv = xgetBSFLR().select(WhiteVariantRelationReferrerBhv.class);
-        return helpLoadReferrerInternally(whiteVariantRelationMasterFooList, option, new InternalLoadReferrerCallback<WhiteVariantRelationMasterFoo, Long, WhiteVariantRelationReferrerCB, WhiteVariantRelationReferrer>() {
-            public Long getPKVal(WhiteVariantRelationMasterFoo et)
-            { return et.getMasterFooId(); }
-            public void setRfLs(WhiteVariantRelationMasterFoo et, List<WhiteVariantRelationReferrer> ls)
-            { et.setWhiteVariantRelationReferrerAsVariantList(ls); }
-            public WhiteVariantRelationReferrerCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhiteVariantRelationReferrerCB cb, List<Long> ls)
-            { cb.query().setVariantMasterId_InScope(ls); }
-            public void qyOdFKAsc(WhiteVariantRelationReferrerCB cb) { cb.query().addOrderBy_VariantMasterId_Asc(); }
-            public void spFKCol(WhiteVariantRelationReferrerCB cb) { cb.specify().columnVariantMasterId(); }
-            public List<WhiteVariantRelationReferrer> selRfLs(WhiteVariantRelationReferrerCB cb) { return referrerBhv.selectList(cb); }
-            public Long getFKVal(WhiteVariantRelationReferrer re) { return re.getVariantMasterId(); }
-            public void setlcEt(WhiteVariantRelationReferrer re, WhiteVariantRelationMasterFoo le)
-            { re.setWhiteVariantRelationMasterFooAsVariant(le); }
-            public String getRfPrNm() { return "whiteVariantRelationReferrerAsVariantList"; }
-        });
+        return helpLoadReferrerInternally(whiteVariantRelationMasterFooList, option, "whiteVariantRelationReferrerAsVariantList");
     }
 
     // ===================================================================================
@@ -620,11 +574,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
      * @param whiteVariantRelationMasterFooList The list of whiteVariantRelationMasterFoo. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractMasterFooIdList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList) {
-        return helpExtractListInternally(whiteVariantRelationMasterFooList, new InternalExtractCallback<WhiteVariantRelationMasterFoo, Long>() {
-            public Long getCV(WhiteVariantRelationMasterFoo et) { return et.getMasterFooId(); }
-        });
-    }
+    public List<Long> extractMasterFooIdList(List<WhiteVariantRelationMasterFoo> whiteVariantRelationMasterFooList)
+    { return helpExtractListInternally(whiteVariantRelationMasterFooList, "masterFooId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -651,23 +602,15 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected void doInsert(WhiteVariantRelationMasterFoo et, InsertOption<WhiteVariantRelationMasterFooCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterFoo", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whiteVariantRelationMasterFoo", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteVariantRelationMasterFooCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -695,16 +638,12 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         doUpdate(whiteVariantRelationMasterFoo, null);
     }
 
-    protected void doUpdate(WhiteVariantRelationMasterFoo et, final UpdateOption<WhiteVariantRelationMasterFooCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterFoo", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhiteVariantRelationMasterFoo>() {
-            public int callbackDelegateUpdate(WhiteVariantRelationMasterFoo let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhiteVariantRelationMasterFoo et, UpdateOption<WhiteVariantRelationMasterFooCB> op) {
+        assertObjectNotNull("whiteVariantRelationMasterFoo", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteVariantRelationMasterFooCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -715,15 +654,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     protected WhiteVariantRelationMasterFooCB createCBForSpecifiedUpdate()
     { WhiteVariantRelationMasterFooCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -738,25 +672,15 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         doInsertOrUpdate(whiteVariantRelationMasterFoo, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteVariantRelationMasterFoo et, final InsertOption<WhiteVariantRelationMasterFooCB> iop, final UpdateOption<WhiteVariantRelationMasterFooCB> uop) {
-        assertObjectNotNull("whiteVariantRelationMasterFoo", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB>() {
-            public void callbackInsert(WhiteVariantRelationMasterFoo let) { doInsert(let, iop); }
-            public void callbackUpdate(WhiteVariantRelationMasterFoo let) { doUpdate(let, uop); }
-            public WhiteVariantRelationMasterFooCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhiteVariantRelationMasterFooCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhiteVariantRelationMasterFoo et, InsertOption<WhiteVariantRelationMasterFooCB> iop, UpdateOption<WhiteVariantRelationMasterFooCB> uop) {
+        assertObjectNotNull("whiteVariantRelationMasterFoo", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -780,24 +704,15 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected void doDelete(WhiteVariantRelationMasterFoo et, final DeleteOption<WhiteVariantRelationMasterFooCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterFoo", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhiteVariantRelationMasterFoo>() {
-            public int callbackDelegateDelete(WhiteVariantRelationMasterFoo let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whiteVariantRelationMasterFoo", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationMasterFooCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -843,10 +758,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -888,10 +800,7 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -926,9 +835,8 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -947,15 +855,10 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -991,20 +894,16 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB> sp, InsertOption<WhiteVariantRelationMasterFooCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhiteVariantRelationMasterFoo et = newEntity();
-        WhiteVariantRelationMasterFooCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhiteVariantRelationMasterFoo et = newEntity(); WhiteVariantRelationMasterFooCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhiteVariantRelationMasterFooCB createCBForQueryInsert()
     { WhiteVariantRelationMasterFooCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1033,15 +932,12 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected int doQueryUpdate(WhiteVariantRelationMasterFoo et, WhiteVariantRelationMasterFooCB cb, UpdateOption<WhiteVariantRelationMasterFooCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterFoo", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whiteVariantRelationMasterFoo", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1059,15 +955,11 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     protected int doQueryDelete(WhiteVariantRelationMasterFooCB cb, DeleteOption<WhiteVariantRelationMasterFooCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1310,108 +1202,19 @@ public abstract class BsWhiteVariantRelationMasterFooBhv extends AbstractBehavio
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteVariantRelationMasterFooCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteVariantRelationMasterFooCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> void delegateSelectCursor(WhiteVariantRelationMasterFooCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteVariantRelationMasterFoo> List<ENTITY> delegateSelectList(WhiteVariantRelationMasterFooCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhiteVariantRelationMasterFoo et, InsertOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteVariantRelationMasterFoo et, UpdateOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteVariantRelationMasterFoo et, UpdateOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteVariantRelationMasterFoo et, DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteVariantRelationMasterFoo et, DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhiteVariantRelationMasterFoo> ls, InsertOption<WhiteVariantRelationMasterFooCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteVariantRelationMasterFoo> ls, UpdateOption<WhiteVariantRelationMasterFooCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteVariantRelationMasterFoo> ls, UpdateOption<WhiteVariantRelationMasterFooCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteVariantRelationMasterFoo> ls, DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteVariantRelationMasterFoo> ls, DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhiteVariantRelationMasterFoo et, WhiteVariantRelationMasterFooCB inCB, ConditionBean resCB, InsertOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteVariantRelationMasterFoo et, WhiteVariantRelationMasterFooCB cb, UpdateOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteVariantRelationMasterFooCB cb, DeleteOption<WhiteVariantRelationMasterFooCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteVariantRelationMasterFoo> typeOfSelectedEntity()
-    { return WhiteVariantRelationMasterFoo.class; }
-
-    protected WhiteVariantRelationMasterFoo downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteVariantRelationMasterFoo.class); }
-
-    protected WhiteVariantRelationMasterFooCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationMasterFooCB.class); }
-
+    protected Class<WhiteVariantRelationMasterFoo> typeOfSelectedEntity() { return WhiteVariantRelationMasterFoo.class; }
+    protected WhiteVariantRelationMasterFoo downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteVariantRelationMasterFoo.class); }
+    protected WhiteVariantRelationMasterFooCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationMasterFooCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteVariantRelationMasterFoo> downcast(List<? extends Entity> ls)
-    { return (List<WhiteVariantRelationMasterFoo>)ls; }
-
+    protected List<WhiteVariantRelationMasterFoo> downcast(List<? extends Entity> ls) { return (List<WhiteVariantRelationMasterFoo>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationMasterFooCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhiteVariantRelationMasterFooCB>)op; }
-
+    protected InsertOption<WhiteVariantRelationMasterFooCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationMasterFooCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationMasterFooCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhiteVariantRelationMasterFooCB>)op; }
-
+    protected UpdateOption<WhiteVariantRelationMasterFooCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationMasterFooCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationMasterFooCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhiteVariantRelationMasterFooCB>)op; }
-
+    protected DeleteOption<WhiteVariantRelationMasterFooCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationMasterFooCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhiteVariantRelationMasterFoo, WhiteVariantRelationMasterFooCB>)sp; }

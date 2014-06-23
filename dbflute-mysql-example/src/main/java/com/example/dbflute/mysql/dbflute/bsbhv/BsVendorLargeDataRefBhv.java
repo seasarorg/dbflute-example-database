@@ -134,10 +134,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectEntity(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, VendorLargeDataRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends VendorLargeDataRef> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
 
     protected <ENTITY extends VendorLargeDataRef> ENTITY doSelectEntityWithDeletedCheck(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, VendorLargeDataRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends VendorLargeDataRef> ListResultBean<ENTITY> doSelectList(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, VendorLargeDataRefCB>() {
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends VendorLargeDataRef> PagingResultBean<ENTITY> doSelectPage(VendorLargeDataRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, VendorLargeDataRefCB>() {
-            public int callbackSelectCount(VendorLargeDataRefCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     protected <ENTITY extends VendorLargeDataRef> void doSelectCursor(VendorLargeDataRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, VendorLargeDataRefCB>() {
-            public void callbackSelectCursor(VendorLargeDataRefCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(VendorLargeDataRefCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -590,23 +560,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected NestedReferrerListGateway<VendorLargeDataRef> doLoadVendorLargeDataRefSelfList(List<VendorLargeDataRef> vendorLargeDataRefList, LoadReferrerOption<VendorLargeDataRefCB, VendorLargeDataRef> option) {
-        final VendorLargeDataRefBhv referrerBhv = xgetBSFLR().select(VendorLargeDataRefBhv.class);
-        return helpLoadReferrerInternally(vendorLargeDataRefList, option, new InternalLoadReferrerCallback<VendorLargeDataRef, Long, VendorLargeDataRefCB, VendorLargeDataRef>() {
-            public Long getPKVal(VendorLargeDataRef et)
-            { return et.getLargeDataRefId(); }
-            public void setRfLs(VendorLargeDataRef et, List<VendorLargeDataRef> ls)
-            { et.setVendorLargeDataRefSelfList(ls); }
-            public VendorLargeDataRefCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(VendorLargeDataRefCB cb, List<Long> ls)
-            { cb.query().setSelfParentId_InScope(ls); }
-            public void qyOdFKAsc(VendorLargeDataRefCB cb) { cb.query().addOrderBy_SelfParentId_Asc(); }
-            public void spFKCol(VendorLargeDataRefCB cb) { cb.specify().columnSelfParentId(); }
-            public List<VendorLargeDataRef> selRfLs(VendorLargeDataRefCB cb) { return referrerBhv.selectList(cb); }
-            public Long getFKVal(VendorLargeDataRef re) { return re.getSelfParentId(); }
-            public void setlcEt(VendorLargeDataRef re, VendorLargeDataRef le)
-            { re.setVendorLargeDataRefSelf(le); }
-            public String getRfPrNm() { return "vendorLargeDataRefSelfList"; }
-        });
+        return helpLoadReferrerInternally(vendorLargeDataRefList, option, "vendorLargeDataRefSelfList");
     }
 
     // ===================================================================================
@@ -617,30 +571,16 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param vendorLargeDataRefList The list of vendorLargeDataRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<VendorLargeData> pulloutVendorLargeData(List<VendorLargeDataRef> vendorLargeDataRefList) {
-        return helpPulloutInternally(vendorLargeDataRefList, new InternalPulloutCallback<VendorLargeDataRef, VendorLargeData>() {
-            public VendorLargeData getFr(VendorLargeDataRef et)
-            { return et.getVendorLargeData(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(VendorLargeData et, List<VendorLargeDataRef> ls)
-            { et.setVendorLargeDataRefList(ls); }
-        });
-    }
+    public List<VendorLargeData> pulloutVendorLargeData(List<VendorLargeDataRef> vendorLargeDataRefList)
+    { return helpPulloutInternally(vendorLargeDataRefList, "vendorLargeData"); }
 
     /**
      * Pull out the list of foreign table 'VendorLargeDataRef'.
      * @param vendorLargeDataRefList The list of vendorLargeDataRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<VendorLargeDataRef> pulloutVendorLargeDataRefSelf(List<VendorLargeDataRef> vendorLargeDataRefList) {
-        return helpPulloutInternally(vendorLargeDataRefList, new InternalPulloutCallback<VendorLargeDataRef, VendorLargeDataRef>() {
-            public VendorLargeDataRef getFr(VendorLargeDataRef et)
-            { return et.getVendorLargeDataRefSelf(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(VendorLargeDataRef et, List<VendorLargeDataRef> ls)
-            { et.setVendorLargeDataRefSelfList(ls); }
-        });
-    }
+    public List<VendorLargeDataRef> pulloutVendorLargeDataRefSelf(List<VendorLargeDataRef> vendorLargeDataRefList)
+    { return helpPulloutInternally(vendorLargeDataRefList, "vendorLargeDataRefSelf"); }
 
     // ===================================================================================
     //                                                                      Extract Column
@@ -650,11 +590,8 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
      * @param vendorLargeDataRefList The list of vendorLargeDataRef. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractLargeDataRefIdList(List<VendorLargeDataRef> vendorLargeDataRefList) {
-        return helpExtractListInternally(vendorLargeDataRefList, new InternalExtractCallback<VendorLargeDataRef, Long>() {
-            public Long getCV(VendorLargeDataRef et) { return et.getLargeDataRefId(); }
-        });
-    }
+    public List<Long> extractLargeDataRefIdList(List<VendorLargeDataRef> vendorLargeDataRefList)
+    { return helpExtractListInternally(vendorLargeDataRefList, "largeDataRefId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -681,23 +618,15 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected void doInsert(VendorLargeDataRef et, InsertOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("vendorLargeDataRef", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<VendorLargeDataRefCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -725,16 +654,12 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         doUpdate(vendorLargeDataRef, null);
     }
 
-    protected void doUpdate(VendorLargeDataRef et, final UpdateOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<VendorLargeDataRef>() {
-            public int callbackDelegateUpdate(VendorLargeDataRef let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(VendorLargeDataRef et, UpdateOption<VendorLargeDataRefCB> op) {
+        assertObjectNotNull("vendorLargeDataRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<VendorLargeDataRefCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -745,15 +670,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     protected VendorLargeDataRefCB createCBForSpecifiedUpdate()
     { VendorLargeDataRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -768,25 +688,15 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         doInsertOrUpdate(vendorLargeDataRef, null, null);
     }
 
-    protected void doInsertOrUpdate(VendorLargeDataRef et, final InsertOption<VendorLargeDataRefCB> iop, final UpdateOption<VendorLargeDataRefCB> uop) {
-        assertObjectNotNull("vendorLargeDataRef", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<VendorLargeDataRef, VendorLargeDataRefCB>() {
-            public void callbackInsert(VendorLargeDataRef let) { doInsert(let, iop); }
-            public void callbackUpdate(VendorLargeDataRef let) { doUpdate(let, uop); }
-            public VendorLargeDataRefCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(VendorLargeDataRefCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(VendorLargeDataRef et, InsertOption<VendorLargeDataRefCB> iop, UpdateOption<VendorLargeDataRefCB> uop) {
+        assertObjectNotNull("vendorLargeDataRef", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -810,24 +720,15 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected void doDelete(VendorLargeDataRef et, final DeleteOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<VendorLargeDataRef>() {
-            public int callbackDelegateDelete(VendorLargeDataRef let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("vendorLargeDataRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<VendorLargeDataRefCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<VendorLargeDataRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -873,10 +774,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -918,10 +816,7 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -956,9 +851,8 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -977,15 +871,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -1021,20 +910,16 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryInsert(QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> sp, InsertOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        VendorLargeDataRef et = newEntity();
-        VendorLargeDataRefCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        VendorLargeDataRef et = newEntity(); VendorLargeDataRefCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected VendorLargeDataRefCB createCBForQueryInsert()
     { VendorLargeDataRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1063,15 +948,12 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryUpdate(VendorLargeDataRef et, VendorLargeDataRefCB cb, UpdateOption<VendorLargeDataRefCB> op) {
-        assertObjectNotNull("vendorLargeDataRef", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("vendorLargeDataRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1089,15 +971,11 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryDelete(VendorLargeDataRefCB cb, DeleteOption<VendorLargeDataRefCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1340,108 +1218,19 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(VendorLargeDataRefCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(VendorLargeDataRefCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends VendorLargeDataRef> void delegateSelectCursor(VendorLargeDataRefCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends VendorLargeDataRef> List<ENTITY> delegateSelectList(VendorLargeDataRefCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(VendorLargeDataRef et, InsertOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(VendorLargeDataRef et, UpdateOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(VendorLargeDataRef et, UpdateOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(VendorLargeDataRef et, DeleteOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(VendorLargeDataRef et, DeleteOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<VendorLargeDataRef> ls, InsertOption<VendorLargeDataRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<VendorLargeDataRef> ls, UpdateOption<VendorLargeDataRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<VendorLargeDataRef> ls, UpdateOption<VendorLargeDataRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<VendorLargeDataRef> ls, DeleteOption<VendorLargeDataRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<VendorLargeDataRef> ls, DeleteOption<VendorLargeDataRefCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(VendorLargeDataRef et, VendorLargeDataRefCB inCB, ConditionBean resCB, InsertOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(VendorLargeDataRef et, VendorLargeDataRefCB cb, UpdateOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(VendorLargeDataRefCB cb, DeleteOption<VendorLargeDataRefCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<VendorLargeDataRef> typeOfSelectedEntity()
-    { return VendorLargeDataRef.class; }
-
-    protected VendorLargeDataRef downcast(Entity et)
-    { return helpEntityDowncastInternally(et, VendorLargeDataRef.class); }
-
-    protected VendorLargeDataRefCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, VendorLargeDataRefCB.class); }
-
+    protected Class<VendorLargeDataRef> typeOfSelectedEntity() { return VendorLargeDataRef.class; }
+    protected VendorLargeDataRef downcast(Entity et) { return helpEntityDowncastInternally(et, VendorLargeDataRef.class); }
+    protected VendorLargeDataRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, VendorLargeDataRefCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<VendorLargeDataRef> downcast(List<? extends Entity> ls)
-    { return (List<VendorLargeDataRef>)ls; }
-
+    protected List<VendorLargeDataRef> downcast(List<? extends Entity> ls) { return (List<VendorLargeDataRef>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<VendorLargeDataRefCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<VendorLargeDataRefCB>)op; }
-
+    protected InsertOption<VendorLargeDataRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorLargeDataRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorLargeDataRefCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<VendorLargeDataRefCB>)op; }
-
+    protected UpdateOption<VendorLargeDataRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorLargeDataRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorLargeDataRefCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<VendorLargeDataRefCB>)op; }
-
+    protected DeleteOption<VendorLargeDataRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorLargeDataRefCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB>)sp; }

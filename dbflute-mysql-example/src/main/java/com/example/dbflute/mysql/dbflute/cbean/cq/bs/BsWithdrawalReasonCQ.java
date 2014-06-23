@@ -42,10 +42,9 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _withdrawalReasonCode;
-    public ConditionValue getWithdrawalReasonCode() {
-        if (_withdrawalReasonCode == null) { _withdrawalReasonCode = nCV(); }
-        return _withdrawalReasonCode;
-    }
+    public ConditionValue getWithdrawalReasonCode()
+    { if (_withdrawalReasonCode == null) { _withdrawalReasonCode = nCV(); }
+      return _withdrawalReasonCode; }
     protected ConditionValue getCValueWithdrawalReasonCode() { return getWithdrawalReasonCode(); }
 
     /** 
@@ -63,17 +62,15 @@ public class BsWithdrawalReasonCQ extends AbstractBsWithdrawalReasonCQ {
     public BsWithdrawalReasonCQ addOrderBy_WithdrawalReasonCode_Desc() { regOBD("WITHDRAWAL_REASON_CODE"); return this; }
 
     protected ConditionValue _withdrawalReasonText;
-    public ConditionValue getWithdrawalReasonText() {
-        if (_withdrawalReasonText == null) { _withdrawalReasonText = nCV(); }
-        return _withdrawalReasonText;
-    }
+    public ConditionValue getWithdrawalReasonText()
+    { if (_withdrawalReasonText == null) { _withdrawalReasonText = nCV(); }
+      return _withdrawalReasonText; }
     protected ConditionValue getCValueWithdrawalReasonText() { return getWithdrawalReasonText(); }
 
     protected ConditionValue _displayOrder;
-    public ConditionValue getDisplayOrder() {
-        if (_displayOrder == null) { _displayOrder = nCV(); }
-        return _displayOrder;
-    }
+    public ConditionValue getDisplayOrder()
+    { if (_displayOrder == null) { _displayOrder = nCV(); }
+      return _displayOrder; }
     protected ConditionValue getCValueDisplayOrder() { return getDisplayOrder(); }
 
     /** 

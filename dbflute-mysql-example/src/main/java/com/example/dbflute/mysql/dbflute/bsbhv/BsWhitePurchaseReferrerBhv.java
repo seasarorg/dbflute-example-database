@@ -134,10 +134,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntity(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhitePurchaseReferrer> OptionalEntity<ENTITY> doSelectOptionalEntity(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
 
     protected <ENTITY extends WhitePurchaseReferrer> ENTITY doSelectEntityWithDeletedCheck(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected <ENTITY extends WhitePurchaseReferrer> ListResultBean<ENTITY> doSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected <ENTITY extends WhitePurchaseReferrer> PagingResultBean<ENTITY> doSelectPage(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public int callbackSelectCount(WhitePurchaseReferrerCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     protected <ENTITY extends WhitePurchaseReferrer> void doSelectCursor(WhitePurchaseReferrerCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhitePurchaseReferrerCB>() {
-            public void callbackSelectCursor(WhitePurchaseReferrerCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhitePurchaseReferrerCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -509,15 +479,8 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
      * @param whitePurchaseReferrerList The list of whitePurchaseReferrer. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Purchase> pulloutPurchase(List<WhitePurchaseReferrer> whitePurchaseReferrerList) {
-        return helpPulloutInternally(whitePurchaseReferrerList, new InternalPulloutCallback<WhitePurchaseReferrer, Purchase>() {
-            public Purchase getFr(WhitePurchaseReferrer et)
-            { return et.getPurchase(); }
-            public boolean hasRf() { return true; }
-            public void setRfLs(Purchase et, List<WhitePurchaseReferrer> ls)
-            { if (!ls.isEmpty()) { et.setWhitePurchaseReferrerAsOne(ls.get(0)); } }
-        });
-    }
+    public List<Purchase> pulloutPurchase(List<WhitePurchaseReferrer> whitePurchaseReferrerList)
+    { return helpPulloutInternally(whitePurchaseReferrerList, "purchase"); }
 
     // ===================================================================================
     //                                                                      Extract Column
@@ -527,11 +490,8 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
      * @param whitePurchaseReferrerList The list of whitePurchaseReferrer. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractPurchaseReferrerIdList(List<WhitePurchaseReferrer> whitePurchaseReferrerList) {
-        return helpExtractListInternally(whitePurchaseReferrerList, new InternalExtractCallback<WhitePurchaseReferrer, Long>() {
-            public Long getCV(WhitePurchaseReferrer et) { return et.getPurchaseReferrerId(); }
-        });
-    }
+    public List<Long> extractPurchaseReferrerIdList(List<WhitePurchaseReferrer> whitePurchaseReferrerList)
+    { return helpExtractListInternally(whitePurchaseReferrerList, "purchaseReferrerId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -558,23 +518,15 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected void doInsert(WhitePurchaseReferrer et, InsertOption<WhitePurchaseReferrerCB> op) {
-        assertObjectNotNull("whitePurchaseReferrer", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whitePurchaseReferrer", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhitePurchaseReferrerCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -602,16 +554,12 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         doUpdate(whitePurchaseReferrer, null);
     }
 
-    protected void doUpdate(WhitePurchaseReferrer et, final UpdateOption<WhitePurchaseReferrerCB> op) {
-        assertObjectNotNull("whitePurchaseReferrer", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhitePurchaseReferrer>() {
-            public int callbackDelegateUpdate(WhitePurchaseReferrer let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhitePurchaseReferrer et, UpdateOption<WhitePurchaseReferrerCB> op) {
+        assertObjectNotNull("whitePurchaseReferrer", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhitePurchaseReferrerCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -622,15 +570,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     protected WhitePurchaseReferrerCB createCBForSpecifiedUpdate()
     { WhitePurchaseReferrerCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -645,25 +588,15 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         doInsertOrUpdate(whitePurchaseReferrer, null, null);
     }
 
-    protected void doInsertOrUpdate(WhitePurchaseReferrer et, final InsertOption<WhitePurchaseReferrerCB> iop, final UpdateOption<WhitePurchaseReferrerCB> uop) {
-        assertObjectNotNull("whitePurchaseReferrer", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhitePurchaseReferrer, WhitePurchaseReferrerCB>() {
-            public void callbackInsert(WhitePurchaseReferrer let) { doInsert(let, iop); }
-            public void callbackUpdate(WhitePurchaseReferrer let) { doUpdate(let, uop); }
-            public WhitePurchaseReferrerCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhitePurchaseReferrerCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhitePurchaseReferrer et, InsertOption<WhitePurchaseReferrerCB> iop, UpdateOption<WhitePurchaseReferrerCB> uop) {
+        assertObjectNotNull("whitePurchaseReferrer", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -687,24 +620,15 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected void doDelete(WhitePurchaseReferrer et, final DeleteOption<WhitePurchaseReferrerCB> op) {
-        assertObjectNotNull("whitePurchaseReferrer", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhitePurchaseReferrer>() {
-            public int callbackDelegateDelete(WhitePurchaseReferrer let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whitePurchaseReferrer", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhitePurchaseReferrerCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -750,10 +674,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -795,10 +716,7 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -833,9 +751,8 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -854,15 +771,10 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -898,20 +810,16 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhitePurchaseReferrer, WhitePurchaseReferrerCB> sp, InsertOption<WhitePurchaseReferrerCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhitePurchaseReferrer et = newEntity();
-        WhitePurchaseReferrerCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhitePurchaseReferrer et = newEntity(); WhitePurchaseReferrerCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhitePurchaseReferrerCB createCBForQueryInsert()
     { WhitePurchaseReferrerCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -940,15 +848,12 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected int doQueryUpdate(WhitePurchaseReferrer et, WhitePurchaseReferrerCB cb, UpdateOption<WhitePurchaseReferrerCB> op) {
-        assertObjectNotNull("whitePurchaseReferrer", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whitePurchaseReferrer", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -966,15 +871,11 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     protected int doQueryDelete(WhitePurchaseReferrerCB cb, DeleteOption<WhitePurchaseReferrerCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1217,108 +1118,19 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhitePurchaseReferrerCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhitePurchaseReferrerCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhitePurchaseReferrer> void delegateSelectCursor(WhitePurchaseReferrerCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhitePurchaseReferrer> List<ENTITY> delegateSelectList(WhitePurchaseReferrerCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhitePurchaseReferrer et, InsertOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhitePurchaseReferrer et, UpdateOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhitePurchaseReferrer et, UpdateOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhitePurchaseReferrer et, DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhitePurchaseReferrer et, DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhitePurchaseReferrer> ls, InsertOption<WhitePurchaseReferrerCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhitePurchaseReferrer> ls, UpdateOption<WhitePurchaseReferrerCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhitePurchaseReferrer> ls, UpdateOption<WhitePurchaseReferrerCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhitePurchaseReferrer> ls, DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhitePurchaseReferrer> ls, DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhitePurchaseReferrer et, WhitePurchaseReferrerCB inCB, ConditionBean resCB, InsertOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhitePurchaseReferrer et, WhitePurchaseReferrerCB cb, UpdateOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhitePurchaseReferrerCB cb, DeleteOption<WhitePurchaseReferrerCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhitePurchaseReferrer> typeOfSelectedEntity()
-    { return WhitePurchaseReferrer.class; }
-
-    protected WhitePurchaseReferrer downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhitePurchaseReferrer.class); }
-
-    protected WhitePurchaseReferrerCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhitePurchaseReferrerCB.class); }
-
+    protected Class<WhitePurchaseReferrer> typeOfSelectedEntity() { return WhitePurchaseReferrer.class; }
+    protected WhitePurchaseReferrer downcast(Entity et) { return helpEntityDowncastInternally(et, WhitePurchaseReferrer.class); }
+    protected WhitePurchaseReferrerCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhitePurchaseReferrerCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhitePurchaseReferrer> downcast(List<? extends Entity> ls)
-    { return (List<WhitePurchaseReferrer>)ls; }
-
+    protected List<WhitePurchaseReferrer> downcast(List<? extends Entity> ls) { return (List<WhitePurchaseReferrer>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePurchaseReferrerCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhitePurchaseReferrerCB>)op; }
-
+    protected InsertOption<WhitePurchaseReferrerCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePurchaseReferrerCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePurchaseReferrerCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhitePurchaseReferrerCB>)op; }
-
+    protected UpdateOption<WhitePurchaseReferrerCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePurchaseReferrerCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePurchaseReferrerCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhitePurchaseReferrerCB>)op; }
-
+    protected DeleteOption<WhitePurchaseReferrerCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePurchaseReferrerCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhitePurchaseReferrer, WhitePurchaseReferrerCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhitePurchaseReferrer, WhitePurchaseReferrerCB>)sp; }

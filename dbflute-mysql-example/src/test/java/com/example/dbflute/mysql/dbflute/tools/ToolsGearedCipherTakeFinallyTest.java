@@ -60,8 +60,15 @@ public class ToolsGearedCipherTakeFinallyTest extends UnitContainerTestCase {
                     currentColumnInfo = currentDBMeta.findColumnInfo(columnPropertyName);
                     continue;
                 }
-                if (currentColumnInfo != null && Srl.containsAny(line, "aes_encrypt", "sha1")) {
-                    String exp = Srl.extractScopeFirst(line, "\"", "\"").getContent();
+                if (currentColumnInfo != null && Srl.containsAll(line, "addFunction", "createNonInvertibleFilter(")) {
+                    String exp = "sha1(%1$s)";
+                    String clause = buildUpdateClause(secrectKey, currentDBMeta, currentColumnInfo, exp);
+                    clauseList.add(clause);
+                    currentColumnInfo = null;
+                    continue;
+                }
+                if (currentColumnInfo != null && Srl.containsAll(line, "addFunction", "createInvertibleFilter(")) {
+                    String exp = "hex(aes_encrypt(%1$s, '%2$s'))";
                     String clause = buildUpdateClause(secrectKey, currentDBMeta, currentColumnInfo, exp);
                     clauseList.add(clause);
                     currentColumnInfo = null;

@@ -119,10 +119,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -155,19 +152,14 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends SummaryProduct> ENTITY doSelectEntity(SummaryProductCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SummaryProductCB>() {
-            public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends SummaryProduct> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryProductCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -194,14 +186,10 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
 
     protected <ENTITY extends SummaryProduct> ENTITY doSelectEntityWithDeletedCheck(SummaryProductCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SummaryProductCB>() {
-            public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         List Select
@@ -230,16 +218,10 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends SummaryProduct> ListResultBean<ENTITY> doSelectList(SummaryProductCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SummaryProductCB>() {
-            public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -275,17 +257,10 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends SummaryProduct> PagingResultBean<ENTITY> doSelectPage(SummaryProductCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, SummaryProductCB>() {
-            public int callbackSelectCount(SummaryProductCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(SummaryProductCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -315,10 +290,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     protected <ENTITY extends SummaryProduct> void doSelectCursor(SummaryProductCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, SummaryProductCB>() {
-            public void callbackSelectCursor(SummaryProductCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(SummaryProductCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -354,9 +326,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -465,7 +435,7 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
      */
     public void insert(SummaryProduct summaryProduct) {
         assertObjectNotNull("summaryProduct", summaryProduct);
-        delegateInsert(summaryProduct, null);
+        delegateInsertNoPK(summaryProduct, null);
     }
 
     // ===================================================================================
@@ -507,56 +477,11 @@ public abstract class BsSummaryProductBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(SummaryProductCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(SummaryProductCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends SummaryProduct> void delegateSelectCursor(SummaryProductCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends SummaryProduct> List<ENTITY> delegateSelectList(SummaryProductCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-    protected int delegateInsert(SummaryProduct et, InsertOption<SummaryProductCB> op) {
-        // only filtering for extension is supported (filtering for common columns is unsupported)
-        assertEntityNotNull(et); filterEntityOfInsert(et, op);
-        return invoke(createInsertEntityCommand(et, op));
-    }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<SummaryProduct> typeOfSelectedEntity()
-    { return SummaryProduct.class; }
-
-    protected SummaryProduct downcast(Entity et)
-    { return helpEntityDowncastInternally(et, SummaryProduct.class); }
-
-    protected SummaryProductCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, SummaryProductCB.class); }
-
+    protected Class<SummaryProduct> typeOfSelectedEntity() { return SummaryProduct.class; }
+    protected SummaryProduct downcast(Entity et) { return helpEntityDowncastInternally(et, SummaryProduct.class); }
+    protected SummaryProductCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SummaryProductCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<SummaryProduct> downcast(List<? extends Entity> ls)
-    { return (List<SummaryProduct>)ls; }
+    protected List<SummaryProduct> downcast(List<? extends Entity> ls) { return (List<SummaryProduct>)ls; }
 }

@@ -74,10 +74,9 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _xlsManId;
-    public ConditionValue getXlsManId() {
-        if (_xlsManId == null) { _xlsManId = nCV(); }
-        return _xlsManId;
-    }
+    public ConditionValue getXlsManId()
+    { if (_xlsManId == null) { _xlsManId = nCV(); }
+      return _xlsManId; }
     protected ConditionValue getCValueXlsManId() { return getXlsManId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     public BsWhiteXlsManCQ addOrderBy_XlsManId_Desc() { regOBD("xls_man_id"); return this; }
 
     protected ConditionValue _stringConverted;
-    public ConditionValue getStringConverted() {
-        if (_stringConverted == null) { _stringConverted = nCV(); }
-        return _stringConverted;
-    }
+    public ConditionValue getStringConverted()
+    { if (_stringConverted == null) { _stringConverted = nCV(); }
+      return _stringConverted; }
     protected ConditionValue getCValueStringConverted() { return getStringConverted(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     public BsWhiteXlsManCQ addOrderBy_StringConverted_Desc() { regOBD("string_converted"); return this; }
 
     protected ConditionValue _timestampZeroDefaultMillis;
-    public ConditionValue getTimestampZeroDefaultMillis() {
-        if (_timestampZeroDefaultMillis == null) { _timestampZeroDefaultMillis = nCV(); }
-        return _timestampZeroDefaultMillis;
-    }
+    public ConditionValue getTimestampZeroDefaultMillis()
+    { if (_timestampZeroDefaultMillis == null) { _timestampZeroDefaultMillis = nCV(); }
+      return _timestampZeroDefaultMillis; }
     protected ConditionValue getCValueTimestampZeroDefaultMillis() { return getTimestampZeroDefaultMillis(); }
 
     /** 
@@ -137,10 +134,9 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     public BsWhiteXlsManCQ addOrderBy_TimestampZeroDefaultMillis_Desc() { regOBD("timestamp_zero_default_millis"); return this; }
 
     protected ConditionValue _timestampZeroPrefixMillis;
-    public ConditionValue getTimestampZeroPrefixMillis() {
-        if (_timestampZeroPrefixMillis == null) { _timestampZeroPrefixMillis = nCV(); }
-        return _timestampZeroPrefixMillis;
-    }
+    public ConditionValue getTimestampZeroPrefixMillis()
+    { if (_timestampZeroPrefixMillis == null) { _timestampZeroPrefixMillis = nCV(); }
+      return _timestampZeroPrefixMillis; }
     protected ConditionValue getCValueTimestampZeroPrefixMillis() { return getTimestampZeroPrefixMillis(); }
 
     /** 
@@ -158,10 +154,9 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     public BsWhiteXlsManCQ addOrderBy_TimestampZeroPrefixMillis_Desc() { regOBD("timestamp_zero_prefix_millis"); return this; }
 
     protected ConditionValue _timestampZeroSuffixMillis;
-    public ConditionValue getTimestampZeroSuffixMillis() {
-        if (_timestampZeroSuffixMillis == null) { _timestampZeroSuffixMillis = nCV(); }
-        return _timestampZeroSuffixMillis;
-    }
+    public ConditionValue getTimestampZeroSuffixMillis()
+    { if (_timestampZeroSuffixMillis == null) { _timestampZeroSuffixMillis = nCV(); }
+      return _timestampZeroSuffixMillis; }
     protected ConditionValue getCValueTimestampZeroSuffixMillis() { return getTimestampZeroSuffixMillis(); }
 
     /** 
@@ -195,8 +190,7 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteXlsManCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteXlsManCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -212,8 +206,7 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteXlsManCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteXlsManCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -231,61 +224,32 @@ public class BsWhiteXlsManCQ extends AbstractBsWhiteXlsManCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteXlsManCQ> _scalarConditionMap;
-    public Map<String, WhiteXlsManCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteXlsManCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteXlsManCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteXlsManCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteXlsManCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteXlsManCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteXlsManCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteXlsManCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteXlsManCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteXlsManCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteXlsManCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteXlsManCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteXlsManCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteXlsManCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteXlsManCQ> _myselfExistsMap;
-    public Map<String, WhiteXlsManCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteXlsManCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteXlsManCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteXlsManCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteXlsManCQ> _myselfInScopeMap;
-    public Map<String, WhiteXlsManCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteXlsManCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteXlsManCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteXlsManCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

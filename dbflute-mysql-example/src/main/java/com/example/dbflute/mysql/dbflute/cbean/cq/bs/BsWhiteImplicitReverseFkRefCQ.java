@@ -89,10 +89,9 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _whiteImplicitReverseFkRefId;
-    public ConditionValue getWhiteImplicitReverseFkRefId() {
-        if (_whiteImplicitReverseFkRefId == null) { _whiteImplicitReverseFkRefId = nCV(); }
-        return _whiteImplicitReverseFkRefId;
-    }
+    public ConditionValue getWhiteImplicitReverseFkRefId()
+    { if (_whiteImplicitReverseFkRefId == null) { _whiteImplicitReverseFkRefId = nCV(); }
+      return _whiteImplicitReverseFkRefId; }
     protected ConditionValue getCValueWhiteImplicitReverseFkRefId() { return getWhiteImplicitReverseFkRefId(); }
 
     /** 
@@ -110,27 +109,16 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     public BsWhiteImplicitReverseFkRefCQ addOrderBy_WhiteImplicitReverseFkRefId_Desc() { regOBD("WHITE_IMPLICIT_REVERSE_FK_REF_ID"); return this; }
 
     protected ConditionValue _whiteImplicitReverseFkId;
-    public ConditionValue getWhiteImplicitReverseFkId() {
-        if (_whiteImplicitReverseFkId == null) { _whiteImplicitReverseFkId = nCV(); }
-        return _whiteImplicitReverseFkId;
-    }
+    public ConditionValue getWhiteImplicitReverseFkId()
+    { if (_whiteImplicitReverseFkId == null) { _whiteImplicitReverseFkId = nCV(); }
+      return _whiteImplicitReverseFkId; }
     protected ConditionValue getCValueWhiteImplicitReverseFkId() { return getWhiteImplicitReverseFkId(); }
 
-    protected Map<String, WhiteImplicitReverseFkCQ> _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap;
-    public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk() { return _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap; }
-    public String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) {
-        if (_whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap == null) { _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
-        _whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFkMap.put(ky, sq); return "whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk() { return xgetSQueMap("whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk"); }
+    public String keepWhiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) { return xkeepSQue("whiteImplicitReverseFkId_InScopeRelation_WhiteImplicitReverseFk", sq); }
 
-    protected Map<String, WhiteImplicitReverseFkCQ> _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap;
-    public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk() { return _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap; }
-    public String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) {
-        if (_whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap == null) { _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.size() + 1);
-        _whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFkMap.put(ky, sq); return "whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkCQ> getWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk() { return xgetSQueMap("whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk"); }
+    public String keepWhiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk(WhiteImplicitReverseFkCQ sq) { return xkeepSQue("whiteImplicitReverseFkId_NotInScopeRelation_WhiteImplicitReverseFk", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -147,10 +135,9 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     public BsWhiteImplicitReverseFkRefCQ addOrderBy_WhiteImplicitReverseFkId_Desc() { regOBD("WHITE_IMPLICIT_REVERSE_FK_ID"); return this; }
 
     protected ConditionValue _validBeginDate;
-    public ConditionValue getValidBeginDate() {
-        if (_validBeginDate == null) { _validBeginDate = nCV(); }
-        return _validBeginDate;
-    }
+    public ConditionValue getValidBeginDate()
+    { if (_validBeginDate == null) { _validBeginDate = nCV(); }
+      return _validBeginDate; }
     protected ConditionValue getCValueValidBeginDate() { return getValidBeginDate(); }
 
     /** 
@@ -168,10 +155,9 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     public BsWhiteImplicitReverseFkRefCQ addOrderBy_ValidBeginDate_Desc() { regOBD("VALID_BEGIN_DATE"); return this; }
 
     protected ConditionValue _validEndDate;
-    public ConditionValue getValidEndDate() {
-        if (_validEndDate == null) { _validEndDate = nCV(); }
-        return _validEndDate;
-    }
+    public ConditionValue getValidEndDate()
+    { if (_validEndDate == null) { _validEndDate = nCV(); }
+      return _validEndDate; }
     protected ConditionValue getCValueValidEndDate() { return getValidEndDate(); }
 
     /** 
@@ -205,8 +191,7 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteImplicitReverseFkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteImplicitReverseFkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -222,8 +207,7 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteImplicitReverseFkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteImplicitReverseFkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -248,31 +232,17 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     public WhiteImplicitReverseFkCQ queryWhiteImplicitReverseFk() {
         return getConditionQueryWhiteImplicitReverseFk();
     }
-    protected WhiteImplicitReverseFkCQ _conditionQueryWhiteImplicitReverseFk;
     public WhiteImplicitReverseFkCQ getConditionQueryWhiteImplicitReverseFk() {
-        if (_conditionQueryWhiteImplicitReverseFk == null) {
-            _conditionQueryWhiteImplicitReverseFk = xcreateQueryWhiteImplicitReverseFk();
-            xsetupOuterJoinWhiteImplicitReverseFk();
-        }
-        return _conditionQueryWhiteImplicitReverseFk;
+        String prop = "whiteImplicitReverseFk";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteImplicitReverseFk()); xsetupOuterJoinWhiteImplicitReverseFk(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteImplicitReverseFkCQ xcreateQueryWhiteImplicitReverseFk() {
-        String nrp = resolveNextRelationPath("white_implicit_reverse_fk_ref", "whiteImplicitReverseFk");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteImplicitReverseFkCQ cq = new WhiteImplicitReverseFkCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteImplicitReverseFk");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_implicit_reverse_fk_ref", "whiteImplicitReverseFk"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteImplicitReverseFkCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteImplicitReverseFk", nrp);
     }
-    protected void xsetupOuterJoinWhiteImplicitReverseFk() {
-        WhiteImplicitReverseFkCQ cq = getConditionQueryWhiteImplicitReverseFk();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("WHITE_IMPLICIT_REVERSE_FK_ID", "WHITE_IMPLICIT_REVERSE_FK_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteImplicitReverseFk");
-    }
-    public boolean hasConditionQueryWhiteImplicitReverseFk() {
-        return _conditionQueryWhiteImplicitReverseFk != null;
-    }
+    protected void xsetupOuterJoinWhiteImplicitReverseFk() { xregOutJo("whiteImplicitReverseFk"); }
+    public boolean hasConditionQueryWhiteImplicitReverseFk() { return xhasQueRlMap("whiteImplicitReverseFk"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -281,61 +251,32 @@ public class BsWhiteImplicitReverseFkRefCQ extends AbstractBsWhiteImplicitRevers
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteImplicitReverseFkRefCQ> _scalarConditionMap;
-    public Map<String, WhiteImplicitReverseFkRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteImplicitReverseFkRefCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkRefCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteImplicitReverseFkRefCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteImplicitReverseFkRefCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteImplicitReverseFkRefCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkRefCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkRefCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteImplicitReverseFkRefCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteImplicitReverseFkRefCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteImplicitReverseFkRefCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteImplicitReverseFkRefCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkRefCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteImplicitReverseFkRefCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteImplicitReverseFkRefCQ> _myselfExistsMap;
-    public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteImplicitReverseFkRefCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteImplicitReverseFkRefCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteImplicitReverseFkRefCQ> _myselfInScopeMap;
-    public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteImplicitReverseFkRefCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteImplicitReverseFkRefCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteImplicitReverseFkRefCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

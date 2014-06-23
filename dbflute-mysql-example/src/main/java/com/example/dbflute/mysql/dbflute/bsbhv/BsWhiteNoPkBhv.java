@@ -134,10 +134,7 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntity(WhiteNoPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteNoPk> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteNoPkCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
 
     protected <ENTITY extends WhiteNoPk> ENTITY doSelectEntityWithDeletedCheck(WhiteNoPkCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         List Select
@@ -245,16 +233,10 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNoPk> ListResultBean<ENTITY> doSelectList(WhiteNoPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteNoPkCB>() {
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -290,17 +272,10 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
     }
 
     protected <ENTITY extends WhiteNoPk> PagingResultBean<ENTITY> doSelectPage(WhiteNoPkCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteNoPkCB>() {
-            public int callbackSelectCount(WhiteNoPkCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -330,10 +305,7 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
     protected <ENTITY extends WhiteNoPk> void doSelectCursor(WhiteNoPkCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteNoPkCB>() {
-            public void callbackSelectCursor(WhiteNoPkCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteNoPkCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -369,9 +341,7 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -503,51 +473,11 @@ public abstract class BsWhiteNoPkBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteNoPkCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteNoPkCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteNoPk> void delegateSelectCursor(WhiteNoPkCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteNoPk> List<ENTITY> delegateSelectList(WhiteNoPkCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteNoPk> typeOfSelectedEntity()
-    { return WhiteNoPk.class; }
-
-    protected WhiteNoPk downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteNoPk.class); }
-
-    protected WhiteNoPkCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteNoPkCB.class); }
-
+    protected Class<WhiteNoPk> typeOfSelectedEntity() { return WhiteNoPk.class; }
+    protected WhiteNoPk downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteNoPk.class); }
+    protected WhiteNoPkCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteNoPkCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteNoPk> downcast(List<? extends Entity> ls)
-    { return (List<WhiteNoPk>)ls; }
+    protected List<WhiteNoPk> downcast(List<? extends Entity> ls) { return (List<WhiteNoPk>)ls; }
 }

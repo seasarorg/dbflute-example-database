@@ -134,10 +134,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhitePgReserv> ENTITY doSelectEntity(WhitePgReservCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhitePgReservCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhitePgReserv> OptionalEntity<ENTITY> doSelectOptionalEntity(WhitePgReservCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
 
     protected <ENTITY extends WhitePgReserv> ENTITY doSelectEntityWithDeletedCheck(WhitePgReservCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhitePgReservCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhitePgReserv> ListResultBean<ENTITY> doSelectList(WhitePgReservCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhitePgReservCB>() {
-            public List<ENTITY> callbackSelectList(WhitePgReservCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected <ENTITY extends WhitePgReserv> PagingResultBean<ENTITY> doSelectPage(WhitePgReservCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhitePgReservCB>() {
-            public int callbackSelectCount(WhitePgReservCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhitePgReservCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     protected <ENTITY extends WhitePgReserv> void doSelectCursor(WhitePgReservCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhitePgReservCB>() {
-            public void callbackSelectCursor(WhitePgReservCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhitePgReservCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -590,23 +560,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected NestedReferrerListGateway<WhitePgReservRef> doLoadWhitePgReservRefList(List<WhitePgReserv> whitePgReservList, LoadReferrerOption<WhitePgReservRefCB, WhitePgReservRef> option) {
-        final WhitePgReservRefBhv referrerBhv = xgetBSFLR().select(WhitePgReservRefBhv.class);
-        return helpLoadReferrerInternally(whitePgReservList, option, new InternalLoadReferrerCallback<WhitePgReserv, Integer, WhitePgReservRefCB, WhitePgReservRef>() {
-            public Integer getPKVal(WhitePgReserv et)
-            { return et.getClassSynonym(); }
-            public void setRfLs(WhitePgReserv et, List<WhitePgReservRef> ls)
-            { et.setWhitePgReservRefList(ls); }
-            public WhitePgReservRefCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhitePgReservRefCB cb, List<Integer> ls)
-            { cb.query().setClassSynonym_InScope(ls); }
-            public void qyOdFKAsc(WhitePgReservRefCB cb) { cb.query().addOrderBy_ClassSynonym_Asc(); }
-            public void spFKCol(WhitePgReservRefCB cb) { cb.specify().columnClassSynonym(); }
-            public List<WhitePgReservRef> selRfLs(WhitePgReservRefCB cb) { return referrerBhv.selectList(cb); }
-            public Integer getFKVal(WhitePgReservRef re) { return re.getClassSynonym(); }
-            public void setlcEt(WhitePgReservRef re, WhitePgReserv le)
-            { re.setWhitePgReserv(le); }
-            public String getRfPrNm() { return "whitePgReservRefList"; }
-        });
+        return helpLoadReferrerInternally(whitePgReservList, option, "whitePgReservRefList");
     }
 
     // ===================================================================================
@@ -620,11 +574,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
      * @param whitePgReservList The list of whitePgReserv. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Integer> extractClassSynonymList(List<WhitePgReserv> whitePgReservList) {
-        return helpExtractListInternally(whitePgReservList, new InternalExtractCallback<WhitePgReserv, Integer>() {
-            public Integer getCV(WhitePgReserv et) { return et.getClassSynonym(); }
-        });
-    }
+    public List<Integer> extractClassSynonymList(List<WhitePgReserv> whitePgReservList)
+    { return helpExtractListInternally(whitePgReservList, "classSynonym"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -651,23 +602,15 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected void doInsert(WhitePgReserv et, InsertOption<WhitePgReservCB> op) {
-        assertObjectNotNull("whitePgReserv", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whitePgReserv", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhitePgReservCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -695,16 +638,12 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         doUpdate(whitePgReserv, null);
     }
 
-    protected void doUpdate(WhitePgReserv et, final UpdateOption<WhitePgReservCB> op) {
-        assertObjectNotNull("whitePgReserv", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhitePgReserv>() {
-            public int callbackDelegateUpdate(WhitePgReserv let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhitePgReserv et, UpdateOption<WhitePgReservCB> op) {
+        assertObjectNotNull("whitePgReserv", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhitePgReservCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -715,15 +654,10 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     protected WhitePgReservCB createCBForSpecifiedUpdate()
     { WhitePgReservCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -738,25 +672,15 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         doInsertOrUpdate(whitePgReserv, null, null);
     }
 
-    protected void doInsertOrUpdate(WhitePgReserv et, final InsertOption<WhitePgReservCB> iop, final UpdateOption<WhitePgReservCB> uop) {
-        assertObjectNotNull("whitePgReserv", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhitePgReserv, WhitePgReservCB>() {
-            public void callbackInsert(WhitePgReserv let) { doInsert(let, iop); }
-            public void callbackUpdate(WhitePgReserv let) { doUpdate(let, uop); }
-            public WhitePgReservCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhitePgReservCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhitePgReserv et, InsertOption<WhitePgReservCB> iop, UpdateOption<WhitePgReservCB> uop) {
+        assertObjectNotNull("whitePgReserv", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -780,24 +704,15 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected void doDelete(WhitePgReserv et, final DeleteOption<WhitePgReservCB> op) {
-        assertObjectNotNull("whitePgReserv", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhitePgReserv>() {
-            public int callbackDelegateDelete(WhitePgReserv let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whitePgReserv", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhitePgReservCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhitePgReservCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -843,10 +758,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -888,10 +800,7 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -926,9 +835,8 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -947,15 +855,10 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -991,20 +894,16 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhitePgReserv, WhitePgReservCB> sp, InsertOption<WhitePgReservCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhitePgReserv et = newEntity();
-        WhitePgReservCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhitePgReserv et = newEntity(); WhitePgReservCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhitePgReservCB createCBForQueryInsert()
     { WhitePgReservCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1033,15 +932,12 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryUpdate(WhitePgReserv et, WhitePgReservCB cb, UpdateOption<WhitePgReservCB> op) {
-        assertObjectNotNull("whitePgReserv", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whitePgReserv", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1059,15 +955,11 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     protected int doQueryDelete(WhitePgReservCB cb, DeleteOption<WhitePgReservCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1310,108 +1202,19 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhitePgReservCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhitePgReservCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhitePgReserv> void delegateSelectCursor(WhitePgReservCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhitePgReserv> List<ENTITY> delegateSelectList(WhitePgReservCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhitePgReserv et, InsertOption<WhitePgReservCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhitePgReserv et, UpdateOption<WhitePgReservCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhitePgReserv et, UpdateOption<WhitePgReservCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhitePgReserv et, DeleteOption<WhitePgReservCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhitePgReserv et, DeleteOption<WhitePgReservCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhitePgReserv> ls, InsertOption<WhitePgReservCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhitePgReserv> ls, UpdateOption<WhitePgReservCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhitePgReserv> ls, UpdateOption<WhitePgReservCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhitePgReserv> ls, DeleteOption<WhitePgReservCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhitePgReserv> ls, DeleteOption<WhitePgReservCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhitePgReserv et, WhitePgReservCB inCB, ConditionBean resCB, InsertOption<WhitePgReservCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhitePgReserv et, WhitePgReservCB cb, UpdateOption<WhitePgReservCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhitePgReservCB cb, DeleteOption<WhitePgReservCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhitePgReserv> typeOfSelectedEntity()
-    { return WhitePgReserv.class; }
-
-    protected WhitePgReserv downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhitePgReserv.class); }
-
-    protected WhitePgReservCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhitePgReservCB.class); }
-
+    protected Class<WhitePgReserv> typeOfSelectedEntity() { return WhitePgReserv.class; }
+    protected WhitePgReserv downcast(Entity et) { return helpEntityDowncastInternally(et, WhitePgReserv.class); }
+    protected WhitePgReservCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhitePgReservCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhitePgReserv> downcast(List<? extends Entity> ls)
-    { return (List<WhitePgReserv>)ls; }
-
+    protected List<WhitePgReserv> downcast(List<? extends Entity> ls) { return (List<WhitePgReserv>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePgReservCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhitePgReservCB>)op; }
-
+    protected InsertOption<WhitePgReservCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePgReservCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePgReservCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhitePgReservCB>)op; }
-
+    protected UpdateOption<WhitePgReservCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePgReservCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePgReservCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhitePgReservCB>)op; }
-
+    protected DeleteOption<WhitePgReservCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePgReservCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhitePgReserv, WhitePgReservCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhitePgReserv, WhitePgReservCB>)sp; }

@@ -89,10 +89,9 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _escapedDfpropCode;
-    public ConditionValue getEscapedDfpropCode() {
-        if (_escapedDfpropCode == null) { _escapedDfpropCode = nCV(); }
-        return _escapedDfpropCode;
-    }
+    public ConditionValue getEscapedDfpropCode()
+    { if (_escapedDfpropCode == null) { _escapedDfpropCode = nCV(); }
+      return _escapedDfpropCode; }
     protected ConditionValue getCValueEscapedDfpropCode() { return getEscapedDfpropCode(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
     public BsWhiteEscapedDfpropCQ addOrderBy_EscapedDfpropCode_Desc() { regOBD("ESCAPED_DFPROP_CODE"); return this; }
 
     protected ConditionValue _escapedDfpropName;
-    public ConditionValue getEscapedDfpropName() {
-        if (_escapedDfpropName == null) { _escapedDfpropName = nCV(); }
-        return _escapedDfpropName;
-    }
+    public ConditionValue getEscapedDfpropName()
+    { if (_escapedDfpropName == null) { _escapedDfpropName = nCV(); }
+      return _escapedDfpropName; }
     protected ConditionValue getCValueEscapedDfpropName() { return getEscapedDfpropName(); }
 
     /** 
@@ -147,8 +145,7 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteEscapedDfpropCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteEscapedDfpropCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -164,8 +161,7 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteEscapedDfpropCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteEscapedDfpropCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -183,61 +179,32 @@ public class BsWhiteEscapedDfpropCQ extends AbstractBsWhiteEscapedDfpropCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteEscapedDfpropCQ> _scalarConditionMap;
-    public Map<String, WhiteEscapedDfpropCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteEscapedDfpropCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteEscapedDfpropCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteEscapedDfpropCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteEscapedDfpropCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteEscapedDfpropCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteEscapedDfpropCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteEscapedDfpropCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteEscapedDfpropCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteEscapedDfpropCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteEscapedDfpropCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteEscapedDfpropCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteEscapedDfpropCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteEscapedDfpropCQ> _myselfExistsMap;
-    public Map<String, WhiteEscapedDfpropCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteEscapedDfpropCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteEscapedDfpropCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteEscapedDfpropCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteEscapedDfpropCQ> _myselfInScopeMap;
-    public Map<String, WhiteEscapedDfpropCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteEscapedDfpropCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteEscapedDfpropCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteEscapedDfpropCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

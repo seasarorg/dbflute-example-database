@@ -89,10 +89,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _dateAdjustmentId;
-    public ConditionValue getDateAdjustmentId() {
-        if (_dateAdjustmentId == null) { _dateAdjustmentId = nCV(); }
-        return _dateAdjustmentId;
-    }
+    public ConditionValue getDateAdjustmentId()
+    { if (_dateAdjustmentId == null) { _dateAdjustmentId = nCV(); }
+      return _dateAdjustmentId; }
     protected ConditionValue getCValueDateAdjustmentId() { return getDateAdjustmentId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_DateAdjustmentId_Desc() { regOBD("DATE_ADJUSTMENT_ID"); return this; }
 
     protected ConditionValue _adjustedDate;
-    public ConditionValue getAdjustedDate() {
-        if (_adjustedDate == null) { _adjustedDate = nCV(); }
-        return _adjustedDate;
-    }
+    public ConditionValue getAdjustedDate()
+    { if (_adjustedDate == null) { _adjustedDate = nCV(); }
+      return _adjustedDate; }
     protected ConditionValue getCValueAdjustedDate() { return getAdjustedDate(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedDate_Desc() { regOBD("ADJUSTED_DATE"); return this; }
 
     protected ConditionValue _adjustedDatetime;
-    public ConditionValue getAdjustedDatetime() {
-        if (_adjustedDatetime == null) { _adjustedDatetime = nCV(); }
-        return _adjustedDatetime;
-    }
+    public ConditionValue getAdjustedDatetime()
+    { if (_adjustedDatetime == null) { _adjustedDatetime = nCV(); }
+      return _adjustedDatetime; }
     protected ConditionValue getCValueAdjustedDatetime() { return getAdjustedDatetime(); }
 
     /** 
@@ -152,10 +149,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedDatetime_Desc() { regOBD("ADJUSTED_DATETIME"); return this; }
 
     protected ConditionValue _adjustedTime;
-    public ConditionValue getAdjustedTime() {
-        if (_adjustedTime == null) { _adjustedTime = nCV(); }
-        return _adjustedTime;
-    }
+    public ConditionValue getAdjustedTime()
+    { if (_adjustedTime == null) { _adjustedTime = nCV(); }
+      return _adjustedTime; }
     protected ConditionValue getCValueAdjustedTime() { return getAdjustedTime(); }
 
     /** 
@@ -173,10 +169,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedTime_Desc() { regOBD("ADJUSTED_TIME"); return this; }
 
     protected ConditionValue _adjustedInteger;
-    public ConditionValue getAdjustedInteger() {
-        if (_adjustedInteger == null) { _adjustedInteger = nCV(); }
-        return _adjustedInteger;
-    }
+    public ConditionValue getAdjustedInteger()
+    { if (_adjustedInteger == null) { _adjustedInteger = nCV(); }
+      return _adjustedInteger; }
     protected ConditionValue getCValueAdjustedInteger() { return getAdjustedInteger(); }
 
     /** 
@@ -194,10 +189,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedInteger_Desc() { regOBD("ADJUSTED_INTEGER"); return this; }
 
     protected ConditionValue _adjustedNamedStringLong;
-    public ConditionValue getAdjustedNamedStringLong() {
-        if (_adjustedNamedStringLong == null) { _adjustedNamedStringLong = nCV(); }
-        return _adjustedNamedStringLong;
-    }
+    public ConditionValue getAdjustedNamedStringLong()
+    { if (_adjustedNamedStringLong == null) { _adjustedNamedStringLong = nCV(); }
+      return _adjustedNamedStringLong; }
     protected ConditionValue getCValueAdjustedNamedStringLong() { return getAdjustedNamedStringLong(); }
 
     /** 
@@ -215,10 +209,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedNamedStringLong_Desc() { regOBD("ADJUSTED_NAMED_STRING_LONG"); return this; }
 
     protected ConditionValue _adjustedNamedTypedLong;
-    public ConditionValue getAdjustedNamedTypedLong() {
-        if (_adjustedNamedTypedLong == null) { _adjustedNamedTypedLong = nCV(); }
-        return _adjustedNamedTypedLong;
-    }
+    public ConditionValue getAdjustedNamedTypedLong()
+    { if (_adjustedNamedTypedLong == null) { _adjustedNamedTypedLong = nCV(); }
+      return _adjustedNamedTypedLong; }
     protected ConditionValue getCValueAdjustedNamedTypedLong() { return getAdjustedNamedTypedLong(); }
 
     /** 
@@ -236,10 +229,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedNamedTypedLong_Desc() { regOBD("ADJUSTED_NAMED_TYPED_LONG"); return this; }
 
     protected ConditionValue _adjustedPinpointStringLong;
-    public ConditionValue getAdjustedPinpointStringLong() {
-        if (_adjustedPinpointStringLong == null) { _adjustedPinpointStringLong = nCV(); }
-        return _adjustedPinpointStringLong;
-    }
+    public ConditionValue getAdjustedPinpointStringLong()
+    { if (_adjustedPinpointStringLong == null) { _adjustedPinpointStringLong = nCV(); }
+      return _adjustedPinpointStringLong; }
     protected ConditionValue getCValueAdjustedPinpointStringLong() { return getAdjustedPinpointStringLong(); }
 
     /** 
@@ -257,10 +249,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedPinpointStringLong_Desc() { regOBD("ADJUSTED_PINPOINT_STRING_LONG"); return this; }
 
     protected ConditionValue _adjustedPinpointTypedLong;
-    public ConditionValue getAdjustedPinpointTypedLong() {
-        if (_adjustedPinpointTypedLong == null) { _adjustedPinpointTypedLong = nCV(); }
-        return _adjustedPinpointTypedLong;
-    }
+    public ConditionValue getAdjustedPinpointTypedLong()
+    { if (_adjustedPinpointTypedLong == null) { _adjustedPinpointTypedLong = nCV(); }
+      return _adjustedPinpointTypedLong; }
     protected ConditionValue getCValueAdjustedPinpointTypedLong() { return getAdjustedPinpointTypedLong(); }
 
     /** 
@@ -278,10 +269,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedPinpointTypedLong_Desc() { regOBD("ADJUSTED_PINPOINT_TYPED_LONG"); return this; }
 
     protected ConditionValue _adjustedPlainLong;
-    public ConditionValue getAdjustedPlainLong() {
-        if (_adjustedPlainLong == null) { _adjustedPlainLong = nCV(); }
-        return _adjustedPlainLong;
-    }
+    public ConditionValue getAdjustedPlainLong()
+    { if (_adjustedPlainLong == null) { _adjustedPlainLong = nCV(); }
+      return _adjustedPlainLong; }
     protected ConditionValue getCValueAdjustedPlainLong() { return getAdjustedPlainLong(); }
 
     /** 
@@ -299,10 +289,9 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     public BsWhiteDateAdjustmentCQ addOrderBy_AdjustedPlainLong_Desc() { regOBD("ADJUSTED_PLAIN_LONG"); return this; }
 
     protected ConditionValue _adjustedString;
-    public ConditionValue getAdjustedString() {
-        if (_adjustedString == null) { _adjustedString = nCV(); }
-        return _adjustedString;
-    }
+    public ConditionValue getAdjustedString()
+    { if (_adjustedString == null) { _adjustedString = nCV(); }
+      return _adjustedString; }
     protected ConditionValue getCValueAdjustedString() { return getAdjustedString(); }
 
     /** 
@@ -336,8 +325,7 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDateAdjustmentCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteDateAdjustmentCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -353,8 +341,7 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDateAdjustmentCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteDateAdjustmentCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -372,61 +359,32 @@ public class BsWhiteDateAdjustmentCQ extends AbstractBsWhiteDateAdjustmentCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteDateAdjustmentCQ> _scalarConditionMap;
-    public Map<String, WhiteDateAdjustmentCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteDateAdjustmentCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteDateAdjustmentCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteDateAdjustmentCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteDateAdjustmentCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteDateAdjustmentCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteDateAdjustmentCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteDateAdjustmentCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteDateAdjustmentCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteDateAdjustmentCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteDateAdjustmentCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteDateAdjustmentCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteDateAdjustmentCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteDateAdjustmentCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteDateAdjustmentCQ> _myselfExistsMap;
-    public Map<String, WhiteDateAdjustmentCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteDateAdjustmentCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteDateAdjustmentCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteDateAdjustmentCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteDateAdjustmentCQ> _myselfInScopeMap;
-    public Map<String, WhiteDateAdjustmentCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteDateAdjustmentCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteDateAdjustmentCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteDateAdjustmentCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -74,10 +74,9 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _barId;
-    public ConditionValue getBarId() {
-        if (_barId == null) { _barId = nCV(); }
-        return _barId;
-    }
+    public ConditionValue getBarId()
+    { if (_barId == null) { _barId = nCV(); }
+      return _barId; }
     protected ConditionValue getCValueBarId() { return getBarId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     public BsVendorDateFkCQ addOrderBy_BarId_Desc() { regOBD("bar_id"); return this; }
 
     protected ConditionValue _barDate;
-    public ConditionValue getBarDate() {
-        if (_barDate == null) { _barDate = nCV(); }
-        return _barDate;
-    }
+    public ConditionValue getBarDate()
+    { if (_barDate == null) { _barDate = nCV(); }
+      return _barDate; }
     protected ConditionValue getCValueBarDate() { return getBarDate(); }
 
     /** 
@@ -132,8 +130,7 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorDateFkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorDateFkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -149,8 +146,7 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorDateFkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorDateFkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -174,31 +170,17 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     public VendorDatePkCQ queryVendorDatePk() {
         return getConditionQueryVendorDatePk();
     }
-    protected VendorDatePkCQ _conditionQueryVendorDatePk;
     public VendorDatePkCQ getConditionQueryVendorDatePk() {
-        if (_conditionQueryVendorDatePk == null) {
-            _conditionQueryVendorDatePk = xcreateQueryVendorDatePk();
-            xsetupOuterJoinVendorDatePk();
-        }
-        return _conditionQueryVendorDatePk;
+        String prop = "vendorDatePk";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendorDatePk()); xsetupOuterJoinVendorDatePk(); }
+        return xgetQueRlMap(prop);
     }
     protected VendorDatePkCQ xcreateQueryVendorDatePk() {
-        String nrp = resolveNextRelationPath("vendor_date_fk", "vendorDatePk");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        VendorDatePkCQ cq = new VendorDatePkCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("vendorDatePk");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("vendor_date_fk", "vendorDatePk"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new VendorDatePkCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendorDatePk", nrp);
     }
-    protected void xsetupOuterJoinVendorDatePk() {
-        VendorDatePkCQ cq = getConditionQueryVendorDatePk();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("bar_date", "foo_date");
-        registerOuterJoin(cq, joinOnMap, "vendorDatePk");
-    }
-    public boolean hasConditionQueryVendorDatePk() {
-        return _conditionQueryVendorDatePk != null;
-    }
+    protected void xsetupOuterJoinVendorDatePk() { xregOutJo("vendorDatePk"); }
+    public boolean hasConditionQueryVendorDatePk() { return xhasQueRlMap("vendorDatePk"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -207,61 +189,32 @@ public class BsVendorDateFkCQ extends AbstractBsVendorDateFkCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorDateFkCQ> _scalarConditionMap;
-    public Map<String, VendorDateFkCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorDateFkCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorDateFkCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorDateFkCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorDateFkCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorDateFkCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorDateFkCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorDateFkCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorDateFkCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorDateFkCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorDateFkCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorDateFkCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorDateFkCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorDateFkCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorDateFkCQ> _myselfExistsMap;
-    public Map<String, VendorDateFkCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorDateFkCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorDateFkCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorDateFkCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorDateFkCQ> _myselfInScopeMap;
-    public Map<String, VendorDateFkCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorDateFkCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorDateFkCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorDateFkCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

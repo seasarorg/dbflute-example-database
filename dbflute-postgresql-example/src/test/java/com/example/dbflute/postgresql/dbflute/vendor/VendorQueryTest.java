@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
+import org.seasar.dbflute.cbean.coption.FromToOption;
 import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.dbway.DBWay;
 import org.seasar.dbflute.dbway.ExtensionOperand;
@@ -284,7 +285,7 @@ public class VendorQueryTest extends UnitContainerTestCase {
             public void query(PurchaseCB subCB) {
                 subCB.specify().columnPurchaseCount();
             }
-        }).between(fromCount, toCount);
+        }).rangeOf(fromCount, toCount);
 
         // ## Act ##
         // Expect no exception
@@ -314,7 +315,7 @@ public class VendorQueryTest extends UnitContainerTestCase {
             public void query(PurchaseCB subCB) {
                 subCB.specify().columnPurchaseDatetime();
             }
-        }).between(fromDate, toDate);
+        }).fromTo(fromDate, toDate, new FromToOption());
 
         // ## Act ##
         // Expect no exception

@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.MappingValueType;
 import com.example.dbflute.postgresql.dbflute.exentity.customize.*;
 
 /**
@@ -902,13 +903,11 @@ public abstract class BsVendorCheckCursor implements Entity, Serializable, Clone
         _typeOfBytea = typeOfBytea;
     }
 
-    /** The value type annotation. {oid(10)} */
-    public static final String typeOfOid_VALUE_TYPE = "bytesOidType";
-
     /**
      * [get] type_of_oid: {oid(10)} <br />
      * @return The value of the column 'type_of_oid'. (NullAllowed even if selected: for no constraint)
      */
+    @MappingValueType(keyName = "bytesOidType")
     public byte[] getTypeOfOid() {
         return _typeOfOid;
     }

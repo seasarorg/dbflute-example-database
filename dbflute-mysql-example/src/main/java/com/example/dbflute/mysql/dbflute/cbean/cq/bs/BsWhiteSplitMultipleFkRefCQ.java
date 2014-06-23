@@ -89,10 +89,9 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _firstId;
-    public ConditionValue getFirstId() {
-        if (_firstId == null) { _firstId = nCV(); }
-        return _firstId;
-    }
+    public ConditionValue getFirstId()
+    { if (_firstId == null) { _firstId = nCV(); }
+      return _firstId; }
     protected ConditionValue getCValueFirstId() { return getFirstId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     public BsWhiteSplitMultipleFkRefCQ addOrderBy_FirstId_Desc() { regOBD("FIRST_ID"); return this; }
 
     protected ConditionValue _secondCode;
-    public ConditionValue getSecondCode() {
-        if (_secondCode == null) { _secondCode = nCV(); }
-        return _secondCode;
-    }
+    public ConditionValue getSecondCode()
+    { if (_secondCode == null) { _secondCode = nCV(); }
+      return _secondCode; }
     protected ConditionValue getCValueSecondCode() { return getSecondCode(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     public BsWhiteSplitMultipleFkRefCQ addOrderBy_SecondCode_Desc() { regOBD("SECOND_CODE"); return this; }
 
     protected ConditionValue _refName;
-    public ConditionValue getRefName() {
-        if (_refName == null) { _refName = nCV(); }
-        return _refName;
-    }
+    public ConditionValue getRefName()
+    { if (_refName == null) { _refName = nCV(); }
+      return _refName; }
     protected ConditionValue getCValueRefName() { return getRefName(); }
 
     /** 
@@ -168,8 +165,7 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSplitMultipleFkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteSplitMultipleFkRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -185,8 +181,7 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSplitMultipleFkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteSplitMultipleFkRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -204,13 +199,8 @@ public class BsWhiteSplitMultipleFkRefCQ extends AbstractBsWhiteSplitMultipleFkR
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteSplitMultipleFkRefCQ> _scalarConditionMap;
-    public Map<String, WhiteSplitMultipleFkRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteSplitMultipleFkRefCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteSplitMultipleFkRefCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteSplitMultipleFkRefCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

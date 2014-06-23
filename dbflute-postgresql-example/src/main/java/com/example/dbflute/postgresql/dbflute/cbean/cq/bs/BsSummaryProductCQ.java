@@ -74,10 +74,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _productId;
-    public ConditionValue getProductId() {
-        if (_productId == null) { _productId = nCV(); }
-        return _productId;
-    }
+    public ConditionValue getProductId()
+    { if (_productId == null) { _productId = nCV(); }
+      return _productId; }
     protected ConditionValue getCValueProductId() { return getProductId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductId_Desc() { regOBD("product_id"); return this; }
 
     protected ConditionValue _productName;
-    public ConditionValue getProductName() {
-        if (_productName == null) { _productName = nCV(); }
-        return _productName;
-    }
+    public ConditionValue getProductName()
+    { if (_productName == null) { _productName = nCV(); }
+      return _productName; }
     protected ConditionValue getCValueProductName() { return getProductName(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductName_Desc() { regOBD("product_name"); return this; }
 
     protected ConditionValue _productStatusCode;
-    public ConditionValue getProductStatusCode() {
-        if (_productStatusCode == null) { _productStatusCode = nCV(); }
-        return _productStatusCode;
-    }
+    public ConditionValue getProductStatusCode()
+    { if (_productStatusCode == null) { _productStatusCode = nCV(); }
+      return _productStatusCode; }
     protected ConditionValue getCValueProductStatusCode() { return getProductStatusCode(); }
 
     /** 
@@ -137,10 +134,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductStatusCode_Desc() { regOBD("product_status_code"); return this; }
 
     protected ConditionValue _latestPurchaseDatetime;
-    public ConditionValue getLatestPurchaseDatetime() {
-        if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
-        return _latestPurchaseDatetime;
-    }
+    public ConditionValue getLatestPurchaseDatetime()
+    { if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
+      return _latestPurchaseDatetime; }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return getLatestPurchaseDatetime(); }
 
     /** 
@@ -174,8 +170,7 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -191,8 +186,7 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -210,13 +204,8 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SummaryProductCQ> _scalarConditionMap;
-    public Map<String, SummaryProductCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SummaryProductCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SummaryProductCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SummaryProductCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

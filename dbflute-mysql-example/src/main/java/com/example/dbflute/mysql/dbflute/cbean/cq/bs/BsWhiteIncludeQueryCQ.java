@@ -89,10 +89,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _includeQueryId;
-    public ConditionValue getIncludeQueryId() {
-        if (_includeQueryId == null) { _includeQueryId = nCV(); }
-        return _includeQueryId;
-    }
+    public ConditionValue getIncludeQueryId()
+    { if (_includeQueryId == null) { _includeQueryId = nCV(); }
+      return _includeQueryId; }
     protected ConditionValue getCValueIncludeQueryId() { return getIncludeQueryId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryId_Desc() { regOBD("INCLUDE_QUERY_ID"); return this; }
 
     protected ConditionValue _includeQueryVarchar;
-    public ConditionValue getIncludeQueryVarchar() {
-        if (_includeQueryVarchar == null) { _includeQueryVarchar = nCV(); }
-        return _includeQueryVarchar;
-    }
+    public ConditionValue getIncludeQueryVarchar()
+    { if (_includeQueryVarchar == null) { _includeQueryVarchar = nCV(); }
+      return _includeQueryVarchar; }
     protected ConditionValue getCValueIncludeQueryVarchar() { return getIncludeQueryVarchar(); }
 
     /** 
@@ -131,17 +129,15 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryVarchar_Desc() { regOBD("INCLUDE_QUERY_VARCHAR"); return this; }
 
     protected ConditionValue _includeQueryInteger;
-    public ConditionValue getIncludeQueryInteger() {
-        if (_includeQueryInteger == null) { _includeQueryInteger = nCV(); }
-        return _includeQueryInteger;
-    }
+    public ConditionValue getIncludeQueryInteger()
+    { if (_includeQueryInteger == null) { _includeQueryInteger = nCV(); }
+      return _includeQueryInteger; }
     protected ConditionValue getCValueIncludeQueryInteger() { return getIncludeQueryInteger(); }
 
     protected ConditionValue _includeQueryDate;
-    public ConditionValue getIncludeQueryDate() {
-        if (_includeQueryDate == null) { _includeQueryDate = nCV(); }
-        return _includeQueryDate;
-    }
+    public ConditionValue getIncludeQueryDate()
+    { if (_includeQueryDate == null) { _includeQueryDate = nCV(); }
+      return _includeQueryDate; }
     protected ConditionValue getCValueIncludeQueryDate() { return getIncludeQueryDate(); }
 
     /** 
@@ -159,10 +155,9 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     public BsWhiteIncludeQueryCQ addOrderBy_IncludeQueryDate_Desc() { regOBD("INCLUDE_QUERY_DATE"); return this; }
 
     protected ConditionValue _includeQueryDatetime;
-    public ConditionValue getIncludeQueryDatetime() {
-        if (_includeQueryDatetime == null) { _includeQueryDatetime = nCV(); }
-        return _includeQueryDatetime;
-    }
+    public ConditionValue getIncludeQueryDatetime()
+    { if (_includeQueryDatetime == null) { _includeQueryDatetime = nCV(); }
+      return _includeQueryDatetime; }
     protected ConditionValue getCValueIncludeQueryDatetime() { return getIncludeQueryDatetime(); }
 
     /** 
@@ -196,8 +191,7 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -213,8 +207,7 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteIncludeQueryCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -232,61 +225,32 @@ public class BsWhiteIncludeQueryCQ extends AbstractBsWhiteIncludeQueryCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteIncludeQueryCQ> _scalarConditionMap;
-    public Map<String, WhiteIncludeQueryCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteIncludeQueryCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteIncludeQueryCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteIncludeQueryCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteIncludeQueryCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteIncludeQueryCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteIncludeQueryCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteIncludeQueryCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteIncludeQueryCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteIncludeQueryCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteIncludeQueryCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteIncludeQueryCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteIncludeQueryCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteIncludeQueryCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteIncludeQueryCQ> _myselfExistsMap;
-    public Map<String, WhiteIncludeQueryCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteIncludeQueryCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteIncludeQueryCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteIncludeQueryCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteIncludeQueryCQ> _myselfInScopeMap;
-    public Map<String, WhiteIncludeQueryCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteIncludeQueryCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteIncludeQueryCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteIncludeQueryCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

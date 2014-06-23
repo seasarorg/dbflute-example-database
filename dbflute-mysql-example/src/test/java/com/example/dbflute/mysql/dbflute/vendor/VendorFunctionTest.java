@@ -514,7 +514,7 @@ public class VendorFunctionTest extends UnitContainerTestCase {
         ListResultBean<Member> memberList = memberBhv.selectList(cb); // expect no exception
 
         // ## Assert ##
-        assertFalse(memberList.isEmpty());
+        assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
         assertTrue(Srl.contains(sql, "(cast(substring(date_add((dfloc.FORMALIZED_DATETIME + 123)"));
         assertTrue(Srl.contains(sql, " + 123), interval 7 day), 1, 10) as date)) - 789"));

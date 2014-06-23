@@ -89,27 +89,16 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _clsCategoryCode;
-    public ConditionValue getClsCategoryCode() {
-        if (_clsCategoryCode == null) { _clsCategoryCode = nCV(); }
-        return _clsCategoryCode;
-    }
+    public ConditionValue getClsCategoryCode()
+    { if (_clsCategoryCode == null) { _clsCategoryCode = nCV(); }
+      return _clsCategoryCode; }
     protected ConditionValue getCValueClsCategoryCode() { return getClsCategoryCode(); }
 
-    protected Map<String, WhiteAllInOneClsCategoryCQ> _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap;
-    public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory() { return _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap; }
-    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) {
-        if (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap == null) { _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
-        _clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategoryMap.put(ky, sq); return "clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory." + ky;
-    }
+    public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory() { return xgetSQueMap("clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory"); }
+    public String keepClsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) { return xkeepSQue("clsCategoryCode_InScopeRelation_WhiteAllInOneClsCategory", sq); }
 
-    protected Map<String, WhiteAllInOneClsCategoryCQ> _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap;
-    public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory() { return _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap; }
-    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) {
-        if (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap == null) { _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.size() + 1);
-        _clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategoryMap.put(ky, sq); return "clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory." + ky;
-    }
+    public Map<String, WhiteAllInOneClsCategoryCQ> getClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory() { return xgetSQueMap("clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory"); }
+    public String keepClsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory(WhiteAllInOneClsCategoryCQ sq) { return xkeepSQue("clsCategoryCode_NotInScopeRelation_WhiteAllInOneClsCategory", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -126,10 +115,9 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     public BsWhiteAllInOneClsElementCQ addOrderBy_ClsCategoryCode_Desc() { regOBD("CLS_CATEGORY_CODE"); return this; }
 
     protected ConditionValue _clsElementCode;
-    public ConditionValue getClsElementCode() {
-        if (_clsElementCode == null) { _clsElementCode = nCV(); }
-        return _clsElementCode;
-    }
+    public ConditionValue getClsElementCode()
+    { if (_clsElementCode == null) { _clsElementCode = nCV(); }
+      return _clsElementCode; }
     protected ConditionValue getCValueClsElementCode() { return getClsElementCode(); }
 
     /** 
@@ -147,10 +135,9 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     public BsWhiteAllInOneClsElementCQ addOrderBy_ClsElementCode_Desc() { regOBD("CLS_ELEMENT_CODE"); return this; }
 
     protected ConditionValue _clsElementName;
-    public ConditionValue getClsElementName() {
-        if (_clsElementName == null) { _clsElementName = nCV(); }
-        return _clsElementName;
-    }
+    public ConditionValue getClsElementName()
+    { if (_clsElementName == null) { _clsElementName = nCV(); }
+      return _clsElementName; }
     protected ConditionValue getCValueClsElementName() { return getClsElementName(); }
 
     /** 
@@ -168,10 +155,9 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     public BsWhiteAllInOneClsElementCQ addOrderBy_ClsElementName_Desc() { regOBD("CLS_ELEMENT_NAME"); return this; }
 
     protected ConditionValue _attributeExp;
-    public ConditionValue getAttributeExp() {
-        if (_attributeExp == null) { _attributeExp = nCV(); }
-        return _attributeExp;
-    }
+    public ConditionValue getAttributeExp()
+    { if (_attributeExp == null) { _attributeExp = nCV(); }
+      return _attributeExp; }
     protected ConditionValue getCValueAttributeExp() { return getAttributeExp(); }
 
     /** 
@@ -205,8 +191,7 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteAllInOneClsElementCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteAllInOneClsElementCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -222,8 +207,7 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteAllInOneClsElementCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteAllInOneClsElementCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -247,31 +231,17 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     public WhiteAllInOneClsCategoryCQ queryWhiteAllInOneClsCategory() {
         return getConditionQueryWhiteAllInOneClsCategory();
     }
-    protected WhiteAllInOneClsCategoryCQ _conditionQueryWhiteAllInOneClsCategory;
     public WhiteAllInOneClsCategoryCQ getConditionQueryWhiteAllInOneClsCategory() {
-        if (_conditionQueryWhiteAllInOneClsCategory == null) {
-            _conditionQueryWhiteAllInOneClsCategory = xcreateQueryWhiteAllInOneClsCategory();
-            xsetupOuterJoinWhiteAllInOneClsCategory();
-        }
-        return _conditionQueryWhiteAllInOneClsCategory;
+        String prop = "whiteAllInOneClsCategory";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteAllInOneClsCategory()); xsetupOuterJoinWhiteAllInOneClsCategory(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteAllInOneClsCategoryCQ xcreateQueryWhiteAllInOneClsCategory() {
-        String nrp = resolveNextRelationPath("white_all_in_one_cls_element", "whiteAllInOneClsCategory");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteAllInOneClsCategoryCQ cq = new WhiteAllInOneClsCategoryCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteAllInOneClsCategory");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_all_in_one_cls_element", "whiteAllInOneClsCategory"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteAllInOneClsCategoryCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteAllInOneClsCategory", nrp);
     }
-    protected void xsetupOuterJoinWhiteAllInOneClsCategory() {
-        WhiteAllInOneClsCategoryCQ cq = getConditionQueryWhiteAllInOneClsCategory();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("CLS_CATEGORY_CODE", "CLS_CATEGORY_CODE");
-        registerOuterJoin(cq, joinOnMap, "whiteAllInOneClsCategory");
-    }
-    public boolean hasConditionQueryWhiteAllInOneClsCategory() {
-        return _conditionQueryWhiteAllInOneClsCategory != null;
-    }
+    protected void xsetupOuterJoinWhiteAllInOneClsCategory() { xregOutJo("whiteAllInOneClsCategory"); }
+    public boolean hasConditionQueryWhiteAllInOneClsCategory() { return xhasQueRlMap("whiteAllInOneClsCategory"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -280,13 +250,8 @@ public class BsWhiteAllInOneClsElementCQ extends AbstractBsWhiteAllInOneClsEleme
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteAllInOneClsElementCQ> _scalarConditionMap;
-    public Map<String, WhiteAllInOneClsElementCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteAllInOneClsElementCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteAllInOneClsElementCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteAllInOneClsElementCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

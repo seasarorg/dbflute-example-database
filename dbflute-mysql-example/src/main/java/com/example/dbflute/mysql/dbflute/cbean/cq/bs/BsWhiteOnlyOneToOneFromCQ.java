@@ -89,43 +89,22 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _fromId;
-    public ConditionValue getFromId() {
-        if (_fromId == null) { _fromId = nCV(); }
-        return _fromId;
-    }
+    public ConditionValue getFromId()
+    { if (_fromId == null) { _fromId = nCV(); }
+      return _fromId; }
     protected ConditionValue getCValueFromId() { return getFromId(); }
 
-    protected Map<String, WhiteOnlyOneToOneToCQ> _fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap;
-    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne() { return _fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap; }
-    public String keepFromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) {
-        if (_fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap == null) { _fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap.size() + 1);
-        _fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOneMap.put(ky, sq); return "fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne() { return xgetSQueMap("fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne"); }
+    public String keepFromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) { return xkeepSQue("fromId_ExistsReferrer_WhiteOnlyOneToOneToAsOne", sq); }
 
-    protected Map<String, WhiteOnlyOneToOneToCQ> _fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap;
-    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne() { return _fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap; }
-    public String keepFromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) {
-        if (_fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap == null) { _fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap.size() + 1);
-        _fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOneMap.put(ky, sq); return "fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne() { return xgetSQueMap("fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne"); }
+    public String keepFromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) { return xkeepSQue("fromId_NotExistsReferrer_WhiteOnlyOneToOneToAsOne", sq); }
 
-    protected Map<String, WhiteOnlyOneToOneToCQ> _fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap;
-    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_InScopeRelation_WhiteOnlyOneToOneToAsOne() { return _fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap; }
-    public String keepFromId_InScopeRelation_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) {
-        if (_fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap == null) { _fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap.size() + 1);
-        _fromId_InScopeRelation_WhiteOnlyOneToOneToAsOneMap.put(ky, sq); return "fromId_InScopeRelation_WhiteOnlyOneToOneToAsOne." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_InScopeRelation_WhiteOnlyOneToOneToAsOne() { return xgetSQueMap("fromId_InScopeRelation_WhiteOnlyOneToOneToAsOne"); }
+    public String keepFromId_InScopeRelation_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) { return xkeepSQue("fromId_InScopeRelation_WhiteOnlyOneToOneToAsOne", sq); }
 
-    protected Map<String, WhiteOnlyOneToOneToCQ> _fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap;
-    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne() { return _fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap; }
-    public String keepFromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) {
-        if (_fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap == null) { _fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap.size() + 1);
-        _fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOneMap.put(ky, sq); return "fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneToCQ> getFromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne() { return xgetSQueMap("fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne"); }
+    public String keepFromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne(WhiteOnlyOneToOneToCQ sq) { return xkeepSQue("fromId_NotInScopeRelation_WhiteOnlyOneToOneToAsOne", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -142,10 +121,9 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
     public BsWhiteOnlyOneToOneFromCQ addOrderBy_FromId_Desc() { regOBD("FROM_ID"); return this; }
 
     protected ConditionValue _fromName;
-    public ConditionValue getFromName() {
-        if (_fromName == null) { _fromName = nCV(); }
-        return _fromName;
-    }
+    public ConditionValue getFromName()
+    { if (_fromName == null) { _fromName = nCV(); }
+      return _fromName; }
     protected ConditionValue getCValueFromName() { return getFromName(); }
 
     /** 
@@ -179,8 +157,7 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteOnlyOneToOneFromCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteOnlyOneToOneFromCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -196,8 +173,7 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteOnlyOneToOneFromCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteOnlyOneToOneFromCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -218,34 +194,18 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
      * white_only_one_to_one_to by FROM_ID, named 'whiteOnlyOneToOneToAsOne'.
      * @return The instance of condition-query. (NotNull)
      */
-    public WhiteOnlyOneToOneToCQ queryWhiteOnlyOneToOneToAsOne() {
-        return getConditionQueryWhiteOnlyOneToOneToAsOne();
-    }
-    protected WhiteOnlyOneToOneToCQ _conditionQueryWhiteOnlyOneToOneToAsOne;
+    public WhiteOnlyOneToOneToCQ queryWhiteOnlyOneToOneToAsOne() { return getConditionQueryWhiteOnlyOneToOneToAsOne(); }
     public WhiteOnlyOneToOneToCQ getConditionQueryWhiteOnlyOneToOneToAsOne() {
-        if (_conditionQueryWhiteOnlyOneToOneToAsOne == null) {
-            _conditionQueryWhiteOnlyOneToOneToAsOne = xcreateQueryWhiteOnlyOneToOneToAsOne();
-            xsetupOuterJoinWhiteOnlyOneToOneToAsOne();
-        }
-        return _conditionQueryWhiteOnlyOneToOneToAsOne;
+        String prop = "whiteOnlyOneToOneToAsOne";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteOnlyOneToOneToAsOne()); xsetupOuterJoinWhiteOnlyOneToOneToAsOne(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteOnlyOneToOneToCQ xcreateQueryWhiteOnlyOneToOneToAsOne() {
-        String nrp = resolveNextRelationPath("white_only_one_to_one_from", "whiteOnlyOneToOneToAsOne");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteOnlyOneToOneToCQ cq = new WhiteOnlyOneToOneToCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteOnlyOneToOneToAsOne");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_only_one_to_one_from", "whiteOnlyOneToOneToAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteOnlyOneToOneToCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteOnlyOneToOneToAsOne", nrp);
     }
-    protected void xsetupOuterJoinWhiteOnlyOneToOneToAsOne() {
-        WhiteOnlyOneToOneToCQ cq = getConditionQueryWhiteOnlyOneToOneToAsOne();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("FROM_ID", "FROM_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteOnlyOneToOneToAsOne");
-    }
-    public boolean hasConditionQueryWhiteOnlyOneToOneToAsOne() {
-        return _conditionQueryWhiteOnlyOneToOneToAsOne != null;
-    }
+    protected void xsetupOuterJoinWhiteOnlyOneToOneToAsOne() { xregOutJo("whiteOnlyOneToOneToAsOne"); }
+    public boolean hasConditionQueryWhiteOnlyOneToOneToAsOne() { return xhasQueRlMap("whiteOnlyOneToOneToAsOne"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -254,61 +214,32 @@ public class BsWhiteOnlyOneToOneFromCQ extends AbstractBsWhiteOnlyOneToOneFromCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteOnlyOneToOneFromCQ> _scalarConditionMap;
-    public Map<String, WhiteOnlyOneToOneFromCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteOnlyOneToOneFromCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneFromCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteOnlyOneToOneFromCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteOnlyOneToOneFromCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteOnlyOneToOneFromCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteOnlyOneToOneFromCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneFromCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteOnlyOneToOneFromCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteOnlyOneToOneFromCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteOnlyOneToOneFromCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteOnlyOneToOneFromCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneFromCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteOnlyOneToOneFromCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteOnlyOneToOneFromCQ> _myselfExistsMap;
-    public Map<String, WhiteOnlyOneToOneFromCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteOnlyOneToOneFromCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneFromCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteOnlyOneToOneFromCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteOnlyOneToOneFromCQ> _myselfInScopeMap;
-    public Map<String, WhiteOnlyOneToOneFromCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteOnlyOneToOneFromCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteOnlyOneToOneFromCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteOnlyOneToOneFromCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

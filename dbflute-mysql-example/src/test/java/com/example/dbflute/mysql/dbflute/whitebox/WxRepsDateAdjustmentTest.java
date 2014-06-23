@@ -9,6 +9,7 @@ import java.util.List;
 import org.seasar.dbflute.bhv.ConditionBeanSetupper;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
+import org.seasar.dbflute.cbean.coption.FromToOption;
 import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.helper.HandyDate;
 import org.seasar.dbflute.util.DfTypeUtil;
@@ -137,7 +138,7 @@ public class WxRepsDateAdjustmentTest extends UnitContainerTestCase {
             public void query(PurchaseCB subCB) {
                 subCB.specify().columnPurchaseDatetime();
             }
-        }).between(fromDate, toDate);
+        }).fromTo(fromDate, toDate, new FromToOption());
 
         // ## Act ##
         // Expect no exception

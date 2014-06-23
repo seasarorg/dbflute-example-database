@@ -89,66 +89,30 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _constraintNameAutoQuxId;
-    public ConditionValue getConstraintNameAutoQuxId() {
-        if (_constraintNameAutoQuxId == null) { _constraintNameAutoQuxId = nCV(); }
-        return _constraintNameAutoQuxId;
-    }
+    public ConditionValue getConstraintNameAutoQuxId()
+    { if (_constraintNameAutoQuxId == null) { _constraintNameAutoQuxId = nCV(); }
+      return _constraintNameAutoQuxId; }
     protected ConditionValue getCValueConstraintNameAutoQuxId() { return getConstraintNameAutoQuxId(); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_ExistsReferrer_VendorConstraintNameAutoRefList", sq); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_NotExistsReferrer_VendorConstraintNameAutoRefList", sq); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_SpecifyDerivedReferrer_VendorConstraintNameAutoRefList", sq); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_InScopeRelation_VendorConstraintNameAutoRefList", sq); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_NotInScopeRelation_VendorConstraintNameAutoRefList", sq); }
 
-    protected Map<String, VendorConstraintNameAutoRefCQ> _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap;
-    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList() { return _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap; }
-    public String keepConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) {
-        if (_constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap == null) { _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap.size() + 1);
-        _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListMap.put(ky, sq); return "constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList." + ky;
-    }
-    protected Map<String, Object> _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap;
-    public Map<String, Object> getConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameter() { return _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap; }
-    public String keepConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameter(Object vl) {
-        if (_constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap == null) { _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap.size() + 1);
-        _constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameterMap.put(ky, vl); return "constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameter." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoRefCQ> getConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList() { return xgetSQueMap("constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList(VendorConstraintNameAutoRefCQ sq) { return xkeepSQue("constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList", sq); }
+    public Map<String, Object> getConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameter() { return xgetSQuePmMap("constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList"); }
+    public String keepConstraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefListParameter(Object pm) { return xkeepSQuePm("constraintNameAutoQuxId_QueryDerivedReferrer_VendorConstraintNameAutoRefList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -165,10 +129,9 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
     public BsVendorConstraintNameAutoQuxCQ addOrderBy_ConstraintNameAutoQuxId_Desc() { regOBD("CONSTRAINT_NAME_AUTO_QUX_ID"); return this; }
 
     protected ConditionValue _constraintNameAutoQuxName;
-    public ConditionValue getConstraintNameAutoQuxName() {
-        if (_constraintNameAutoQuxName == null) { _constraintNameAutoQuxName = nCV(); }
-        return _constraintNameAutoQuxName;
-    }
+    public ConditionValue getConstraintNameAutoQuxName()
+    { if (_constraintNameAutoQuxName == null) { _constraintNameAutoQuxName = nCV(); }
+      return _constraintNameAutoQuxName; }
     protected ConditionValue getCValueConstraintNameAutoQuxName() { return getConstraintNameAutoQuxName(); }
 
     /** 
@@ -202,8 +165,7 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorConstraintNameAutoQuxCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorConstraintNameAutoQuxCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -219,8 +181,7 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorConstraintNameAutoQuxCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorConstraintNameAutoQuxCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -238,61 +199,32 @@ public class BsVendorConstraintNameAutoQuxCQ extends AbstractBsVendorConstraintN
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorConstraintNameAutoQuxCQ> _scalarConditionMap;
-    public Map<String, VendorConstraintNameAutoQuxCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorConstraintNameAutoQuxCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoQuxCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorConstraintNameAutoQuxCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorConstraintNameAutoQuxCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorConstraintNameAutoQuxCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorConstraintNameAutoQuxCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoQuxCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorConstraintNameAutoQuxCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorConstraintNameAutoQuxCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorConstraintNameAutoQuxCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorConstraintNameAutoQuxCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoQuxCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorConstraintNameAutoQuxCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorConstraintNameAutoQuxCQ> _myselfExistsMap;
-    public Map<String, VendorConstraintNameAutoQuxCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorConstraintNameAutoQuxCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoQuxCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorConstraintNameAutoQuxCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorConstraintNameAutoQuxCQ> _myselfInScopeMap;
-    public Map<String, VendorConstraintNameAutoQuxCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorConstraintNameAutoQuxCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorConstraintNameAutoQuxCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorConstraintNameAutoQuxCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

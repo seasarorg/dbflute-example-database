@@ -89,10 +89,9 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _referrerId;
-    public ConditionValue getReferrerId() {
-        if (_referrerId == null) { _referrerId = nCV(); }
-        return _referrerId;
-    }
+    public ConditionValue getReferrerId()
+    { if (_referrerId == null) { _referrerId = nCV(); }
+      return _referrerId; }
     protected ConditionValue getCValueReferrerId() { return getReferrerId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public BsWhiteVariantRelationReferrerCQ addOrderBy_ReferrerId_Desc() { regOBD("REFERRER_ID"); return this; }
 
     protected ConditionValue _variantMasterId;
-    public ConditionValue getVariantMasterId() {
-        if (_variantMasterId == null) { _variantMasterId = nCV(); }
-        return _variantMasterId;
-    }
+    public ConditionValue getVariantMasterId()
+    { if (_variantMasterId == null) { _variantMasterId = nCV(); }
+      return _variantMasterId; }
     protected ConditionValue getCValueVariantMasterId() { return getVariantMasterId(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public BsWhiteVariantRelationReferrerCQ addOrderBy_VariantMasterId_Desc() { regOBD("VARIANT_MASTER_ID"); return this; }
 
     protected ConditionValue _masterTypeCode;
-    public ConditionValue getMasterTypeCode() {
-        if (_masterTypeCode == null) { _masterTypeCode = nCV(); }
-        return _masterTypeCode;
-    }
+    public ConditionValue getMasterTypeCode()
+    { if (_masterTypeCode == null) { _masterTypeCode = nCV(); }
+      return _masterTypeCode; }
     protected ConditionValue getCValueMasterTypeCode() { return getMasterTypeCode(); }
 
     /** 
@@ -168,8 +165,7 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteVariantRelationReferrerCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteVariantRelationReferrerCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -185,8 +181,7 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteVariantRelationReferrerCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteVariantRelationReferrerCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -220,31 +215,17 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public WhiteVariantRelationMasterFooCQ queryWhiteVariantRelationMasterFooAsVariant() {
         return getConditionQueryWhiteVariantRelationMasterFooAsVariant();
     }
-    protected WhiteVariantRelationMasterFooCQ _conditionQueryWhiteVariantRelationMasterFooAsVariant;
     public WhiteVariantRelationMasterFooCQ getConditionQueryWhiteVariantRelationMasterFooAsVariant() {
-        if (_conditionQueryWhiteVariantRelationMasterFooAsVariant == null) {
-            _conditionQueryWhiteVariantRelationMasterFooAsVariant = xcreateQueryWhiteVariantRelationMasterFooAsVariant();
-            xsetupOuterJoinWhiteVariantRelationMasterFooAsVariant();
-        }
-        return _conditionQueryWhiteVariantRelationMasterFooAsVariant;
+        String prop = "whiteVariantRelationMasterFooAsVariant";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteVariantRelationMasterFooAsVariant()); xsetupOuterJoinWhiteVariantRelationMasterFooAsVariant(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteVariantRelationMasterFooCQ xcreateQueryWhiteVariantRelationMasterFooAsVariant() {
-        String nrp = resolveNextRelationPath("white_variant_relation_referrer", "whiteVariantRelationMasterFooAsVariant");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteVariantRelationMasterFooCQ cq = new WhiteVariantRelationMasterFooCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteVariantRelationMasterFooAsVariant");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_variant_relation_referrer", "whiteVariantRelationMasterFooAsVariant"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteVariantRelationMasterFooCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteVariantRelationMasterFooAsVariant", nrp);
     }
-    protected void xsetupOuterJoinWhiteVariantRelationMasterFooAsVariant() {
-        WhiteVariantRelationMasterFooCQ cq = getConditionQueryWhiteVariantRelationMasterFooAsVariant();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("VARIANT_MASTER_ID", "MASTER_FOO_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteVariantRelationMasterFooAsVariant");
-    }
-    public boolean hasConditionQueryWhiteVariantRelationMasterFooAsVariant() {
-        return _conditionQueryWhiteVariantRelationMasterFooAsVariant != null;
-    }
+    protected void xsetupOuterJoinWhiteVariantRelationMasterFooAsVariant() { xregOutJo("whiteVariantRelationMasterFooAsVariant"); }
+    public boolean hasConditionQueryWhiteVariantRelationMasterFooAsVariant() { return xhasQueRlMap("whiteVariantRelationMasterFooAsVariant"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -254,31 +235,17 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public WhiteVariantRelationMasterBarCQ queryWhiteVariantRelationMasterBarAsVariant() {
         return getConditionQueryWhiteVariantRelationMasterBarAsVariant();
     }
-    protected WhiteVariantRelationMasterBarCQ _conditionQueryWhiteVariantRelationMasterBarAsVariant;
     public WhiteVariantRelationMasterBarCQ getConditionQueryWhiteVariantRelationMasterBarAsVariant() {
-        if (_conditionQueryWhiteVariantRelationMasterBarAsVariant == null) {
-            _conditionQueryWhiteVariantRelationMasterBarAsVariant = xcreateQueryWhiteVariantRelationMasterBarAsVariant();
-            xsetupOuterJoinWhiteVariantRelationMasterBarAsVariant();
-        }
-        return _conditionQueryWhiteVariantRelationMasterBarAsVariant;
+        String prop = "whiteVariantRelationMasterBarAsVariant";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteVariantRelationMasterBarAsVariant()); xsetupOuterJoinWhiteVariantRelationMasterBarAsVariant(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteVariantRelationMasterBarCQ xcreateQueryWhiteVariantRelationMasterBarAsVariant() {
-        String nrp = resolveNextRelationPath("white_variant_relation_referrer", "whiteVariantRelationMasterBarAsVariant");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteVariantRelationMasterBarCQ cq = new WhiteVariantRelationMasterBarCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteVariantRelationMasterBarAsVariant");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_variant_relation_referrer", "whiteVariantRelationMasterBarAsVariant"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteVariantRelationMasterBarCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteVariantRelationMasterBarAsVariant", nrp);
     }
-    protected void xsetupOuterJoinWhiteVariantRelationMasterBarAsVariant() {
-        WhiteVariantRelationMasterBarCQ cq = getConditionQueryWhiteVariantRelationMasterBarAsVariant();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("VARIANT_MASTER_ID", "MASTER_BAR_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteVariantRelationMasterBarAsVariant");
-    }
-    public boolean hasConditionQueryWhiteVariantRelationMasterBarAsVariant() {
-        return _conditionQueryWhiteVariantRelationMasterBarAsVariant != null;
-    }
+    protected void xsetupOuterJoinWhiteVariantRelationMasterBarAsVariant() { xregOutJo("whiteVariantRelationMasterBarAsVariant"); }
+    public boolean hasConditionQueryWhiteVariantRelationMasterBarAsVariant() { return xhasQueRlMap("whiteVariantRelationMasterBarAsVariant"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -288,31 +255,17 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public WhiteVariantRelationMasterQuxCQ queryWhiteVariantRelationMasterQuxAsVariantByQue() {
         return getConditionQueryWhiteVariantRelationMasterQuxAsVariantByQue();
     }
-    protected WhiteVariantRelationMasterQuxCQ _conditionQueryWhiteVariantRelationMasterQuxAsVariantByQue;
     public WhiteVariantRelationMasterQuxCQ getConditionQueryWhiteVariantRelationMasterQuxAsVariantByQue() {
-        if (_conditionQueryWhiteVariantRelationMasterQuxAsVariantByQue == null) {
-            _conditionQueryWhiteVariantRelationMasterQuxAsVariantByQue = xcreateQueryWhiteVariantRelationMasterQuxAsVariantByQue();
-            xsetupOuterJoinWhiteVariantRelationMasterQuxAsVariantByQue();
-        }
-        return _conditionQueryWhiteVariantRelationMasterQuxAsVariantByQue;
+        String prop = "whiteVariantRelationMasterQuxAsVariantByQue";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteVariantRelationMasterQuxAsVariantByQue()); xsetupOuterJoinWhiteVariantRelationMasterQuxAsVariantByQue(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteVariantRelationMasterQuxCQ xcreateQueryWhiteVariantRelationMasterQuxAsVariantByQue() {
-        String nrp = resolveNextRelationPath("white_variant_relation_referrer", "whiteVariantRelationMasterQuxAsVariantByQue");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteVariantRelationMasterQuxCQ cq = new WhiteVariantRelationMasterQuxCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteVariantRelationMasterQuxAsVariantByQue");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_variant_relation_referrer", "whiteVariantRelationMasterQuxAsVariantByQue"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteVariantRelationMasterQuxCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteVariantRelationMasterQuxAsVariantByQue", nrp);
     }
-    protected void xsetupOuterJoinWhiteVariantRelationMasterQuxAsVariantByQue() {
-        WhiteVariantRelationMasterQuxCQ cq = getConditionQueryWhiteVariantRelationMasterQuxAsVariantByQue();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("VARIANT_MASTER_ID", "MASTER_QUX_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteVariantRelationMasterQuxAsVariantByQue");
-    }
-    public boolean hasConditionQueryWhiteVariantRelationMasterQuxAsVariantByQue() {
-        return _conditionQueryWhiteVariantRelationMasterQuxAsVariantByQue != null;
-    }
+    protected void xsetupOuterJoinWhiteVariantRelationMasterQuxAsVariantByQue() { xregOutJo("whiteVariantRelationMasterQuxAsVariantByQue"); }
+    public boolean hasConditionQueryWhiteVariantRelationMasterQuxAsVariantByQue() { return xhasQueRlMap("whiteVariantRelationMasterQuxAsVariantByQue"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -323,110 +276,61 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
     public WhiteVariantRelationMasterCorgeCQ queryWhiteVariantRelationMasterCorgeAsVariantByQuxType(com.example.dbflute.mysql.dbflute.allcommon.CDef.VariantRelationQuxType quxType) {
         Map<String, Object> parameterMap = getParameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType();
         parameterMap.put("quxType", quxType);
-        assertFixedConditionDynamicParameter("whiteVariantRelationMasterCorgeAsVariantByQuxType", parameterMap);
+        xassertFCDP("whiteVariantRelationMasterCorgeAsVariantByQuxType", parameterMap);
         return getConditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType();
     }
-    protected WhiteVariantRelationMasterCorgeCQ _conditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType;
     public WhiteVariantRelationMasterCorgeCQ getConditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        if (_conditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType == null) {
-            _conditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType = xcreateQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType();
-            xsetupOuterJoinWhiteVariantRelationMasterCorgeAsVariantByQuxType();
-        }
-        return _conditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType;
+        String prop = "whiteVariantRelationMasterCorgeAsVariantByQuxType";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType()); xsetupOuterJoinWhiteVariantRelationMasterCorgeAsVariantByQuxType(); }
+        return xgetQueRlMap(prop);
     }
     protected Map<String, Object> _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType;
-    public Map<String, Object> getParameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        if (_parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType == null) {
-            _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType = newLinkedHashMapSized(4);
-        }
-        return _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType;
-    }
-    public void xsetParameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType(Map<String, Object> parameterMap) {
-        _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType = parameterMap; // for UnionQuery
-    }
+    public Map<String, Object> getParameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType()
+    { if (_parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType == null) { _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType = newLinkedHashMapSized(4); }
+      return _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType; }
+    public void xsetParameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType(Map<String, Object> parameterMap)
+    { _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType = parameterMap; } // for UnionQuery
     protected WhiteVariantRelationMasterCorgeCQ xcreateQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        String nrp = resolveNextRelationPath("white_variant_relation_referrer", "whiteVariantRelationMasterCorgeAsVariantByQuxType");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteVariantRelationMasterCorgeCQ cq = new WhiteVariantRelationMasterCorgeCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteVariantRelationMasterCorgeAsVariantByQuxType");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_variant_relation_referrer", "whiteVariantRelationMasterCorgeAsVariantByQuxType"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteVariantRelationMasterCorgeCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteVariantRelationMasterCorgeAsVariantByQuxType", nrp);
     }
-    protected void xsetupOuterJoinWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        WhiteVariantRelationMasterCorgeCQ cq = getConditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("VARIANT_MASTER_ID", "MASTER_CORGE_ID");
-        registerOuterJoin(cq, joinOnMap, "whiteVariantRelationMasterCorgeAsVariantByQuxType");
-    }
-    public boolean hasConditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType() {
-        return _conditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType != null;
-    }
+    protected void xsetupOuterJoinWhiteVariantRelationMasterCorgeAsVariantByQuxType() { xregOutJo("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
+    public boolean hasConditionQueryWhiteVariantRelationMasterCorgeAsVariantByQuxType() { return xhasQueRlMap("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
-        if ("whiteVariantRelationMasterCorgeAsVariantByQuxType".equalsIgnoreCase(property)) {
-            return _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType;
-        }
+        if ("whiteVariantRelationMasterCorgeAsVariantByQuxType".equalsIgnoreCase(property)) { return _parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType; }
         return null;
     }
 
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteVariantRelationReferrerCQ> _scalarConditionMap;
-    public Map<String, WhiteVariantRelationReferrerCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteVariantRelationReferrerCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteVariantRelationReferrerCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteVariantRelationReferrerCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteVariantRelationReferrerCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteVariantRelationReferrerCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteVariantRelationReferrerCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteVariantRelationReferrerCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteVariantRelationReferrerCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteVariantRelationReferrerCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteVariantRelationReferrerCQ> _myselfExistsMap;
-    public Map<String, WhiteVariantRelationReferrerCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteVariantRelationReferrerCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteVariantRelationReferrerCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteVariantRelationReferrerCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteVariantRelationReferrerCQ> _myselfInScopeMap;
-    public Map<String, WhiteVariantRelationReferrerCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteVariantRelationReferrerCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteVariantRelationReferrerCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteVariantRelationReferrerCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

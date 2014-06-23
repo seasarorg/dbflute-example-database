@@ -74,10 +74,9 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _fooId;
-    public ConditionValue getFooId() {
-        if (_fooId == null) { _fooId = nCV(); }
-        return _fooId;
-    }
+    public ConditionValue getFooId()
+    { if (_fooId == null) { _fooId = nCV(); }
+      return _fooId; }
     protected ConditionValue getCValueFooId() { return getFooId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     public BsVendorUuidFooCQ addOrderBy_FooId_Desc() { regOBD("foo_id"); return this; }
 
     protected ConditionValue _fooName;
-    public ConditionValue getFooName() {
-        if (_fooName == null) { _fooName = nCV(); }
-        return _fooName;
-    }
+    public ConditionValue getFooName()
+    { if (_fooName == null) { _fooName = nCV(); }
+      return _fooName; }
     protected ConditionValue getCValueFooName() { return getFooName(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     public BsVendorUuidFooCQ addOrderBy_FooName_Desc() { regOBD("foo_name"); return this; }
 
     protected ConditionValue _barId;
-    public ConditionValue getBarId() {
-        if (_barId == null) { _barId = nCV(); }
-        return _barId;
-    }
+    public ConditionValue getBarId()
+    { if (_barId == null) { _barId = nCV(); }
+      return _barId; }
     protected ConditionValue getCValueBarId() { return getBarId(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorUuidFooCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorUuidFooCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorUuidFooCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorUuidFooCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -195,31 +190,17 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     public VendorUuidBarCQ queryVendorUuidBar() {
         return getConditionQueryVendorUuidBar();
     }
-    protected VendorUuidBarCQ _conditionQueryVendorUuidBar;
     public VendorUuidBarCQ getConditionQueryVendorUuidBar() {
-        if (_conditionQueryVendorUuidBar == null) {
-            _conditionQueryVendorUuidBar = xcreateQueryVendorUuidBar();
-            xsetupOuterJoinVendorUuidBar();
-        }
-        return _conditionQueryVendorUuidBar;
+        String prop = "vendorUuidBar";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendorUuidBar()); xsetupOuterJoinVendorUuidBar(); }
+        return xgetQueRlMap(prop);
     }
     protected VendorUuidBarCQ xcreateQueryVendorUuidBar() {
-        String nrp = resolveNextRelationPath("vendor_uuid_foo", "vendorUuidBar");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        VendorUuidBarCQ cq = new VendorUuidBarCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("vendorUuidBar");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("vendor_uuid_foo", "vendorUuidBar"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new VendorUuidBarCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendorUuidBar", nrp);
     }
-    protected void xsetupOuterJoinVendorUuidBar() {
-        VendorUuidBarCQ cq = getConditionQueryVendorUuidBar();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("bar_id", "bar_id");
-        registerOuterJoin(cq, joinOnMap, "vendorUuidBar");
-    }
-    public boolean hasConditionQueryVendorUuidBar() {
-        return _conditionQueryVendorUuidBar != null;
-    }
+    protected void xsetupOuterJoinVendorUuidBar() { xregOutJo("vendorUuidBar"); }
+    public boolean hasConditionQueryVendorUuidBar() { return xhasQueRlMap("vendorUuidBar"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -228,61 +209,32 @@ public class BsVendorUuidFooCQ extends AbstractBsVendorUuidFooCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorUuidFooCQ> _scalarConditionMap;
-    public Map<String, VendorUuidFooCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorUuidFooCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorUuidFooCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorUuidFooCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorUuidFooCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorUuidFooCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorUuidFooCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorUuidFooCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorUuidFooCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorUuidFooCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorUuidFooCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorUuidFooCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorUuidFooCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorUuidFooCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorUuidFooCQ> _myselfExistsMap;
-    public Map<String, VendorUuidFooCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorUuidFooCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorUuidFooCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorUuidFooCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorUuidFooCQ> _myselfInScopeMap;
-    public Map<String, VendorUuidFooCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorUuidFooCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorUuidFooCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorUuidFooCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

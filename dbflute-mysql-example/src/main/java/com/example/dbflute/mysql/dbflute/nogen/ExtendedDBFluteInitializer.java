@@ -51,11 +51,22 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
 
         final GearedCipherManager manager = new GearedCipherManager();
 
+        // this format is parsed by tools test
+        // /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+        final String secretKey = "himitsu"; // don't mock me (it's just an example)
         final ColumnInfo loginPassword = MemberSecurityDbm.getInstance().columnLoginPassword();
         manager.addFunctionFilter(loginPassword, createNonInvertibleFilter());
-
         final ColumnInfo updateUser = MemberDbm.getInstance().columnUpdateUser();
-        manager.addFunctionFilter(updateUser, creaetInvertibleFilter());
+        manager.addFunctionFilter(updateUser, createInvertibleFilter(secretKey));
+        final ColumnInfo cipherVarchar = WhiteGearedCipherDbm.getInstance().columnCipherVarchar();
+        manager.addFunctionFilter(cipherVarchar, createInvertibleFilter(secretKey));
+        final ColumnInfo cipherInteger = WhiteGearedCipherDbm.getInstance().columnCipherInteger();
+        manager.addFunctionFilter(cipherInteger, createInvertibleFilter(secretKey));
+        final ColumnInfo cipherDate = WhiteGearedCipherDbm.getInstance().columnCipherDate();
+        manager.addFunctionFilter(cipherDate, createInvertibleFilter(secretKey));
+        final ColumnInfo cipherDatetime = WhiteGearedCipherDbm.getInstance().columnCipherDatetime();
+        manager.addFunctionFilter(cipherDatetime, createInvertibleFilter(secretKey));
+        // = = = = = = = = = =/
 
         final ColumnInfo purchasePrice = PurchaseDbm.getInstance().columnPurchasePrice();
         manager.addFunctionFilter(purchasePrice, new CipherFunctionFilter() {
@@ -67,15 +78,6 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
                 return "(" + valueExp + " - 13)";
             }
         });
-
-        final ColumnInfo cipherVarchar = WhiteGearedCipherDbm.getInstance().columnCipherVarchar();
-        manager.addFunctionFilter(cipherVarchar, creaetInvertibleFilter());
-        final ColumnInfo cipherInteger = WhiteGearedCipherDbm.getInstance().columnCipherInteger();
-        manager.addFunctionFilter(cipherInteger, creaetInvertibleFilter());
-        final ColumnInfo cipherDate = WhiteGearedCipherDbm.getInstance().columnCipherDate();
-        manager.addFunctionFilter(cipherDate, creaetInvertibleFilter());
-        final ColumnInfo cipherDatetime = WhiteGearedCipherDbm.getInstance().columnCipherDatetime();
-        manager.addFunctionFilter(cipherDatetime, creaetInvertibleFilter());
 
         config.setGearedCipherManager(manager);
 
@@ -99,8 +101,7 @@ public class ExtendedDBFluteInitializer extends DBFluteInitializer {
         };
     }
 
-    protected CipherFunctionFilter creaetInvertibleFilter() {
-        final String secretKey = "himitsu"; // don't mock me (it's just an example)
+    protected CipherFunctionFilter createInvertibleFilter(final String secretKey) {
         return new CipherFunctionFilter() {
             public String encrypt(String valueExp) {
                 String exp = "hex(aes_encrypt(%1$s, '%2$s'))";

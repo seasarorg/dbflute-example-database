@@ -134,10 +134,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return facadeSelectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -170,19 +167,14 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectEntity(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, WhiteCompoundReferredNormallyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundReferredNormallyCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends WhiteCompoundReferredNormally> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return facadeSelectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -209,14 +201,10 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
 
     protected <ENTITY extends WhiteCompoundReferredNormally> ENTITY doSelectEntityWithDeletedCheck(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, WhiteCompoundReferredNormallyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundReferredNormallyCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return facadeSelectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -289,16 +277,10 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteCompoundReferredNormally> ListResultBean<ENTITY> doSelectList(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, WhiteCompoundReferredNormallyCB>() {
-            public List<ENTITY> callbackSelectList(WhiteCompoundReferredNormallyCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return facadeSelectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -334,17 +316,10 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected <ENTITY extends WhiteCompoundReferredNormally> PagingResultBean<ENTITY> doSelectPage(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, WhiteCompoundReferredNormallyCB>() {
-            public int callbackSelectCount(WhiteCompoundReferredNormallyCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return facadeSelectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -374,10 +349,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     protected <ENTITY extends WhiteCompoundReferredNormally> void doSelectCursor(WhiteCompoundReferredNormallyCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, WhiteCompoundReferredNormallyCB>() {
-            public void callbackSelectCursor(WhiteCompoundReferredNormallyCB lcb, EntityRowHandler<ENTITY> lhandler, Class<ENTITY> ltp) { delegateSelectCursor(lcb, lhandler, ltp); }
-            public List<ENTITY> callbackSelectList(WhiteCompoundReferredNormallyCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -413,9 +385,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return facadeScalarSelect(tp);
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -590,23 +560,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected NestedReferrerListGateway<WhiteCompoundPk> doLoadWhiteCompoundPkList(List<WhiteCompoundReferredNormally> whiteCompoundReferredNormallyList, LoadReferrerOption<WhiteCompoundPkCB, WhiteCompoundPk> option) {
-        final WhiteCompoundPkBhv referrerBhv = xgetBSFLR().select(WhiteCompoundPkBhv.class);
-        return helpLoadReferrerInternally(whiteCompoundReferredNormallyList, option, new InternalLoadReferrerCallback<WhiteCompoundReferredNormally, Integer, WhiteCompoundPkCB, WhiteCompoundPk>() {
-            public Integer getPKVal(WhiteCompoundReferredNormally et)
-            { return et.getReferredId(); }
-            public void setRfLs(WhiteCompoundReferredNormally et, List<WhiteCompoundPk> ls)
-            { et.setWhiteCompoundPkList(ls); }
-            public WhiteCompoundPkCB newMyCB() { return referrerBhv.newConditionBean(); }
-            public void qyFKIn(WhiteCompoundPkCB cb, List<Integer> ls)
-            { cb.query().setReferredId_InScope(ls); }
-            public void qyOdFKAsc(WhiteCompoundPkCB cb) { cb.query().addOrderBy_ReferredId_Asc(); }
-            public void spFKCol(WhiteCompoundPkCB cb) { cb.specify().columnReferredId(); }
-            public List<WhiteCompoundPk> selRfLs(WhiteCompoundPkCB cb) { return referrerBhv.selectList(cb); }
-            public Integer getFKVal(WhiteCompoundPk re) { return re.getReferredId(); }
-            public void setlcEt(WhiteCompoundPk re, WhiteCompoundReferredNormally le)
-            { re.setWhiteCompoundReferredNormally(le); }
-            public String getRfPrNm() { return "whiteCompoundPkList"; }
-        });
+        return helpLoadReferrerInternally(whiteCompoundReferredNormallyList, option, "whiteCompoundPkList");
     }
 
     // ===================================================================================
@@ -620,11 +574,8 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
      * @param whiteCompoundReferredNormallyList The list of whiteCompoundReferredNormally. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Integer> extractReferredIdList(List<WhiteCompoundReferredNormally> whiteCompoundReferredNormallyList) {
-        return helpExtractListInternally(whiteCompoundReferredNormallyList, new InternalExtractCallback<WhiteCompoundReferredNormally, Integer>() {
-            public Integer getCV(WhiteCompoundReferredNormally et) { return et.getReferredId(); }
-        });
-    }
+    public List<Integer> extractReferredIdList(List<WhiteCompoundReferredNormally> whiteCompoundReferredNormallyList)
+    { return helpExtractListInternally(whiteCompoundReferredNormallyList, "referredId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -651,23 +602,15 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected void doInsert(WhiteCompoundReferredNormally et, InsertOption<WhiteCompoundReferredNormallyCB> op) {
-        assertObjectNotNull("whiteCompoundReferredNormally", et);
-        prepareInsertOption(op);
-        delegateInsert(et, op);
+        assertObjectNotNull("whiteCompoundReferredNormally", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<WhiteCompoundReferredNormallyCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        doInsert(downcast(et), downcast(op));
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -695,16 +638,12 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         doUpdate(whiteCompoundReferredNormally, null);
     }
 
-    protected void doUpdate(WhiteCompoundReferredNormally et, final UpdateOption<WhiteCompoundReferredNormallyCB> op) {
-        assertObjectNotNull("whiteCompoundReferredNormally", et);
-        prepareUpdateOption(op);
-        helpUpdateInternally(et, new InternalUpdateCallback<WhiteCompoundReferredNormally>() {
-            public int callbackDelegateUpdate(WhiteCompoundReferredNormally let) { return delegateUpdate(let, op); } });
+    protected void doUpdate(WhiteCompoundReferredNormally et, UpdateOption<WhiteCompoundReferredNormallyCB> op) {
+        assertObjectNotNull("whiteCompoundReferredNormally", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<WhiteCompoundReferredNormallyCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
+        if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -715,15 +654,10 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     protected WhiteCompoundReferredNormallyCB createCBForSpecifiedUpdate()
     { WhiteCompoundReferredNormallyCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doUpdate(downcast(et), downcast(op));
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
@@ -738,25 +672,15 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         doInsertOrUpdate(whiteCompoundReferredNormally, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteCompoundReferredNormally et, final InsertOption<WhiteCompoundReferredNormallyCB> iop, final UpdateOption<WhiteCompoundReferredNormallyCB> uop) {
-        assertObjectNotNull("whiteCompoundReferredNormally", et);
-        helpInsertOrUpdateInternally(et, new InternalInsertOrUpdateCallback<WhiteCompoundReferredNormally, WhiteCompoundReferredNormallyCB>() {
-            public void callbackInsert(WhiteCompoundReferredNormally let) { doInsert(let, iop); }
-            public void callbackUpdate(WhiteCompoundReferredNormally let) { doUpdate(let, uop); }
-            public WhiteCompoundReferredNormallyCB callbackNewMyConditionBean() { return newConditionBean(); }
-            public int callbackSelectCount(WhiteCompoundReferredNormallyCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(WhiteCompoundReferredNormally et, InsertOption<WhiteCompoundReferredNormallyCB> iop, UpdateOption<WhiteCompoundReferredNormallyCB> uop) {
+        assertObjectNotNull("whiteCompoundReferredNormally", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -780,24 +704,15 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected void doDelete(WhiteCompoundReferredNormally et, final DeleteOption<WhiteCompoundReferredNormallyCB> op) {
-        assertObjectNotNull("whiteCompoundReferredNormally", et);
-        prepareDeleteOption(op);
-        helpDeleteInternally(et, new InternalDeleteCallback<WhiteCompoundReferredNormally>() {
-            public int callbackDelegateDelete(WhiteCompoundReferredNormally let) { return delegateDelete(let, op); } });
+        assertObjectNotNull("whiteCompoundReferredNormally", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteCompoundReferredNormallyCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doDelete(downcast(et), downcast(op));
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -843,10 +758,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        return doBatchInsert(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -888,10 +800,7 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doBatchUpdate(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -926,9 +835,8 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -947,15 +855,10 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
         return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doBatchDelete(downcast(ls), downcast(op));
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -991,20 +894,16 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected int doQueryInsert(QueryInsertSetupper<WhiteCompoundReferredNormally, WhiteCompoundReferredNormallyCB> sp, InsertOption<WhiteCompoundReferredNormallyCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        WhiteCompoundReferredNormally et = newEntity();
-        WhiteCompoundReferredNormallyCB cb = createCBForQueryInsert();
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        WhiteCompoundReferredNormally et = newEntity(); WhiteCompoundReferredNormallyCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
     protected WhiteCompoundReferredNormallyCB createCBForQueryInsert()
     { WhiteCompoundReferredNormallyCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op) {
-        return doQueryInsert(downcast(setupper), downcast(op));
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1033,15 +932,12 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected int doQueryUpdate(WhiteCompoundReferredNormally et, WhiteCompoundReferredNormallyCB cb, UpdateOption<WhiteCompoundReferredNormallyCB> op) {
-        assertObjectNotNull("whiteCompoundReferredNormally", et); assertCBStateValid(cb);
-        prepareUpdateOption(op);
+        assertObjectNotNull("whiteCompoundReferredNormally", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        return doQueryUpdate(downcast(et), downcast(cb), downcast(op));
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1059,15 +955,11 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     protected int doQueryDelete(WhiteCompoundReferredNormallyCB cb, DeleteOption<WhiteCompoundReferredNormallyCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        return doQueryDelete(downcast(cb), downcast(op));
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1310,108 +1202,19 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(WhiteCompoundReferredNormallyCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(WhiteCompoundReferredNormallyCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends WhiteCompoundReferredNormally> void delegateSelectCursor(WhiteCompoundReferredNormallyCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends WhiteCompoundReferredNormally> List<ENTITY> delegateSelectList(WhiteCompoundReferredNormallyCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(WhiteCompoundReferredNormally et, InsertOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(WhiteCompoundReferredNormally et, UpdateOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(WhiteCompoundReferredNormally et, UpdateOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(WhiteCompoundReferredNormally et, DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(WhiteCompoundReferredNormally et, DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<WhiteCompoundReferredNormally> ls, InsertOption<WhiteCompoundReferredNormallyCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<WhiteCompoundReferredNormally> ls, UpdateOption<WhiteCompoundReferredNormallyCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<WhiteCompoundReferredNormally> ls, UpdateOption<WhiteCompoundReferredNormallyCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<WhiteCompoundReferredNormally> ls, DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<WhiteCompoundReferredNormally> ls, DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(WhiteCompoundReferredNormally et, WhiteCompoundReferredNormallyCB inCB, ConditionBean resCB, InsertOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(WhiteCompoundReferredNormally et, WhiteCompoundReferredNormallyCB cb, UpdateOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(WhiteCompoundReferredNormallyCB cb, DeleteOption<WhiteCompoundReferredNormallyCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteCompoundReferredNormally> typeOfSelectedEntity()
-    { return WhiteCompoundReferredNormally.class; }
-
-    protected WhiteCompoundReferredNormally downcast(Entity et)
-    { return helpEntityDowncastInternally(et, WhiteCompoundReferredNormally.class); }
-
-    protected WhiteCompoundReferredNormallyCB downcast(ConditionBean cb)
-    { return helpConditionBeanDowncastInternally(cb, WhiteCompoundReferredNormallyCB.class); }
-
+    protected Class<WhiteCompoundReferredNormally> typeOfSelectedEntity() { return WhiteCompoundReferredNormally.class; }
+    protected WhiteCompoundReferredNormally downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteCompoundReferredNormally.class); }
+    protected WhiteCompoundReferredNormallyCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteCompoundReferredNormallyCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteCompoundReferredNormally> downcast(List<? extends Entity> ls)
-    { return (List<WhiteCompoundReferredNormally>)ls; }
-
+    protected List<WhiteCompoundReferredNormally> downcast(List<? extends Entity> ls) { return (List<WhiteCompoundReferredNormally>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteCompoundReferredNormallyCB> downcast(InsertOption<? extends ConditionBean> op)
-    { return (InsertOption<WhiteCompoundReferredNormallyCB>)op; }
-
+    protected InsertOption<WhiteCompoundReferredNormallyCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteCompoundReferredNormallyCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteCompoundReferredNormallyCB> downcast(UpdateOption<? extends ConditionBean> op)
-    { return (UpdateOption<WhiteCompoundReferredNormallyCB>)op; }
-
+    protected UpdateOption<WhiteCompoundReferredNormallyCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteCompoundReferredNormallyCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteCompoundReferredNormallyCB> downcast(DeleteOption<? extends ConditionBean> op)
-    { return (DeleteOption<WhiteCompoundReferredNormallyCB>)op; }
-
+    protected DeleteOption<WhiteCompoundReferredNormallyCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteCompoundReferredNormallyCB>)op; }
     @SuppressWarnings("unchecked")
     protected QueryInsertSetupper<WhiteCompoundReferredNormally, WhiteCompoundReferredNormallyCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
     { return (QueryInsertSetupper<WhiteCompoundReferredNormally, WhiteCompoundReferredNormallyCB>)sp; }

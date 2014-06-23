@@ -89,10 +89,9 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _where;
-    public ConditionValue getWhere() {
-        if (_where == null) { _where = nCV(); }
-        return _where;
-    }
+    public ConditionValue getWhere()
+    { if (_where == null) { _where = nCV(); }
+      return _where; }
     protected ConditionValue getCValueWhere() { return getWhere(); }
 
     /** 
@@ -110,27 +109,16 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
     public BsWhiteQuotedRefCQ addOrderBy_Where_Desc() { regOBD("WHERE"); return this; }
 
     protected ConditionValue _order;
-    public ConditionValue getOrder() {
-        if (_order == null) { _order = nCV(); }
-        return _order;
-    }
+    public ConditionValue getOrder()
+    { if (_order == null) { _order = nCV(); }
+      return _order; }
     protected ConditionValue getCValueOrder() { return getOrder(); }
 
-    protected Map<String, WhiteQuotedCQ> _order_InScopeRelation_WhiteQuotedMap;
-    public Map<String, WhiteQuotedCQ> getOrder_InScopeRelation_WhiteQuoted() { return _order_InScopeRelation_WhiteQuotedMap; }
-    public String keepOrder_InScopeRelation_WhiteQuoted(WhiteQuotedCQ sq) {
-        if (_order_InScopeRelation_WhiteQuotedMap == null) { _order_InScopeRelation_WhiteQuotedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_order_InScopeRelation_WhiteQuotedMap.size() + 1);
-        _order_InScopeRelation_WhiteQuotedMap.put(ky, sq); return "order_InScopeRelation_WhiteQuoted." + ky;
-    }
+    public Map<String, WhiteQuotedCQ> getOrder_InScopeRelation_WhiteQuoted() { return xgetSQueMap("order_InScopeRelation_WhiteQuoted"); }
+    public String keepOrder_InScopeRelation_WhiteQuoted(WhiteQuotedCQ sq) { return xkeepSQue("order_InScopeRelation_WhiteQuoted", sq); }
 
-    protected Map<String, WhiteQuotedCQ> _order_NotInScopeRelation_WhiteQuotedMap;
-    public Map<String, WhiteQuotedCQ> getOrder_NotInScopeRelation_WhiteQuoted() { return _order_NotInScopeRelation_WhiteQuotedMap; }
-    public String keepOrder_NotInScopeRelation_WhiteQuoted(WhiteQuotedCQ sq) {
-        if (_order_NotInScopeRelation_WhiteQuotedMap == null) { _order_NotInScopeRelation_WhiteQuotedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_order_NotInScopeRelation_WhiteQuotedMap.size() + 1);
-        _order_NotInScopeRelation_WhiteQuotedMap.put(ky, sq); return "order_NotInScopeRelation_WhiteQuoted." + ky;
-    }
+    public Map<String, WhiteQuotedCQ> getOrder_NotInScopeRelation_WhiteQuoted() { return xgetSQueMap("order_NotInScopeRelation_WhiteQuoted"); }
+    public String keepOrder_NotInScopeRelation_WhiteQuoted(WhiteQuotedCQ sq) { return xkeepSQue("order_NotInScopeRelation_WhiteQuoted", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -163,8 +151,7 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteQuotedRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteQuotedRefCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -180,8 +167,7 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteQuotedRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteQuotedRefCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -205,31 +191,17 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
     public WhiteQuotedCQ queryWhiteQuoted() {
         return getConditionQueryWhiteQuoted();
     }
-    protected WhiteQuotedCQ _conditionQueryWhiteQuoted;
     public WhiteQuotedCQ getConditionQueryWhiteQuoted() {
-        if (_conditionQueryWhiteQuoted == null) {
-            _conditionQueryWhiteQuoted = xcreateQueryWhiteQuoted();
-            xsetupOuterJoinWhiteQuoted();
-        }
-        return _conditionQueryWhiteQuoted;
+        String prop = "whiteQuoted";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWhiteQuoted()); xsetupOuterJoinWhiteQuoted(); }
+        return xgetQueRlMap(prop);
     }
     protected WhiteQuotedCQ xcreateQueryWhiteQuoted() {
-        String nrp = resolveNextRelationPath("white_quoted_ref", "whiteQuoted");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WhiteQuotedCQ cq = new WhiteQuotedCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("whiteQuoted");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_quoted_ref", "whiteQuoted"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WhiteQuotedCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "whiteQuoted", nrp);
     }
-    protected void xsetupOuterJoinWhiteQuoted() {
-        WhiteQuotedCQ cq = getConditionQueryWhiteQuoted();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("ORDER", "SELECT");
-        registerOuterJoin(cq, joinOnMap, "whiteQuoted");
-    }
-    public boolean hasConditionQueryWhiteQuoted() {
-        return _conditionQueryWhiteQuoted != null;
-    }
+    protected void xsetupOuterJoinWhiteQuoted() { xregOutJo("whiteQuoted"); }
+    public boolean hasConditionQueryWhiteQuoted() { return xhasQueRlMap("whiteQuoted"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -238,61 +210,32 @@ public class BsWhiteQuotedRefCQ extends AbstractBsWhiteQuotedRefCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteQuotedRefCQ> _scalarConditionMap;
-    public Map<String, WhiteQuotedRefCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteQuotedRefCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteQuotedRefCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteQuotedRefCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteQuotedRefCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteQuotedRefCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteQuotedRefCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteQuotedRefCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteQuotedRefCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteQuotedRefCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteQuotedRefCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteQuotedRefCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteQuotedRefCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteQuotedRefCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteQuotedRefCQ> _myselfExistsMap;
-    public Map<String, WhiteQuotedRefCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteQuotedRefCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteQuotedRefCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteQuotedRefCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteQuotedRefCQ> _myselfInScopeMap;
-    public Map<String, WhiteQuotedRefCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteQuotedRefCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteQuotedRefCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteQuotedRefCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

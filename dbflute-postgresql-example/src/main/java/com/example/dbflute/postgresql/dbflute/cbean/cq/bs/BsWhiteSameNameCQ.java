@@ -74,66 +74,30 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _sameNameId;
-    public ConditionValue getSameNameId() {
-        if (_sameNameId == null) { _sameNameId = nCV(); }
-        return _sameNameId;
-    }
+    public ConditionValue getSameNameId()
+    { if (_sameNameId == null) { _sameNameId = nCV(); }
+      return _sameNameId; }
     protected ConditionValue getCValueSameNameId() { return getSameNameId(); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_ExistsReferrer_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_ExistsReferrer_WhiteSameNameRefList() { return _sameNameId_ExistsReferrer_WhiteSameNameRefListMap; }
-    public String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_ExistsReferrer_WhiteSameNameRefListMap == null) { _sameNameId_ExistsReferrer_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_ExistsReferrer_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_ExistsReferrer_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_ExistsReferrer_WhiteSameNameRefList." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_ExistsReferrer_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_ExistsReferrer_WhiteSameNameRefList"); }
+    public String keepSameNameId_ExistsReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_ExistsReferrer_WhiteSameNameRefList", sq); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_NotExistsReferrer_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_NotExistsReferrer_WhiteSameNameRefList() { return _sameNameId_NotExistsReferrer_WhiteSameNameRefListMap; }
-    public String keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_NotExistsReferrer_WhiteSameNameRefListMap == null) { _sameNameId_NotExistsReferrer_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_NotExistsReferrer_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_NotExistsReferrer_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_NotExistsReferrer_WhiteSameNameRefList." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_NotExistsReferrer_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_NotExistsReferrer_WhiteSameNameRefList"); }
+    public String keepSameNameId_NotExistsReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_NotExistsReferrer_WhiteSameNameRefList", sq); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList() { return _sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap; }
-    public String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap == null) { _sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList"); }
+    public String keepSameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_SpecifyDerivedReferrer_WhiteSameNameRefList", sq); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_InScopeRelation_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_InScopeRelation_WhiteSameNameRefList() { return _sameNameId_InScopeRelation_WhiteSameNameRefListMap; }
-    public String keepSameNameId_InScopeRelation_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_InScopeRelation_WhiteSameNameRefListMap == null) { _sameNameId_InScopeRelation_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_InScopeRelation_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_InScopeRelation_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_InScopeRelation_WhiteSameNameRefList." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_InScopeRelation_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_InScopeRelation_WhiteSameNameRefList"); }
+    public String keepSameNameId_InScopeRelation_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_InScopeRelation_WhiteSameNameRefList", sq); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_NotInScopeRelation_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_NotInScopeRelation_WhiteSameNameRefList() { return _sameNameId_NotInScopeRelation_WhiteSameNameRefListMap; }
-    public String keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_NotInScopeRelation_WhiteSameNameRefListMap == null) { _sameNameId_NotInScopeRelation_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_NotInScopeRelation_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_NotInScopeRelation_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_NotInScopeRelation_WhiteSameNameRefList." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_NotInScopeRelation_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_NotInScopeRelation_WhiteSameNameRefList"); }
+    public String keepSameNameId_NotInScopeRelation_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_NotInScopeRelation_WhiteSameNameRefList", sq); }
 
-    protected Map<String, WhiteSameNameRefCQ> _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap;
-    public Map<String, WhiteSameNameRefCQ> getSameNameId_QueryDerivedReferrer_WhiteSameNameRefList() { return _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap; }
-    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) {
-        if (_sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap == null) { _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap.size() + 1);
-        _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListMap.put(ky, sq); return "sameNameId_QueryDerivedReferrer_WhiteSameNameRefList." + ky;
-    }
-    protected Map<String, Object> _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap;
-    public Map<String, Object> getSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter() { return _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap; }
-    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object vl) {
-        if (_sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap == null) { _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap.size() + 1);
-        _sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameterMap.put(ky, vl); return "sameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter." + ky;
-    }
+    public Map<String, WhiteSameNameRefCQ> getSameNameId_QueryDerivedReferrer_WhiteSameNameRefList() { return xgetSQueMap("sameNameId_QueryDerivedReferrer_WhiteSameNameRefList"); }
+    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefList(WhiteSameNameRefCQ sq) { return xkeepSQue("sameNameId_QueryDerivedReferrer_WhiteSameNameRefList", sq); }
+    public Map<String, Object> getSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter() { return xgetSQuePmMap("sameNameId_QueryDerivedReferrer_WhiteSameNameRefList"); }
+    public String keepSameNameId_QueryDerivedReferrer_WhiteSameNameRefListParameter(Object pm) { return xkeepSQuePm("sameNameId_QueryDerivedReferrer_WhiteSameNameRefList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -150,10 +114,9 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     public BsWhiteSameNameCQ addOrderBy_SameNameId_Desc() { regOBD("same_name_id"); return this; }
 
     protected ConditionValue _sameNameName;
-    public ConditionValue getSameNameName() {
-        if (_sameNameName == null) { _sameNameName = nCV(); }
-        return _sameNameName;
-    }
+    public ConditionValue getSameNameName()
+    { if (_sameNameName == null) { _sameNameName = nCV(); }
+      return _sameNameName; }
     protected ConditionValue getCValueSameNameName() { return getSameNameName(); }
 
     /** 
@@ -171,10 +134,9 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     public BsWhiteSameNameCQ addOrderBy_SameNameName_Desc() { regOBD("same_name_name"); return this; }
 
     protected ConditionValue _sameNameInteger;
-    public ConditionValue getSameNameInteger() {
-        if (_sameNameInteger == null) { _sameNameInteger = nCV(); }
-        return _sameNameInteger;
-    }
+    public ConditionValue getSameNameInteger()
+    { if (_sameNameInteger == null) { _sameNameInteger = nCV(); }
+      return _sameNameInteger; }
     protected ConditionValue getCValueSameNameInteger() { return getSameNameInteger(); }
 
     /** 
@@ -192,27 +154,16 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     public BsWhiteSameNameCQ addOrderBy_SameNameInteger_Desc() { regOBD("same_name_integer"); return this; }
 
     protected ConditionValue _nextSchemaProductId;
-    public ConditionValue getNextSchemaProductId() {
-        if (_nextSchemaProductId == null) { _nextSchemaProductId = nCV(); }
-        return _nextSchemaProductId;
-    }
+    public ConditionValue getNextSchemaProductId()
+    { if (_nextSchemaProductId == null) { _nextSchemaProductId = nCV(); }
+      return _nextSchemaProductId; }
     protected ConditionValue getCValueNextSchemaProductId() { return getNextSchemaProductId(); }
 
-    protected Map<String, NextSchemaProductCQ> _nextSchemaProductId_InScopeRelation_NextSchemaProductMap;
-    public Map<String, NextSchemaProductCQ> getNextSchemaProductId_InScopeRelation_NextSchemaProduct() { return _nextSchemaProductId_InScopeRelation_NextSchemaProductMap; }
-    public String keepNextSchemaProductId_InScopeRelation_NextSchemaProduct(NextSchemaProductCQ sq) {
-        if (_nextSchemaProductId_InScopeRelation_NextSchemaProductMap == null) { _nextSchemaProductId_InScopeRelation_NextSchemaProductMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_nextSchemaProductId_InScopeRelation_NextSchemaProductMap.size() + 1);
-        _nextSchemaProductId_InScopeRelation_NextSchemaProductMap.put(ky, sq); return "nextSchemaProductId_InScopeRelation_NextSchemaProduct." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getNextSchemaProductId_InScopeRelation_NextSchemaProduct() { return xgetSQueMap("nextSchemaProductId_InScopeRelation_NextSchemaProduct"); }
+    public String keepNextSchemaProductId_InScopeRelation_NextSchemaProduct(NextSchemaProductCQ sq) { return xkeepSQue("nextSchemaProductId_InScopeRelation_NextSchemaProduct", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap;
-    public Map<String, NextSchemaProductCQ> getNextSchemaProductId_NotInScopeRelation_NextSchemaProduct() { return _nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap; }
-    public String keepNextSchemaProductId_NotInScopeRelation_NextSchemaProduct(NextSchemaProductCQ sq) {
-        if (_nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap == null) { _nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap.size() + 1);
-        _nextSchemaProductId_NotInScopeRelation_NextSchemaProductMap.put(ky, sq); return "nextSchemaProductId_NotInScopeRelation_NextSchemaProduct." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getNextSchemaProductId_NotInScopeRelation_NextSchemaProduct() { return xgetSQueMap("nextSchemaProductId_NotInScopeRelation_NextSchemaProduct"); }
+    public String keepNextSchemaProductId_NotInScopeRelation_NextSchemaProduct(NextSchemaProductCQ sq) { return xkeepSQue("nextSchemaProductId_NotInScopeRelation_NextSchemaProduct", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -245,8 +196,7 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSameNameCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteSameNameCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -262,8 +212,7 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteSameNameCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteSameNameCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -287,31 +236,17 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     public NextSchemaProductCQ queryNextSchemaProduct() {
         return getConditionQueryNextSchemaProduct();
     }
-    protected NextSchemaProductCQ _conditionQueryNextSchemaProduct;
     public NextSchemaProductCQ getConditionQueryNextSchemaProduct() {
-        if (_conditionQueryNextSchemaProduct == null) {
-            _conditionQueryNextSchemaProduct = xcreateQueryNextSchemaProduct();
-            xsetupOuterJoinNextSchemaProduct();
-        }
-        return _conditionQueryNextSchemaProduct;
+        String prop = "nextSchemaProduct";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryNextSchemaProduct()); xsetupOuterJoinNextSchemaProduct(); }
+        return xgetQueRlMap(prop);
     }
     protected NextSchemaProductCQ xcreateQueryNextSchemaProduct() {
-        String nrp = resolveNextRelationPath("white_same_name", "nextSchemaProduct");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        NextSchemaProductCQ cq = new NextSchemaProductCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("nextSchemaProduct");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("white_same_name", "nextSchemaProduct"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new NextSchemaProductCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "nextSchemaProduct", nrp);
     }
-    protected void xsetupOuterJoinNextSchemaProduct() {
-        NextSchemaProductCQ cq = getConditionQueryNextSchemaProduct();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("next_schema_product_id", "PRODUCT_ID");
-        registerOuterJoin(cq, joinOnMap, "nextSchemaProduct");
-    }
-    public boolean hasConditionQueryNextSchemaProduct() {
-        return _conditionQueryNextSchemaProduct != null;
-    }
+    protected void xsetupOuterJoinNextSchemaProduct() { xregOutJo("nextSchemaProduct"); }
+    public boolean hasConditionQueryNextSchemaProduct() { return xhasQueRlMap("nextSchemaProduct"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -320,61 +255,32 @@ public class BsWhiteSameNameCQ extends AbstractBsWhiteSameNameCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteSameNameCQ> _scalarConditionMap;
-    public Map<String, WhiteSameNameCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteSameNameCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteSameNameCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteSameNameCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteSameNameCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteSameNameCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteSameNameCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteSameNameCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteSameNameCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteSameNameCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteSameNameCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteSameNameCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteSameNameCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteSameNameCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteSameNameCQ> _myselfExistsMap;
-    public Map<String, WhiteSameNameCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteSameNameCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteSameNameCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteSameNameCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteSameNameCQ> _myselfInScopeMap;
-    public Map<String, WhiteSameNameCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteSameNameCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteSameNameCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteSameNameCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -89,10 +89,9 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _pointTypeMappingId;
-    public ConditionValue getPointTypeMappingId() {
-        if (_pointTypeMappingId == null) { _pointTypeMappingId = nCV(); }
-        return _pointTypeMappingId;
-    }
+    public ConditionValue getPointTypeMappingId()
+    { if (_pointTypeMappingId == null) { _pointTypeMappingId = nCV(); }
+      return _pointTypeMappingId; }
     protected ConditionValue getCValuePointTypeMappingId() { return getPointTypeMappingId(); }
 
     /** 
@@ -110,10 +109,9 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     public BsWhitePointTypeMappingCQ addOrderBy_PointTypeMappingId_Desc() { regOBD("POINT_TYPE_MAPPING_ID"); return this; }
 
     protected ConditionValue _pointTypeMappingMemberName;
-    public ConditionValue getPointTypeMappingMemberName() {
-        if (_pointTypeMappingMemberName == null) { _pointTypeMappingMemberName = nCV(); }
-        return _pointTypeMappingMemberName;
-    }
+    public ConditionValue getPointTypeMappingMemberName()
+    { if (_pointTypeMappingMemberName == null) { _pointTypeMappingMemberName = nCV(); }
+      return _pointTypeMappingMemberName; }
     protected ConditionValue getCValuePointTypeMappingMemberName() { return getPointTypeMappingMemberName(); }
 
     /** 
@@ -131,10 +129,9 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     public BsWhitePointTypeMappingCQ addOrderBy_PointTypeMappingMemberName_Desc() { regOBD("POINT_TYPE_MAPPING_MEMBER_NAME"); return this; }
 
     protected ConditionValue _pointTypeMappingPriceCount;
-    public ConditionValue getPointTypeMappingPriceCount() {
-        if (_pointTypeMappingPriceCount == null) { _pointTypeMappingPriceCount = nCV(); }
-        return _pointTypeMappingPriceCount;
-    }
+    public ConditionValue getPointTypeMappingPriceCount()
+    { if (_pointTypeMappingPriceCount == null) { _pointTypeMappingPriceCount = nCV(); }
+      return _pointTypeMappingPriceCount; }
     protected ConditionValue getCValuePointTypeMappingPriceCount() { return getPointTypeMappingPriceCount(); }
 
     /** 
@@ -152,10 +149,9 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     public BsWhitePointTypeMappingCQ addOrderBy_PointTypeMappingPriceCount_Desc() { regOBD("POINT_TYPE_MAPPING_PRICE_COUNT"); return this; }
 
     protected ConditionValue _pointTypeMappingSaleDate;
-    public ConditionValue getPointTypeMappingSaleDate() {
-        if (_pointTypeMappingSaleDate == null) { _pointTypeMappingSaleDate = nCV(); }
-        return _pointTypeMappingSaleDate;
-    }
+    public ConditionValue getPointTypeMappingSaleDate()
+    { if (_pointTypeMappingSaleDate == null) { _pointTypeMappingSaleDate = nCV(); }
+      return _pointTypeMappingSaleDate; }
     protected ConditionValue getCValuePointTypeMappingSaleDate() { return getPointTypeMappingSaleDate(); }
 
     /** 
@@ -173,10 +169,9 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     public BsWhitePointTypeMappingCQ addOrderBy_PointTypeMappingSaleDate_Desc() { regOBD("POINT_TYPE_MAPPING_SALE_DATE"); return this; }
 
     protected ConditionValue _pointTypeMappingWantedDatetime;
-    public ConditionValue getPointTypeMappingWantedDatetime() {
-        if (_pointTypeMappingWantedDatetime == null) { _pointTypeMappingWantedDatetime = nCV(); }
-        return _pointTypeMappingWantedDatetime;
-    }
+    public ConditionValue getPointTypeMappingWantedDatetime()
+    { if (_pointTypeMappingWantedDatetime == null) { _pointTypeMappingWantedDatetime = nCV(); }
+      return _pointTypeMappingWantedDatetime; }
     protected ConditionValue getCValuePointTypeMappingWantedDatetime() { return getPointTypeMappingWantedDatetime(); }
 
     /** 
@@ -210,8 +205,7 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhitePointTypeMappingCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhitePointTypeMappingCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -227,8 +221,7 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhitePointTypeMappingCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhitePointTypeMappingCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -246,61 +239,32 @@ public class BsWhitePointTypeMappingCQ extends AbstractBsWhitePointTypeMappingCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhitePointTypeMappingCQ> _scalarConditionMap;
-    public Map<String, WhitePointTypeMappingCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhitePointTypeMappingCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhitePointTypeMappingCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhitePointTypeMappingCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhitePointTypeMappingCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhitePointTypeMappingCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhitePointTypeMappingCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhitePointTypeMappingCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhitePointTypeMappingCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhitePointTypeMappingCQ> _queryMyselfDerivedMap;
-    public Map<String, WhitePointTypeMappingCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhitePointTypeMappingCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhitePointTypeMappingCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhitePointTypeMappingCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhitePointTypeMappingCQ> _myselfExistsMap;
-    public Map<String, WhitePointTypeMappingCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhitePointTypeMappingCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhitePointTypeMappingCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhitePointTypeMappingCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhitePointTypeMappingCQ> _myselfInScopeMap;
-    public Map<String, WhitePointTypeMappingCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhitePointTypeMappingCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhitePointTypeMappingCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhitePointTypeMappingCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal
