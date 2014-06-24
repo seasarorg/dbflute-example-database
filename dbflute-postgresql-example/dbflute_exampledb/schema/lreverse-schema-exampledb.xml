@@ -801,10 +801,10 @@
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="purchase_purchase_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1"
             name="purchase_payment_purchase_payment_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_not_related_to_table" schema="exampledb.public"/>
         <sequence incrementSize="6" maximumValue="9223372036854775807"
