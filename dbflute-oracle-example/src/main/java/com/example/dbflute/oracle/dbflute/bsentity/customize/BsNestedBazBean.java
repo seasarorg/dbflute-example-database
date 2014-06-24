@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -321,7 +321,7 @@ public abstract class BsNestedBazBean implements Entity, Serializable, Cloneable
      */
     public void setBazId(Integer bazId) {
         __modifiedProperties.addPropertyName("bazId");
-        this._bazId = bazId;
+        _bazId = bazId;
     }
 
     /**
@@ -338,7 +338,7 @@ public abstract class BsNestedBazBean implements Entity, Serializable, Cloneable
      */
     public void setBazName(String bazName) {
         __modifiedProperties.addPropertyName("bazName");
-        this._bazName = bazName;
+        _bazName = bazName;
     }
 
     /**
@@ -355,7 +355,7 @@ public abstract class BsNestedBazBean implements Entity, Serializable, Cloneable
      */
     public void setBazDate(java.util.Date bazDate) {
         __modifiedProperties.addPropertyName("bazDate");
-        this._bazDate = bazDate;
+        _bazDate = bazDate;
     }
 
     /**
@@ -372,6 +372,6 @@ public abstract class BsNestedBazBean implements Entity, Serializable, Cloneable
      */
     public void setBazList(List<List<BarBean>> bazList) {
         __modifiedProperties.addPropertyName("bazList");
-        this._bazList = bazList;
+        _bazList = bazList;
     }
 }

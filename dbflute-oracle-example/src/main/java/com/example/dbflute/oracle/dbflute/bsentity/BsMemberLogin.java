@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.allcommon.CDef;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -336,7 +336,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     protected Member _member;
 
     /**
-     * (会員)MEMBER by my MEMBER_ID, named 'member'.
+     * [get] (会員)MEMBER by my MEMBER_ID, named 'member'.
      * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMember() {
@@ -344,7 +344,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * (会員)MEMBER by my MEMBER_ID, named 'member'.
+     * [set] (会員)MEMBER by my MEMBER_ID, named 'member'.
      * @param member The entity of foreign property 'member'. (NullAllowed)
      */
     public void setMember(Member member) {
@@ -355,7 +355,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     protected MemberStatus _memberStatus;
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [get] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @return The entity of foreign property 'memberStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberStatus getMemberStatus() {
@@ -363,7 +363,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [set] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @param memberStatus The entity of foreign property 'memberStatus'. (NullAllowed)
      */
     public void setMemberStatus(MemberStatus memberStatus) {
@@ -558,7 +558,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      */
     public void setMemberLoginId(Long memberLoginId) {
         __modifiedProperties.addPropertyName("memberLoginId");
-        this._memberLoginId = memberLoginId;
+        _memberLoginId = memberLoginId;
     }
 
     /**
@@ -575,7 +575,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -592,7 +592,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      */
     public void setLoginDatetime(java.util.Date loginDatetime) {
         __modifiedProperties.addPropertyName("loginDatetime");
-        this._loginDatetime = loginDatetime;
+        _loginDatetime = loginDatetime;
     }
 
     /**
@@ -610,7 +610,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
     public void setMobileLoginFlg(Integer mobileLoginFlg) {
         checkImplicitSet("MOBILE_LOGIN_FLG", CDef.DefMeta.Flg, mobileLoginFlg);
         __modifiedProperties.addPropertyName("mobileLoginFlg");
-        this._mobileLoginFlg = mobileLoginFlg;
+        _mobileLoginFlg = mobileLoginFlg;
     }
 
     /**
@@ -627,7 +627,7 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
      */
     public void setLoginMemberStatusCode(String loginMemberStatusCode) {
         __modifiedProperties.addPropertyName("loginMemberStatusCode");
-        this._loginMemberStatusCode = loginMemberStatusCode;
+        _loginMemberStatusCode = loginMemberStatusCode;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

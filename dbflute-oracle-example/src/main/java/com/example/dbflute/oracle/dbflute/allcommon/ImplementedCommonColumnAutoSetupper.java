@@ -39,22 +39,16 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
     }
 
     protected void doHandleCommonColumnOfInsertIfNeeds(EntityDefinedCommonColumn entity) {
-
         final java.util.Date registerDatetime = org.seasar.dbflute.AccessContext.getAccessDateOnThread();
         entity.setRegisterDatetime(registerDatetime);
-
         final String registerUser = org.seasar.dbflute.AccessContext.getAccessUserOnThread();
         entity.setRegisterUser(registerUser);
-
         final String registerProcess = org.seasar.dbflute.AccessContext.getAccessProcessOnThread();
         entity.setRegisterProcess(registerProcess);
-
         final java.util.Date updateDatetime = entity.getRegisterDatetime();
         entity.setUpdateDatetime(updateDatetime);
-
         final String updateUser = entity.getRegisterUser();
         entity.setUpdateUser(updateUser);
-
         final String updateProcess = entity.getRegisterProcess();
         entity.setUpdateProcess(updateProcess);
     }
@@ -74,13 +68,10 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
     }
 
     protected void doHandleCommonColumnOfUpdateIfNeeds(EntityDefinedCommonColumn entity) {
-
         final java.util.Date updateDatetime = org.seasar.dbflute.AccessContext.getAccessDateOnThread();
         entity.setUpdateDatetime(updateDatetime);
-
         final String updateUser = org.seasar.dbflute.AccessContext.getAccessUserOnThread();
         entity.setUpdateUser(updateUser);
-
         final String updateProcess = org.seasar.dbflute.AccessContext.getAccessProcessOnThread();
         entity.setUpdateProcess(updateProcess);
     }

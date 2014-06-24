@@ -80,11 +80,23 @@ public class BsSynonymRefExceptCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param refExceptId : PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public SynonymRefExceptCB acceptPK(Long refExceptId) {
+        assertObjectNotNull("refExceptId", refExceptId);
+        BsSynonymRefExceptCB cb = this;
+        cb.query().setRefExceptId_Equal(refExceptId);
+        return (SynonymRefExceptCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param refExceptId : PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long refExceptId) {
         assertObjectNotNull("refExceptId", refExceptId);
         BsSynonymRefExceptCB cb = this;
-        cb.query().setRefExceptId_Equal(refExceptId);;
+        cb.query().setRefExceptId_Equal(refExceptId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

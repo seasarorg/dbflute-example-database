@@ -311,7 +311,7 @@ public class SynonymMemberWithdrawalDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymMemberWithdrawal newEntity() { return new SynonymMemberWithdrawal(); }
     public SynonymMemberWithdrawal newMyEntity() { return new SynonymMemberWithdrawal(); }
 
     // ===================================================================================

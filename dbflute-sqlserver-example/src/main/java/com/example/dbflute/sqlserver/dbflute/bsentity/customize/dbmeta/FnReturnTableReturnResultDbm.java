@@ -145,7 +145,7 @@ public class FnReturnTableReturnResultDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public FnReturnTableReturnResult newEntity() { return new FnReturnTableReturnResult(); }
     public FnReturnTableReturnResult newMyEntity() { return new FnReturnTableReturnResult(); }
 
     // ===================================================================================

@@ -74,10 +74,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _productId;
-    public ConditionValue getProductId() {
-        if (_productId == null) { _productId = nCV(); }
-        return _productId;
-    }
+    public ConditionValue getProductId()
+    { if (_productId == null) { _productId = nCV(); }
+      return _productId; }
     protected ConditionValue getCValueProductId() { return getProductId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductId_Desc() { regOBD("PRODUCT_ID"); return this; }
 
     protected ConditionValue _productName;
-    public ConditionValue getProductName() {
-        if (_productName == null) { _productName = nCV(); }
-        return _productName;
-    }
+    public ConditionValue getProductName()
+    { if (_productName == null) { _productName = nCV(); }
+      return _productName; }
     protected ConditionValue getCValueProductName() { return getProductName(); }
 
     /** 
@@ -116,27 +114,16 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductName_Desc() { regOBD("PRODUCT_NAME"); return this; }
 
     protected ConditionValue _productStatusCode;
-    public ConditionValue getProductStatusCode() {
-        if (_productStatusCode == null) { _productStatusCode = nCV(); }
-        return _productStatusCode;
-    }
+    public ConditionValue getProductStatusCode()
+    { if (_productStatusCode == null) { _productStatusCode = nCV(); }
+      return _productStatusCode; }
     protected ConditionValue getCValueProductStatusCode() { return getProductStatusCode(); }
 
-    protected Map<String, ProductStatusCQ> _productStatusCode_InScopeRelation_ProductStatusMap;
-    public Map<String, ProductStatusCQ> getProductStatusCode_InScopeRelation_ProductStatus() { return _productStatusCode_InScopeRelation_ProductStatusMap; }
-    public String keepProductStatusCode_InScopeRelation_ProductStatus(ProductStatusCQ sq) {
-        if (_productStatusCode_InScopeRelation_ProductStatusMap == null) { _productStatusCode_InScopeRelation_ProductStatusMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_InScopeRelation_ProductStatusMap.size() + 1);
-        _productStatusCode_InScopeRelation_ProductStatusMap.put(ky, sq); return "productStatusCode_InScopeRelation_ProductStatus." + ky;
-    }
+    public Map<String, ProductStatusCQ> getProductStatusCode_InScopeRelation_ProductStatus() { return xgetSQueMap("productStatusCode_InScopeRelation_ProductStatus"); }
+    public String keepProductStatusCode_InScopeRelation_ProductStatus(ProductStatusCQ sq) { return xkeepSQue("productStatusCode_InScopeRelation_ProductStatus", sq); }
 
-    protected Map<String, ProductStatusCQ> _productStatusCode_NotInScopeRelation_ProductStatusMap;
-    public Map<String, ProductStatusCQ> getProductStatusCode_NotInScopeRelation_ProductStatus() { return _productStatusCode_NotInScopeRelation_ProductStatusMap; }
-    public String keepProductStatusCode_NotInScopeRelation_ProductStatus(ProductStatusCQ sq) {
-        if (_productStatusCode_NotInScopeRelation_ProductStatusMap == null) { _productStatusCode_NotInScopeRelation_ProductStatusMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_ProductStatusMap.size() + 1);
-        _productStatusCode_NotInScopeRelation_ProductStatusMap.put(ky, sq); return "productStatusCode_NotInScopeRelation_ProductStatus." + ky;
-    }
+    public Map<String, ProductStatusCQ> getProductStatusCode_NotInScopeRelation_ProductStatus() { return xgetSQueMap("productStatusCode_NotInScopeRelation_ProductStatus"); }
+    public String keepProductStatusCode_NotInScopeRelation_ProductStatus(ProductStatusCQ sq) { return xkeepSQue("productStatusCode_NotInScopeRelation_ProductStatus", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -153,10 +140,9 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public BsSummaryProductCQ addOrderBy_ProductStatusCode_Desc() { regOBD("PRODUCT_STATUS_CODE"); return this; }
 
     protected ConditionValue _latestPurchaseDatetime;
-    public ConditionValue getLatestPurchaseDatetime() {
-        if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
-        return _latestPurchaseDatetime;
-    }
+    public ConditionValue getLatestPurchaseDatetime()
+    { if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
+      return _latestPurchaseDatetime; }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return getLatestPurchaseDatetime(); }
 
     /** 
@@ -190,8 +176,7 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -207,8 +192,7 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSummaryProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -232,31 +216,17 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public ProductStatusCQ queryProductStatus() {
         return getConditionQueryProductStatus();
     }
-    protected ProductStatusCQ _conditionQueryProductStatus;
     public ProductStatusCQ getConditionQueryProductStatus() {
-        if (_conditionQueryProductStatus == null) {
-            _conditionQueryProductStatus = xcreateQueryProductStatus();
-            xsetupOuterJoinProductStatus();
-        }
-        return _conditionQueryProductStatus;
+        String prop = "productStatus";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryProductStatus()); xsetupOuterJoinProductStatus(); }
+        return xgetQueRlMap(prop);
     }
     protected ProductStatusCQ xcreateQueryProductStatus() {
-        String nrp = resolveNextRelationPath("SUMMARY_PRODUCT", "productStatus");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        ProductStatusCQ cq = new ProductStatusCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("productStatus");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SUMMARY_PRODUCT", "productStatus"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new ProductStatusCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "productStatus", nrp);
     }
-    protected void xsetupOuterJoinProductStatus() {
-        ProductStatusCQ cq = getConditionQueryProductStatus();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE");
-        registerOuterJoin(cq, joinOnMap, "productStatus");
-    }
-    public boolean hasConditionQueryProductStatus() {
-        return _conditionQueryProductStatus != null;
-    }
+    protected void xsetupOuterJoinProductStatus() { xregOutJo("productStatus"); }
+    public boolean hasConditionQueryProductStatus() { return xhasQueRlMap("productStatus"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -265,61 +235,32 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SummaryProductCQ> _scalarConditionMap;
-    public Map<String, SummaryProductCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SummaryProductCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SummaryProductCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SummaryProductCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SummaryProductCQ> _specifyMyselfDerivedMap;
-    public Map<String, SummaryProductCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SummaryProductCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SummaryProductCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SummaryProductCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SummaryProductCQ> _queryMyselfDerivedMap;
-    public Map<String, SummaryProductCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SummaryProductCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SummaryProductCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SummaryProductCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SummaryProductCQ> _myselfExistsMap;
-    public Map<String, SummaryProductCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SummaryProductCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SummaryProductCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SummaryProductCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SummaryProductCQ> _myselfInScopeMap;
-    public Map<String, SummaryProductCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SummaryProductCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SummaryProductCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SummaryProductCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -151,7 +151,7 @@ public class NextSchemaProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NextSchemaProductStatus newEntity() { return new NextSchemaProductStatus(); }
     public NextSchemaProductStatus newMyEntity() { return new NextSchemaProductStatus(); }
 
     // ===================================================================================

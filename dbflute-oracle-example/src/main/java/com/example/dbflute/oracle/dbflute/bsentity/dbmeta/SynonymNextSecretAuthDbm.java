@@ -135,7 +135,7 @@ public class SynonymNextSecretAuthDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymNextSecretAuth newEntity() { return new SynonymNextSecretAuth(); }
     public SynonymNextSecretAuth newMyEntity() { return new SynonymNextSecretAuth(); }
 
     // ===================================================================================

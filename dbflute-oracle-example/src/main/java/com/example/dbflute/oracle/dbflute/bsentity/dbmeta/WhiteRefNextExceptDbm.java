@@ -131,7 +131,7 @@ public class WhiteRefNextExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteRefNextExcept newEntity() { return new WhiteRefNextExcept(); }
     public WhiteRefNextExcept newMyEntity() { return new WhiteRefNextExcept(); }
 
     // ===================================================================================

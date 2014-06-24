@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -151,7 +151,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
     protected List<WhiteUqFkWithoutPkRef> _whiteUqFkWithoutPkRefList;
 
     /**
-     * WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
+     * [get] WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
      * @return The entity list of referrer property 'whiteUqFkWithoutPkRefList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteUqFkWithoutPkRef> getWhiteUqFkWithoutPkRefList() {
@@ -160,7 +160,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
     }
 
     /**
-     * WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
+     * [set] WHITE_UQ_FK_WITHOUT_PK_REF by FK_TO_UQ_CODE, named 'whiteUqFkWithoutPkRefList'.
      * @param whiteUqFkWithoutPkRefList The entity list of referrer property 'whiteUqFkWithoutPkRefList'. (NullAllowed)
      */
     public void setWhiteUqFkWithoutPkRefList(List<WhiteUqFkWithoutPkRef> whiteUqFkWithoutPkRefList) {
@@ -343,7 +343,7 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
      */
     public void setUqFkCode(String uqFkCode) {
         __modifiedProperties.addPropertyName("uqFkCode");
-        this._uqFkCode = uqFkCode;
+        _uqFkCode = uqFkCode;
     }
 
     /**
@@ -360,6 +360,6 @@ public abstract class BsWhiteUqFkWithoutPk implements Entity, Serializable, Clon
      */
     public void setUqFkName(String uqFkName) {
         __modifiedProperties.addPropertyName("uqFkName");
-        this._uqFkName = uqFkName;
+        _uqFkName = uqFkName;
     }
 }

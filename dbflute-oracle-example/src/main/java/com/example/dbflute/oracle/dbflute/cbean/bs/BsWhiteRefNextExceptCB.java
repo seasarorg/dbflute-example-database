@@ -80,11 +80,23 @@ public class BsWhiteRefNextExceptCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param refNextExceptId : PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteRefNextExceptCB acceptPK(Long refNextExceptId) {
+        assertObjectNotNull("refNextExceptId", refNextExceptId);
+        BsWhiteRefNextExceptCB cb = this;
+        cb.query().setRefNextExceptId_Equal(refNextExceptId);
+        return (WhiteRefNextExceptCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param refNextExceptId : PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long refNextExceptId) {
         assertObjectNotNull("refNextExceptId", refNextExceptId);
         BsWhiteRefNextExceptCB cb = this;
-        cb.query().setRefNextExceptId_Equal(refNextExceptId);;
+        cb.query().setRefNextExceptId_Equal(refNextExceptId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

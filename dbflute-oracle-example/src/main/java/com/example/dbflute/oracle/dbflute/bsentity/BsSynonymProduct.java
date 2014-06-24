@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -209,7 +209,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
     protected SynonymProductStatus _synonymProductStatus;
 
     /**
-     * SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
+     * [get] SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
      * @return The entity of foreign property 'synonymProductStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public SynonymProductStatus getSynonymProductStatus() {
@@ -217,7 +217,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
     }
 
     /**
-     * SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
+     * [set] SYNONYM_PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'synonymProductStatus'.
      * @param synonymProductStatus The entity of foreign property 'synonymProductStatus'. (NullAllowed)
      */
     public void setSynonymProductStatus(SynonymProductStatus synonymProductStatus) {
@@ -441,7 +441,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setProductId(Long productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -458,7 +458,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 
     /**
@@ -475,7 +475,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setProductHandleCode(String productHandleCode) {
         __modifiedProperties.addPropertyName("productHandleCode");
-        this._productHandleCode = productHandleCode;
+        _productHandleCode = productHandleCode;
     }
 
     /**
@@ -492,7 +492,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setProductCategoryCode(String productCategoryCode) {
         __modifiedProperties.addPropertyName("productCategoryCode");
-        this._productCategoryCode = productCategoryCode;
+        _productCategoryCode = productCategoryCode;
     }
 
     /**
@@ -509,7 +509,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -526,7 +526,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setRegularPrice(Integer regularPrice) {
         __modifiedProperties.addPropertyName("regularPrice");
-        this._regularPrice = regularPrice;
+        _regularPrice = regularPrice;
     }
 
     /**
@@ -543,7 +543,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -560,7 +560,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -577,7 +577,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -594,7 +594,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -611,7 +611,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -628,7 +628,7 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -645,6 +645,6 @@ public abstract class BsSynonymProduct implements EntityDefinedCommonColumn, Ser
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

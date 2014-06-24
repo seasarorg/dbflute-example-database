@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -143,7 +143,7 @@ public abstract class BsVendorLargeName90123456Ref implements Entity, Serializab
     protected VendorLargeName901234567890 _vendorLargeName901234567890;
 
     /**
-     * VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
+     * [get] VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
      * @return The entity of foreign property 'vendorLargeName901234567890'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorLargeName901234567890 getVendorLargeName901234567890() {
@@ -151,7 +151,7 @@ public abstract class BsVendorLargeName90123456Ref implements Entity, Serializab
     }
 
     /**
-     * VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
+     * [set] VENDOR_LARGE_NAME_901234567890 by my VENDOR_LARGE_NAME_901234567_ID, named 'vendorLargeName901234567890'.
      * @param vendorLargeName901234567890 The entity of foreign property 'vendorLargeName901234567890'. (NullAllowed)
      */
     public void setVendorLargeName901234567890(VendorLargeName901234567890 vendorLargeName901234567890) {
@@ -335,7 +335,7 @@ public abstract class BsVendorLargeName90123456Ref implements Entity, Serializab
      */
     public void setVendorLargeName90123RefId(Long vendorLargeName90123RefId) {
         __modifiedProperties.addPropertyName("vendorLargeName90123RefId");
-        this._vendorLargeName90123RefId = vendorLargeName90123RefId;
+        _vendorLargeName90123RefId = vendorLargeName90123RefId;
     }
 
     /**
@@ -352,7 +352,7 @@ public abstract class BsVendorLargeName90123456Ref implements Entity, Serializab
      */
     public void setVendorLargeName901RefName(String vendorLargeName901RefName) {
         __modifiedProperties.addPropertyName("vendorLargeName901RefName");
-        this._vendorLargeName901RefName = vendorLargeName901RefName;
+        _vendorLargeName901RefName = vendorLargeName901RefName;
     }
 
     /**
@@ -369,6 +369,6 @@ public abstract class BsVendorLargeName90123456Ref implements Entity, Serializab
      */
     public void setVendorLargeName901234567Id(Long vendorLargeName901234567Id) {
         __modifiedProperties.addPropertyName("vendorLargeName901234567Id");
-        this._vendorLargeName901234567Id = vendorLargeName901234567Id;
+        _vendorLargeName901234567Id = vendorLargeName901234567Id;
     }
 }

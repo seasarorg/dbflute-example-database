@@ -74,10 +74,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _memberId;
-    public ConditionValue getMemberId() {
-        if (_memberId == null) { _memberId = nCV(); }
-        return _memberId;
-    }
+    public ConditionValue getMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
     protected ConditionValue getCValueMemberId() { return getMemberId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     public BsSummaryMemberPurchaseCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
 
     protected ConditionValue _allsumPurchasePrice;
-    public ConditionValue getAllsumPurchasePrice() {
-        if (_allsumPurchasePrice == null) { _allsumPurchasePrice = nCV(); }
-        return _allsumPurchasePrice;
-    }
+    public ConditionValue getAllsumPurchasePrice()
+    { if (_allsumPurchasePrice == null) { _allsumPurchasePrice = nCV(); }
+      return _allsumPurchasePrice; }
     protected ConditionValue getCValueAllsumPurchasePrice() { return getAllsumPurchasePrice(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     public BsSummaryMemberPurchaseCQ addOrderBy_AllsumPurchasePrice_Desc() { regOBD("ALLSUM_PURCHASE_PRICE"); return this; }
 
     protected ConditionValue _latestPurchaseDatetime;
-    public ConditionValue getLatestPurchaseDatetime() {
-        if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
-        return _latestPurchaseDatetime;
-    }
+    public ConditionValue getLatestPurchaseDatetime()
+    { if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
+      return _latestPurchaseDatetime; }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return getLatestPurchaseDatetime(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -189,13 +184,8 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SummaryMemberPurchaseCQ> _scalarConditionMap;
-    public Map<String, SummaryMemberPurchaseCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SummaryMemberPurchaseCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SummaryMemberPurchaseCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

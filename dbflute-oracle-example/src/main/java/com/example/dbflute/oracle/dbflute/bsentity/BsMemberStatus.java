@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.allcommon.CDef;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -253,9 +253,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     // ===================================================================================
@@ -265,7 +262,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<Member> _memberList;
 
     /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [get] (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Member> getMemberList() {
@@ -274,7 +271,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [set] (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
      */
     public void setMemberList(List<Member> memberList) {
@@ -285,7 +282,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<MemberLogin> _memberLoginList;
 
     /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [get] (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberLogin> getMemberLoginList() {
@@ -294,7 +291,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [set] (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
      */
     public void setMemberLoginList(List<MemberLogin> memberLoginList) {
@@ -305,7 +302,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<MemberVendorSynonym> _memberVendorSynonymList;
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'.
+     * [get] (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'.
      * @return The entity list of referrer property 'memberVendorSynonymList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberVendorSynonym> getMemberVendorSynonymList() {
@@ -314,7 +311,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'.
+     * [set] (会員)MEMBER_VENDOR_SYNONYM by MEMBER_STATUS_CODE, named 'memberVendorSynonymList'.
      * @param memberVendorSynonymList The entity list of referrer property 'memberVendorSynonymList'. (NullAllowed)
      */
     public void setMemberVendorSynonymList(List<MemberVendorSynonym> memberVendorSynonymList) {
@@ -325,7 +322,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<SynonymMember> _synonymMemberList;
 
     /**
-     * (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberList'.
+     * [get] (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberList'.
      * @return The entity list of referrer property 'synonymMemberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<SynonymMember> getSynonymMemberList() {
@@ -334,7 +331,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberList'.
+     * [set] (会員)SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'synonymMemberList'.
      * @param synonymMemberList The entity list of referrer property 'synonymMemberList'. (NullAllowed)
      */
     public void setSynonymMemberList(List<SynonymMember> synonymMemberList) {
@@ -345,7 +342,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<SynonymMemberLogin> _synonymMemberLoginList;
 
     /**
-     * (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginList'.
+     * [get] (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginList'.
      * @return The entity list of referrer property 'synonymMemberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<SynonymMemberLogin> getSynonymMemberLoginList() {
@@ -354,7 +351,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginList'.
+     * [set] (会員ログイン)SYNONYM_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'synonymMemberLoginList'.
      * @param synonymMemberLoginList The entity list of referrer property 'synonymMemberLoginList'. (NullAllowed)
      */
     public void setSynonymMemberLoginList(List<SynonymMemberLogin> synonymMemberLoginList) {
@@ -365,7 +362,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<VendorSynonymMember> _vendorSynonymMemberList;
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberList'.
+     * [get] (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberList'.
      * @return The entity list of referrer property 'vendorSynonymMemberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<VendorSynonymMember> getVendorSynonymMemberList() {
@@ -374,7 +371,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberList'.
+     * [set] (会員)VENDOR_SYNONYM_MEMBER by MEMBER_STATUS_CODE, named 'vendorSynonymMemberList'.
      * @param vendorSynonymMemberList The entity list of referrer property 'vendorSynonymMemberList'. (NullAllowed)
      */
     public void setVendorSynonymMemberList(List<VendorSynonymMember> vendorSynonymMemberList) {
@@ -577,7 +574,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -594,7 +591,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -611,7 +608,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setDescription(String description) {
         __modifiedProperties.addPropertyName("description");
-        this._description = description;
+        _description = description;
     }
 
     /**
@@ -628,6 +625,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setDisplayOrder(Long displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

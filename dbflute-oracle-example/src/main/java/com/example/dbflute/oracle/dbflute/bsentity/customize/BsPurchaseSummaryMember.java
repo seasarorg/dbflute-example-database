@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -329,7 +329,7 @@ public abstract class BsPurchaseSummaryMember implements Entity, Serializable, C
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -346,7 +346,7 @@ public abstract class BsPurchaseSummaryMember implements Entity, Serializable, C
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -363,7 +363,7 @@ public abstract class BsPurchaseSummaryMember implements Entity, Serializable, C
      */
     public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -380,7 +380,7 @@ public abstract class BsPurchaseSummaryMember implements Entity, Serializable, C
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -397,6 +397,6 @@ public abstract class BsPurchaseSummaryMember implements Entity, Serializable, C
      */
     public void setPurchaseSummary(java.math.BigDecimal purchaseSummary) {
         __modifiedProperties.addPropertyName("purchaseSummary");
-        this._purchaseSummary = purchaseSummary;
+        _purchaseSummary = purchaseSummary;
     }
 }

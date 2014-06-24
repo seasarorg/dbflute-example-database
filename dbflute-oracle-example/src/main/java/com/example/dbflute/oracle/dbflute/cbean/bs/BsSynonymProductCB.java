@@ -80,21 +80,35 @@ public class BsSynonymProductCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param productId : PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public SynonymProductCB acceptPK(Long productId) {
+        assertObjectNotNull("productId", productId);
+        BsSynonymProductCB cb = this;
+        cb.query().setProductId_Equal(productId);
+        return (SynonymProductCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long productId) {
         assertObjectNotNull("productId", productId);
         BsSynonymProductCB cb = this;
-        cb.query().setProductId_Equal(productId);;
+        cb.query().setProductId_Equal(productId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param productHandleCode : UQ, NotNull, VARCHAR2(100). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String productHandleCode) {
+    public SynonymProductCB acceptUniqueOf(String productHandleCode) {
         assertObjectNotNull("productHandleCode", productHandleCode);
         BsSynonymProductCB cb = this;
-        cb.query().setProductHandleCode_Equal(productHandleCode);;
+        cb.query().setProductHandleCode_Equal(productHandleCode);
+        return (SynonymProductCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

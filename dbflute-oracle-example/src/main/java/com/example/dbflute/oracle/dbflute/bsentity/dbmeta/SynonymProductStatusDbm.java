@@ -153,7 +153,7 @@ public class SynonymProductStatusDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymProductStatus newEntity() { return new SynonymProductStatus(); }
     public SynonymProductStatus newMyEntity() { return new SynonymProductStatus(); }
 
     // ===================================================================================

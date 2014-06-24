@@ -173,7 +173,7 @@ public class ProductCategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public ProductCategory newEntity() { return new ProductCategory(); }
     public ProductCategory newMyEntity() { return new ProductCategory(); }
 
     // ===================================================================================

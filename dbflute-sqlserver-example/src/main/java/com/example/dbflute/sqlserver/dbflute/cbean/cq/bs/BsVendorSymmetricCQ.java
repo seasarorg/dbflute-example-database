@@ -74,10 +74,9 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _vendorSymmetricId;
-    public ConditionValue getVendorSymmetricId() {
-        if (_vendorSymmetricId == null) { _vendorSymmetricId = nCV(); }
-        return _vendorSymmetricId;
-    }
+    public ConditionValue getVendorSymmetricId()
+    { if (_vendorSymmetricId == null) { _vendorSymmetricId = nCV(); }
+      return _vendorSymmetricId; }
     protected ConditionValue getCValueVendorSymmetricId() { return getVendorSymmetricId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
     public BsVendorSymmetricCQ addOrderBy_VendorSymmetricId_Desc() { regOBD("VENDOR_SYMMETRIC_ID"); return this; }
 
     protected ConditionValue _plainText;
-    public ConditionValue getPlainText() {
-        if (_plainText == null) { _plainText = nCV(); }
-        return _plainText;
-    }
+    public ConditionValue getPlainText()
+    { if (_plainText == null) { _plainText = nCV(); }
+      return _plainText; }
     protected ConditionValue getCValuePlainText() { return getPlainText(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
     public BsVendorSymmetricCQ addOrderBy_PlainText_Desc() { regOBD("PLAIN_TEXT"); return this; }
 
     protected ConditionValue _encryptedData;
-    public ConditionValue getEncryptedData() {
-        if (_encryptedData == null) { _encryptedData = nCV(); }
-        return _encryptedData;
-    }
+    public ConditionValue getEncryptedData()
+    { if (_encryptedData == null) { _encryptedData = nCV(); }
+      return _encryptedData; }
     protected ConditionValue getCValueEncryptedData() { return getEncryptedData(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorSymmetricCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorSymmetricCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorSymmetricCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorSymmetricCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -189,61 +184,32 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorSymmetricCQ> _scalarConditionMap;
-    public Map<String, VendorSymmetricCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorSymmetricCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorSymmetricCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorSymmetricCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorSymmetricCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorSymmetricCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorSymmetricCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorSymmetricCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorSymmetricCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorSymmetricCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorSymmetricCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorSymmetricCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorSymmetricCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorSymmetricCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorSymmetricCQ> _myselfExistsMap;
-    public Map<String, VendorSymmetricCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorSymmetricCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorSymmetricCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorSymmetricCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorSymmetricCQ> _myselfInScopeMap;
-    public Map<String, VendorSymmetricCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorSymmetricCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorSymmetricCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorSymmetricCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

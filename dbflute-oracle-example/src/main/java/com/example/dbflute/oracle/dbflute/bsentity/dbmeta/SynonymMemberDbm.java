@@ -321,7 +321,7 @@ public class SynonymMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymMember newEntity() { return new SynonymMember(); }
     public SynonymMember newMyEntity() { return new SynonymMember(); }
 
     // ===================================================================================

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -311,7 +311,7 @@ public abstract class BsWhiteSameNameRefRef implements Entity, Serializable, Clo
      */
     public void setRefRefId(Long refRefId) {
         __modifiedProperties.addPropertyName("refRefId");
-        this._refRefId = refRefId;
+        _refRefId = refRefId;
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class BsWhiteSameNameRefRef implements Entity, Serializable, Clo
      */
     public void setRefRefName(String refRefName) {
         __modifiedProperties.addPropertyName("refRefName");
-        this._refRefName = refRefName;
+        _refRefName = refRefName;
     }
 
     /**
@@ -345,6 +345,6 @@ public abstract class BsWhiteSameNameRefRef implements Entity, Serializable, Clo
      */
     public void setRefRefDate(java.util.Date refRefDate) {
         __modifiedProperties.addPropertyName("refRefDate");
-        this._refRefDate = refRefDate;
+        _refRefDate = refRefDate;
     }
 }

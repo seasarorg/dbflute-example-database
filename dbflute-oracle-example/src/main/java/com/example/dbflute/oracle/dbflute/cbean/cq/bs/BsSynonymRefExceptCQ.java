@@ -74,10 +74,9 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _refExceptId;
-    public ConditionValue getRefExceptId() {
-        if (_refExceptId == null) { _refExceptId = nCV(); }
-        return _refExceptId;
-    }
+    public ConditionValue getRefExceptId()
+    { if (_refExceptId == null) { _refExceptId = nCV(); }
+      return _refExceptId; }
     protected ConditionValue getCValueRefExceptId() { return getRefExceptId(); }
 
     /** 
@@ -95,27 +94,16 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     public BsSynonymRefExceptCQ addOrderBy_RefExceptId_Desc() { regOBD("REF_EXCEPT_ID"); return this; }
 
     protected ConditionValue _exceptId;
-    public ConditionValue getExceptId() {
-        if (_exceptId == null) { _exceptId = nCV(); }
-        return _exceptId;
-    }
+    public ConditionValue getExceptId()
+    { if (_exceptId == null) { _exceptId = nCV(); }
+      return _exceptId; }
     protected ConditionValue getCValueExceptId() { return getExceptId(); }
 
-    protected Map<String, SynonymExceptCQ> _exceptId_InScopeRelation_SynonymExceptMap;
-    public Map<String, SynonymExceptCQ> getExceptId_InScopeRelation_SynonymExcept() { return _exceptId_InScopeRelation_SynonymExceptMap; }
-    public String keepExceptId_InScopeRelation_SynonymExcept(SynonymExceptCQ sq) {
-        if (_exceptId_InScopeRelation_SynonymExceptMap == null) { _exceptId_InScopeRelation_SynonymExceptMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_InScopeRelation_SynonymExceptMap.size() + 1);
-        _exceptId_InScopeRelation_SynonymExceptMap.put(ky, sq); return "exceptId_InScopeRelation_SynonymExcept." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getExceptId_InScopeRelation_SynonymExcept() { return xgetSQueMap("exceptId_InScopeRelation_SynonymExcept"); }
+    public String keepExceptId_InScopeRelation_SynonymExcept(SynonymExceptCQ sq) { return xkeepSQue("exceptId_InScopeRelation_SynonymExcept", sq); }
 
-    protected Map<String, SynonymExceptCQ> _exceptId_NotInScopeRelation_SynonymExceptMap;
-    public Map<String, SynonymExceptCQ> getExceptId_NotInScopeRelation_SynonymExcept() { return _exceptId_NotInScopeRelation_SynonymExceptMap; }
-    public String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ sq) {
-        if (_exceptId_NotInScopeRelation_SynonymExceptMap == null) { _exceptId_NotInScopeRelation_SynonymExceptMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_NotInScopeRelation_SynonymExceptMap.size() + 1);
-        _exceptId_NotInScopeRelation_SynonymExceptMap.put(ky, sq); return "exceptId_NotInScopeRelation_SynonymExcept." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getExceptId_NotInScopeRelation_SynonymExcept() { return xgetSQueMap("exceptId_NotInScopeRelation_SynonymExcept"); }
+    public String keepExceptId_NotInScopeRelation_SynonymExcept(SynonymExceptCQ sq) { return xkeepSQue("exceptId_NotInScopeRelation_SynonymExcept", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -148,8 +136,7 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymRefExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymRefExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -165,8 +152,7 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymRefExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymRefExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -190,31 +176,17 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     public SynonymExceptCQ querySynonymExcept() {
         return getConditionQuerySynonymExcept();
     }
-    protected SynonymExceptCQ _conditionQuerySynonymExcept;
     public SynonymExceptCQ getConditionQuerySynonymExcept() {
-        if (_conditionQuerySynonymExcept == null) {
-            _conditionQuerySynonymExcept = xcreateQuerySynonymExcept();
-            xsetupOuterJoinSynonymExcept();
-        }
-        return _conditionQuerySynonymExcept;
+        String prop = "synonymExcept";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQuerySynonymExcept()); xsetupOuterJoinSynonymExcept(); }
+        return xgetQueRlMap(prop);
     }
     protected SynonymExceptCQ xcreateQuerySynonymExcept() {
-        String nrp = resolveNextRelationPath("SYNONYM_REF_EXCEPT", "synonymExcept");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        SynonymExceptCQ cq = new SynonymExceptCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("synonymExcept");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_REF_EXCEPT", "synonymExcept"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new SynonymExceptCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "synonymExcept", nrp);
     }
-    protected void xsetupOuterJoinSynonymExcept() {
-        SynonymExceptCQ cq = getConditionQuerySynonymExcept();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("EXCEPT_ID", "EXCEPT_ID");
-        registerOuterJoin(cq, joinOnMap, "synonymExcept");
-    }
-    public boolean hasConditionQuerySynonymExcept() {
-        return _conditionQuerySynonymExcept != null;
-    }
+    protected void xsetupOuterJoinSynonymExcept() { xregOutJo("synonymExcept"); }
+    public boolean hasConditionQuerySynonymExcept() { return xhasQueRlMap("synonymExcept"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -223,61 +195,32 @@ public class BsSynonymRefExceptCQ extends AbstractBsSynonymRefExceptCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymRefExceptCQ> _scalarConditionMap;
-    public Map<String, SynonymRefExceptCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymRefExceptCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymRefExceptCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymRefExceptCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymRefExceptCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymRefExceptCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymRefExceptCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymRefExceptCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymRefExceptCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymRefExceptCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymRefExceptCQ> _myselfExistsMap;
-    public Map<String, SynonymRefExceptCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymRefExceptCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymRefExceptCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymRefExceptCQ> _myselfInScopeMap;
-    public Map<String, SynonymRefExceptCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymRefExceptCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymRefExceptCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

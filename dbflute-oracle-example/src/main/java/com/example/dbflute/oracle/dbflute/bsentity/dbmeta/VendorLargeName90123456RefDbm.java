@@ -165,7 +165,7 @@ public class VendorLargeName90123456RefDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorLargeName90123456Ref newEntity() { return new VendorLargeName90123456Ref(); }
     public VendorLargeName90123456Ref newMyEntity() { return new VendorLargeName90123456Ref(); }
 
     // ===================================================================================

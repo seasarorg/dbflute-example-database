@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -337,7 +338,7 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarId(Integer barId) {
         __modifiedProperties.addPropertyName("barId");
-        this._barId = barId;
+        _barId = barId;
     }
 
     /**
@@ -354,7 +355,7 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarName(String barName) {
         __modifiedProperties.addPropertyName("barName");
-        this._barName = barName;
+        _barName = barName;
     }
 
     /**
@@ -371,7 +372,7 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarDecimal(java.math.BigDecimal barDecimal) {
         __modifiedProperties.addPropertyName("barDecimal");
-        this._barDecimal = barDecimal;
+        _barDecimal = barDecimal;
     }
 
     /**
@@ -388,7 +389,7 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarDate(java.util.Date barDate) {
         __modifiedProperties.addPropertyName("barDate");
-        this._barDate = barDate;
+        _barDate = barDate;
     }
 
     /**
@@ -405,16 +406,14 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarTimestamp(java.sql.Timestamp barTimestamp) {
         __modifiedProperties.addPropertyName("barTimestamp");
-        this._barTimestamp = barTimestamp;
+        _barTimestamp = barTimestamp;
     }
-
-    /** The value type annotation. {CLOB} */
-    public static final String barClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] BAR_CLOB: {CLOB} <br />
      * @return The value of the column 'BAR_CLOB'. (NullAllowed even if selected: for no constraint)
      */
+    @MappingValueType(keyName = "stringClobType")
     public String getBarClob() {
         return _barClob;
     }
@@ -425,6 +424,6 @@ public abstract class BsBarBean implements Entity, Serializable, Cloneable {
      */
     public void setBarClob(String barClob) {
         __modifiedProperties.addPropertyName("barClob");
-        this._barClob = barClob;
+        _barClob = barClob;
     }
 }

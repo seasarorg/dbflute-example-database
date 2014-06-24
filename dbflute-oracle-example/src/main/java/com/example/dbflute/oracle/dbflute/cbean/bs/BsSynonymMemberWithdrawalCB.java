@@ -81,11 +81,23 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
+     * @return this. (NotNull)
+     */
+    public SynonymMemberWithdrawalCB acceptPK(Long memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsSynonymMemberWithdrawalCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (SynonymMemberWithdrawalCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
      */
     public void acceptPrimaryKey(Long memberId) {
         assertObjectNotNull("memberId", memberId);
         BsSynonymMemberWithdrawalCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;
+        cb.query().setMemberId_Equal(memberId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

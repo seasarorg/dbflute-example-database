@@ -169,7 +169,7 @@ public class SpResultSetParameterWithCurMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SpResultSetParameterWithCurMember newEntity() { return new SpResultSetParameterWithCurMember(); }
     public SpResultSetParameterWithCurMember newMyEntity() { return new SpResultSetParameterWithCurMember(); }
 
     // ===================================================================================

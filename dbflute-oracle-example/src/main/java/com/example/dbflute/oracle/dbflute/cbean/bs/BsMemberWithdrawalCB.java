@@ -81,11 +81,23 @@ public class BsMemberWithdrawalCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberWithdrawalCB acceptPK(Long memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsMemberWithdrawalCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (MemberWithdrawalCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId : PK, NotNull, NUMBER(16), FK to MEMBER. (NotNull)
      */
     public void acceptPrimaryKey(Long memberId) {
         assertObjectNotNull("memberId", memberId);
         BsMemberWithdrawalCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;
+        cb.query().setMemberId_Equal(memberId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

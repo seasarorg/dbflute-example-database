@@ -164,13 +164,13 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
     }
 
     @SuppressWarnings("unchecked")
-    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) {
+    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) { // might be called by option handling
         Object obj = DfCollectionUtil.newArrayList(elements);
         return (ArrayList<ELEMENT>)obj; // to avoid the warning between JDK6 and JDK7
     }
 
     @SuppressWarnings("unchecked")
-    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) {
+    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) { // might be called by option handling
         return (NUMBER)DfTypeUtil.toNumber(obj, type);
     }
 
@@ -204,24 +204,24 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
         sb.append(xbuildColumnString());
         return sb.toString();
     }
-    private String xbuildColumnString() {
-        final String c = ", ";
+    protected String xbuildColumnString() {
+        final String dm = ", ";
         final StringBuilder sb = new StringBuilder();
-        sb.append(c).append(_returnValue);
-        sb.append(c).append(_vInVarchar);
-        sb.append(c).append(_vOutNvarchar);
-        sb.append(c).append(_vOutChar);
-        sb.append(c).append(_vInText);
-        sb.append(c).append(_vOutText);
-        sb.append(c).append(_vvInNumericInteger);
-        sb.append(c).append(_vvInNumericBigint);
-        sb.append(c).append(_vvInNumericDecimal);
-        sb.append(c).append(_vvInoutInteger);
-        sb.append(c).append(_vvOutBigint);
-        sb.append(c).append(_vvvInDatetime);
-        sb.append(c).append(_vvvOutDatetime);
-        sb.append(c).append(_vvvvInUniqueidentifier);
-        if (sb.length() > 0) { sb.delete(0, c.length()); }
+        sb.append(dm).append(_returnValue);
+        sb.append(dm).append(_vInVarchar);
+        sb.append(dm).append(_vOutNvarchar);
+        sb.append(dm).append(_vOutChar);
+        sb.append(dm).append(_vInText);
+        sb.append(dm).append(_vOutText);
+        sb.append(dm).append(_vvInNumericInteger);
+        sb.append(dm).append(_vvInNumericBigint);
+        sb.append(dm).append(_vvInNumericDecimal);
+        sb.append(dm).append(_vvInoutInteger);
+        sb.append(dm).append(_vvOutBigint);
+        sb.append(dm).append(_vvvInDatetime);
+        sb.append(dm).append(_vvvOutDatetime);
+        sb.append(dm).append(_vvvvInUniqueidentifier);
+        if (sb.length() > 0) { sb.delete(0, dm.length()); }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
@@ -452,5 +452,4 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
     public void setVvvvInUniqueidentifier(java.util.UUID vvvvInUniqueidentifier) {
         _vvvvInUniqueidentifier = vvvvInUniqueidentifier;
     }
-
 }

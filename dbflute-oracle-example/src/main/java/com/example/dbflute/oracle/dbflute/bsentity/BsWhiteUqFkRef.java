@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -166,7 +166,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     protected WhiteUqFk _whiteUqFkByFkToPkId;
 
     /**
-     * WHITE_UQ_FK by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
+     * [get] WHITE_UQ_FK by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
      * @return The entity of foreign property 'whiteUqFkByFkToPkId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteUqFk getWhiteUqFkByFkToPkId() {
@@ -174,7 +174,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * WHITE_UQ_FK by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
+     * [set] WHITE_UQ_FK by my FK_TO_PK_ID, named 'whiteUqFkByFkToPkId'.
      * @param whiteUqFkByFkToPkId The entity of foreign property 'whiteUqFkByFkToPkId'. (NullAllowed)
      */
     public void setWhiteUqFkByFkToPkId(WhiteUqFk whiteUqFkByFkToPkId) {
@@ -185,7 +185,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     protected WhiteUqFk _whiteUqFkByFkToUqCode;
 
     /**
-     * WHITE_UQ_FK by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
+     * [get] WHITE_UQ_FK by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
      * @return The entity of foreign property 'whiteUqFkByFkToUqCode'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteUqFk getWhiteUqFkByFkToUqCode() {
@@ -193,7 +193,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * WHITE_UQ_FK by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
+     * [set] WHITE_UQ_FK by my FK_TO_UQ_CODE, named 'whiteUqFkByFkToUqCode'.
      * @param whiteUqFkByFkToUqCode The entity of foreign property 'whiteUqFkByFkToUqCode'. (NullAllowed)
      */
     public void setWhiteUqFkByFkToUqCode(WhiteUqFk whiteUqFkByFkToUqCode) {
@@ -207,7 +207,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     protected List<WhiteUqFkRefNest> _whiteUqFkRefNestList;
 
     /**
-     * WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
+     * [get] WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
      * @return The entity list of referrer property 'whiteUqFkRefNestList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteUqFkRefNest> getWhiteUqFkRefNestList() {
@@ -216,7 +216,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
+     * [set] WHITE_UQ_FK_REF_NEST by COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRefNestList'.
      * @param whiteUqFkRefNestList The entity list of referrer property 'whiteUqFkRefNestList'. (NullAllowed)
      */
     public void setWhiteUqFkRefNestList(List<WhiteUqFkRefNest> whiteUqFkRefNestList) {
@@ -406,7 +406,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      */
     public void setUqFkRefId(Long uqFkRefId) {
         __modifiedProperties.addPropertyName("uqFkRefId");
-        this._uqFkRefId = uqFkRefId;
+        _uqFkRefId = uqFkRefId;
     }
 
     /**
@@ -423,7 +423,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      */
     public void setFkToPkId(Long fkToPkId) {
         __modifiedProperties.addPropertyName("fkToPkId");
-        this._fkToPkId = fkToPkId;
+        _fkToPkId = fkToPkId;
     }
 
     /**
@@ -440,7 +440,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      */
     public void setFkToUqCode(String fkToUqCode) {
         __modifiedProperties.addPropertyName("fkToUqCode");
-        this._fkToUqCode = fkToUqCode;
+        _fkToUqCode = fkToUqCode;
     }
 
     /**
@@ -457,7 +457,7 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      */
     public void setCompoundUqFirstCode(String compoundUqFirstCode) {
         __modifiedProperties.addPropertyName("compoundUqFirstCode");
-        this._compoundUqFirstCode = compoundUqFirstCode;
+        _compoundUqFirstCode = compoundUqFirstCode;
     }
 
     /**
@@ -474,6 +474,6 @@ public abstract class BsWhiteUqFkRef implements Entity, Serializable, Cloneable 
      */
     public void setCompoundUqSecondCode(String compoundUqSecondCode) {
         __modifiedProperties.addPropertyName("compoundUqSecondCode");
-        this._compoundUqSecondCode = compoundUqSecondCode;
+        _compoundUqSecondCode = compoundUqSecondCode;
     }
 }

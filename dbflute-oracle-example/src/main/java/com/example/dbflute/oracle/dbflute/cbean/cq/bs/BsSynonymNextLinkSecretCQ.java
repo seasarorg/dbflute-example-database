@@ -74,10 +74,9 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _secretCode;
-    public ConditionValue getSecretCode() {
-        if (_secretCode == null) { _secretCode = nCV(); }
-        return _secretCode;
-    }
+    public ConditionValue getSecretCode()
+    { if (_secretCode == null) { _secretCode = nCV(); }
+      return _secretCode; }
     protected ConditionValue getCValueSecretCode() { return getSecretCode(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
     public BsSynonymNextLinkSecretCQ addOrderBy_SecretCode_Desc() { regOBD("SECRET_CODE"); return this; }
 
     protected ConditionValue _secretName;
-    public ConditionValue getSecretName() {
-        if (_secretName == null) { _secretName = nCV(); }
-        return _secretName;
-    }
+    public ConditionValue getSecretName()
+    { if (_secretName == null) { _secretName = nCV(); }
+      return _secretName; }
     protected ConditionValue getCValueSecretName() { return getSecretName(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
     public BsSynonymNextLinkSecretCQ addOrderBy_SecretName_Desc() { regOBD("SECRET_NAME"); return this; }
 
     protected ConditionValue _secretAuthCode;
-    public ConditionValue getSecretAuthCode() {
-        if (_secretAuthCode == null) { _secretAuthCode = nCV(); }
-        return _secretAuthCode;
-    }
+    public ConditionValue getSecretAuthCode()
+    { if (_secretAuthCode == null) { _secretAuthCode = nCV(); }
+      return _secretAuthCode; }
     protected ConditionValue getCValueSecretAuthCode() { return getSecretAuthCode(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymNextLinkSecretCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymNextLinkSecretCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymNextLinkSecretCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymNextLinkSecretCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -189,61 +184,32 @@ public class BsSynonymNextLinkSecretCQ extends AbstractBsSynonymNextLinkSecretCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymNextLinkSecretCQ> _scalarConditionMap;
-    public Map<String, SynonymNextLinkSecretCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymNextLinkSecretCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymNextLinkSecretCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymNextLinkSecretCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymNextLinkSecretCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymNextLinkSecretCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymNextLinkSecretCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymNextLinkSecretCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymNextLinkSecretCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymNextLinkSecretCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymNextLinkSecretCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymNextLinkSecretCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymNextLinkSecretCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymNextLinkSecretCQ> _myselfExistsMap;
-    public Map<String, SynonymNextLinkSecretCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymNextLinkSecretCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymNextLinkSecretCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymNextLinkSecretCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymNextLinkSecretCQ> _myselfInScopeMap;
-    public Map<String, SynonymNextLinkSecretCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymNextLinkSecretCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymNextLinkSecretCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymNextLinkSecretCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

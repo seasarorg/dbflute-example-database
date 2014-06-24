@@ -158,7 +158,7 @@ public class NestedBazBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NestedBazBean newEntity() { return new NestedBazBean(); }
     public NestedBazBean newMyEntity() { return new NestedBazBean(); }
 
     // ===================================================================================

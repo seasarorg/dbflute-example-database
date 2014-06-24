@@ -143,7 +143,7 @@ public class SynonymNextSameNameFkDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymNextSameNameFk newEntity() { return new SynonymNextSameNameFk(); }
     public SynonymNextSameNameFk newMyEntity() { return new SynonymNextSameNameFk(); }
 
     // ===================================================================================

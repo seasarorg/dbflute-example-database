@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.sqlserver.dbflute.allcommon.CDef;
 import com.example.dbflute.sqlserver.dbflute.exentity.customize.*;
 
@@ -495,7 +495,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -512,7 +512,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -529,7 +529,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setMemberAccount(String memberAccount) {
         __modifiedProperties.addPropertyName("memberAccount");
-        this._memberAccount = memberAccount;
+        _memberAccount = memberAccount;
     }
 
     /**
@@ -546,7 +546,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -563,7 +563,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -580,7 +580,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setBirthdate(java.sql.Timestamp birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -597,7 +597,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -614,7 +614,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -631,7 +631,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -648,7 +648,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -665,7 +665,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -682,7 +682,7 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -699,6 +699,6 @@ public abstract class BsProcReturnResultSetMore implements Entity, Serializable,
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

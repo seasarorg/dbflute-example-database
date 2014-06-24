@@ -124,13 +124,13 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
     }
 
     @SuppressWarnings("unchecked")
-    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) {
+    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) { // might be called by option handling
         Object obj = DfCollectionUtil.newArrayList(elements);
         return (ArrayList<ELEMENT>)obj; // to avoid the warning between JDK6 and JDK7
     }
 
     @SuppressWarnings("unchecked")
-    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) {
+    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) { // might be called by option handling
         return (NUMBER)DfTypeUtil.toNumber(obj, type);
     }
 
@@ -164,14 +164,14 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
         sb.append(xbuildColumnString());
         return sb.toString();
     }
-    private String xbuildColumnString() {
-        final String c = ", ";
+    protected String xbuildColumnString() {
+        final String dm = ", ";
         final StringBuilder sb = new StringBuilder();
-        sb.append(c).append(_vOutVarchar);
-        sb.append(c).append(_vOutInteger);
-        sb.append(c).append(_vOutNumber);
-        sb.append(c).append(formatUtilDate(_vOutDate));
-        if (sb.length() > 0) { sb.delete(0, c.length()); }
+        sb.append(dm).append(_vOutVarchar);
+        sb.append(dm).append(_vOutInteger);
+        sb.append(dm).append(_vOutNumber);
+        sb.append(dm).append(formatUtilDate(_vOutDate));
+        if (sb.length() > 0) { sb.delete(0, dm.length()); }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
@@ -242,5 +242,4 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
     public void setVOutDate(java.util.Date vOutDate) {
         _vOutDate = vOutDate;
     }
-
 }

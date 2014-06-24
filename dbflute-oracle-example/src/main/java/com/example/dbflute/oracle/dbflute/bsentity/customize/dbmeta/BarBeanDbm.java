@@ -181,7 +181,7 @@ public class BarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public BarBean newEntity() { return new BarBean(); }
     public BarBean newMyEntity() { return new BarBean(); }
 
     // ===================================================================================

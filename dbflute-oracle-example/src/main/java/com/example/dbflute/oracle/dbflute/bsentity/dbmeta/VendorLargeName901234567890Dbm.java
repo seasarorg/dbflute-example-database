@@ -139,7 +139,7 @@ public class VendorLargeName901234567890Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorLargeName901234567890 newEntity() { return new VendorLargeName901234567890(); }
     public VendorLargeName901234567890 newMyEntity() { return new VendorLargeName901234567890(); }
 
     // ===================================================================================

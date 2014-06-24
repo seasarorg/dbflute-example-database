@@ -168,7 +168,7 @@ public class WhiteDelimiterDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteDelimiter newEntity() { return new WhiteDelimiter(); }
     public WhiteDelimiter newMyEntity() { return new WhiteDelimiter(); }
 
     // ===================================================================================

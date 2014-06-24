@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.allcommon.CDef;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -336,7 +336,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     protected MemberStatus _memberStatus;
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [get] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @return The entity of foreign property 'memberStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberStatus getMemberStatus() {
@@ -344,7 +344,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [set] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @param memberStatus The entity of foreign property 'memberStatus'. (NullAllowed)
      */
     public void setMemberStatus(MemberStatus memberStatus) {
@@ -355,7 +355,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     protected MemberVendorSynonym _memberVendorSynonym;
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * [get] (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
      * @return The entity of foreign property 'memberVendorSynonym'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberVendorSynonym getMemberVendorSynonym() {
@@ -363,7 +363,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * [set] (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
      * @param memberVendorSynonym The entity of foreign property 'memberVendorSynonym'. (NullAllowed)
      */
     public void setMemberVendorSynonym(MemberVendorSynonym memberVendorSynonym) {
@@ -374,7 +374,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     protected SynonymMember _synonymMember;
 
     /**
-     * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
+     * [get] (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
      * @return The entity of foreign property 'synonymMember'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public SynonymMember getSynonymMember() {
@@ -382,7 +382,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
+     * [set] (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
      * @param synonymMember The entity of foreign property 'synonymMember'. (NullAllowed)
      */
     public void setSynonymMember(SynonymMember synonymMember) {
@@ -393,7 +393,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     protected VendorSynonymMember _vendorSynonymMember;
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
+     * [get] (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
      * @return The entity of foreign property 'vendorSynonymMember'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorSynonymMember getVendorSynonymMember() {
@@ -401,7 +401,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     }
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
+     * [set] (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
      * @param vendorSynonymMember The entity of foreign property 'vendorSynonymMember'. (NullAllowed)
      */
     public void setVendorSynonymMember(VendorSynonymMember vendorSynonymMember) {
@@ -602,7 +602,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      */
     public void setMemberLoginId(Long memberLoginId) {
         __modifiedProperties.addPropertyName("memberLoginId");
-        this._memberLoginId = memberLoginId;
+        _memberLoginId = memberLoginId;
     }
 
     /**
@@ -619,7 +619,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -636,7 +636,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      */
     public void setLoginDatetime(java.util.Date loginDatetime) {
         __modifiedProperties.addPropertyName("loginDatetime");
-        this._loginDatetime = loginDatetime;
+        _loginDatetime = loginDatetime;
     }
 
     /**
@@ -654,7 +654,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
     public void setMobileLoginFlg(Integer mobileLoginFlg) {
         checkImplicitSet("MOBILE_LOGIN_FLG", CDef.DefMeta.Flg, mobileLoginFlg);
         __modifiedProperties.addPropertyName("mobileLoginFlg");
-        this._mobileLoginFlg = mobileLoginFlg;
+        _mobileLoginFlg = mobileLoginFlg;
     }
 
     /**
@@ -671,7 +671,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      */
     public void setLoginMemberStatusCode(String loginMemberStatusCode) {
         __modifiedProperties.addPropertyName("loginMemberStatusCode");
-        this._loginMemberStatusCode = loginMemberStatusCode;
+        _loginMemberStatusCode = loginMemberStatusCode;
     }
 
     protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {

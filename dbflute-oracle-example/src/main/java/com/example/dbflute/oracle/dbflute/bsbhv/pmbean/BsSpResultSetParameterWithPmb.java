@@ -141,13 +141,13 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
     }
 
     @SuppressWarnings("unchecked")
-    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) {
+    protected <ELEMENT> ArrayList<ELEMENT> newArrayList(ELEMENT... elements) { // might be called by option handling
         Object obj = DfCollectionUtil.newArrayList(elements);
         return (ArrayList<ELEMENT>)obj; // to avoid the warning between JDK6 and JDK7
     }
 
     @SuppressWarnings("unchecked")
-    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) {
+    protected <NUMBER extends Number> NUMBER toNumber(Object obj, Class<NUMBER> type) { // might be called by option handling
         return (NUMBER)DfTypeUtil.toNumber(obj, type);
     }
 
@@ -181,18 +181,18 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
         sb.append(xbuildColumnString());
         return sb.toString();
     }
-    private String xbuildColumnString() {
-        final String c = ", ";
+    protected String xbuildColumnString() {
+        final String dm = ", ";
         final StringBuilder sb = new StringBuilder();
-        sb.append(c).append(_curMember);
-        sb.append(c).append(_curMemberStatus);
-        sb.append(c).append(_vInChar);
-        sb.append(c).append(_vOutVarchar);
-        sb.append(c).append(_vInoutVarchar);
-        sb.append(c).append(_vInNumber);
-        sb.append(c).append(formatUtilDate(_vInDate));
-        sb.append(c).append(_vInTimestamp);
-        if (sb.length() > 0) { sb.delete(0, c.length()); }
+        sb.append(dm).append(_curMember);
+        sb.append(dm).append(_curMemberStatus);
+        sb.append(dm).append(_vInChar);
+        sb.append(dm).append(_vOutVarchar);
+        sb.append(dm).append(_vInoutVarchar);
+        sb.append(dm).append(_vInNumber);
+        sb.append(dm).append(formatUtilDate(_vInDate));
+        sb.append(dm).append(_vInTimestamp);
+        if (sb.length() > 0) { sb.delete(0, dm.length()); }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
@@ -327,5 +327,4 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
     public void setVInTimestamp(java.sql.Timestamp vInTimestamp) {
         _vInTimestamp = vInTimestamp;
     }
-
 }

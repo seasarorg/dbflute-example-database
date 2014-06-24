@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.sqlserver.dbflute.allcommon.CDef;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
@@ -464,7 +464,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -481,7 +481,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -498,7 +498,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setWithdrawalReasonCode(String withdrawalReasonCode) {
         __modifiedProperties.addPropertyName("withdrawalReasonCode");
-        this._withdrawalReasonCode = withdrawalReasonCode;
+        _withdrawalReasonCode = withdrawalReasonCode;
     }
 
     /**
@@ -515,7 +515,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setWithdrawalReasonText(String withdrawalReasonText) {
         __modifiedProperties.addPropertyName("withdrawalReasonText");
-        this._withdrawalReasonText = withdrawalReasonText;
+        _withdrawalReasonText = withdrawalReasonText;
     }
 
     /**
@@ -532,7 +532,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setWithdrawalReasonInputText(String withdrawalReasonInputText) {
         __modifiedProperties.addPropertyName("withdrawalReasonInputText");
-        this._withdrawalReasonInputText = withdrawalReasonInputText;
+        _withdrawalReasonInputText = withdrawalReasonInputText;
     }
 
     /**
@@ -549,7 +549,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setWithdrawalDatetime(java.sql.Timestamp withdrawalDatetime) {
         __modifiedProperties.addPropertyName("withdrawalDatetime");
-        this._withdrawalDatetime = withdrawalDatetime;
+        _withdrawalDatetime = withdrawalDatetime;
     }
 
     /**
@@ -566,7 +566,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -583,7 +583,7 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -600,6 +600,6 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
      */
     public void setMaxPurchasePrice(Integer maxPurchasePrice) {
         __modifiedProperties.addPropertyName("maxPurchasePrice");
-        this._maxPurchasePrice = maxPurchasePrice;
+        _maxPurchasePrice = maxPurchasePrice;
     }
 }

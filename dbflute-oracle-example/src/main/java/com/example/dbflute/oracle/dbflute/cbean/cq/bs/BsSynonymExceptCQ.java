@@ -74,66 +74,30 @@ public class BsSynonymExceptCQ extends AbstractBsSynonymExceptCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _exceptId;
-    public ConditionValue getExceptId() {
-        if (_exceptId == null) { _exceptId = nCV(); }
-        return _exceptId;
-    }
+    public ConditionValue getExceptId()
+    { if (_exceptId == null) { _exceptId = nCV(); }
+      return _exceptId; }
     protected ConditionValue getCValueExceptId() { return getExceptId(); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_ExistsReferrer_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_ExistsReferrer_SynonymRefExceptList() { return _exceptId_ExistsReferrer_SynonymRefExceptListMap; }
-    public String keepExceptId_ExistsReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_ExistsReferrer_SynonymRefExceptListMap == null) { _exceptId_ExistsReferrer_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_ExistsReferrer_SynonymRefExceptListMap.size() + 1);
-        _exceptId_ExistsReferrer_SynonymRefExceptListMap.put(ky, sq); return "exceptId_ExistsReferrer_SynonymRefExceptList." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_ExistsReferrer_SynonymRefExceptList() { return xgetSQueMap("exceptId_ExistsReferrer_SynonymRefExceptList"); }
+    public String keepExceptId_ExistsReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_ExistsReferrer_SynonymRefExceptList", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_NotExistsReferrer_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_NotExistsReferrer_SynonymRefExceptList() { return _exceptId_NotExistsReferrer_SynonymRefExceptListMap; }
-    public String keepExceptId_NotExistsReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_NotExistsReferrer_SynonymRefExceptListMap == null) { _exceptId_NotExistsReferrer_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_NotExistsReferrer_SynonymRefExceptListMap.size() + 1);
-        _exceptId_NotExistsReferrer_SynonymRefExceptListMap.put(ky, sq); return "exceptId_NotExistsReferrer_SynonymRefExceptList." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_NotExistsReferrer_SynonymRefExceptList() { return xgetSQueMap("exceptId_NotExistsReferrer_SynonymRefExceptList"); }
+    public String keepExceptId_NotExistsReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_NotExistsReferrer_SynonymRefExceptList", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_SpecifyDerivedReferrer_SynonymRefExceptList() { return _exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap; }
-    public String keepExceptId_SpecifyDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap == null) { _exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap.size() + 1);
-        _exceptId_SpecifyDerivedReferrer_SynonymRefExceptListMap.put(ky, sq); return "exceptId_SpecifyDerivedReferrer_SynonymRefExceptList." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_SpecifyDerivedReferrer_SynonymRefExceptList() { return xgetSQueMap("exceptId_SpecifyDerivedReferrer_SynonymRefExceptList"); }
+    public String keepExceptId_SpecifyDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_SpecifyDerivedReferrer_SynonymRefExceptList", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_InScopeRelation_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_InScopeRelation_SynonymRefExceptList() { return _exceptId_InScopeRelation_SynonymRefExceptListMap; }
-    public String keepExceptId_InScopeRelation_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_InScopeRelation_SynonymRefExceptListMap == null) { _exceptId_InScopeRelation_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_InScopeRelation_SynonymRefExceptListMap.size() + 1);
-        _exceptId_InScopeRelation_SynonymRefExceptListMap.put(ky, sq); return "exceptId_InScopeRelation_SynonymRefExceptList." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_InScopeRelation_SynonymRefExceptList() { return xgetSQueMap("exceptId_InScopeRelation_SynonymRefExceptList"); }
+    public String keepExceptId_InScopeRelation_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_InScopeRelation_SynonymRefExceptList", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_NotInScopeRelation_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_NotInScopeRelation_SynonymRefExceptList() { return _exceptId_NotInScopeRelation_SynonymRefExceptListMap; }
-    public String keepExceptId_NotInScopeRelation_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_NotInScopeRelation_SynonymRefExceptListMap == null) { _exceptId_NotInScopeRelation_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_NotInScopeRelation_SynonymRefExceptListMap.size() + 1);
-        _exceptId_NotInScopeRelation_SynonymRefExceptListMap.put(ky, sq); return "exceptId_NotInScopeRelation_SynonymRefExceptList." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_NotInScopeRelation_SynonymRefExceptList() { return xgetSQueMap("exceptId_NotInScopeRelation_SynonymRefExceptList"); }
+    public String keepExceptId_NotInScopeRelation_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_NotInScopeRelation_SynonymRefExceptList", sq); }
 
-    protected Map<String, SynonymRefExceptCQ> _exceptId_QueryDerivedReferrer_SynonymRefExceptListMap;
-    public Map<String, SynonymRefExceptCQ> getExceptId_QueryDerivedReferrer_SynonymRefExceptList() { return _exceptId_QueryDerivedReferrer_SynonymRefExceptListMap; }
-    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) {
-        if (_exceptId_QueryDerivedReferrer_SynonymRefExceptListMap == null) { _exceptId_QueryDerivedReferrer_SynonymRefExceptListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_exceptId_QueryDerivedReferrer_SynonymRefExceptListMap.size() + 1);
-        _exceptId_QueryDerivedReferrer_SynonymRefExceptListMap.put(ky, sq); return "exceptId_QueryDerivedReferrer_SynonymRefExceptList." + ky;
-    }
-    protected Map<String, Object> _exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap;
-    public Map<String, Object> getExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter() { return _exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap; }
-    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter(Object vl) {
-        if (_exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap == null) { _exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap.size() + 1);
-        _exceptId_QueryDerivedReferrer_SynonymRefExceptListParameterMap.put(ky, vl); return "exceptId_QueryDerivedReferrer_SynonymRefExceptListParameter." + ky;
-    }
+    public Map<String, SynonymRefExceptCQ> getExceptId_QueryDerivedReferrer_SynonymRefExceptList() { return xgetSQueMap("exceptId_QueryDerivedReferrer_SynonymRefExceptList"); }
+    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptList(SynonymRefExceptCQ sq) { return xkeepSQue("exceptId_QueryDerivedReferrer_SynonymRefExceptList", sq); }
+    public Map<String, Object> getExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter() { return xgetSQuePmMap("exceptId_QueryDerivedReferrer_SynonymRefExceptList"); }
+    public String keepExceptId_QueryDerivedReferrer_SynonymRefExceptListParameter(Object pm) { return xkeepSQuePm("exceptId_QueryDerivedReferrer_SynonymRefExceptList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -150,10 +114,9 @@ public class BsSynonymExceptCQ extends AbstractBsSynonymExceptCQ {
     public BsSynonymExceptCQ addOrderBy_ExceptId_Desc() { regOBD("EXCEPT_ID"); return this; }
 
     protected ConditionValue _exceptName;
-    public ConditionValue getExceptName() {
-        if (_exceptName == null) { _exceptName = nCV(); }
-        return _exceptName;
-    }
+    public ConditionValue getExceptName()
+    { if (_exceptName == null) { _exceptName = nCV(); }
+      return _exceptName; }
     protected ConditionValue getCValueExceptName() { return getExceptName(); }
 
     /** 
@@ -187,8 +150,7 @@ public class BsSynonymExceptCQ extends AbstractBsSynonymExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -204,8 +166,7 @@ public class BsSynonymExceptCQ extends AbstractBsSynonymExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -223,61 +184,32 @@ public class BsSynonymExceptCQ extends AbstractBsSynonymExceptCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymExceptCQ> _scalarConditionMap;
-    public Map<String, SynonymExceptCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymExceptCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymExceptCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymExceptCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymExceptCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymExceptCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymExceptCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymExceptCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymExceptCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymExceptCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymExceptCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymExceptCQ> _myselfExistsMap;
-    public Map<String, SynonymExceptCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymExceptCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymExceptCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymExceptCQ> _myselfInScopeMap;
-    public Map<String, SynonymExceptCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymExceptCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymExceptCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymExceptCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

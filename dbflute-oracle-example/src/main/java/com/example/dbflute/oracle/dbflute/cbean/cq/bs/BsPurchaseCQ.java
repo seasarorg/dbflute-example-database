@@ -74,10 +74,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _purchaseId;
-    public ConditionValue getPurchaseId() {
-        if (_purchaseId == null) { _purchaseId = nCV(); }
-        return _purchaseId;
-    }
+    public ConditionValue getPurchaseId()
+    { if (_purchaseId == null) { _purchaseId = nCV(); }
+      return _purchaseId; }
     protected ConditionValue getCValuePurchaseId() { return getPurchaseId(); }
 
     /** 
@@ -95,27 +94,16 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_PurchaseId_Desc() { regOBD("PURCHASE_ID"); return this; }
 
     protected ConditionValue _memberId;
-    public ConditionValue getMemberId() {
-        if (_memberId == null) { _memberId = nCV(); }
-        return _memberId;
-    }
+    public ConditionValue getMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
     protected ConditionValue getCValueMemberId() { return getMemberId(); }
 
-    protected Map<String, MemberCQ> _memberId_InScopeRelation_MemberMap;
-    public Map<String, MemberCQ> getMemberId_InScopeRelation_Member() { return _memberId_InScopeRelation_MemberMap; }
-    public String keepMemberId_InScopeRelation_Member(MemberCQ sq) {
-        if (_memberId_InScopeRelation_MemberMap == null) { _memberId_InScopeRelation_MemberMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_memberId_InScopeRelation_MemberMap.size() + 1);
-        _memberId_InScopeRelation_MemberMap.put(ky, sq); return "memberId_InScopeRelation_Member." + ky;
-    }
+    public Map<String, MemberCQ> getMemberId_InScopeRelation_Member() { return xgetSQueMap("memberId_InScopeRelation_Member"); }
+    public String keepMemberId_InScopeRelation_Member(MemberCQ sq) { return xkeepSQue("memberId_InScopeRelation_Member", sq); }
 
-    protected Map<String, MemberCQ> _memberId_NotInScopeRelation_MemberMap;
-    public Map<String, MemberCQ> getMemberId_NotInScopeRelation_Member() { return _memberId_NotInScopeRelation_MemberMap; }
-    public String keepMemberId_NotInScopeRelation_Member(MemberCQ sq) {
-        if (_memberId_NotInScopeRelation_MemberMap == null) { _memberId_NotInScopeRelation_MemberMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_memberId_NotInScopeRelation_MemberMap.size() + 1);
-        _memberId_NotInScopeRelation_MemberMap.put(ky, sq); return "memberId_NotInScopeRelation_Member." + ky;
-    }
+    public Map<String, MemberCQ> getMemberId_NotInScopeRelation_Member() { return xgetSQueMap("memberId_NotInScopeRelation_Member"); }
+    public String keepMemberId_NotInScopeRelation_Member(MemberCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_Member", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -132,27 +120,16 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
 
     protected ConditionValue _productId;
-    public ConditionValue getProductId() {
-        if (_productId == null) { _productId = nCV(); }
-        return _productId;
-    }
+    public ConditionValue getProductId()
+    { if (_productId == null) { _productId = nCV(); }
+      return _productId; }
     protected ConditionValue getCValueProductId() { return getProductId(); }
 
-    protected Map<String, ProductCQ> _productId_InScopeRelation_ProductMap;
-    public Map<String, ProductCQ> getProductId_InScopeRelation_Product() { return _productId_InScopeRelation_ProductMap; }
-    public String keepProductId_InScopeRelation_Product(ProductCQ sq) {
-        if (_productId_InScopeRelation_ProductMap == null) { _productId_InScopeRelation_ProductMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productId_InScopeRelation_ProductMap.size() + 1);
-        _productId_InScopeRelation_ProductMap.put(ky, sq); return "productId_InScopeRelation_Product." + ky;
-    }
+    public Map<String, ProductCQ> getProductId_InScopeRelation_Product() { return xgetSQueMap("productId_InScopeRelation_Product"); }
+    public String keepProductId_InScopeRelation_Product(ProductCQ sq) { return xkeepSQue("productId_InScopeRelation_Product", sq); }
 
-    protected Map<String, ProductCQ> _productId_NotInScopeRelation_ProductMap;
-    public Map<String, ProductCQ> getProductId_NotInScopeRelation_Product() { return _productId_NotInScopeRelation_ProductMap; }
-    public String keepProductId_NotInScopeRelation_Product(ProductCQ sq) {
-        if (_productId_NotInScopeRelation_ProductMap == null) { _productId_NotInScopeRelation_ProductMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productId_NotInScopeRelation_ProductMap.size() + 1);
-        _productId_NotInScopeRelation_ProductMap.put(ky, sq); return "productId_NotInScopeRelation_Product." + ky;
-    }
+    public Map<String, ProductCQ> getProductId_NotInScopeRelation_Product() { return xgetSQueMap("productId_NotInScopeRelation_Product"); }
+    public String keepProductId_NotInScopeRelation_Product(ProductCQ sq) { return xkeepSQue("productId_NotInScopeRelation_Product", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -169,10 +146,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_ProductId_Desc() { regOBD("PRODUCT_ID"); return this; }
 
     protected ConditionValue _purchaseDatetime;
-    public ConditionValue getPurchaseDatetime() {
-        if (_purchaseDatetime == null) { _purchaseDatetime = nCV(); }
-        return _purchaseDatetime;
-    }
+    public ConditionValue getPurchaseDatetime()
+    { if (_purchaseDatetime == null) { _purchaseDatetime = nCV(); }
+      return _purchaseDatetime; }
     protected ConditionValue getCValuePurchaseDatetime() { return getPurchaseDatetime(); }
 
     /** 
@@ -190,10 +166,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_PurchaseDatetime_Desc() { regOBD("PURCHASE_DATETIME"); return this; }
 
     protected ConditionValue _purchaseCount;
-    public ConditionValue getPurchaseCount() {
-        if (_purchaseCount == null) { _purchaseCount = nCV(); }
-        return _purchaseCount;
-    }
+    public ConditionValue getPurchaseCount()
+    { if (_purchaseCount == null) { _purchaseCount = nCV(); }
+      return _purchaseCount; }
     protected ConditionValue getCValuePurchaseCount() { return getPurchaseCount(); }
 
     /** 
@@ -211,10 +186,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_PurchaseCount_Desc() { regOBD("PURCHASE_COUNT"); return this; }
 
     protected ConditionValue _purchasePrice;
-    public ConditionValue getPurchasePrice() {
-        if (_purchasePrice == null) { _purchasePrice = nCV(); }
-        return _purchasePrice;
-    }
+    public ConditionValue getPurchasePrice()
+    { if (_purchasePrice == null) { _purchasePrice = nCV(); }
+      return _purchasePrice; }
     protected ConditionValue getCValuePurchasePrice() { return getPurchasePrice(); }
 
     /** 
@@ -232,10 +206,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_PurchasePrice_Desc() { regOBD("PURCHASE_PRICE"); return this; }
 
     protected ConditionValue _paymentCompleteFlg;
-    public ConditionValue getPaymentCompleteFlg() {
-        if (_paymentCompleteFlg == null) { _paymentCompleteFlg = nCV(); }
-        return _paymentCompleteFlg;
-    }
+    public ConditionValue getPaymentCompleteFlg()
+    { if (_paymentCompleteFlg == null) { _paymentCompleteFlg = nCV(); }
+      return _paymentCompleteFlg; }
     protected ConditionValue getCValuePaymentCompleteFlg() { return getPaymentCompleteFlg(); }
 
     /** 
@@ -253,10 +226,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_PaymentCompleteFlg_Desc() { regOBD("PAYMENT_COMPLETE_FLG"); return this; }
 
     protected ConditionValue _registerDatetime;
-    public ConditionValue getRegisterDatetime() {
-        if (_registerDatetime == null) { _registerDatetime = nCV(); }
-        return _registerDatetime;
-    }
+    public ConditionValue getRegisterDatetime()
+    { if (_registerDatetime == null) { _registerDatetime = nCV(); }
+      return _registerDatetime; }
     protected ConditionValue getCValueRegisterDatetime() { return getRegisterDatetime(); }
 
     /** 
@@ -274,10 +246,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
 
     protected ConditionValue _registerUser;
-    public ConditionValue getRegisterUser() {
-        if (_registerUser == null) { _registerUser = nCV(); }
-        return _registerUser;
-    }
+    public ConditionValue getRegisterUser()
+    { if (_registerUser == null) { _registerUser = nCV(); }
+      return _registerUser; }
     protected ConditionValue getCValueRegisterUser() { return getRegisterUser(); }
 
     /** 
@@ -295,10 +266,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
     protected ConditionValue _registerProcess;
-    public ConditionValue getRegisterProcess() {
-        if (_registerProcess == null) { _registerProcess = nCV(); }
-        return _registerProcess;
-    }
+    public ConditionValue getRegisterProcess()
+    { if (_registerProcess == null) { _registerProcess = nCV(); }
+      return _registerProcess; }
     protected ConditionValue getCValueRegisterProcess() { return getRegisterProcess(); }
 
     /** 
@@ -316,10 +286,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_RegisterProcess_Desc() { regOBD("REGISTER_PROCESS"); return this; }
 
     protected ConditionValue _updateDatetime;
-    public ConditionValue getUpdateDatetime() {
-        if (_updateDatetime == null) { _updateDatetime = nCV(); }
-        return _updateDatetime;
-    }
+    public ConditionValue getUpdateDatetime()
+    { if (_updateDatetime == null) { _updateDatetime = nCV(); }
+      return _updateDatetime; }
     protected ConditionValue getCValueUpdateDatetime() { return getUpdateDatetime(); }
 
     /** 
@@ -337,10 +306,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
 
     protected ConditionValue _updateUser;
-    public ConditionValue getUpdateUser() {
-        if (_updateUser == null) { _updateUser = nCV(); }
-        return _updateUser;
-    }
+    public ConditionValue getUpdateUser()
+    { if (_updateUser == null) { _updateUser = nCV(); }
+      return _updateUser; }
     protected ConditionValue getCValueUpdateUser() { return getUpdateUser(); }
 
     /** 
@@ -358,10 +326,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
 
     protected ConditionValue _updateProcess;
-    public ConditionValue getUpdateProcess() {
-        if (_updateProcess == null) { _updateProcess = nCV(); }
-        return _updateProcess;
-    }
+    public ConditionValue getUpdateProcess()
+    { if (_updateProcess == null) { _updateProcess = nCV(); }
+      return _updateProcess; }
     protected ConditionValue getCValueUpdateProcess() { return getUpdateProcess(); }
 
     /** 
@@ -379,10 +346,9 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public BsPurchaseCQ addOrderBy_UpdateProcess_Desc() { regOBD("UPDATE_PROCESS"); return this; }
 
     protected ConditionValue _versionNo;
-    public ConditionValue getVersionNo() {
-        if (_versionNo == null) { _versionNo = nCV(); }
-        return _versionNo;
-    }
+    public ConditionValue getVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
     protected ConditionValue getCValueVersionNo() { return getVersionNo(); }
 
     /** 
@@ -416,8 +382,7 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -433,8 +398,7 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -461,31 +425,17 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public MemberCQ queryMember() {
         return getConditionQueryMember();
     }
-    protected MemberCQ _conditionQueryMember;
     public MemberCQ getConditionQueryMember() {
-        if (_conditionQueryMember == null) {
-            _conditionQueryMember = xcreateQueryMember();
-            xsetupOuterJoinMember();
-        }
-        return _conditionQueryMember;
+        String prop = "member";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMember()); xsetupOuterJoinMember(); }
+        return xgetQueRlMap(prop);
     }
     protected MemberCQ xcreateQueryMember() {
-        String nrp = resolveNextRelationPath("PURCHASE", "member");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        MemberCQ cq = new MemberCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("member");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("PURCHASE", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
     }
-    protected void xsetupOuterJoinMember() {
-        MemberCQ cq = getConditionQueryMember();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
-        registerOuterJoin(cq, joinOnMap, "member");
-    }
-    public boolean hasConditionQueryMember() {
-        return _conditionQueryMember != null;
-    }
+    protected void xsetupOuterJoinMember() { xregOutJo("member"); }
+    public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -495,31 +445,17 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     public ProductCQ queryProduct() {
         return getConditionQueryProduct();
     }
-    protected ProductCQ _conditionQueryProduct;
     public ProductCQ getConditionQueryProduct() {
-        if (_conditionQueryProduct == null) {
-            _conditionQueryProduct = xcreateQueryProduct();
-            xsetupOuterJoinProduct();
-        }
-        return _conditionQueryProduct;
+        String prop = "product";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryProduct()); xsetupOuterJoinProduct(); }
+        return xgetQueRlMap(prop);
     }
     protected ProductCQ xcreateQueryProduct() {
-        String nrp = resolveNextRelationPath("PURCHASE", "product");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        ProductCQ cq = new ProductCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("product");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("PURCHASE", "product"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new ProductCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "product", nrp);
     }
-    protected void xsetupOuterJoinProduct() {
-        ProductCQ cq = getConditionQueryProduct();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("PRODUCT_ID", "PRODUCT_ID");
-        registerOuterJoin(cq, joinOnMap, "product");
-    }
-    public boolean hasConditionQueryProduct() {
-        return _conditionQueryProduct != null;
-    }
+    protected void xsetupOuterJoinProduct() { xregOutJo("product"); }
+    public boolean hasConditionQueryProduct() { return xhasQueRlMap("product"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -528,61 +464,32 @@ public class BsPurchaseCQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, PurchaseCQ> _scalarConditionMap;
-    public Map<String, PurchaseCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(PurchaseCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, PurchaseCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(PurchaseCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, PurchaseCQ> _specifyMyselfDerivedMap;
-    public Map<String, PurchaseCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(PurchaseCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, PurchaseCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(PurchaseCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, PurchaseCQ> _queryMyselfDerivedMap;
-    public Map<String, PurchaseCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(PurchaseCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, PurchaseCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(PurchaseCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, PurchaseCQ> _myselfExistsMap;
-    public Map<String, PurchaseCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(PurchaseCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, PurchaseCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(PurchaseCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, PurchaseCQ> _myselfInScopeMap;
-    public Map<String, PurchaseCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(PurchaseCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, PurchaseCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(PurchaseCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

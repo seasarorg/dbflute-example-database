@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -158,7 +158,7 @@ public abstract class BsSynonymProductStatus implements Entity, Serializable, Cl
     protected List<SynonymProduct> _synonymProductList;
 
     /**
-     * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductList'.
+     * [get] (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductList'.
      * @return The entity list of referrer property 'synonymProductList'. (NotNull: even if no loading, returns empty list)
      */
     public List<SynonymProduct> getSynonymProductList() {
@@ -167,7 +167,7 @@ public abstract class BsSynonymProductStatus implements Entity, Serializable, Cl
     }
 
     /**
-     * (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductList'.
+     * [set] (商品)SYNONYM_PRODUCT by PRODUCT_STATUS_CODE, named 'synonymProductList'.
      * @param synonymProductList The entity list of referrer property 'synonymProductList'. (NullAllowed)
      */
     public void setSynonymProductList(List<SynonymProduct> synonymProductList) {
@@ -349,7 +349,7 @@ public abstract class BsSynonymProductStatus implements Entity, Serializable, Cl
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -366,7 +366,7 @@ public abstract class BsSynonymProductStatus implements Entity, Serializable, Cl
      */
     public void setProductStatusName(String productStatusName) {
         __modifiedProperties.addPropertyName("productStatusName");
-        this._productStatusName = productStatusName;
+        _productStatusName = productStatusName;
     }
 
     /**
@@ -383,6 +383,6 @@ public abstract class BsSynonymProductStatus implements Entity, Serializable, Cl
      */
     public void setDisplayOrder(java.math.BigDecimal displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

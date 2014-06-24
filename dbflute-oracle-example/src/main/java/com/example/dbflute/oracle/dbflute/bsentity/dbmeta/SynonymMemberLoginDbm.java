@@ -232,7 +232,7 @@ public class SynonymMemberLoginDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymMemberLogin newEntity() { return new SynonymMemberLogin(); }
     public SynonymMemberLogin newMyEntity() { return new SynonymMemberLogin(); }
 
     // ===================================================================================

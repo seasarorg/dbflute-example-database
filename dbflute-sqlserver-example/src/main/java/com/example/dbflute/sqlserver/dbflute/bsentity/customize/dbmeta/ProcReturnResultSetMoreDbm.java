@@ -267,7 +267,7 @@ public class ProcReturnResultSetMoreDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public ProcReturnResultSetMore newEntity() { return new ProcReturnResultSetMore(); }
     public ProcReturnResultSetMore newMyEntity() { return new ProcReturnResultSetMore(); }
 
     // ===================================================================================

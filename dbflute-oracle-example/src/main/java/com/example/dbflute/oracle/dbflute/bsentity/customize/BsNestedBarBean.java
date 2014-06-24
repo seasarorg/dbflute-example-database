@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -353,7 +353,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBarId(Integer barId) {
         __modifiedProperties.addPropertyName("barId");
-        this._barId = barId;
+        _barId = barId;
     }
 
     /**
@@ -370,7 +370,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBarName(String barName) {
         __modifiedProperties.addPropertyName("barName");
-        this._barName = barName;
+        _barName = barName;
     }
 
     /**
@@ -387,7 +387,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBarDate(java.util.Date barDate) {
         __modifiedProperties.addPropertyName("barDate");
-        this._barDate = barDate;
+        _barDate = barDate;
     }
 
     /**
@@ -404,7 +404,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBarList(List<BarBean> barList) {
         __modifiedProperties.addPropertyName("barList");
-        this._barList = barList;
+        _barList = barList;
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBazBean1(NestedBazBean bazBean1) {
         __modifiedProperties.addPropertyName("bazBean1");
-        this._bazBean1 = bazBean1;
+        _bazBean1 = bazBean1;
     }
 
     /**
@@ -438,7 +438,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setBazBean2(NestedBazBean bazBean2) {
         __modifiedProperties.addPropertyName("bazBean2");
-        this._bazBean2 = bazBean2;
+        _bazBean2 = bazBean2;
     }
 
     /**
@@ -455,7 +455,7 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setQuxList(List<java.math.BigDecimal> quxList) {
         __modifiedProperties.addPropertyName("quxList");
-        this._quxList = quxList;
+        _quxList = quxList;
     }
 
     /**
@@ -472,6 +472,6 @@ public abstract class BsNestedBarBean implements Entity, Serializable, Cloneable
      */
     public void setQuuxList(List<java.math.BigDecimal> quuxList) {
         __modifiedProperties.addPropertyName("quuxList");
-        this._quuxList = quuxList;
+        _quuxList = quuxList;
     }
 }

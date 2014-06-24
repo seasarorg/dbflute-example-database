@@ -208,7 +208,7 @@ public class NestedBarBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NestedBarBean newEntity() { return new NestedBarBean(); }
     public NestedBarBean newMyEntity() { return new NestedBarBean(); }
 
     // ===================================================================================

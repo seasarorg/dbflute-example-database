@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -304,7 +304,7 @@ public abstract class BsSynonymNextSameNameFk implements Entity, Serializable, C
      */
     public void setRefId(Long refId) {
         __modifiedProperties.addPropertyName("refId");
-        this._refId = refId;
+        _refId = refId;
     }
 
     /**
@@ -321,7 +321,7 @@ public abstract class BsSynonymNextSameNameFk implements Entity, Serializable, C
      */
     public void setRefName(String refName) {
         __modifiedProperties.addPropertyName("refName");
-        this._refName = refName;
+        _refName = refName;
     }
 
     /**
@@ -338,6 +338,6 @@ public abstract class BsSynonymNextSameNameFk implements Entity, Serializable, C
      */
     public void setSameNameId(Long sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 }

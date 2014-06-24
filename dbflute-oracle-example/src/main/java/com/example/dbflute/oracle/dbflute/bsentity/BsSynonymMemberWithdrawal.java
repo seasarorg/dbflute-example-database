@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.MappingValueType;
 import com.example.dbflute.oracle.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -189,7 +190,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     protected MemberVendorSynonym _memberVendorSynonym;
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * [get] (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
      * @return The entity of foreign property 'memberVendorSynonym'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberVendorSynonym getMemberVendorSynonym() {
@@ -197,7 +198,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     }
 
     /**
-     * (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
+     * [set] (会員)MEMBER_VENDOR_SYNONYM by my MEMBER_ID, named 'memberVendorSynonym'.
      * @param memberVendorSynonym The entity of foreign property 'memberVendorSynonym'. (NullAllowed)
      */
     public void setMemberVendorSynonym(MemberVendorSynonym memberVendorSynonym) {
@@ -208,7 +209,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     protected WithdrawalReason _withdrawalReason;
 
     /**
-     * WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
+     * [get] WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
      * @return The entity of foreign property 'withdrawalReason'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WithdrawalReason getWithdrawalReason() {
@@ -216,7 +217,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     }
 
     /**
-     * WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
+     * [set] WITHDRAWAL_REASON by my WITHDRAWAL_REASON_CODE, named 'withdrawalReason'.
      * @param withdrawalReason The entity of foreign property 'withdrawalReason'. (NullAllowed)
      */
     public void setWithdrawalReason(WithdrawalReason withdrawalReason) {
@@ -227,7 +228,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     protected SynonymMember _synonymMember;
 
     /**
-     * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
+     * [get] (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
      * @return The entity of foreign property 'synonymMember'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public SynonymMember getSynonymMember() {
@@ -235,7 +236,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     }
 
     /**
-     * (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
+     * [set] (会員)SYNONYM_MEMBER by my MEMBER_ID, named 'synonymMember'.
      * @param synonymMember The entity of foreign property 'synonymMember'. (NullAllowed)
      */
     public void setSynonymMember(SynonymMember synonymMember) {
@@ -246,7 +247,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     protected VendorSynonymMember _vendorSynonymMember;
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
+     * [get] (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
      * @return The entity of foreign property 'vendorSynonymMember'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public VendorSynonymMember getVendorSynonymMember() {
@@ -254,7 +255,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
     }
 
     /**
-     * (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
+     * [set] (会員)VENDOR_SYNONYM_MEMBER by my MEMBER_ID, named 'vendorSynonymMember'.
      * @param vendorSynonymMember The entity of foreign property 'vendorSynonymMember'. (NullAllowed)
      */
     public void setVendorSynonymMember(VendorSynonymMember vendorSynonymMember) {
@@ -485,7 +486,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -502,16 +503,14 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setWithdrawalReasonCode(String withdrawalReasonCode) {
         __modifiedProperties.addPropertyName("withdrawalReasonCode");
-        this._withdrawalReasonCode = withdrawalReasonCode;
+        _withdrawalReasonCode = withdrawalReasonCode;
     }
-
-    /** The value type annotation. {CLOB(4000)} */
-    public static final String withdrawalReasonInputText_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] WITHDRAWAL_REASON_INPUT_TEXT: {CLOB(4000)} <br />
      * @return The value of the column 'WITHDRAWAL_REASON_INPUT_TEXT'. (NullAllowed even if selected: for no constraint)
      */
+    @MappingValueType(keyName = "stringClobType")
     public String getWithdrawalReasonInputText() {
         return _withdrawalReasonInputText;
     }
@@ -522,7 +521,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setWithdrawalReasonInputText(String withdrawalReasonInputText) {
         __modifiedProperties.addPropertyName("withdrawalReasonInputText");
-        this._withdrawalReasonInputText = withdrawalReasonInputText;
+        _withdrawalReasonInputText = withdrawalReasonInputText;
     }
 
     /**
@@ -539,7 +538,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setWithdrawalDatetime(java.util.Date withdrawalDatetime) {
         __modifiedProperties.addPropertyName("withdrawalDatetime");
-        this._withdrawalDatetime = withdrawalDatetime;
+        _withdrawalDatetime = withdrawalDatetime;
     }
 
     /**
@@ -556,7 +555,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -573,7 +572,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -590,7 +589,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -607,7 +606,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -624,7 +623,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -641,7 +640,7 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -658,6 +657,6 @@ public abstract class BsSynonymMemberWithdrawal implements EntityDefinedCommonCo
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

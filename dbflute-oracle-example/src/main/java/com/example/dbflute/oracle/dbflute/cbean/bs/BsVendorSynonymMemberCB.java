@@ -81,21 +81,35 @@ public class BsVendorSynonymMemberCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberId (会員ID): PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public VendorSynonymMemberCB acceptPK(Long memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsVendorSynonymMemberCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (VendorSynonymMemberCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId (会員ID): PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long memberId) {
         assertObjectNotNull("memberId", memberId);
         BsVendorSynonymMemberCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;
+        cb.query().setMemberId_Equal(memberId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberAccount (会員アカウント): UQ, NotNull, VARCHAR2(50). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String memberAccount) {
+    public VendorSynonymMemberCB acceptUniqueOf(String memberAccount) {
         assertObjectNotNull("memberAccount", memberAccount);
         BsVendorSynonymMemberCB cb = this;
-        cb.query().setMemberAccount_Equal(memberAccount);;
+        cb.query().setMemberAccount_Equal(memberAccount);
+        return (VendorSynonymMemberCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

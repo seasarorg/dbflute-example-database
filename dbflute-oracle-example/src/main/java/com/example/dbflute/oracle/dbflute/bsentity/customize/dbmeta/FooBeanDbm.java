@@ -181,7 +181,7 @@ public class FooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public FooBean newEntity() { return new FooBean(); }
     public FooBean newMyEntity() { return new FooBean(); }
 
     // ===================================================================================

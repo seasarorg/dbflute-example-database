@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -298,7 +298,7 @@ public abstract class BsVendor$Dollar implements Entity, Serializable, Cloneable
      */
     public void setVendor$DollarId(Long vendor$DollarId) {
         __modifiedProperties.addPropertyName("vendor$DollarId");
-        this._vendor$DollarId = vendor$DollarId;
+        _vendor$DollarId = vendor$DollarId;
     }
 
     /**
@@ -315,6 +315,6 @@ public abstract class BsVendor$Dollar implements Entity, Serializable, Cloneable
      */
     public void setVendor$DollarName(String vendor$DollarName) {
         __modifiedProperties.addPropertyName("vendor$DollarName");
-        this._vendor$DollarName = vendor$DollarName;
+        _vendor$DollarName = vendor$DollarName;
     }
 }

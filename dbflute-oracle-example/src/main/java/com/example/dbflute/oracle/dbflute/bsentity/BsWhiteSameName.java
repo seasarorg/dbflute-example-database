@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -298,7 +298,7 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setSameNameId(Long sameNameId) {
         __modifiedProperties.addPropertyName("sameNameId");
-        this._sameNameId = sameNameId;
+        _sameNameId = sameNameId;
     }
 
     /**
@@ -315,6 +315,6 @@ public abstract class BsWhiteSameName implements Entity, Serializable, Cloneable
      */
     public void setSameNameName(String sameNameName) {
         __modifiedProperties.addPropertyName("sameNameName");
-        this._sameNameName = sameNameName;
+        _sameNameName = sameNameName;
     }
 }

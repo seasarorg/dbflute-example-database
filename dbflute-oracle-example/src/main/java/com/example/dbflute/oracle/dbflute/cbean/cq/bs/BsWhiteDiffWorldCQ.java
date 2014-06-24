@@ -74,10 +74,9 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _diffWorldId;
-    public ConditionValue getDiffWorldId() {
-        if (_diffWorldId == null) { _diffWorldId = nCV(); }
-        return _diffWorldId;
-    }
+    public ConditionValue getDiffWorldId()
+    { if (_diffWorldId == null) { _diffWorldId = nCV(); }
+      return _diffWorldId; }
     protected ConditionValue getCValueDiffWorldId() { return getDiffWorldId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
     public BsWhiteDiffWorldCQ addOrderBy_DiffWorldId_Desc() { regOBD("DIFF_WORLD_ID"); return this; }
 
     protected ConditionValue _diffWorldName;
-    public ConditionValue getDiffWorldName() {
-        if (_diffWorldName == null) { _diffWorldName = nCV(); }
-        return _diffWorldName;
-    }
+    public ConditionValue getDiffWorldName()
+    { if (_diffWorldName == null) { _diffWorldName = nCV(); }
+      return _diffWorldName; }
     protected ConditionValue getCValueDiffWorldName() { return getDiffWorldName(); }
 
     /** 
@@ -132,8 +130,7 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDiffWorldCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteDiffWorldCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -149,8 +146,7 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDiffWorldCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteDiffWorldCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -168,61 +164,32 @@ public class BsWhiteDiffWorldCQ extends AbstractBsWhiteDiffWorldCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteDiffWorldCQ> _scalarConditionMap;
-    public Map<String, WhiteDiffWorldCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteDiffWorldCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteDiffWorldCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteDiffWorldCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteDiffWorldCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteDiffWorldCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteDiffWorldCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteDiffWorldCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteDiffWorldCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteDiffWorldCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteDiffWorldCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteDiffWorldCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteDiffWorldCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteDiffWorldCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteDiffWorldCQ> _myselfExistsMap;
-    public Map<String, WhiteDiffWorldCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteDiffWorldCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteDiffWorldCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteDiffWorldCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteDiffWorldCQ> _myselfInScopeMap;
-    public Map<String, WhiteDiffWorldCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteDiffWorldCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteDiffWorldCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteDiffWorldCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -74,121 +74,50 @@ public class BsNextSchemaProductStatusCQ extends AbstractBsNextSchemaProductStat
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _productStatusCode;
-    public ConditionValue getProductStatusCode() {
-        if (_productStatusCode == null) { _productStatusCode = nCV(); }
-        return _productStatusCode;
-    }
+    public ConditionValue getProductStatusCode()
+    { if (_productStatusCode == null) { _productStatusCode = nCV(); }
+      return _productStatusCode; }
     protected ConditionValue getCValueProductStatusCode() { return getProductStatusCode(); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_ExistsReferrer_WhiteRefNextTargetList() { return _productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap == null) { _productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_ExistsReferrer_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_ExistsReferrer_WhiteRefNextTargetList." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_ExistsReferrer_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_ExistsReferrer_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_ExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_ExistsReferrer_WhiteRefNextTargetList", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_ExistsReferrer_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_ExistsReferrer_NextSchemaProductList() { return _productStatusCode_ExistsReferrer_NextSchemaProductListMap; }
-    public String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_ExistsReferrer_NextSchemaProductListMap == null) { _productStatusCode_ExistsReferrer_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_ExistsReferrer_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_ExistsReferrer_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_ExistsReferrer_NextSchemaProductList." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_ExistsReferrer_NextSchemaProductList() { return xgetSQueMap("productStatusCode_ExistsReferrer_NextSchemaProductList"); }
+    public String keepProductStatusCode_ExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_ExistsReferrer_NextSchemaProductList", sq); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList() { return _productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap == null) { _productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_NotExistsReferrer_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_NotExistsReferrer_WhiteRefNextTargetList." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_NotExistsReferrer_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_NotExistsReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_NotExistsReferrer_WhiteRefNextTargetList", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_NotExistsReferrer_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_NotExistsReferrer_NextSchemaProductList() { return _productStatusCode_NotExistsReferrer_NextSchemaProductListMap; }
-    public String keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_NotExistsReferrer_NextSchemaProductListMap == null) { _productStatusCode_NotExistsReferrer_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotExistsReferrer_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_NotExistsReferrer_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_NotExistsReferrer_NextSchemaProductList." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_NotExistsReferrer_NextSchemaProductList() { return xgetSQueMap("productStatusCode_NotExistsReferrer_NextSchemaProductList"); }
+    public String keepProductStatusCode_NotExistsReferrer_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_NotExistsReferrer_NextSchemaProductList", sq); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_InScopeRelation_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_InScopeRelation_WhiteRefNextTargetList() { return _productStatusCode_InScopeRelation_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_InScopeRelation_WhiteRefNextTargetListMap == null) { _productStatusCode_InScopeRelation_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_InScopeRelation_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_InScopeRelation_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_InScopeRelation_WhiteRefNextTargetList." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_InScopeRelation_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_InScopeRelation_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_InScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_InScopeRelation_WhiteRefNextTargetList", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_InScopeRelation_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_InScopeRelation_NextSchemaProductList() { return _productStatusCode_InScopeRelation_NextSchemaProductListMap; }
-    public String keepProductStatusCode_InScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_InScopeRelation_NextSchemaProductListMap == null) { _productStatusCode_InScopeRelation_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_InScopeRelation_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_InScopeRelation_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_InScopeRelation_NextSchemaProductList." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_InScopeRelation_NextSchemaProductList() { return xgetSQueMap("productStatusCode_InScopeRelation_NextSchemaProductList"); }
+    public String keepProductStatusCode_InScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_InScopeRelation_NextSchemaProductList", sq); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList() { return _productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap == null) { _productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_NotInScopeRelation_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_NotInScopeRelation_WhiteRefNextTargetList." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_NotInScopeRelation_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_NotInScopeRelation_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_NotInScopeRelation_WhiteRefNextTargetList", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_NotInScopeRelation_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_NotInScopeRelation_NextSchemaProductList() { return _productStatusCode_NotInScopeRelation_NextSchemaProductListMap; }
-    public String keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_NotInScopeRelation_NextSchemaProductListMap == null) { _productStatusCode_NotInScopeRelation_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_NotInScopeRelation_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_NotInScopeRelation_NextSchemaProductList." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_NotInScopeRelation_NextSchemaProductList() { return xgetSQueMap("productStatusCode_NotInScopeRelation_NextSchemaProductList"); }
+    public String keepProductStatusCode_NotInScopeRelation_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_NotInScopeRelation_NextSchemaProductList", sq); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList() { return _productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap == null) { _productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_SpecifyDerivedReferrer_WhiteRefNextTargetList", sq); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList() { return _productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap; }
-    public String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap == null) { _productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_SpecifyDerivedReferrer_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_SpecifyDerivedReferrer_NextSchemaProductList." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList() { return xgetSQueMap("productStatusCode_SpecifyDerivedReferrer_NextSchemaProductList"); }
+    public String keepProductStatusCode_SpecifyDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_SpecifyDerivedReferrer_NextSchemaProductList", sq); }
 
-    protected Map<String, WhiteRefNextTargetCQ> _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap;
-    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList() { return _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) {
-        if (_productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap == null) { _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListMap.put(ky, sq); return "productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList." + ky;
-    }
-    protected Map<String, Object> _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap;
-    public Map<String, Object> getProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter() { return _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(Object vl) {
-        if (_productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap == null) { _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameterMap.put(ky, vl); return "productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter." + ky;
-    }
+    public Map<String, WhiteRefNextTargetCQ> getProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList() { return xgetSQueMap("productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList(WhiteRefNextTargetCQ sq) { return xkeepSQue("productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList", sq); }
+    public Map<String, Object> getProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter() { return xgetSQuePmMap("productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList"); }
+    public String keepProductStatusCode_QueryDerivedReferrer_WhiteRefNextTargetListParameter(Object pm) { return xkeepSQuePm("productStatusCode_QueryDerivedReferrer_WhiteRefNextTargetList", pm); }
 
-    protected Map<String, NextSchemaProductCQ> _productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap;
-    public Map<String, NextSchemaProductCQ> getProductStatusCode_QueryDerivedReferrer_NextSchemaProductList() { return _productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq) {
-        if (_productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap == null) { _productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_NextSchemaProductListMap.put(ky, sq); return "productStatusCode_QueryDerivedReferrer_NextSchemaProductList." + ky;
-    }
-    protected Map<String, Object> _productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap;
-    public Map<String, Object> getProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter() { return _productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap; }
-    public String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(Object vl) {
-        if (_productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap == null) { _productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap.size() + 1);
-        _productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameterMap.put(ky, vl); return "productStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter." + ky;
-    }
+    public Map<String, NextSchemaProductCQ> getProductStatusCode_QueryDerivedReferrer_NextSchemaProductList() { return xgetSQueMap("productStatusCode_QueryDerivedReferrer_NextSchemaProductList"); }
+    public String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductList(NextSchemaProductCQ sq) { return xkeepSQue("productStatusCode_QueryDerivedReferrer_NextSchemaProductList", sq); }
+    public Map<String, Object> getProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter() { return xgetSQuePmMap("productStatusCode_QueryDerivedReferrer_NextSchemaProductList"); }
+    public String keepProductStatusCode_QueryDerivedReferrer_NextSchemaProductListParameter(Object pm) { return xkeepSQuePm("productStatusCode_QueryDerivedReferrer_NextSchemaProductList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -205,10 +134,9 @@ public class BsNextSchemaProductStatusCQ extends AbstractBsNextSchemaProductStat
     public BsNextSchemaProductStatusCQ addOrderBy_ProductStatusCode_Desc() { regOBD("PRODUCT_STATUS_CODE"); return this; }
 
     protected ConditionValue _productStatusName;
-    public ConditionValue getProductStatusName() {
-        if (_productStatusName == null) { _productStatusName = nCV(); }
-        return _productStatusName;
-    }
+    public ConditionValue getProductStatusName()
+    { if (_productStatusName == null) { _productStatusName = nCV(); }
+      return _productStatusName; }
     protected ConditionValue getCValueProductStatusName() { return getProductStatusName(); }
 
     /** 
@@ -242,8 +170,7 @@ public class BsNextSchemaProductStatusCQ extends AbstractBsNextSchemaProductStat
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsNextSchemaProductStatusCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsNextSchemaProductStatusCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -259,8 +186,7 @@ public class BsNextSchemaProductStatusCQ extends AbstractBsNextSchemaProductStat
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsNextSchemaProductStatusCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsNextSchemaProductStatusCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -278,61 +204,32 @@ public class BsNextSchemaProductStatusCQ extends AbstractBsNextSchemaProductStat
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, NextSchemaProductStatusCQ> _scalarConditionMap;
-    public Map<String, NextSchemaProductStatusCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(NextSchemaProductStatusCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, NextSchemaProductStatusCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(NextSchemaProductStatusCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, NextSchemaProductStatusCQ> _specifyMyselfDerivedMap;
-    public Map<String, NextSchemaProductStatusCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, NextSchemaProductStatusCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(NextSchemaProductStatusCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, NextSchemaProductStatusCQ> _queryMyselfDerivedMap;
-    public Map<String, NextSchemaProductStatusCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(NextSchemaProductStatusCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, NextSchemaProductStatusCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(NextSchemaProductStatusCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, NextSchemaProductStatusCQ> _myselfExistsMap;
-    public Map<String, NextSchemaProductStatusCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(NextSchemaProductStatusCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, NextSchemaProductStatusCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(NextSchemaProductStatusCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, NextSchemaProductStatusCQ> _myselfInScopeMap;
-    public Map<String, NextSchemaProductStatusCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(NextSchemaProductStatusCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, NextSchemaProductStatusCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(NextSchemaProductStatusCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

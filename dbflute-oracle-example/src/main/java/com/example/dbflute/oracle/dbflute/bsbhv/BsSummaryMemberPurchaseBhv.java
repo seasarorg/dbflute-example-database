@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
-import org.seasar.dbflute.optional.*;
+import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
+import com.example.dbflute.oracle.dbflute.bsbhv.loader.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 import com.example.dbflute.oracle.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.oracle.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return SummaryMemberPurchaseDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public SummaryMemberPurchase newEntity() { return new SummaryMemberPurchase(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public SummaryMemberPurchaseCB newConditionBean() { return new SummaryMemberPurchaseCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public SummaryMemberPurchase newMyEntity() { return new SummaryMemberPurchase(); }
@@ -99,6 +102,10 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(SummaryMemberPurchaseCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(SummaryMemberPurchaseCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -112,10 +119,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -140,23 +144,22 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectEntity(SummaryMemberPurchaseCB cb) {
-        return doSelectEntity(cb, SummaryMemberPurchase.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected SummaryMemberPurchase facadeSelectEntity(SummaryMemberPurchaseCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends SummaryMemberPurchase> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -174,19 +177,19 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public SummaryMemberPurchase selectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, SummaryMemberPurchase.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected SummaryMemberPurchase facadeSelectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         List Select
@@ -207,20 +210,18 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<SummaryMemberPurchase> selectList(SummaryMemberPurchaseCB cb) {
-        return doSelectList(cb, SummaryMemberPurchase.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<SummaryMemberPurchase> facadeSelectList(SummaryMemberPurchaseCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryMemberPurchase> ListResultBean<ENTITY> doSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -248,21 +249,18 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<SummaryMemberPurchase> selectPage(SummaryMemberPurchaseCB cb) {
-        return doSelectPage(cb, SummaryMemberPurchase.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<SummaryMemberPurchase> facadeSelectPage(SummaryMemberPurchaseCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryMemberPurchase> PagingResultBean<ENTITY> doSelectPage(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public int callbackSelectCount(SummaryMemberPurchaseCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -282,16 +280,17 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @param entityRowHandler The handler of entity row of SummaryMemberPurchase. (NotNull)
      */
     public void selectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<SummaryMemberPurchase> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, SummaryMemberPurchase.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<SummaryMemberPurchase> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends SummaryMemberPurchase> void doSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, SummaryMemberPurchaseCB>() {
-            public void callbackSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -312,23 +311,22 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<SummaryMemberPurchaseCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<SummaryMemberPurchaseCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends SummaryMemberPurchaseCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<SummaryMemberPurchaseCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends SummaryMemberPurchaseCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends SummaryMemberPurchaseCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -340,9 +338,83 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     }
 
     // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param summaryMemberPurchaseList The entity list of summaryMemberPurchase. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<SummaryMemberPurchase> summaryMemberPurchaseList, ReferrerLoaderHandler<LoaderOfSummaryMemberPurchase> handler) {
+        xassLRArg(summaryMemberPurchaseList, handler);
+        handler.handle(new LoaderOfSummaryMemberPurchase().ready(summaryMemberPurchaseList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param summaryMemberPurchase The entity of summaryMemberPurchase. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(SummaryMemberPurchase summaryMemberPurchase, ReferrerLoaderHandler<LoaderOfSummaryMemberPurchase> handler) {
+        xassLRArg(summaryMemberPurchase, handler);
+        handler.handle(new LoaderOfSummaryMemberPurchase().ready(xnewLRAryLs(summaryMemberPurchase), _behaviorSelector));
+    }
+
+    // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -386,51 +458,11 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(SummaryMemberPurchaseCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(SummaryMemberPurchaseCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends SummaryMemberPurchase> void delegateSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends SummaryMemberPurchase> List<ENTITY> delegateSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected SummaryMemberPurchase downcast(Entity et) {
-        return helpEntityDowncastInternally(et, SummaryMemberPurchase.class);
-    }
-
-    protected SummaryMemberPurchaseCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, SummaryMemberPurchaseCB.class);
-    }
-
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<SummaryMemberPurchase> typeOfSelectedEntity() { return SummaryMemberPurchase.class; }
+    protected SummaryMemberPurchase downcast(Entity et) { return helpEntityDowncastInternally(et, SummaryMemberPurchase.class); }
+    protected SummaryMemberPurchaseCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SummaryMemberPurchaseCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<SummaryMemberPurchase> downcast(List<? extends Entity> ls) {
-        return (List<SummaryMemberPurchase>)ls;
-    }
+    protected List<SummaryMemberPurchase> downcast(List<? extends Entity> ls) { return (List<SummaryMemberPurchase>)ls; }
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -153,7 +153,7 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
     protected List<WhiteRefNextTarget> _whiteRefNextTargetList;
 
     /**
-     * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
+     * [get] WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
      * @return The entity list of referrer property 'whiteRefNextTargetList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteRefNextTarget> getWhiteRefNextTargetList() {
@@ -162,7 +162,7 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
     }
 
     /**
-     * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
+     * [set] WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
      * @param whiteRefNextTargetList The entity list of referrer property 'whiteRefNextTargetList'. (NullAllowed)
      */
     public void setWhiteRefNextTargetList(List<WhiteRefNextTarget> whiteRefNextTargetList) {
@@ -173,7 +173,7 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
     protected List<NextSchemaProduct> _nextSchemaProductList;
 
     /**
-     * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
+     * [get] (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
      * @return The entity list of referrer property 'nextSchemaProductList'. (NotNull: even if no loading, returns empty list)
      */
     public List<NextSchemaProduct> getNextSchemaProductList() {
@@ -182,7 +182,7 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
     }
 
     /**
-     * (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
+     * [set] (隣のスキーマ)NEXT_SCHEMA_PRODUCT by PRODUCT_STATUS_CODE, named 'nextSchemaProductList'.
      * @param nextSchemaProductList The entity list of referrer property 'nextSchemaProductList'. (NullAllowed)
      */
     public void setNextSchemaProductList(List<NextSchemaProduct> nextSchemaProductList) {
@@ -367,7 +367,7 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -384,6 +384,6 @@ public abstract class BsNextSchemaProductStatus implements Entity, Serializable,
      */
     public void setProductStatusName(String productStatusName) {
         __modifiedProperties.addPropertyName("productStatusName");
-        this._productStatusName = productStatusName;
+        _productStatusName = productStatusName;
     }
 }

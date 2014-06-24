@@ -81,22 +81,36 @@ public class BsMemberAddressCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberAddressId : PK, NotNull, int(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberAddressCB acceptPK(Integer memberAddressId) {
+        assertObjectNotNull("memberAddressId", memberAddressId);
+        BsMemberAddressCB cb = this;
+        cb.query().setMemberAddressId_Equal(memberAddressId);
+        return (MemberAddressCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberAddressId : PK, NotNull, int(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer memberAddressId) {
         assertObjectNotNull("memberAddressId", memberAddressId);
         BsMemberAddressCB cb = this;
-        cb.query().setMemberAddressId_Equal(memberAddressId);;
+        cb.query().setMemberAddressId_Equal(memberAddressId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberId : UQ+, NotNull, int(10), FK to MEMBER. (NotNull)
      * @param validBeginDate : +UQ, NotNull, datetime(23, 3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+    public MemberAddressCB acceptUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("validBeginDate", validBeginDate);
         BsMemberAddressCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;cb.query().setValidBeginDate_Equal(validBeginDate);;
+        cb.query().setMemberId_Equal(memberId);cb.query().setValidBeginDate_Equal(validBeginDate);
+        return (MemberAddressCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

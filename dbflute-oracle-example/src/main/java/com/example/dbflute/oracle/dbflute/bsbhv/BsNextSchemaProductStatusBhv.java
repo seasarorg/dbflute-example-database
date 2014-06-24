@@ -5,11 +5,14 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
+import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
+import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
-import org.seasar.dbflute.optional.*;
+import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
 import com.example.dbflute.oracle.dbflute.exbhv.*;
+import com.example.dbflute.oracle.dbflute.bsbhv.loader.*;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 import com.example.dbflute.oracle.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.oracle.dbflute.cbean.*;
@@ -63,7 +66,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
-    /** @return The instance of DBMeta. (NotNull) */
+    /** {@inheritDoc} */
     public DBMeta getDBMeta() { return NextSchemaProductStatusDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
@@ -73,10 +76,10 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public Entity newEntity() { return newMyEntity(); }
+    public NextSchemaProductStatus newEntity() { return new NextSchemaProductStatus(); }
 
     /** {@inheritDoc} */
-    public ConditionBean newConditionBean() { return newMyConditionBean(); }
+    public NextSchemaProductStatusCB newConditionBean() { return new NextSchemaProductStatusCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
     public NextSchemaProductStatus newMyEntity() { return new NextSchemaProductStatus(); }
@@ -99,6 +102,10 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @return The count for the condition. (NotMinus)
      */
     public int selectCount(NextSchemaProductStatusCB cb) {
+        return facadeSelectCount(cb);
+    }
+
+    protected int facadeSelectCount(NextSchemaProductStatusCB cb) {
         return doSelectCountUniquely(cb);
     }
 
@@ -112,10 +119,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
         return delegateSelectCountPlainly(cb);
     }
 
-    @Override
-    protected int doReadCount(ConditionBean cb) {
-        return selectCount(downcast(cb));
-    }
+    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -140,23 +144,22 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectEntity(NextSchemaProductStatusCB cb) {
-        return doSelectEntity(cb, NextSchemaProductStatus.class);
+        return facadeSelectEntity(cb);
+    }
+
+    protected NextSchemaProductStatus facadeSelectEntity(NextSchemaProductStatusCB cb) {
+        return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectEntity(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityInternally(cb, tp, new InternalSelectEntityCallback<ENTITY, NextSchemaProductStatusCB>() {
-            public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityInternally(cb, tp);
     }
 
     protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectOptionalEntity(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
-    @Override
-    protected Entity doReadEntity(ConditionBean cb) {
-        return selectEntity(downcast(cb));
-    }
+    protected Entity doReadEntity(ConditionBean cb) { return facadeSelectEntity(downcast(cb)); }
 
     /**
      * Select the entity by the condition-bean with deleted check. <br />
@@ -174,19 +177,19 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectEntityWithDeletedCheck(NextSchemaProductStatusCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, NextSchemaProductStatus.class);
+        return facadeSelectEntityWithDeletedCheck(cb);
+    }
+
+    protected NextSchemaProductStatus facadeSelectEntityWithDeletedCheck(NextSchemaProductStatusCB cb) {
+        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectEntityWithDeletedCheck(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp, new InternalSelectEntityWithDeletedCheckCallback<ENTITY, NextSchemaProductStatusCB>() {
-            public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB lcb, Class<ENTITY> ltp) { return doSelectList(lcb, ltp); } });
+        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
 
-    @Override
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) {
-        return selectEntityWithDeletedCheck(downcast(cb));
-    }
+    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
 
     /**
      * Select the entity by the primary-key value.
@@ -196,15 +199,19 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValue(String productStatusCode) {
-        return doSelectByPK(productStatusCode, NextSchemaProductStatus.class);
+        return facadeSelectByPKValue(productStatusCode);
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPK(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntity(xprepareCBAsPK(productStatusCode), entityType);
+    protected NextSchemaProductStatus facadeSelectByPKValue(String productStatusCode) {
+        return doSelectByPK(productStatusCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(String productStatusCode, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectByPK(productStatusCode, entityType), productStatusCode);
+    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPK(String productStatusCode, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(productStatusCode), tp);
+    }
+
+    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectOptionalByPK(String productStatusCode, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(productStatusCode, tp), productStatusCode);
     }
 
     /**
@@ -216,17 +223,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public NextSchemaProductStatus selectByPKValueWithDeletedCheck(String productStatusCode) {
-        return doSelectByPKWithDeletedCheck(productStatusCode, NextSchemaProductStatus.class);
+        return doSelectByPKWithDeletedCheck(productStatusCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPKWithDeletedCheck(String productStatusCode, Class<ENTITY> entityType) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productStatusCode), entityType);
+    protected <ENTITY extends NextSchemaProductStatus> ENTITY doSelectByPKWithDeletedCheck(String productStatusCode, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(productStatusCode), tp);
     }
 
     protected NextSchemaProductStatusCB xprepareCBAsPK(String productStatusCode) {
         assertObjectNotNull("productStatusCode", productStatusCode);
-        NextSchemaProductStatusCB cb = newMyConditionBean(); cb.acceptPrimaryKey(productStatusCode);
-        return cb;
+        return newConditionBean().acceptPK(productStatusCode);
     }
 
     /**
@@ -238,17 +244,20 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
     public OptionalEntity<NextSchemaProductStatus> selectByUniqueOf(String productStatusName) {
-        return doSelectByUniqueOf(productStatusName, NextSchemaProductStatus.class);
+        return facadeSelectByUniqueOf(productStatusName);
     }
 
-    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectByUniqueOf(String productStatusName, Class<ENTITY> entityType) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(productStatusName), entityType), productStatusName);
+    protected OptionalEntity<NextSchemaProductStatus> facadeSelectByUniqueOf(String productStatusName) {
+        return doSelectByUniqueOf(productStatusName, typeOfSelectedEntity());
+    }
+
+    protected <ENTITY extends NextSchemaProductStatus> OptionalEntity<ENTITY> doSelectByUniqueOf(String productStatusName, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(productStatusName), tp), productStatusName);
     }
 
     protected NextSchemaProductStatusCB xprepareCBAsUniqueOf(String productStatusName) {
         assertObjectNotNull("productStatusName", productStatusName);
-        NextSchemaProductStatusCB cb = newMyConditionBean(); cb.acceptUniqueOf(productStatusName);
-        return cb;
+        return newConditionBean().acceptUniqueOf(productStatusName);
     }
 
     // ===================================================================================
@@ -270,20 +279,18 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public ListResultBean<NextSchemaProductStatus> selectList(NextSchemaProductStatusCB cb) {
-        return doSelectList(cb, NextSchemaProductStatus.class);
+        return facadeSelectList(cb);
+    }
+
+    protected ListResultBean<NextSchemaProductStatus> facadeSelectList(NextSchemaProductStatusCB cb) {
+        return doSelectList(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends NextSchemaProductStatus> ListResultBean<ENTITY> doSelectList(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        return helpSelectListInternally(cb, tp, new InternalSelectListCallback<ENTITY, NextSchemaProductStatusCB>() {
-            public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB lcb, Class<ENTITY> ltp) { return delegateSelectList(lcb, ltp); } });
+        return helpSelectListInternally(cb, tp);
     }
 
-    @Override
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) {
-        return selectList(downcast(cb));
-    }
+    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -311,21 +318,18 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
     public PagingResultBean<NextSchemaProductStatus> selectPage(NextSchemaProductStatusCB cb) {
-        return doSelectPage(cb, NextSchemaProductStatus.class);
+        return facadeSelectPage(cb);
+    }
+
+    protected PagingResultBean<NextSchemaProductStatus> facadeSelectPage(NextSchemaProductStatusCB cb) {
+        return doSelectPage(cb, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends NextSchemaProductStatus> PagingResultBean<ENTITY> doSelectPage(NextSchemaProductStatusCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectPageInternally(cb, tp, new InternalSelectPageCallback<ENTITY, NextSchemaProductStatusCB>() {
-            public int callbackSelectCount(NextSchemaProductStatusCB cb) { return doSelectCountPlainly(cb); }
-            public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        return helpSelectPageInternally(cb, tp);
     }
 
-    @Override
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) {
-        return selectPage(downcast(cb));
-    }
+    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Cursor Select
@@ -345,16 +349,17 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param entityRowHandler The handler of entity row of NextSchemaProductStatus. (NotNull)
      */
     public void selectCursor(NextSchemaProductStatusCB cb, EntityRowHandler<NextSchemaProductStatus> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, NextSchemaProductStatus.class);
+        facadeSelectCursor(cb, entityRowHandler);
+    }
+
+    protected void facadeSelectCursor(NextSchemaProductStatusCB cb, EntityRowHandler<NextSchemaProductStatus> entityRowHandler) {
+        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
     protected <ENTITY extends NextSchemaProductStatus> void doSelectCursor(NextSchemaProductStatusCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp, new InternalSelectCursorCallback<ENTITY, NextSchemaProductStatusCB>() {
-            public void callbackSelectCursor(NextSchemaProductStatusCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) { delegateSelectCursor(cb, handler, tp); }
-            public List<ENTITY> callbackSelectList(NextSchemaProductStatusCB cb, Class<ENTITY> tp) { return doSelectList(cb, tp); }
-        });
+        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -375,23 +380,22 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> SLFunction<NextSchemaProductStatusCB, RESULT> scalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newMyConditionBean());
+    public <RESULT> HpSLSFunction<NextSchemaProductStatusCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+        return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT, CB extends NextSchemaProductStatusCB> SLFunction<CB, RESULT> doScalarSelect(Class<RESULT> tp, CB cb) {
+    protected <RESULT> HpSLSFunction<NextSchemaProductStatusCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+        return doScalarSelect(resultType, newConditionBean());
+    }
+
+    protected <RESULT, CB extends NextSchemaProductStatusCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        return createSLFunction(cb, tp);
+        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
+        return createSLSFunction(cb, tp, executor);
     }
 
-    protected <RESULT, CB extends NextSchemaProductStatusCB> SLFunction<CB, RESULT> createSLFunction(CB cb, Class<RESULT> tp) {
-        return new SLFunction<CB, RESULT>(cb, tp);
-    }
-
-    protected <RESULT> SLFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) {
-        return doScalarSelect(tp, newMyConditionBean());
-    }
+    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -405,6 +409,78 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     // ===================================================================================
     //                                                                       Load Referrer
     //                                                                       =============
+    /**
+     * Load referrer by the the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * List&lt;Member&gt; memberList = memberBhv.selectList(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(memberList, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param nextSchemaProductStatusList The entity list of nextSchemaProductStatus. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(List<NextSchemaProductStatus> nextSchemaProductStatusList, ReferrerLoaderHandler<LoaderOfNextSchemaProductStatus> handler) {
+        xassLRArg(nextSchemaProductStatusList, handler);
+        handler.handle(new LoaderOfNextSchemaProductStatus().ready(nextSchemaProductStatusList, _behaviorSelector));
+    }
+
+    /**
+     * Load referrer of ${referrer.referrerJavaBeansRulePropertyName} by the referrer loader. <br />
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.query().set...
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * memberBhv.<span style="color: #DD4747">load</span>(member, loader -&gt; {
+     *     loader.<span style="color: #DD4747">loadPurchaseList</span>(purchaseCB -&gt; {
+     *         purchaseCB.query().set...
+     *         purchaseCB.query().addOrderBy_PurchasePrice_Desc();
+     *     }); <span style="color: #3F7E5E">// you can also load nested referrer from here</span>
+     *     <span style="color: #3F7E5E">//}).withNestedList(purchaseLoader -&gt {</span>
+     *     <span style="color: #3F7E5E">//    purchaseLoader.loadPurchasePaymentList(...);</span>
+     *     <span style="color: #3F7E5E">//});</span>
+     *
+     *     <span style="color: #3F7E5E">// you can also pull out foreign table and load its referrer</span>
+     *     <span style="color: #3F7E5E">// (setupSelect of the foreign table should be called)</span>
+     *     <span style="color: #3F7E5E">//loader.pulloutMemberStatus().loadMemberLoginList(...)</span>
+     * }
+     * for (Member member : memberList) {
+     *     List&lt;Purchase&gt; purchaseList = member.<span style="color: #DD4747">getPurchaseList()</span>;
+     *     for (Purchase purchase : purchaseList) {
+     *         ...
+     *     }
+     * }
+     * </pre>
+     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
+     * The condition-bean, which the set-upper provides, has order by FK before callback.
+     * @param nextSchemaProductStatus The entity of nextSchemaProductStatus. (NotNull)
+     * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
+     */
+    public void load(NextSchemaProductStatus nextSchemaProductStatus, ReferrerLoaderHandler<LoaderOfNextSchemaProductStatus> handler) {
+        xassLRArg(nextSchemaProductStatus, handler);
+        handler.handle(new LoaderOfNextSchemaProductStatus().ready(xnewLRAryLs(nextSchemaProductStatus), _behaviorSelector));
+    }
+
     /**
      * Load referrer of whiteRefNextTargetList by the set-upper of referrer. <br />
      * WHITE_REF_NEXT_TARGET by NEXT_TARGET_CODE, named 'whiteRefNextTargetList'.
@@ -433,7 +509,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
+    public NestedReferrerListGateway<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
         xassLRArg(nextSchemaProductStatusList, setupper);
         return doLoadWhiteRefNextTargetList(nextSchemaProductStatusList, new LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget>().xinit(setupper));
     }
@@ -464,7 +540,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
+    public NestedReferrerListGateway<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<WhiteRefNextTargetCB> setupper) {
         xassLRArg(nextSchemaProductStatus, setupper);
         return doLoadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), new LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget>().xinit(setupper));
     }
@@ -475,7 +551,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
+    public NestedReferrerListGateway<WhiteRefNextTarget> loadWhiteRefNextTargetList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatus, loadReferrerOption);
         return loadWhiteRefNextTargetList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
     }
@@ -487,30 +563,14 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
     @SuppressWarnings("unchecked")
-    public NestedReferrerLoader<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
+    public NestedReferrerListGateway<WhiteRefNextTarget> loadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatusList, loadReferrerOption);
-        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerLoader<WhiteRefNextTarget>)EMPTY_LOADER; }
+        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerListGateway<WhiteRefNextTarget>)EMPTY_NREF_LGWAY; }
         return doLoadWhiteRefNextTargetList(nextSchemaProductStatusList, loadReferrerOption);
     }
 
-    protected NestedReferrerLoader<WhiteRefNextTarget> doLoadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> option) {
-        final WhiteRefNextTargetBhv referrerBhv = xgetBSFLR().select(WhiteRefNextTargetBhv.class);
-        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, WhiteRefNextTargetCB, WhiteRefNextTarget>() {
-            public String getPKVal(NextSchemaProductStatus et)
-            { return et.getProductStatusCode(); }
-            public void setRfLs(NextSchemaProductStatus et, List<WhiteRefNextTarget> ls)
-            { et.setWhiteRefNextTargetList(ls); }
-            public WhiteRefNextTargetCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(WhiteRefNextTargetCB cb, List<String> ls)
-            { cb.query().setNextTargetCode_InScope(ls); }
-            public void qyOdFKAsc(WhiteRefNextTargetCB cb) { cb.query().addOrderBy_NextTargetCode_Asc(); }
-            public void spFKCol(WhiteRefNextTargetCB cb) { cb.specify().columnNextTargetCode(); }
-            public List<WhiteRefNextTarget> selRfLs(WhiteRefNextTargetCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(WhiteRefNextTarget re) { return re.getNextTargetCode(); }
-            public void setlcEt(WhiteRefNextTarget re, NextSchemaProductStatus le)
-            { re.setNextSchemaProductStatus(le); }
-            public String getRfPrNm() { return "whiteRefNextTargetList"; }
-        });
+    protected NestedReferrerListGateway<WhiteRefNextTarget> doLoadWhiteRefNextTargetList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<WhiteRefNextTargetCB, WhiteRefNextTarget> option) {
+        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, "whiteRefNextTargetList");
     }
 
     /**
@@ -541,7 +601,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
+    public NestedReferrerListGateway<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
         xassLRArg(nextSchemaProductStatusList, setupper);
         return doLoadNextSchemaProductList(nextSchemaProductStatusList, new LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct>().xinit(setupper));
     }
@@ -572,7 +632,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
+    public NestedReferrerListGateway<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, ConditionBeanSetupper<NextSchemaProductCB> setupper) {
         xassLRArg(nextSchemaProductStatus, setupper);
         return doLoadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), new LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct>().xinit(setupper));
     }
@@ -583,7 +643,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
-    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
+    public NestedReferrerListGateway<NextSchemaProduct> loadNextSchemaProductList(NextSchemaProductStatus nextSchemaProductStatus, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatus, loadReferrerOption);
         return loadNextSchemaProductList(xnewLRLs(nextSchemaProductStatus), loadReferrerOption);
     }
@@ -595,36 +655,19 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
      */
     @SuppressWarnings("unchecked")
-    public NestedReferrerLoader<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
+    public NestedReferrerListGateway<NextSchemaProduct> loadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> loadReferrerOption) {
         xassLRArg(nextSchemaProductStatusList, loadReferrerOption);
-        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerLoader<NextSchemaProduct>)EMPTY_LOADER; }
+        if (nextSchemaProductStatusList.isEmpty()) { return (NestedReferrerListGateway<NextSchemaProduct>)EMPTY_NREF_LGWAY; }
         return doLoadNextSchemaProductList(nextSchemaProductStatusList, loadReferrerOption);
     }
 
-    protected NestedReferrerLoader<NextSchemaProduct> doLoadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> option) {
-        final NextSchemaProductBhv referrerBhv = xgetBSFLR().select(NextSchemaProductBhv.class);
-        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, new InternalLoadReferrerCallback<NextSchemaProductStatus, String, NextSchemaProductCB, NextSchemaProduct>() {
-            public String getPKVal(NextSchemaProductStatus et)
-            { return et.getProductStatusCode(); }
-            public void setRfLs(NextSchemaProductStatus et, List<NextSchemaProduct> ls)
-            { et.setNextSchemaProductList(ls); }
-            public NextSchemaProductCB newMyCB() { return referrerBhv.newMyConditionBean(); }
-            public void qyFKIn(NextSchemaProductCB cb, List<String> ls)
-            { cb.query().setProductStatusCode_InScope(ls); }
-            public void qyOdFKAsc(NextSchemaProductCB cb) { cb.query().addOrderBy_ProductStatusCode_Asc(); }
-            public void spFKCol(NextSchemaProductCB cb) { cb.specify().columnProductStatusCode(); }
-            public List<NextSchemaProduct> selRfLs(NextSchemaProductCB cb) { return referrerBhv.selectList(cb); }
-            public String getFKVal(NextSchemaProduct re) { return re.getProductStatusCode(); }
-            public void setlcEt(NextSchemaProduct re, NextSchemaProductStatus le)
-            { re.setNextSchemaProductStatus(le); }
-            public String getRfPrNm() { return "nextSchemaProductList"; }
-        });
+    protected NestedReferrerListGateway<NextSchemaProduct> doLoadNextSchemaProductList(List<NextSchemaProductStatus> nextSchemaProductStatusList, LoadReferrerOption<NextSchemaProductCB, NextSchemaProduct> option) {
+        return helpLoadReferrerInternally(nextSchemaProductStatusList, option, "nextSchemaProductList");
     }
 
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
-
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
@@ -633,22 +676,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @param nextSchemaProductStatusList The list of nextSchemaProductStatus. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<String> extractProductStatusCodeList(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
-        return helpExtractListInternally(nextSchemaProductStatusList, new InternalExtractCallback<NextSchemaProductStatus, String>() {
-            public String getCV(NextSchemaProductStatus et) { return et.getProductStatusCode(); }
-        });
-    }
+    public List<String> extractProductStatusCodeList(List<NextSchemaProductStatus> nextSchemaProductStatusList)
+    { return helpExtractListInternally(nextSchemaProductStatusList, "productStatusCode"); }
 
     /**
      * Extract the value list of (single) unique key productStatusName.
      * @param nextSchemaProductStatusList The list of nextSchemaProductStatus. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<String> extractProductStatusNameList(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
-        return helpExtractListInternally(nextSchemaProductStatusList, new InternalExtractCallback<NextSchemaProductStatus, String>() {
-            public String getCV(NextSchemaProductStatus et) { return et.getProductStatusName(); }
-        });
-    }
+    public List<String> extractProductStatusNameList(List<NextSchemaProductStatus> nextSchemaProductStatusList)
+    { return helpExtractListInternally(nextSchemaProductStatusList, "productStatusName"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -667,32 +704,23 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * ... = nextSchemaProductStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param nextSchemaProductStatus The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param nextSchemaProductStatus The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insert(NextSchemaProductStatus nextSchemaProductStatus) {
         doInsert(nextSchemaProductStatus, null);
     }
 
-    protected void doInsert(NextSchemaProductStatus nextSchemaProductStatus, InsertOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatus", nextSchemaProductStatus);
-        prepareInsertOption(op);
-        delegateInsert(nextSchemaProductStatus, op);
+    protected void doInsert(NextSchemaProductStatus et, InsertOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatus", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
     protected void prepareInsertOption(InsertOption<NextSchemaProductStatusCB> op) {
-        if (op == null) { return; }
-        assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) {
-            op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertInsertOptionStatus(op);
+        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    @Override
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { insert(downcast(et)); }
-        else { varyingInsert(downcast(et), downcast(op)); }
-    }
+    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
 
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
@@ -703,7 +731,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.set...;</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     nextSchemaProductStatusBhv.<span style="color: #DD4747">update</span>(nextSchemaProductStatus);
@@ -711,99 +739,65 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *     ...
      * }
      * </pre>
-     * @param nextSchemaProductStatus The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param nextSchemaProductStatus The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(final NextSchemaProductStatus nextSchemaProductStatus) {
+    public void update(NextSchemaProductStatus nextSchemaProductStatus) {
         doUpdate(nextSchemaProductStatus, null);
     }
 
-    protected void doUpdate(NextSchemaProductStatus nextSchemaProductStatus, final UpdateOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatus", nextSchemaProductStatus);
-        prepareUpdateOption(op);
-        helpUpdateInternally(nextSchemaProductStatus, new InternalUpdateCallback<NextSchemaProductStatus>() {
-            public int callbackDelegateUpdate(NextSchemaProductStatus et) { return delegateUpdate(et, op); } });
+    protected void doUpdate(NextSchemaProductStatus et, UpdateOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatus", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
     protected void prepareUpdateOption(UpdateOption<NextSchemaProductStatusCB> op) {
-        if (op == null) { return; }
-        assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) {
-            op.resolveSelfSpecification(createCBForVaryingUpdate());
-        }
-        if (op.hasSpecifiedUpdateColumn()) {
-            op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate());
-        }
+        if (op == null) { return; } assertUpdateOptionStatus(op);
+        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
+        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected NextSchemaProductStatusCB createCBForVaryingUpdate() {
-        NextSchemaProductStatusCB cb = newMyConditionBean();
-        cb.xsetupForVaryingUpdate();
-        return cb;
-    }
+    protected NextSchemaProductStatusCB createCBForVaryingUpdate()
+    { NextSchemaProductStatusCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected NextSchemaProductStatusCB createCBForSpecifiedUpdate() {
-        NextSchemaProductStatusCB cb = newMyConditionBean();
-        cb.xsetupForSpecifiedUpdate();
-        return cb;
-    }
+    protected NextSchemaProductStatusCB createCBForSpecifiedUpdate()
+    { NextSchemaProductStatusCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
-    @Override
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { update(downcast(et)); }
-        else { varyingUpdate(downcast(et), downcast(op)); }
-    }
+    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op) {
-        doModify(et, op);
-    }
+    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
+    { doModify(et, op); }
 
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param nextSchemaProductStatus The entity of insert or update target. (NotNull)
+     * @param nextSchemaProductStatus The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
     public void insertOrUpdate(NextSchemaProductStatus nextSchemaProductStatus) {
-        doInesrtOrUpdate(nextSchemaProductStatus, null, null);
+        doInsertOrUpdate(nextSchemaProductStatus, null, null);
     }
 
-    protected void doInesrtOrUpdate(NextSchemaProductStatus nextSchemaProductStatus, final InsertOption<NextSchemaProductStatusCB> iop, final UpdateOption<NextSchemaProductStatusCB> uop) {
-        helpInsertOrUpdateInternally(nextSchemaProductStatus, new InternalInsertOrUpdateCallback<NextSchemaProductStatus, NextSchemaProductStatusCB>() {
-            public void callbackInsert(NextSchemaProductStatus et) { doInsert(et, iop); }
-            public void callbackUpdate(NextSchemaProductStatus et) { doUpdate(et, uop); }
-            public NextSchemaProductStatusCB callbackNewMyConditionBean() { return newMyConditionBean(); }
-            public int callbackSelectCount(NextSchemaProductStatusCB cb) { return selectCount(cb); }
-        });
+    protected void doInsertOrUpdate(NextSchemaProductStatus et, InsertOption<NextSchemaProductStatusCB> iop, UpdateOption<NextSchemaProductStatusCB> uop) {
+        assertObjectNotNull("nextSchemaProductStatus", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
-    @Override
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        if (iop == null && uop == null) { insertOrUpdate(downcast(et)); }
-        else {
-            iop = iop != null ? iop : new InsertOption<NextSchemaProductStatusCB>();
-            uop = uop != null ? uop : new UpdateOption<NextSchemaProductStatusCB>();
-            varyingInsertOrUpdate(downcast(et), downcast(iop), downcast(uop));
-        }
-    }
+    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
 
-    @Override
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop) {
-        doCreateOrModify(et, iop, uop);
-    }
+    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
+    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
      * NextSchemaProductStatus nextSchemaProductStatus = new NextSchemaProductStatus();
      * nextSchemaProductStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     nextSchemaProductStatusBhv.<span style="color: #DD4747">delete</span>(nextSchemaProductStatus);
@@ -811,7 +805,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *     ...
      * }
      * </pre>
-     * @param nextSchemaProductStatus The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param nextSchemaProductStatus The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
@@ -819,28 +813,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
         doDelete(nextSchemaProductStatus, null);
     }
 
-    protected void doDelete(NextSchemaProductStatus nextSchemaProductStatus, final DeleteOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatus", nextSchemaProductStatus);
-        prepareDeleteOption(op);
-        helpDeleteInternally(nextSchemaProductStatus, new InternalDeleteCallback<NextSchemaProductStatus>() {
-            public int callbackDelegateDelete(NextSchemaProductStatus et) { return delegateDelete(et, op); } });
+    protected void doDelete(NextSchemaProductStatus et, final DeleteOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatus", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<NextSchemaProductStatusCB> op) {
-        if (op == null) { return; }
-        assertDeleteOptionStatus(op);
-    }
+    protected void prepareDeleteOption(DeleteOption<NextSchemaProductStatusCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
-    @Override
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { delete(downcast(et)); }
-        else { varyingDelete(downcast(et), downcast(op)); }
-    }
+    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
-    @Override
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op) {
-        doRemove(et, op);
-    }
+    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
+    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -870,27 +852,23 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
     public int[] batchInsert(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
-        InsertOption<NextSchemaProductStatusCB> op = createInsertUpdateOption();
-        return doBatchInsert(nextSchemaProductStatusList, op);
+        return doBatchInsert(nextSchemaProductStatusList, null);
     }
 
-    protected int[] doBatchInsert(List<NextSchemaProductStatus> nextSchemaProductStatusList, InsertOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatusList", nextSchemaProductStatusList);
-        prepareBatchInsertOption(nextSchemaProductStatusList, op);
-        return delegateBatchInsert(nextSchemaProductStatusList, op);
+    protected int[] doBatchInsert(List<NextSchemaProductStatus> ls, InsertOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatusList", ls);
+        InsertOption<NextSchemaProductStatusCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+        prepareBatchInsertOption(ls, rlop); // required
+        return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<NextSchemaProductStatus> nextSchemaProductStatusList, InsertOption<NextSchemaProductStatusCB> op) {
+    protected void prepareBatchInsertOption(List<NextSchemaProductStatus> ls, InsertOption<NextSchemaProductStatusCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(nextSchemaProductStatusList);
+        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
     }
 
-    @Override
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) {
-        if (op == null) { return batchInsert(downcast(ls)); }
-        else { return varyingBatchInsert(downcast(ls), downcast(op)); }
-    }
+    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
@@ -917,26 +895,22 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
     public int[] batchUpdate(List<NextSchemaProductStatus> nextSchemaProductStatusList) {
-        UpdateOption<NextSchemaProductStatusCB> op = createPlainUpdateOption();
-        return doBatchUpdate(nextSchemaProductStatusList, op);
+        return doBatchUpdate(nextSchemaProductStatusList, null);
     }
 
-    protected int[] doBatchUpdate(List<NextSchemaProductStatus> nextSchemaProductStatusList, UpdateOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatusList", nextSchemaProductStatusList);
-        prepareBatchUpdateOption(nextSchemaProductStatusList, op);
-        return delegateBatchUpdate(nextSchemaProductStatusList, op);
+    protected int[] doBatchUpdate(List<NextSchemaProductStatus> ls, UpdateOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatusList", ls);
+        UpdateOption<NextSchemaProductStatusCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+        prepareBatchUpdateOption(ls, rlop); // required
+        return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<NextSchemaProductStatus> nextSchemaProductStatusList, UpdateOption<NextSchemaProductStatusCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(nextSchemaProductStatusList);
+    protected void prepareBatchUpdateOption(List<NextSchemaProductStatus> ls, UpdateOption<NextSchemaProductStatusCB> op) {
+        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
 
-    @Override
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return batchUpdate(downcast(ls)); }
-        else { return varyingBatchUpdate(downcast(ls), downcast(op)); }
-    }
+    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -971,9 +945,8 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     }
 
     @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op) {
-        return doLumpModify(ls, op);
-    }
+    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
+    { return doLumpModify(ls, op); }
 
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
@@ -986,22 +959,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
         return doBatchDelete(nextSchemaProductStatusList, null);
     }
 
-    protected int[] doBatchDelete(List<NextSchemaProductStatus> nextSchemaProductStatusList, DeleteOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatusList", nextSchemaProductStatusList);
+    protected int[] doBatchDelete(List<NextSchemaProductStatus> ls, DeleteOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatusList", ls);
         prepareDeleteOption(op);
-        return delegateBatchDelete(nextSchemaProductStatusList, op);
+        return delegateBatchDelete(ls, op);
     }
 
-    @Override
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return batchDelete(downcast(ls)); }
-        else { return varyingBatchDelete(downcast(ls), downcast(op)); }
-    }
+    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
-    @Override
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op) {
-        return doLumpRemove(ls, op);
-    }
+    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
+    { return doLumpRemove(ls, op); }
 
     // ===================================================================================
     //                                                                        Query Update
@@ -1022,7 +989,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *         <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      *         <span style="color: #3F7E5E">//entity.setRegisterUser(value);</span>
      *         <span style="color: #3F7E5E">//entity.set...;</span>
-     *         <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     *         <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      *         <span style="color: #3F7E5E">//entity.setVersionNo(value);</span>
      *
      *         return cb;
@@ -1037,24 +1004,16 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     }
 
     protected int doQueryInsert(QueryInsertSetupper<NextSchemaProductStatus, NextSchemaProductStatusCB> sp, InsertOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("setupper", sp);
-        prepareInsertOption(op);
-        NextSchemaProductStatus e = new NextSchemaProductStatus();
-        NextSchemaProductStatusCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(e, cb, sp.setup(e, cb), op);
+        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
+        NextSchemaProductStatus et = newEntity(); NextSchemaProductStatusCB cb = createCBForQueryInsert();
+        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected NextSchemaProductStatusCB createCBForQueryInsert() {
-        NextSchemaProductStatusCB cb = newMyConditionBean();
-        cb.xsetupForQueryInsert();
-        return cb;
-    }
+    protected NextSchemaProductStatusCB createCBForQueryInsert()
+    { NextSchemaProductStatusCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
-    @Override
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> option) {
-        if (option == null) { return queryInsert(downcast(setupper)); }
-        else { return varyingQueryInsert(downcast(setupper), downcast(option)); }
-    }
+    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
+    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1066,7 +1025,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setRegisterUser(value);</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.set...;</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setVersionNo(value);</span>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
@@ -1082,17 +1041,13 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
         return doQueryUpdate(nextSchemaProductStatus, cb, null);
     }
 
-    protected int doQueryUpdate(NextSchemaProductStatus nextSchemaProductStatus, NextSchemaProductStatusCB cb, UpdateOption<NextSchemaProductStatusCB> op) {
-        assertObjectNotNull("nextSchemaProductStatus", nextSchemaProductStatus); assertCBStateValid(cb);
-        prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(nextSchemaProductStatus, cb, op) : 0;
+    protected int doQueryUpdate(NextSchemaProductStatus et, NextSchemaProductStatusCB cb, UpdateOption<NextSchemaProductStatusCB> op) {
+        assertObjectNotNull("nextSchemaProductStatus", et); assertCBStateValid(cb); prepareUpdateOption(op);
+        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op) {
-        if (op == null) { return queryUpdate(downcast(et), (NextSchemaProductStatusCB)cb); }
-        else { return varyingQueryUpdate(downcast(et), (NextSchemaProductStatusCB)cb, downcast(op)); }
-    }
+    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
+    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
 
     /**
      * Delete the several entities by query. (NonExclusiveControl)
@@ -1110,16 +1065,11 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     }
 
     protected int doQueryDelete(NextSchemaProductStatusCB cb, DeleteOption<NextSchemaProductStatusCB> op) {
-        assertCBStateValid(cb);
-        prepareDeleteOption(op);
+        assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
 
-    @Override
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) {
-        if (op == null) { return queryDelete((NextSchemaProductStatusCB)cb); }
-        else { return varyingQueryDelete((NextSchemaProductStatusCB)cb, downcast(op)); }
-    }
+    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1142,7 +1092,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * nextSchemaProductStatusBhv.<span style="color: #DD4747">varyingInsert</span>(nextSchemaProductStatus, option);
      * ... = nextSchemaProductStatus.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param nextSchemaProductStatus The entity of insert target. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param nextSchemaProductStatus The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
@@ -1159,7 +1109,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * NextSchemaProductStatus nextSchemaProductStatus = new NextSchemaProductStatus();
      * nextSchemaProductStatus.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * nextSchemaProductStatus.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// if exclusive control, the value of exclusive control column is required</span>
+     * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
      * nextSchemaProductStatus.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
@@ -1174,7 +1124,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      *     ...
      * }
      * </pre>
-     * @param nextSchemaProductStatus The entity of update target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param nextSchemaProductStatus The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1188,7 +1138,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param nextSchemaProductStatus The entity of insert or update target. (NotNull)
+     * @param nextSchemaProductStatus The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
@@ -1197,14 +1147,14 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      */
     public void varyingInsertOrUpdate(NextSchemaProductStatus nextSchemaProductStatus, InsertOption<NextSchemaProductStatusCB> insertOption, UpdateOption<NextSchemaProductStatusCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInesrtOrUpdate(nextSchemaProductStatus, insertOption, updateOption);
+        doInsertOrUpdate(nextSchemaProductStatus, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param nextSchemaProductStatus The entity of delete target. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnRequired)
+     * @param nextSchemaProductStatus The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
@@ -1285,7 +1235,7 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setPK...(value);</span>
      * nextSchemaProductStatus.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
-     * <span style="color: #3F7E5E">// you don't need to set a value of exclusive control column</span>
+     * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
      * <span style="color: #3F7E5E">//nextSchemaProductStatus.setVersionNo(value);</span>
      * NextSchemaProductStatusCB cb = new NextSchemaProductStatusCB();
@@ -1362,113 +1312,20 @@ public abstract class BsNextSchemaProductStatusBhv extends AbstractBehaviorWrita
     }
 
     // ===================================================================================
-    //                                                                     Delegate Method
-    //                                                                     ===============
-    // [Behavior Command]
-    // -----------------------------------------------------
-    //                                                Select
-    //                                                ------
-    protected int delegateSelectCountUniquely(NextSchemaProductStatusCB cb) { return invoke(createSelectCountCBCommand(cb, true)); }
-    protected int delegateSelectCountPlainly(NextSchemaProductStatusCB cb) { return invoke(createSelectCountCBCommand(cb, false)); }
-    protected <ENTITY extends NextSchemaProductStatus> void delegateSelectCursor(NextSchemaProductStatusCB cb, EntityRowHandler<ENTITY> rh, Class<ENTITY> tp)
-    { invoke(createSelectCursorCBCommand(cb, rh, tp)); }
-    protected <ENTITY extends NextSchemaProductStatus> List<ENTITY> delegateSelectList(NextSchemaProductStatusCB cb, Class<ENTITY> tp)
-    { return invoke(createSelectListCBCommand(cb, tp)); }
-
-    // -----------------------------------------------------
-    //                                                Update
-    //                                                ------
-    protected int delegateInsert(NextSchemaProductStatus et, InsertOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeInsert(et, op)) { return 0; }
-      return invoke(createInsertEntityCommand(et, op)); }
-    protected int delegateUpdate(NextSchemaProductStatus et, UpdateOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return delegateUpdateNonstrict(et, op); }
-    protected int delegateUpdateNonstrict(NextSchemaProductStatus et, UpdateOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeUpdate(et, op)) { return 0; }
-      return invoke(createUpdateNonstrictEntityCommand(et, op)); }
-    protected int delegateDelete(NextSchemaProductStatus et, DeleteOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return delegateDeleteNonstrict(et, op); }
-    protected int delegateDeleteNonstrict(NextSchemaProductStatus et, DeleteOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeDelete(et, op)) { return 0; }
-      return invoke(createDeleteNonstrictEntityCommand(et, op)); }
-
-    protected int[] delegateBatchInsert(List<NextSchemaProductStatus> ls, InsertOption<NextSchemaProductStatusCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchInsertCommand(processBatchInternally(ls, op), op)); }
-    protected int[] delegateBatchUpdate(List<NextSchemaProductStatus> ls, UpdateOption<NextSchemaProductStatusCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchUpdateNonstrict(ls, op); }
-    protected int[] delegateBatchUpdateNonstrict(List<NextSchemaProductStatus> ls, UpdateOption<NextSchemaProductStatusCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchUpdateNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-    protected int[] delegateBatchDelete(List<NextSchemaProductStatus> ls, DeleteOption<NextSchemaProductStatusCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return delegateBatchDeleteNonstrict(ls, op); }
-    protected int[] delegateBatchDeleteNonstrict(List<NextSchemaProductStatus> ls, DeleteOption<NextSchemaProductStatusCB> op)
-    { if (ls.isEmpty()) { return new int[]{}; }
-      return invoke(createBatchDeleteNonstrictCommand(processBatchInternally(ls, op, true), op)); }
-
-    protected int delegateQueryInsert(NextSchemaProductStatus et, NextSchemaProductStatusCB inCB, ConditionBean resCB, InsertOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeQueryInsert(et, inCB, resCB, op)) { return 0; } return invoke(createQueryInsertCBCommand(et, inCB, resCB, op));  }
-    protected int delegateQueryUpdate(NextSchemaProductStatus et, NextSchemaProductStatusCB cb, UpdateOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeQueryUpdate(et, cb, op)) { return 0; } return invoke(createQueryUpdateCBCommand(et, cb, op));  }
-    protected int delegateQueryDelete(NextSchemaProductStatusCB cb, DeleteOption<NextSchemaProductStatusCB> op)
-    { if (!processBeforeQueryDelete(cb, op)) { return 0; } return invoke(createQueryDeleteCBCommand(cb, op));  }
-
-    // ===================================================================================
-    //                                                                Optimistic Lock Info
-    //                                                                ====================
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected boolean hasUpdateDateValue(Entity et) {
-        return false;
-    }
-
-    // ===================================================================================
-    //                                                                     Downcast Helper
-    //                                                                     ===============
-    protected NextSchemaProductStatus downcast(Entity et) {
-        return helpEntityDowncastInternally(et, NextSchemaProductStatus.class);
-    }
-
-    protected NextSchemaProductStatusCB downcast(ConditionBean cb) {
-        return helpConditionBeanDowncastInternally(cb, NextSchemaProductStatusCB.class);
-    }
-
+    //                                                                       Assist Helper
+    //                                                                       =============
+    protected Class<NextSchemaProductStatus> typeOfSelectedEntity() { return NextSchemaProductStatus.class; }
+    protected NextSchemaProductStatus downcast(Entity et) { return helpEntityDowncastInternally(et, NextSchemaProductStatus.class); }
+    protected NextSchemaProductStatusCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, NextSchemaProductStatusCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<NextSchemaProductStatus> downcast(List<? extends Entity> ls) {
-        return (List<NextSchemaProductStatus>)ls;
-    }
-
+    protected List<NextSchemaProductStatus> downcast(List<? extends Entity> ls) { return (List<NextSchemaProductStatus>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<NextSchemaProductStatusCB> downcast(InsertOption<? extends ConditionBean> op) {
-        return (InsertOption<NextSchemaProductStatusCB>)op;
-    }
-
+    protected InsertOption<NextSchemaProductStatusCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<NextSchemaProductStatusCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<NextSchemaProductStatusCB> downcast(UpdateOption<? extends ConditionBean> op) {
-        return (UpdateOption<NextSchemaProductStatusCB>)op;
-    }
-
+    protected UpdateOption<NextSchemaProductStatusCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<NextSchemaProductStatusCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<NextSchemaProductStatusCB> downcast(DeleteOption<? extends ConditionBean> op) {
-        return (DeleteOption<NextSchemaProductStatusCB>)op;
-    }
-
+    protected DeleteOption<NextSchemaProductStatusCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<NextSchemaProductStatusCB>)op; }
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<NextSchemaProductStatus, NextSchemaProductStatusCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp) {
-        return (QueryInsertSetupper<NextSchemaProductStatus, NextSchemaProductStatusCB>)sp;
-    }
+    protected QueryInsertSetupper<NextSchemaProductStatus, NextSchemaProductStatusCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<NextSchemaProductStatus, NextSchemaProductStatusCB>)sp; }
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -298,7 +298,7 @@ public abstract class BsWhiteRefNextExcept implements Entity, Serializable, Clon
      */
     public void setRefNextExceptId(Long refNextExceptId) {
         __modifiedProperties.addPropertyName("refNextExceptId");
-        this._refNextExceptId = refNextExceptId;
+        _refNextExceptId = refNextExceptId;
     }
 
     /**
@@ -315,6 +315,6 @@ public abstract class BsWhiteRefNextExcept implements Entity, Serializable, Clon
      */
     public void setNextExceptCode(String nextExceptCode) {
         __modifiedProperties.addPropertyName("nextExceptCode");
-        this._nextExceptCode = nextExceptCode;
+        _nextExceptCode = nextExceptCode;
     }
 }

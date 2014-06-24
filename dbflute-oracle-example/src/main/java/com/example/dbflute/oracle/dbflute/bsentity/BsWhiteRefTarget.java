@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -138,7 +138,7 @@ public abstract class BsWhiteRefTarget implements Entity, Serializable, Cloneabl
     protected WhiteTarget _whiteTarget;
 
     /**
-     * WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
+     * [get] WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
      * @return The entity of foreign property 'whiteTarget'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteTarget getWhiteTarget() {
@@ -146,7 +146,7 @@ public abstract class BsWhiteRefTarget implements Entity, Serializable, Cloneabl
     }
 
     /**
-     * WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
+     * [set] WHITE_TARGET by my TARGET_ID, named 'whiteTarget'.
      * @param whiteTarget The entity of foreign property 'whiteTarget'. (NullAllowed)
      */
     public void setWhiteTarget(WhiteTarget whiteTarget) {
@@ -329,7 +329,7 @@ public abstract class BsWhiteRefTarget implements Entity, Serializable, Cloneabl
      */
     public void setRefTargetId(Long refTargetId) {
         __modifiedProperties.addPropertyName("refTargetId");
-        this._refTargetId = refTargetId;
+        _refTargetId = refTargetId;
     }
 
     /**
@@ -346,6 +346,6 @@ public abstract class BsWhiteRefTarget implements Entity, Serializable, Cloneabl
      */
     public void setTargetId(Long targetId) {
         __modifiedProperties.addPropertyName("targetId");
-        this._targetId = targetId;
+        _targetId = targetId;
     }
 }

@@ -248,7 +248,7 @@ public class SynonymNextLinkTableDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymNextLinkTable newEntity() { return new SynonymNextLinkTable(); }
     public SynonymNextLinkTable newMyEntity() { return new SynonymNextLinkTable(); }
 
     // ===================================================================================

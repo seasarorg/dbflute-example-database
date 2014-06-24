@@ -139,7 +139,7 @@ public class WhiteTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteTarget newEntity() { return new WhiteTarget(); }
     public WhiteTarget newMyEntity() { return new WhiteTarget(); }
 
     // ===================================================================================

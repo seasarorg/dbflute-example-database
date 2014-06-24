@@ -81,11 +81,23 @@ public class BsPurchaseCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param purchaseId : PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public PurchaseCB acceptPK(Long purchaseId) {
+        assertObjectNotNull("purchaseId", purchaseId);
+        BsPurchaseCB cb = this;
+        cb.query().setPurchaseId_Equal(purchaseId);
+        return (PurchaseCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param purchaseId : PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long purchaseId) {
         assertObjectNotNull("purchaseId", purchaseId);
         BsPurchaseCB cb = this;
-        cb.query().setPurchaseId_Equal(purchaseId);;
+        cb.query().setPurchaseId_Equal(purchaseId);
     }
 
     /**
@@ -93,11 +105,13 @@ public class BsPurchaseCB extends AbstractConditionBean {
      * @param memberId : UQ+, NotNull, NUMBER(16), FK to MEMBER. (NotNull)
      * @param productId : +UQ, IX+, NotNull, NUMBER(16), FK to PRODUCT. (NotNull)
      * @param purchaseDatetime : +UQ, IX+, NotNull, TIMESTAMP(3)(11, 3). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Long memberId, Long productId, java.sql.Timestamp purchaseDatetime) {
+    public PurchaseCB acceptUniqueOf(Long memberId, Long productId, java.sql.Timestamp purchaseDatetime) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("productId", productId);assertObjectNotNull("purchaseDatetime", purchaseDatetime);
         BsPurchaseCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;cb.query().setProductId_Equal(productId);;cb.query().setPurchaseDatetime_Equal(purchaseDatetime);;
+        cb.query().setMemberId_Equal(memberId);cb.query().setProductId_Equal(productId);cb.query().setPurchaseDatetime_Equal(purchaseDatetime);
+        return (PurchaseCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

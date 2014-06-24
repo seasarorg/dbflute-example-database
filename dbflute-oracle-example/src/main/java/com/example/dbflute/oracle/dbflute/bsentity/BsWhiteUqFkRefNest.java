@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -143,7 +143,7 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     protected WhiteUqFkRef _whiteUqFkRef;
 
     /**
-     * WHITE_UQ_FK_REF by my COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRef'.
+     * [get] WHITE_UQ_FK_REF by my COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRef'.
      * @return The entity of foreign property 'whiteUqFkRef'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteUqFkRef getWhiteUqFkRef() {
@@ -151,7 +151,7 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
     }
 
     /**
-     * WHITE_UQ_FK_REF by my COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRef'.
+     * [set] WHITE_UQ_FK_REF by my COMPOUND_UQ_FIRST_CODE, COMPOUND_UQ_SECOND_CODE, named 'whiteUqFkRef'.
      * @param whiteUqFkRef The entity of foreign property 'whiteUqFkRef'. (NullAllowed)
      */
     public void setWhiteUqFkRef(WhiteUqFkRef whiteUqFkRef) {
@@ -335,7 +335,7 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
      */
     public void setUqFkRefNestId(Long uqFkRefNestId) {
         __modifiedProperties.addPropertyName("uqFkRefNestId");
-        this._uqFkRefNestId = uqFkRefNestId;
+        _uqFkRefNestId = uqFkRefNestId;
     }
 
     /**
@@ -352,7 +352,7 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
      */
     public void setCompoundUqFirstCode(String compoundUqFirstCode) {
         __modifiedProperties.addPropertyName("compoundUqFirstCode");
-        this._compoundUqFirstCode = compoundUqFirstCode;
+        _compoundUqFirstCode = compoundUqFirstCode;
     }
 
     /**
@@ -369,6 +369,6 @@ public abstract class BsWhiteUqFkRefNest implements Entity, Serializable, Clonea
      */
     public void setCompoundUqSecondCode(String compoundUqSecondCode) {
         __modifiedProperties.addPropertyName("compoundUqSecondCode");
-        this._compoundUqSecondCode = compoundUqSecondCode;
+        _compoundUqSecondCode = compoundUqSecondCode;
     }
 }

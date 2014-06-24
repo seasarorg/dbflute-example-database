@@ -145,7 +145,7 @@ public class SimpleTableFunctionDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SimpleTableFunction newEntity() { return new SimpleTableFunction(); }
     public SimpleTableFunction newMyEntity() { return new SimpleTableFunction(); }
 
     // ===================================================================================

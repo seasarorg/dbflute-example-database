@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -137,7 +137,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
     protected WhiteUqFkWithoutPk _whiteUqFkWithoutPk;
 
     /**
-     * WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * [get] WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
      * @return The entity of foreign property 'whiteUqFkWithoutPk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteUqFkWithoutPk getWhiteUqFkWithoutPk() {
@@ -145,7 +145,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
     }
 
     /**
-     * WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
+     * [set] WHITE_UQ_FK_WITHOUT_PK by my FK_TO_UQ_CODE, named 'whiteUqFkWithoutPk'.
      * @param whiteUqFkWithoutPk The entity of foreign property 'whiteUqFkWithoutPk'. (NullAllowed)
      */
     public void setWhiteUqFkWithoutPk(WhiteUqFkWithoutPk whiteUqFkWithoutPk) {
@@ -330,7 +330,7 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
      */
     public void setUqFkRefId(Long uqFkRefId) {
         __modifiedProperties.addPropertyName("uqFkRefId");
-        this._uqFkRefId = uqFkRefId;
+        _uqFkRefId = uqFkRefId;
     }
 
     /**
@@ -347,6 +347,6 @@ public abstract class BsWhiteUqFkWithoutPkRef implements Entity, Serializable, C
      */
     public void setFkToUqCode(String fkToUqCode) {
         __modifiedProperties.addPropertyName("fkToUqCode");
-        this._fkToUqCode = fkToUqCode;
+        _fkToUqCode = fkToUqCode;
     }
 }

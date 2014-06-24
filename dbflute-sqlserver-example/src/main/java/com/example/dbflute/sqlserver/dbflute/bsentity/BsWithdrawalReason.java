@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
 
@@ -157,7 +157,7 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
     protected List<MemberWithdrawal> _memberWithdrawalList;
 
     /**
-     * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
+     * [get] MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
      * @return The entity list of referrer property 'memberWithdrawalList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberWithdrawal> getMemberWithdrawalList() {
@@ -166,7 +166,7 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
     }
 
     /**
-     * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
+     * [set] MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
      * @param memberWithdrawalList The entity list of referrer property 'memberWithdrawalList'. (NullAllowed)
      */
     public void setMemberWithdrawalList(List<MemberWithdrawal> memberWithdrawalList) {
@@ -348,7 +348,7 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
      */
     public void setWithdrawalReasonCode(String withdrawalReasonCode) {
         __modifiedProperties.addPropertyName("withdrawalReasonCode");
-        this._withdrawalReasonCode = withdrawalReasonCode;
+        _withdrawalReasonCode = withdrawalReasonCode;
     }
 
     /**
@@ -365,7 +365,7 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
      */
     public void setWithdrawalReasonText(String withdrawalReasonText) {
         __modifiedProperties.addPropertyName("withdrawalReasonText");
-        this._withdrawalReasonText = withdrawalReasonText;
+        _withdrawalReasonText = withdrawalReasonText;
     }
 
     /**
@@ -382,6 +382,6 @@ public abstract class BsWithdrawalReason implements Entity, Serializable, Clonea
      */
     public void setDisplayOrder(Integer displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -345,7 +345,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setFooId(Integer fooId) {
         __modifiedProperties.addPropertyName("fooId");
-        this._fooId = fooId;
+        _fooId = fooId;
     }
 
     /**
@@ -362,7 +362,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setFooName(String fooName) {
         __modifiedProperties.addPropertyName("fooName");
-        this._fooName = fooName;
+        _fooName = fooName;
     }
 
     /**
@@ -379,7 +379,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setFooDate(java.util.Date fooDate) {
         __modifiedProperties.addPropertyName("fooDate");
-        this._fooDate = fooDate;
+        _fooDate = fooDate;
     }
 
     /**
@@ -396,7 +396,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setBarBean(NestedBarBean barBean) {
         __modifiedProperties.addPropertyName("barBean");
-        this._barBean = barBean;
+        _barBean = barBean;
     }
 
     /**
@@ -413,7 +413,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setQuxList(List<java.math.BigDecimal> quxList) {
         __modifiedProperties.addPropertyName("quxList");
-        this._quxList = quxList;
+        _quxList = quxList;
     }
 
     /**
@@ -430,7 +430,7 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setQuuxList(List<java.math.BigDecimal> quuxList) {
         __modifiedProperties.addPropertyName("quuxList");
-        this._quuxList = quuxList;
+        _quuxList = quuxList;
     }
 
     /**
@@ -447,6 +447,6 @@ public abstract class BsNestedFooBean implements Entity, Serializable, Cloneable
      */
     public void setCorgeList(List<CorgeBean> corgeList) {
         __modifiedProperties.addPropertyName("corgeList");
-        this._corgeList = corgeList;
+        _corgeList = corgeList;
     }
 }

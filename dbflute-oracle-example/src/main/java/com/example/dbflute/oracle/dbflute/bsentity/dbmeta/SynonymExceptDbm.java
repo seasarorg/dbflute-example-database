@@ -139,7 +139,7 @@ public class SynonymExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymExcept newEntity() { return new SynonymExcept(); }
     public SynonymExcept newMyEntity() { return new SynonymExcept(); }
 
     // ===================================================================================

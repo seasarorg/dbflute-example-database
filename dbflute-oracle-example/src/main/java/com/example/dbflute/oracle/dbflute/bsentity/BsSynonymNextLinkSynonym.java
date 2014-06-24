@@ -386,7 +386,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setProductId(Long productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 
     /**
@@ -420,7 +420,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setProductHandleCode(String productHandleCode) {
         __modifiedProperties.addPropertyName("productHandleCode");
-        this._productHandleCode = productHandleCode;
+        _productHandleCode = productHandleCode;
     }
 
     /**
@@ -437,7 +437,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -454,7 +454,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -471,7 +471,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -488,7 +488,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -505,7 +505,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -522,7 +522,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -539,7 +539,7 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -556,6 +556,6 @@ public abstract class BsSynonymNextLinkSynonym implements EntityDefinedCommonCol
      */
     public void setVersionNo(java.math.BigDecimal versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

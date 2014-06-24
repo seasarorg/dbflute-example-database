@@ -74,27 +74,16 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _memberId;
-    public ConditionValue getMemberId() {
-        if (_memberId == null) { _memberId = nCV(); }
-        return _memberId;
-    }
+    public ConditionValue getMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
     protected ConditionValue getCValueMemberId() { return getMemberId(); }
 
-    protected Map<String, MemberVendorSynonymCQ> _memberId_InScopeRelation_MemberVendorSynonymMap;
-    public Map<String, MemberVendorSynonymCQ> getMemberId_InScopeRelation_MemberVendorSynonym() { return _memberId_InScopeRelation_MemberVendorSynonymMap; }
-    public String keepMemberId_InScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq) {
-        if (_memberId_InScopeRelation_MemberVendorSynonymMap == null) { _memberId_InScopeRelation_MemberVendorSynonymMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_memberId_InScopeRelation_MemberVendorSynonymMap.size() + 1);
-        _memberId_InScopeRelation_MemberVendorSynonymMap.put(ky, sq); return "memberId_InScopeRelation_MemberVendorSynonym." + ky;
-    }
+    public Map<String, MemberVendorSynonymCQ> getMemberId_InScopeRelation_MemberVendorSynonym() { return xgetSQueMap("memberId_InScopeRelation_MemberVendorSynonym"); }
+    public String keepMemberId_InScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq) { return xkeepSQue("memberId_InScopeRelation_MemberVendorSynonym", sq); }
 
-    protected Map<String, MemberVendorSynonymCQ> _memberId_NotInScopeRelation_MemberVendorSynonymMap;
-    public Map<String, MemberVendorSynonymCQ> getMemberId_NotInScopeRelation_MemberVendorSynonym() { return _memberId_NotInScopeRelation_MemberVendorSynonymMap; }
-    public String keepMemberId_NotInScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq) {
-        if (_memberId_NotInScopeRelation_MemberVendorSynonymMap == null) { _memberId_NotInScopeRelation_MemberVendorSynonymMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_memberId_NotInScopeRelation_MemberVendorSynonymMap.size() + 1);
-        _memberId_NotInScopeRelation_MemberVendorSynonymMap.put(ky, sq); return "memberId_NotInScopeRelation_MemberVendorSynonym." + ky;
-    }
+    public Map<String, MemberVendorSynonymCQ> getMemberId_NotInScopeRelation_MemberVendorSynonym() { return xgetSQueMap("memberId_NotInScopeRelation_MemberVendorSynonym"); }
+    public String keepMemberId_NotInScopeRelation_MemberVendorSynonym(MemberVendorSynonymCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_MemberVendorSynonym", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -111,27 +100,16 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
 
     protected ConditionValue _withdrawalReasonCode;
-    public ConditionValue getWithdrawalReasonCode() {
-        if (_withdrawalReasonCode == null) { _withdrawalReasonCode = nCV(); }
-        return _withdrawalReasonCode;
-    }
+    public ConditionValue getWithdrawalReasonCode()
+    { if (_withdrawalReasonCode == null) { _withdrawalReasonCode = nCV(); }
+      return _withdrawalReasonCode; }
     protected ConditionValue getCValueWithdrawalReasonCode() { return getWithdrawalReasonCode(); }
 
-    protected Map<String, WithdrawalReasonCQ> _withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap;
-    public Map<String, WithdrawalReasonCQ> getWithdrawalReasonCode_InScopeRelation_WithdrawalReason() { return _withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap; }
-    public String keepWithdrawalReasonCode_InScopeRelation_WithdrawalReason(WithdrawalReasonCQ sq) {
-        if (_withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap == null) { _withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap.size() + 1);
-        _withdrawalReasonCode_InScopeRelation_WithdrawalReasonMap.put(ky, sq); return "withdrawalReasonCode_InScopeRelation_WithdrawalReason." + ky;
-    }
+    public Map<String, WithdrawalReasonCQ> getWithdrawalReasonCode_InScopeRelation_WithdrawalReason() { return xgetSQueMap("withdrawalReasonCode_InScopeRelation_WithdrawalReason"); }
+    public String keepWithdrawalReasonCode_InScopeRelation_WithdrawalReason(WithdrawalReasonCQ sq) { return xkeepSQue("withdrawalReasonCode_InScopeRelation_WithdrawalReason", sq); }
 
-    protected Map<String, WithdrawalReasonCQ> _withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap;
-    public Map<String, WithdrawalReasonCQ> getWithdrawalReasonCode_NotInScopeRelation_WithdrawalReason() { return _withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap; }
-    public String keepWithdrawalReasonCode_NotInScopeRelation_WithdrawalReason(WithdrawalReasonCQ sq) {
-        if (_withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap == null) { _withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap.size() + 1);
-        _withdrawalReasonCode_NotInScopeRelation_WithdrawalReasonMap.put(ky, sq); return "withdrawalReasonCode_NotInScopeRelation_WithdrawalReason." + ky;
-    }
+    public Map<String, WithdrawalReasonCQ> getWithdrawalReasonCode_NotInScopeRelation_WithdrawalReason() { return xgetSQueMap("withdrawalReasonCode_NotInScopeRelation_WithdrawalReason"); }
+    public String keepWithdrawalReasonCode_NotInScopeRelation_WithdrawalReason(WithdrawalReasonCQ sq) { return xkeepSQue("withdrawalReasonCode_NotInScopeRelation_WithdrawalReason", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -148,10 +126,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_WithdrawalReasonCode_Desc() { regOBD("WITHDRAWAL_REASON_CODE"); return this; }
 
     protected ConditionValue _withdrawalReasonInputText;
-    public ConditionValue getWithdrawalReasonInputText() {
-        if (_withdrawalReasonInputText == null) { _withdrawalReasonInputText = nCV(); }
-        return _withdrawalReasonInputText;
-    }
+    public ConditionValue getWithdrawalReasonInputText()
+    { if (_withdrawalReasonInputText == null) { _withdrawalReasonInputText = nCV(); }
+      return _withdrawalReasonInputText; }
     protected ConditionValue getCValueWithdrawalReasonInputText() { return getWithdrawalReasonInputText(); }
 
     /** 
@@ -169,10 +146,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_WithdrawalReasonInputText_Desc() { regOBD("WITHDRAWAL_REASON_INPUT_TEXT"); return this; }
 
     protected ConditionValue _withdrawalDatetime;
-    public ConditionValue getWithdrawalDatetime() {
-        if (_withdrawalDatetime == null) { _withdrawalDatetime = nCV(); }
-        return _withdrawalDatetime;
-    }
+    public ConditionValue getWithdrawalDatetime()
+    { if (_withdrawalDatetime == null) { _withdrawalDatetime = nCV(); }
+      return _withdrawalDatetime; }
     protected ConditionValue getCValueWithdrawalDatetime() { return getWithdrawalDatetime(); }
 
     /** 
@@ -190,10 +166,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_WithdrawalDatetime_Desc() { regOBD("WITHDRAWAL_DATETIME"); return this; }
 
     protected ConditionValue _registerDatetime;
-    public ConditionValue getRegisterDatetime() {
-        if (_registerDatetime == null) { _registerDatetime = nCV(); }
-        return _registerDatetime;
-    }
+    public ConditionValue getRegisterDatetime()
+    { if (_registerDatetime == null) { _registerDatetime = nCV(); }
+      return _registerDatetime; }
     protected ConditionValue getCValueRegisterDatetime() { return getRegisterDatetime(); }
 
     /** 
@@ -211,10 +186,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
 
     protected ConditionValue _registerProcess;
-    public ConditionValue getRegisterProcess() {
-        if (_registerProcess == null) { _registerProcess = nCV(); }
-        return _registerProcess;
-    }
+    public ConditionValue getRegisterProcess()
+    { if (_registerProcess == null) { _registerProcess = nCV(); }
+      return _registerProcess; }
     protected ConditionValue getCValueRegisterProcess() { return getRegisterProcess(); }
 
     /** 
@@ -232,10 +206,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_RegisterProcess_Desc() { regOBD("REGISTER_PROCESS"); return this; }
 
     protected ConditionValue _registerUser;
-    public ConditionValue getRegisterUser() {
-        if (_registerUser == null) { _registerUser = nCV(); }
-        return _registerUser;
-    }
+    public ConditionValue getRegisterUser()
+    { if (_registerUser == null) { _registerUser = nCV(); }
+      return _registerUser; }
     protected ConditionValue getCValueRegisterUser() { return getRegisterUser(); }
 
     /** 
@@ -253,10 +226,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
     protected ConditionValue _updateDatetime;
-    public ConditionValue getUpdateDatetime() {
-        if (_updateDatetime == null) { _updateDatetime = nCV(); }
-        return _updateDatetime;
-    }
+    public ConditionValue getUpdateDatetime()
+    { if (_updateDatetime == null) { _updateDatetime = nCV(); }
+      return _updateDatetime; }
     protected ConditionValue getCValueUpdateDatetime() { return getUpdateDatetime(); }
 
     /** 
@@ -274,10 +246,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
 
     protected ConditionValue _updateProcess;
-    public ConditionValue getUpdateProcess() {
-        if (_updateProcess == null) { _updateProcess = nCV(); }
-        return _updateProcess;
-    }
+    public ConditionValue getUpdateProcess()
+    { if (_updateProcess == null) { _updateProcess = nCV(); }
+      return _updateProcess; }
     protected ConditionValue getCValueUpdateProcess() { return getUpdateProcess(); }
 
     /** 
@@ -295,10 +266,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_UpdateProcess_Desc() { regOBD("UPDATE_PROCESS"); return this; }
 
     protected ConditionValue _updateUser;
-    public ConditionValue getUpdateUser() {
-        if (_updateUser == null) { _updateUser = nCV(); }
-        return _updateUser;
-    }
+    public ConditionValue getUpdateUser()
+    { if (_updateUser == null) { _updateUser = nCV(); }
+      return _updateUser; }
     protected ConditionValue getCValueUpdateUser() { return getUpdateUser(); }
 
     /** 
@@ -316,10 +286,9 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public BsSynonymMemberWithdrawalCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
 
     protected ConditionValue _versionNo;
-    public ConditionValue getVersionNo() {
-        if (_versionNo == null) { _versionNo = nCV(); }
-        return _versionNo;
-    }
+    public ConditionValue getVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
     protected ConditionValue getCValueVersionNo() { return getVersionNo(); }
 
     /** 
@@ -353,8 +322,7 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymMemberWithdrawalCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymMemberWithdrawalCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -370,8 +338,7 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymMemberWithdrawalCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymMemberWithdrawalCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -404,31 +371,17 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public MemberVendorSynonymCQ queryMemberVendorSynonym() {
         return getConditionQueryMemberVendorSynonym();
     }
-    protected MemberVendorSynonymCQ _conditionQueryMemberVendorSynonym;
     public MemberVendorSynonymCQ getConditionQueryMemberVendorSynonym() {
-        if (_conditionQueryMemberVendorSynonym == null) {
-            _conditionQueryMemberVendorSynonym = xcreateQueryMemberVendorSynonym();
-            xsetupOuterJoinMemberVendorSynonym();
-        }
-        return _conditionQueryMemberVendorSynonym;
+        String prop = "memberVendorSynonym";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberVendorSynonym()); xsetupOuterJoinMemberVendorSynonym(); }
+        return xgetQueRlMap(prop);
     }
     protected MemberVendorSynonymCQ xcreateQueryMemberVendorSynonym() {
-        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_WITHDRAWAL", "memberVendorSynonym");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        MemberVendorSynonymCQ cq = new MemberVendorSynonymCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("memberVendorSynonym");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_MEMBER_WITHDRAWAL", "memberVendorSynonym"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberVendorSynonymCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberVendorSynonym", nrp);
     }
-    protected void xsetupOuterJoinMemberVendorSynonym() {
-        MemberVendorSynonymCQ cq = getConditionQueryMemberVendorSynonym();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
-        registerOuterJoin(cq, joinOnMap, "memberVendorSynonym");
-    }
-    public boolean hasConditionQueryMemberVendorSynonym() {
-        return _conditionQueryMemberVendorSynonym != null;
-    }
+    protected void xsetupOuterJoinMemberVendorSynonym() { xregOutJo("memberVendorSynonym"); }
+    public boolean hasConditionQueryMemberVendorSynonym() { return xhasQueRlMap("memberVendorSynonym"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -438,31 +391,17 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public WithdrawalReasonCQ queryWithdrawalReason() {
         return getConditionQueryWithdrawalReason();
     }
-    protected WithdrawalReasonCQ _conditionQueryWithdrawalReason;
     public WithdrawalReasonCQ getConditionQueryWithdrawalReason() {
-        if (_conditionQueryWithdrawalReason == null) {
-            _conditionQueryWithdrawalReason = xcreateQueryWithdrawalReason();
-            xsetupOuterJoinWithdrawalReason();
-        }
-        return _conditionQueryWithdrawalReason;
+        String prop = "withdrawalReason";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryWithdrawalReason()); xsetupOuterJoinWithdrawalReason(); }
+        return xgetQueRlMap(prop);
     }
     protected WithdrawalReasonCQ xcreateQueryWithdrawalReason() {
-        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_WITHDRAWAL", "withdrawalReason");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        WithdrawalReasonCQ cq = new WithdrawalReasonCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("withdrawalReason");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_MEMBER_WITHDRAWAL", "withdrawalReason"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new WithdrawalReasonCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "withdrawalReason", nrp);
     }
-    protected void xsetupOuterJoinWithdrawalReason() {
-        WithdrawalReasonCQ cq = getConditionQueryWithdrawalReason();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE");
-        registerOuterJoin(cq, joinOnMap, "withdrawalReason");
-    }
-    public boolean hasConditionQueryWithdrawalReason() {
-        return _conditionQueryWithdrawalReason != null;
-    }
+    protected void xsetupOuterJoinWithdrawalReason() { xregOutJo("withdrawalReason"); }
+    public boolean hasConditionQueryWithdrawalReason() { return xhasQueRlMap("withdrawalReason"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -472,31 +411,17 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public SynonymMemberCQ querySynonymMember() {
         return getConditionQuerySynonymMember();
     }
-    protected SynonymMemberCQ _conditionQuerySynonymMember;
     public SynonymMemberCQ getConditionQuerySynonymMember() {
-        if (_conditionQuerySynonymMember == null) {
-            _conditionQuerySynonymMember = xcreateQuerySynonymMember();
-            xsetupOuterJoinSynonymMember();
-        }
-        return _conditionQuerySynonymMember;
+        String prop = "synonymMember";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQuerySynonymMember()); xsetupOuterJoinSynonymMember(); }
+        return xgetQueRlMap(prop);
     }
     protected SynonymMemberCQ xcreateQuerySynonymMember() {
-        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_WITHDRAWAL", "synonymMember");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        SynonymMemberCQ cq = new SynonymMemberCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("synonymMember");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_MEMBER_WITHDRAWAL", "synonymMember"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new SynonymMemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "synonymMember", nrp);
     }
-    protected void xsetupOuterJoinSynonymMember() {
-        SynonymMemberCQ cq = getConditionQuerySynonymMember();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
-        registerOuterJoin(cq, joinOnMap, "synonymMember");
-    }
-    public boolean hasConditionQuerySynonymMember() {
-        return _conditionQuerySynonymMember != null;
-    }
+    protected void xsetupOuterJoinSynonymMember() { xregOutJo("synonymMember"); }
+    public boolean hasConditionQuerySynonymMember() { return xhasQueRlMap("synonymMember"); }
 
     /**
      * Get the condition-query for relation table. <br />
@@ -506,31 +431,17 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     public VendorSynonymMemberCQ queryVendorSynonymMember() {
         return getConditionQueryVendorSynonymMember();
     }
-    protected VendorSynonymMemberCQ _conditionQueryVendorSynonymMember;
     public VendorSynonymMemberCQ getConditionQueryVendorSynonymMember() {
-        if (_conditionQueryVendorSynonymMember == null) {
-            _conditionQueryVendorSynonymMember = xcreateQueryVendorSynonymMember();
-            xsetupOuterJoinVendorSynonymMember();
-        }
-        return _conditionQueryVendorSynonymMember;
+        String prop = "vendorSynonymMember";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendorSynonymMember()); xsetupOuterJoinVendorSynonymMember(); }
+        return xgetQueRlMap(prop);
     }
     protected VendorSynonymMemberCQ xcreateQueryVendorSynonymMember() {
-        String nrp = resolveNextRelationPath("SYNONYM_MEMBER_WITHDRAWAL", "vendorSynonymMember");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        VendorSynonymMemberCQ cq = new VendorSynonymMemberCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("vendorSynonymMember");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_MEMBER_WITHDRAWAL", "vendorSynonymMember"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new VendorSynonymMemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendorSynonymMember", nrp);
     }
-    protected void xsetupOuterJoinVendorSynonymMember() {
-        VendorSynonymMemberCQ cq = getConditionQueryVendorSynonymMember();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("MEMBER_ID", "MEMBER_ID");
-        registerOuterJoin(cq, joinOnMap, "vendorSynonymMember");
-    }
-    public boolean hasConditionQueryVendorSynonymMember() {
-        return _conditionQueryVendorSynonymMember != null;
-    }
+    protected void xsetupOuterJoinVendorSynonymMember() { xregOutJo("vendorSynonymMember"); }
+    public boolean hasConditionQueryVendorSynonymMember() { return xhasQueRlMap("vendorSynonymMember"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -539,61 +450,32 @@ public class BsSynonymMemberWithdrawalCQ extends AbstractBsSynonymMemberWithdraw
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymMemberWithdrawalCQ> _scalarConditionMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymMemberWithdrawalCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymMemberWithdrawalCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymMemberWithdrawalCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymMemberWithdrawalCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymMemberWithdrawalCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymMemberWithdrawalCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymMemberWithdrawalCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymMemberWithdrawalCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymMemberWithdrawalCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymMemberWithdrawalCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymMemberWithdrawalCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymMemberWithdrawalCQ> _myselfExistsMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymMemberWithdrawalCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymMemberWithdrawalCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymMemberWithdrawalCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymMemberWithdrawalCQ> _myselfInScopeMap;
-    public Map<String, SynonymMemberWithdrawalCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymMemberWithdrawalCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymMemberWithdrawalCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymMemberWithdrawalCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

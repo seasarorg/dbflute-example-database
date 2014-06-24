@@ -81,22 +81,36 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberLoginId : PK, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
+     */
+    public SynonymMemberLoginCB acceptPK(Long memberLoginId) {
+        assertObjectNotNull("memberLoginId", memberLoginId);
+        BsSynonymMemberLoginCB cb = this;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
+        return (SynonymMemberLoginCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberLoginId : PK, NotNull, NUMBER(16). (NotNull)
      */
     public void acceptPrimaryKey(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
         BsSynonymMemberLoginCB cb = this;
-        cb.query().setMemberLoginId_Equal(memberLoginId);;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberId : UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM. (NotNull)
      * @param loginDatetime : +UQ, IX, NotNull, DATE(7). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Long memberId, java.util.Date loginDatetime) {
+    public SynonymMemberLoginCB acceptUniqueOf(Long memberId, java.util.Date loginDatetime) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("loginDatetime", loginDatetime);
         BsSynonymMemberLoginCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;cb.query().setLoginDatetime_Equal(loginDatetime);;
+        cb.query().setMemberId_Equal(memberId);cb.query().setLoginDatetime_Equal(loginDatetime);
+        return (SynonymMemberLoginCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

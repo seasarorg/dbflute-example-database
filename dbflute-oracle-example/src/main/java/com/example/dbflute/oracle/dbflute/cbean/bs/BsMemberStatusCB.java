@@ -80,31 +80,47 @@ public class BsMemberStatusCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberStatusCode : PK, NotNull, CHAR(3), classification=MemberStatus. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberStatusCB acceptPK(String memberStatusCode) {
+        assertObjectNotNull("memberStatusCode", memberStatusCode);
+        BsMemberStatusCB cb = this;
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);
+        return (MemberStatusCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberStatusCode : PK, NotNull, CHAR(3), classification=MemberStatus. (NotNull)
      */
     public void acceptPrimaryKey(String memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         BsMemberStatusCB cb = this;
-        cb.query().setMemberStatusCode_Equal(memberStatusCode);;
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param displayOrder : UQ, NotNull, NUMBER(16). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOfDisplayOrder(Long displayOrder) {
+    public MemberStatusCB acceptUniqueOfDisplayOrder(Long displayOrder) {
         assertObjectNotNull("displayOrder", displayOrder);
         BsMemberStatusCB cb = this;
-        cb.query().setDisplayOrder_Equal(displayOrder);;
+        cb.query().setDisplayOrder_Equal(displayOrder);
+        return (MemberStatusCB)this;
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberStatusName : UQ, NotNull, VARCHAR2(50). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOfMemberStatusName(String memberStatusName) {
+    public MemberStatusCB acceptUniqueOfMemberStatusName(String memberStatusName) {
         assertObjectNotNull("memberStatusName", memberStatusName);
         BsMemberStatusCB cb = this;
-        cb.query().setMemberStatusName_Equal(memberStatusName);;
+        cb.query().setMemberStatusName_Equal(memberStatusName);
+        return (MemberStatusCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

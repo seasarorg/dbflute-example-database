@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
@@ -193,7 +193,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
     protected Member _member;
 
     /**
-     * (会員)MEMBER by my MEMBER_ID, named 'member'.
+     * [get] (会員)MEMBER by my MEMBER_ID, named 'member'.
      * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMember() {
@@ -201,7 +201,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
     }
 
     /**
-     * (会員)MEMBER by my MEMBER_ID, named 'member'.
+     * [set] (会員)MEMBER by my MEMBER_ID, named 'member'.
      * @param member The entity of foreign property 'member'. (NullAllowed)
      */
     public void setMember(Member member) {
@@ -424,7 +424,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -441,7 +441,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setLoginPassword(String loginPassword) {
         __modifiedProperties.addPropertyName("loginPassword");
-        this._loginPassword = loginPassword;
+        _loginPassword = loginPassword;
     }
 
     /**
@@ -458,7 +458,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setReminderQuestion(String reminderQuestion) {
         __modifiedProperties.addPropertyName("reminderQuestion");
-        this._reminderQuestion = reminderQuestion;
+        _reminderQuestion = reminderQuestion;
     }
 
     /**
@@ -475,7 +475,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setReminderAnswer(String reminderAnswer) {
         __modifiedProperties.addPropertyName("reminderAnswer");
-        this._reminderAnswer = reminderAnswer;
+        _reminderAnswer = reminderAnswer;
     }
 
     /**
@@ -492,7 +492,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setReminderUseCount(Integer reminderUseCount) {
         __modifiedProperties.addPropertyName("reminderUseCount");
-        this._reminderUseCount = reminderUseCount;
+        _reminderUseCount = reminderUseCount;
     }
 
     /**
@@ -509,7 +509,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -526,7 +526,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -543,7 +543,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -560,7 +560,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -577,7 +577,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -594,7 +594,7 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -611,6 +611,6 @@ public abstract class BsMemberSecurity implements EntityDefinedCommonColumn, Ser
      */
     public void setVersionNo(Long versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

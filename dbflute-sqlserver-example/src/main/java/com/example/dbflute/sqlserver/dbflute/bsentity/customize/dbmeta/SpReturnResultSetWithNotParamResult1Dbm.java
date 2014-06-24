@@ -267,7 +267,7 @@ public class SpReturnResultSetWithNotParamResult1Dbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SpReturnResultSetWithNotParamResult1 newEntity() { return new SpReturnResultSetWithNotParamResult1(); }
     public SpReturnResultSetWithNotParamResult1 newMyEntity() { return new SpReturnResultSetWithNotParamResult1(); }
 
     // ===================================================================================

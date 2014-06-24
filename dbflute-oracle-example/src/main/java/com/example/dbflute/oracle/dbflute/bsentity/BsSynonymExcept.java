@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -141,7 +141,7 @@ public abstract class BsSynonymExcept implements Entity, Serializable, Cloneable
     protected List<SynonymRefExcept> _synonymRefExceptList;
 
     /**
-     * SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptList'.
+     * [get] SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptList'.
      * @return The entity list of referrer property 'synonymRefExceptList'. (NotNull: even if no loading, returns empty list)
      */
     public List<SynonymRefExcept> getSynonymRefExceptList() {
@@ -150,7 +150,7 @@ public abstract class BsSynonymExcept implements Entity, Serializable, Cloneable
     }
 
     /**
-     * SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptList'.
+     * [set] SYNONYM_REF_EXCEPT by EXCEPT_ID, named 'synonymRefExceptList'.
      * @param synonymRefExceptList The entity list of referrer property 'synonymRefExceptList'. (NullAllowed)
      */
     public void setSynonymRefExceptList(List<SynonymRefExcept> synonymRefExceptList) {
@@ -331,7 +331,7 @@ public abstract class BsSynonymExcept implements Entity, Serializable, Cloneable
      */
     public void setExceptId(Long exceptId) {
         __modifiedProperties.addPropertyName("exceptId");
-        this._exceptId = exceptId;
+        _exceptId = exceptId;
     }
 
     /**
@@ -348,6 +348,6 @@ public abstract class BsSynonymExcept implements Entity, Serializable, Cloneable
      */
     public void setExceptName(String exceptName) {
         __modifiedProperties.addPropertyName("exceptName");
-        this._exceptName = exceptName;
+        _exceptName = exceptName;
     }
 }

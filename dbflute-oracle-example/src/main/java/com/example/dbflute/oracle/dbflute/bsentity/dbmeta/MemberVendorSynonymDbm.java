@@ -321,7 +321,7 @@ public class MemberVendorSynonymDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public MemberVendorSynonym newEntity() { return new MemberVendorSynonym(); }
     public MemberVendorSynonym newMyEntity() { return new MemberVendorSynonym(); }
 
     // ===================================================================================

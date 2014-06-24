@@ -196,7 +196,7 @@ public class NestedFooBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public NestedFooBean newEntity() { return new NestedFooBean(); }
     public NestedFooBean newMyEntity() { return new NestedFooBean(); }
 
     // ===================================================================================

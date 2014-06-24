@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -308,7 +308,7 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -325,7 +325,7 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setAllsumPurchasePrice(java.math.BigDecimal allsumPurchasePrice) {
         __modifiedProperties.addPropertyName("allsumPurchasePrice");
-        this._allsumPurchasePrice = allsumPurchasePrice;
+        _allsumPurchasePrice = allsumPurchasePrice;
     }
 
     /**
@@ -342,6 +342,6 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setLatestPurchaseDatetime(java.sql.Timestamp latestPurchaseDatetime) {
         __modifiedProperties.addPropertyName("latestPurchaseDatetime");
-        this._latestPurchaseDatetime = latestPurchaseDatetime;
+        _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 }

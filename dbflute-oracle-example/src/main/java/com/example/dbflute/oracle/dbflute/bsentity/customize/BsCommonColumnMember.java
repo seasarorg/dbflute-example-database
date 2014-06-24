@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -353,7 +353,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setMemberId(Long memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -370,7 +370,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -387,7 +387,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -404,7 +404,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -421,7 +421,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -438,7 +438,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -455,7 +455,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -472,6 +472,6 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 }

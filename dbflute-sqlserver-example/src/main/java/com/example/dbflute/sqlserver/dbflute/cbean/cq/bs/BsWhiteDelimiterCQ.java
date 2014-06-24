@@ -74,10 +74,9 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _delimiterId;
-    public ConditionValue getDelimiterId() {
-        if (_delimiterId == null) { _delimiterId = nCV(); }
-        return _delimiterId;
-    }
+    public ConditionValue getDelimiterId()
+    { if (_delimiterId == null) { _delimiterId = nCV(); }
+      return _delimiterId; }
     protected ConditionValue getCValueDelimiterId() { return getDelimiterId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     public BsWhiteDelimiterCQ addOrderBy_DelimiterId_Desc() { regOBD("DELIMITER_ID"); return this; }
 
     protected ConditionValue _numberNullable;
-    public ConditionValue getNumberNullable() {
-        if (_numberNullable == null) { _numberNullable = nCV(); }
-        return _numberNullable;
-    }
+    public ConditionValue getNumberNullable()
+    { if (_numberNullable == null) { _numberNullable = nCV(); }
+      return _numberNullable; }
     protected ConditionValue getCValueNumberNullable() { return getNumberNullable(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     public BsWhiteDelimiterCQ addOrderBy_NumberNullable_Desc() { regOBD("NUMBER_NULLABLE"); return this; }
 
     protected ConditionValue _stringConverted;
-    public ConditionValue getStringConverted() {
-        if (_stringConverted == null) { _stringConverted = nCV(); }
-        return _stringConverted;
-    }
+    public ConditionValue getStringConverted()
+    { if (_stringConverted == null) { _stringConverted = nCV(); }
+      return _stringConverted; }
     protected ConditionValue getCValueStringConverted() { return getStringConverted(); }
 
     /** 
@@ -137,10 +134,9 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     public BsWhiteDelimiterCQ addOrderBy_StringConverted_Desc() { regOBD("STRING_CONVERTED"); return this; }
 
     protected ConditionValue _stringNonConverted;
-    public ConditionValue getStringNonConverted() {
-        if (_stringNonConverted == null) { _stringNonConverted = nCV(); }
-        return _stringNonConverted;
-    }
+    public ConditionValue getStringNonConverted()
+    { if (_stringNonConverted == null) { _stringNonConverted = nCV(); }
+      return _stringNonConverted; }
     protected ConditionValue getCValueStringNonConverted() { return getStringNonConverted(); }
 
     /** 
@@ -158,10 +154,9 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     public BsWhiteDelimiterCQ addOrderBy_StringNonConverted_Desc() { regOBD("STRING_NON_CONVERTED"); return this; }
 
     protected ConditionValue _dateDefault;
-    public ConditionValue getDateDefault() {
-        if (_dateDefault == null) { _dateDefault = nCV(); }
-        return _dateDefault;
-    }
+    public ConditionValue getDateDefault()
+    { if (_dateDefault == null) { _dateDefault = nCV(); }
+      return _dateDefault; }
     protected ConditionValue getCValueDateDefault() { return getDateDefault(); }
 
     /** 
@@ -195,8 +190,7 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDelimiterCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteDelimiterCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -212,8 +206,7 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteDelimiterCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteDelimiterCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -231,61 +224,32 @@ public class BsWhiteDelimiterCQ extends AbstractBsWhiteDelimiterCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteDelimiterCQ> _scalarConditionMap;
-    public Map<String, WhiteDelimiterCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteDelimiterCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteDelimiterCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteDelimiterCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteDelimiterCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteDelimiterCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteDelimiterCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteDelimiterCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteDelimiterCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteDelimiterCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteDelimiterCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteDelimiterCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteDelimiterCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteDelimiterCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteDelimiterCQ> _myselfExistsMap;
-    public Map<String, WhiteDelimiterCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteDelimiterCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteDelimiterCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteDelimiterCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteDelimiterCQ> _myselfInScopeMap;
-    public Map<String, WhiteDelimiterCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteDelimiterCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteDelimiterCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteDelimiterCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

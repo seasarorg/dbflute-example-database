@@ -143,7 +143,7 @@ public class SynonymNextLinkSecretDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymNextLinkSecret newEntity() { return new SynonymNextLinkSecret(); }
     public SynonymNextLinkSecret newMyEntity() { return new SynonymNextLinkSecret(); }
 
     // ===================================================================================

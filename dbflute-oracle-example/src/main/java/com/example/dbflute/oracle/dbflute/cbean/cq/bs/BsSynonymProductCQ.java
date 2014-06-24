@@ -74,10 +74,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _productId;
-    public ConditionValue getProductId() {
-        if (_productId == null) { _productId = nCV(); }
-        return _productId;
-    }
+    public ConditionValue getProductId()
+    { if (_productId == null) { _productId = nCV(); }
+      return _productId; }
     protected ConditionValue getCValueProductId() { return getProductId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_ProductId_Desc() { regOBD("PRODUCT_ID"); return this; }
 
     protected ConditionValue _productName;
-    public ConditionValue getProductName() {
-        if (_productName == null) { _productName = nCV(); }
-        return _productName;
-    }
+    public ConditionValue getProductName()
+    { if (_productName == null) { _productName = nCV(); }
+      return _productName; }
     protected ConditionValue getCValueProductName() { return getProductName(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_ProductName_Desc() { regOBD("PRODUCT_NAME"); return this; }
 
     protected ConditionValue _productHandleCode;
-    public ConditionValue getProductHandleCode() {
-        if (_productHandleCode == null) { _productHandleCode = nCV(); }
-        return _productHandleCode;
-    }
+    public ConditionValue getProductHandleCode()
+    { if (_productHandleCode == null) { _productHandleCode = nCV(); }
+      return _productHandleCode; }
     protected ConditionValue getCValueProductHandleCode() { return getProductHandleCode(); }
 
     /** 
@@ -137,10 +134,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_ProductHandleCode_Desc() { regOBD("PRODUCT_HANDLE_CODE"); return this; }
 
     protected ConditionValue _productCategoryCode;
-    public ConditionValue getProductCategoryCode() {
-        if (_productCategoryCode == null) { _productCategoryCode = nCV(); }
-        return _productCategoryCode;
-    }
+    public ConditionValue getProductCategoryCode()
+    { if (_productCategoryCode == null) { _productCategoryCode = nCV(); }
+      return _productCategoryCode; }
     protected ConditionValue getCValueProductCategoryCode() { return getProductCategoryCode(); }
 
     /** 
@@ -158,27 +154,16 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_ProductCategoryCode_Desc() { regOBD("PRODUCT_CATEGORY_CODE"); return this; }
 
     protected ConditionValue _productStatusCode;
-    public ConditionValue getProductStatusCode() {
-        if (_productStatusCode == null) { _productStatusCode = nCV(); }
-        return _productStatusCode;
-    }
+    public ConditionValue getProductStatusCode()
+    { if (_productStatusCode == null) { _productStatusCode = nCV(); }
+      return _productStatusCode; }
     protected ConditionValue getCValueProductStatusCode() { return getProductStatusCode(); }
 
-    protected Map<String, SynonymProductStatusCQ> _productStatusCode_InScopeRelation_SynonymProductStatusMap;
-    public Map<String, SynonymProductStatusCQ> getProductStatusCode_InScopeRelation_SynonymProductStatus() { return _productStatusCode_InScopeRelation_SynonymProductStatusMap; }
-    public String keepProductStatusCode_InScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq) {
-        if (_productStatusCode_InScopeRelation_SynonymProductStatusMap == null) { _productStatusCode_InScopeRelation_SynonymProductStatusMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_InScopeRelation_SynonymProductStatusMap.size() + 1);
-        _productStatusCode_InScopeRelation_SynonymProductStatusMap.put(ky, sq); return "productStatusCode_InScopeRelation_SynonymProductStatus." + ky;
-    }
+    public Map<String, SynonymProductStatusCQ> getProductStatusCode_InScopeRelation_SynonymProductStatus() { return xgetSQueMap("productStatusCode_InScopeRelation_SynonymProductStatus"); }
+    public String keepProductStatusCode_InScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq) { return xkeepSQue("productStatusCode_InScopeRelation_SynonymProductStatus", sq); }
 
-    protected Map<String, SynonymProductStatusCQ> _productStatusCode_NotInScopeRelation_SynonymProductStatusMap;
-    public Map<String, SynonymProductStatusCQ> getProductStatusCode_NotInScopeRelation_SynonymProductStatus() { return _productStatusCode_NotInScopeRelation_SynonymProductStatusMap; }
-    public String keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq) {
-        if (_productStatusCode_NotInScopeRelation_SynonymProductStatusMap == null) { _productStatusCode_NotInScopeRelation_SynonymProductStatusMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_productStatusCode_NotInScopeRelation_SynonymProductStatusMap.size() + 1);
-        _productStatusCode_NotInScopeRelation_SynonymProductStatusMap.put(ky, sq); return "productStatusCode_NotInScopeRelation_SynonymProductStatus." + ky;
-    }
+    public Map<String, SynonymProductStatusCQ> getProductStatusCode_NotInScopeRelation_SynonymProductStatus() { return xgetSQueMap("productStatusCode_NotInScopeRelation_SynonymProductStatus"); }
+    public String keepProductStatusCode_NotInScopeRelation_SynonymProductStatus(SynonymProductStatusCQ sq) { return xkeepSQue("productStatusCode_NotInScopeRelation_SynonymProductStatus", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -195,10 +180,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_ProductStatusCode_Desc() { regOBD("PRODUCT_STATUS_CODE"); return this; }
 
     protected ConditionValue _regularPrice;
-    public ConditionValue getRegularPrice() {
-        if (_regularPrice == null) { _regularPrice = nCV(); }
-        return _regularPrice;
-    }
+    public ConditionValue getRegularPrice()
+    { if (_regularPrice == null) { _regularPrice = nCV(); }
+      return _regularPrice; }
     protected ConditionValue getCValueRegularPrice() { return getRegularPrice(); }
 
     /** 
@@ -216,10 +200,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_RegularPrice_Desc() { regOBD("REGULAR_PRICE"); return this; }
 
     protected ConditionValue _registerDatetime;
-    public ConditionValue getRegisterDatetime() {
-        if (_registerDatetime == null) { _registerDatetime = nCV(); }
-        return _registerDatetime;
-    }
+    public ConditionValue getRegisterDatetime()
+    { if (_registerDatetime == null) { _registerDatetime = nCV(); }
+      return _registerDatetime; }
     protected ConditionValue getCValueRegisterDatetime() { return getRegisterDatetime(); }
 
     /** 
@@ -237,10 +220,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_RegisterDatetime_Desc() { regOBD("REGISTER_DATETIME"); return this; }
 
     protected ConditionValue _registerUser;
-    public ConditionValue getRegisterUser() {
-        if (_registerUser == null) { _registerUser = nCV(); }
-        return _registerUser;
-    }
+    public ConditionValue getRegisterUser()
+    { if (_registerUser == null) { _registerUser = nCV(); }
+      return _registerUser; }
     protected ConditionValue getCValueRegisterUser() { return getRegisterUser(); }
 
     /** 
@@ -258,10 +240,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_RegisterUser_Desc() { regOBD("REGISTER_USER"); return this; }
 
     protected ConditionValue _registerProcess;
-    public ConditionValue getRegisterProcess() {
-        if (_registerProcess == null) { _registerProcess = nCV(); }
-        return _registerProcess;
-    }
+    public ConditionValue getRegisterProcess()
+    { if (_registerProcess == null) { _registerProcess = nCV(); }
+      return _registerProcess; }
     protected ConditionValue getCValueRegisterProcess() { return getRegisterProcess(); }
 
     /** 
@@ -279,10 +260,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_RegisterProcess_Desc() { regOBD("REGISTER_PROCESS"); return this; }
 
     protected ConditionValue _updateDatetime;
-    public ConditionValue getUpdateDatetime() {
-        if (_updateDatetime == null) { _updateDatetime = nCV(); }
-        return _updateDatetime;
-    }
+    public ConditionValue getUpdateDatetime()
+    { if (_updateDatetime == null) { _updateDatetime = nCV(); }
+      return _updateDatetime; }
     protected ConditionValue getCValueUpdateDatetime() { return getUpdateDatetime(); }
 
     /** 
@@ -300,10 +280,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_UpdateDatetime_Desc() { regOBD("UPDATE_DATETIME"); return this; }
 
     protected ConditionValue _updateUser;
-    public ConditionValue getUpdateUser() {
-        if (_updateUser == null) { _updateUser = nCV(); }
-        return _updateUser;
-    }
+    public ConditionValue getUpdateUser()
+    { if (_updateUser == null) { _updateUser = nCV(); }
+      return _updateUser; }
     protected ConditionValue getCValueUpdateUser() { return getUpdateUser(); }
 
     /** 
@@ -321,10 +300,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_UpdateUser_Desc() { regOBD("UPDATE_USER"); return this; }
 
     protected ConditionValue _updateProcess;
-    public ConditionValue getUpdateProcess() {
-        if (_updateProcess == null) { _updateProcess = nCV(); }
-        return _updateProcess;
-    }
+    public ConditionValue getUpdateProcess()
+    { if (_updateProcess == null) { _updateProcess = nCV(); }
+      return _updateProcess; }
     protected ConditionValue getCValueUpdateProcess() { return getUpdateProcess(); }
 
     /** 
@@ -342,10 +320,9 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public BsSynonymProductCQ addOrderBy_UpdateProcess_Desc() { regOBD("UPDATE_PROCESS"); return this; }
 
     protected ConditionValue _versionNo;
-    public ConditionValue getVersionNo() {
-        if (_versionNo == null) { _versionNo = nCV(); }
-        return _versionNo;
-    }
+    public ConditionValue getVersionNo()
+    { if (_versionNo == null) { _versionNo = nCV(); }
+      return _versionNo; }
     protected ConditionValue getCValueVersionNo() { return getVersionNo(); }
 
     /** 
@@ -379,8 +356,7 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymProductCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -396,8 +372,7 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymProductCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -421,31 +396,17 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     public SynonymProductStatusCQ querySynonymProductStatus() {
         return getConditionQuerySynonymProductStatus();
     }
-    protected SynonymProductStatusCQ _conditionQuerySynonymProductStatus;
     public SynonymProductStatusCQ getConditionQuerySynonymProductStatus() {
-        if (_conditionQuerySynonymProductStatus == null) {
-            _conditionQuerySynonymProductStatus = xcreateQuerySynonymProductStatus();
-            xsetupOuterJoinSynonymProductStatus();
-        }
-        return _conditionQuerySynonymProductStatus;
+        String prop = "synonymProductStatus";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQuerySynonymProductStatus()); xsetupOuterJoinSynonymProductStatus(); }
+        return xgetQueRlMap(prop);
     }
     protected SynonymProductStatusCQ xcreateQuerySynonymProductStatus() {
-        String nrp = resolveNextRelationPath("SYNONYM_PRODUCT", "synonymProductStatus");
-        String jan = resolveJoinAliasName(nrp, xgetNextNestLevel());
-        SynonymProductStatusCQ cq = new SynonymProductStatusCQ(this, xgetSqlClause(), jan, xgetNextNestLevel());
-        cq.xsetBaseCB(_baseCB);
-        cq.xsetForeignPropertyName("synonymProductStatus");
-        cq.xsetRelationPath(nrp); return cq;
+        String nrp = xresolveNRP("SYNONYM_PRODUCT", "synonymProductStatus"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new SynonymProductStatusCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "synonymProductStatus", nrp);
     }
-    protected void xsetupOuterJoinSynonymProductStatus() {
-        SynonymProductStatusCQ cq = getConditionQuerySynonymProductStatus();
-        Map<String, String> joinOnMap = newLinkedHashMapSized(4);
-        joinOnMap.put("PRODUCT_STATUS_CODE", "PRODUCT_STATUS_CODE");
-        registerOuterJoin(cq, joinOnMap, "synonymProductStatus");
-    }
-    public boolean hasConditionQuerySynonymProductStatus() {
-        return _conditionQuerySynonymProductStatus != null;
-    }
+    protected void xsetupOuterJoinSynonymProductStatus() { xregOutJo("synonymProductStatus"); }
+    public boolean hasConditionQuerySynonymProductStatus() { return xhasQueRlMap("synonymProductStatus"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;
@@ -454,61 +415,32 @@ public class BsSynonymProductCQ extends AbstractBsSynonymProductCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymProductCQ> _scalarConditionMap;
-    public Map<String, SynonymProductCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymProductCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymProductCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymProductCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymProductCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymProductCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymProductCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymProductCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymProductCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymProductCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymProductCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymProductCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymProductCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymProductCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymProductCQ> _myselfExistsMap;
-    public Map<String, SynonymProductCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymProductCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymProductCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymProductCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymProductCQ> _myselfInScopeMap;
-    public Map<String, SynonymProductCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymProductCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymProductCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymProductCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

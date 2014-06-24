@@ -296,7 +296,7 @@ public class SynonymProductDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public SynonymProduct newEntity() { return new SynonymProduct(); }
     public SynonymProduct newMyEntity() { return new SynonymProduct(); }
 
     // ===================================================================================

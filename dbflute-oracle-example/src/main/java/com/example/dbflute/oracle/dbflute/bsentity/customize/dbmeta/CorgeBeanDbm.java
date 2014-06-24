@@ -181,7 +181,7 @@ public class CorgeBeanDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public CorgeBean newEntity() { return new CorgeBean(); }
     public CorgeBean newMyEntity() { return new CorgeBean(); }
 
     // ===================================================================================

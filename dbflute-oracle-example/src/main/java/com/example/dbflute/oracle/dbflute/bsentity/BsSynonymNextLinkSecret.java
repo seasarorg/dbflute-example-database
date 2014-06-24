@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -315,7 +315,7 @@ public abstract class BsSynonymNextLinkSecret implements Entity, Serializable, C
      */
     public void setSecretCode(String secretCode) {
         __modifiedProperties.addPropertyName("secretCode");
-        this._secretCode = secretCode;
+        _secretCode = secretCode;
     }
 
     /**
@@ -332,7 +332,7 @@ public abstract class BsSynonymNextLinkSecret implements Entity, Serializable, C
      */
     public void setSecretName(String secretName) {
         __modifiedProperties.addPropertyName("secretName");
-        this._secretName = secretName;
+        _secretName = secretName;
     }
 
     /**
@@ -349,6 +349,6 @@ public abstract class BsSynonymNextLinkSecret implements Entity, Serializable, C
      */
     public void setSecretAuthCode(String secretAuthCode) {
         __modifiedProperties.addPropertyName("secretAuthCode");
-        this._secretAuthCode = secretAuthCode;
+        _secretAuthCode = secretAuthCode;
     }
 }

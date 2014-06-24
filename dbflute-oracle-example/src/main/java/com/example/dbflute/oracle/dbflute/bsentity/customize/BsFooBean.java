@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -337,7 +338,7 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooId(Integer fooId) {
         __modifiedProperties.addPropertyName("fooId");
-        this._fooId = fooId;
+        _fooId = fooId;
     }
 
     /**
@@ -354,7 +355,7 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooName(String fooName) {
         __modifiedProperties.addPropertyName("fooName");
-        this._fooName = fooName;
+        _fooName = fooName;
     }
 
     /**
@@ -371,7 +372,7 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooDecimal(java.math.BigDecimal fooDecimal) {
         __modifiedProperties.addPropertyName("fooDecimal");
-        this._fooDecimal = fooDecimal;
+        _fooDecimal = fooDecimal;
     }
 
     /**
@@ -388,7 +389,7 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooDate(java.util.Date fooDate) {
         __modifiedProperties.addPropertyName("fooDate");
-        this._fooDate = fooDate;
+        _fooDate = fooDate;
     }
 
     /**
@@ -405,16 +406,14 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooTimestamp(java.sql.Timestamp fooTimestamp) {
         __modifiedProperties.addPropertyName("fooTimestamp");
-        this._fooTimestamp = fooTimestamp;
+        _fooTimestamp = fooTimestamp;
     }
-
-    /** The value type annotation. {CLOB} */
-    public static final String fooClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] FOO_CLOB: {CLOB} <br />
      * @return The value of the column 'FOO_CLOB'. (NullAllowed even if selected: for no constraint)
      */
+    @MappingValueType(keyName = "stringClobType")
     public String getFooClob() {
         return _fooClob;
     }
@@ -425,6 +424,6 @@ public abstract class BsFooBean implements Entity, Serializable, Cloneable {
      */
     public void setFooClob(String fooClob) {
         __modifiedProperties.addPropertyName("fooClob");
-        this._fooClob = fooClob;
+        _fooClob = fooClob;
     }
 }

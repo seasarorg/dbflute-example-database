@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -138,7 +138,7 @@ public abstract class BsWhiteRefNextTarget implements Entity, Serializable, Clon
     protected NextSchemaProductStatus _nextSchemaProductStatus;
 
     /**
-     * (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
+     * [get] (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
      * @return The entity of foreign property 'nextSchemaProductStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public NextSchemaProductStatus getNextSchemaProductStatus() {
@@ -146,7 +146,7 @@ public abstract class BsWhiteRefNextTarget implements Entity, Serializable, Clon
     }
 
     /**
-     * (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
+     * [set] (隣のスキステ)NEXT_SCHEMA_PRODUCT_STATUS by my NEXT_TARGET_CODE, named 'nextSchemaProductStatus'.
      * @param nextSchemaProductStatus The entity of foreign property 'nextSchemaProductStatus'. (NullAllowed)
      */
     public void setNextSchemaProductStatus(NextSchemaProductStatus nextSchemaProductStatus) {
@@ -329,7 +329,7 @@ public abstract class BsWhiteRefNextTarget implements Entity, Serializable, Clon
      */
     public void setRefNextTargetId(Long refNextTargetId) {
         __modifiedProperties.addPropertyName("refNextTargetId");
-        this._refNextTargetId = refNextTargetId;
+        _refNextTargetId = refNextTargetId;
     }
 
     /**
@@ -346,6 +346,6 @@ public abstract class BsWhiteRefNextTarget implements Entity, Serializable, Clon
      */
     public void setNextTargetCode(String nextTargetCode) {
         __modifiedProperties.addPropertyName("nextTargetCode");
-        this._nextTargetCode = nextTargetCode;
+        _nextTargetCode = nextTargetCode;
     }
 }

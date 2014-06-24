@@ -153,7 +153,7 @@ public class WhiteRefTargetDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteRefTarget newEntity() { return new WhiteRefTarget(); }
     public WhiteRefTarget newMyEntity() { return new WhiteRefTarget(); }
 
     // ===================================================================================

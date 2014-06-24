@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -337,7 +338,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeId(Integer corgeId) {
         __modifiedProperties.addPropertyName("corgeId");
-        this._corgeId = corgeId;
+        _corgeId = corgeId;
     }
 
     /**
@@ -354,7 +355,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeName(String corgeName) {
         __modifiedProperties.addPropertyName("corgeName");
-        this._corgeName = corgeName;
+        _corgeName = corgeName;
     }
 
     /**
@@ -371,7 +372,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeDecimal(java.math.BigDecimal corgeDecimal) {
         __modifiedProperties.addPropertyName("corgeDecimal");
-        this._corgeDecimal = corgeDecimal;
+        _corgeDecimal = corgeDecimal;
     }
 
     /**
@@ -388,7 +389,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeDate(java.util.Date corgeDate) {
         __modifiedProperties.addPropertyName("corgeDate");
-        this._corgeDate = corgeDate;
+        _corgeDate = corgeDate;
     }
 
     /**
@@ -405,16 +406,14 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeTimestamp(java.sql.Timestamp corgeTimestamp) {
         __modifiedProperties.addPropertyName("corgeTimestamp");
-        this._corgeTimestamp = corgeTimestamp;
+        _corgeTimestamp = corgeTimestamp;
     }
-
-    /** The value type annotation. {CLOB} */
-    public static final String corgeClob_VALUE_TYPE = "stringClobType";
 
     /**
      * [get] CORGE_CLOB: {CLOB} <br />
      * @return The value of the column 'CORGE_CLOB'. (NullAllowed even if selected: for no constraint)
      */
+    @MappingValueType(keyName = "stringClobType")
     public String getCorgeClob() {
         return _corgeClob;
     }
@@ -425,6 +424,6 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     public void setCorgeClob(String corgeClob) {
         __modifiedProperties.addPropertyName("corgeClob");
-        this._corgeClob = corgeClob;
+        _corgeClob = corgeClob;
     }
 }

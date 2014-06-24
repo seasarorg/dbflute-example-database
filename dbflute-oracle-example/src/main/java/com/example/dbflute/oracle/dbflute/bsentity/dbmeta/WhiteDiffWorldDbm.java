@@ -131,7 +131,7 @@ public class WhiteDiffWorldDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WhiteDiffWorld newEntity() { return new WhiteDiffWorld(); }
     public WhiteDiffWorld newMyEntity() { return new WhiteDiffWorld(); }
 
     // ===================================================================================

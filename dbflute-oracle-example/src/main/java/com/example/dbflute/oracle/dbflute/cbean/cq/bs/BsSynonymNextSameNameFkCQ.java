@@ -74,10 +74,9 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _refId;
-    public ConditionValue getRefId() {
-        if (_refId == null) { _refId = nCV(); }
-        return _refId;
-    }
+    public ConditionValue getRefId()
+    { if (_refId == null) { _refId = nCV(); }
+      return _refId; }
     protected ConditionValue getCValueRefId() { return getRefId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     public BsSynonymNextSameNameFkCQ addOrderBy_RefId_Desc() { regOBD("REF_ID"); return this; }
 
     protected ConditionValue _refName;
-    public ConditionValue getRefName() {
-        if (_refName == null) { _refName = nCV(); }
-        return _refName;
-    }
+    public ConditionValue getRefName()
+    { if (_refName == null) { _refName = nCV(); }
+      return _refName; }
     protected ConditionValue getCValueRefName() { return getRefName(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     public BsSynonymNextSameNameFkCQ addOrderBy_RefName_Desc() { regOBD("REF_NAME"); return this; }
 
     protected ConditionValue _sameNameId;
-    public ConditionValue getSameNameId() {
-        if (_sameNameId == null) { _sameNameId = nCV(); }
-        return _sameNameId;
-    }
+    public ConditionValue getSameNameId()
+    { if (_sameNameId == null) { _sameNameId = nCV(); }
+      return _sameNameId; }
     protected ConditionValue getCValueSameNameId() { return getSameNameId(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymNextSameNameFkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSynonymNextSameNameFkCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSynonymNextSameNameFkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSynonymNextSameNameFkCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -189,61 +184,32 @@ public class BsSynonymNextSameNameFkCQ extends AbstractBsSynonymNextSameNameFkCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SynonymNextSameNameFkCQ> _scalarConditionMap;
-    public Map<String, SynonymNextSameNameFkCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SynonymNextSameNameFkCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SynonymNextSameNameFkCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SynonymNextSameNameFkCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SynonymNextSameNameFkCQ> _specifyMyselfDerivedMap;
-    public Map<String, SynonymNextSameNameFkCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SynonymNextSameNameFkCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SynonymNextSameNameFkCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SynonymNextSameNameFkCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SynonymNextSameNameFkCQ> _queryMyselfDerivedMap;
-    public Map<String, SynonymNextSameNameFkCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SynonymNextSameNameFkCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SynonymNextSameNameFkCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SynonymNextSameNameFkCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SynonymNextSameNameFkCQ> _myselfExistsMap;
-    public Map<String, SynonymNextSameNameFkCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SynonymNextSameNameFkCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SynonymNextSameNameFkCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SynonymNextSameNameFkCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SynonymNextSameNameFkCQ> _myselfInScopeMap;
-    public Map<String, SynonymNextSameNameFkCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SynonymNextSameNameFkCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SynonymNextSameNameFkCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SynonymNextSameNameFkCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

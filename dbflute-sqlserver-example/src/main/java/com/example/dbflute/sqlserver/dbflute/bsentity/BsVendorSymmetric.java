@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
 
@@ -304,7 +304,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      */
     public void setVendorSymmetricId(Long vendorSymmetricId) {
         __modifiedProperties.addPropertyName("vendorSymmetricId");
-        this._vendorSymmetricId = vendorSymmetricId;
+        _vendorSymmetricId = vendorSymmetricId;
     }
 
     /**
@@ -321,7 +321,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      */
     public void setPlainText(String plainText) {
         __modifiedProperties.addPropertyName("plainText");
-        this._plainText = plainText;
+        _plainText = plainText;
     }
 
     /**
@@ -338,6 +338,6 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      */
     public void setEncryptedData(String encryptedData) {
         __modifiedProperties.addPropertyName("encryptedData");
-        this._encryptedData = encryptedData;
+        _encryptedData = encryptedData;
     }
 }

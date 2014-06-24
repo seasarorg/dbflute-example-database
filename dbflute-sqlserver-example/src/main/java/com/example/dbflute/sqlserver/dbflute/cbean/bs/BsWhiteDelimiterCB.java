@@ -80,11 +80,23 @@ public class BsWhiteDelimiterCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param delimiterId : PK, ID, NotNull, bigint identity(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public WhiteDelimiterCB acceptPK(Long delimiterId) {
+        assertObjectNotNull("delimiterId", delimiterId);
+        BsWhiteDelimiterCB cb = this;
+        cb.query().setDelimiterId_Equal(delimiterId);
+        return (WhiteDelimiterCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param delimiterId : PK, ID, NotNull, bigint identity(19). (NotNull)
      */
     public void acceptPrimaryKey(Long delimiterId) {
         assertObjectNotNull("delimiterId", delimiterId);
         BsWhiteDelimiterCB cb = this;
-        cb.query().setDelimiterId_Equal(delimiterId);;
+        cb.query().setDelimiterId_Equal(delimiterId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

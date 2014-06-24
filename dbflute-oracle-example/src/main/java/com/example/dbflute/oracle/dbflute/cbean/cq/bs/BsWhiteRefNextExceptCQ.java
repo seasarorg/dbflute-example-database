@@ -74,10 +74,9 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _refNextExceptId;
-    public ConditionValue getRefNextExceptId() {
-        if (_refNextExceptId == null) { _refNextExceptId = nCV(); }
-        return _refNextExceptId;
-    }
+    public ConditionValue getRefNextExceptId()
+    { if (_refNextExceptId == null) { _refNextExceptId = nCV(); }
+      return _refNextExceptId; }
     protected ConditionValue getCValueRefNextExceptId() { return getRefNextExceptId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
     public BsWhiteRefNextExceptCQ addOrderBy_RefNextExceptId_Desc() { regOBD("REF_NEXT_EXCEPT_ID"); return this; }
 
     protected ConditionValue _nextExceptCode;
-    public ConditionValue getNextExceptCode() {
-        if (_nextExceptCode == null) { _nextExceptCode = nCV(); }
-        return _nextExceptCode;
-    }
+    public ConditionValue getNextExceptCode()
+    { if (_nextExceptCode == null) { _nextExceptCode = nCV(); }
+      return _nextExceptCode; }
     protected ConditionValue getCValueNextExceptCode() { return getNextExceptCode(); }
 
     /** 
@@ -132,8 +130,7 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteRefNextExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteRefNextExceptCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -149,8 +146,7 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteRefNextExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteRefNextExceptCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -168,61 +164,32 @@ public class BsWhiteRefNextExceptCQ extends AbstractBsWhiteRefNextExceptCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteRefNextExceptCQ> _scalarConditionMap;
-    public Map<String, WhiteRefNextExceptCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteRefNextExceptCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteRefNextExceptCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteRefNextExceptCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteRefNextExceptCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteRefNextExceptCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteRefNextExceptCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteRefNextExceptCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteRefNextExceptCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteRefNextExceptCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteRefNextExceptCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteRefNextExceptCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteRefNextExceptCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteRefNextExceptCQ> _myselfExistsMap;
-    public Map<String, WhiteRefNextExceptCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteRefNextExceptCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteRefNextExceptCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteRefNextExceptCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteRefNextExceptCQ> _myselfInScopeMap;
-    public Map<String, WhiteRefNextExceptCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteRefNextExceptCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteRefNextExceptCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteRefNextExceptCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

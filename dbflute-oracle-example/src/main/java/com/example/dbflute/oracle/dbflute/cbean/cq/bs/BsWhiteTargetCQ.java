@@ -74,66 +74,30 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _targetId;
-    public ConditionValue getTargetId() {
-        if (_targetId == null) { _targetId = nCV(); }
-        return _targetId;
-    }
+    public ConditionValue getTargetId()
+    { if (_targetId == null) { _targetId = nCV(); }
+      return _targetId; }
     protected ConditionValue getCValueTargetId() { return getTargetId(); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_ExistsReferrer_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_ExistsReferrer_WhiteRefTargetList() { return _targetId_ExistsReferrer_WhiteRefTargetListMap; }
-    public String keepTargetId_ExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_ExistsReferrer_WhiteRefTargetListMap == null) { _targetId_ExistsReferrer_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_ExistsReferrer_WhiteRefTargetListMap.size() + 1);
-        _targetId_ExistsReferrer_WhiteRefTargetListMap.put(ky, sq); return "targetId_ExistsReferrer_WhiteRefTargetList." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_ExistsReferrer_WhiteRefTargetList() { return xgetSQueMap("targetId_ExistsReferrer_WhiteRefTargetList"); }
+    public String keepTargetId_ExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_ExistsReferrer_WhiteRefTargetList", sq); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_NotExistsReferrer_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_NotExistsReferrer_WhiteRefTargetList() { return _targetId_NotExistsReferrer_WhiteRefTargetListMap; }
-    public String keepTargetId_NotExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_NotExistsReferrer_WhiteRefTargetListMap == null) { _targetId_NotExistsReferrer_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_NotExistsReferrer_WhiteRefTargetListMap.size() + 1);
-        _targetId_NotExistsReferrer_WhiteRefTargetListMap.put(ky, sq); return "targetId_NotExistsReferrer_WhiteRefTargetList." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_NotExistsReferrer_WhiteRefTargetList() { return xgetSQueMap("targetId_NotExistsReferrer_WhiteRefTargetList"); }
+    public String keepTargetId_NotExistsReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_NotExistsReferrer_WhiteRefTargetList", sq); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_SpecifyDerivedReferrer_WhiteRefTargetList() { return _targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap; }
-    public String keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap == null) { _targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap.size() + 1);
-        _targetId_SpecifyDerivedReferrer_WhiteRefTargetListMap.put(ky, sq); return "targetId_SpecifyDerivedReferrer_WhiteRefTargetList." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_SpecifyDerivedReferrer_WhiteRefTargetList() { return xgetSQueMap("targetId_SpecifyDerivedReferrer_WhiteRefTargetList"); }
+    public String keepTargetId_SpecifyDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_SpecifyDerivedReferrer_WhiteRefTargetList", sq); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_InScopeRelation_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_InScopeRelation_WhiteRefTargetList() { return _targetId_InScopeRelation_WhiteRefTargetListMap; }
-    public String keepTargetId_InScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_InScopeRelation_WhiteRefTargetListMap == null) { _targetId_InScopeRelation_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_InScopeRelation_WhiteRefTargetListMap.size() + 1);
-        _targetId_InScopeRelation_WhiteRefTargetListMap.put(ky, sq); return "targetId_InScopeRelation_WhiteRefTargetList." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_InScopeRelation_WhiteRefTargetList() { return xgetSQueMap("targetId_InScopeRelation_WhiteRefTargetList"); }
+    public String keepTargetId_InScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_InScopeRelation_WhiteRefTargetList", sq); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_NotInScopeRelation_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_NotInScopeRelation_WhiteRefTargetList() { return _targetId_NotInScopeRelation_WhiteRefTargetListMap; }
-    public String keepTargetId_NotInScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_NotInScopeRelation_WhiteRefTargetListMap == null) { _targetId_NotInScopeRelation_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_NotInScopeRelation_WhiteRefTargetListMap.size() + 1);
-        _targetId_NotInScopeRelation_WhiteRefTargetListMap.put(ky, sq); return "targetId_NotInScopeRelation_WhiteRefTargetList." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_NotInScopeRelation_WhiteRefTargetList() { return xgetSQueMap("targetId_NotInScopeRelation_WhiteRefTargetList"); }
+    public String keepTargetId_NotInScopeRelation_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_NotInScopeRelation_WhiteRefTargetList", sq); }
 
-    protected Map<String, WhiteRefTargetCQ> _targetId_QueryDerivedReferrer_WhiteRefTargetListMap;
-    public Map<String, WhiteRefTargetCQ> getTargetId_QueryDerivedReferrer_WhiteRefTargetList() { return _targetId_QueryDerivedReferrer_WhiteRefTargetListMap; }
-    public String keepTargetId_QueryDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) {
-        if (_targetId_QueryDerivedReferrer_WhiteRefTargetListMap == null) { _targetId_QueryDerivedReferrer_WhiteRefTargetListMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_targetId_QueryDerivedReferrer_WhiteRefTargetListMap.size() + 1);
-        _targetId_QueryDerivedReferrer_WhiteRefTargetListMap.put(ky, sq); return "targetId_QueryDerivedReferrer_WhiteRefTargetList." + ky;
-    }
-    protected Map<String, Object> _targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap;
-    public Map<String, Object> getTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter() { return _targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap; }
-    public String keepTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter(Object vl) {
-        if (_targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap == null) { _targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap.size() + 1);
-        _targetId_QueryDerivedReferrer_WhiteRefTargetListParameterMap.put(ky, vl); return "targetId_QueryDerivedReferrer_WhiteRefTargetListParameter." + ky;
-    }
+    public Map<String, WhiteRefTargetCQ> getTargetId_QueryDerivedReferrer_WhiteRefTargetList() { return xgetSQueMap("targetId_QueryDerivedReferrer_WhiteRefTargetList"); }
+    public String keepTargetId_QueryDerivedReferrer_WhiteRefTargetList(WhiteRefTargetCQ sq) { return xkeepSQue("targetId_QueryDerivedReferrer_WhiteRefTargetList", sq); }
+    public Map<String, Object> getTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter() { return xgetSQuePmMap("targetId_QueryDerivedReferrer_WhiteRefTargetList"); }
+    public String keepTargetId_QueryDerivedReferrer_WhiteRefTargetListParameter(Object pm) { return xkeepSQuePm("targetId_QueryDerivedReferrer_WhiteRefTargetList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -150,10 +114,9 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
     public BsWhiteTargetCQ addOrderBy_TargetId_Desc() { regOBD("TARGET_ID"); return this; }
 
     protected ConditionValue _targetName;
-    public ConditionValue getTargetName() {
-        if (_targetName == null) { _targetName = nCV(); }
-        return _targetName;
-    }
+    public ConditionValue getTargetName()
+    { if (_targetName == null) { _targetName = nCV(); }
+      return _targetName; }
     protected ConditionValue getCValueTargetName() { return getTargetName(); }
 
     /** 
@@ -187,8 +150,7 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteTargetCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsWhiteTargetCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -204,8 +166,7 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsWhiteTargetCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsWhiteTargetCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -223,61 +184,32 @@ public class BsWhiteTargetCQ extends AbstractBsWhiteTargetCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, WhiteTargetCQ> _scalarConditionMap;
-    public Map<String, WhiteTargetCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(WhiteTargetCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, WhiteTargetCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(WhiteTargetCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, WhiteTargetCQ> _specifyMyselfDerivedMap;
-    public Map<String, WhiteTargetCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(WhiteTargetCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, WhiteTargetCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(WhiteTargetCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, WhiteTargetCQ> _queryMyselfDerivedMap;
-    public Map<String, WhiteTargetCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(WhiteTargetCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, WhiteTargetCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(WhiteTargetCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, WhiteTargetCQ> _myselfExistsMap;
-    public Map<String, WhiteTargetCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(WhiteTargetCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, WhiteTargetCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(WhiteTargetCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, WhiteTargetCQ> _myselfInScopeMap;
-    public Map<String, WhiteTargetCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(WhiteTargetCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, WhiteTargetCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(WhiteTargetCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

@@ -143,7 +143,7 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public VendorSymmetric newEntity() { return new VendorSymmetric(); }
     public VendorSymmetric newMyEntity() { return new VendorSymmetric(); }
 
     // ===================================================================================
