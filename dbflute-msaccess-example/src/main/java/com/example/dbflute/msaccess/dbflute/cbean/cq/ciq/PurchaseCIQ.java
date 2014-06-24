@@ -25,9 +25,9 @@ public class PurchaseCIQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public PurchaseCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public PurchaseCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsPurchaseCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path
@@ -37,32 +37,24 @@ public class PurchaseCIQ extends AbstractBsPurchaseCQ {
     // ===================================================================================
     //                                                             Override about Register
     //                                                             =======================
-    @Override
-    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq) {
-        String msg = "InlineView must not need UNION method: " + bq + " : " + uq;
-        throw new IllegalConditionBeanOperationException(msg);
-    }
+    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq)
+    { throw new IllegalConditionBeanOperationException("InlineView cannot use Union: " + bq + " : " + uq); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col) {
-        regIQ(k, v, cv, col);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col)
+    { regIQ(k, v, cv, col); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op) {
-        regIQ(k, v, cv, col, op);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op)
+    { regIQ(k, v, cv, col, op); }
 
     @Override
-    protected void registerWhereClause(String wc) {
-        registerInlineWhereClause(wc);
-    }
+    protected void registerWhereClause(String wc)
+    { registerInlineWhereClause(wc); }
 
     @Override
     protected boolean isInScopeRelationSuppressLocalAliasName() {
-        if (_onClause) {
-            throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported.");
-        }
+        if (_onClause) { throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported."); }
         return true;
     }
 
@@ -91,23 +83,22 @@ public class PurchaseCIQ extends AbstractBsPurchaseCQ {
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(PurchaseCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(PurchaseCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(PurchaseCQ subQuery)
+    public String keepSpecifyMyselfDerived(PurchaseCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(PurchaseCQ subQuery)
+    public String keepQueryMyselfDerived(PurchaseCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(PurchaseCQ subQuery)
+    public String keepMyselfExists(PurchaseCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(PurchaseCQ subQuery)
+    public String keepMyselfInScope(PurchaseCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
-    protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
-        throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");
-    }
+    protected void throwIICBOE(String name)
+    { throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported."); }
 
     // ===================================================================================
     //                                                                       Very Internal

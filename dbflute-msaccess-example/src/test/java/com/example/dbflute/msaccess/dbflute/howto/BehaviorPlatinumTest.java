@@ -466,8 +466,8 @@ public class BehaviorPlatinumTest extends ContainerTestCase {
 
         // ## Act ##
         // SQL実行！
-        List<SimpleMember> memberList = memberBhv.outsideSql().configure(statementConfig).selectList(path, pmb,
-                entityType);
+        List<SimpleMember> memberList = memberBhv.outsideSql().configure(statementConfig)
+                .selectList(path, pmb, entityType);
 
         // ## Assert ##
         assertNotSame(0, memberList.size());
@@ -642,6 +642,7 @@ public class BehaviorPlatinumTest extends ContainerTestCase {
 
         // ## Act ##
         GroupingOption<Member> groupingOption = new GroupingOption<Member>(3);
+        @SuppressWarnings("deprecation")
         List<List<Member>> groupingList = memberList.groupingList(new GroupingRowSetupper<List<Member>, Member>() {
             public List<Member> setup(GroupingRowResource<Member> groupingRowResource) {
                 return new ArrayList<Member>(groupingRowResource.getGroupingRowList());
@@ -679,6 +680,7 @@ public class BehaviorPlatinumTest extends ContainerTestCase {
                 return !currentInitChar.equalsIgnoreCase(nextInitChar);
             }
         });
+        @SuppressWarnings("deprecation")
         List<List<Member>> groupingList = memberList.groupingList(new GroupingRowSetupper<List<Member>, Member>() {
             public List<Member> setup(GroupingRowResource<Member> groupingRowResource) {
                 return new ArrayList<Member>(groupingRowResource.getGroupingRowList());

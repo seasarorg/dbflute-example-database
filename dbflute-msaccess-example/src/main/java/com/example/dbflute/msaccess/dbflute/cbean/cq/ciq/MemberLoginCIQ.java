@@ -25,9 +25,9 @@ public class MemberLoginCIQ extends AbstractBsMemberLoginCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public MemberLoginCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public MemberLoginCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsMemberLoginCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path
@@ -37,32 +37,24 @@ public class MemberLoginCIQ extends AbstractBsMemberLoginCQ {
     // ===================================================================================
     //                                                             Override about Register
     //                                                             =======================
-    @Override
-    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq) {
-        String msg = "InlineView must not need UNION method: " + bq + " : " + uq;
-        throw new IllegalConditionBeanOperationException(msg);
-    }
+    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq)
+    { throw new IllegalConditionBeanOperationException("InlineView cannot use Union: " + bq + " : " + uq); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col) {
-        regIQ(k, v, cv, col);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col)
+    { regIQ(k, v, cv, col); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op) {
-        regIQ(k, v, cv, col, op);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op)
+    { regIQ(k, v, cv, col, op); }
 
     @Override
-    protected void registerWhereClause(String wc) {
-        registerInlineWhereClause(wc);
-    }
+    protected void registerWhereClause(String wc)
+    { registerInlineWhereClause(wc); }
 
     @Override
     protected boolean isInScopeRelationSuppressLocalAliasName() {
-        if (_onClause) {
-            throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported.");
-        }
+        if (_onClause) { throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported."); }
         return true;
     }
 
@@ -89,23 +81,22 @@ public class MemberLoginCIQ extends AbstractBsMemberLoginCQ {
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(MemberLoginCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(MemberLoginCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(MemberLoginCQ subQuery)
+    public String keepSpecifyMyselfDerived(MemberLoginCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(MemberLoginCQ subQuery)
+    public String keepQueryMyselfDerived(MemberLoginCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(MemberLoginCQ subQuery)
+    public String keepMyselfExists(MemberLoginCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(MemberLoginCQ subQuery)
+    public String keepMyselfInScope(MemberLoginCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
-    protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
-        throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");
-    }
+    protected void throwIICBOE(String name)
+    { throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported."); }
 
     // ===================================================================================
     //                                                                       Very Internal

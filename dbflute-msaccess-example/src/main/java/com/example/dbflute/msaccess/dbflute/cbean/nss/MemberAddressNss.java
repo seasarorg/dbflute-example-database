@@ -29,5 +29,4 @@ public class MemberAddressNss {
         _query.doNss(new MemberAddressCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
         return new MemberNss(_query.queryMember());
     }
-
 }

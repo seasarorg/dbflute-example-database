@@ -78,6 +78,22 @@ public class BsMemberCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberId : PK, ID, NotNull, COUNTER(10), FK to MEMBER_ADDRESS. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberCB acceptPK(Integer memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsMemberCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (MemberCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId : PK, ID, NotNull, COUNTER(10), FK to MEMBER_ADDRESS. (NotNull)
+     */
     public void acceptPrimaryKey(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
         BsMemberCB cb = this;
@@ -124,7 +140,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * cb.query().setBirthdate_IsNull();    <span style="color: #3F7E5E">// is null</span>
      * cb.query().setBirthdate_IsNotNull(); <span style="color: #3F7E5E">// is not null</span>
      * 
-     * <span style="color: #3F7E5E">// ExistsReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// ExistsReferrer: (correlated sub-query)</span>
      * <span style="color: #3F7E5E">// {where exists (select PURCHASE_ID from PURCHASE where ...)}</span>
      * cb.query().existsPurchaseList(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
@@ -142,7 +158,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * });
      * cb.query().notInScopeMemberStatus...
      * 
-     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (correlated sub-query)</span>
      * cb.query().derivedPurchaseList().max(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchasePrice(); <span style="color: #3F7E5E">// derived column for function</span>
@@ -209,7 +225,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;MemberCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -218,8 +234,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<MemberCB> unionQuery) {
-        final MemberCB cb = new MemberCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -228,7 +244,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;MemberCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -237,8 +253,8 @@ public class BsMemberCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<MemberCB> unionQuery) {
-        final MemberCB cb = new MemberCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberCB cb = new MemberCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
@@ -255,45 +271,39 @@ public class BsMemberCB extends AbstractConditionBean {
      * MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberAddressAsValid(targetDate)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberAddressAsValid(targetDate)</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
-     * ... = member.<span style="color: #FD4747">getMemberAddressAsValid()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = member.<span style="color: #DD4747">getMemberAddressAsValid()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @param targetDate The bind parameter of fixed condition for targetDate. (NotNull)
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberAddressNss setupSelect_MemberAddressAsValid(final java.util.Date targetDate) {
+        assertSetupSelectPurpose("memberAddressAsValid");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberAddressAsValid(targetDate); } });
         if (_nssMemberAddressAsValid == null || !_nssMemberAddressAsValid.hasConditionQuery())
         { _nssMemberAddressAsValid = new MemberAddressNss(query().queryMemberAddressAsValid(targetDate)); }
         return _nssMemberAddressAsValid;
     }
-    protected MemberStatusNss _nssMemberStatus;
-    public MemberStatusNss getNssMemberStatus() {
-        if (_nssMemberStatus == null) { _nssMemberStatus = new MemberStatusNss(null); }
-        return _nssMemberStatus;
-    }
+
     /**
      * Set up relation columns to select clause. <br />
      * MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberStatus()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberStatus()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
-     * ... = member.<span style="color: #FD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = member.<span style="color: #DD4747">getMemberStatus()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
-     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public MemberStatusNss setupSelect_MemberStatus() {
+    public void setupSelect_MemberStatus() {
+        assertSetupSelectPurpose("memberStatus");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnMemberStatusCode();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberStatus(); } });
-        if (_nssMemberStatus == null || !_nssMemberStatus.hasConditionQuery())
-        { _nssMemberStatus = new MemberStatusNss(query().queryMemberStatus()); }
-        return _nssMemberStatus;
     }
 
     protected MemberWithdrawalNss _nssMemberWithdrawalAsOne;
@@ -306,14 +316,15 @@ public class BsMemberCB extends AbstractConditionBean {
      * MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberWithdrawalAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberWithdrawalAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
-     * ... = member.<span style="color: #FD4747">getMemberWithdrawalAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = member.<span style="color: #DD4747">getMemberWithdrawalAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberWithdrawalNss setupSelect_MemberWithdrawalAsOne() {
+        assertSetupSelectPurpose("memberWithdrawalAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberWithdrawalAsOne(); } });
         if (_nssMemberWithdrawalAsOne == null || !_nssMemberWithdrawalAsOne.hasConditionQuery()) { _nssMemberWithdrawalAsOne = new MemberWithdrawalNss(query().queryMemberWithdrawalAsOne()); }
         return _nssMemberWithdrawalAsOne;
@@ -329,14 +340,15 @@ public class BsMemberCB extends AbstractConditionBean {
      * MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
      * <pre>
      * MemberCB cb = new MemberCB();
-     * cb.<span style="color: #FD4747">setupSelect_MemberSecurityAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_MemberSecurityAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
-     * ... = member.<span style="color: #FD4747">getMemberSecurityAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = member.<span style="color: #DD4747">getMemberSecurityAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
     public MemberSecurityNss setupSelect_MemberSecurityAsOne() {
+        assertSetupSelectPurpose("memberSecurityAsOne");
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberSecurityAsOne(); } });
         if (_nssMemberSecurityAsOne == null || !_nssMemberSecurityAsOne.hasConditionQuery()) { _nssMemberSecurityAsOne = new MemberSecurityNss(query().queryMemberSecurityAsOne()); }
         return _nssMemberSecurityAsOne;
@@ -575,65 +587,65 @@ public class BsMemberCB extends AbstractConditionBean {
             return _memberSecurityAsOne;
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from MEMBER_ADDRESS where ...) as FOO_MAX} <br />
          * MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'. <br />
          * This relation is auto-detected as implicit reverse FK.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberAddressList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberAddressCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedMemberAddressList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;MemberAddressCB&gt;() {
          *     public void query(MemberAddressCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, MemberAddress.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, MemberAddress.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
         public HpSDRFunction<MemberAddressCB, MemberCQ> derivedMemberAddressList() {
             assertDerived("memberAddressList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberAddressCB, MemberCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberAddressCB, MemberCQ>() {
-                public void setup(String function, SubQuery<MemberAddressCB> subQuery, MemberCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberAddressList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberAddressCB> sq, MemberCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberAddressList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from PURCHASE where ...) as FOO_MAX} <br />
          * PURCHASE by MEMBER_ID, named 'purchaseList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedPurchaseList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;PurchaseCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedPurchaseList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;PurchaseCB&gt;() {
          *     public void query(PurchaseCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, Purchase.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, Purchase.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
         public HpSDRFunction<PurchaseCB, MemberCQ> derivedPurchaseList() {
             assertDerived("purchaseList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<PurchaseCB, MemberCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<PurchaseCB, MemberCQ>() {
-                public void setup(String function, SubQuery<PurchaseCB> subQuery, MemberCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderivePurchaseList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<PurchaseCB> sq, MemberCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderivePurchaseList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from MEMBER_LOGIN where ...) as FOO_MAX} <br />
          * MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedMemberLoginList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
          *     public void query(MemberLoginCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, MemberLogin.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, MemberLogin.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
         public HpSDRFunction<MemberLoginCB, MemberCQ> derivedMemberLoginList() {
             assertDerived("memberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberLoginCB, MemberCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberCQ>() {
-                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberLoginCB> sq, MemberCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -642,26 +654,26 @@ public class BsMemberCB extends AbstractConditionBean {
         public HpSDRFunction<MemberCB, MemberCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberCB, MemberCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberCB, MemberCQ>() {
-                public void setup(String function, SubQuery<MemberCB> subQuery, MemberCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberCB> sq, MemberCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;MemberCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -702,14 +714,14 @@ public class BsMemberCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -722,15 +734,20 @@ public class BsMemberCB extends AbstractConditionBean {
         xorSQ((MemberCB)this, orQuery);
     }
 
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
+    }
+
     /**
      * Set up the and-part of or-scope. <br />
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberCB&gt;() {
      *     public void query(MemberCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberCB&gt;() {
      *             public void query(MemberCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

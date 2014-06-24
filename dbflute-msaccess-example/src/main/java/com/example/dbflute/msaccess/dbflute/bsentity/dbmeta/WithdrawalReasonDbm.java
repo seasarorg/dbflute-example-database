@@ -33,6 +33,9 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgWithdrawalReasonCode(), "withdrawalReasonCode");
@@ -46,48 +49,48 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateProcess(), "updateProcess");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgWithdrawalReasonCode implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getWithdrawalReasonCode(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setWithdrawalReasonCode((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getWithdrawalReasonCode(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setWithdrawalReasonCode((String)vl); }
     }
     public static class EpgWithdrawalReasonText implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getWithdrawalReasonText(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setWithdrawalReasonText((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getWithdrawalReasonText(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setWithdrawalReasonText((String)vl); }
     }
     public static class EpgDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getDisplayOrder(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setDisplayOrder((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setDisplayOrder((String)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((WithdrawalReason)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((WithdrawalReason)e).setVersionNo(cti(v)); }
+        public Object read(Entity et) { return ((WithdrawalReason)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((WithdrawalReason)et).setVersionNo(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -103,26 +106,66 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, null, false, "withdrawalReasonCode", String.class, true, false, "VARCHAR", 255, 0, null, false, null, null, null, "memberWithdrawalList", null);
-    protected final ColumnInfo _columnWithdrawalReasonText = cci("WITHDRAWAL_REASON_TEXT", "WITHDRAWAL_REASON_TEXT", null, null, false, "withdrawalReasonText", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, false, "displayOrder", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, false, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, false, "registerUser", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, false, "registerProcess", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, false, "updateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, false, "updateUser", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, false, "updateProcess", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, false, "versionNo", Integer.class, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnWithdrawalReasonCode = cci("WITHDRAWAL_REASON_CODE", "WITHDRAWAL_REASON_CODE", null, null, String.class, "withdrawalReasonCode", null, true, false, false, "VARCHAR", 255, 0, null, false, null, null, null, "memberWithdrawalList", null);
+    protected final ColumnInfo _columnWithdrawalReasonText = cci("WITHDRAWAL_REASON_TEXT", "WITHDRAWAL_REASON_TEXT", null, null, String.class, "withdrawalReasonText", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDisplayOrder = cci("DISPLAY_ORDER", "DISPLAY_ORDER", null, null, String.class, "displayOrder", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "updateDatetime", null, false, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * WITHDRAWAL_REASON_CODE: {PK, VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWithdrawalReasonCode() { return _columnWithdrawalReasonCode; }
+    /**
+     * WITHDRAWAL_REASON_TEXT: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnWithdrawalReasonText() { return _columnWithdrawalReasonText; }
+    /**
+     * DISPLAY_ORDER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDisplayOrder() { return _columnDisplayOrder; }
+    /**
+     * REGISTER_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
+    /**
+     * REGISTER_USER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
+    /**
+     * REGISTER_PROCESS: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
+    /**
+     * UPDATE_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateDatetime() { return _columnUpdateDatetime; }
+    /**
+     * UPDATE_USER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
+    /**
+     * UPDATE_PROCESS: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
+    /**
+     * VERSION_NO: {INTEGER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -155,6 +198,8 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -162,9 +207,13 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * MEMBER_WITHDRAWAL by WITHDRAWAL_REASON_CODE, named 'memberWithdrawalList'.
+     * @return The information object of referrer property. (NotNull)
+     */
     public ReferrerInfo referrerMemberWithdrawalList() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnWithdrawalReasonCode(), MemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
-        return cri("FK_MEMBER_WITHDRAWAL_REASON", "memberWithdrawalList", this, MemberWithdrawalDbm.getInstance(), map, false, "withdrawalReason");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnWithdrawalReasonCode(), MemberWithdrawalDbm.getInstance().columnWithdrawalReasonCode());
+        return cri("FK_MEMBER_WITHDRAWAL_REASON", "memberWithdrawalList", this, MemberWithdrawalDbm.getInstance(), mp, false, "withdrawalReason");
     }
 
     // ===================================================================================
@@ -196,16 +245,16 @@ public class WithdrawalReasonDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public WithdrawalReason newEntity() { return new WithdrawalReason(); }
     public WithdrawalReason newMyEntity() { return new WithdrawalReason(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((WithdrawalReason)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((WithdrawalReason)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((WithdrawalReason)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((WithdrawalReason)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

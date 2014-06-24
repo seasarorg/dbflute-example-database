@@ -25,9 +25,9 @@ public class ProductStatusCIQ extends AbstractBsProductStatusCQ {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public ProductStatusCIQ(ConditionQuery childQuery, SqlClause sqlClause
+    public ProductStatusCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
                         , String aliasName, int nestLevel, BsProductStatusCQ myCQ) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
         _relationPath = _myCQ.xgetRelationPath(); // accept relation path
@@ -37,32 +37,24 @@ public class ProductStatusCIQ extends AbstractBsProductStatusCQ {
     // ===================================================================================
     //                                                             Override about Register
     //                                                             =======================
-    @Override
-    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq) {
-        String msg = "InlineView must not need UNION method: " + bq + " : " + uq;
-        throw new IllegalConditionBeanOperationException(msg);
-    }
+    protected void reflectRelationOnUnionQuery(ConditionQuery bq, ConditionQuery uq)
+    { throw new IllegalConditionBeanOperationException("InlineView cannot use Union: " + bq + " : " + uq); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col) {
-        regIQ(k, v, cv, col);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col)
+    { regIQ(k, v, cv, col); }
 
     @Override
-    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op) {
-        regIQ(k, v, cv, col, op);
-    }
+    protected void setupConditionValueAndRegisterWhereClause(ConditionKey k, Object v, ConditionValue cv, String col, ConditionOption op)
+    { regIQ(k, v, cv, col, op); }
 
     @Override
-    protected void registerWhereClause(String wc) {
-        registerInlineWhereClause(wc);
-    }
+    protected void registerWhereClause(String wc)
+    { registerInlineWhereClause(wc); }
 
     @Override
     protected boolean isInScopeRelationSuppressLocalAliasName() {
-        if (_onClause) {
-            throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported.");
-        }
+        if (_onClause) { throw new IllegalConditionBeanOperationException("InScopeRelation on OnClause is unsupported."); }
         return true;
     }
 
@@ -82,7 +74,7 @@ public class ProductStatusCIQ extends AbstractBsProductStatusCQ {
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
     public String keepProductStatusCode_QueryDerivedReferrer_ProductList(ProductCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepProductStatusCode_QueryDerivedReferrer_ProductListParameter(Object pv)
+    public String keepProductStatusCode_QueryDerivedReferrer_ProductListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueProductStatusName() { return _myCQ.getProductStatusName(); }
     protected ConditionValue getCValueRegisterDatetime() { return _myCQ.getRegisterDatetime(); }
@@ -92,23 +84,22 @@ public class ProductStatusCIQ extends AbstractBsProductStatusCQ {
     protected ConditionValue getCValueUpdateUser() { return _myCQ.getUpdateUser(); }
     protected ConditionValue getCValueUpdateProcess() { return _myCQ.getUpdateProcess(); }
     protected ConditionValue getCValueVersionNo() { return _myCQ.getVersionNo(); }
-    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) { return null; }
-    public String keepScalarCondition(ProductStatusCQ subQuery)
+    protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
+    public String keepScalarCondition(ProductStatusCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(ProductStatusCQ subQuery)
+    public String keepSpecifyMyselfDerived(ProductStatusCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(ProductStatusCQ subQuery)
+    public String keepQueryMyselfDerived(ProductStatusCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerivedParameter(Object parameterValue)
+    public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(ProductStatusCQ subQuery)
+    public String keepMyselfExists(ProductStatusCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(ProductStatusCQ subQuery)
+    public String keepMyselfInScope(ProductStatusCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
-    protected void throwIICBOE(String name) { // throwInlineIllegalConditionBeanOperationException()
-        throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported.");
-    }
+    protected void throwIICBOE(String name)
+    { throw new IllegalConditionBeanOperationException(name + " at InlineView is unsupported."); }
 
     // ===================================================================================
     //                                                                       Very Internal

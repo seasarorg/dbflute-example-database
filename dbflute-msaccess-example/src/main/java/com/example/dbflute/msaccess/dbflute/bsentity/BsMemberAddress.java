@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.msaccess.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.msaccess.dbflute.exentity.*;
 
@@ -123,6 +123,9 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -166,6 +169,28 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
         return false;
     }
 
+    /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param memberAddressId : UQ, NotNull, COUNTER(10). (NotNull)
+     */
+    public void uniqueBy(Integer memberAddressId) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("memberAddressId");
+        setMemberAddressId(memberAddressId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
+    }
+
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -173,7 +198,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     protected Member _member;
 
     /**
-     * MEMBER by my MEMBER_ID, named 'member'. <br />
+     * [get] MEMBER by my MEMBER_ID, named 'member'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
@@ -182,7 +207,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     }
 
     /**
-     * MEMBER by my MEMBER_ID, named 'member'. <br />
+     * [set] MEMBER by my MEMBER_ID, named 'member'. <br />
      * This relation is auto-detected as implicit reverse FK.
      * @param member The entity of foreign property 'member'. (NullAllowed)
      */
@@ -248,28 +273,28 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsMemberAddress)) { return false; }
-        BsMemberAddress otherEntity = (BsMemberAddress)other;
-        if (!xSV(getMemberAddressId(), otherEntity.getMemberAddressId())) { return false; }
-        if (!xSV(getMemberId(), otherEntity.getMemberId())) { return false; }
-        if (!xSV(getValidBeginDate(), otherEntity.getValidBeginDate())) { return false; }
-        if (!xSV(getValidEndDate(), otherEntity.getValidEndDate())) { return false; }
-        if (!xSV(getAddress(), otherEntity.getAddress())) { return false; }
-        if (!xSV(getRegisterDatetime(), otherEntity.getRegisterDatetime())) { return false; }
-        if (!xSV(getRegisterProcess(), otherEntity.getRegisterProcess())) { return false; }
-        if (!xSV(getRegisterUser(), otherEntity.getRegisterUser())) { return false; }
-        if (!xSV(getUpdateDatetime(), otherEntity.getUpdateDatetime())) { return false; }
-        if (!xSV(getUpdateProcess(), otherEntity.getUpdateProcess())) { return false; }
-        if (!xSV(getUpdateUser(), otherEntity.getUpdateUser())) { return false; }
-        if (!xSV(getVersionNo(), otherEntity.getVersionNo())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsMemberAddress)) { return false; }
+        BsMemberAddress other = (BsMemberAddress)obj;
+        if (!xSV(getMemberAddressId(), other.getMemberAddressId())) { return false; }
+        if (!xSV(getMemberId(), other.getMemberId())) { return false; }
+        if (!xSV(getValidBeginDate(), other.getValidBeginDate())) { return false; }
+        if (!xSV(getValidEndDate(), other.getValidEndDate())) { return false; }
+        if (!xSV(getAddress(), other.getAddress())) { return false; }
+        if (!xSV(getRegisterDatetime(), other.getRegisterDatetime())) { return false; }
+        if (!xSV(getRegisterProcess(), other.getRegisterProcess())) { return false; }
+        if (!xSV(getRegisterUser(), other.getRegisterUser())) { return false; }
+        if (!xSV(getUpdateDatetime(), other.getUpdateDatetime())) { return false; }
+        if (!xSV(getUpdateProcess(), other.getUpdateProcess())) { return false; }
+        if (!xSV(getUpdateUser(), other.getUpdateUser())) { return false; }
+        if (!xSV(getVersionNo(), other.getVersionNo())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -277,24 +302,24 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberAddressId());
-        result = xCH(result, getMemberId());
-        result = xCH(result, getValidBeginDate());
-        result = xCH(result, getValidEndDate());
-        result = xCH(result, getAddress());
-        result = xCH(result, getRegisterDatetime());
-        result = xCH(result, getRegisterProcess());
-        result = xCH(result, getRegisterUser());
-        result = xCH(result, getUpdateDatetime());
-        result = xCH(result, getUpdateProcess());
-        result = xCH(result, getUpdateUser());
-        result = xCH(result, getVersionNo());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberAddressId());
+        hs = xCH(hs, getMemberId());
+        hs = xCH(hs, getValidBeginDate());
+        hs = xCH(hs, getValidEndDate());
+        hs = xCH(hs, getAddress());
+        hs = xCH(hs, getRegisterDatetime());
+        hs = xCH(hs, getRegisterProcess());
+        hs = xCH(hs, getRegisterUser());
+        hs = xCH(hs, getUpdateDatetime());
+        hs = xCH(hs, getUpdateProcess());
+        hs = xCH(hs, getUpdateUser());
+        hs = xCH(hs, getVersionNo());
+        return hs;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -309,7 +334,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -318,13 +343,13 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
+        String li = "\n  ";
         if (_member != null)
-        { sb.append(l).append(xbRDS(_member, "member")); }
+        { sb.append(li).append(xbRDS(_member, "member")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -340,31 +365,31 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberAddressId());
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(getValidBeginDate());
-        sb.append(delimiter).append(getValidEndDate());
-        sb.append(delimiter).append(getAddress());
-        sb.append(delimiter).append(getRegisterDatetime());
-        sb.append(delimiter).append(getRegisterProcess());
-        sb.append(delimiter).append(getRegisterUser());
-        sb.append(delimiter).append(getUpdateDatetime());
-        sb.append(delimiter).append(getUpdateProcess());
-        sb.append(delimiter).append(getUpdateUser());
-        sb.append(delimiter).append(getVersionNo());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberAddressId());
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(getValidBeginDate());
+        sb.append(dm).append(getValidEndDate());
+        sb.append(dm).append(getAddress());
+        sb.append(dm).append(getRegisterDatetime());
+        sb.append(dm).append(getRegisterProcess());
+        sb.append(dm).append(getRegisterUser());
+        sb.append(dm).append(getUpdateDatetime());
+        sb.append(dm).append(getUpdateProcess());
+        sb.append(dm).append(getUpdateUser());
+        sb.append(dm).append(getVersionNo());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
-        if (_member != null) { sb.append(c).append("member"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        String cm = ",";
+        if (_member != null) { sb.append(cm).append("member"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -398,7 +423,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setMemberAddressId(Integer memberAddressId) {
         __modifiedProperties.addPropertyName("memberAddressId");
-        this._memberAddressId = memberAddressId;
+        _memberAddressId = memberAddressId;
     }
 
     /**
@@ -415,7 +440,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -432,7 +457,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setValidBeginDate(java.sql.Timestamp validBeginDate) {
         __modifiedProperties.addPropertyName("validBeginDate");
-        this._validBeginDate = validBeginDate;
+        _validBeginDate = validBeginDate;
     }
 
     /**
@@ -449,7 +474,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setValidEndDate(java.sql.Timestamp validEndDate) {
         __modifiedProperties.addPropertyName("validEndDate");
-        this._validEndDate = validEndDate;
+        _validEndDate = validEndDate;
     }
 
     /**
@@ -466,7 +491,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setAddress(String address) {
         __modifiedProperties.addPropertyName("address");
-        this._address = address;
+        _address = address;
     }
 
     /**
@@ -483,7 +508,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -500,7 +525,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -517,7 +542,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -534,7 +559,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -551,7 +576,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -568,7 +593,7 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -585,6 +610,6 @@ public abstract class BsMemberAddress implements Entity, Serializable, Cloneable
      */
     public void setVersionNo(Integer versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

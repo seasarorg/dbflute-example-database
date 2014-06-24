@@ -77,6 +77,22 @@ public class BsMemberStatusCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
+    /**
+     * Accept the query condition of primary key as equal.
+     * @param memberStatusCode : PK, VARCHAR(255), classification=MemberStatus. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberStatusCB acceptPK(String memberStatusCode) {
+        assertObjectNotNull("memberStatusCode", memberStatusCode);
+        BsMemberStatusCB cb = this;
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);
+        return (MemberStatusCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberStatusCode : PK, VARCHAR(255), classification=MemberStatus. (NotNull)
+     */
     public void acceptPrimaryKey(String memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         BsMemberStatusCB cb = this;
@@ -123,7 +139,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * cb.query().setBirthdate_IsNull();    <span style="color: #3F7E5E">// is null</span>
      * cb.query().setBirthdate_IsNotNull(); <span style="color: #3F7E5E">// is not null</span>
      * 
-     * <span style="color: #3F7E5E">// ExistsReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// ExistsReferrer: (correlated sub-query)</span>
      * <span style="color: #3F7E5E">// {where exists (select PURCHASE_ID from PURCHASE where ...)}</span>
      * cb.query().existsPurchaseList(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
@@ -141,7 +157,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * });
      * cb.query().notInScopeMemberStatus...
      * 
-     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (co-related sub-query)</span>
+     * <span style="color: #3F7E5E">// (Query)DerivedReferrer: (correlated sub-query)</span>
      * cb.query().derivedPurchaseList().max(new SubQuery&lt;PurchaseCB&gt;() {
      *     public void query(PurchaseCB subCB) {
      *         subCB.specify().columnPurchasePrice(); <span style="color: #3F7E5E">// derived column for function</span>
@@ -208,7 +224,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">union</span>(new UnionQuery&lt;MemberStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">union</span>(new UnionQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -217,8 +233,8 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union'. (NotNull)
      */
     public void union(UnionQuery<MemberStatusCB> unionQuery) {
-        final MemberStatusCB cb = new MemberStatusCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberStatusCB cb = new MemberStatusCB(); cb.xsetupForUnion(this); xsyncUQ(cb); 
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberStatusCQ cq = cb.query(); query().xsetUnionQuery(cq);
     }
 
@@ -227,7 +243,7 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * You don't need to call SetupSelect in union-query,
      * because it inherits calls before. (Don't call SetupSelect after here)
      * <pre>
-     * cb.query().<span style="color: #FD4747">unionAll</span>(new UnionQuery&lt;MemberStatusCB&gt;() {
+     * cb.query().<span style="color: #DD4747">unionAll</span>(new UnionQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB unionCB) {
      *         unionCB.query().setXxx...
      *     }
@@ -236,15 +252,14 @@ public class BsMemberStatusCB extends AbstractConditionBean {
      * @param unionQuery The query of 'union all'. (NotNull)
      */
     public void unionAll(UnionQuery<MemberStatusCB> unionQuery) {
-        final MemberStatusCB cb = new MemberStatusCB();
-        cb.xsetupForUnion(this); xsyncUQ(cb); unionQuery.query(cb); xsaveUCB(cb);
+        final MemberStatusCB cb = new MemberStatusCB(); cb.xsetupForUnion(this); xsyncUQ(cb);
+        try { lock(); unionQuery.query(cb); } finally { unlock(); } xsaveUCB(cb);
         final MemberStatusCQ cq = cb.query(); query().xsetUnionAllQuery(cq);
     }
 
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-
     // [DBFlute-0.7.4]
     // ===================================================================================
     //                                                                             Specify
@@ -349,44 +364,44 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         @Override
         protected String getTableDbName() { return "MEMBER_STATUS"; }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from MEMBER where ...) as FOO_MAX} <br />
          * MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedMemberList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;MemberCB&gt;() {
          *     public void query(MemberCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, Member.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, Member.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
         public HpSDRFunction<MemberCB, MemberStatusCQ> derivedMemberList() {
             assertDerived("memberList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
-         * Prepare for (Specify)DerivedReferrer. <br />
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from MEMBER_LOGIN where ...) as FOO_MAX} <br />
          * MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
          * <pre>
-         * cb.specify().<span style="color: #FD4747">derivedMemberLoginList()</span>.<span style="color: #FD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedMemberLoginList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;MemberLoginCB&gt;() {
          *     public void query(MemberLoginCB subCB) {
-         *         subCB.specify().<span style="color: #FD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
          *     }
-         * }, MemberLogin.<span style="color: #FD4747">ALIAS_foo...</span>);
+         * }, MemberLogin.<span style="color: #DD4747">ALIAS_foo...</span>);
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
         public HpSDRFunction<MemberLoginCB, MemberStatusCQ> derivedMemberLoginList() {
             assertDerived("memberLoginList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberLoginCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberLoginCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberLoginCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsderiveMemberLoginList(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberLoginCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveMemberLoginList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
@@ -395,26 +410,26 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         public HpSDRFunction<MemberStatusCB, MemberStatusCQ> myselfDerived() {
             assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<MemberStatusCB, MemberStatusCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<MemberStatusCB, MemberStatusCQ>() {
-                public void setup(String function, SubQuery<MemberStatusCB> subQuery, MemberStatusCQ cq, String aliasName, DerivedReferrerOption option) {
-                    cq.xsmyselfDerive(function, subQuery, aliasName, option); } }, _dbmetaProvider);
+                public void setup(String fn, SubQuery<MemberStatusCB> sq, MemberStatusCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 
     // [DBFlute-0.9.5.3]
     // ===================================================================================
-    //                                                                         ColumnQuery
-    //                                                                         ===========
+    //                                                                        Column Query
+    //                                                                        ============
     /**
      * Set up column-query. {column1 = column2}
      * <pre>
      * <span style="color: #3F7E5E">// where FOO &lt; BAR</span>
-     * cb.<span style="color: #FD4747">columnQuery</span>(new SpecifyQuery&lt;MemberStatusCB&gt;() {
+     * cb.<span style="color: #DD4747">columnQuery</span>(new SpecifyQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
+     *         cb.specify().<span style="color: #DD4747">columnFoo()</span>; <span style="color: #3F7E5E">// left column</span>
      *     }
      * }).lessThan(new SpecifyQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB cb) {
-     *         cb.specify().<span style="color: #FD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
+     *         cb.specify().<span style="color: #DD4747">columnBar()</span>; <span style="color: #3F7E5E">// right column</span>
      *     }
      * }); <span style="color: #3F7E5E">// you can calculate for right column like '}).plus(3);'</span>
      * </pre>
@@ -455,14 +470,14 @@ public class BsMemberStatusCB extends AbstractConditionBean {
 
     // [DBFlute-0.9.6.3]
     // ===================================================================================
-    //                                                                        OrScopeQuery
-    //                                                                        ============
+    //                                                                       OrScope Query
+    //                                                                       =============
     /**
      * Set up the query for or-scope. <br />
      * (Same-column-and-same-condition-key conditions are allowed in or-scope)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or BAR = '...')</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberStatusCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB orCB) {
      *         orCB.query().setFOO_Equal...
      *         orCB.query().setBAR_Equal...
@@ -475,15 +490,20 @@ public class BsMemberStatusCB extends AbstractConditionBean {
         xorSQ((MemberStatusCB)this, orQuery);
     }
 
+    @Override
+    protected HpCBPurpose xhandleOrSQPurposeChange() {
+        return null; // means no check
+    }
+
     /**
      * Set up the and-part of or-scope. <br />
      * (However nested or-scope query and as-or-split of like-search in and-part are unsupported)
      * <pre>
      * <span style="color: #3F7E5E">// where (FOO = '...' or (BAR = '...' and QUX = '...'))</span>
-     * cb.<span style="color: #FD4747">orScopeQuery</span>(new OrQuery&lt;MemberStatusCB&gt;() {
+     * cb.<span style="color: #DD4747">orScopeQuery</span>(new OrQuery&lt;MemberStatusCB&gt;() {
      *     public void query(MemberStatusCB orCB) {
      *         orCB.query().setFOO_Equal...
-     *         orCB.<span style="color: #FD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberStatusCB&gt;() {
+     *         orCB.<span style="color: #DD4747">orScopeQueryAndPart</span>(new AndQuery&lt;MemberStatusCB&gt;() {
      *             public void query(MemberStatusCB andCB) {
      *                 andCB.query().setBar_...
      *                 andCB.query().setQux_...

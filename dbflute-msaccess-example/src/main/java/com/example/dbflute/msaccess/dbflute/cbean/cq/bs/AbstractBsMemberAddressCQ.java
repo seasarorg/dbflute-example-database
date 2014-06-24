@@ -22,8 +22,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public AbstractBsMemberAddressCQ(ConditionQuery childQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
-        super(childQuery, sqlClause, aliasName, nestLevel);
+    public AbstractBsMemberAddressCQ(ConditionQuery referrerQuery, SqlClause sqlClause, String aliasName, int nestLevel) {
+        super(referrerQuery, sqlClause, aliasName, nestLevel);
     }
 
     // ===================================================================================
@@ -146,8 +146,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
         regINS(CK_NINS, cTL(memberAddressIdList), getCValueMemberAddressId(), "MEMBER_ADDRESS_ID");
     }
 
-    protected void regMemberAddressId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberAddressId(), "MEMBER_ADDRESS_ID"); }
-    abstract protected ConditionValue getCValueMemberAddressId();
+    protected void regMemberAddressId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberAddressId(), "MEMBER_ADDRESS_ID"); }
+    protected abstract ConditionValue getCValueMemberAddressId();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -258,12 +258,13 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Member for 'in-scope'. (NotNull)
      */
     public void inScopeMember(SubQuery<MemberCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberCB>", subQuery);
-        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_InScopeRelation_Member(cb.query()); // for saving query-value.
-        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "member");
+        assertObjectNotNull("subQuery", subQuery);
+        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_InScopeRelation_Member(cb.query());
+        registerInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "member");
     }
-    public abstract String keepMemberId_InScopeRelation_Member(MemberCQ subQuery);
+    public abstract String keepMemberId_InScopeRelation_Member(MemberCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
@@ -273,12 +274,13 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * @param subQuery The sub-query of Member for 'not in-scope'. (NotNull)
      */
     public void notInScopeMember(SubQuery<MemberCB> subQuery) {
-        assertObjectNotNull("subQuery<MemberCB>", subQuery);
-        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this); subQuery.query(cb);
-        String subQueryPropertyName = keepMemberId_NotInScopeRelation_Member(cb.query()); // for saving query-value.
-        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", subQueryPropertyName, "member");
+        assertObjectNotNull("subQuery", subQuery);
+        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_NotInScopeRelation_Member(cb.query());
+        registerNotInScopeRelation(cb.query(), "MEMBER_ID", "MEMBER_ID", pp, "member");
     }
-    public abstract String keepMemberId_NotInScopeRelation_Member(MemberCQ subQuery);
+    public abstract String keepMemberId_NotInScopeRelation_Member(MemberCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -292,8 +294,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setMemberId_IsNotNull() { regMemberId(CK_ISNN, DOBJ); }
 
-    protected void regMemberId(ConditionKey k, Object v) { regQ(k, v, getCValueMemberId(), "MEMBER_ID"); }
-    abstract protected ConditionValue getCValueMemberId();
+    protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
+    protected abstract ConditionValue getCValueMemberId();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -344,12 +346,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * VALID_BEGIN_DATE: {DATETIME(19)}
-     * <pre>e.g. setValidBeginDate_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setValidBeginDate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setValidBeginDate_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setValidBeginDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueValidBeginDate(), "VALID_BEGIN_DATE", fromToOption);
     }
 
@@ -359,12 +361,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * VALID_BEGIN_DATE: {DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of validBeginDate. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of validBeginDate. (NullAllowed: if null, no to-condition)
      */
-    public void setValidBeginDate_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setValidBeginDate_DateFromTo(Date fromDate, Date toDate) {
         setValidBeginDate_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -406,8 +408,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setValidBeginDate_IsNotNull() { regValidBeginDate(CK_ISNN, DOBJ); }
 
-    protected void regValidBeginDate(ConditionKey k, Object v) { regQ(k, v, getCValueValidBeginDate(), "VALID_BEGIN_DATE"); }
-    abstract protected ConditionValue getCValueValidBeginDate();
+    protected void regValidBeginDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueValidBeginDate(), "VALID_BEGIN_DATE"); }
+    protected abstract ConditionValue getCValueValidBeginDate();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -458,12 +460,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * VALID_END_DATE: {DATETIME(19)}
-     * <pre>e.g. setValidEndDate_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setValidEndDate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validEndDate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validEndDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setValidEndDate_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setValidEndDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueValidEndDate(), "VALID_END_DATE", fromToOption);
     }
 
@@ -473,12 +475,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * VALID_END_DATE: {DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of validEndDate. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of validEndDate. (NullAllowed: if null, no to-condition)
      */
-    public void setValidEndDate_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setValidEndDate_DateFromTo(Date fromDate, Date toDate) {
         setValidEndDate_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -520,8 +522,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setValidEndDate_IsNotNull() { regValidEndDate(CK_ISNN, DOBJ); }
 
-    protected void regValidEndDate(ConditionKey k, Object v) { regQ(k, v, getCValueValidEndDate(), "VALID_END_DATE"); }
-    abstract protected ConditionValue getCValueValidEndDate();
+    protected void regValidEndDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueValidEndDate(), "VALID_END_DATE"); }
+    protected abstract ConditionValue getCValueValidEndDate();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -623,7 +625,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * ADDRESS: {VARCHAR(200)} <br />
-     * <pre>e.g. setAddress_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setAddress_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param address The value of address as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -660,8 +662,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setAddress_IsNotNull() { regAddress(CK_ISNN, DOBJ); }
 
-    protected void regAddress(ConditionKey k, Object v) { regQ(k, v, getCValueAddress(), "ADDRESS"); }
-    abstract protected ConditionValue getCValueAddress();
+    protected void regAddress(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAddress(), "ADDRESS"); }
+    protected abstract ConditionValue getCValueAddress();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -712,12 +714,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * REGISTER_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setRegisterDatetime_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setRegisterDatetime_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of registerDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setRegisterDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setRegisterDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueRegisterDatetime(), "REGISTER_DATETIME", fromToOption);
     }
 
@@ -727,12 +729,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * REGISTER_DATETIME: {DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of registerDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of registerDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setRegisterDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setRegisterDatetime_DateFromTo(Date fromDate, Date toDate) {
         setRegisterDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -774,8 +776,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setRegisterDatetime_IsNotNull() { regRegisterDatetime(CK_ISNN, DOBJ); }
 
-    protected void regRegisterDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
-    abstract protected ConditionValue getCValueRegisterDatetime();
+    protected void regRegisterDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterDatetime(), "REGISTER_DATETIME"); }
+    protected abstract ConditionValue getCValueRegisterDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -877,7 +879,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * REGISTER_PROCESS: {VARCHAR(200)} <br />
-     * <pre>e.g. setRegisterProcess_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setRegisterProcess_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param registerProcess The value of registerProcess as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -914,8 +916,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setRegisterProcess_IsNotNull() { regRegisterProcess(CK_ISNN, DOBJ); }
 
-    protected void regRegisterProcess(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
-    abstract protected ConditionValue getCValueRegisterProcess();
+    protected void regRegisterProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterProcess(), "REGISTER_PROCESS"); }
+    protected abstract ConditionValue getCValueRegisterProcess();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -1017,7 +1019,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * REGISTER_USER: {VARCHAR(200)} <br />
-     * <pre>e.g. setRegisterUser_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setRegisterUser_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param registerUser The value of registerUser as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -1054,8 +1056,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setRegisterUser_IsNotNull() { regRegisterUser(CK_ISNN, DOBJ); }
 
-    protected void regRegisterUser(ConditionKey k, Object v) { regQ(k, v, getCValueRegisterUser(), "REGISTER_USER"); }
-    abstract protected ConditionValue getCValueRegisterUser();
+    protected void regRegisterUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRegisterUser(), "REGISTER_USER"); }
+    protected abstract ConditionValue getCValueRegisterUser();
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1106,12 +1108,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
      * UPDATE_DATETIME: {DATETIME(19)}
-     * <pre>e.g. setUpdateDatetime_FromTo(fromDate, toDate, new <span style="color: #FD4747">FromToOption</span>().compareAsDate());</pre>
+     * <pre>e.g. setUpdateDatetime_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of updateDatetime. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
-    public void setUpdateDatetime_FromTo(java.util.Date fromDatetime, java.util.Date toDatetime, FromToOption fromToOption) {
+    public void setUpdateDatetime_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
         regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueUpdateDatetime(), "UPDATE_DATETIME", fromToOption);
     }
 
@@ -1121,12 +1123,12 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      * UPDATE_DATETIME: {DATETIME(19)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
-     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #FD4747">&lt; '2007/04/17 00:00:00'</span>
+     *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
      * </pre>
      * @param fromDate The from-date(yyyy/MM/dd) of updateDatetime. (NullAllowed: if null, no from-condition)
      * @param toDate The to-date(yyyy/MM/dd) of updateDatetime. (NullAllowed: if null, no to-condition)
      */
-    public void setUpdateDatetime_DateFromTo(java.util.Date fromDate, java.util.Date toDate) {
+    public void setUpdateDatetime_DateFromTo(Date fromDate, Date toDate) {
         setUpdateDatetime_FromTo(fromDate, toDate, new FromToOption().compareAsDate());
     }
 
@@ -1168,8 +1170,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setUpdateDatetime_IsNotNull() { regUpdateDatetime(CK_ISNN, DOBJ); }
 
-    protected void regUpdateDatetime(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
-    abstract protected ConditionValue getCValueUpdateDatetime();
+    protected void regUpdateDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateDatetime(), "UPDATE_DATETIME"); }
+    protected abstract ConditionValue getCValueUpdateDatetime();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -1271,7 +1273,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * UPDATE_PROCESS: {VARCHAR(200)} <br />
-     * <pre>e.g. setUpdateProcess_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setUpdateProcess_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param updateProcess The value of updateProcess as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -1308,8 +1310,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setUpdateProcess_IsNotNull() { regUpdateProcess(CK_ISNN, DOBJ); }
 
-    protected void regUpdateProcess(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
-    abstract protected ConditionValue getCValueUpdateProcess();
+    protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
+    protected abstract ConditionValue getCValueUpdateProcess();
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
@@ -1411,7 +1413,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
      * UPDATE_USER: {VARCHAR(200)} <br />
-     * <pre>e.g. setUpdateUser_LikeSearch("xxx", new <span style="color: #FD4747">LikeSearchOption</span>().likeContain());</pre>
+     * <pre>e.g. setUpdateUser_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param updateUser The value of updateUser as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
      */
@@ -1448,8 +1450,8 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setUpdateUser_IsNotNull() { regUpdateUser(CK_ISNN, DOBJ); }
 
-    protected void regUpdateUser(ConditionKey k, Object v) { regQ(k, v, getCValueUpdateUser(), "UPDATE_USER"); }
-    abstract protected ConditionValue getCValueUpdateUser();
+    protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "UPDATE_USER"); }
+    protected abstract ConditionValue getCValueUpdateUser();
     
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
@@ -1564,14 +1566,205 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
      */
     public void setVersionNo_IsNotNull() { regVersionNo(CK_ISNN, DOBJ); }
 
-    protected void regVersionNo(ConditionKey k, Object v) { regQ(k, v, getCValueVersionNo(), "VERSION_NO"); }
-    abstract protected ConditionValue getCValueVersionNo();
+    protected void regVersionNo(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVersionNo(), "VERSION_NO"); }
+    protected abstract ConditionValue getCValueVersionNo();
+
+    // ===================================================================================
+    //                                                                     ScalarCondition
+    //                                                                     ===============
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO = (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_Equal()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_Equal() {
+        return xcreateSSQFunction(CK_EQ, MemberAddressCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as equal. <br />
+     * {where FOO &lt;&gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_NotEqual()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setXxx... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setYyy...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_NotEqual() {
+        return xcreateSSQFunction(CK_NES, MemberAddressCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterThan. <br />
+     * {where FOO &gt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_GreaterThan()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_GreaterThan() {
+        return xcreateSSQFunction(CK_GT, MemberAddressCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as lessThan. <br />
+     * {where FOO &lt; (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_LessThan()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_LessThan() {
+        return xcreateSSQFunction(CK_LT, MemberAddressCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as greaterEqual. <br />
+     * {where FOO &gt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_GreaterEqual()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_GreaterEqual() {
+        return xcreateSSQFunction(CK_GE, MemberAddressCB.class);
+    }
+
+    /**
+     * Prepare ScalarCondition as lessEqual. <br />
+     * {where FOO &lt;= (select max(BAR) from ...)
+     * <pre>
+     * cb.query().<span style="color: #DD4747">scalar_LessEqual()</span>.max(new SubQuery&lt;MemberAddressCB&gt;() {
+     *     public void query(MemberAddressCB subCB) {
+     *         subCB.specify().setFoo... <span style="color: #3F7E5E">// derived column for function</span>
+     *         subCB.query().setBar...
+     *     }
+     * });
+     * </pre>
+     * @return The object to set up a function. (NotNull)
+     */
+    public HpSSQFunction<MemberAddressCB> scalar_LessEqual() {
+        return xcreateSSQFunction(CK_LE, MemberAddressCB.class);
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <CB extends ConditionBean> void xscalarCondition(String fn, SubQuery<CB> sq, String rd, HpSSQOption<CB> op) {
+        assertObjectNotNull("subQuery", sq);
+        MemberAddressCB cb = xcreateScalarConditionCB(); sq.query((CB)cb);
+        String pp = keepScalarCondition(cb.query()); // for saving query-value
+        op.setPartitionByCBean((CB)xcreateScalarConditionPartitionByCB()); // for using partition-by
+        registerScalarCondition(fn, cb.query(), pp, rd, op);
+    }
+    public abstract String keepScalarCondition(MemberAddressCQ sq);
+
+    protected MemberAddressCB xcreateScalarConditionCB() {
+        MemberAddressCB cb = newMyCB(); cb.xsetupForScalarCondition(this); return cb;
+    }
+
+    protected MemberAddressCB xcreateScalarConditionPartitionByCB() {
+        MemberAddressCB cb = newMyCB(); cb.xsetupForScalarConditionPartitionBy(this); return cb;
+    }
+
+    /**
+     * Order along manual ordering information.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * ManualOrderBean mob = new ManualOrderBean();
+     * mob.<span style="color: #DD4747">when_GreaterEqual</span>(priorityDate); <span style="color: #3F7E5E">// e.g. 2000/01/01</span>
+     * cb.query().addOrderBy_Birthdate_Asc().<span style="color: #DD4747">withManualOrder(mob)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when BIRTHDATE &gt;= '2000/01/01' then 0</span>
+     * <span style="color: #3F7E5E">//     else 1</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     *
+     * MemberCB cb = new MemberCB();
+     * ManualOrderBean mob = new ManualOrderBean();
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Withdrawal);
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Formalized);
+     * mob.<span style="color: #DD4747">when_Equal</span>(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(mob)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * <p>This function with Union is unsupported!</p>
+     * <p>The order values are bound (treated as bind parameter).</p>
+     * @param mob The bean of manual order containing order values. (NotNull)
+     */
+    public void withManualOrder(ManualOrderBean mob) { // is user public!
+        xdoWithManualOrder(mob);
+    }
+
+    // ===================================================================================
+    //                                                                          Compatible
+    //                                                                          ==========
+    /**
+     * Order along the list of manual values. #beforejava8 <br />
+     * This function with Union is unsupported! <br />
+     * The order values are bound (treated as bind parameter).
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * List&lt;CDef.MemberStatus&gt; orderValueList = new ArrayList&lt;CDef.MemberStatus&gt;();
+     * orderValueList.add(CDef.MemberStatus.Withdrawal);
+     * orderValueList.add(CDef.MemberStatus.Formalized);
+     * orderValueList.add(CDef.MemberStatus.Provisional);
+     * cb.query().addOrderBy_MemberStatusCode_Asc().<span style="color: #DD4747">withManualOrder(orderValueList)</span>;
+     * <span style="color: #3F7E5E">// order by </span>
+     * <span style="color: #3F7E5E">//   case</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'WDL' then 0</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'FML' then 1</span>
+     * <span style="color: #3F7E5E">//     when MEMBER_STATUS_CODE = 'PRV' then 2</span>
+     * <span style="color: #3F7E5E">//     else 3</span>
+     * <span style="color: #3F7E5E">//   end asc, ...</span>
+     * </pre>
+     * @param orderValueList The list of order values for manual ordering. (NotNull)
+     */
+    public void withManualOrder(List<? extends Object> orderValueList) { // is user public!
+        assertObjectNotNull("withManualOrder(orderValueList)", orderValueList);
+        final ManualOrderBean manualOrderBean = new ManualOrderBean();
+        manualOrderBean.acceptOrderValueList(orderValueList);
+        withManualOrder(manualOrderBean);
+    }
 
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
+    protected MemberAddressCB newMyCB() {
+        return new MemberAddressCB();
+    }
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xabCB() { return MemberAddressCB.class.getName(); }
     protected String xabCQ() { return MemberAddressCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

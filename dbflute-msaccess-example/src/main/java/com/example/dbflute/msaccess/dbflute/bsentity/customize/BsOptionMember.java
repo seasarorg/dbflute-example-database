@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.msaccess.dbflute.allcommon.CDef;
 import com.example.dbflute.msaccess.dbflute.exentity.customize.*;
 
@@ -108,6 +108,9 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -149,6 +152,17 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public boolean hasPrimaryKeyValue() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -193,7 +207,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      * @param cdef The instance of classification definition (as ENUM type). (NullAllowed: if null, null value is set to the column)
      */
     public void setDummyFlgAsFlg(CDef.Flg cdef) {
-        setDummyFlg(cdef != null ? InternalUtil.toNumber(cdef.code(), Integer.class) : null);
+        setDummyFlg(cdef != null ? FunCustodial.toNumber(cdef.code(), Integer.class) : null);
     }
 
     // ===================================================================================
@@ -397,25 +411,25 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsOptionMember)) { return false; }
-        BsOptionMember otherEntity = (BsOptionMember)other;
-        if (!xSV(getMemberId(), otherEntity.getMemberId())) { return false; }
-        if (!xSV(getMemberName(), otherEntity.getMemberName())) { return false; }
-        if (!xSV(getMemberBirthday(), otherEntity.getMemberBirthday())) { return false; }
-        if (!xSV(getMemberFormalizedDatetime(), otherEntity.getMemberFormalizedDatetime())) { return false; }
-        if (!xSV(getMemberStatusCode(), otherEntity.getMemberStatusCode())) { return false; }
-        if (!xSV(getMemberStatusName(), otherEntity.getMemberStatusName())) { return false; }
-        if (!xSV(getStatusDisplayOrder(), otherEntity.getStatusDisplayOrder())) { return false; }
-        if (!xSV(getDummyFlg(), otherEntity.getDummyFlg())) { return false; }
-        if (!xSV(getDummyNoflg(), otherEntity.getDummyNoflg())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsOptionMember)) { return false; }
+        BsOptionMember other = (BsOptionMember)obj;
+        if (!xSV(getMemberId(), other.getMemberId())) { return false; }
+        if (!xSV(getMemberName(), other.getMemberName())) { return false; }
+        if (!xSV(getMemberBirthday(), other.getMemberBirthday())) { return false; }
+        if (!xSV(getMemberFormalizedDatetime(), other.getMemberFormalizedDatetime())) { return false; }
+        if (!xSV(getMemberStatusCode(), other.getMemberStatusCode())) { return false; }
+        if (!xSV(getMemberStatusName(), other.getMemberStatusName())) { return false; }
+        if (!xSV(getStatusDisplayOrder(), other.getStatusDisplayOrder())) { return false; }
+        if (!xSV(getDummyFlg(), other.getDummyFlg())) { return false; }
+        if (!xSV(getDummyNoflg(), other.getDummyNoflg())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -423,21 +437,21 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberId());
-        result = xCH(result, getMemberName());
-        result = xCH(result, getMemberBirthday());
-        result = xCH(result, getMemberFormalizedDatetime());
-        result = xCH(result, getMemberStatusCode());
-        result = xCH(result, getMemberStatusName());
-        result = xCH(result, getStatusDisplayOrder());
-        result = xCH(result, getDummyFlg());
-        result = xCH(result, getDummyNoflg());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberId());
+        hs = xCH(hs, getMemberName());
+        hs = xCH(hs, getMemberBirthday());
+        hs = xCH(hs, getMemberFormalizedDatetime());
+        hs = xCH(hs, getMemberStatusCode());
+        hs = xCH(hs, getMemberStatusName());
+        hs = xCH(hs, getStatusDisplayOrder());
+        hs = xCH(hs, getDummyFlg());
+        hs = xCH(hs, getDummyNoflg());
+        return hs;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -452,7 +466,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -477,18 +491,18 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberId());
-        sb.append(delimiter).append(getMemberName());
-        sb.append(delimiter).append(getMemberBirthday());
-        sb.append(delimiter).append(getMemberFormalizedDatetime());
-        sb.append(delimiter).append(getMemberStatusCode());
-        sb.append(delimiter).append(getMemberStatusName());
-        sb.append(delimiter).append(getStatusDisplayOrder());
-        sb.append(delimiter).append(getDummyFlg());
-        sb.append(delimiter).append(getDummyNoflg());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberId());
+        sb.append(dm).append(getMemberName());
+        sb.append(dm).append(getMemberBirthday());
+        sb.append(dm).append(getMemberFormalizedDatetime());
+        sb.append(dm).append(getMemberStatusCode());
+        sb.append(dm).append(getMemberStatusName());
+        sb.append(dm).append(getStatusDisplayOrder());
+        sb.append(dm).append(getDummyFlg());
+        sb.append(dm).append(getDummyNoflg());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
@@ -526,7 +540,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -543,7 +557,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -560,7 +574,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberBirthday(java.sql.Timestamp memberBirthday) {
         __modifiedProperties.addPropertyName("memberBirthday");
-        this._memberBirthday = memberBirthday;
+        _memberBirthday = memberBirthday;
     }
 
     /**
@@ -577,7 +591,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberFormalizedDatetime(java.sql.Timestamp memberFormalizedDatetime) {
         __modifiedProperties.addPropertyName("memberFormalizedDatetime");
-        this._memberFormalizedDatetime = memberFormalizedDatetime;
+        _memberFormalizedDatetime = memberFormalizedDatetime;
     }
 
     /**
@@ -594,7 +608,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -611,7 +625,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -628,7 +642,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setStatusDisplayOrder(String statusDisplayOrder) {
         __modifiedProperties.addPropertyName("statusDisplayOrder");
-        this._statusDisplayOrder = statusDisplayOrder;
+        _statusDisplayOrder = statusDisplayOrder;
     }
 
     /**
@@ -645,7 +659,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setDummyFlg(Integer dummyFlg) {
         __modifiedProperties.addPropertyName("dummyFlg");
-        this._dummyFlg = dummyFlg;
+        _dummyFlg = dummyFlg;
     }
 
     /**
@@ -662,6 +676,6 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setDummyNoflg(Integer dummyNoflg) {
         __modifiedProperties.addPropertyName("dummyNoflg");
-        this._dummyNoflg = dummyNoflg;
+        _dummyNoflg = dummyNoflg;
     }
 }

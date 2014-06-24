@@ -33,6 +33,9 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -45,44 +48,44 @@ public class OptionMemberDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgDummyFlg(), "dummyFlg");
         setupEpg(_epgMap, new EpgDummyNoflg(), "dummyNoflg");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberId(cti(vl)); }
     }
     public static class EpgMemberName implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberName(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberName((String)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberName(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberName((String)vl); }
     }
     public static class EpgMemberBirthday implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberBirthday(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberBirthday((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberBirthday(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberBirthday((java.sql.Timestamp)vl); }
     }
     public static class EpgMemberFormalizedDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberFormalizedDatetime(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberFormalizedDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberFormalizedDatetime(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberFormalizedDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgMemberStatusCode implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberStatusCode(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberStatusCode((String)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberStatusCode(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberStatusCode((String)vl); }
     }
     public static class EpgMemberStatusName implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getMemberStatusName(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setMemberStatusName((String)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getMemberStatusName(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setMemberStatusName((String)vl); }
     }
     public static class EpgStatusDisplayOrder implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getStatusDisplayOrder(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setStatusDisplayOrder((String)v); }
+        public Object read(Entity et) { return ((OptionMember)et).getStatusDisplayOrder(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setStatusDisplayOrder((String)vl); }
     }
     public static class EpgDummyFlg implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getDummyFlg(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setDummyFlg(cti(v)); }
+        public Object read(Entity et) { return ((OptionMember)et).getDummyFlg(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setDummyFlg(cti(vl)); }
     }
     public static class EpgDummyNoflg implements PropertyGateway {
-        public Object read(Entity e) { return ((OptionMember)e).getDummyNoflg(); }
-        public void write(Entity e, Object v) { ((OptionMember)e).setDummyNoflg(cti(v)); }
+        public Object read(Entity et) { return ((OptionMember)et).getDummyNoflg(); }
+        public void write(Entity et, Object vl) { ((OptionMember)et).setDummyNoflg(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -98,24 +101,60 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, false, "memberId", Integer.class, false, false, "COUNTER", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, false, "memberName", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberBirthday = cci("MEMBER_BIRTHDAY", "MEMBER_BIRTHDAY", null, null, false, "memberBirthday", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberFormalizedDatetime = cci("MEMBER_FORMALIZED_DATETIME", "MEMBER_FORMALIZED_DATETIME", null, null, false, "memberFormalizedDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, false, "memberStatusCode", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
-    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, false, "memberStatusName", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnStatusDisplayOrder = cci("STATUS_DISPLAY_ORDER", "STATUS_DISPLAY_ORDER", null, null, false, "statusDisplayOrder", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnDummyFlg = cci("DUMMY_FLG", "DUMMY_FLG", null, null, false, "dummyFlg", Integer.class, false, false, "INTEGER", 10, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
-    protected final ColumnInfo _columnDummyNoflg = cci("DUMMY_NOFLG", "DUMMY_NOFLG", null, null, false, "dummyNoflg", Integer.class, false, false, "INTEGER", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, false, "COUNTER", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberBirthday = cci("MEMBER_BIRTHDAY", "MEMBER_BIRTHDAY", null, null, java.sql.Timestamp.class, "memberBirthday", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberFormalizedDatetime = cci("MEMBER_FORMALIZED_DATETIME", "MEMBER_FORMALIZED_DATETIME", null, null, java.sql.Timestamp.class, "memberFormalizedDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, String.class, "memberStatusCode", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, CDef.DefMeta.MemberStatus);
+    protected final ColumnInfo _columnMemberStatusName = cci("MEMBER_STATUS_NAME", "MEMBER_STATUS_NAME", null, null, String.class, "memberStatusName", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnStatusDisplayOrder = cci("STATUS_DISPLAY_ORDER", "STATUS_DISPLAY_ORDER", null, null, String.class, "statusDisplayOrder", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnDummyFlg = cci("DUMMY_FLG", "DUMMY_FLG", null, null, Integer.class, "dummyFlg", null, false, false, false, "INTEGER", 10, 0, null, false, null, null, null, null, CDef.DefMeta.Flg);
+    protected final ColumnInfo _columnDummyNoflg = cci("DUMMY_NOFLG", "DUMMY_NOFLG", null, null, Integer.class, "dummyNoflg", null, false, false, false, "INTEGER", 10, 0, null, false, null, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {COUNTER(10), refers to MEMBER.MEMBER_ID}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * MEMBER_NAME: {VARCHAR(255), refers to MEMBER.MEMBER_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
+    /**
+     * MEMBER_BIRTHDAY: {DATETIME(19), refers to MEMBER.MEMBER_BIRTHDAY}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberBirthday() { return _columnMemberBirthday; }
+    /**
+     * MEMBER_FORMALIZED_DATETIME: {DATETIME(19), refers to MEMBER.MEMBER_FORMALIZED_DATETIME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberFormalizedDatetime() { return _columnMemberFormalizedDatetime; }
+    /**
+     * MEMBER_STATUS_CODE: {VARCHAR(255), refers to MEMBER.MEMBER_STATUS_CODE, classification=MemberStatus}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusCode() { return _columnMemberStatusCode; }
+    /**
+     * MEMBER_STATUS_NAME: {VARCHAR(255), refers to MEMBER_STATUS.MEMBER_STATUS_NAME}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberStatusName() { return _columnMemberStatusName; }
+    /**
+     * STATUS_DISPLAY_ORDER: {VARCHAR(255), refers to MEMBER_STATUS}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnStatusDisplayOrder() { return _columnStatusDisplayOrder; }
+    /**
+     * DUMMY_FLG: {INTEGER(10), classification=Flg}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyFlg() { return _columnDummyFlg; }
+    /**
+     * DUMMY_NOFLG: {INTEGER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnDummyNoflg() { return _columnDummyNoflg; }
 
     protected List<ColumnInfo> ccil() {
@@ -149,6 +188,8 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
@@ -176,16 +217,16 @@ public class OptionMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public OptionMember newEntity() { return new OptionMember(); }
     public OptionMember newMyEntity() { return new OptionMember(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((OptionMember)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((OptionMember)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((OptionMember)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((OptionMember)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

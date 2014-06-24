@@ -33,6 +33,9 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberId(), "memberId");
@@ -47,52 +50,66 @@ public class MemberSecurityDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateProcess(), "updateProcess");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setMemberId(cti(vl)); }
     }
     public static class EpgLoginPassword implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getLoginPassword(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setLoginPassword((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getLoginPassword(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setLoginPassword((String)vl); }
     }
     public static class EpgReminderQuestion implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getReminderQuestion(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setReminderQuestion((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getReminderQuestion(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setReminderQuestion((String)vl); }
     }
     public static class EpgReminderAnswer implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getReminderAnswer(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setReminderAnswer((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getReminderAnswer(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setReminderAnswer((String)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setRegisterUser((String)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setRegisterProcess((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setUpdateUser((String)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setUpdateProcess((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberSecurity)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((MemberSecurity)e).setVersionNo(cti(v)); }
+        public Object read(Entity et) { return ((MemberSecurity)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setVersionNo(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((MemberSecurity)et).getMember(); }
+        public void write(Entity et, Object vl) { ((MemberSecurity)et).setMember((Member)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -108,28 +125,72 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, false, "memberId", Integer.class, true, false, "INTEGER", 10, 0, null, false, null, null, "member", null, null);
-    protected final ColumnInfo _columnLoginPassword = cci("LOGIN_PASSWORD", "LOGIN_PASSWORD", null, null, false, "loginPassword", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnReminderQuestion = cci("REMINDER_QUESTION", "REMINDER_QUESTION", null, null, false, "reminderQuestion", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnReminderAnswer = cci("REMINDER_ANSWER", "REMINDER_ANSWER", null, null, false, "reminderAnswer", String.class, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, false, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, false, "registerUser", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, false, "registerProcess", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, false, "updateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, false, "updateUser", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, false, "updateProcess", String.class, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, false, "versionNo", Integer.class, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, true, false, false, "INTEGER", 10, 0, null, false, null, null, "member", null, null);
+    protected final ColumnInfo _columnLoginPassword = cci("LOGIN_PASSWORD", "LOGIN_PASSWORD", null, null, String.class, "loginPassword", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReminderQuestion = cci("REMINDER_QUESTION", "REMINDER_QUESTION", null, null, String.class, "reminderQuestion", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReminderAnswer = cci("REMINDER_ANSWER", "REMINDER_ANSWER", null, null, String.class, "reminderAnswer", null, false, false, false, "VARCHAR", 255, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "updateDatetime", null, false, false, false, "DATETIME", 19, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, false, "VARCHAR", 255, 0, null, true, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * MEMBER_ID: {PK, INTEGER(10), FK to MEMBER}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * LOGIN_PASSWORD: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnLoginPassword() { return _columnLoginPassword; }
+    /**
+     * REMINDER_QUESTION: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReminderQuestion() { return _columnReminderQuestion; }
+    /**
+     * REMINDER_ANSWER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnReminderAnswer() { return _columnReminderAnswer; }
+    /**
+     * REGISTER_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
+    /**
+     * REGISTER_USER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
+    /**
+     * REGISTER_PROCESS: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
+    /**
+     * UPDATE_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateDatetime() { return _columnUpdateDatetime; }
+    /**
+     * UPDATE_USER: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
+    /**
+     * UPDATE_PROCESS: {VARCHAR(255)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
+    /**
+     * VERSION_NO: {INTEGER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -163,12 +224,18 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * MEMBER by my MEMBER_ID, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMember() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_SECURITY_MEMBER", "member", this, MemberDbm.getInstance(), map, 0, true, false, false, true, null, null, false, "memberSecurityAsOne");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_SECURITY_MEMBER", "member", this, MemberDbm.getInstance(), mp, 0, null, true, false, false, true, null, null, false, "memberSecurityAsOne");
     }
 
     // -----------------------------------------------------
@@ -204,16 +271,16 @@ public class MemberSecurityDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public MemberSecurity newEntity() { return new MemberSecurity(); }
     public MemberSecurity newMyEntity() { return new MemberSecurity(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((MemberSecurity)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((MemberSecurity)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((MemberSecurity)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((MemberSecurity)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

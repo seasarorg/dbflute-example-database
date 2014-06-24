@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.msaccess.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.msaccess.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.msaccess.dbflute.allcommon.CDef;
@@ -115,6 +115,9 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
+    /** The unique-driven properties for this entity. (NotNull) */
+    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
+
     /** The modified properties for this entity. (NotNull) */
     protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
 
@@ -160,6 +163,17 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     public boolean hasPrimaryKeyValue() {
         if (getMemberStatusCode() == null) { return false; }
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Set<String> myuniqueDrivenProperties() {
+        return __uniqueDrivenProperties.getPropertyNames();
+    }
+
+    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
+        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -280,7 +294,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     protected List<Member> _memberList;
 
     /**
-     * MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [get] MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Member> getMemberList() {
@@ -289,7 +303,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     }
 
     /**
-     * MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [set] MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
      */
     public void setMemberList(List<Member> memberList) {
@@ -300,7 +314,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     protected List<MemberLogin> _memberLoginList;
 
     /**
-     * MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [get] MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberLogin> getMemberLoginList() {
@@ -309,7 +323,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     }
 
     /**
-     * MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [set] MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
      */
     public void setMemberLoginList(List<MemberLogin> memberLoginList) {
@@ -395,17 +409,17 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     /**
      * Determine the object is equal with this. <br />
      * If primary-keys or columns of the other are same as this one, returns true.
-     * @param other The other entity. (NullAllowed: if null, returns false fixedly)
+     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
      * @return Comparing result.
      */
-    public boolean equals(Object other) {
-        if (other == null || !(other instanceof BsMemberStatus)) { return false; }
-        BsMemberStatus otherEntity = (BsMemberStatus)other;
-        if (!xSV(getMemberStatusCode(), otherEntity.getMemberStatusCode())) { return false; }
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof BsMemberStatus)) { return false; }
+        BsMemberStatus other = (BsMemberStatus)obj;
+        if (!xSV(getMemberStatusCode(), other.getMemberStatusCode())) { return false; }
         return true;
     }
-    protected boolean xSV(Object value1, Object value2) { // isSameValue()
-        return InternalUtil.isSameValue(value1, value2);
+    protected boolean xSV(Object v1, Object v2) {
+        return FunCustodial.isSameValue(v1, v2);
     }
 
     /**
@@ -413,13 +427,13 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      * @return The hash-code from primary-key or columns.
      */
     public int hashCode() {
-        int result = 17;
-        result = xCH(result, getTableDbName());
-        result = xCH(result, getMemberStatusCode());
-        return result;
+        int hs = 17;
+        hs = xCH(hs, getTableDbName());
+        hs = xCH(hs, getMemberStatusCode());
+        return hs;
     }
-    protected int xCH(int result, Object value) { // calculateHashcode()
-        return InternalUtil.calculateHashcode(result, value);
+    protected int xCH(int hs, Object vl) {
+        return FunCustodial.calculateHashcode(hs, vl);
     }
 
     /**
@@ -434,7 +448,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      * @return The display string of all columns and relation existences. (NotNull)
      */
     public String toString() {
-        return buildDisplayString(InternalUtil.toClassTitle(this), true, true);
+        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
     }
 
     /**
@@ -443,15 +457,15 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     public String toStringWithRelation() {
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
-        String l = "\n  ";
-        if (_memberList != null) { for (Entity e : _memberList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberList")); } } }
-        if (_memberLoginList != null) { for (Entity e : _memberLoginList)
-        { if (e != null) { sb.append(l).append(xbRDS(e, "memberLoginList")); } } }
+        String li = "\n  ";
+        if (_memberList != null) { for (Entity et : _memberList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberList")); } } }
+        if (_memberLoginList != null) { for (Entity et : _memberLoginList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "memberLoginList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity e, String name) { // buildRelationDisplayString()
-        return e.buildDisplayString(name, true, true);
+    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
+        return et.buildDisplayString(name, true, true);
     }
 
     /**
@@ -467,32 +481,32 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
     }
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
-        String delimiter = ", ";
-        sb.append(delimiter).append(getMemberStatusCode());
-        sb.append(delimiter).append(getMemberStatusName());
-        sb.append(delimiter).append(getDisplayOrder());
-        sb.append(delimiter).append(getRegisterDatetime());
-        sb.append(delimiter).append(getRegisterUser());
-        sb.append(delimiter).append(getRegisterProcess());
-        sb.append(delimiter).append(getUpdateDatetime());
-        sb.append(delimiter).append(getUpdateUser());
-        sb.append(delimiter).append(getUpdateProcess());
-        sb.append(delimiter).append(getVersionNo());
-        if (sb.length() > delimiter.length()) {
-            sb.delete(0, delimiter.length());
+        String dm = ", ";
+        sb.append(dm).append(getMemberStatusCode());
+        sb.append(dm).append(getMemberStatusName());
+        sb.append(dm).append(getDisplayOrder());
+        sb.append(dm).append(getRegisterDatetime());
+        sb.append(dm).append(getRegisterUser());
+        sb.append(dm).append(getRegisterProcess());
+        sb.append(dm).append(getUpdateDatetime());
+        sb.append(dm).append(getUpdateUser());
+        sb.append(dm).append(getUpdateProcess());
+        sb.append(dm).append(getVersionNo());
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
-        String c = ",";
+        String cm = ",";
         if (_memberList != null && !_memberList.isEmpty())
-        { sb.append(c).append("memberList"); }
+        { sb.append(cm).append("memberList"); }
         if (_memberLoginList != null && !_memberLoginList.isEmpty())
-        { sb.append(c).append("memberLoginList"); }
-        if (sb.length() > c.length()) {
-            sb.delete(0, c.length()).insert(0, "(").append(")");
+        { sb.append(cm).append("memberLoginList"); }
+        if (sb.length() > cm.length()) {
+            sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
@@ -526,7 +540,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -543,7 +557,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -560,7 +574,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setDisplayOrder(String displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 
     /**
@@ -577,7 +591,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
         __modifiedProperties.addPropertyName("registerDatetime");
-        this._registerDatetime = registerDatetime;
+        _registerDatetime = registerDatetime;
     }
 
     /**
@@ -594,7 +608,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setRegisterUser(String registerUser) {
         __modifiedProperties.addPropertyName("registerUser");
-        this._registerUser = registerUser;
+        _registerUser = registerUser;
     }
 
     /**
@@ -611,7 +625,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setRegisterProcess(String registerProcess) {
         __modifiedProperties.addPropertyName("registerProcess");
-        this._registerProcess = registerProcess;
+        _registerProcess = registerProcess;
     }
 
     /**
@@ -628,7 +642,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
         __modifiedProperties.addPropertyName("updateDatetime");
-        this._updateDatetime = updateDatetime;
+        _updateDatetime = updateDatetime;
     }
 
     /**
@@ -645,7 +659,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setUpdateUser(String updateUser) {
         __modifiedProperties.addPropertyName("updateUser");
-        this._updateUser = updateUser;
+        _updateUser = updateUser;
     }
 
     /**
@@ -662,7 +676,7 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setUpdateProcess(String updateProcess) {
         __modifiedProperties.addPropertyName("updateProcess");
-        this._updateProcess = updateProcess;
+        _updateProcess = updateProcess;
     }
 
     /**
@@ -679,6 +693,6 @@ public abstract class BsMemberStatus implements EntityDefinedCommonColumn, Seria
      */
     public void setVersionNo(Integer versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 }

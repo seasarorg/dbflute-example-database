@@ -33,6 +33,9 @@ public class MemberAddressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                    Property Gateway
     //                                                                    ================
+    // -----------------------------------------------------
+    //                                       Column Property
+    //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
         setupEpg(_epgMap, new EpgMemberAddressId(), "memberAddressId");
@@ -48,56 +51,70 @@ public class MemberAddressDbm extends AbstractDBMeta {
         setupEpg(_epgMap, new EpgUpdateUser(), "updateUser");
         setupEpg(_epgMap, new EpgVersionNo(), "versionNo");
     }
-    public PropertyGateway findPropertyGateway(String propertyName)
-    { return doFindEpg(_epgMap, propertyName); }
     public static class EpgMemberAddressId implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getMemberAddressId(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setMemberAddressId(cti(v)); }
+        public Object read(Entity et) { return ((MemberAddress)et).getMemberAddressId(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setMemberAddressId(cti(vl)); }
     }
     public static class EpgMemberId implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getMemberId(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setMemberId(cti(v)); }
+        public Object read(Entity et) { return ((MemberAddress)et).getMemberId(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setMemberId(cti(vl)); }
     }
     public static class EpgValidBeginDate implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getValidBeginDate(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setValidBeginDate((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getValidBeginDate(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidBeginDate((java.sql.Timestamp)vl); }
     }
     public static class EpgValidEndDate implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getValidEndDate(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setValidEndDate((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getValidEndDate(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidEndDate((java.sql.Timestamp)vl); }
     }
     public static class EpgAddress implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getAddress(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setAddress((String)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getAddress(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setAddress((String)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getRegisterDatetime(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setRegisterDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getRegisterDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setRegisterDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgRegisterProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getRegisterProcess(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setRegisterProcess((String)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getRegisterProcess(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setRegisterProcess((String)vl); }
     }
     public static class EpgRegisterUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getRegisterUser(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setRegisterUser((String)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getRegisterUser(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setRegisterUser((String)vl); }
     }
     public static class EpgUpdateDatetime implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getUpdateDatetime(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setUpdateDatetime((java.sql.Timestamp)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getUpdateDatetime(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setUpdateDatetime((java.sql.Timestamp)vl); }
     }
     public static class EpgUpdateProcess implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getUpdateProcess(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setUpdateProcess((String)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getUpdateProcess(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setUpdateProcess((String)vl); }
     }
     public static class EpgUpdateUser implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getUpdateUser(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setUpdateUser((String)v); }
+        public Object read(Entity et) { return ((MemberAddress)et).getUpdateUser(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setUpdateUser((String)vl); }
     }
     public static class EpgVersionNo implements PropertyGateway {
-        public Object read(Entity e) { return ((MemberAddress)e).getVersionNo(); }
-        public void write(Entity e, Object v) { ((MemberAddress)e).setVersionNo(cti(v)); }
+        public Object read(Entity et) { return ((MemberAddress)et).getVersionNo(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setVersionNo(cti(vl)); }
     }
+    public PropertyGateway findPropertyGateway(String prop)
+    { return doFindEpg(_epgMap, prop); }
+
+    // -----------------------------------------------------
+    //                                      Foreign Property
+    //                                      ----------------
+    protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
+    {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((MemberAddress)et).getMember(); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setMember((Member)vl); }
+    }
+    public PropertyGateway findForeignPropertyGateway(String prop)
+    { return doFindEfpg(_efpgMap, prop); }
 
     // ===================================================================================
     //                                                                          Table Info
@@ -113,30 +130,78 @@ public class MemberAddressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberAddressId = cci("MEMBER_ADDRESS_ID", "MEMBER_ADDRESS_ID", null, null, true, "memberAddressId", Integer.class, false, false, "COUNTER", 10, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, false, "memberId", Integer.class, false, false, "INTEGER", 10, 0, null, false, null, null, "member", null, null);
-    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, false, "validBeginDate", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, false, "validEndDate", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnAddress = cci("ADDRESS", "ADDRESS", null, null, false, "address", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, false, "registerDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, false, "registerProcess", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, false, "registerUser", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, false, "updateDatetime", java.sql.Timestamp.class, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, false, "updateProcess", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, false, "updateUser", String.class, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, false, "versionNo", Integer.class, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
+    protected final ColumnInfo _columnMemberAddressId = cci("MEMBER_ADDRESS_ID", "MEMBER_ADDRESS_ID", null, null, Integer.class, "memberAddressId", null, false, false, true, "COUNTER", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, false, "INTEGER", 10, 0, null, false, null, null, "member", null, null);
+    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, java.sql.Timestamp.class, "validBeginDate", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, java.sql.Timestamp.class, "validEndDate", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnAddress = cci("ADDRESS", "ADDRESS", null, null, String.class, "address", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateDatetime = cci("UPDATE_DATETIME", "UPDATE_DATETIME", null, null, java.sql.Timestamp.class, "updateDatetime", null, false, false, false, "DATETIME", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateProcess = cci("UPDATE_PROCESS", "UPDATE_PROCESS", null, null, String.class, "updateProcess", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnUpdateUser = cci("UPDATE_USER", "UPDATE_USER", null, null, String.class, "updateUser", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnVersionNo = cci("VERSION_NO", "VERSION_NO", null, null, Integer.class, "versionNo", null, false, false, false, "INTEGER", 10, 0, null, false, OptimisticLockType.VERSION_NO, null, null, null, null);
 
+    /**
+     * MEMBER_ADDRESS_ID: {UQ, NotNull, COUNTER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberAddressId() { return _columnMemberAddressId; }
+    /**
+     * MEMBER_ID: {IX, INTEGER(10), FK to MEMBER}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
+    /**
+     * VALID_BEGIN_DATE: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidBeginDate() { return _columnValidBeginDate; }
+    /**
+     * VALID_END_DATE: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnValidEndDate() { return _columnValidEndDate; }
+    /**
+     * ADDRESS: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnAddress() { return _columnAddress; }
+    /**
+     * REGISTER_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterDatetime() { return _columnRegisterDatetime; }
+    /**
+     * REGISTER_PROCESS: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterProcess() { return _columnRegisterProcess; }
+    /**
+     * REGISTER_USER: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnRegisterUser() { return _columnRegisterUser; }
+    /**
+     * UPDATE_DATETIME: {DATETIME(19)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateDatetime() { return _columnUpdateDatetime; }
+    /**
+     * UPDATE_PROCESS: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateProcess() { return _columnUpdateProcess; }
+    /**
+     * UPDATE_USER: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnUpdateUser() { return _columnUpdateUser; }
+    /**
+     * VERSION_NO: {INTEGER(10)}
+     * @return The information object of specified column. (NotNull)
+     */
     public ColumnInfo columnVersionNo() { return _columnVersionNo; }
 
     protected List<ColumnInfo> ccil() {
@@ -173,12 +238,19 @@ public class MemberAddressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                       Relation Info
     //                                                                       =============
+    // cannot cache because it uses related DB meta instance while booting
+    // (instead, cached by super's collection)
     // -----------------------------------------------------
     //                                      Foreign Property
     //                                      ----------------
+    /**
+     * MEMBER by my MEMBER_ID, named 'member'. <br />
+     * This relation is auto-detected as implicit reverse FK.
+     * @return The information object of foreign property. (NotNull)
+     */
     public ForeignInfo foreignMember() {
-        Map<ColumnInfo, ColumnInfo> map = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_ADDRESS_MEMBER_IMPLICIT", "member", this, MemberDbm.getInstance(), map, 0, false, false, false, true, null, null, false, "memberAddressList");
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_ADDRESS_MEMBER_IMPLICIT", "member", this, MemberDbm.getInstance(), mp, 0, null, false, false, false, true, null, null, false, "memberAddressList");
     }
 
     // -----------------------------------------------------
@@ -206,16 +278,16 @@ public class MemberAddressDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public MemberAddress newEntity() { return new MemberAddress(); }
     public MemberAddress newMyEntity() { return new MemberAddress(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
-    public void acceptPrimaryKeyMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptPrimaryKeyMap((MemberAddress)e, m); }
-    public void acceptAllColumnMap(Entity e, Map<String, ? extends Object> m)
-    { doAcceptAllColumnMap((MemberAddress)e, m); }
-    public Map<String, Object> extractPrimaryKeyMap(Entity e) { return doExtractPrimaryKeyMap(e); }
-    public Map<String, Object> extractAllColumnMap(Entity e) { return doExtractAllColumnMap(e); }
+    public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptPrimaryKeyMap((MemberAddress)et, mp); }
+    public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
+    { doAcceptAllColumnMap((MemberAddress)et, mp); }
+    public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
+    public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

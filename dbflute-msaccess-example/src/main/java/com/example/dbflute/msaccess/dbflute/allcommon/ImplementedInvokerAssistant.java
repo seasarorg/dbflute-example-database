@@ -17,6 +17,7 @@ import org.seasar.dbflute.jdbc.HandlingDataSourceWrapper;
 import org.seasar.dbflute.jdbc.SQLExceptionDigger;
 import org.seasar.dbflute.jdbc.StatementConfig;
 import org.seasar.dbflute.jdbc.StatementFactory;
+import org.seasar.dbflute.optional.RelationOptionalFactory;
 import org.seasar.dbflute.outsidesql.factory.DefaultOutsideSqlExecutorFactory;
 import org.seasar.dbflute.outsidesql.factory.OutsideSqlExecutorFactory;
 import org.seasar.dbflute.resource.ResourceParameter;
@@ -66,6 +67,7 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     protected volatile OutsideSqlExecutorFactory _outsideSqlExecutorFactory;
     protected volatile SQLExceptionHandlerFactory _sqlExceptionHandlerFactory;
     protected volatile SequenceCacheHandler _sequenceCacheHandler;
+    protected volatile RelationOptionalFactory _relationOptionalFactory;
 
     // -----------------------------------------------------
     //                                       Disposable Flag
@@ -134,7 +136,11 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
         if (creator != null) {
             return creator;
         }
-        return new ImplementedSqlClauseCreator(); // as default
+        return newImplementedSqlClauseCreator(); // as default
+    }
+
+    protected ImplementedSqlClauseCreator newImplementedSqlClauseCreator() {
+        return new ImplementedSqlClauseCreator();
     }
 
     // -----------------------------------------------------
@@ -154,11 +160,15 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     }
 
     protected StatementFactory createStatementFactory() {
-        final TnStatementFactoryImpl factory = new TnStatementFactoryImpl();
+        final TnStatementFactoryImpl factory = newStatementFactoryImpl();
         factory.setDefaultStatementConfig(assistDefaultStatementConfig());
         factory.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
         factory.setCursorSelectFetchSize(DBFluteConfig.getInstance().getCursorSelectFetchSize());
         return factory;
+    }
+
+    protected TnStatementFactoryImpl newStatementFactoryImpl() {
+        return new TnStatementFactoryImpl();
     }
 
     // -----------------------------------------------------
@@ -178,10 +188,42 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     }
 
     protected TnBeanMetaDataFactory createBeanMetaDataFactory() {
-        final TnBeanMetaDataFactoryExtension factory = new TnBeanMetaDataFactoryExtension();
+        RelationOptionalFactory relationOptionalFactory = assistRelationOptionalFactory();
+        final TnBeanMetaDataFactoryExtension factory = newBeanMetaDataFactoryExtension(relationOptionalFactory);
         factory.setDataSource(_dataSource);
         factory.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
         return factory;
+    }
+
+    protected TnBeanMetaDataFactoryExtension newBeanMetaDataFactoryExtension(RelationOptionalFactory relationOptionalFactory) {
+        return new TnBeanMetaDataFactoryExtension(relationOptionalFactory);
+    }
+
+    // -----------------------------------------------------
+    //                             Relation Optional Factory
+    //                             -------------------------
+    /**
+     * {@inheritDoc}
+     */
+    public RelationOptionalFactory assistRelationOptionalFactory() {
+        if (_relationOptionalFactory != null) {
+            return _relationOptionalFactory;
+        }
+        synchronized (this) {
+            if (_relationOptionalFactory != null) {
+                return _relationOptionalFactory;
+            }
+            _relationOptionalFactory = createRelationOptionalFactory();
+        }
+        return _relationOptionalFactory;
+    }
+
+    protected RelationOptionalFactory createRelationOptionalFactory() {
+        return newRelationOptionalFactory();
+    }
+
+    protected RelationOptionalFactory newRelationOptionalFactory() {
+        return new RelationOptionalFactory();
     }
 
     // -----------------------------------------------------
@@ -204,6 +246,10 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     }
 
     protected SqlAnalyzerFactory createSqlAnalyzerFactory() {
+        return newDefaultSqlAnalyzerFactory();
+    }
+
+    protected DefaultSqlAnalyzerFactory newDefaultSqlAnalyzerFactory() {
         return new DefaultSqlAnalyzerFactory();
     }
 
@@ -231,6 +277,10 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
         if (factory != null) {
             return factory;
         }
+        return newDefaultOutsideSqlExecutorFactory(); // as default
+    }
+
+    protected DefaultOutsideSqlExecutorFactory newDefaultOutsideSqlExecutorFactory() {
         return new DefaultOutsideSqlExecutorFactory();
     }
 
@@ -241,6 +291,10 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
      * {@inheritDoc}
      */
     public SQLExceptionDigger assistSQLExceptionDigger() {
+        return createSQLExceptionDigger();
+    }
+
+    protected SQLExceptionDigger createSQLExceptionDigger() {
         return DBFluteConfig.getInstance().getSQLExceptionDigger();
     }
 
@@ -264,6 +318,10 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     }
 
     protected SQLExceptionHandlerFactory createSQLExceptionHandlerFactory() {
+        return newDefaultSQLExceptionHandlerFactory();
+    }
+
+    protected DefaultSQLExceptionHandlerFactory newDefaultSQLExceptionHandlerFactory() {
         return new DefaultSQLExceptionHandlerFactory();
     }
 
@@ -287,13 +345,17 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     }
 
     protected SequenceCacheHandler createSequenceCacheHandler() {
-        SequenceCacheHandler handler = new SequenceCacheHandler();
+        SequenceCacheHandler handler = newSequenceCacheHandler();
         SequenceCacheKeyGenerator generator = DBFluteConfig.getInstance().getSequenceCacheKeyGenerator();
         if (generator != null) {
             handler.setSequenceCacheKeyGenerator(generator);
         }
         handler.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
         return handler;
+    }
+
+    protected SequenceCacheHandler newSequenceCacheHandler() {
+        return new SequenceCacheHandler();
     }
 
     // -----------------------------------------------------
@@ -328,12 +390,20 @@ public class ImplementedInvokerAssistant implements InvokerAssistant {
     //                                    Resource Parameter
     //                                    ------------------
     public ResourceParameter assistResourceParameter() {
-        ResourceParameter resourceParameter = new ResourceParameter();
-        resourceParameter.setOutsideSqlPackage(DBFluteConfig.getInstance().getOutsideSqlPackage());
-        resourceParameter.setLogDateFormat(DBFluteConfig.getInstance().getLogDateFormat());
-        resourceParameter.setLogTimestampFormat(DBFluteConfig.getInstance().getLogTimestampFormat());
-        resourceParameter.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
-        return resourceParameter;
+        return createResourceParameter();
+    }
+
+    protected ResourceParameter createResourceParameter() {
+        ResourceParameter parameter = newResourceParameter();
+        parameter.setOutsideSqlPackage(DBFluteConfig.getInstance().getOutsideSqlPackage());
+        parameter.setLogDateFormat(DBFluteConfig.getInstance().getLogDateFormat());
+        parameter.setLogTimestampFormat(DBFluteConfig.getInstance().getLogTimestampFormat());
+        parameter.setInternalDebug(DBFluteConfig.getInstance().isInternalDebug());
+        return parameter;
+    }
+
+    protected ResourceParameter newResourceParameter() {
+        return new ResourceParameter();
     }
 
     // -----------------------------------------------------
