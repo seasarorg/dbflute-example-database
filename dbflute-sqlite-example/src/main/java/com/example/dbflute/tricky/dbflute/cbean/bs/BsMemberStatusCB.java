@@ -80,11 +80,23 @@ public class BsMemberStatusCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberStatusCode : PK, NotNull, TEXT(2000000000, 10), classification=MemberStatus. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberStatusCB acceptPK(String memberStatusCode) {
+        assertObjectNotNull("memberStatusCode", memberStatusCode);
+        BsMemberStatusCB cb = this;
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);
+        return (MemberStatusCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberStatusCode : PK, NotNull, TEXT(2000000000, 10), classification=MemberStatus. (NotNull)
      */
     public void acceptPrimaryKey(String memberStatusCode) {
         assertObjectNotNull("memberStatusCode", memberStatusCode);
         BsMemberStatusCB cb = this;
-        cb.query().setMemberStatusCode_Equal(memberStatusCode);;
+        cb.query().setMemberStatusCode_Equal(memberStatusCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

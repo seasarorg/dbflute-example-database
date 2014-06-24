@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.customize.*;
 
@@ -228,9 +228,6 @@ public abstract class BsSpReturnResultSetWithNotParamResult2 implements Entity, 
     }
 
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     // ===================================================================================
@@ -407,7 +404,7 @@ public abstract class BsSpReturnResultSetWithNotParamResult2 implements Entity, 
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -426,7 +423,7 @@ public abstract class BsSpReturnResultSetWithNotParamResult2 implements Entity, 
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -447,7 +444,7 @@ public abstract class BsSpReturnResultSetWithNotParamResult2 implements Entity, 
      */
     public void setDescription(String description) {
         __modifiedProperties.addPropertyName("description");
-        this._description = description;
+        _description = description;
     }
 
     /**
@@ -468,6 +465,6 @@ public abstract class BsSpReturnResultSetWithNotParamResult2 implements Entity, 
      */
     public void setDisplayOrder(Integer displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

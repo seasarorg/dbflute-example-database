@@ -202,7 +202,7 @@ public class AliasMemberLoginDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public AliasMemberLogin newEntity() { return new AliasMemberLogin(); }
     public AliasMemberLogin newMyEntity() { return new AliasMemberLogin(); }
 
     // ===================================================================================

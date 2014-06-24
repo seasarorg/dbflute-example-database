@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.CDef;
 import com.example.dbflute.tricky.dbflute.exentity.customize.*;
 
@@ -576,7 +576,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberId(String memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -593,7 +593,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -610,7 +610,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setBirthdate(String birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -627,7 +627,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -644,7 +644,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -661,7 +661,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -678,7 +678,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setStatusDisplayOrder(String statusDisplayOrder) {
         __modifiedProperties.addPropertyName("statusDisplayOrder");
-        this._statusDisplayOrder = statusDisplayOrder;
+        _statusDisplayOrder = statusDisplayOrder;
     }
 
     /**
@@ -695,7 +695,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setDummyFlg(String dummyFlg) {
         __modifiedProperties.addPropertyName("dummyFlg");
-        this._dummyFlg = dummyFlg;
+        _dummyFlg = dummyFlg;
     }
 
     /**
@@ -712,6 +712,6 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
      */
     public void setDummyNoflg(String dummyNoflg) {
         __modifiedProperties.addPropertyName("dummyNoflg");
-        this._dummyNoflg = dummyNoflg;
+        _dummyNoflg = dummyNoflg;
     }
 }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.allcommon.CDef;
@@ -321,16 +321,13 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     /** MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'. */
     protected MemberStatus _memberStatus;
 
     /**
-     * MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [get] MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
      * @return The entity of foreign property 'memberStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberStatus getMemberStatus() {
@@ -338,7 +335,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [set] MEMBER_STATUS by my MEMBER_STATUS_CODE, named 'memberStatus'.
      * @param memberStatus The entity of foreign property 'memberStatus'. (NullAllowed)
      */
     public void setMemberStatus(MemberStatus memberStatus) {
@@ -353,7 +350,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberAddress _memberAddressAsValid;
 
     /**
-     * MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
+     * [get] MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
      * @return The entity of foreign property 'memberAddressAsValid'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberAddress getMemberAddressAsValid() {
@@ -361,7 +358,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
+     * [set] MEMBER_ADDRESS by my MEMBER_ID, named 'memberAddressAsValid'.
      * @param memberAddressAsValid The entity of foreign property 'memberAddressAsValid'. (NullAllowed)
      */
     public void setMemberAddressAsValid(MemberAddress memberAddressAsValid) {
@@ -376,7 +373,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberSecurity _memberSecurityAsOne;
 
     /**
-     * MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
+     * [get] MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'memberSecurityAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public MemberSecurity getMemberSecurityAsOne() {
@@ -384,7 +381,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
+     * [set] MEMBER_SECURITY by MEMBER_ID, named 'memberSecurityAsOne'.
      * @param memberSecurityAsOne The entity of foreign property(referrer-as-one) 'memberSecurityAsOne'. (NullAllowed)
      */
     public void setMemberSecurityAsOne(MemberSecurity memberSecurityAsOne) {
@@ -399,7 +396,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected MemberWithdrawal _memberWithdrawalAsOne;
 
     /**
-     * MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
+     * [get] MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
      * @return the entity of foreign property(referrer-as-one) 'memberWithdrawalAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
      */
     public MemberWithdrawal getMemberWithdrawalAsOne() {
@@ -407,7 +404,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
+     * [set] MEMBER_WITHDRAWAL by MEMBER_ID, named 'memberWithdrawalAsOne'.
      * @param memberWithdrawalAsOne The entity of foreign property(referrer-as-one) 'memberWithdrawalAsOne'. (NullAllowed)
      */
     public void setMemberWithdrawalAsOne(MemberWithdrawal memberWithdrawalAsOne) {
@@ -425,7 +422,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<MemberAddress> _memberAddressList;
 
     /**
-     * MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'.
+     * [get] MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'.
      * @return The entity list of referrer property 'memberAddressList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberAddress> getMemberAddressList() {
@@ -434,7 +431,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'.
+     * [set] MEMBER_ADDRESS by MEMBER_ID, named 'memberAddressList'.
      * @param memberAddressList The entity list of referrer property 'memberAddressList'. (NullAllowed)
      */
     public void setMemberAddressList(List<MemberAddress> memberAddressList) {
@@ -445,7 +442,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<MemberLogin> _memberLoginList;
 
     /**
-     * MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
+     * [get] MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
      * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberLogin> getMemberLoginList() {
@@ -454,7 +451,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
+     * [set] MEMBER_LOGIN by MEMBER_ID, named 'memberLoginList'.
      * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
      */
     public void setMemberLoginList(List<MemberLogin> memberLoginList) {
@@ -465,7 +462,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<MemberService> _memberServiceList;
 
     /**
-     * MEMBER_SERVICE by MEMBER_ID, named 'memberServiceList'.
+     * [get] MEMBER_SERVICE by MEMBER_ID, named 'memberServiceList'.
      * @return The entity list of referrer property 'memberServiceList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberService> getMemberServiceList() {
@@ -474,7 +471,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * MEMBER_SERVICE by MEMBER_ID, named 'memberServiceList'.
+     * [set] MEMBER_SERVICE by MEMBER_ID, named 'memberServiceList'.
      * @param memberServiceList The entity list of referrer property 'memberServiceList'. (NullAllowed)
      */
     public void setMemberServiceList(List<MemberService> memberServiceList) {
@@ -485,7 +482,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     protected List<Purchase> _purchaseList;
 
     /**
-     * PURCHASE by MEMBER_ID, named 'purchaseList'.
+     * [get] PURCHASE by MEMBER_ID, named 'purchaseList'.
      * @return The entity list of referrer property 'purchaseList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Purchase> getPurchaseList() {
@@ -494,7 +491,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     /**
-     * PURCHASE by MEMBER_ID, named 'purchaseList'.
+     * [set] PURCHASE by MEMBER_ID, named 'purchaseList'.
      * @param purchaseList The entity list of referrer property 'purchaseList'. (NullAllowed)
      */
     public void setPurchaseList(List<Purchase> purchaseList) {
@@ -740,7 +737,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -757,7 +754,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -774,7 +771,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberAccount(String memberAccount) {
         __modifiedProperties.addPropertyName("memberAccount");
-        this._memberAccount = memberAccount;
+        _memberAccount = memberAccount;
     }
 
     /**
@@ -791,7 +788,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -808,7 +805,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -825,7 +822,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -842,7 +839,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberRegisterDatetime(java.sql.Timestamp memberRegisterDatetime) {
         __modifiedProperties.addPropertyName("memberRegisterDatetime");
-        this._memberRegisterDatetime = memberRegisterDatetime;
+        _memberRegisterDatetime = memberRegisterDatetime;
     }
 
     /**
@@ -859,7 +856,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberRegisterUser(String memberRegisterUser) {
         __modifiedProperties.addPropertyName("memberRegisterUser");
-        this._memberRegisterUser = memberRegisterUser;
+        _memberRegisterUser = memberRegisterUser;
     }
 
     /**
@@ -876,7 +873,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberRegisterProcess(String memberRegisterProcess) {
         __modifiedProperties.addPropertyName("memberRegisterProcess");
-        this._memberRegisterProcess = memberRegisterProcess;
+        _memberRegisterProcess = memberRegisterProcess;
     }
 
     /**
@@ -893,7 +890,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberUpdateDatetime(java.sql.Timestamp memberUpdateDatetime) {
         __modifiedProperties.addPropertyName("memberUpdateDatetime");
-        this._memberUpdateDatetime = memberUpdateDatetime;
+        _memberUpdateDatetime = memberUpdateDatetime;
     }
 
     /**
@@ -910,7 +907,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberUpdateUser(String memberUpdateUser) {
         __modifiedProperties.addPropertyName("memberUpdateUser");
-        this._memberUpdateUser = memberUpdateUser;
+        _memberUpdateUser = memberUpdateUser;
     }
 
     /**
@@ -927,7 +924,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberUpdateProcess(String memberUpdateProcess) {
         __modifiedProperties.addPropertyName("memberUpdateProcess");
-        this._memberUpdateProcess = memberUpdateProcess;
+        _memberUpdateProcess = memberUpdateProcess;
     }
 
     /**
@@ -944,7 +941,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setVersionNo(Integer versionNo) {
         __modifiedProperties.addPropertyName("versionNo");
-        this._versionNo = versionNo;
+        _versionNo = versionNo;
     }
 
     /**

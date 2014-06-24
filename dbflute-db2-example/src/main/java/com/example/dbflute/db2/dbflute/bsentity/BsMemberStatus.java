@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.*;
@@ -242,9 +242,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     // ===================================================================================
@@ -254,7 +251,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<AliasMember> _aliasMemberList;
 
     /**
-     * ALIAS_MEMBER by MEMBER_STATUS_CODE, named 'aliasMemberList'.
+     * [get] ALIAS_MEMBER by MEMBER_STATUS_CODE, named 'aliasMemberList'.
      * @return The entity list of referrer property 'aliasMemberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<AliasMember> getAliasMemberList() {
@@ -263,7 +260,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * ALIAS_MEMBER by MEMBER_STATUS_CODE, named 'aliasMemberList'.
+     * [set] ALIAS_MEMBER by MEMBER_STATUS_CODE, named 'aliasMemberList'.
      * @param aliasMemberList The entity list of referrer property 'aliasMemberList'. (NullAllowed)
      */
     public void setAliasMemberList(List<AliasMember> aliasMemberList) {
@@ -274,7 +271,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<AliasMemberLogin> _aliasMemberLoginList;
 
     /**
-     * ALIAS_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'aliasMemberLoginList'.
+     * [get] ALIAS_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'aliasMemberLoginList'.
      * @return The entity list of referrer property 'aliasMemberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<AliasMemberLogin> getAliasMemberLoginList() {
@@ -283,7 +280,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * ALIAS_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'aliasMemberLoginList'.
+     * [set] ALIAS_MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'aliasMemberLoginList'.
      * @param aliasMemberLoginList The entity list of referrer property 'aliasMemberLoginList'. (NullAllowed)
      */
     public void setAliasMemberLoginList(List<AliasMemberLogin> aliasMemberLoginList) {
@@ -294,7 +291,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<Member> _memberList;
 
     /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [get] (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @return The entity list of referrer property 'memberList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Member> getMemberList() {
@@ -303,7 +300,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
+     * [set] (会員)MEMBER by MEMBER_STATUS_CODE, named 'memberList'.
      * @param memberList The entity list of referrer property 'memberList'. (NullAllowed)
      */
     public void setMemberList(List<Member> memberList) {
@@ -314,7 +311,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     protected List<MemberLogin> _memberLoginList;
 
     /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [get] (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @return The entity list of referrer property 'memberLoginList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberLogin> getMemberLoginList() {
@@ -323,7 +320,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
+     * [set] (会員ログイン)MEMBER_LOGIN by LOGIN_MEMBER_STATUS_CODE, named 'memberLoginList'.
      * @param memberLoginList The entity list of referrer property 'memberLoginList'. (NullAllowed)
      */
     public void setMemberLoginList(List<MemberLogin> memberLoginList) {
@@ -520,7 +517,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 
     /**
@@ -539,7 +536,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 
     /**
@@ -560,7 +557,7 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setDescription(String description) {
         __modifiedProperties.addPropertyName("description");
-        this._description = description;
+        _description = description;
     }
 
     /**
@@ -581,6 +578,6 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
      */
     public void setDisplayOrder(Integer displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

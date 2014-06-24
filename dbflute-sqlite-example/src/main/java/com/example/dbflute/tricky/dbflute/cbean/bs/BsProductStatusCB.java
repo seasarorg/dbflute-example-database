@@ -80,11 +80,23 @@ public class BsProductStatusCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param productStatusCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public ProductStatusCB acceptPK(String productStatusCode) {
+        assertObjectNotNull("productStatusCode", productStatusCode);
+        BsProductStatusCB cb = this;
+        cb.query().setProductStatusCode_Equal(productStatusCode);
+        return (ProductStatusCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param productStatusCode : PK, NotNull, TEXT(2000000000, 10). (NotNull)
      */
     public void acceptPrimaryKey(String productStatusCode) {
         assertObjectNotNull("productStatusCode", productStatusCode);
         BsProductStatusCB cb = this;
-        cb.query().setProductStatusCode_Equal(productStatusCode);;
+        cb.query().setProductStatusCode_Equal(productStatusCode);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.exentity.*;
 
@@ -141,7 +141,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
     protected List<Product> _productList;
 
     /**
-     * PRODUCT by PRODUCT_STATUS_CODE, named 'productList'.
+     * [get] PRODUCT by PRODUCT_STATUS_CODE, named 'productList'.
      * @return The entity list of referrer property 'productList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Product> getProductList() {
@@ -150,7 +150,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
     }
 
     /**
-     * PRODUCT by PRODUCT_STATUS_CODE, named 'productList'.
+     * [set] PRODUCT by PRODUCT_STATUS_CODE, named 'productList'.
      * @param productList The entity list of referrer property 'productList'. (NullAllowed)
      */
     public void setProductList(List<Product> productList) {
@@ -161,7 +161,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
     protected List<SummaryProduct> _summaryProductList;
 
     /**
-     * SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductList'.
+     * [get] SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductList'.
      * @return The entity list of referrer property 'summaryProductList'. (NotNull: even if no loading, returns empty list)
      */
     public List<SummaryProduct> getSummaryProductList() {
@@ -170,7 +170,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
     }
 
     /**
-     * SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductList'.
+     * [set] SUMMARY_PRODUCT by PRODUCT_STATUS_CODE, named 'summaryProductList'.
      * @param summaryProductList The entity list of referrer property 'summaryProductList'. (NullAllowed)
      */
     public void setSummaryProductList(List<SummaryProduct> summaryProductList) {
@@ -355,7 +355,7 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -372,6 +372,6 @@ public abstract class BsProductStatus implements Entity, Serializable, Cloneable
      */
     public void setProductStatusName(String productStatusName) {
         __modifiedProperties.addPropertyName("productStatusName");
-        this._productStatusName = productStatusName;
+        _productStatusName = productStatusName;
     }
 }

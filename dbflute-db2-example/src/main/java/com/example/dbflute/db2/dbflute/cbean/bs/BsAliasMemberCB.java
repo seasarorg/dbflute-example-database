@@ -80,21 +80,35 @@ public class BsAliasMemberCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberId (会員ID): PK, NotNull, INTEGER(10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public AliasMemberCB acceptPK(Integer memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsAliasMemberCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (AliasMemberCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId (会員ID): PK, NotNull, INTEGER(10). (NotNull)
      */
     public void acceptPrimaryKey(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
         BsAliasMemberCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;
+        cb.query().setMemberId_Equal(memberId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberAccount (会員アカウント): UQ, NotNull, VARCHAR(50). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(String memberAccount) {
+    public AliasMemberCB acceptUniqueOf(String memberAccount) {
         assertObjectNotNull("memberAccount", memberAccount);
         BsAliasMemberCB cb = this;
-        cb.query().setMemberAccount_Equal(memberAccount);;
+        cb.query().setMemberAccount_Equal(memberAccount);
+        return (AliasMemberCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

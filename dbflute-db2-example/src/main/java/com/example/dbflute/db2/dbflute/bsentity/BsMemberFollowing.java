@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.exentity.*;
 
@@ -162,7 +162,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
     protected Member _memberByMyMemberId;
 
     /**
-     * (会員)MEMBER by my MY_MEMBER_ID, named 'memberByMyMemberId'.
+     * [get] (会員)MEMBER by my MY_MEMBER_ID, named 'memberByMyMemberId'.
      * @return The entity of foreign property 'memberByMyMemberId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMemberByMyMemberId() {
@@ -170,7 +170,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (会員)MEMBER by my MY_MEMBER_ID, named 'memberByMyMemberId'.
+     * [set] (会員)MEMBER by my MY_MEMBER_ID, named 'memberByMyMemberId'.
      * @param memberByMyMemberId The entity of foreign property 'memberByMyMemberId'. (NullAllowed)
      */
     public void setMemberByMyMemberId(Member memberByMyMemberId) {
@@ -181,7 +181,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
     protected Member _memberByYourMemberId;
 
     /**
-     * (会員)MEMBER by my YOUR_MEMBER_ID, named 'memberByYourMemberId'.
+     * [get] (会員)MEMBER by my YOUR_MEMBER_ID, named 'memberByYourMemberId'.
      * @return The entity of foreign property 'memberByYourMemberId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public Member getMemberByYourMemberId() {
@@ -189,7 +189,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
     }
 
     /**
-     * (会員)MEMBER by my YOUR_MEMBER_ID, named 'memberByYourMemberId'.
+     * [set] (会員)MEMBER by my YOUR_MEMBER_ID, named 'memberByYourMemberId'.
      * @param memberByYourMemberId The entity of foreign property 'memberByYourMemberId'. (NullAllowed)
      */
     public void setMemberByYourMemberId(Member memberByYourMemberId) {
@@ -379,7 +379,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
      */
     public void setMemberFollowingId(Long memberFollowingId) {
         __modifiedProperties.addPropertyName("memberFollowingId");
-        this._memberFollowingId = memberFollowingId;
+        _memberFollowingId = memberFollowingId;
     }
 
     /**
@@ -398,7 +398,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
      */
     public void setMyMemberId(Integer myMemberId) {
         __modifiedProperties.addPropertyName("myMemberId");
-        this._myMemberId = myMemberId;
+        _myMemberId = myMemberId;
     }
 
     /**
@@ -417,7 +417,7 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
      */
     public void setYourMemberId(Integer yourMemberId) {
         __modifiedProperties.addPropertyName("yourMemberId");
-        this._yourMemberId = yourMemberId;
+        _yourMemberId = yourMemberId;
     }
 
     /**
@@ -436,6 +436,6 @@ public abstract class BsMemberFollowing implements Entity, Serializable, Cloneab
      */
     public void setFollowDatetime(java.sql.Timestamp followDatetime) {
         __modifiedProperties.addPropertyName("followDatetime");
-        this._followDatetime = followDatetime;
+        _followDatetime = followDatetime;
     }
 }

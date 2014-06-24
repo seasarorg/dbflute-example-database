@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.exentity.*;
 
@@ -304,7 +304,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setProductCategoryCode(String productCategoryCode) {
         __modifiedProperties.addPropertyName("productCategoryCode");
-        this._productCategoryCode = productCategoryCode;
+        _productCategoryCode = productCategoryCode;
     }
 
     /**
@@ -321,7 +321,7 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setProductCategoryName(String productCategoryName) {
         __modifiedProperties.addPropertyName("productCategoryName");
-        this._productCategoryName = productCategoryName;
+        _productCategoryName = productCategoryName;
     }
 
     /**
@@ -338,6 +338,6 @@ public abstract class BsProductCategory implements Entity, Serializable, Cloneab
      */
     public void setParentCategoryCode(String parentCategoryCode) {
         __modifiedProperties.addPropertyName("parentCategoryCode");
-        this._parentCategoryCode = parentCategoryCode;
+        _parentCategoryCode = parentCategoryCode;
     }
 }

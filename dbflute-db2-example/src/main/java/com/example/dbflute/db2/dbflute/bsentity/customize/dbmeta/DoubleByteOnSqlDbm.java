@@ -145,7 +145,7 @@ public class DoubleByteOnSqlDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public DoubleByteOnSql newEntity() { return new DoubleByteOnSql(); }
     public DoubleByteOnSql newMyEntity() { return new DoubleByteOnSql(); }
 
     // ===================================================================================

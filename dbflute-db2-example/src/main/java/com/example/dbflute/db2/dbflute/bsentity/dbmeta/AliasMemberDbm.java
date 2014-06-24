@@ -278,7 +278,7 @@ public class AliasMemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public AliasMember newEntity() { return new AliasMember(); }
     public AliasMember newMyEntity() { return new AliasMember(); }
 
     // ===================================================================================

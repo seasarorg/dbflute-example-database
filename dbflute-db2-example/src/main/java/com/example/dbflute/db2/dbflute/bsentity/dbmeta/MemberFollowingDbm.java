@@ -193,7 +193,7 @@ public class MemberFollowingDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public MemberFollowing newEntity() { return new MemberFollowing(); }
     public MemberFollowing newMyEntity() { return new MemberFollowing(); }
 
     // ===================================================================================

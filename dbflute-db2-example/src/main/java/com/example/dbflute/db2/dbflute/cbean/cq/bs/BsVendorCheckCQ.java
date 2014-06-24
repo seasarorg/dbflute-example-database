@@ -74,10 +74,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _vendorCheckId;
-    public ConditionValue getVendorCheckId() {
-        if (_vendorCheckId == null) { _vendorCheckId = nCV(); }
-        return _vendorCheckId;
-    }
+    public ConditionValue getVendorCheckId()
+    { if (_vendorCheckId == null) { _vendorCheckId = nCV(); }
+      return _vendorCheckId; }
     protected ConditionValue getCValueVendorCheckId() { return getVendorCheckId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_VendorCheckId_Desc() { regOBD("VENDOR_CHECK_ID"); return this; }
 
     protected ConditionValue _typeOfChar;
-    public ConditionValue getTypeOfChar() {
-        if (_typeOfChar == null) { _typeOfChar = nCV(); }
-        return _typeOfChar;
-    }
+    public ConditionValue getTypeOfChar()
+    { if (_typeOfChar == null) { _typeOfChar = nCV(); }
+      return _typeOfChar; }
     protected ConditionValue getCValueTypeOfChar() { return getTypeOfChar(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfChar_Desc() { regOBD("TYPE_OF_CHAR"); return this; }
 
     protected ConditionValue _typeOfCharForBitData;
-    public ConditionValue getTypeOfCharForBitData() {
-        if (_typeOfCharForBitData == null) { _typeOfCharForBitData = nCV(); }
-        return _typeOfCharForBitData;
-    }
+    public ConditionValue getTypeOfCharForBitData()
+    { if (_typeOfCharForBitData == null) { _typeOfCharForBitData = nCV(); }
+      return _typeOfCharForBitData; }
     protected ConditionValue getCValueTypeOfCharForBitData() { return getTypeOfCharForBitData(); }
 
     /** 
@@ -137,10 +134,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfCharForBitData_Desc() { regOBD("TYPE_OF_CHAR_FOR_BIT_DATA"); return this; }
 
     protected ConditionValue _typeOfVarchar;
-    public ConditionValue getTypeOfVarchar() {
-        if (_typeOfVarchar == null) { _typeOfVarchar = nCV(); }
-        return _typeOfVarchar;
-    }
+    public ConditionValue getTypeOfVarchar()
+    { if (_typeOfVarchar == null) { _typeOfVarchar = nCV(); }
+      return _typeOfVarchar; }
     protected ConditionValue getCValueTypeOfVarchar() { return getTypeOfVarchar(); }
 
     /** 
@@ -158,10 +154,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfVarchar_Desc() { regOBD("TYPE_OF_VARCHAR"); return this; }
 
     protected ConditionValue _typeOfVarcharForBitData;
-    public ConditionValue getTypeOfVarcharForBitData() {
-        if (_typeOfVarcharForBitData == null) { _typeOfVarcharForBitData = nCV(); }
-        return _typeOfVarcharForBitData;
-    }
+    public ConditionValue getTypeOfVarcharForBitData()
+    { if (_typeOfVarcharForBitData == null) { _typeOfVarcharForBitData = nCV(); }
+      return _typeOfVarcharForBitData; }
     protected ConditionValue getCValueTypeOfVarcharForBitData() { return getTypeOfVarcharForBitData(); }
 
     /** 
@@ -179,10 +174,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfVarcharForBitData_Desc() { regOBD("TYPE_OF_VARCHAR_FOR_BIT_DATA"); return this; }
 
     protected ConditionValue _typeOfClob;
-    public ConditionValue getTypeOfClob() {
-        if (_typeOfClob == null) { _typeOfClob = nCV(); }
-        return _typeOfClob;
-    }
+    public ConditionValue getTypeOfClob()
+    { if (_typeOfClob == null) { _typeOfClob = nCV(); }
+      return _typeOfClob; }
     protected ConditionValue getCValueTypeOfClob() { return getTypeOfClob(); }
 
     /** 
@@ -200,10 +194,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfClob_Desc() { regOBD("TYPE_OF_CLOB"); return this; }
 
     protected ConditionValue _typeOfDbclob;
-    public ConditionValue getTypeOfDbclob() {
-        if (_typeOfDbclob == null) { _typeOfDbclob = nCV(); }
-        return _typeOfDbclob;
-    }
+    public ConditionValue getTypeOfDbclob()
+    { if (_typeOfDbclob == null) { _typeOfDbclob = nCV(); }
+      return _typeOfDbclob; }
     protected ConditionValue getCValueTypeOfDbclob() { return getTypeOfDbclob(); }
 
     /** 
@@ -221,10 +214,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDbclob_Desc() { regOBD("TYPE_OF_DBCLOB"); return this; }
 
     protected ConditionValue _typeOfDecimalDecimal;
-    public ConditionValue getTypeOfDecimalDecimal() {
-        if (_typeOfDecimalDecimal == null) { _typeOfDecimalDecimal = nCV(); }
-        return _typeOfDecimalDecimal;
-    }
+    public ConditionValue getTypeOfDecimalDecimal()
+    { if (_typeOfDecimalDecimal == null) { _typeOfDecimalDecimal = nCV(); }
+      return _typeOfDecimalDecimal; }
     protected ConditionValue getCValueTypeOfDecimalDecimal() { return getTypeOfDecimalDecimal(); }
 
     /** 
@@ -242,10 +234,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDecimalDecimal_Desc() { regOBD("TYPE_OF_DECIMAL_DECIMAL"); return this; }
 
     protected ConditionValue _typeOfDecimalInteger;
-    public ConditionValue getTypeOfDecimalInteger() {
-        if (_typeOfDecimalInteger == null) { _typeOfDecimalInteger = nCV(); }
-        return _typeOfDecimalInteger;
-    }
+    public ConditionValue getTypeOfDecimalInteger()
+    { if (_typeOfDecimalInteger == null) { _typeOfDecimalInteger = nCV(); }
+      return _typeOfDecimalInteger; }
     protected ConditionValue getCValueTypeOfDecimalInteger() { return getTypeOfDecimalInteger(); }
 
     /** 
@@ -263,10 +254,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDecimalInteger_Desc() { regOBD("TYPE_OF_DECIMAL_INTEGER"); return this; }
 
     protected ConditionValue _typeOfDecimalBigint;
-    public ConditionValue getTypeOfDecimalBigint() {
-        if (_typeOfDecimalBigint == null) { _typeOfDecimalBigint = nCV(); }
-        return _typeOfDecimalBigint;
-    }
+    public ConditionValue getTypeOfDecimalBigint()
+    { if (_typeOfDecimalBigint == null) { _typeOfDecimalBigint = nCV(); }
+      return _typeOfDecimalBigint; }
     protected ConditionValue getCValueTypeOfDecimalBigint() { return getTypeOfDecimalBigint(); }
 
     /** 
@@ -284,10 +274,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDecimalBigint_Desc() { regOBD("TYPE_OF_DECIMAL_BIGINT"); return this; }
 
     protected ConditionValue _typeOfSmallint;
-    public ConditionValue getTypeOfSmallint() {
-        if (_typeOfSmallint == null) { _typeOfSmallint = nCV(); }
-        return _typeOfSmallint;
-    }
+    public ConditionValue getTypeOfSmallint()
+    { if (_typeOfSmallint == null) { _typeOfSmallint = nCV(); }
+      return _typeOfSmallint; }
     protected ConditionValue getCValueTypeOfSmallint() { return getTypeOfSmallint(); }
 
     /** 
@@ -305,10 +294,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfSmallint_Desc() { regOBD("TYPE_OF_SMALLINT"); return this; }
 
     protected ConditionValue _typeOfInteger;
-    public ConditionValue getTypeOfInteger() {
-        if (_typeOfInteger == null) { _typeOfInteger = nCV(); }
-        return _typeOfInteger;
-    }
+    public ConditionValue getTypeOfInteger()
+    { if (_typeOfInteger == null) { _typeOfInteger = nCV(); }
+      return _typeOfInteger; }
     protected ConditionValue getCValueTypeOfInteger() { return getTypeOfInteger(); }
 
     /** 
@@ -326,10 +314,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfInteger_Desc() { regOBD("TYPE_OF_INTEGER"); return this; }
 
     protected ConditionValue _typeOfBigint;
-    public ConditionValue getTypeOfBigint() {
-        if (_typeOfBigint == null) { _typeOfBigint = nCV(); }
-        return _typeOfBigint;
-    }
+    public ConditionValue getTypeOfBigint()
+    { if (_typeOfBigint == null) { _typeOfBigint = nCV(); }
+      return _typeOfBigint; }
     protected ConditionValue getCValueTypeOfBigint() { return getTypeOfBigint(); }
 
     /** 
@@ -347,10 +334,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfBigint_Desc() { regOBD("TYPE_OF_BIGINT"); return this; }
 
     protected ConditionValue _typeOfFloat;
-    public ConditionValue getTypeOfFloat() {
-        if (_typeOfFloat == null) { _typeOfFloat = nCV(); }
-        return _typeOfFloat;
-    }
+    public ConditionValue getTypeOfFloat()
+    { if (_typeOfFloat == null) { _typeOfFloat = nCV(); }
+      return _typeOfFloat; }
     protected ConditionValue getCValueTypeOfFloat() { return getTypeOfFloat(); }
 
     /** 
@@ -368,10 +354,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfFloat_Desc() { regOBD("TYPE_OF_FLOAT"); return this; }
 
     protected ConditionValue _typeOfDouble;
-    public ConditionValue getTypeOfDouble() {
-        if (_typeOfDouble == null) { _typeOfDouble = nCV(); }
-        return _typeOfDouble;
-    }
+    public ConditionValue getTypeOfDouble()
+    { if (_typeOfDouble == null) { _typeOfDouble = nCV(); }
+      return _typeOfDouble; }
     protected ConditionValue getCValueTypeOfDouble() { return getTypeOfDouble(); }
 
     /** 
@@ -389,10 +374,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDouble_Desc() { regOBD("TYPE_OF_DOUBLE"); return this; }
 
     protected ConditionValue _typeOfReal;
-    public ConditionValue getTypeOfReal() {
-        if (_typeOfReal == null) { _typeOfReal = nCV(); }
-        return _typeOfReal;
-    }
+    public ConditionValue getTypeOfReal()
+    { if (_typeOfReal == null) { _typeOfReal = nCV(); }
+      return _typeOfReal; }
     protected ConditionValue getCValueTypeOfReal() { return getTypeOfReal(); }
 
     /** 
@@ -410,10 +394,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfReal_Desc() { regOBD("TYPE_OF_REAL"); return this; }
 
     protected ConditionValue _typeOfDate;
-    public ConditionValue getTypeOfDate() {
-        if (_typeOfDate == null) { _typeOfDate = nCV(); }
-        return _typeOfDate;
-    }
+    public ConditionValue getTypeOfDate()
+    { if (_typeOfDate == null) { _typeOfDate = nCV(); }
+      return _typeOfDate; }
     protected ConditionValue getCValueTypeOfDate() { return getTypeOfDate(); }
 
     /** 
@@ -431,10 +414,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfDate_Desc() { regOBD("TYPE_OF_DATE"); return this; }
 
     protected ConditionValue _typeOfTime;
-    public ConditionValue getTypeOfTime() {
-        if (_typeOfTime == null) { _typeOfTime = nCV(); }
-        return _typeOfTime;
-    }
+    public ConditionValue getTypeOfTime()
+    { if (_typeOfTime == null) { _typeOfTime = nCV(); }
+      return _typeOfTime; }
     protected ConditionValue getCValueTypeOfTime() { return getTypeOfTime(); }
 
     /** 
@@ -452,10 +434,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfTime_Desc() { regOBD("TYPE_OF_TIME"); return this; }
 
     protected ConditionValue _typeOfTimestamp;
-    public ConditionValue getTypeOfTimestamp() {
-        if (_typeOfTimestamp == null) { _typeOfTimestamp = nCV(); }
-        return _typeOfTimestamp;
-    }
+    public ConditionValue getTypeOfTimestamp()
+    { if (_typeOfTimestamp == null) { _typeOfTimestamp = nCV(); }
+      return _typeOfTimestamp; }
     protected ConditionValue getCValueTypeOfTimestamp() { return getTypeOfTimestamp(); }
 
     /** 
@@ -473,10 +454,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfTimestamp_Desc() { regOBD("TYPE_OF_TIMESTAMP"); return this; }
 
     protected ConditionValue _typeOfBlob;
-    public ConditionValue getTypeOfBlob() {
-        if (_typeOfBlob == null) { _typeOfBlob = nCV(); }
-        return _typeOfBlob;
-    }
+    public ConditionValue getTypeOfBlob()
+    { if (_typeOfBlob == null) { _typeOfBlob = nCV(); }
+      return _typeOfBlob; }
     protected ConditionValue getCValueTypeOfBlob() { return getTypeOfBlob(); }
 
     /** 
@@ -494,10 +474,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfBlob_Desc() { regOBD("TYPE_OF_BLOB"); return this; }
 
     protected ConditionValue _typeOfGraphic;
-    public ConditionValue getTypeOfGraphic() {
-        if (_typeOfGraphic == null) { _typeOfGraphic = nCV(); }
-        return _typeOfGraphic;
-    }
+    public ConditionValue getTypeOfGraphic()
+    { if (_typeOfGraphic == null) { _typeOfGraphic = nCV(); }
+      return _typeOfGraphic; }
     protected ConditionValue getCValueTypeOfGraphic() { return getTypeOfGraphic(); }
 
     /** 
@@ -515,10 +494,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfGraphic_Desc() { regOBD("TYPE_OF_GRAPHIC"); return this; }
 
     protected ConditionValue _typeOfVargraphic;
-    public ConditionValue getTypeOfVargraphic() {
-        if (_typeOfVargraphic == null) { _typeOfVargraphic = nCV(); }
-        return _typeOfVargraphic;
-    }
+    public ConditionValue getTypeOfVargraphic()
+    { if (_typeOfVargraphic == null) { _typeOfVargraphic = nCV(); }
+      return _typeOfVargraphic; }
     protected ConditionValue getCValueTypeOfVargraphic() { return getTypeOfVargraphic(); }
 
     /** 
@@ -536,10 +514,9 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     public BsVendorCheckCQ addOrderBy_TypeOfVargraphic_Desc() { regOBD("TYPE_OF_VARGRAPHIC"); return this; }
 
     protected ConditionValue _typeOfLongVargraphic;
-    public ConditionValue getTypeOfLongVargraphic() {
-        if (_typeOfLongVargraphic == null) { _typeOfLongVargraphic = nCV(); }
-        return _typeOfLongVargraphic;
-    }
+    public ConditionValue getTypeOfLongVargraphic()
+    { if (_typeOfLongVargraphic == null) { _typeOfLongVargraphic = nCV(); }
+      return _typeOfLongVargraphic; }
     protected ConditionValue getCValueTypeOfLongVargraphic() { return getTypeOfLongVargraphic(); }
 
     /** 
@@ -573,8 +550,7 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorCheckCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsVendorCheckCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -590,8 +566,7 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsVendorCheckCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsVendorCheckCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -609,61 +584,32 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, VendorCheckCQ> _scalarConditionMap;
-    public Map<String, VendorCheckCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(VendorCheckCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, VendorCheckCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(VendorCheckCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, VendorCheckCQ> _specifyMyselfDerivedMap;
-    public Map<String, VendorCheckCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(VendorCheckCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, VendorCheckCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(VendorCheckCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, VendorCheckCQ> _queryMyselfDerivedMap;
-    public Map<String, VendorCheckCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(VendorCheckCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, VendorCheckCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(VendorCheckCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, VendorCheckCQ> _myselfExistsMap;
-    public Map<String, VendorCheckCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(VendorCheckCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, VendorCheckCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(VendorCheckCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, VendorCheckCQ> _myselfInScopeMap;
-    public Map<String, VendorCheckCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(VendorCheckCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, VendorCheckCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(VendorCheckCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

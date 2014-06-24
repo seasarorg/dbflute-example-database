@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.exentity.*;
 
@@ -141,7 +141,7 @@ public abstract class BsAliasExcept implements Entity, Serializable, Cloneable {
     protected List<AliasRefExcept> _aliasRefExceptList;
 
     /**
-     * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
+     * [get] ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
      * @return The entity list of referrer property 'aliasRefExceptList'. (NotNull: even if no loading, returns empty list)
      */
     public List<AliasRefExcept> getAliasRefExceptList() {
@@ -150,7 +150,7 @@ public abstract class BsAliasExcept implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
+     * [set] ALIAS_REF_EXCEPT by EXCEPT_ID, named 'aliasRefExceptList'.
      * @param aliasRefExceptList The entity list of referrer property 'aliasRefExceptList'. (NullAllowed)
      */
     public void setAliasRefExceptList(List<AliasRefExcept> aliasRefExceptList) {
@@ -331,7 +331,7 @@ public abstract class BsAliasExcept implements Entity, Serializable, Cloneable {
      */
     public void setExceptId(Long exceptId) {
         __modifiedProperties.addPropertyName("exceptId");
-        this._exceptId = exceptId;
+        _exceptId = exceptId;
     }
 
     /**
@@ -348,6 +348,6 @@ public abstract class BsAliasExcept implements Entity, Serializable, Cloneable {
      */
     public void setExceptName(String exceptName) {
         __modifiedProperties.addPropertyName("exceptName");
-        this._exceptName = exceptName;
+        _exceptName = exceptName;
     }
 }

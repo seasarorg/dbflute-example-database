@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.*;
@@ -334,7 +334,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     protected AliasMember _aliasMember;
 
     /**
-     * ALIAS_MEMBER by my MEMBER_ID, named 'aliasMember'.
+     * [get] ALIAS_MEMBER by my MEMBER_ID, named 'aliasMember'.
      * @return The entity of foreign property 'aliasMember'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public AliasMember getAliasMember() {
@@ -342,7 +342,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * ALIAS_MEMBER by my MEMBER_ID, named 'aliasMember'.
+     * [set] ALIAS_MEMBER by my MEMBER_ID, named 'aliasMember'.
      * @param aliasMember The entity of foreign property 'aliasMember'. (NullAllowed)
      */
     public void setAliasMember(AliasMember aliasMember) {
@@ -353,7 +353,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     protected MemberStatus _memberStatus;
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [get] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @return The entity of foreign property 'memberStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public MemberStatus getMemberStatus() {
@@ -361,7 +361,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
     }
 
     /**
-     * (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
+     * [set] (会員ステータス)MEMBER_STATUS by my LOGIN_MEMBER_STATUS_CODE, named 'memberStatus'.
      * @param memberStatus The entity of foreign property 'memberStatus'. (NullAllowed)
      */
     public void setMemberStatus(MemberStatus memberStatus) {
@@ -550,7 +550,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      */
     public void setMemberLoginId(Long memberLoginId) {
         __modifiedProperties.addPropertyName("memberLoginId");
-        this._memberLoginId = memberLoginId;
+        _memberLoginId = memberLoginId;
     }
 
     /**
@@ -567,7 +567,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -588,7 +588,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      */
     public void setLoginDatetime(java.sql.Timestamp loginDatetime) {
         __modifiedProperties.addPropertyName("loginDatetime");
-        this._loginDatetime = loginDatetime;
+        _loginDatetime = loginDatetime;
     }
 
     /**
@@ -607,7 +607,7 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      */
     public void setMobileLoginFlg(Integer mobileLoginFlg) {
         __modifiedProperties.addPropertyName("mobileLoginFlg");
-        this._mobileLoginFlg = mobileLoginFlg;
+        _mobileLoginFlg = mobileLoginFlg;
     }
 
     /**
@@ -626,6 +626,6 @@ public abstract class BsAliasMemberLogin implements Entity, Serializable, Clonea
      */
     public void setLoginMemberStatusCode(String loginMemberStatusCode) {
         __modifiedProperties.addPropertyName("loginMemberStatusCode");
-        this._loginMemberStatusCode = loginMemberStatusCode;
+        _loginMemberStatusCode = loginMemberStatusCode;
     }
 }

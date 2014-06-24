@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.exentity.*;
 
@@ -310,7 +310,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setVendorCheckId(Integer vendorCheckId) {
         __modifiedProperties.addPropertyName("vendorCheckId");
-        this._vendorCheckId = vendorCheckId;
+        _vendorCheckId = vendorCheckId;
     }
 
     /**
@@ -327,7 +327,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfText(String typeOfText) {
         __modifiedProperties.addPropertyName("typeOfText");
-        this._typeOfText = typeOfText;
+        _typeOfText = typeOfText;
     }
 
     /**
@@ -344,7 +344,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfInteger(Integer typeOfInteger) {
         __modifiedProperties.addPropertyName("typeOfInteger");
-        this._typeOfInteger = typeOfInteger;
+        _typeOfInteger = typeOfInteger;
     }
 
     /**
@@ -361,6 +361,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfReal(String typeOfReal) {
         __modifiedProperties.addPropertyName("typeOfReal");
-        this._typeOfReal = typeOfReal;
+        _typeOfReal = typeOfReal;
     }
 }

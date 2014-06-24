@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.exentity.*;
 
@@ -148,7 +148,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
     protected ProductStatus _productStatus;
 
     /**
-     * PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'productStatus'.
+     * [get] PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'productStatus'.
      * @return The entity of foreign property 'productStatus'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public ProductStatus getProductStatus() {
@@ -156,7 +156,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
     }
 
     /**
-     * PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'productStatus'.
+     * [set] PRODUCT_STATUS by my PRODUCT_STATUS_CODE, named 'productStatus'.
      * @param productStatus The entity of foreign property 'productStatus'. (NullAllowed)
      */
     public void setProductStatus(ProductStatus productStatus) {
@@ -174,7 +174,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
     protected List<Purchase> _purchaseList;
 
     /**
-     * PURCHASE by PRODUCT_ID, named 'purchaseList'.
+     * [get] PURCHASE by PRODUCT_ID, named 'purchaseList'.
      * @return The entity list of referrer property 'purchaseList'. (NotNull: even if no loading, returns empty list)
      */
     public List<Purchase> getPurchaseList() {
@@ -183,7 +183,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
     }
 
     /**
-     * PURCHASE by PRODUCT_ID, named 'purchaseList'.
+     * [set] PURCHASE by PRODUCT_ID, named 'purchaseList'.
      * @param purchaseList The entity list of referrer property 'purchaseList'. (NullAllowed)
      */
     public void setPurchaseList(List<Purchase> purchaseList) {
@@ -369,7 +369,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
      */
     public void setProductId(Integer productId) {
         __modifiedProperties.addPropertyName("productId");
-        this._productId = productId;
+        _productId = productId;
     }
 
     /**
@@ -386,7 +386,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
      */
     public void setProductName(String productName) {
         __modifiedProperties.addPropertyName("productName");
-        this._productName = productName;
+        _productName = productName;
     }
 
     /**
@@ -403,7 +403,7 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
      */
     public void setProductStatusCode(String productStatusCode) {
         __modifiedProperties.addPropertyName("productStatusCode");
-        this._productStatusCode = productStatusCode;
+        _productStatusCode = productStatusCode;
     }
 
     /**
@@ -420,6 +420,6 @@ public abstract class BsSummaryProduct implements Entity, Serializable, Cloneabl
      */
     public void setLatestPurchaseDatetime(String latestPurchaseDatetime) {
         __modifiedProperties.addPropertyName("latestPurchaseDatetime");
-        this._latestPurchaseDatetime = latestPurchaseDatetime;
+        _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 }

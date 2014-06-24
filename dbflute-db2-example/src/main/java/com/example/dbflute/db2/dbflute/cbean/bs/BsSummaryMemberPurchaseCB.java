@@ -80,11 +80,23 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberId : PK, ID, NotNull, UnknownType. (NotNull)
+     * @return this. (NotNull)
+     */
+    public SummaryMemberPurchaseCB acceptPK(Integer memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsSummaryMemberPurchaseCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (SummaryMemberPurchaseCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberId : PK, ID, NotNull, UnknownType. (NotNull)
      */
     public void acceptPrimaryKey(Integer memberId) {
         assertObjectNotNull("memberId", memberId);
         BsSummaryMemberPurchaseCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;
+        cb.query().setMemberId_Equal(memberId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

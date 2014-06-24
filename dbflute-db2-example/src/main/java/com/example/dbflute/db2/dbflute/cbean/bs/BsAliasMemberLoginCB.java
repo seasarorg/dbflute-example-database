@@ -81,22 +81,36 @@ public class BsAliasMemberLoginCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberLoginId (会員ログインID): PK, NotNull, BIGINT(19). (NotNull)
+     * @return this. (NotNull)
+     */
+    public AliasMemberLoginCB acceptPK(Long memberLoginId) {
+        assertObjectNotNull("memberLoginId", memberLoginId);
+        BsAliasMemberLoginCB cb = this;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
+        return (AliasMemberLoginCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberLoginId (会員ログインID): PK, NotNull, BIGINT(19). (NotNull)
      */
     public void acceptPrimaryKey(Long memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
         BsAliasMemberLoginCB cb = this;
-        cb.query().setMemberLoginId_Equal(memberLoginId);;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
     }
 
     /**
      * Accept the query condition of unique key as equal.
      * @param memberId (会員ID): UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER. (NotNull)
      * @param loginDatetime (ログイン日時): +UQ, IX, NotNull, TIMESTAMP(26, 6). (NotNull)
+     * @return this. (NotNull)
      */
-    public void acceptUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime) {
+    public AliasMemberLoginCB acceptUniqueOf(Integer memberId, java.sql.Timestamp loginDatetime) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("loginDatetime", loginDatetime);
         BsAliasMemberLoginCB cb = this;
-        cb.query().setMemberId_Equal(memberId);;cb.query().setLoginDatetime_Equal(loginDatetime);;
+        cb.query().setMemberId_Equal(memberId);cb.query().setLoginDatetime_Equal(loginDatetime);
+        return (AliasMemberLoginCB)this;
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

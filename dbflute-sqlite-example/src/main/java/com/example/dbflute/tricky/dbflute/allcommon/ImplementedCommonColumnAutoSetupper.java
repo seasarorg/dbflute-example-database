@@ -39,22 +39,16 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
     }
 
     protected void doHandleCommonColumnOfInsertIfNeeds(EntityDefinedCommonColumn entity) {
-
         final java.sql.Timestamp tableNameRegisterDatetime = org.seasar.dbflute.AccessContext.getAccessTimestampOnThread();
         entity.setTableNameRegisterDatetime(tableNameRegisterDatetime);
-
         final String tableNameRegisterUser = org.seasar.dbflute.AccessContext.getAccessUserOnThread();
         entity.setTableNameRegisterUser(tableNameRegisterUser);
-
         final String tableNameRegisterProcess = org.seasar.dbflute.AccessContext.getAccessProcessOnThread();
         entity.setTableNameRegisterProcess(tableNameRegisterProcess);
-
         final java.sql.Timestamp tableNameUpdateDatetime = entity.getTableNameRegisterDatetime();
         entity.setTableNameUpdateDatetime(tableNameUpdateDatetime);
-
         final String tableNameUpdateUser = entity.getTableNameRegisterUser();
         entity.setTableNameUpdateUser(tableNameUpdateUser);
-
         final String tableNameUpdateProcess = entity.getTableNameRegisterProcess();
         entity.setTableNameUpdateProcess(tableNameUpdateProcess);
     }
@@ -74,13 +68,10 @@ public class ImplementedCommonColumnAutoSetupper implements CommonColumnAutoSetu
     }
 
     protected void doHandleCommonColumnOfUpdateIfNeeds(EntityDefinedCommonColumn entity) {
-
         final java.sql.Timestamp tableNameUpdateDatetime = org.seasar.dbflute.AccessContext.getAccessTimestampOnThread();
         entity.setTableNameUpdateDatetime(tableNameUpdateDatetime);
-
         final String tableNameUpdateUser = org.seasar.dbflute.AccessContext.getAccessUserOnThread();
         entity.setTableNameUpdateUser(tableNameUpdateUser);
-
         final String tableNameUpdateProcess = org.seasar.dbflute.AccessContext.getAccessProcessOnThread();
         entity.setTableNameUpdateProcess(tableNameUpdateProcess);
     }

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.customize.*;
 
@@ -234,9 +234,6 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
     }
 
     // ===================================================================================
-    //                                                           Classification Name/Alias
-    //                                                           =========================
-    // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
     // ===================================================================================
@@ -422,7 +419,7 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -443,7 +440,7 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public void setMemberName(String memberName) {
         __modifiedProperties.addPropertyName("memberName");
-        this._memberName = memberName;
+        _memberName = memberName;
     }
 
     /**
@@ -462,7 +459,7 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
-        this._birthdate = birthdate;
+        _birthdate = birthdate;
     }
 
     /**
@@ -483,7 +480,7 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
         __modifiedProperties.addPropertyName("formalizedDatetime");
-        this._formalizedDatetime = formalizedDatetime;
+        _formalizedDatetime = formalizedDatetime;
     }
 
     /**
@@ -504,6 +501,6 @@ public abstract class BsSpReturnResultSetNotParamResult1 implements Entity, Seri
      */
     public void setMemberStatusCode(String memberStatusCode) {
         __modifiedProperties.addPropertyName("memberStatusCode");
-        this._memberStatusCode = memberStatusCode;
+        _memberStatusCode = memberStatusCode;
     }
 }

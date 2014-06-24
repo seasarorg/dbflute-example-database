@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.*;
@@ -263,7 +263,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
     protected List<MemberService> _memberServiceList;
 
     /**
-     * (会員サービス)MEMBER_SERVICE by SERVICE_RANK_CODE, named 'memberServiceList'.
+     * [get] (会員サービス)MEMBER_SERVICE by SERVICE_RANK_CODE, named 'memberServiceList'.
      * @return The entity list of referrer property 'memberServiceList'. (NotNull: even if no loading, returns empty list)
      */
     public List<MemberService> getMemberServiceList() {
@@ -272,7 +272,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * (会員サービス)MEMBER_SERVICE by SERVICE_RANK_CODE, named 'memberServiceList'.
+     * [set] (会員サービス)MEMBER_SERVICE by SERVICE_RANK_CODE, named 'memberServiceList'.
      * @param memberServiceList The entity list of referrer property 'memberServiceList'. (NullAllowed)
      */
     public void setMemberServiceList(List<MemberService> memberServiceList) {
@@ -459,7 +459,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setServiceRankCode(String serviceRankCode) {
         __modifiedProperties.addPropertyName("serviceRankCode");
-        this._serviceRankCode = serviceRankCode;
+        _serviceRankCode = serviceRankCode;
     }
 
     /**
@@ -480,7 +480,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setServiceRankName(String serviceRankName) {
         __modifiedProperties.addPropertyName("serviceRankName");
-        this._serviceRankName = serviceRankName;
+        _serviceRankName = serviceRankName;
     }
 
     /**
@@ -501,7 +501,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setServicePointIncidence(java.math.BigDecimal servicePointIncidence) {
         __modifiedProperties.addPropertyName("servicePointIncidence");
-        this._servicePointIncidence = servicePointIncidence;
+        _servicePointIncidence = servicePointIncidence;
     }
 
     /**
@@ -520,7 +520,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setNewAcceptableFlg(Integer newAcceptableFlg) {
         __modifiedProperties.addPropertyName("newAcceptableFlg");
-        this._newAcceptableFlg = newAcceptableFlg;
+        _newAcceptableFlg = newAcceptableFlg;
     }
 
     /**
@@ -539,7 +539,7 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setDescription(String description) {
         __modifiedProperties.addPropertyName("description");
-        this._description = description;
+        _description = description;
     }
 
     /**
@@ -558,6 +558,6 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
      */
     public void setDisplayOrder(Integer displayOrder) {
         __modifiedProperties.addPropertyName("displayOrder");
-        this._displayOrder = displayOrder;
+        _displayOrder = displayOrder;
     }
 }

@@ -74,10 +74,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     //                                                                               Query
     //                                                                               =====
     protected ConditionValue _memberId;
-    public ConditionValue getMemberId() {
-        if (_memberId == null) { _memberId = nCV(); }
-        return _memberId;
-    }
+    public ConditionValue getMemberId()
+    { if (_memberId == null) { _memberId = nCV(); }
+      return _memberId; }
     protected ConditionValue getCValueMemberId() { return getMemberId(); }
 
     /** 
@@ -95,10 +94,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     public BsSummaryMemberPurchaseCQ addOrderBy_MemberId_Desc() { regOBD("MEMBER_ID"); return this; }
 
     protected ConditionValue _allsumPurchasePrice;
-    public ConditionValue getAllsumPurchasePrice() {
-        if (_allsumPurchasePrice == null) { _allsumPurchasePrice = nCV(); }
-        return _allsumPurchasePrice;
-    }
+    public ConditionValue getAllsumPurchasePrice()
+    { if (_allsumPurchasePrice == null) { _allsumPurchasePrice = nCV(); }
+      return _allsumPurchasePrice; }
     protected ConditionValue getCValueAllsumPurchasePrice() { return getAllsumPurchasePrice(); }
 
     /** 
@@ -116,10 +114,9 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     public BsSummaryMemberPurchaseCQ addOrderBy_AllsumPurchasePrice_Desc() { regOBD("ALLSUM_PURCHASE_PRICE"); return this; }
 
     protected ConditionValue _latestPurchaseDatetime;
-    public ConditionValue getLatestPurchaseDatetime() {
-        if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
-        return _latestPurchaseDatetime;
-    }
+    public ConditionValue getLatestPurchaseDatetime()
+    { if (_latestPurchaseDatetime == null) { _latestPurchaseDatetime = nCV(); }
+      return _latestPurchaseDatetime; }
     protected ConditionValue getCValueLatestPurchaseDatetime() { return getLatestPurchaseDatetime(); }
 
     /** 
@@ -153,8 +150,7 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
+    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Asc(String aliasName) { registerSpecifiedDerivedOrderBy_Asc(aliasName); return this; }
 
     /**
      * Add order-by for specified derived column as descend.
@@ -170,8 +166,7 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
      * @param aliasName The alias name specified at (Specify)DerivedReferrer. (NotNull)
      * @return this. (NotNull)
      */
-    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName)
-    { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
+    public BsSummaryMemberPurchaseCQ addSpecifiedDerivedOrderBy_Desc(String aliasName) { registerSpecifiedDerivedOrderBy_Desc(aliasName); return this; }
 
     // ===================================================================================
     //                                                                         Union Query
@@ -189,61 +184,32 @@ public class BsSummaryMemberPurchaseCQ extends AbstractBsSummaryMemberPurchaseCQ
     // ===================================================================================
     //                                                                     ScalarCondition
     //                                                                     ===============
-    protected Map<String, SummaryMemberPurchaseCQ> _scalarConditionMap;
-    public Map<String, SummaryMemberPurchaseCQ> getScalarCondition() { return _scalarConditionMap; }
-    public String keepScalarCondition(SummaryMemberPurchaseCQ sq) {
-        if (_scalarConditionMap == null) { _scalarConditionMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_scalarConditionMap.size() + 1);
-        _scalarConditionMap.put(ky, sq); return "scalarCondition." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getScalarCondition() { return xgetSQueMap("scalarCondition"); }
+    public String keepScalarCondition(SummaryMemberPurchaseCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
     //                                                                       MyselfDerived
     //                                                                       =============
-    protected Map<String, SummaryMemberPurchaseCQ> _specifyMyselfDerivedMap;
-    public Map<String, SummaryMemberPurchaseCQ> getSpecifyMyselfDerived() { return _specifyMyselfDerivedMap; }
-    public String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ sq) {
-        if (_specifyMyselfDerivedMap == null) { _specifyMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_specifyMyselfDerivedMap.size() + 1);
-        _specifyMyselfDerivedMap.put(ky, sq); return "specifyMyselfDerived." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
+    public String keepSpecifyMyselfDerived(SummaryMemberPurchaseCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
 
-    protected Map<String, SummaryMemberPurchaseCQ> _queryMyselfDerivedMap;
-    public Map<String, SummaryMemberPurchaseCQ> getQueryMyselfDerived() { return _queryMyselfDerivedMap; }
-    public String keepQueryMyselfDerived(SummaryMemberPurchaseCQ sq) {
-        if (_queryMyselfDerivedMap == null) { _queryMyselfDerivedMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_queryMyselfDerivedMap.size() + 1);
-        _queryMyselfDerivedMap.put(ky, sq); return "queryMyselfDerived." + ky;
-    }
-    protected Map<String, Object> _qyeryMyselfDerivedParameterMap;
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return _qyeryMyselfDerivedParameterMap; }
-    public String keepQueryMyselfDerivedParameter(Object vl) {
-        if (_qyeryMyselfDerivedParameterMap == null) { _qyeryMyselfDerivedParameterMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryParameterKey" + (_qyeryMyselfDerivedParameterMap.size() + 1);
-        _qyeryMyselfDerivedParameterMap.put(ky, vl); return "queryMyselfDerivedParameter." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerived(SummaryMemberPurchaseCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
+    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
+    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
 
     // ===================================================================================
     //                                                                        MyselfExists
     //                                                                        ============
     protected Map<String, SummaryMemberPurchaseCQ> _myselfExistsMap;
-    public Map<String, SummaryMemberPurchaseCQ> getMyselfExists() { return _myselfExistsMap; }
-    public String keepMyselfExists(SummaryMemberPurchaseCQ sq) {
-        if (_myselfExistsMap == null) { _myselfExistsMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfExistsMap.size() + 1);
-        _myselfExistsMap.put(ky, sq); return "myselfExists." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
+    public String keepMyselfExists(SummaryMemberPurchaseCQ sq) { return xkeepSQue("myselfExists", sq); }
 
     // ===================================================================================
     //                                                                       MyselfInScope
     //                                                                       =============
-    protected Map<String, SummaryMemberPurchaseCQ> _myselfInScopeMap;
-    public Map<String, SummaryMemberPurchaseCQ> getMyselfInScope() { return _myselfInScopeMap; }
-    public String keepMyselfInScope(SummaryMemberPurchaseCQ sq) {
-        if (_myselfInScopeMap == null) { _myselfInScopeMap = newLinkedHashMapSized(4); }
-        String ky = "subQueryMapKey" + (_myselfInScopeMap.size() + 1);
-        _myselfInScopeMap.put(ky, sq); return "myselfInScope." + ky;
-    }
+    public Map<String, SummaryMemberPurchaseCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
+    public String keepMyselfInScope(SummaryMemberPurchaseCQ sq) { return xkeepSQue("myselfInScope", sq); }
 
     // ===================================================================================
     //                                                                       Very Internal

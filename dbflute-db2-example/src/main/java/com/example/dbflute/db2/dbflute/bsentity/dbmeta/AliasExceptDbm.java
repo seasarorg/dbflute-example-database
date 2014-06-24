@@ -139,7 +139,7 @@ public class AliasExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public AliasExcept newEntity() { return new AliasExcept(); }
     public AliasExcept newMyEntity() { return new AliasExcept(); }
 
     // ===================================================================================

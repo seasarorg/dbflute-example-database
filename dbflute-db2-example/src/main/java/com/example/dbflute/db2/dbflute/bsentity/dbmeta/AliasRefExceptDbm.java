@@ -153,7 +153,7 @@ public class AliasRefExceptDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public AliasRefExcept newEntity() { return new AliasRefExcept(); }
     public AliasRefExcept newMyEntity() { return new AliasRefExcept(); }
 
     // ===================================================================================

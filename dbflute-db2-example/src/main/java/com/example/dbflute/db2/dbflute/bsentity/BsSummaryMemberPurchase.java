@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.exentity.*;
 
@@ -311,7 +311,7 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -328,7 +328,7 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setAllsumPurchasePrice(Integer allsumPurchasePrice) {
         __modifiedProperties.addPropertyName("allsumPurchasePrice");
-        this._allsumPurchasePrice = allsumPurchasePrice;
+        _allsumPurchasePrice = allsumPurchasePrice;
     }
 
     /**
@@ -345,6 +345,6 @@ public abstract class BsSummaryMemberPurchase implements Entity, Serializable, C
      */
     public void setLatestPurchaseDatetime(java.util.Date latestPurchaseDatetime) {
         __modifiedProperties.addPropertyName("latestPurchaseDatetime");
-        this._latestPurchaseDatetime = latestPurchaseDatetime;
+        _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 }

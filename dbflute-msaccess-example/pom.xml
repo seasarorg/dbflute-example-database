@@ -12,7 +12,7 @@
 
 	<properties>
 		<seasar.version>2.4.44</seasar.version>
-		<dbflute.version>1.0.5A</dbflute.version>
+		<dbflute.version>1.0.5J</dbflute.version>
 	</properties>
 
 	<url>http://dbflute.sandbox.seasar.org/</url>

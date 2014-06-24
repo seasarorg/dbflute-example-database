@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.Date;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.exentity.*;
 
@@ -434,7 +434,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setVendorCheckId(Long vendorCheckId) {
         __modifiedProperties.addPropertyName("vendorCheckId");
-        this._vendorCheckId = vendorCheckId;
+        _vendorCheckId = vendorCheckId;
     }
 
     /**
@@ -451,7 +451,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfChar(String typeOfChar) {
         __modifiedProperties.addPropertyName("typeOfChar");
-        this._typeOfChar = typeOfChar;
+        _typeOfChar = typeOfChar;
     }
 
     /**
@@ -468,7 +468,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfCharForBitData(byte[] typeOfCharForBitData) {
         __modifiedProperties.addPropertyName("typeOfCharForBitData");
-        this._typeOfCharForBitData = typeOfCharForBitData;
+        _typeOfCharForBitData = typeOfCharForBitData;
     }
 
     /**
@@ -485,7 +485,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfVarchar(String typeOfVarchar) {
         __modifiedProperties.addPropertyName("typeOfVarchar");
-        this._typeOfVarchar = typeOfVarchar;
+        _typeOfVarchar = typeOfVarchar;
     }
 
     /**
@@ -502,7 +502,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfVarcharForBitData(byte[] typeOfVarcharForBitData) {
         __modifiedProperties.addPropertyName("typeOfVarcharForBitData");
-        this._typeOfVarcharForBitData = typeOfVarcharForBitData;
+        _typeOfVarcharForBitData = typeOfVarcharForBitData;
     }
 
     /**
@@ -519,7 +519,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfClob(String typeOfClob) {
         __modifiedProperties.addPropertyName("typeOfClob");
-        this._typeOfClob = typeOfClob;
+        _typeOfClob = typeOfClob;
     }
 
     /**
@@ -536,7 +536,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDbclob(String typeOfDbclob) {
         __modifiedProperties.addPropertyName("typeOfDbclob");
-        this._typeOfDbclob = typeOfDbclob;
+        _typeOfDbclob = typeOfDbclob;
     }
 
     /**
@@ -553,7 +553,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalDecimal(java.math.BigDecimal typeOfDecimalDecimal) {
         __modifiedProperties.addPropertyName("typeOfDecimalDecimal");
-        this._typeOfDecimalDecimal = typeOfDecimalDecimal;
+        _typeOfDecimalDecimal = typeOfDecimalDecimal;
     }
 
     /**
@@ -570,7 +570,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalInteger(Integer typeOfDecimalInteger) {
         __modifiedProperties.addPropertyName("typeOfDecimalInteger");
-        this._typeOfDecimalInteger = typeOfDecimalInteger;
+        _typeOfDecimalInteger = typeOfDecimalInteger;
     }
 
     /**
@@ -587,7 +587,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDecimalBigint(Long typeOfDecimalBigint) {
         __modifiedProperties.addPropertyName("typeOfDecimalBigint");
-        this._typeOfDecimalBigint = typeOfDecimalBigint;
+        _typeOfDecimalBigint = typeOfDecimalBigint;
     }
 
     /**
@@ -604,7 +604,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfSmallint(Integer typeOfSmallint) {
         __modifiedProperties.addPropertyName("typeOfSmallint");
-        this._typeOfSmallint = typeOfSmallint;
+        _typeOfSmallint = typeOfSmallint;
     }
 
     /**
@@ -621,7 +621,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfInteger(Integer typeOfInteger) {
         __modifiedProperties.addPropertyName("typeOfInteger");
-        this._typeOfInteger = typeOfInteger;
+        _typeOfInteger = typeOfInteger;
     }
 
     /**
@@ -638,7 +638,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfBigint(Long typeOfBigint) {
         __modifiedProperties.addPropertyName("typeOfBigint");
-        this._typeOfBigint = typeOfBigint;
+        _typeOfBigint = typeOfBigint;
     }
 
     /**
@@ -655,7 +655,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfFloat(java.math.BigDecimal typeOfFloat) {
         __modifiedProperties.addPropertyName("typeOfFloat");
-        this._typeOfFloat = typeOfFloat;
+        _typeOfFloat = typeOfFloat;
     }
 
     /**
@@ -672,7 +672,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDouble(java.math.BigDecimal typeOfDouble) {
         __modifiedProperties.addPropertyName("typeOfDouble");
-        this._typeOfDouble = typeOfDouble;
+        _typeOfDouble = typeOfDouble;
     }
 
     /**
@@ -689,7 +689,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfReal(java.math.BigDecimal typeOfReal) {
         __modifiedProperties.addPropertyName("typeOfReal");
-        this._typeOfReal = typeOfReal;
+        _typeOfReal = typeOfReal;
     }
 
     /**
@@ -706,7 +706,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfDate(java.util.Date typeOfDate) {
         __modifiedProperties.addPropertyName("typeOfDate");
-        this._typeOfDate = typeOfDate;
+        _typeOfDate = typeOfDate;
     }
 
     /**
@@ -723,7 +723,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTime(java.sql.Time typeOfTime) {
         __modifiedProperties.addPropertyName("typeOfTime");
-        this._typeOfTime = typeOfTime;
+        _typeOfTime = typeOfTime;
     }
 
     /**
@@ -740,7 +740,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfTimestamp(java.sql.Timestamp typeOfTimestamp) {
         __modifiedProperties.addPropertyName("typeOfTimestamp");
-        this._typeOfTimestamp = typeOfTimestamp;
+        _typeOfTimestamp = typeOfTimestamp;
     }
 
     /**
@@ -757,7 +757,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfBlob(byte[] typeOfBlob) {
         __modifiedProperties.addPropertyName("typeOfBlob");
-        this._typeOfBlob = typeOfBlob;
+        _typeOfBlob = typeOfBlob;
     }
 
     /**
@@ -774,7 +774,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfGraphic(String typeOfGraphic) {
         __modifiedProperties.addPropertyName("typeOfGraphic");
-        this._typeOfGraphic = typeOfGraphic;
+        _typeOfGraphic = typeOfGraphic;
     }
 
     /**
@@ -791,7 +791,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfVargraphic(String typeOfVargraphic) {
         __modifiedProperties.addPropertyName("typeOfVargraphic");
-        this._typeOfVargraphic = typeOfVargraphic;
+        _typeOfVargraphic = typeOfVargraphic;
     }
 
     /**
@@ -808,6 +808,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      */
     public void setTypeOfLongVargraphic(String typeOfLongVargraphic) {
         __modifiedProperties.addPropertyName("typeOfLongVargraphic");
-        this._typeOfLongVargraphic = typeOfLongVargraphic;
+        _typeOfLongVargraphic = typeOfLongVargraphic;
     }
 }

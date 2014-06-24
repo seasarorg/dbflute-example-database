@@ -81,11 +81,23 @@ public class BsMemberLoginCB extends AbstractConditionBean {
     /**
      * Accept the query condition of primary key as equal.
      * @param memberLoginId : PK, ID, NotNull, INTEGER(2000000000, 10). (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberLoginCB acceptPK(Integer memberLoginId) {
+        assertObjectNotNull("memberLoginId", memberLoginId);
+        BsMemberLoginCB cb = this;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
+        return (MemberLoginCB)this;
+    }
+
+    /**
+     * Accept the query condition of primary key as equal. (old style)
+     * @param memberLoginId : PK, ID, NotNull, INTEGER(2000000000, 10). (NotNull)
      */
     public void acceptPrimaryKey(Integer memberLoginId) {
         assertObjectNotNull("memberLoginId", memberLoginId);
         BsMemberLoginCB cb = this;
-        cb.query().setMemberLoginId_Equal(memberLoginId);;
+        cb.query().setMemberLoginId_Equal(memberLoginId);
     }
 
     public ConditionBean addOrderBy_PK_Asc() {

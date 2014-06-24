@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
 
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.Entity;
+import org.seasar.dbflute.dbmeta.DBMeta;
 import com.example.dbflute.db2.dbflute.exentity.customize.*;
 
 /**
@@ -308,7 +308,7 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
      */
     public void setMemberId(Integer memberId) {
         __modifiedProperties.addPropertyName("memberId");
-        this._memberId = memberId;
+        _memberId = memberId;
     }
 
     /**
@@ -325,7 +325,7 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
      */
     public void setMemberNameWithSpace(String memberNameWithSpace) {
         __modifiedProperties.addPropertyName("memberNameWithSpace");
-        this._memberNameWithSpace = memberNameWithSpace;
+        _memberNameWithSpace = memberNameWithSpace;
     }
 
     /**
@@ -344,6 +344,6 @@ public abstract class BsDoubleByteOnSql implements Entity, Serializable, Cloneab
      */
     public void setMemberStatusName(String memberStatusName) {
         __modifiedProperties.addPropertyName("memberStatusName");
-        this._memberStatusName = memberStatusName;
+        _memberStatusName = memberStatusName;
     }
 }

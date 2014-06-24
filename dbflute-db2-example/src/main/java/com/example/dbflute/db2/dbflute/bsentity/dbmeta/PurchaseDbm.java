@@ -302,7 +302,7 @@ public class PurchaseDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public Entity newEntity() { return newMyEntity(); }
+    public Purchase newEntity() { return new Purchase(); }
     public Purchase newMyEntity() { return new Purchase(); }
 
     // ===================================================================================
