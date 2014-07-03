@@ -1,4 +1,119 @@
 map:{
+    ; 2014/07/04 01:11:24 = map:{
+        ; diffDate = 2014/07/04 01:11:24
+        ; tableCount = map:{
+            ; next = 34
+            ; previous = 35
+        }
+        ; tableDiff = map:{
+            ; summary_product_aaaaa = map:{
+                ; tableName = summary_product_aaaaa
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/07/04 00:59:25 = map:{
+        ; diffDate = 2014/07/04 00:59:25
+        ; tableDiff = map:{
+            ; vendor_large_data = map:{
+                ; tableName = vendor_large_data
+                ; diffType = CHANGE
+                ; indexDiff = map:{
+                    ; ix_large_data_numeric_integer = map:{
+                        ; constraintName = ix_large_data_numeric_integer
+                        ; diffType = ADD
+                    }
+                    ; ix_large_data_string = map:{
+                        ; constraintName = ix_large_data_string
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; vendor_large_data_ref = map:{
+                ; tableName = vendor_large_data_ref
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; fk_vendor_large_data_ref_data = map:{
+                        ; constraintName = fk_vendor_large_data_ref_data
+                        ; diffType = ADD
+                    }
+                    ; fk_vendor_large_data_ref_self = map:{
+                        ; constraintName = fk_vendor_large_data_ref_self
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; ix_large_data_ref_date = map:{
+                        ; constraintName = ix_large_data_ref_date
+                        ; diffType = ADD
+                    }
+                    ; ix_large_data_ref_nullable_dec = map:{
+                        ; constraintName = ix_large_data_ref_nullable_dec
+                        ; diffType = ADD
+                    }
+                    ; ix_large_data_ref_timestamp = map:{
+                        ; constraintName = ix_large_data_ref_timestamp
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/03 18:56:08 = map:{
+        ; diffDate = 2014/07/03 18:56:08
+        ; tableCount = map:{
+            ; next = 35
+            ; previous = 34
+        }
+        ; tableDiff = map:{
+            ; summary_product_aaaaa = map:{
+                ; tableName = summary_product_aaaaa
+                ; diffType = ADD
+            }
+            ; vendor_large_data = map:{
+                ; tableName = vendor_large_data
+                ; diffType = CHANGE
+                ; indexDiff = map:{
+                    ; ix_large_data_numeric_integer = map:{
+                        ; constraintName = ix_large_data_numeric_integer
+                        ; diffType = DELETE
+                    }
+                    ; ix_large_data_string = map:{
+                        ; constraintName = ix_large_data_string
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; vendor_large_data_ref = map:{
+                ; tableName = vendor_large_data_ref
+                ; diffType = CHANGE
+                ; foreignKeyDiff = map:{
+                    ; fk_vendor_large_data_ref_data = map:{
+                        ; constraintName = fk_vendor_large_data_ref_data
+                        ; diffType = DELETE
+                    }
+                    ; fk_vendor_large_data_ref_self = map:{
+                        ; constraintName = fk_vendor_large_data_ref_self
+                        ; diffType = DELETE
+                    }
+                }
+                ; indexDiff = map:{
+                    ; ix_large_data_ref_date = map:{
+                        ; constraintName = ix_large_data_ref_date
+                        ; diffType = DELETE
+                    }
+                    ; ix_large_data_ref_nullable_dec = map:{
+                        ; constraintName = ix_large_data_ref_nullable_dec
+                        ; diffType = DELETE
+                    }
+                    ; ix_large_data_ref_timestamp = map:{
+                        ; constraintName = ix_large_data_ref_timestamp
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
     ; 2014/06/01 23:19:07 = map:{
         ; diffDate = 2014/06/01 23:19:07
         ; tableCount = map:{

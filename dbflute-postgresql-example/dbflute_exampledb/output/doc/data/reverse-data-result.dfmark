@@ -44,7 +44,8 @@
   purchase (70)
   vendor_date_fk (0)
 
-[reverse-data-99-added-table.xls]: tables=1
-  purchase_payment (100)
+[reverse-data-99-added-table.xls]: tables=2
+  white_same_name (0)
+  white_same_name_ref (0)
 
-Output Date: 2014/06/30 23:01:18
+Output Date: 2014/07/04 01:11:43

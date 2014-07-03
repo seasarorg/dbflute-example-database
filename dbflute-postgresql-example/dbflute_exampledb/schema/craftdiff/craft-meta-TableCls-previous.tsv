@@ -1,0 +1,7 @@
+"UNIQUE_CODE"	"TARGET_DATA"
+"member_status::PRV"	"PROVISIONAL|3"
+"member_status::FML"	"FORMALIZED|1"
+"member_status::WDL"	"WITHDRAWAL|2"
+"product_status::ONS"	"生産販売可能|1"
+"product_status::PST"	"生産中止|2"
+"product_status::SST"	"販売中止|3"
