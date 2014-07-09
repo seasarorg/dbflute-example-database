@@ -2,7 +2,7 @@
 -- =======================================================================================
 --                                                                            Vendor Check
 --                                                                            ============
-CREATE TABLE VENDOR_CHECK (
+create table VENDOR_CHECK (
 	VENDOR_CHECK_ID NUMERIC(16) NOT NULL PRIMARY KEY,
 	TYPE_OF_CHAR char(3),
 	TYPE_OF_VARCHAR varchar,
@@ -44,7 +44,7 @@ insert into vendor_check (type_of_int_array, vendor_check_id)
 -- for the test of large data
 -- creating index is executed at take-finally
 -- because of large data registered at load-data 
-CREATE TABLE VENDOR_LARGE_DATA
+create table VENDOR_LARGE_DATA
 (
 	LARGE_DATA_ID BIGINT NOT NULL PRIMARY KEY,
 	STRING_INDEX VARCHAR(200) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE VENDOR_LARGE_DATA
 	UNIQUE (STRING_UNIQUE_INDEX)
 );
 
-CREATE TABLE VENDOR_LARGE_DATA_REF
+create table VENDOR_LARGE_DATA_REF
 (
 	LARGE_DATA_REF_ID BIGINT NOT NULL PRIMARY KEY,
 	LARGE_DATA_ID BIGINT NOT NULL,
@@ -72,39 +72,39 @@ CREATE TABLE VENDOR_LARGE_DATA_REF
 -- =======================================================================================
 --                                                                                    UUID
 --                                                                                    ====
-CREATE TABLE VENDOR_UUID_FOO
+create table VENDOR_UUID_FOO
 (
 	FOO_ID uuid NOT NULL PRIMARY KEY,
 	FOO_NAME varchar NOT NULL,
 	BAR_ID uuid NOT NULL
 ) ;
 
-CREATE TABLE VENDOR_UUID_BAR
+create table VENDOR_UUID_BAR
 (
 	BAR_ID uuid NOT NULL PRIMARY KEY,
 	BAR_NAME varchar NOT NULL
 ) ;
 
-ALTER TABLE VENDOR_UUID_FOO ADD CONSTRAINT FK_VENDOR_UUID_FOO_BAR 
-	FOREIGN KEY (BAR_ID) REFERENCES VENDOR_UUID_BAR (BAR_ID) ;
+alter table VENDOR_UUID_FOO add constraint FK_VENDOR_UUID_FOO_BAR 
+	foreign key (BAR_ID) references VENDOR_UUID_BAR (BAR_ID) ;
 
 -- =======================================================================================
 --                                                                                 DATE PK
 --                                                                                 =======
-CREATE TABLE VENDOR_DATE_PK
+create table VENDOR_DATE_PK
 (
 	FOO_DATE date NOT NULL PRIMARY KEY,
 	FOO_NAME varchar NOT NULL
 ) ;
 
-CREATE TABLE VENDOR_DATE_FK
+create table VENDOR_DATE_FK
 (
 	BAR_ID integer NOT NULL PRIMARY KEY,
 	BAR_DATE date NOT NULL
 ) ;
 
-ALTER TABLE VENDOR_DATE_FK ADD CONSTRAINT FK_VENDOR_DATE_FK_PK 
-	FOREIGN KEY (BAR_DATE) REFERENCES VENDOR_DATE_PK (FOO_DATE) ;
+alter table VENDOR_DATE_FK add constraint FK_VENDOR_DATE_FK_PK 
+	foreign key (BAR_DATE) references VENDOR_DATE_PK (FOO_DATE) ;
 
 -- =======================================================================================
 --                                                                             Name Crisis
@@ -117,8 +117,14 @@ create table VENDOR_$_DOLLAR (
 create table "VENDOR-NON COMPILABLE" (
 	"NON-COMPILABLE ID" INTEGER NOT NULL PRIMARY KEY,
 	"NON COMPILABLE-NAME" VARCHAR(64),
-	"PARENT-ID" INTEGER
+	"PARENT-ID" INTEGER,
+	"Next_ParentID" INTEGER
 ) ;
 
-ALTER TABLE "VENDOR-NON COMPILABLE" ADD CONSTRAINT FK_VENDOR_NON_COMPPILABLE_SELF
-	FOREIGN KEY ("PARENT-ID") REFERENCES "VENDOR-NON COMPILABLE" ("NON-COMPILABLE ID") ;
+alter table "VENDOR-NON COMPILABLE" add constraint FK_VENDOR_NON_COMPPILABLE_SELF
+	foreign key ("PARENT-ID") references "VENDOR-NON COMPILABLE" ("NON-COMPILABLE ID") ;
+
+alter table "VENDOR-NON COMPILABLE" add constraint "Fk_Vendor_ForeignKey_NAME_CaseCrisis"
+	foreign key ("Next_ParentID") references "VENDOR-NON COMPILABLE" ("NON-COMPILABLE ID") ;
+
+create index "Ix_Vendor_Index_NAME_CaseCrisis" on "VENDOR-NON COMPILABLE"("Next_ParentID");

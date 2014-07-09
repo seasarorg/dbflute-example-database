@@ -79,25 +79,45 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
       return _non_compilable_id; }
     protected ConditionValue getCValueNon_compilable_id() { return getNon_compilable_id(); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList", sq); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList", sq); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList", sq); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_InScopeRelation_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_InScopeRelation_Vendor_non_compilableSelfList", sq); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList", sq); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList() { return xgetSQueMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList", sq); }
-    public Map<String, Object> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter() { return xgetSQuePmMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList"); }
-    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object pm) { return xkeepSQuePm("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList", pm); }
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList() { return xgetSQueMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList", sq); }
+    public Map<String, Object> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfListParameter() { return xgetSQuePmMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList"); }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfListParameter(Object pm) { return xkeepSQuePm("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList", pm); }
+
+    public Map<String, Vendor_non_compilableCQ> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList() { return xgetSQueMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq) { return xkeepSQue("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList", sq); }
+    public Map<String, Object> getNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfListParameter() { return xgetSQuePmMap("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList"); }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfListParameter(Object pm) { return xkeepSQuePm("non_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList", pm); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -139,11 +159,11 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
       return _parent_id; }
     protected ConditionValue getCValueParent_id() { return getParent_id(); }
 
-    public Map<String, Vendor_non_compilableCQ> getParent_id_InScopeRelation_Vendor_non_compilableSelf() { return xgetSQueMap("parent_id_InScopeRelation_Vendor_non_compilableSelf"); }
-    public String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("parent_id_InScopeRelation_Vendor_non_compilableSelf", sq); }
+    public Map<String, Vendor_non_compilableCQ> getParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf() { return xgetSQueMap("parent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf"); }
+    public String keepParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("parent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf", sq); }
 
-    public Map<String, Vendor_non_compilableCQ> getParent_id_NotInScopeRelation_Vendor_non_compilableSelf() { return xgetSQueMap("parent_id_NotInScopeRelation_Vendor_non_compilableSelf"); }
-    public String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("parent_id_NotInScopeRelation_Vendor_non_compilableSelf", sq); }
+    public Map<String, Vendor_non_compilableCQ> getParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf() { return xgetSQueMap("parent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf"); }
+    public String keepParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("parent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf", sq); }
 
     /** 
      * Add order-by as ascend. <br />
@@ -158,6 +178,32 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
      * @return this. (NotNull)
      */
     public BsVendor_non_compilableCQ addOrderBy_Parent_id_Desc() { regOBD("PARENT-ID"); return this; }
+
+    protected ConditionValue _nextParentid;
+    public ConditionValue getNextParentid()
+    { if (_nextParentid == null) { _nextParentid = nCV(); }
+      return _nextParentid; }
+    protected ConditionValue getCValueNextParentid() { return getNextParentid(); }
+
+    public Map<String, Vendor_non_compilableCQ> getNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf() { return xgetSQueMap("nextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf"); }
+    public String keepNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("nextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf", sq); }
+
+    public Map<String, Vendor_non_compilableCQ> getNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf() { return xgetSQueMap("nextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf"); }
+    public String keepNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq) { return xkeepSQue("nextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf", sq); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @return this. (NotNull)
+     */
+    public BsVendor_non_compilableCQ addOrderBy_NextParentid_Asc() { regOBA("Next_ParentID"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @return this. (NotNull)
+     */
+    public BsVendor_non_compilableCQ addOrderBy_NextParentid_Desc() { regOBD("Next_ParentID"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy
@@ -200,8 +246,11 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         Vendor_non_compilableCQ bq = (Vendor_non_compilableCQ)bqs;
         Vendor_non_compilableCQ uq = (Vendor_non_compilableCQ)uqs;
-        if (bq.hasConditionQueryVendor_non_compilableSelf()) {
-            uq.queryVendor_non_compilableSelf().reflectRelationOnUnionQuery(bq.queryVendor_non_compilableSelf(), uq.queryVendor_non_compilableSelf());
+        if (bq.hasConditionQueryVendor_non_compilableByNextParentidSelf()) {
+            uq.queryVendor_non_compilableByNextParentidSelf().reflectRelationOnUnionQuery(bq.queryVendor_non_compilableByNextParentidSelf(), uq.queryVendor_non_compilableByNextParentidSelf());
+        }
+        if (bq.hasConditionQueryVendor_non_compilableByParent_idSelf()) {
+            uq.queryVendor_non_compilableByParent_idSelf().reflectRelationOnUnionQuery(bq.queryVendor_non_compilableByParent_idSelf(), uq.queryVendor_non_compilableByParent_idSelf());
         }
     }
 
@@ -210,23 +259,43 @@ public class BsVendor_non_compilableCQ extends AbstractBsVendor_non_compilableCQ
     //                                                                       =============
     /**
      * Get the condition-query for relation table. <br />
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
      * @return The instance of condition-query. (NotNull)
      */
-    public Vendor_non_compilableCQ queryVendor_non_compilableSelf() {
-        return getConditionQueryVendor_non_compilableSelf();
+    public Vendor_non_compilableCQ queryVendor_non_compilableByNextParentidSelf() {
+        return getConditionQueryVendor_non_compilableByNextParentidSelf();
     }
-    public Vendor_non_compilableCQ getConditionQueryVendor_non_compilableSelf() {
-        String prop = "vendor_non_compilableSelf";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendor_non_compilableSelf()); xsetupOuterJoinVendor_non_compilableSelf(); }
+    public Vendor_non_compilableCQ getConditionQueryVendor_non_compilableByNextParentidSelf() {
+        String prop = "vendor_non_compilableByNextParentidSelf";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendor_non_compilableByNextParentidSelf()); xsetupOuterJoinVendor_non_compilableByNextParentidSelf(); }
         return xgetQueRlMap(prop);
     }
-    protected Vendor_non_compilableCQ xcreateQueryVendor_non_compilableSelf() {
-        String nrp = xresolveNRP("VENDOR-NON COMPILABLE", "vendor_non_compilableSelf"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new Vendor_non_compilableCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendor_non_compilableSelf", nrp);
+    protected Vendor_non_compilableCQ xcreateQueryVendor_non_compilableByNextParentidSelf() {
+        String nrp = xresolveNRP("VENDOR-NON COMPILABLE", "vendor_non_compilableByNextParentidSelf"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new Vendor_non_compilableCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendor_non_compilableByNextParentidSelf", nrp);
     }
-    protected void xsetupOuterJoinVendor_non_compilableSelf() { xregOutJo("vendor_non_compilableSelf"); }
-    public boolean hasConditionQueryVendor_non_compilableSelf() { return xhasQueRlMap("vendor_non_compilableSelf"); }
+    protected void xsetupOuterJoinVendor_non_compilableByNextParentidSelf() { xregOutJo("vendor_non_compilableByNextParentidSelf"); }
+    public boolean hasConditionQueryVendor_non_compilableByNextParentidSelf() { return xhasQueRlMap("vendor_non_compilableByNextParentidSelf"); }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public Vendor_non_compilableCQ queryVendor_non_compilableByParent_idSelf() {
+        return getConditionQueryVendor_non_compilableByParent_idSelf();
+    }
+    public Vendor_non_compilableCQ getConditionQueryVendor_non_compilableByParent_idSelf() {
+        String prop = "vendor_non_compilableByParent_idSelf";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryVendor_non_compilableByParent_idSelf()); xsetupOuterJoinVendor_non_compilableByParent_idSelf(); }
+        return xgetQueRlMap(prop);
+    }
+    protected Vendor_non_compilableCQ xcreateQueryVendor_non_compilableByParent_idSelf() {
+        String nrp = xresolveNRP("VENDOR-NON COMPILABLE", "vendor_non_compilableByParent_idSelf"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new Vendor_non_compilableCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "vendor_non_compilableByParent_idSelf", nrp);
+    }
+    protected void xsetupOuterJoinVendor_non_compilableByParent_idSelf() { xregOutJo("vendor_non_compilableByParent_idSelf"); }
+    public boolean hasConditionQueryVendor_non_compilableByParent_idSelf() { return xhasQueRlMap("vendor_non_compilableByParent_idSelf"); }
 
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String property) {
         return null;

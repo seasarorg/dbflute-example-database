@@ -21,11 +21,20 @@ public class Vendor_non_compilableNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br />
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public Vendor_non_compilableNss withVendor_non_compilableSelf() {
-        _query.doNss(new Vendor_non_compilableCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendor_non_compilableSelf(); }});
-        return new Vendor_non_compilableNss(_query.queryVendor_non_compilableSelf());
+    public Vendor_non_compilableNss withVendor_non_compilableByNextParentidSelf() {
+        _query.doNss(new Vendor_non_compilableCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendor_non_compilableByNextParentidSelf(); }});
+        return new Vendor_non_compilableNss(_query.queryVendor_non_compilableByNextParentidSelf());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public Vendor_non_compilableNss withVendor_non_compilableByParent_idSelf() {
+        _query.doNss(new Vendor_non_compilableCQ.NssCall() { public ConditionQuery qf() { return _query.queryVendor_non_compilableByParent_idSelf(); }});
+        return new Vendor_non_compilableNss(_query.queryVendor_non_compilableByParent_idSelf());
     }
 }

@@ -135,93 +135,176 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br />
-     * {exists (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
+     * {exists (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #DD4747">existsVendor_non_compilableSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     * cb.query().<span style="color: #DD4747">existsVendor_non_compilableByNextParentidSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
      *     public void query(Vendor_non_compilableCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
      * </pre>
-     * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'exists'. (NotNull)
+     * @param subQuery The sub-query of Vendor_non_compilableByNextParentidSelfList for 'exists'. (NotNull)
      */
-    public void existsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void existsVendor_non_compilableByNextParentidSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(cb.query());
-        registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList(cb.query());
+        registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "Next_ParentID", pp, "vendor_non_compilableByNextParentidSelfList");
     }
-    public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br />
+     * {exists (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">existsVendor_non_compilableByParent_idSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     *     public void query(Vendor_non_compilableCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of Vendor_non_compilableByParent_idSelfList for 'exists'. (NotNull)
+     */
+    public void existsVendor_non_compilableByParent_idSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList(cb.query());
+        registerExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableByParent_idSelfList");
+    }
+    public abstract String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">notExistsVendor_non_compilableByNextParentidSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     *     public void query(Vendor_non_compilableCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of Non_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList for 'not exists'. (NotNull)
+     */
+    public void notExistsVendor_non_compilableByNextParentidSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList(cb.query());
+        registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "Next_ParentID", pp, "vendor_non_compilableByNextParentidSelfList");
+    }
+    public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #DD4747">notExistsVendor_non_compilableSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     * cb.query().<span style="color: #DD4747">notExistsVendor_non_compilableByParent_idSelfList</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
      *     public void query(Vendor_non_compilableCB subCB) {
      *         subCB.query().setXxx...
      *     }
      * });
      * </pre>
-     * @param subQuery The sub-query of Non_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList for 'not exists'. (NotNull)
+     * @param subQuery The sub-query of Non_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList for 'not exists'. (NotNull)
      */
-    public void notExistsVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void notExistsVendor_non_compilableByParent_idSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForExistsReferrer(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(cb.query());
-        registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList(cb.query());
+        registerNotExistsReferrer(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableByParent_idSelfList");
     }
-    public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfAsOne'.
+     * @param subQuery The sub-query of Vendor_non_compilableByNextParentidSelfList for 'in-scope'. (NotNull)
+     */
+    public void inScopeVendor_non_compilableByNextParentidSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList(cb.query());
+        registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "Next_ParentID", pp, "vendor_non_compilableByNextParentidSelfList");
+    }
+    public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up InScopeRelation (sub-query). <br />
      * {in (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
-     * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'in-scope'. (NotNull)
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfAsOne'.
+     * @param subQuery The sub-query of Vendor_non_compilableByParent_idSelfList for 'in-scope'. (NotNull)
      */
-    public void inScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void inScopeVendor_non_compilableByParent_idSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(cb.query());
-        registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList(cb.query());
+        registerInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableByParent_idSelfList");
     }
-    public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfAsOne'.
+     * @param subQuery The sub-query of Vendor_non_compilableByNextParentidSelfList for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeVendor_non_compilableByNextParentidSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList(cb.query());
+        registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "Next_ParentID", pp, "vendor_non_compilableByNextParentidSelfList");
+    }
+    public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
-     * @param subQuery The sub-query of Vendor_non_compilableSelfList for 'not in-scope'. (NotNull)
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfAsOne'.
+     * @param subQuery The sub-query of Vendor_non_compilableByParent_idSelfList for 'not in-scope'. (NotNull)
      */
-    public void notInScopeVendor_non_compilableSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void notInScopeVendor_non_compilableByParent_idSelfList(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(cb.query());
-        registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList");
+        String pp = keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList(cb.query());
+        registerNotInScopeRelation(cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableByParent_idSelfList");
     }
-    public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
 
-    public void xsderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
+    public void xsderiveVendor_non_compilableByNextParentidSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
         try { lock(); sq.query(cb); } finally { unlock(); }
-        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(cb.query());
-        registerSpecifyDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableSelfList", al, op);
+        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "Next_ParentID", pp, "vendor_non_compilableByNextParentidSelfList", al, op);
     }
-    public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
+
+    public void xsderiveVendor_non_compilableByParent_idSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", pp, "vendor_non_compilableByParent_idSelfList", al, op);
+    }
+    public abstract String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
 
     /**
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfAsOne'.
+     * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfAsOne'.
      * <pre>
-     * cb.query().<span style="color: #DD4747">derivedVendor_non_compilableSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     * cb.query().<span style="color: #DD4747">derivedVendor_non_compilableByNextParentidSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
      *     public void query(Vendor_non_compilableCB subCB) {
      *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
      *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
@@ -230,25 +313,59 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
      * </pre>
      * @return The object to set up a function for referrer table. (NotNull)
      */
-    public HpQDRFunction<Vendor_non_compilableCB> derivedVendor_non_compilableSelfList() {
-        return xcreateQDRFunctionVendor_non_compilableSelfList();
+    public HpQDRFunction<Vendor_non_compilableCB> derivedVendor_non_compilableByNextParentidSelfList() {
+        return xcreateQDRFunctionVendor_non_compilableByNextParentidSelfList();
     }
-    protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionVendor_non_compilableSelfList() {
+    protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionVendor_non_compilableByNextParentidSelfList() {
         return new HpQDRFunction<Vendor_non_compilableCB>(new HpQDRSetupper<Vendor_non_compilableCB>() {
             public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
-                xqderiveVendor_non_compilableSelfList(fn, sq, rd, vl, op);
+                xqderiveVendor_non_compilableByNextParentidSelfList(fn, sq, rd, vl, op);
             }
         });
     }
-    public void xqderiveVendor_non_compilableSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+    public void xqderiveVendor_non_compilableByNextParentidSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
         try { lock(); sq.query(cb); } finally { unlock(); }
-        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(cb.query()); String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(vl);
-        registerQueryDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", sqpp, "vendor_non_compilableSelfList", rd, vl, prpp, op);
+        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(cb.query()); String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "Next_ParentID", sqpp, "vendor_non_compilableByNextParentidSelfList", rd, vl, prpp, op);
     }
-    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq);
-    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object vl);
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfListParameter(Object vl);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
+     * {FOO &lt;= (select max(BAR) from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">derivedVendor_non_compilableByParent_idSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+     *     public void query(Vendor_non_compilableCB subCB) {
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<Vendor_non_compilableCB> derivedVendor_non_compilableByParent_idSelfList() {
+        return xcreateQDRFunctionVendor_non_compilableByParent_idSelfList();
+    }
+    protected HpQDRFunction<Vendor_non_compilableCB> xcreateQDRFunctionVendor_non_compilableByParent_idSelfList() {
+        return new HpQDRFunction<Vendor_non_compilableCB>(new HpQDRSetupper<Vendor_non_compilableCB>() {
+            public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveVendor_non_compilableByParent_idSelfList(fn, sq, rd, vl, op);
+            }
+        });
+    }
+    public void xqderiveVendor_non_compilableByParent_idSelfList(String fn, SubQuery<Vendor_non_compilableCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList(cb.query()); String prpp = keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "NON-COMPILABLE ID", "PARENT-ID", sqpp, "vendor_non_compilableByParent_idSelfList", rd, vl, prpp, op);
+    }
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq);
+    public abstract String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfListParameter(Object vl);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -460,32 +577,32 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     /**
      * Set up InScopeRelation (sub-query). <br />
      * {in (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
-     * @param subQuery The sub-query of Vendor_non_compilableSelf for 'in-scope'. (NotNull)
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @param subQuery The sub-query of Vendor_non_compilableByParent_idSelf for 'in-scope'. (NotNull)
      */
-    public void inScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void inScopeVendor_non_compilableByParent_idSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepParent_id_InScopeRelation_Vendor_non_compilableSelf(cb.query());
-        registerInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
+        String pp = keepParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf(cb.query());
+        registerInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableByParent_idSelf");
     }
-    public abstract String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
+    public abstract String keepParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select PARENT-ID from VENDOR-NON COMPILABLE where ...)} <br />
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
-     * @param subQuery The sub-query of Vendor_non_compilableSelf for 'not in-scope'. (NotNull)
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @param subQuery The sub-query of Vendor_non_compilableByParent_idSelf for 'not in-scope'. (NotNull)
      */
-    public void notInScopeVendor_non_compilableSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
+    public void notInScopeVendor_non_compilableByParent_idSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
         assertObjectNotNull("subQuery", subQuery);
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
         try { lock(); subQuery.query(cb); } finally { unlock(); }
-        String pp = keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(cb.query());
-        registerNotInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableSelf");
+        String pp = keepParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf(cb.query());
+        registerNotInScopeRelation(cb.query(), "PARENT-ID", "NON-COMPILABLE ID", pp, "vendor_non_compilableByParent_idSelf");
     }
-    public abstract String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq);
+    public abstract String keepParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq);
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -501,6 +618,139 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
 
     protected void regParent_id(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueParent_id(), "PARENT-ID"); }
     protected abstract ConditionValue getCValueParent_id();
+    
+    /**
+     * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentid The value of nextParentid as equal. (NullAllowed: if null, no condition)
+     */
+    public void setNextParentid_Equal(Integer nextParentid) {
+        doSetNextParentid_Equal(nextParentid);
+    }
+
+    protected void doSetNextParentid_Equal(Integer nextParentid) {
+        regNextParentid(CK_EQ, nextParentid);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentid The value of nextParentid as greaterThan. (NullAllowed: if null, no condition)
+     */
+    public void setNextParentid_GreaterThan(Integer nextParentid) {
+        regNextParentid(CK_GT, nextParentid);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentid The value of nextParentid as lessThan. (NullAllowed: if null, no condition)
+     */
+    public void setNextParentid_LessThan(Integer nextParentid) {
+        regNextParentid(CK_LT, nextParentid);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentid The value of nextParentid as greaterEqual. (NullAllowed: if null, no condition)
+     */
+    public void setNextParentid_GreaterEqual(Integer nextParentid) {
+        regNextParentid(CK_GE, nextParentid);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentid The value of nextParentid as lessEqual. (NullAllowed: if null, no condition)
+     */
+    public void setNextParentid_LessEqual(Integer nextParentid) {
+        regNextParentid(CK_LE, nextParentid);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br />
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
+     * And NullIgnored, OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param minNumber The min number of nextParentid. (NullAllowed: if null, no from-condition)
+     * @param maxNumber The max number of nextParentid. (NullAllowed: if null, no to-condition)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    public void setNextParentid_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, getCValueNextParentid(), "Next_ParentID", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentidList The collection of nextParentid as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNextParentid_InScope(Collection<Integer> nextParentidList) {
+        doSetNextParentid_InScope(nextParentidList);
+    }
+
+    protected void doSetNextParentid_InScope(Collection<Integer> nextParentidList) {
+        regINS(CK_INS, cTL(nextParentidList), getCValueNextParentid(), "Next_ParentID");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     * @param nextParentidList The collection of nextParentid as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setNextParentid_NotInScope(Collection<Integer> nextParentidList) {
+        doSetNextParentid_NotInScope(nextParentidList);
+    }
+
+    protected void doSetNextParentid_NotInScope(Collection<Integer> nextParentidList) {
+        regINS(CK_NINS, cTL(nextParentidList), getCValueNextParentid(), "Next_ParentID");
+    }
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
+     * @param subQuery The sub-query of Vendor_non_compilableByNextParentidSelf for 'in-scope'. (NotNull)
+     */
+    public void inScopeVendor_non_compilableByNextParentidSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf(cb.query());
+        registerInScopeRelation(cb.query(), "Next_ParentID", "NON-COMPILABLE ID", pp, "vendor_non_compilableByNextParentidSelf");
+    }
+    public abstract String keepNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select Next_ParentID from VENDOR-NON COMPILABLE where ...)} <br />
+     * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
+     * @param subQuery The sub-query of Vendor_non_compilableByNextParentidSelf for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeVendor_non_compilableByNextParentidSelf(SubQuery<Vendor_non_compilableCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        Vendor_non_compilableCB cb = new Vendor_non_compilableCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf(cb.query());
+        registerNotInScopeRelation(cb.query(), "Next_ParentID", "NON-COMPILABLE ID", pp, "vendor_non_compilableByNextParentidSelf");
+    }
+    public abstract String keepNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq);
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     */
+    public void setNextParentid_IsNull() { regNextParentid(CK_ISN, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+     */
+    public void setNextParentid_IsNotNull() { regNextParentid(CK_ISNN, DOBJ); }
+
+    protected void regNextParentid(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNextParentid(), "Next_ParentID"); }
+    protected abstract ConditionValue getCValueNextParentid();
 
     // ===================================================================================
     //                                                                     ScalarCondition

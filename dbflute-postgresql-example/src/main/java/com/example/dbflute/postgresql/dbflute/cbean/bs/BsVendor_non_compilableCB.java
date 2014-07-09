@@ -275,32 +275,60 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
-    protected Vendor_non_compilableNss _nssVendor_non_compilableSelf;
-    public Vendor_non_compilableNss getNssVendor_non_compilableSelf() {
-        if (_nssVendor_non_compilableSelf == null) { _nssVendor_non_compilableSelf = new Vendor_non_compilableNss(null); }
-        return _nssVendor_non_compilableSelf;
+    protected Vendor_non_compilableNss _nssVendor_non_compilableByNextParentidSelf;
+    public Vendor_non_compilableNss getNssVendor_non_compilableByNextParentidSelf() {
+        if (_nssVendor_non_compilableByNextParentidSelf == null) { _nssVendor_non_compilableByNextParentidSelf = new Vendor_non_compilableNss(null); }
+        return _nssVendor_non_compilableByNextParentidSelf;
     }
     /**
      * Set up relation columns to select clause. <br />
-     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+     * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
      * <pre>
      * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-     * cb.<span style="color: #DD4747">setupSelect_Vendor_non_compilableSelf()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.<span style="color: #DD4747">setupSelect_Vendor_non_compilableByNextParentidSelf()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
      * cb.query().setFoo...(value);
      * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.selectEntityWithDeletedCheck(cb);
-     * ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableSelf()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableByNextParentidSelf()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public Vendor_non_compilableNss setupSelect_Vendor_non_compilableSelf() {
-        assertSetupSelectPurpose("vendor_non_compilableSelf");
+    public Vendor_non_compilableNss setupSelect_Vendor_non_compilableByNextParentidSelf() {
+        assertSetupSelectPurpose("vendor_non_compilableByNextParentidSelf");
+        if (hasSpecifiedColumn()) { // if reverse call
+            specify().columnNextParentid();
+        }
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendor_non_compilableByNextParentidSelf(); } });
+        if (_nssVendor_non_compilableByNextParentidSelf == null || !_nssVendor_non_compilableByNextParentidSelf.hasConditionQuery())
+        { _nssVendor_non_compilableByNextParentidSelf = new Vendor_non_compilableNss(query().queryVendor_non_compilableByNextParentidSelf()); }
+        return _nssVendor_non_compilableByNextParentidSelf;
+    }
+
+    protected Vendor_non_compilableNss _nssVendor_non_compilableByParent_idSelf;
+    public Vendor_non_compilableNss getNssVendor_non_compilableByParent_idSelf() {
+        if (_nssVendor_non_compilableByParent_idSelf == null) { _nssVendor_non_compilableByParent_idSelf = new Vendor_non_compilableNss(null); }
+        return _nssVendor_non_compilableByParent_idSelf;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * <pre>
+     * Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
+     * cb.<span style="color: #DD4747">setupSelect_Vendor_non_compilableByParent_idSelf()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Vendor_non_compilable vendor_non_compilable = vendor_non_compilableBhv.selectEntityWithDeletedCheck(cb);
+     * ... = vendor_non_compilable.<span style="color: #DD4747">getVendor_non_compilableByParent_idSelf()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public Vendor_non_compilableNss setupSelect_Vendor_non_compilableByParent_idSelf() {
+        assertSetupSelectPurpose("vendor_non_compilableByParent_idSelf");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnParent_id();
         }
-        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendor_non_compilableSelf(); } });
-        if (_nssVendor_non_compilableSelf == null || !_nssVendor_non_compilableSelf.hasConditionQuery())
-        { _nssVendor_non_compilableSelf = new Vendor_non_compilableNss(query().queryVendor_non_compilableSelf()); }
-        return _nssVendor_non_compilableSelf;
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryVendor_non_compilableByParent_idSelf(); } });
+        if (_nssVendor_non_compilableByParent_idSelf == null || !_nssVendor_non_compilableByParent_idSelf.hasConditionQuery())
+        { _nssVendor_non_compilableByParent_idSelf = new Vendor_non_compilableNss(query().queryVendor_non_compilableByParent_idSelf()); }
+        return _nssVendor_non_compilableByParent_idSelf;
     }
 
     // [DBFlute-0.7.4]
@@ -345,7 +373,8 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<Vendor_non_compilableCQ> {
-        protected Vendor_non_compilableCB.HpSpecification _vendor_non_compilableSelf;
+        protected Vendor_non_compilableCB.HpSpecification _vendor_non_compilableByNextParentidSelf;
+        protected Vendor_non_compilableCB.HpSpecification _vendor_non_compilableByParent_idSelf;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<Vendor_non_compilableCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
         { super(baseCB, qyCall, purpose, dbmetaProvider); }
@@ -364,12 +393,21 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnParent_id() { return doColumn("PARENT-ID"); }
+        /**
+         * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnNextParentid() { return doColumn("Next_ParentID"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
             columnNon_compilable_id(); // PK
-            if (qyCall().qy().hasConditionQueryVendor_non_compilableSelf()
+            if (qyCall().qy().hasConditionQueryVendor_non_compilableByNextParentidSelf()
+                    || qyCall().qy().xgetReferrerQuery() instanceof Vendor_non_compilableCQ) {
+                columnNextParentid(); // FK or one-to-one referrer
+            }
+            if (qyCall().qy().hasConditionQueryVendor_non_compilableByParent_idSelf()
                     || qyCall().qy().xgetReferrerQuery() instanceof Vendor_non_compilableCQ) {
                 columnParent_id(); // FK or one-to-one referrer
             }
@@ -378,31 +416,52 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
         protected String getTableDbName() { return "VENDOR-NON COMPILABLE"; }
         /**
          * Prepare to specify functions about relation table. <br />
-         * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
+         * VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
          * @return The instance for specification for relation table to specify. (NotNull)
          */
-        public Vendor_non_compilableCB.HpSpecification specifyVendor_non_compilableSelf() {
-            assertRelation("vendor_non_compilableSelf");
-            if (_vendor_non_compilableSelf == null) {
-                _vendor_non_compilableSelf = new Vendor_non_compilableCB.HpSpecification(_baseCB, new HpSpQyCall<Vendor_non_compilableCQ>() {
-                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryVendor_non_compilableSelf(); }
-                    public Vendor_non_compilableCQ qy() { return _qyCall.qy().queryVendor_non_compilableSelf(); } }
+        public Vendor_non_compilableCB.HpSpecification specifyVendor_non_compilableByNextParentidSelf() {
+            assertRelation("vendor_non_compilableByNextParentidSelf");
+            if (_vendor_non_compilableByNextParentidSelf == null) {
+                _vendor_non_compilableByNextParentidSelf = new Vendor_non_compilableCB.HpSpecification(_baseCB, new HpSpQyCall<Vendor_non_compilableCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryVendor_non_compilableByNextParentidSelf(); }
+                    public Vendor_non_compilableCQ qy() { return _qyCall.qy().queryVendor_non_compilableByNextParentidSelf(); } }
                     , _purpose, _dbmetaProvider);
                 if (xhasSyncQyCall()) { // inherits it
-                    _vendor_non_compilableSelf.xsetSyncQyCall(new HpSpQyCall<Vendor_non_compilableCQ>() {
-                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryVendor_non_compilableSelf(); }
-                        public Vendor_non_compilableCQ qy() { return xsyncQyCall().qy().queryVendor_non_compilableSelf(); }
+                    _vendor_non_compilableByNextParentidSelf.xsetSyncQyCall(new HpSpQyCall<Vendor_non_compilableCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryVendor_non_compilableByNextParentidSelf(); }
+                        public Vendor_non_compilableCQ qy() { return xsyncQyCall().qy().queryVendor_non_compilableByNextParentidSelf(); }
                     });
                 }
             }
-            return _vendor_non_compilableSelf;
+            return _vendor_non_compilableByNextParentidSelf;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public Vendor_non_compilableCB.HpSpecification specifyVendor_non_compilableByParent_idSelf() {
+            assertRelation("vendor_non_compilableByParent_idSelf");
+            if (_vendor_non_compilableByParent_idSelf == null) {
+                _vendor_non_compilableByParent_idSelf = new Vendor_non_compilableCB.HpSpecification(_baseCB, new HpSpQyCall<Vendor_non_compilableCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryVendor_non_compilableByParent_idSelf(); }
+                    public Vendor_non_compilableCQ qy() { return _qyCall.qy().queryVendor_non_compilableByParent_idSelf(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _vendor_non_compilableByParent_idSelf.xsetSyncQyCall(new HpSpQyCall<Vendor_non_compilableCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryVendor_non_compilableByParent_idSelf(); }
+                        public Vendor_non_compilableCQ qy() { return xsyncQyCall().qy().queryVendor_non_compilableByParent_idSelf(); }
+                    });
+                }
+            }
+            return _vendor_non_compilableByParent_idSelf;
         }
         /**
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from VENDOR-NON COMPILABLE where ...) as FOO_MAX} <br />
-         * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
+         * VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfList'.
          * <pre>
-         * cb.specify().<span style="color: #DD4747">derivedVendor_non_compilableSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+         * cb.specify().<span style="color: #DD4747">derivedVendor_non_compilableByNextParentidSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
          *     public void query(Vendor_non_compilableCB subCB) {
          *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
          *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
@@ -411,11 +470,31 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
          * </pre>
          * @return The object to set up a function for referrer table. (NotNull)
          */
-        public HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ> derivedVendor_non_compilableSelfList() {
-            assertDerived("vendor_non_compilableSelfList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+        public HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ> derivedVendor_non_compilableByNextParentidSelfList() {
+            assertDerived("vendor_non_compilableByNextParentidSelfList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
             return new HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<Vendor_non_compilableCB, Vendor_non_compilableCQ>() {
                 public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, Vendor_non_compilableCQ cq, String al, DerivedReferrerOption op) {
-                    cq.xsderiveVendor_non_compilableSelfList(fn, sq, al, op); } }, _dbmetaProvider);
+                    cq.xsderiveVendor_non_compilableByNextParentidSelfList(fn, sq, al, op); } }, _dbmetaProvider);
+        }
+        /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
+         * {select max(FOO) from VENDOR-NON COMPILABLE where ...) as FOO_MAX} <br />
+         * VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfList'.
+         * <pre>
+         * cb.specify().<span style="color: #DD4747">derivedVendor_non_compilableByParent_idSelfList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;Vendor_non_compilableCB&gt;() {
+         *     public void query(Vendor_non_compilableCB subCB) {
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, Vendor_non_compilable.<span style="color: #DD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ> derivedVendor_non_compilableByParent_idSelfList() {
+            assertDerived("vendor_non_compilableByParent_idSelfList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<Vendor_non_compilableCB, Vendor_non_compilableCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<Vendor_non_compilableCB, Vendor_non_compilableCQ>() {
+                public void setup(String fn, SubQuery<Vendor_non_compilableCB> sq, Vendor_non_compilableCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveVendor_non_compilableByParent_idSelfList(fn, sq, al, op); } }, _dbmetaProvider);
         }
         /**
          * Prepare for (Specify)MyselfDerived (SubQuery).

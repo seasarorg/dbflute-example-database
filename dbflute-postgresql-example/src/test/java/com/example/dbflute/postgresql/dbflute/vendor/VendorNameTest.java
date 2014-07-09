@@ -54,7 +54,7 @@ public class VendorNameTest extends UnitContainerTestCase {
         // ## Arrange ##
         registerNonCompilableData(); // test insert
         Vendor_non_compilableCB cb = new Vendor_non_compilableCB();
-        cb.setupSelect_Vendor_non_compilableSelf();
+        cb.setupSelect_Vendor_non_compilableByParent_idSelf();
         cb.query().setNon_compilable_id_Equal(88888);
 
         // ## Act ##
@@ -62,8 +62,8 @@ public class VendorNameTest extends UnitContainerTestCase {
 
         // ## Assert ##
         assertEquals("Genius", actual.getNon_compilable_name());
-        assertNotNull(actual.getVendor_non_compilableSelf());
-        assertEquals("Pixy", actual.getVendor_non_compilableSelf().getNon_compilable_name());
+        assertNotNull(actual.getVendor_non_compilableByParent_idSelf());
+        assertEquals("Pixy", actual.getVendor_non_compilableByParent_idSelf().getNon_compilable_name());
 
         {
             // ## Act ##

@@ -62,26 +62,45 @@ public class Vendor_non_compilableCIQ extends AbstractBsVendor_non_compilableCQ 
     //                                                                Override about Query
     //                                                                ====================
     protected ConditionValue getCValueNon_compilable_id() { return _myCQ.getNon_compilable_id(); }
-    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
+    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
+    public String keepNon_compilable_id_ExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
-    { return _myCQ.keepNon_compilable_id_InScopeRelation_Vendor_non_compilableSelfList(sq); }
-    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
-    { return _myCQ.keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableSelfList(sq); }
-    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
+    public String keepNon_compilable_id_NotExistsReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByNextParentidSelfList(sq); }
+    public String keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNon_compilable_id_InScopeRelation_Vendor_non_compilableByParent_idSelfList(sq); }
+    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByNextParentidSelfList(sq); }
+    public String keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNon_compilable_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelfList(sq); }
+    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
     { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfList(Vendor_non_compilableCQ sq)
+    public String keepNon_compilable_id_SpecifyDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfList(Vendor_non_compilableCQ sq)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableSelfListParameter(Object vl)
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByNextParentidSelfListParameter(Object vl)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfList(Vendor_non_compilableCQ sq)
+    { throwIICBOE("(Query)DerivedReferrer"); return null; }
+    public String keepNon_compilable_id_QueryDerivedReferrer_Vendor_non_compilableByParent_idSelfListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue getCValueNon_compilable_name() { return _myCQ.getNon_compilable_name(); }
     protected ConditionValue getCValueParent_id() { return _myCQ.getParent_id(); }
-    public String keepParent_id_InScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq)
-    { return _myCQ.keepParent_id_InScopeRelation_Vendor_non_compilableSelf(sq); }
-    public String keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(Vendor_non_compilableCQ sq)
-    { return _myCQ.keepParent_id_NotInScopeRelation_Vendor_non_compilableSelf(sq); }
+    public String keepParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepParent_id_InScopeRelation_Vendor_non_compilableByParent_idSelf(sq); }
+    public String keepParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepParent_id_NotInScopeRelation_Vendor_non_compilableByParent_idSelf(sq); }
+    protected ConditionValue getCValueNextParentid() { return _myCQ.getNextParentid(); }
+    public String keepNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNextParentid_InScopeRelation_Vendor_non_compilableByNextParentidSelf(sq); }
+    public String keepNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf(Vendor_non_compilableCQ sq)
+    { return _myCQ.keepNextParentid_NotInScopeRelation_Vendor_non_compilableByNextParentidSelf(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(Vendor_non_compilableCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

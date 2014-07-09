@@ -1,4 +1,31 @@
 map:{
+    ; 2014/07/09 23:17:00 = map:{
+        ; diffDate = 2014/07/09 23:17:00
+        ; tableDiff = map:{
+            ; VENDOR-NON COMPILABLE = map:{
+                ; tableName = VENDOR-NON COMPILABLE
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; Next_ParentID = map:{
+                        ; columnName = Next_ParentID
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; Fk_Vendor_ForeignKey_NAME_CaseCrisis = map:{
+                        ; constraintName = Fk_Vendor_ForeignKey_NAME_CaseCrisis
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; Ix_Vendor_Index_NAME_CaseCrisis = map:{
+                        ; constraintName = Ix_Vendor_Index_NAME_CaseCrisis
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2014/07/04 01:11:24 = map:{
         ; diffDate = 2014/07/04 01:11:24
         ; tableCount = map:{

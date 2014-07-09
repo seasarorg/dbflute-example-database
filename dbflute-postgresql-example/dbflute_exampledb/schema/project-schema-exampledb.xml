@@ -41,10 +41,19 @@
             name="NON COMPILABLE-NAME" size="64" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer" name="PARENT-ID"
             size="10" type="INTEGER"/>
+        <column dbType="int4" javaType="Integer" name="Next_ParentID"
+            size="10" type="INTEGER"/>
+        <foreign-key foreignSchema="public"
+            foreignTable="VENDOR-NON COMPILABLE" name="Fk_Vendor_ForeignKey_NAME_CaseCrisis">
+            <reference foreign="NON-COMPILABLE ID" local="Next_ParentID"/>
+        </foreign-key>
         <foreign-key foreignSchema="public"
             foreignTable="VENDOR-NON COMPILABLE" name="fk_vendor_non_comppilable_self">
             <reference foreign="NON-COMPILABLE ID" local="PARENT-ID"/>
         </foreign-key>
+        <index name="Ix_Vendor_Index_NAME_CaseCrisis">
+            <index-column name="Next_ParentID" position="1"/>
+        </index>
     </table>
     <table
         comment="会員: 会員登録時にデータが登録される。基本的に物理削除はなく、退会したらステータスが退会会員になる。ライフサイクルやカテゴリの違う会員それぞれの詳細情報は、別途 one-to-one のテーブルに。"

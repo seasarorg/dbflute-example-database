@@ -17,7 +17,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     NON-COMPILABLE ID
  * 
  * [column]
- *     NON-COMPILABLE ID, NON COMPILABLE-NAME, PARENT-ID
+ *     NON-COMPILABLE ID, NON COMPILABLE-NAME, PARENT-ID, Next_ParentID
  * 
  * [sequence]
  *     
@@ -35,19 +35,21 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     VENDOR-NON COMPILABLE
  * 
  * [foreign property]
- *     vendor_non_compilableSelf
+ *     vendor_non_compilableByNextParentidSelf, vendor_non_compilableByParent_idSelf
  * 
  * [referrer property]
- *     vendor_non_compilableSelfList
+ *     vendor_non_compilableByNextParentidSelfList, vendor_non_compilableByParent_idSelfList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer non_compilable_id = entity.getNon_compilable_id();
  * String non_compilable_name = entity.getNon_compilable_name();
  * Integer parent_id = entity.getParent_id();
+ * Integer nextParentid = entity.getNextParentid();
  * entity.setNon_compilable_id(non_compilable_id);
  * entity.setNon_compilable_name(non_compilable_name);
  * entity.setParent_id(parent_id);
+ * entity.setNextParentid(nextParentid);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -74,6 +76,9 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
 
     /** PARENT-ID: {int4(10), FK to VENDOR-NON COMPILABLE} */
     protected Integer _parent_id;
+
+    /** Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE} */
+    protected Integer _nextParentid;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -139,46 +144,85 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'. */
-    protected Vendor_non_compilable _vendor_non_compilableSelf;
+    /** VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'. */
+    protected Vendor_non_compilable _vendor_non_compilableByNextParentidSelf;
 
     /**
-     * [get] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
-     * @return The entity of foreign property 'vendor_non_compilableSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     * [get] VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
+     * @return The entity of foreign property 'vendor_non_compilableByNextParentidSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
-    public Vendor_non_compilable getVendor_non_compilableSelf() {
-        return _vendor_non_compilableSelf;
+    public Vendor_non_compilable getVendor_non_compilableByNextParentidSelf() {
+        return _vendor_non_compilableByNextParentidSelf;
     }
 
     /**
-     * [set] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableSelf'.
-     * @param vendor_non_compilableSelf The entity of foreign property 'vendor_non_compilableSelf'. (NullAllowed)
+     * [set] VENDOR-NON COMPILABLE by my Next_ParentID, named 'vendor_non_compilableByNextParentidSelf'.
+     * @param vendor_non_compilableByNextParentidSelf The entity of foreign property 'vendor_non_compilableByNextParentidSelf'. (NullAllowed)
      */
-    public void setVendor_non_compilableSelf(Vendor_non_compilable vendor_non_compilableSelf) {
-        _vendor_non_compilableSelf = vendor_non_compilableSelf;
+    public void setVendor_non_compilableByNextParentidSelf(Vendor_non_compilable vendor_non_compilableByNextParentidSelf) {
+        _vendor_non_compilableByNextParentidSelf = vendor_non_compilableByNextParentidSelf;
+    }
+
+    /** VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'. */
+    protected Vendor_non_compilable _vendor_non_compilableByParent_idSelf;
+
+    /**
+     * [get] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @return The entity of foreign property 'vendor_non_compilableByParent_idSelf'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public Vendor_non_compilable getVendor_non_compilableByParent_idSelf() {
+        return _vendor_non_compilableByParent_idSelf;
+    }
+
+    /**
+     * [set] VENDOR-NON COMPILABLE by my PARENT-ID, named 'vendor_non_compilableByParent_idSelf'.
+     * @param vendor_non_compilableByParent_idSelf The entity of foreign property 'vendor_non_compilableByParent_idSelf'. (NullAllowed)
+     */
+    public void setVendor_non_compilableByParent_idSelf(Vendor_non_compilable vendor_non_compilableByParent_idSelf) {
+        _vendor_non_compilableByParent_idSelf = vendor_non_compilableByParent_idSelf;
     }
 
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'. */
-    protected List<Vendor_non_compilable> _vendor_non_compilableSelfList;
+    /** VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfList'. */
+    protected List<Vendor_non_compilable> _vendor_non_compilableByNextParentidSelfList;
 
     /**
-     * [get] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
-     * @return The entity list of referrer property 'vendor_non_compilableSelfList'. (NotNull: even if no loading, returns empty list)
+     * [get] VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfList'.
+     * @return The entity list of referrer property 'vendor_non_compilableByNextParentidSelfList'. (NotNull: even if no loading, returns empty list)
      */
-    public List<Vendor_non_compilable> getVendor_non_compilableSelfList() {
-        if (_vendor_non_compilableSelfList == null) { _vendor_non_compilableSelfList = newReferrerList(); }
-        return _vendor_non_compilableSelfList;
+    public List<Vendor_non_compilable> getVendor_non_compilableByNextParentidSelfList() {
+        if (_vendor_non_compilableByNextParentidSelfList == null) { _vendor_non_compilableByNextParentidSelfList = newReferrerList(); }
+        return _vendor_non_compilableByNextParentidSelfList;
     }
 
     /**
-     * [set] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableSelfList'.
-     * @param vendor_non_compilableSelfList The entity list of referrer property 'vendor_non_compilableSelfList'. (NullAllowed)
+     * [set] VENDOR-NON COMPILABLE by Next_ParentID, named 'vendor_non_compilableByNextParentidSelfList'.
+     * @param vendor_non_compilableByNextParentidSelfList The entity list of referrer property 'vendor_non_compilableByNextParentidSelfList'. (NullAllowed)
      */
-    public void setVendor_non_compilableSelfList(List<Vendor_non_compilable> vendor_non_compilableSelfList) {
-        _vendor_non_compilableSelfList = vendor_non_compilableSelfList;
+    public void setVendor_non_compilableByNextParentidSelfList(List<Vendor_non_compilable> vendor_non_compilableByNextParentidSelfList) {
+        _vendor_non_compilableByNextParentidSelfList = vendor_non_compilableByNextParentidSelfList;
+    }
+
+    /** VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfList'. */
+    protected List<Vendor_non_compilable> _vendor_non_compilableByParent_idSelfList;
+
+    /**
+     * [get] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfList'.
+     * @return The entity list of referrer property 'vendor_non_compilableByParent_idSelfList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<Vendor_non_compilable> getVendor_non_compilableByParent_idSelfList() {
+        if (_vendor_non_compilableByParent_idSelfList == null) { _vendor_non_compilableByParent_idSelfList = newReferrerList(); }
+        return _vendor_non_compilableByParent_idSelfList;
+    }
+
+    /**
+     * [set] VENDOR-NON COMPILABLE by PARENT-ID, named 'vendor_non_compilableByParent_idSelfList'.
+     * @param vendor_non_compilableByParent_idSelfList The entity list of referrer property 'vendor_non_compilableByParent_idSelfList'. (NullAllowed)
+     */
+    public void setVendor_non_compilableByParent_idSelfList(List<Vendor_non_compilable> vendor_non_compilableByParent_idSelfList) {
+        _vendor_non_compilableByParent_idSelfList = vendor_non_compilableByParent_idSelfList;
     }
 
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
@@ -285,10 +329,14 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String li = "\n  ";
-        if (_vendor_non_compilableSelf != null)
-        { sb.append(li).append(xbRDS(_vendor_non_compilableSelf, "vendor_non_compilableSelf")); }
-        if (_vendor_non_compilableSelfList != null) { for (Entity et : _vendor_non_compilableSelfList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "vendor_non_compilableSelfList")); } } }
+        if (_vendor_non_compilableByNextParentidSelf != null)
+        { sb.append(li).append(xbRDS(_vendor_non_compilableByNextParentidSelf, "vendor_non_compilableByNextParentidSelf")); }
+        if (_vendor_non_compilableByParent_idSelf != null)
+        { sb.append(li).append(xbRDS(_vendor_non_compilableByParent_idSelf, "vendor_non_compilableByParent_idSelf")); }
+        if (_vendor_non_compilableByNextParentidSelfList != null) { for (Entity et : _vendor_non_compilableByNextParentidSelfList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "vendor_non_compilableByNextParentidSelfList")); } } }
+        if (_vendor_non_compilableByParent_idSelfList != null) { for (Entity et : _vendor_non_compilableByParent_idSelfList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "vendor_non_compilableByParent_idSelfList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -312,6 +360,7 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
         sb.append(dm).append(getNon_compilable_id());
         sb.append(dm).append(getNon_compilable_name());
         sb.append(dm).append(getParent_id());
+        sb.append(dm).append(getNextParentid());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -321,9 +370,12 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String cm = ",";
-        if (_vendor_non_compilableSelf != null) { sb.append(cm).append("vendor_non_compilableSelf"); }
-        if (_vendor_non_compilableSelfList != null && !_vendor_non_compilableSelfList.isEmpty())
-        { sb.append(cm).append("vendor_non_compilableSelfList"); }
+        if (_vendor_non_compilableByNextParentidSelf != null) { sb.append(cm).append("vendor_non_compilableByNextParentidSelf"); }
+        if (_vendor_non_compilableByParent_idSelf != null) { sb.append(cm).append("vendor_non_compilableByParent_idSelf"); }
+        if (_vendor_non_compilableByNextParentidSelfList != null && !_vendor_non_compilableByNextParentidSelfList.isEmpty())
+        { sb.append(cm).append("vendor_non_compilableByNextParentidSelfList"); }
+        if (_vendor_non_compilableByParent_idSelfList != null && !_vendor_non_compilableByParent_idSelfList.isEmpty())
+        { sb.append(cm).append("vendor_non_compilableByParent_idSelfList"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
@@ -394,5 +446,22 @@ public abstract class BsVendor_non_compilable implements Entity, Serializable, C
     public void setParent_id(Integer parent_id) {
         __modifiedProperties.addPropertyName("parent_id");
         _parent_id = parent_id;
+    }
+
+    /**
+     * [get] Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE} <br />
+     * @return The value of the column 'Next_ParentID'. (NullAllowed even if selected: for no constraint)
+     */
+    public Integer getNextParentid() {
+        return _nextParentid;
+    }
+
+    /**
+     * [set] Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE} <br />
+     * @param nextParentid The value of the column 'Next_ParentID'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setNextParentid(Integer nextParentid) {
+        __modifiedProperties.addPropertyName("nextParentid");
+        _nextParentid = nextParentid;
     }
 }
