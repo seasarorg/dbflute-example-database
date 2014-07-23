@@ -85,6 +85,8 @@
     <component name="whiteSplitMultipleFkChildBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSplitMultipleFkChildBhv"/>
     <component name="whiteSplitMultipleFkNextBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSplitMultipleFkNextBhv"/>
     <component name="whiteSplitMultipleFkRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSplitMultipleFkRefBhv"/>
+    <component name="whiteStilettoAliasBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteStilettoAliasBhv"/>
+    <component name="whiteStilettoAliasRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteStilettoAliasRefBhv"/>
     <component name="whiteSuppressDefCheckBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressDefCheckBhv"/>
     <component name="whiteSuppressJoinSqBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqBhv"/>
     <component name="whiteSuppressJoinSqManyBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteSuppressJoinSqManyBhv"/>

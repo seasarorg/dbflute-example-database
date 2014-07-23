@@ -1467,6 +1467,46 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REF_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
+    <table name="white_stiletto_alias"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="STILETTO_ALIAS_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="FOO"
+            size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO_1" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO2" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO_3" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO4" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_stiletto_alias_ref"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer" name="REF_ID"
+            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO0" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO_1" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO2" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO3" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO_4" size="200" type="VARCHAR"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="STILETTO_ALIAS_ID" size="10" type="INTEGER"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_stiletto_alias" name="FK_WHITE_STILETTO_ALIAS_REF">
+            <reference foreign="STILETTO_ALIAS_ID" local="STILETTO_ALIAS_ID"/>
+        </foreign-key>
+        <index name="FK_WHITE_STILETTO_ALIAS_REF">
+            <index-column name="STILETTO_ALIAS_ID" position="1"/>
+        </index>
+    </table>
     <table name="white_suppress_def_check"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"

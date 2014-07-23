@@ -659,6 +659,31 @@ create table WHITE_DB_COMMENT (
 	PRIMARY KEY (DB_COMMENT_CODE)
 ) ;
 
+-- /= = = = = = = = = = = = = = = = = = = =
+-- for the test of duplicate stiletto alias
+-- = = = = = = = = = =/
+create table WHITE_STILETTO_ALIAS (
+	STILETTO_ALIAS_ID INTEGER NOT NULL PRIMARY KEY,
+	FOO VARCHAR(200),
+	FOO_1 VARCHAR(200),
+	FOO2 VARCHAR(200),
+	FOO_3 VARCHAR(200),
+	FOO4 VARCHAR(200)
+) ;
+
+create table WHITE_STILETTO_ALIAS_REF (
+	REF_ID INTEGER NOT NULL PRIMARY KEY,
+	FOO0 VARCHAR(200),
+	FOO_1 VARCHAR(200),
+	FOO2 VARCHAR(200),
+	FOO3 VARCHAR(200),
+	FOO_4 VARCHAR(200),
+	STILETTO_ALIAS_ID INTEGER
+) ;
+
+alter table WHITE_STILETTO_ALIAS_REF add constraint FK_WHITE_STILETTO_ALIAS_REF
+	foreign key (STILETTO_ALIAS_ID) references WHITE_STILETTO_ALIAS (STILETTO_ALIAS_ID) ;
+
 -- /= = = = = = = = = = = = = = = = = = 
 -- for the test of quoted table name
 -- = = = = = = = = = =/
