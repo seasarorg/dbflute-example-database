@@ -331,6 +331,11 @@ public class BsWhiteStilettoAliasCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnFoo() { return doColumn("FOO"); }
         /**
+         * FOO_0: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnFoo0() { return doColumn("FOO_0"); }
+        /**
          * FOO_1: {VARCHAR(200)}
          * @return The information object of specified column. (NotNull)
          */
@@ -350,6 +355,16 @@ public class BsWhiteStilettoAliasCB extends AbstractConditionBean {
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnFoo4() { return doColumn("FOO4"); }
+        /**
+         * BAR: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnBar() { return doColumn("BAR"); }
+        /**
+         * QUX: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnQux() { return doColumn("QUX"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override

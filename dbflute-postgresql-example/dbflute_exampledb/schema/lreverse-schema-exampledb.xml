@@ -624,6 +624,30 @@
         <column dbType="varchar" javaType="String" name="foo_name"
             required="true" size="2147483647" type="VARCHAR"/>
     </table>
+    <table name="vendor_inherit_inu" schema="exampledb.public" type="TABLE">
+        <column dbType="int4" javaType="Integer" name="inu_id"
+            pkName="vendor_inherit_inu_pkey" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="inu_name"
+            required="true" size="2147483647" type="VARCHAR"/>
+        <column dbType="date" javaType="java.util.Date" name="inu_date"
+            size="13" type="DATE"/>
+    </table>
+    <table name="vendor_inherit_neko" schema="exampledb.public" type="TABLE">
+        <column dbType="int4" javaType="Integer" name="inu_id"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="inu_name"
+            required="true" size="2147483647" type="VARCHAR"/>
+        <column dbType="date" javaType="java.util.Date" name="inu_date"
+            size="13" type="DATE"/>
+        <column dbType="int4" javaType="Integer" name="neko_id"
+            pkName="vendor_inherit_neko_pkey" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="neko_name"
+            required="true" size="2147483647" type="VARCHAR"/>
+        <column dbType="date" javaType="java.util.Date" name="neko_date"
+            size="13" type="DATE"/>
+    </table>
     <table name="vendor_large_data" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="large_data_id"
             pkName="vendor_large_data_pkey" primaryKey="true"

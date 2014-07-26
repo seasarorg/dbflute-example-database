@@ -39,7 +39,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     STILETTO_ALIAS_ID
  *
  * [column]
- *     STILETTO_ALIAS_ID, FOO, FOO_1, FOO2, FOO_3, FOO4
+ *     STILETTO_ALIAS_ID, FOO, FOO_0, FOO_1, FOO2, FOO_3, FOO4, BAR, QUX
  *
  * [sequence]
  *     

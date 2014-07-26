@@ -82,6 +82,11 @@ public class WhiteStilettoAliasRefCIQ extends AbstractBsWhiteStilettoAliasRefCQ 
     protected ConditionValue getCValueFoo2() { return _myCQ.getFoo2(); }
     protected ConditionValue getCValueFoo3() { return _myCQ.getFoo3(); }
     protected ConditionValue getCValueFoo4() { return _myCQ.getFoo4(); }
+    protected ConditionValue getCValueBar0() { return _myCQ.getBar0(); }
+    protected ConditionValue getCValueQux0() { return _myCQ.getQux0(); }
+    protected ConditionValue getCValueC21() { return _myCQ.getC21(); }
+    protected ConditionValue getCValueC22() { return _myCQ.getC22(); }
+    protected ConditionValue getCValueC23() { return _myCQ.getC23(); }
     protected ConditionValue getCValueStilettoAliasId() { return _myCQ.getStilettoAliasId(); }
     public String keepStilettoAliasId_InScopeRelation_WhiteStilettoAlias(WhiteStilettoAliasCQ sq)
     { return _myCQ.keepStilettoAliasId_InScopeRelation_WhiteStilettoAlias(sq); }

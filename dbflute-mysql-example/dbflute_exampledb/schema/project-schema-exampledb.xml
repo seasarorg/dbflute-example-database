@@ -1475,6 +1475,8 @@
         <column comment="" dbType="VARCHAR" javaType="String" name="FOO"
             size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
+            name="FOO_0" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
             name="FOO_1" size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FOO2" size="200" type="VARCHAR"/>
@@ -1482,6 +1484,10 @@
             name="FOO_3" size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FOO4" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="BAR"
+            size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="QUX"
+            size="200" type="VARCHAR"/>
     </table>
     <table name="white_stiletto_alias_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
@@ -1497,6 +1503,16 @@
             name="FOO3" size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FOO_4" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="BAR_0" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="QUX_0" size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="c21"
+            size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="c22"
+            size="200" type="VARCHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String" name="c23"
+            size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="STILETTO_ALIAS_ID" size="10" type="INTEGER"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"

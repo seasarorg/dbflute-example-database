@@ -371,6 +371,31 @@ public class BsWhiteStilettoAliasRefCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnFoo4() { return doColumn("FOO_4"); }
         /**
+         * BAR_0: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnBar0() { return doColumn("BAR_0"); }
+        /**
+         * QUX_0: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnQux0() { return doColumn("QUX_0"); }
+        /**
+         * c21: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnC21() { return doColumn("c21"); }
+        /**
+         * c22: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnC22() { return doColumn("c22"); }
+        /**
+         * c23: {VARCHAR(200)}
+         * @return The information object of specified column. (NotNull)
+         */
+        public HpSpecifiedColumn columnC23() { return doColumn("c23"); }
+        /**
          * STILETTO_ALIAS_ID: {IX, INT(10), FK to white_stiletto_alias}
          * @return The information object of specified column. (NotNull)
          */

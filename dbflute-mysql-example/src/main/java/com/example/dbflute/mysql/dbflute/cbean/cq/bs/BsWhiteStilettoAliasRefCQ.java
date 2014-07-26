@@ -208,6 +208,106 @@ public class BsWhiteStilettoAliasRefCQ extends AbstractBsWhiteStilettoAliasRefCQ
      */
     public BsWhiteStilettoAliasRefCQ addOrderBy_Foo4_Desc() { regOBD("FOO_4"); return this; }
 
+    protected ConditionValue _bar0;
+    public ConditionValue getBar0()
+    { if (_bar0 == null) { _bar0 = nCV(); }
+      return _bar0; }
+    protected ConditionValue getCValueBar0() { return getBar0(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * BAR_0: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_Bar0_Asc() { regOBA("BAR_0"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * BAR_0: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_Bar0_Desc() { regOBD("BAR_0"); return this; }
+
+    protected ConditionValue _qux0;
+    public ConditionValue getQux0()
+    { if (_qux0 == null) { _qux0 = nCV(); }
+      return _qux0; }
+    protected ConditionValue getCValueQux0() { return getQux0(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * QUX_0: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_Qux0_Asc() { regOBA("QUX_0"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * QUX_0: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_Qux0_Desc() { regOBD("QUX_0"); return this; }
+
+    protected ConditionValue _c21;
+    public ConditionValue getC21()
+    { if (_c21 == null) { _c21 = nCV(); }
+      return _c21; }
+    protected ConditionValue getCValueC21() { return getC21(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * c21: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C21_Asc() { regOBA("c21"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * c21: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C21_Desc() { regOBD("c21"); return this; }
+
+    protected ConditionValue _c22;
+    public ConditionValue getC22()
+    { if (_c22 == null) { _c22 = nCV(); }
+      return _c22; }
+    protected ConditionValue getCValueC22() { return getC22(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * c22: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C22_Asc() { regOBA("c22"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * c22: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C22_Desc() { regOBD("c22"); return this; }
+
+    protected ConditionValue _c23;
+    public ConditionValue getC23()
+    { if (_c23 == null) { _c23 = nCV(); }
+      return _c23; }
+    protected ConditionValue getCValueC23() { return getC23(); }
+
+    /** 
+     * Add order-by as ascend. <br />
+     * c23: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C23_Asc() { regOBA("c23"); return this; }
+
+    /**
+     * Add order-by as descend. <br />
+     * c23: {VARCHAR(200)}
+     * @return this. (NotNull)
+     */
+    public BsWhiteStilettoAliasRefCQ addOrderBy_C23_Desc() { regOBD("c23"); return this; }
+
     protected ConditionValue _stilettoAliasId;
     public ConditionValue getStilettoAliasId()
     { if (_stilettoAliasId == null) { _stilettoAliasId = nCV(); }

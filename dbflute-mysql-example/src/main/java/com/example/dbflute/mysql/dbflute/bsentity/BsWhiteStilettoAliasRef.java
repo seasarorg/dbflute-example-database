@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     REF_ID
  * 
  * [column]
- *     REF_ID, FOO0, FOO_1, FOO2, FOO3, FOO_4, STILETTO_ALIAS_ID
+ *     REF_ID, FOO0, FOO_1, FOO2, FOO3, FOO_4, BAR_0, QUX_0, c21, c22, c23, STILETTO_ALIAS_ID
  * 
  * [sequence]
  *     
@@ -63,6 +63,11 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * String foo2 = entity.getFoo2();
  * String foo3 = entity.getFoo3();
  * String foo4 = entity.getFoo4();
+ * String bar0 = entity.getBar0();
+ * String qux0 = entity.getQux0();
+ * String c21 = entity.getC21();
+ * String c22 = entity.getC22();
+ * String c23 = entity.getC23();
  * Integer stilettoAliasId = entity.getStilettoAliasId();
  * entity.setRefId(refId);
  * entity.setFoo0(foo0);
@@ -70,6 +75,11 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * entity.setFoo2(foo2);
  * entity.setFoo3(foo3);
  * entity.setFoo4(foo4);
+ * entity.setBar0(bar0);
+ * entity.setQux0(qux0);
+ * entity.setC21(c21);
+ * entity.setC22(c22);
+ * entity.setC23(c23);
  * entity.setStilettoAliasId(stilettoAliasId);
  * = = = = = = = = = =/
  * </pre>
@@ -106,6 +116,21 @@ public abstract class BsWhiteStilettoAliasRef implements Entity, Serializable, C
 
     /** FOO_4: {VARCHAR(200)} */
     protected String _foo4;
+
+    /** BAR_0: {VARCHAR(200)} */
+    protected String _bar0;
+
+    /** QUX_0: {VARCHAR(200)} */
+    protected String _qux0;
+
+    /** c21: {VARCHAR(200)} */
+    protected String _c21;
+
+    /** c22: {VARCHAR(200)} */
+    protected String _c22;
+
+    /** c23: {VARCHAR(200)} */
+    protected String _c23;
 
     /** STILETTO_ALIAS_ID: {IX, INT(10), FK to white_stiletto_alias} */
     protected Integer _stilettoAliasId;
@@ -328,6 +353,11 @@ public abstract class BsWhiteStilettoAliasRef implements Entity, Serializable, C
         sb.append(dm).append(getFoo2());
         sb.append(dm).append(getFoo3());
         sb.append(dm).append(getFoo4());
+        sb.append(dm).append(getBar0());
+        sb.append(dm).append(getQux0());
+        sb.append(dm).append(getC21());
+        sb.append(dm).append(getC22());
+        sb.append(dm).append(getC23());
         sb.append(dm).append(getStilettoAliasId());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
@@ -460,6 +490,91 @@ public abstract class BsWhiteStilettoAliasRef implements Entity, Serializable, C
     public void setFoo4(String foo4) {
         __modifiedProperties.addPropertyName("foo4");
         _foo4 = foo4;
+    }
+
+    /**
+     * [get] BAR_0: {VARCHAR(200)} <br />
+     * @return The value of the column 'BAR_0'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getBar0() {
+        return _bar0;
+    }
+
+    /**
+     * [set] BAR_0: {VARCHAR(200)} <br />
+     * @param bar0 The value of the column 'BAR_0'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setBar0(String bar0) {
+        __modifiedProperties.addPropertyName("bar0");
+        _bar0 = bar0;
+    }
+
+    /**
+     * [get] QUX_0: {VARCHAR(200)} <br />
+     * @return The value of the column 'QUX_0'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getQux0() {
+        return _qux0;
+    }
+
+    /**
+     * [set] QUX_0: {VARCHAR(200)} <br />
+     * @param qux0 The value of the column 'QUX_0'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setQux0(String qux0) {
+        __modifiedProperties.addPropertyName("qux0");
+        _qux0 = qux0;
+    }
+
+    /**
+     * [get] c21: {VARCHAR(200)} <br />
+     * @return The value of the column 'c21'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getC21() {
+        return _c21;
+    }
+
+    /**
+     * [set] c21: {VARCHAR(200)} <br />
+     * @param c21 The value of the column 'c21'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setC21(String c21) {
+        __modifiedProperties.addPropertyName("c21");
+        _c21 = c21;
+    }
+
+    /**
+     * [get] c22: {VARCHAR(200)} <br />
+     * @return The value of the column 'c22'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getC22() {
+        return _c22;
+    }
+
+    /**
+     * [set] c22: {VARCHAR(200)} <br />
+     * @param c22 The value of the column 'c22'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setC22(String c22) {
+        __modifiedProperties.addPropertyName("c22");
+        _c22 = c22;
+    }
+
+    /**
+     * [get] c23: {VARCHAR(200)} <br />
+     * @return The value of the column 'c23'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getC23() {
+        return _c23;
+    }
+
+    /**
+     * [set] c23: {VARCHAR(200)} <br />
+     * @param c23 The value of the column 'c23'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setC23(String c23) {
+        __modifiedProperties.addPropertyName("c23");
+        _c23 = c23;
     }
 
     /**

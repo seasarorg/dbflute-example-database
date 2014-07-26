@@ -32,7 +32,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     STILETTO_ALIAS_ID
  * 
  * [column]
- *     STILETTO_ALIAS_ID, FOO, FOO_1, FOO2, FOO_3, FOO4
+ *     STILETTO_ALIAS_ID, FOO, FOO_0, FOO_1, FOO2, FOO_3, FOO4, BAR, QUX
  * 
  * [sequence]
  *     
@@ -59,16 +59,22 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer stilettoAliasId = entity.getStilettoAliasId();
  * String foo = entity.getFoo();
+ * String foo0 = entity.getFoo0();
  * String foo1 = entity.getFoo1();
  * String foo2 = entity.getFoo2();
  * String foo3 = entity.getFoo3();
  * String foo4 = entity.getFoo4();
+ * String bar = entity.getBar();
+ * String qux = entity.getQux();
  * entity.setStilettoAliasId(stilettoAliasId);
  * entity.setFoo(foo);
+ * entity.setFoo0(foo0);
  * entity.setFoo1(foo1);
  * entity.setFoo2(foo2);
  * entity.setFoo3(foo3);
  * entity.setFoo4(foo4);
+ * entity.setBar(bar);
+ * entity.setQux(qux);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -93,6 +99,9 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
     /** FOO: {VARCHAR(200)} */
     protected String _foo;
 
+    /** FOO_0: {VARCHAR(200)} */
+    protected String _foo0;
+
     /** FOO_1: {VARCHAR(200)} */
     protected String _foo1;
 
@@ -104,6 +113,12 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
 
     /** FOO4: {VARCHAR(200)} */
     protected String _foo4;
+
+    /** BAR: {VARCHAR(200)} */
+    protected String _bar;
+
+    /** QUX: {VARCHAR(200)} */
+    protected String _qux;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -320,10 +335,13 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
         String dm = ", ";
         sb.append(dm).append(getStilettoAliasId());
         sb.append(dm).append(getFoo());
+        sb.append(dm).append(getFoo0());
         sb.append(dm).append(getFoo1());
         sb.append(dm).append(getFoo2());
         sb.append(dm).append(getFoo3());
         sb.append(dm).append(getFoo4());
+        sb.append(dm).append(getBar());
+        sb.append(dm).append(getQux());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -388,6 +406,23 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
     public void setFoo(String foo) {
         __modifiedProperties.addPropertyName("foo");
         _foo = foo;
+    }
+
+    /**
+     * [get] FOO_0: {VARCHAR(200)} <br />
+     * @return The value of the column 'FOO_0'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getFoo0() {
+        return _foo0;
+    }
+
+    /**
+     * [set] FOO_0: {VARCHAR(200)} <br />
+     * @param foo0 The value of the column 'FOO_0'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setFoo0(String foo0) {
+        __modifiedProperties.addPropertyName("foo0");
+        _foo0 = foo0;
     }
 
     /**
@@ -456,5 +491,39 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
     public void setFoo4(String foo4) {
         __modifiedProperties.addPropertyName("foo4");
         _foo4 = foo4;
+    }
+
+    /**
+     * [get] BAR: {VARCHAR(200)} <br />
+     * @return The value of the column 'BAR'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getBar() {
+        return _bar;
+    }
+
+    /**
+     * [set] BAR: {VARCHAR(200)} <br />
+     * @param bar The value of the column 'BAR'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setBar(String bar) {
+        __modifiedProperties.addPropertyName("bar");
+        _bar = bar;
+    }
+
+    /**
+     * [get] QUX: {VARCHAR(200)} <br />
+     * @return The value of the column 'QUX'. (NullAllowed even if selected: for no constraint)
+     */
+    public String getQux() {
+        return _qux;
+    }
+
+    /**
+     * [set] QUX: {VARCHAR(200)} <br />
+     * @param qux The value of the column 'QUX'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void setQux(String qux) {
+        __modifiedProperties.addPropertyName("qux");
+        _qux = qux;
     }
 }

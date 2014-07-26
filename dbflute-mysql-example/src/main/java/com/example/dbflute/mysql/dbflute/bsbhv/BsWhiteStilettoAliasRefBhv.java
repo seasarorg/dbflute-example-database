@@ -39,7 +39,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     REF_ID
  *
  * [column]
- *     REF_ID, FOO0, FOO_1, FOO2, FOO3, FOO_4, STILETTO_ALIAS_ID
+ *     REF_ID, FOO0, FOO_1, FOO2, FOO3, FOO_4, BAR_0, QUX_0, c21, c22, c23, STILETTO_ALIAS_ID
  *
  * [sequence]
  *     

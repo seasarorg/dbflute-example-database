@@ -133,6 +133,16 @@
         <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
         <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
     </bean>
+	<bean id="vendorInheritInuBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.VendorInheritInuBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
+        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
+	<bean id="vendorInheritNekoBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.VendorInheritNekoBhv" autowire="byType">
+        <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
+        <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>
+        <property name="commonColumnAutoSetupper"><ref bean="commonColumnAutoSetupper"/></property>
+    </bean>
 	<bean id="vendorLargeDataBhv" class="com.example.dbflute.postgresql.dbflute.exbhv.VendorLargeDataBhv" autowire="byType">
         <property name="behaviorCommandInvoker"><ref bean="behaviorCommandInvoker"/></property>
         <property name="behaviorSelector"><ref bean="behaviorSelector"/></property>

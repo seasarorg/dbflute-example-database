@@ -54,6 +54,8 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("vendor_check", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorCheckDbm");
         tmpMap.put("vendor_date_fk", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorDateFkDbm");
         tmpMap.put("vendor_date_pk", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorDatePkDbm");
+        tmpMap.put("vendor_inherit_inu", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorInheritInuDbm");
+        tmpMap.put("vendor_inherit_neko", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorInheritNekoDbm");
         tmpMap.put("vendor_large_data", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorLargeDataDbm");
         tmpMap.put("vendor_large_data_ref", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorLargeDataRefDbm");
         tmpMap.put("vendor_uuid_bar", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorUuidBarDbm");

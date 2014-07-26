@@ -386,6 +386,110 @@ public abstract class AbstractBsWhiteStilettoAliasCQ extends AbstractConditionQu
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0 The value of foo0 as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setFoo0_Equal(String foo0) {
+        doSetFoo0_Equal(fRES(foo0));
+    }
+
+    protected void doSetFoo0_Equal(String foo0) {
+        regFoo0(CK_EQ, foo0);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0 The value of foo0 as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setFoo0_NotEqual(String foo0) {
+        doSetFoo0_NotEqual(fRES(foo0));
+    }
+
+    protected void doSetFoo0_NotEqual(String foo0) {
+        regFoo0(CK_NES, foo0);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0List The collection of foo0 as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setFoo0_InScope(Collection<String> foo0List) {
+        doSetFoo0_InScope(foo0List);
+    }
+
+    public void doSetFoo0_InScope(Collection<String> foo0List) {
+        regINS(CK_INS, cTL(foo0List), getCValueFoo0(), "FOO_0");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0List The collection of foo0 as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setFoo0_NotInScope(Collection<String> foo0List) {
+        doSetFoo0_NotInScope(foo0List);
+    }
+
+    public void doSetFoo0_NotInScope(Collection<String> foo0List) {
+        regINS(CK_NINS, cTL(foo0List), getCValueFoo0(), "FOO_0");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0 The value of foo0 as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setFoo0_PrefixSearch(String foo0) {
+        setFoo0_LikeSearch(foo0, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * FOO_0: {VARCHAR(200)} <br />
+     * <pre>e.g. setFoo0_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param foo0 The value of foo0 as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setFoo0_LikeSearch(String foo0, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(foo0), getCValueFoo0(), "FOO_0", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     * @param foo0 The value of foo0 as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setFoo0_NotLikeSearch(String foo0, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(foo0), getCValueFoo0(), "FOO_0", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     */
+    public void setFoo0_IsNull() { regFoo0(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     */
+    public void setFoo0_IsNullOrEmpty() { regFoo0(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * FOO_0: {VARCHAR(200)}
+     */
+    public void setFoo0_IsNotNull() { regFoo0(CK_ISNN, DOBJ); }
+
+    protected void regFoo0(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFoo0(), "FOO_0"); }
+    protected abstract ConditionValue getCValueFoo0();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * FOO_1: {VARCHAR(200)}
      * @param foo1 The value of foo1 as equal. (NullAllowed: if null (or empty), no condition)
      */
@@ -799,6 +903,214 @@ public abstract class AbstractBsWhiteStilettoAliasCQ extends AbstractConditionQu
 
     protected void regFoo4(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFoo4(), "FOO4"); }
     protected abstract ConditionValue getCValueFoo4();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param bar The value of bar as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setBar_Equal(String bar) {
+        doSetBar_Equal(fRES(bar));
+    }
+
+    protected void doSetBar_Equal(String bar) {
+        regBar(CK_EQ, bar);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param bar The value of bar as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setBar_NotEqual(String bar) {
+        doSetBar_NotEqual(fRES(bar));
+    }
+
+    protected void doSetBar_NotEqual(String bar) {
+        regBar(CK_NES, bar);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param barList The collection of bar as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setBar_InScope(Collection<String> barList) {
+        doSetBar_InScope(barList);
+    }
+
+    public void doSetBar_InScope(Collection<String> barList) {
+        regINS(CK_INS, cTL(barList), getCValueBar(), "BAR");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param barList The collection of bar as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setBar_NotInScope(Collection<String> barList) {
+        doSetBar_NotInScope(barList);
+    }
+
+    public void doSetBar_NotInScope(Collection<String> barList) {
+        regINS(CK_NINS, cTL(barList), getCValueBar(), "BAR");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param bar The value of bar as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setBar_PrefixSearch(String bar) {
+        setBar_LikeSearch(bar, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * BAR: {VARCHAR(200)} <br />
+     * <pre>e.g. setBar_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param bar The value of bar as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setBar_LikeSearch(String bar, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(bar), getCValueBar(), "BAR", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     * @param bar The value of bar as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setBar_NotLikeSearch(String bar, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(bar), getCValueBar(), "BAR", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     */
+    public void setBar_IsNull() { regBar(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     */
+    public void setBar_IsNullOrEmpty() { regBar(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * BAR: {VARCHAR(200)}
+     */
+    public void setBar_IsNotNull() { regBar(CK_ISNN, DOBJ); }
+
+    protected void regBar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBar(), "BAR"); }
+    protected abstract ConditionValue getCValueBar();
+
+    /**
+     * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param qux The value of qux as equal. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setQux_Equal(String qux) {
+        doSetQux_Equal(fRES(qux));
+    }
+
+    protected void doSetQux_Equal(String qux) {
+        regQux(CK_EQ, qux);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param qux The value of qux as notEqual. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setQux_NotEqual(String qux) {
+        doSetQux_NotEqual(fRES(qux));
+    }
+
+    protected void doSetQux_NotEqual(String qux) {
+        regQux(CK_NES, qux);
+    }
+
+    /**
+     * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param quxList The collection of qux as inScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setQux_InScope(Collection<String> quxList) {
+        doSetQux_InScope(quxList);
+    }
+
+    public void doSetQux_InScope(Collection<String> quxList) {
+        regINS(CK_INS, cTL(quxList), getCValueQux(), "QUX");
+    }
+
+    /**
+     * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param quxList The collection of qux as notInScope. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setQux_NotInScope(Collection<String> quxList) {
+        doSetQux_NotInScope(quxList);
+    }
+
+    public void doSetQux_NotInScope(Collection<String> quxList) {
+        regINS(CK_NINS, cTL(quxList), getCValueQux(), "QUX");
+    }
+
+    /**
+     * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param qux The value of qux as prefixSearch. (NullAllowed: if null (or empty), no condition)
+     */
+    public void setQux_PrefixSearch(String qux) {
+        setQux_LikeSearch(qux, cLSOP());
+    }
+
+    /**
+     * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * QUX: {VARCHAR(200)} <br />
+     * <pre>e.g. setQux_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
+     * @param qux The value of qux as likeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of like-search. (NotNull)
+     */
+    public void setQux_LikeSearch(String qux, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_LS, fRES(qux), getCValueQux(), "QUX", likeSearchOption);
+    }
+
+    /**
+     * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
+     * And NullOrEmptyIgnored, SeveralRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     * @param qux The value of qux as notLikeSearch. (NullAllowed: if null (or empty), no condition)
+     * @param likeSearchOption The option of not-like-search. (NotNull)
+     */
+    public void setQux_NotLikeSearch(String qux, LikeSearchOption likeSearchOption) {
+        regLSQ(CK_NLS, fRES(qux), getCValueQux(), "QUX", likeSearchOption);
+    }
+
+    /**
+     * IsNull {is null}. And OnlyOnceRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     */
+    public void setQux_IsNull() { regQux(CK_ISN, DOBJ); }
+
+    /**
+     * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     */
+    public void setQux_IsNullOrEmpty() { regQux(CK_ISNOE, DOBJ); }
+
+    /**
+     * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
+     * QUX: {VARCHAR(200)}
+     */
+    public void setQux_IsNotNull() { regQux(CK_ISNN, DOBJ); }
+
+    protected void regQux(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueQux(), "QUX"); }
+    protected abstract ConditionValue getCValueQux();
 
     // ===================================================================================
     //                                                                     ScalarCondition

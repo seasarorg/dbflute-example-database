@@ -798,7 +798,7 @@
 	<tr>
 		<td class="rownumcell">70</td>
 		<td class="aliascell"></td>
-		<td><a href="#white_stiletto_alias" title="type=TABLE, primaryKey={STILETTO_ALIAS_ID}, nameLength=20, columnCount=6">WHITE_STILETTO_ALIAS</a></td>
+		<td><a href="#white_stiletto_alias" title="type=TABLE, primaryKey={STILETTO_ALIAS_ID}, nameLength=20, columnCount=9">WHITE_STILETTO_ALIAS</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell">&nbsp;</td>
@@ -809,7 +809,7 @@
 	<tr>
 		<td class="rownumcell">71</td>
 		<td class="aliascell"></td>
-		<td><a href="#white_stiletto_alias_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=24, columnCount=7">WHITE_STILETTO_ALIAS_REF</a></td>
+		<td><a href="#white_stiletto_alias_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=24, columnCount=12">WHITE_STILETTO_ALIAS_REF</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell"><a href="#white_stiletto_alias" title="FK_WHITE_STILETTO_ALIAS_REF">WHITE_STILETTO_ALIAS</a></td>
@@ -8811,7 +8811,7 @@ WHITE_SPLIT_MULTIPLE_FK_REF
 		<td class="subcell">String</td>
 	</tr>
 </table>
-  <h2 id="white_stiletto_alias" title="type=TABLE, primaryKey={STILETTO_ALIAS_ID}, nameLength=20, columnCount=6">
+  <h2 id="white_stiletto_alias" title="type=TABLE, primaryKey={STILETTO_ALIAS_ID}, nameLength=20, columnCount=9">
 WHITE_STILETTO_ALIAS
 &nbsp;<span class="tableschema">on exampledb</span>
 </h2>
@@ -8877,6 +8877,23 @@ WHITE_STILETTO_ALIAS
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_foo_0">FOO_0</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">foo0</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">4</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
 		<td id="white_stiletto_alias_foo_1">FOO_1</td>
 		<td class="typecell">VARCHAR</td>
 		<td class="sizecell"> 200 </td>
@@ -8887,7 +8904,7 @@ WHITE_STILETTO_ALIAS
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">4</td>
+		<td class="rownumcell">5</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -8904,7 +8921,7 @@ WHITE_STILETTO_ALIAS
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">5</td>
+		<td class="rownumcell">6</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -8921,7 +8938,7 @@ WHITE_STILETTO_ALIAS
 		<td class="subcell">String</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">6</td>
+		<td class="rownumcell">7</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>
@@ -8937,8 +8954,42 @@ WHITE_STILETTO_ALIAS
 		<td class="subcell">foo4</td>
 		<td class="subcell">String</td>
 	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_bar">BAR</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">bar</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_qux">QUX</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">qux</td>
+		<td class="subcell">String</td>
+	</tr>
 </table>
-  <h2 id="white_stiletto_alias_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=24, columnCount=7">
+  <h2 id="white_stiletto_alias_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=24, columnCount=12">
 WHITE_STILETTO_ALIAS_REF
 &nbsp;<span class="tableschema">on exampledb</span>
 </h2>
@@ -9066,6 +9117,91 @@ WHITE_STILETTO_ALIAS_REF
 	</tr>
 	<tr>
 		<td class="rownumcell">7</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_ref_bar_0">BAR_0</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">bar0</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">8</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_ref_qux_0">QUX_0</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">qux0</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">9</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_ref_c21">c21</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">c21</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">10</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_ref_c22">c22</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">c22</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">11</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="aliascell"></td>
+		<td id="white_stiletto_alias_ref_c23">c23</td>
+		<td class="typecell">VARCHAR</td>
+		<td class="sizecell"> 200 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">c23</td>
+		<td class="subcell">String</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
 		<td class="flgcell">&nbsp;</td>

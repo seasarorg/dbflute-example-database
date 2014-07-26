@@ -1,4 +1,182 @@
 map:{
+    ; 2014/07/25 01:45:59 = map:{
+        ; diffDate = 2014/07/25 01:45:59
+        ; tableDiff = map:{
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c21 = map:{
+                        ; columnName = c21
+                        ; diffType = ADD
+                    }
+                    ; c22 = map:{
+                        ; columnName = c22
+                        ; diffType = ADD
+                    }
+                    ; c23 = map:{
+                        ; columnName = c23
+                        ; diffType = ADD
+                    }
+                    ; c17 = map:{
+                        ; columnName = c17
+                        ; diffType = DELETE
+                    }
+                    ; c18 = map:{
+                        ; columnName = c18
+                        ; diffType = DELETE
+                    }
+                    ; c19 = map:{
+                        ; columnName = c19
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/25 01:41:50 = map:{
+        ; diffDate = 2014/07/25 01:41:50
+        ; tableDiff = map:{
+            ; white_stiletto_alias = map:{
+                ; tableName = white_stiletto_alias
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; QUX = map:{
+                        ; columnName = QUX
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; QUX_0 = map:{
+                        ; columnName = QUX_0
+                        ; diffType = ADD
+                    }
+                    ; c19 = map:{
+                        ; columnName = c19
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/25 00:57:50 = map:{
+        ; diffDate = 2014/07/25 00:57:50
+        ; tableDiff = map:{
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c18 = map:{
+                        ; columnName = c18
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/25 00:42:36 = map:{
+        ; diffDate = 2014/07/25 00:42:36
+        ; tableDiff = map:{
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c17 = map:{
+                        ; columnName = c17
+                        ; diffType = ADD
+                    }
+                    ; c16 = map:{
+                        ; columnName = c16
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/25 00:41:33 = map:{
+        ; diffDate = 2014/07/25 00:41:33
+        ; tableDiff = map:{
+            ; white_stiletto_alias = map:{
+                ; tableName = white_stiletto_alias
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c16 = map:{
+                        ; columnName = c16
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c16 = map:{
+                        ; columnName = c16
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/24 18:55:51 = map:{
+        ; diffDate = 2014/07/24 18:55:51
+        ; tableDiff = map:{
+            ; white_stiletto_alias = map:{
+                ; tableName = white_stiletto_alias
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; c16 = map:{
+                        ; columnName = c16
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/24 18:38:58 = map:{
+        ; diffDate = 2014/07/24 18:38:58
+        ; tableDiff = map:{
+            ; white_stiletto_alias = map:{
+                ; tableName = white_stiletto_alias
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; BAR = map:{
+                        ; columnName = BAR
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; white_stiletto_alias_ref = map:{
+                ; tableName = white_stiletto_alias_ref
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; BAR_0 = map:{
+                        ; columnName = BAR_0
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/07/24 12:48:59 = map:{
+        ; diffDate = 2014/07/24 12:48:59
+        ; tableDiff = map:{
+            ; white_stiletto_alias = map:{
+                ; tableName = white_stiletto_alias
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; FOO_0 = map:{
+                        ; columnName = FOO_0
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
     ; 2014/07/23 22:13:53 = map:{
         ; diffDate = 2014/07/23 22:13:53
         ; tableDiff = map:{

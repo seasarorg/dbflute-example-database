@@ -69,6 +69,7 @@ create table VENDOR_LARGE_DATA_REF
 	SELF_PARENT_ID BIGINT
 );
 
+
 -- =======================================================================================
 --                                                                                    UUID
 --                                                                                    ====
@@ -88,6 +89,7 @@ create table VENDOR_UUID_BAR
 alter table VENDOR_UUID_FOO add constraint FK_VENDOR_UUID_FOO_BAR 
 	foreign key (BAR_ID) references VENDOR_UUID_BAR (BAR_ID) ;
 
+
 -- =======================================================================================
 --                                                                                 DATE PK
 --                                                                                 =======
@@ -105,6 +107,23 @@ create table VENDOR_DATE_FK
 
 alter table VENDOR_DATE_FK add constraint FK_VENDOR_DATE_FK_PK 
 	foreign key (BAR_DATE) references VENDOR_DATE_PK (FOO_DATE) ;
+
+
+-- =======================================================================================
+--                                                                                 Inherit
+--                                                                                 =======
+create table VENDOR_INHERIT_INU (
+    INU_ID integer NOT NULL PRIMARY KEY,
+    INU_NAME varchar NOT NULL,
+    INU_DATE date
+);
+
+create table VENDOR_INHERIT_NEKO (
+    NEKO_ID integer NOT NULL PRIMARY KEY,
+    NEKO_NAME varchar NOT NULL,
+    NEKO_DATE date
+) inherits (VENDOR_INHERIT_INU);
+
 
 -- =======================================================================================
 --                                                                             Name Crisis

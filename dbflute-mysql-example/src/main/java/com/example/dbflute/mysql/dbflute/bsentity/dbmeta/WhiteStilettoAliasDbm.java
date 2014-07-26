@@ -55,10 +55,13 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
     {
         setupEpg(_epgMap, new EpgStilettoAliasId(), "stilettoAliasId");
         setupEpg(_epgMap, new EpgFoo(), "foo");
+        setupEpg(_epgMap, new EpgFoo0(), "foo0");
         setupEpg(_epgMap, new EpgFoo1(), "foo1");
         setupEpg(_epgMap, new EpgFoo2(), "foo2");
         setupEpg(_epgMap, new EpgFoo3(), "foo3");
         setupEpg(_epgMap, new EpgFoo4(), "foo4");
+        setupEpg(_epgMap, new EpgBar(), "bar");
+        setupEpg(_epgMap, new EpgQux(), "qux");
     }
     public static class EpgStilettoAliasId implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteStilettoAlias)et).getStilettoAliasId(); }
@@ -67,6 +70,10 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
     public static class EpgFoo implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteStilettoAlias)et).getFoo(); }
         public void write(Entity et, Object vl) { ((WhiteStilettoAlias)et).setFoo((String)vl); }
+    }
+    public static class EpgFoo0 implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteStilettoAlias)et).getFoo0(); }
+        public void write(Entity et, Object vl) { ((WhiteStilettoAlias)et).setFoo0((String)vl); }
     }
     public static class EpgFoo1 implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteStilettoAlias)et).getFoo1(); }
@@ -83,6 +90,14 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
     public static class EpgFoo4 implements PropertyGateway {
         public Object read(Entity et) { return ((WhiteStilettoAlias)et).getFoo4(); }
         public void write(Entity et, Object vl) { ((WhiteStilettoAlias)et).setFoo4((String)vl); }
+    }
+    public static class EpgBar implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteStilettoAlias)et).getBar(); }
+        public void write(Entity et, Object vl) { ((WhiteStilettoAlias)et).setBar((String)vl); }
+    }
+    public static class EpgQux implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteStilettoAlias)et).getQux(); }
+        public void write(Entity et, Object vl) { ((WhiteStilettoAlias)et).setQux((String)vl); }
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
@@ -103,10 +118,13 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnStilettoAliasId = cci("STILETTO_ALIAS_ID", "STILETTO_ALIAS_ID", null, null, Integer.class, "stilettoAliasId", null, true, false, true, "INT", 10, 0, null, false, null, null, null, "whiteStilettoAliasRefList", null);
     protected final ColumnInfo _columnFoo = cci("FOO", "FOO", null, null, String.class, "foo", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnFoo0 = cci("FOO_0", "FOO_0", null, null, String.class, "foo0", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFoo1 = cci("FOO_1", "FOO_1", null, null, String.class, "foo1", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFoo2 = cci("FOO2", "FOO2", null, null, String.class, "foo2", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFoo3 = cci("FOO_3", "FOO_3", null, null, String.class, "foo3", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFoo4 = cci("FOO4", "FOO4", null, null, String.class, "foo4", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBar = cci("BAR", "BAR", null, null, String.class, "bar", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnQux = cci("QUX", "QUX", null, null, String.class, "qux", null, false, false, false, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
 
     /**
      * STILETTO_ALIAS_ID: {PK, NotNull, INT(10)}
@@ -118,6 +136,11 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnFoo() { return _columnFoo; }
+    /**
+     * FOO_0: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnFoo0() { return _columnFoo0; }
     /**
      * FOO_1: {VARCHAR(200)}
      * @return The information object of specified column. (NotNull)
@@ -138,15 +161,28 @@ public class WhiteStilettoAliasDbm extends AbstractDBMeta {
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnFoo4() { return _columnFoo4; }
+    /**
+     * BAR: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnBar() { return _columnBar; }
+    /**
+     * QUX: {VARCHAR(200)}
+     * @return The information object of specified column. (NotNull)
+     */
+    public ColumnInfo columnQux() { return _columnQux; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnStilettoAliasId());
         ls.add(columnFoo());
+        ls.add(columnFoo0());
         ls.add(columnFoo1());
         ls.add(columnFoo2());
         ls.add(columnFoo3());
         ls.add(columnFoo4());
+        ls.add(columnBar());
+        ls.add(columnQux());
         return ls;
     }
 
