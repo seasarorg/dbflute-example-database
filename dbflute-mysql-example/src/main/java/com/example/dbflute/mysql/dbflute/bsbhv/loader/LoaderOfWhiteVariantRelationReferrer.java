@@ -18,8 +18,10 @@ package com.example.dbflute.mysql.dbflute.bsbhv.loader;
 import java.util.List;
 
 import org.seasar.dbflute.*;
+import org.seasar.dbflute.bhv.*;
 import com.example.dbflute.mysql.dbflute.exbhv.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
+import com.example.dbflute.mysql.dbflute.cbean.*;
 
 /**
  * The referrer loader of WHITE_VARIANT_RELATION_REFERRER as TABLE. <br />
@@ -43,13 +45,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     WHITE_VARIANT_RELATION_MASTER_FOO(AsVariant), WHITE_VARIANT_RELATION_MASTER_BAR(AsVariant), WHITE_VARIANT_RELATION_MASTER_QUX(AsVariantByQue), WHITE_VARIANT_RELATION_MASTER_CORGE(AsVariantByQuxType)
  *
  * [referrer table]
- *     
+ *     white_variant_relation_referrer_ref
  *
  * [foreign property]
  *     whiteVariantRelationMasterFooAsVariant, whiteVariantRelationMasterBarAsVariant, whiteVariantRelationMasterQuxAsVariantByQue, whiteVariantRelationMasterCorgeAsVariantByQuxType
  *
  * [referrer property]
- *     
+ *     whiteVariantRelationReferrerRefList
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
@@ -70,6 +72,21 @@ public class LoaderOfWhiteVariantRelationReferrer {
 
     protected WhiteVariantRelationReferrerBhv myBhv()
     { if (_myBhv != null) { return _myBhv; } else { _myBhv = _selector.select(WhiteVariantRelationReferrerBhv.class); return _myBhv; } }
+
+    // ===================================================================================
+    //                                                                       Load Referrer
+    //                                                                       =============
+    protected List<WhiteVariantRelationReferrerRef> _referrerWhiteVariantRelationReferrerRefList;
+    public NestedReferrerLoaderGateway<LoaderOfWhiteVariantRelationReferrerRef> loadWhiteVariantRelationReferrerRefList(ConditionBeanSetupper<WhiteVariantRelationReferrerRefCB> setupper) {
+        myBhv().loadWhiteVariantRelationReferrerRefList(_selectedList, setupper).withNestedReferrer(new ReferrerListHandler<WhiteVariantRelationReferrerRef>() {
+            public void handle(List<WhiteVariantRelationReferrerRef> referrerList) { _referrerWhiteVariantRelationReferrerRefList = referrerList; }
+        });
+        return new NestedReferrerLoaderGateway<LoaderOfWhiteVariantRelationReferrerRef>() {
+            public void withNestedReferrer(ReferrerLoaderHandler<LoaderOfWhiteVariantRelationReferrerRef> handler) {
+                handler.handle(new LoaderOfWhiteVariantRelationReferrerRef().ready(_referrerWhiteVariantRelationReferrerRefList, _selector));
+            }
+        };
+    }
 
     // ===================================================================================
     //                                                                    Pull out Foreign

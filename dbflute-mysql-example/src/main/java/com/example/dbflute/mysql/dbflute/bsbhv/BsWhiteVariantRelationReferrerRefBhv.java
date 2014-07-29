@@ -33,13 +33,13 @@ import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.*;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 
 /**
- * The behavior of WHITE_VARIANT_RELATION_REFERRER as TABLE. <br />
+ * The behavior of WHITE_VARIANT_RELATION_REFERRER_REF as TABLE. <br />
  * <pre>
  * [primary key]
- *     REFERRER_ID
+ *     REF_ID
  *
  * [column]
- *     REFERRER_ID, VARIANT_MASTER_ID, MASTER_TYPE_CODE
+ *     REF_ID, REFERRER_ID
  *
  * [sequence]
  *     
@@ -51,20 +51,20 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     WHITE_VARIANT_RELATION_MASTER_FOO(AsVariant), WHITE_VARIANT_RELATION_MASTER_BAR(AsVariant), WHITE_VARIANT_RELATION_MASTER_QUX(AsVariantByQue), WHITE_VARIANT_RELATION_MASTER_CORGE(AsVariantByQuxType)
+ *     white_variant_relation_referrer
  *
  * [referrer table]
- *     white_variant_relation_referrer_ref
+ *     
  *
  * [foreign property]
- *     whiteVariantRelationMasterFooAsVariant, whiteVariantRelationMasterBarAsVariant, whiteVariantRelationMasterQuxAsVariantByQue, whiteVariantRelationMasterCorgeAsVariantByQuxType
+ *     whiteVariantRelationReferrer
  *
  * [referrer property]
- *     whiteVariantRelationReferrerRefList
+ *     
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehaviorWritable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -76,31 +76,31 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     //                                                                          Table name
     //                                                                          ==========
     /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_variant_relation_referrer"; }
+    public String getTableDbName() { return "white_variant_relation_referrer_ref"; }
 
     // ===================================================================================
     //                                                                              DBMeta
     //                                                                              ======
     /** {@inheritDoc} */
-    public DBMeta getDBMeta() { return WhiteVariantRelationReferrerDbm.getInstance(); }
+    public DBMeta getDBMeta() { return WhiteVariantRelationReferrerRefDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
-    public WhiteVariantRelationReferrerDbm getMyDBMeta() { return WhiteVariantRelationReferrerDbm.getInstance(); }
+    public WhiteVariantRelationReferrerRefDbm getMyDBMeta() { return WhiteVariantRelationReferrerRefDbm.getInstance(); }
 
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
     /** {@inheritDoc} */
-    public WhiteVariantRelationReferrer newEntity() { return new WhiteVariantRelationReferrer(); }
+    public WhiteVariantRelationReferrerRef newEntity() { return new WhiteVariantRelationReferrerRef(); }
 
     /** {@inheritDoc} */
-    public WhiteVariantRelationReferrerCB newConditionBean() { return new WhiteVariantRelationReferrerCB(); }
+    public WhiteVariantRelationReferrerRefCB newConditionBean() { return new WhiteVariantRelationReferrerRefCB(); }
 
     /** @return The instance of new entity as my table type. (NotNull) */
-    public WhiteVariantRelationReferrer newMyEntity() { return new WhiteVariantRelationReferrer(); }
+    public WhiteVariantRelationReferrerRef newMyEntity() { return new WhiteVariantRelationReferrerRef(); }
 
     /** @return The instance of new condition-bean as my table type. (NotNull) */
-    public WhiteVariantRelationReferrerCB newMyConditionBean() { return new WhiteVariantRelationReferrerCB(); }
+    public WhiteVariantRelationReferrerRefCB newMyConditionBean() { return new WhiteVariantRelationReferrerRefCB(); }
 
     // ===================================================================================
     //                                                                        Count Select
@@ -109,27 +109,27 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Select the count of uniquely-selected records by the condition-bean. {IgnorePagingCondition, IgnoreSpecifyColumn}<br />
      * SpecifyColumn is ignored but you can use it only to remove text type column for union's distinct.
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * int count = whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectCount</span>(cb);
+     * int count = whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectCount</span>(cb);
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The count for the condition. (NotMinus)
      */
-    public int selectCount(WhiteVariantRelationReferrerCB cb) {
+    public int selectCount(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectCount(cb);
     }
 
-    protected int facadeSelectCount(WhiteVariantRelationReferrerCB cb) {
+    protected int facadeSelectCount(WhiteVariantRelationReferrerRefCB cb) {
         return doSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountUniquely(WhiteVariantRelationReferrerCB cb) { // called by selectCount(cb)
+    protected int doSelectCountUniquely(WhiteVariantRelationReferrerRefCB cb) { // called by selectCount(cb)
         assertCBStateValid(cb);
         return delegateSelectCountUniquely(cb);
     }
 
-    protected int doSelectCountPlainly(WhiteVariantRelationReferrerCB cb) { // called by selectPage(cb)
+    protected int doSelectCountPlainly(WhiteVariantRelationReferrerRefCB cb) { // called by selectPage(cb)
         assertCBStateValid(cb);
         return delegateSelectCountPlainly(cb);
     }
@@ -144,33 +144,33 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * <span style="color: #AD4747; font-size: 120%">The return might be null if no data, so you should have null check.</span> <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, use selectEntityWithDeletedCheck().</span>
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectEntity</span>(cb);
-     * if (whiteVariantRelationReferrer != null) { <span style="color: #3F7E5E">// null check</span>
-     *     ... = whiteVariantRelationReferrer.get...();
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectEntity</span>(cb);
+     * if (whiteVariantRelationReferrerRef != null) { <span style="color: #3F7E5E">// null check</span>
+     *     ... = whiteVariantRelationReferrerRef.get...();
      * } else {
      *     ...
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The entity selected by the condition. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteVariantRelationReferrer selectEntity(WhiteVariantRelationReferrerCB cb) {
+    public WhiteVariantRelationReferrerRef selectEntity(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectEntity(cb);
     }
 
-    protected WhiteVariantRelationReferrer facadeSelectEntity(WhiteVariantRelationReferrerCB cb) {
+    protected WhiteVariantRelationReferrerRef facadeSelectEntity(WhiteVariantRelationReferrerRefCB cb) {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectEntity(WhiteVariantRelationReferrerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectEntity(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
         return helpSelectEntityInternally(cb, tp);
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationReferrerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,26 +180,26 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Select the entity by the condition-bean with deleted check. <br />
      * <span style="color: #AD4747; font-size: 120%">If the data always exists as your business rule, this method is good.</span>
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
-     * ... = whiteVariantRelationReferrer.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectEntityWithDeletedCheck</span>(cb);
+     * ... = whiteVariantRelationReferrerRef.get...(); <span style="color: #3F7E5E">// the entity always be not null</span>
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The entity selected by the condition. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteVariantRelationReferrer selectEntityWithDeletedCheck(WhiteVariantRelationReferrerCB cb) {
+    public WhiteVariantRelationReferrerRef selectEntityWithDeletedCheck(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteVariantRelationReferrer facadeSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerCB cb) {
+    protected WhiteVariantRelationReferrerRef facadeSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerRefCB cb) {
         return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
         return helpSelectEntityWithDeletedCheckInternally(cb, tp);
     }
@@ -208,46 +208,46 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
 
     /**
      * Select the entity by the primary-key value.
-     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param refId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NullAllowed: if no data, it returns null)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteVariantRelationReferrer selectByPKValue(Long referrerId) {
-        return facadeSelectByPKValue(referrerId);
+    public WhiteVariantRelationReferrerRef selectByPKValue(Long refId) {
+        return facadeSelectByPKValue(refId);
     }
 
-    protected WhiteVariantRelationReferrer facadeSelectByPKValue(Long referrerId) {
-        return doSelectByPK(referrerId, typeOfSelectedEntity());
+    protected WhiteVariantRelationReferrerRef facadeSelectByPKValue(Long refId) {
+        return doSelectByPK(refId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPK(Long referrerId, Class<ENTITY> tp) {
-        return doSelectEntity(xprepareCBAsPK(referrerId), tp);
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectByPK(Long refId, Class<ENTITY> tp) {
+        return doSelectEntity(xprepareCBAsPK(refId), tp);
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> OptionalEntity<ENTITY> doSelectOptionalByPK(Long referrerId, Class<ENTITY> tp) {
-        return createOptionalEntity(doSelectByPK(referrerId, tp), referrerId);
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refId, Class<ENTITY> tp) {
+        return createOptionalEntity(doSelectByPK(refId, tp), refId);
     }
 
     /**
      * Select the entity by the primary-key value with deleted check.
-     * @param referrerId : PK, NotNull, BIGINT(19). (NotNull)
+     * @param refId : PK, NotNull, BIGINT(19). (NotNull)
      * @return The entity selected by the PK. (NotNull: if no data, throws exception)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public WhiteVariantRelationReferrer selectByPKValueWithDeletedCheck(Long referrerId) {
-        return doSelectByPKWithDeletedCheck(referrerId, typeOfSelectedEntity());
+    public WhiteVariantRelationReferrerRef selectByPKValueWithDeletedCheck(Long refId) {
+        return doSelectByPKWithDeletedCheck(refId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ENTITY doSelectByPKWithDeletedCheck(Long referrerId, Class<ENTITY> tp) {
-        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(referrerId), tp);
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectByPKWithDeletedCheck(Long refId, Class<ENTITY> tp) {
+        return doSelectEntityWithDeletedCheck(xprepareCBAsPK(refId), tp);
     }
 
-    protected WhiteVariantRelationReferrerCB xprepareCBAsPK(Long referrerId) {
-        assertObjectNotNull("referrerId", referrerId);
-        return newConditionBean().acceptPK(referrerId);
+    protected WhiteVariantRelationReferrerRefCB xprepareCBAsPK(Long refId) {
+        assertObjectNotNull("refId", refId);
+        return newConditionBean().acceptPK(refId);
     }
 
     // ===================================================================================
@@ -256,27 +256,27 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Select the list as result bean.
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
-     * ListResultBean&lt;WhiteVariantRelationReferrer&gt; whiteVariantRelationReferrerList = whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectList</span>(cb);
-     * for (WhiteVariantRelationReferrer whiteVariantRelationReferrer : whiteVariantRelationReferrerList) {
-     *     ... = whiteVariantRelationReferrer.get...();
+     * ListResultBean&lt;WhiteVariantRelationReferrerRef&gt; whiteVariantRelationReferrerRefList = whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectList</span>(cb);
+     * for (WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef : whiteVariantRelationReferrerRefList) {
+     *     ... = whiteVariantRelationReferrerRef.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The result bean of selected list. (NotNull: if no data, returns empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public ListResultBean<WhiteVariantRelationReferrer> selectList(WhiteVariantRelationReferrerCB cb) {
+    public ListResultBean<WhiteVariantRelationReferrerRef> selectList(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteVariantRelationReferrer> facadeSelectList(WhiteVariantRelationReferrerCB cb) {
+    protected ListResultBean<WhiteVariantRelationReferrerRef> facadeSelectList(WhiteVariantRelationReferrerRefCB cb) {
         return doSelectList(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> ListResultBean<ENTITY> doSelectList(WhiteVariantRelationReferrerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ListResultBean<ENTITY> doSelectList(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
         return helpSelectListInternally(cb, tp);
     }
 
@@ -289,33 +289,33 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Select the page as result bean. <br />
      * (both count-select and paging-select are executed)
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
      * cb.query().addOrderBy_Bar...();
      * cb.<span style="color: #DD4747">paging</span>(20, 3); <span style="color: #3F7E5E">// 20 records per a page and current page number is 3</span>
-     * PagingResultBean&lt;WhiteVariantRelationReferrer&gt; page = whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectPage</span>(cb);
+     * PagingResultBean&lt;WhiteVariantRelationReferrerRef&gt; page = whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectPage</span>(cb);
      * int allRecordCount = page.getAllRecordCount();
      * int allPageCount = page.getAllPageCount();
      * boolean isExistPrePage = page.isExistPrePage();
      * boolean isExistNextPage = page.isExistNextPage();
      * ...
-     * for (WhiteVariantRelationReferrer whiteVariantRelationReferrer : page) {
-     *     ... = whiteVariantRelationReferrer.get...();
+     * for (WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef : page) {
+     *     ... = whiteVariantRelationReferrerRef.get...();
      * }
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The result bean of selected page. (NotNull: if no data, returns bean as empty list)
      * @exception DangerousResultSizeException When the result size is over the specified safety size.
      */
-    public PagingResultBean<WhiteVariantRelationReferrer> selectPage(WhiteVariantRelationReferrerCB cb) {
+    public PagingResultBean<WhiteVariantRelationReferrerRef> selectPage(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteVariantRelationReferrer> facadeSelectPage(WhiteVariantRelationReferrerCB cb) {
+    protected PagingResultBean<WhiteVariantRelationReferrerRef> facadeSelectPage(WhiteVariantRelationReferrerRefCB cb) {
         return doSelectPage(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> PagingResultBean<ENTITY> doSelectPage(WhiteVariantRelationReferrerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> PagingResultBean<ENTITY> doSelectPage(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
         return helpSelectPageInternally(cb, tp);
     }
 
@@ -327,26 +327,26 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Select the cursor by the condition-bean.
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteVariantRelationReferrer&gt;() {
-     *     public void handle(WhiteVariantRelationReferrer entity) {
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">selectCursor</span>(cb, new EntityRowHandler&lt;WhiteVariantRelationReferrerRef&gt;() {
+     *     public void handle(WhiteVariantRelationReferrerRef entity) {
      *         ... = entity.getFoo...();
      *     }
      * });
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
-     * @param entityRowHandler The handler of entity row of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
+     * @param entityRowHandler The handler of entity row of WhiteVariantRelationReferrerRef. (NotNull)
      */
-    public void selectCursor(WhiteVariantRelationReferrerCB cb, EntityRowHandler<WhiteVariantRelationReferrer> entityRowHandler) {
+    public void selectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<WhiteVariantRelationReferrerRef> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
     }
 
-    protected void facadeSelectCursor(WhiteVariantRelationReferrerCB cb, EntityRowHandler<WhiteVariantRelationReferrer> entityRowHandler) {
+    protected void facadeSelectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<WhiteVariantRelationReferrerRef> entityRowHandler) {
         doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrer> void doSelectCursor(WhiteVariantRelationReferrerCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> void doSelectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
         assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
         assertSpecifyDerivedReferrerEntityProperty(cb, tp);
         helpSelectCursorInternally(cb, handler, tp);
@@ -359,8 +359,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Select the scalar value derived by a function from uniquely-selected records. <br />
      * You should call a function method after this method called like as follows:
      * <pre>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
-     *     public void query(WhiteVariantRelationReferrerCB cb) {
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">scalarSelect</span>(Date.class).max(new ScalarQuery() {
+     *     public void query(WhiteVariantRelationReferrerRefCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooDatetime()</span>; <span style="color: #3F7E5E">// required for a function</span>
      *         cb.query().setBarName_PrefixSearch("S");
      *     }
@@ -370,15 +370,15 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * @param resultType The type of result. (NotNull)
      * @return The scalar function object to specify function for scalar value. (NotNull)
      */
-    public <RESULT> HpSLSFunction<WhiteVariantRelationReferrerCB, RESULT> scalarSelect(Class<RESULT> resultType) {
+    public <RESULT> HpSLSFunction<WhiteVariantRelationReferrerRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
 
-    protected <RESULT> HpSLSFunction<WhiteVariantRelationReferrerCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
+    protected <RESULT> HpSLSFunction<WhiteVariantRelationReferrerRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
         return doScalarSelect(resultType, newConditionBean());
     }
 
-    protected <RESULT, CB extends WhiteVariantRelationReferrerCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
+    protected <RESULT, CB extends WhiteVariantRelationReferrerRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
         assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
         cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
         HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
@@ -427,12 +427,12 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param whiteVariantRelationReferrerList The entity list of whiteVariantRelationReferrer. (NotNull)
+     * @param whiteVariantRelationReferrerRefList The entity list of whiteVariantRelationReferrerRef. (NotNull)
      * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, ReferrerLoaderHandler<LoaderOfWhiteVariantRelationReferrer> handler) {
-        xassLRArg(whiteVariantRelationReferrerList, handler);
-        handler.handle(new LoaderOfWhiteVariantRelationReferrer().ready(whiteVariantRelationReferrerList, _behaviorSelector));
+    public void load(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList, ReferrerLoaderHandler<LoaderOfWhiteVariantRelationReferrerRef> handler) {
+        xassLRArg(whiteVariantRelationReferrerRefList, handler);
+        handler.handle(new LoaderOfWhiteVariantRelationReferrerRef().ready(whiteVariantRelationReferrerRefList, _behaviorSelector));
     }
 
     /**
@@ -463,151 +463,35 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * </pre>
      * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
      * The condition-bean, which the set-upper provides, has order by FK before callback.
-     * @param whiteVariantRelationReferrer The entity of whiteVariantRelationReferrer. (NotNull)
+     * @param whiteVariantRelationReferrerRef The entity of whiteVariantRelationReferrerRef. (NotNull)
      * @param handler The callback to handle the referrer loader for actually loading referrer. (NotNull)
      */
-    public void load(WhiteVariantRelationReferrer whiteVariantRelationReferrer, ReferrerLoaderHandler<LoaderOfWhiteVariantRelationReferrer> handler) {
-        xassLRArg(whiteVariantRelationReferrer, handler);
-        handler.handle(new LoaderOfWhiteVariantRelationReferrer().ready(xnewLRAryLs(whiteVariantRelationReferrer), _behaviorSelector));
-    }
-
-    /**
-     * Load referrer of whiteVariantRelationReferrerRefList by the set-upper of referrer. <br />
-     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
-     * <pre>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">loadWhiteVariantRelationReferrerRefList</span>(whiteVariantRelationReferrerList, new ConditionBeanSetupper&lt;WhiteVariantRelationReferrerRefCB&gt;() {
-     *     public void setup(WhiteVariantRelationReferrerRefCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...();
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
-     * <span style="color: #3F7E5E">//    ...</span>
-     * <span style="color: #3F7E5E">//});</span>
-     * for (WhiteVariantRelationReferrer whiteVariantRelationReferrer : whiteVariantRelationReferrerList) {
-     *     ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationReferrerRefList()</span>;
-     * }
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setReferrerId_InScope(pkList);
-     * cb.query().addOrderBy_ReferrerId_Asc();
-     * </pre>
-     * @param whiteVariantRelationReferrerList The entity list of whiteVariantRelationReferrer. (NotNull)
-     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerListGateway<WhiteVariantRelationReferrerRef> loadWhiteVariantRelationReferrerRefList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, ConditionBeanSetupper<WhiteVariantRelationReferrerRefCB> setupper) {
-        xassLRArg(whiteVariantRelationReferrerList, setupper);
-        return doLoadWhiteVariantRelationReferrerRefList(whiteVariantRelationReferrerList, new LoadReferrerOption<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerRef>().xinit(setupper));
-    }
-
-    /**
-     * Load referrer of whiteVariantRelationReferrerRefList by the set-upper of referrer. <br />
-     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
-     * <pre>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">loadWhiteVariantRelationReferrerRefList</span>(whiteVariantRelationReferrerList, new ConditionBeanSetupper&lt;WhiteVariantRelationReferrerRefCB&gt;() {
-     *     public void setup(WhiteVariantRelationReferrerRefCB cb) {
-     *         cb.setupSelect...();
-     *         cb.query().setFoo...(value);
-     *         cb.query().addOrderBy_Bar...();
-     *     }
-     * }); <span style="color: #3F7E5E">// you can load nested referrer from here</span>
-     * <span style="color: #3F7E5E">//}).withNestedList(referrerList -&gt {</span>
-     * <span style="color: #3F7E5E">//    ...</span>
-     * <span style="color: #3F7E5E">//});</span>
-     * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationReferrerRefList()</span>;
-     * </pre>
-     * About internal policy, the value of primary key (and others too) is treated as case-insensitive. <br />
-     * The condition-bean, which the set-upper provides, has settings before callback as follows:
-     * <pre>
-     * cb.query().setReferrerId_InScope(pkList);
-     * cb.query().addOrderBy_ReferrerId_Asc();
-     * </pre>
-     * @param whiteVariantRelationReferrer The entity of whiteVariantRelationReferrer. (NotNull)
-     * @param setupper The callback to set up referrer condition-bean for loading referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerListGateway<WhiteVariantRelationReferrerRef> loadWhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrer whiteVariantRelationReferrer, ConditionBeanSetupper<WhiteVariantRelationReferrerRefCB> setupper) {
-        xassLRArg(whiteVariantRelationReferrer, setupper);
-        return doLoadWhiteVariantRelationReferrerRefList(xnewLRLs(whiteVariantRelationReferrer), new LoadReferrerOption<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerRef>().xinit(setupper));
-    }
-
-    /**
-     * {Refer to overload method that has an argument of the list of entity.} #beforejava8
-     * @param whiteVariantRelationReferrer The entity of whiteVariantRelationReferrer. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    public NestedReferrerListGateway<WhiteVariantRelationReferrerRef> loadWhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrer whiteVariantRelationReferrer, LoadReferrerOption<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerRef> loadReferrerOption) {
-        xassLRArg(whiteVariantRelationReferrer, loadReferrerOption);
-        return loadWhiteVariantRelationReferrerRefList(xnewLRLs(whiteVariantRelationReferrer), loadReferrerOption);
-    }
-
-    /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
-     * @param whiteVariantRelationReferrerList The entity list of whiteVariantRelationReferrer. (NotNull)
-     * @param loadReferrerOption The option of load-referrer. (NotNull)
-     * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
-     */
-    @SuppressWarnings("unchecked")
-    public NestedReferrerListGateway<WhiteVariantRelationReferrerRef> loadWhiteVariantRelationReferrerRefList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, LoadReferrerOption<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerRef> loadReferrerOption) {
-        xassLRArg(whiteVariantRelationReferrerList, loadReferrerOption);
-        if (whiteVariantRelationReferrerList.isEmpty()) { return (NestedReferrerListGateway<WhiteVariantRelationReferrerRef>)EMPTY_NREF_LGWAY; }
-        return doLoadWhiteVariantRelationReferrerRefList(whiteVariantRelationReferrerList, loadReferrerOption);
-    }
-
-    protected NestedReferrerListGateway<WhiteVariantRelationReferrerRef> doLoadWhiteVariantRelationReferrerRefList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, LoadReferrerOption<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerRef> option) {
-        return helpLoadReferrerInternally(whiteVariantRelationReferrerList, option, "whiteVariantRelationReferrerRefList");
+    public void load(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, ReferrerLoaderHandler<LoaderOfWhiteVariantRelationReferrerRef> handler) {
+        xassLRArg(whiteVariantRelationReferrerRef, handler);
+        handler.handle(new LoaderOfWhiteVariantRelationReferrerRef().ready(xnewLRAryLs(whiteVariantRelationReferrerRef), _behaviorSelector));
     }
 
     // ===================================================================================
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
-     * Pull out the list of foreign table 'WhiteVariantRelationMasterFoo'.
-     * @param whiteVariantRelationReferrerList The list of whiteVariantRelationReferrer. (NotNull, EmptyAllowed)
+     * Pull out the list of foreign table 'WhiteVariantRelationReferrer'.
+     * @param whiteVariantRelationReferrerRefList The list of whiteVariantRelationReferrerRef. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<WhiteVariantRelationMasterFoo> pulloutWhiteVariantRelationMasterFooAsVariant(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList)
-    { return helpPulloutInternally(whiteVariantRelationReferrerList, "whiteVariantRelationMasterFooAsVariant"); }
-
-    /**
-     * Pull out the list of foreign table 'WhiteVariantRelationMasterBar'.
-     * @param whiteVariantRelationReferrerList The list of whiteVariantRelationReferrer. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<WhiteVariantRelationMasterBar> pulloutWhiteVariantRelationMasterBarAsVariant(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList)
-    { return helpPulloutInternally(whiteVariantRelationReferrerList, "whiteVariantRelationMasterBarAsVariant"); }
-
-    /**
-     * Pull out the list of foreign table 'WhiteVariantRelationMasterQux'.
-     * @param whiteVariantRelationReferrerList The list of whiteVariantRelationReferrer. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<WhiteVariantRelationMasterQux> pulloutWhiteVariantRelationMasterQuxAsVariantByQue(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList)
-    { return helpPulloutInternally(whiteVariantRelationReferrerList, "whiteVariantRelationMasterQuxAsVariantByQue"); }
-
-    /**
-     * Pull out the list of foreign table 'WhiteVariantRelationMasterCorge'.
-     * @param whiteVariantRelationReferrerList The list of whiteVariantRelationReferrer. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<WhiteVariantRelationMasterCorge> pulloutWhiteVariantRelationMasterCorgeAsVariantByQuxType(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList)
-    { return helpPulloutInternally(whiteVariantRelationReferrerList, "whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
+    public List<WhiteVariantRelationReferrer> pulloutWhiteVariantRelationReferrer(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList)
+    { return helpPulloutInternally(whiteVariantRelationReferrerRefList, "whiteVariantRelationReferrer"); }
 
     // ===================================================================================
     //                                                                      Extract Column
     //                                                                      ==============
     /**
-     * Extract the value list of (single) primary key referrerId.
-     * @param whiteVariantRelationReferrerList The list of whiteVariantRelationReferrer. (NotNull, EmptyAllowed)
+     * Extract the value list of (single) primary key refId.
+     * @param whiteVariantRelationReferrerRefList The list of whiteVariantRelationReferrerRef. (NotNull, EmptyAllowed)
      * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
      */
-    public List<Long> extractReferrerIdList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList)
-    { return helpExtractListInternally(whiteVariantRelationReferrerList, "referrerId"); }
+    public List<Long> extractRefIdList(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList)
+    { return helpExtractListInternally(whiteVariantRelationReferrerRefList, "refId"); }
 
     // ===================================================================================
     //                                                                       Entity Update
@@ -615,29 +499,29 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Insert the entity modified-only. (DefaultConstraintsEnabled)
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * whiteVariantRelationReferrer.setFoo...(value);
-     * whiteVariantRelationReferrer.setBar...(value);
+     * whiteVariantRelationReferrerRef.setFoo...(value);
+     * whiteVariantRelationReferrerRef.setBar...(value);
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.set...;</span>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">insert</span>(whiteVariantRelationReferrer);
-     * ... = whiteVariantRelationReferrer.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.set...;</span>
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">insert</span>(whiteVariantRelationReferrerRef);
+     * ... = whiteVariantRelationReferrerRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
      * <p>While, when the entity is created by select, all columns are registered.</p>
-     * @param whiteVariantRelationReferrer The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteVariantRelationReferrerRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insert(WhiteVariantRelationReferrer whiteVariantRelationReferrer) {
-        doInsert(whiteVariantRelationReferrer, null);
+    public void insert(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
+        doInsert(whiteVariantRelationReferrerRef, null);
     }
 
-    protected void doInsert(WhiteVariantRelationReferrer et, InsertOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrer", et); prepareInsertOption(op); delegateInsert(et, op);
+    protected void doInsert(WhiteVariantRelationReferrerRef et, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareInsertOption(op); delegateInsert(et, op);
     }
 
-    protected void prepareInsertOption(InsertOption<WhiteVariantRelationReferrerCB> op) {
+    protected void prepareInsertOption(InsertOption<WhiteVariantRelationReferrerRefCB> op) {
         if (op == null) { return; } assertInsertOptionStatus(op);
         if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
     }
@@ -647,44 +531,44 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
-     * whiteVariantRelationReferrer.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * whiteVariantRelationReferrer.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
+     * whiteVariantRelationReferrerRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * whiteVariantRelationReferrerRef.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.set...;</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.set...;</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * whiteVariantRelationReferrer.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteVariantRelationReferrerRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteVariantRelationReferrerBhv.<span style="color: #DD4747">update</span>(whiteVariantRelationReferrer);
+     *     whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">update</span>(whiteVariantRelationReferrerRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteVariantRelationReferrer The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void update(WhiteVariantRelationReferrer whiteVariantRelationReferrer) {
-        doUpdate(whiteVariantRelationReferrer, null);
+    public void update(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
+        doUpdate(whiteVariantRelationReferrerRef, null);
     }
 
-    protected void doUpdate(WhiteVariantRelationReferrer et, UpdateOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrer", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
+    protected void doUpdate(WhiteVariantRelationReferrerRef et, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
     }
 
-    protected void prepareUpdateOption(UpdateOption<WhiteVariantRelationReferrerCB> op) {
+    protected void prepareUpdateOption(UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
         if (op == null) { return; } assertUpdateOptionStatus(op);
         if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
         if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
     }
 
-    protected WhiteVariantRelationReferrerCB createCBForVaryingUpdate()
-    { WhiteVariantRelationReferrerCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
+    protected WhiteVariantRelationReferrerRefCB createCBForVaryingUpdate()
+    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
 
-    protected WhiteVariantRelationReferrerCB createCBForSpecifiedUpdate()
-    { WhiteVariantRelationReferrerCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
+    protected WhiteVariantRelationReferrerRefCB createCBForSpecifiedUpdate()
+    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
 
     protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
 
@@ -695,17 +579,17 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
      * <p><span style="color: #DD4747; font-size: 120%">Attention, you cannot update by unique keys instead of PK.</span></p>
-     * @param whiteVariantRelationReferrer The entity of insert or update. (NotNull, ...depends on insert or update)
+     * @param whiteVariantRelationReferrerRef The entity of insert or update. (NotNull, ...depends on insert or update)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void insertOrUpdate(WhiteVariantRelationReferrer whiteVariantRelationReferrer) {
-        doInsertOrUpdate(whiteVariantRelationReferrer, null, null);
+    public void insertOrUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
+        doInsertOrUpdate(whiteVariantRelationReferrerRef, null, null);
     }
 
-    protected void doInsertOrUpdate(WhiteVariantRelationReferrer et, InsertOption<WhiteVariantRelationReferrerCB> iop, UpdateOption<WhiteVariantRelationReferrerCB> uop) {
-        assertObjectNotNull("whiteVariantRelationReferrer", et); helpInsertOrUpdateInternally(et, iop, uop);
+    protected void doInsertOrUpdate(WhiteVariantRelationReferrerRef et, InsertOption<WhiteVariantRelationReferrerRefCB> iop, UpdateOption<WhiteVariantRelationReferrerRefCB> uop) {
+        assertObjectNotNull("whiteVariantRelationReferrerRef", et); helpInsertOrUpdateInternally(et, iop, uop);
     }
 
     protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
@@ -717,29 +601,29 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
-     * whiteVariantRelationReferrer.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
+     * whiteVariantRelationReferrerRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * whiteVariantRelationReferrer.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteVariantRelationReferrerRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
-     *     whiteVariantRelationReferrerBhv.<span style="color: #DD4747">delete</span>(whiteVariantRelationReferrer);
+     *     whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">delete</span>(whiteVariantRelationReferrerRef);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteVariantRelationReferrer The entity of delete. (NotNull, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRef The entity of delete. (NotNull, PrimaryKeyNotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void delete(WhiteVariantRelationReferrer whiteVariantRelationReferrer) {
-        doDelete(whiteVariantRelationReferrer, null);
+    public void delete(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
+        doDelete(whiteVariantRelationReferrerRef, null);
     }
 
-    protected void doDelete(WhiteVariantRelationReferrer et, final DeleteOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrer", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
+    protected void doDelete(WhiteVariantRelationReferrerRef et, final DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
     }
 
-    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationReferrerCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
+    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationReferrerRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
 
     protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
 
@@ -755,36 +639,36 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * <p><span style="color: #DD4747; font-size: 120%">The columns of least common multiple are registered like this:</span></p>
      * <pre>
      * for (... : ...) {
-     *     WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
-     *     whiteVariantRelationReferrer.setFooName("foo");
+     *     WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
+     *     whiteVariantRelationReferrerRef.setFooName("foo");
      *     if (...) {
-     *         whiteVariantRelationReferrer.setFooPrice(123);
+     *         whiteVariantRelationReferrerRef.setFooPrice(123);
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are registered</span>
      *     <span style="color: #3F7E5E">// FOO_PRICE not-called in any entities are registered as null without default value</span>
      *     <span style="color: #3F7E5E">// columns not-called in all entities are registered as null or default value</span>
-     *     whiteVariantRelationReferrerList.add(whiteVariantRelationReferrer);
+     *     whiteVariantRelationReferrerRefList.add(whiteVariantRelationReferrerRef);
      * }
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">batchInsert</span>(whiteVariantRelationReferrerList);
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">batchInsert</span>(whiteVariantRelationReferrerRefList);
      * </pre>
      * <p>While, when the entities are created by select, all columns are registered.</p>
      * <p>And if the table has an identity, entities after the process don't have incremented values.
      * (When you use the (normal) insert(), you can get the incremented value from your entity)</p>
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNullAllowed: when auto-increment)
      * @return The array of inserted count. (NotNull, EmptyAllowed)
      */
-    public int[] batchInsert(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
-        return doBatchInsert(whiteVariantRelationReferrerList, null);
+    public int[] batchInsert(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList) {
+        return doBatchInsert(whiteVariantRelationReferrerRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteVariantRelationReferrer> ls, InsertOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerList", ls);
-        InsertOption<WhiteVariantRelationReferrerCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
+    protected int[] doBatchInsert(List<WhiteVariantRelationReferrerRef> ls, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
+        InsertOption<WhiteVariantRelationReferrerRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
         prepareBatchInsertOption(ls, rlop); // required
         return delegateBatchInsert(ls, rlop);
     }
 
-    protected void prepareBatchInsertOption(List<WhiteVariantRelationReferrer> ls, InsertOption<WhiteVariantRelationReferrerCB> op) {
+    protected void prepareBatchInsertOption(List<WhiteVariantRelationReferrerRef> ls, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
         op.xallowInsertColumnModifiedPropertiesFragmented();
         op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
         prepareInsertOption(op);
@@ -798,36 +682,36 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * <span style="color: #DD4747; font-size: 120%">You should specify same-set columns to all entities like this:</span>
      * <pre>
      * for (... : ...) {
-     *     WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
-     *     whiteVariantRelationReferrer.setFooName("foo");
+     *     WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
+     *     whiteVariantRelationReferrerRef.setFooName("foo");
      *     if (...) {
-     *         whiteVariantRelationReferrer.setFooPrice(123);
+     *         whiteVariantRelationReferrerRef.setFooPrice(123);
      *     } else {
-     *         whiteVariantRelationReferrer.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
-     *         <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setFooDate(...); // *not allowed, fragmented</span>
+     *         whiteVariantRelationReferrerRef.setFooPrice(null); <span style="color: #3F7E5E">// updated as null</span>
+     *         <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setFooDate(...); // *not allowed, fragmented</span>
      *     }
      *     <span style="color: #3F7E5E">// FOO_NAME and FOO_PRICE (and record meta columns) are updated</span>
      *     <span style="color: #3F7E5E">// (others are not updated: their values are kept)</span>
-     *     whiteVariantRelationReferrerList.add(whiteVariantRelationReferrer);
+     *     whiteVariantRelationReferrerRefList.add(whiteVariantRelationReferrerRef);
      * }
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerList);
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerRefList);
      * </pre>
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
-        return doBatchUpdate(whiteVariantRelationReferrerList, null);
+    public int[] batchUpdate(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList) {
+        return doBatchUpdate(whiteVariantRelationReferrerRefList, null);
     }
 
-    protected int[] doBatchUpdate(List<WhiteVariantRelationReferrer> ls, UpdateOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerList", ls);
-        UpdateOption<WhiteVariantRelationReferrerCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
+    protected int[] doBatchUpdate(List<WhiteVariantRelationReferrerRef> ls, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
+        UpdateOption<WhiteVariantRelationReferrerRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
         prepareBatchUpdateOption(ls, rlop); // required
         return delegateBatchUpdate(ls, rlop);
     }
 
-    protected void prepareBatchUpdateOption(List<WhiteVariantRelationReferrer> ls, UpdateOption<WhiteVariantRelationReferrerCB> op) {
+    protected void prepareBatchUpdateOption(List<WhiteVariantRelationReferrerRef> ls, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
         op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
         prepareUpdateOption(op);
     }
@@ -839,15 +723,15 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * This method uses executeBatch() of java.sql.PreparedStatement.
      * <pre>
      * <span style="color: #3F7E5E">// e.g. update two columns only</span>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerList, new SpecifyQuery<WhiteVariantRelationReferrerCB>() {
-     *     public void specify(WhiteVariantRelationReferrerCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerRefList, new SpecifyQuery<WhiteVariantRelationReferrerRefCB>() {
+     *     public void specify(WhiteVariantRelationReferrerRefCB cb) { <span style="color: #3F7E5E">// the two only updated</span>
      *         cb.specify().<span style="color: #DD4747">columnFooStatusCode()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *         cb.specify().<span style="color: #DD4747">columnBarDate()</span>; <span style="color: #3F7E5E">// should be modified in any entities</span>
      *     }
      * });
      * <span style="color: #3F7E5E">// e.g. update every column in the table</span>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerList, new SpecifyQuery<WhiteVariantRelationReferrerCB>() {
-     *     public void specify(WhiteVariantRelationReferrerCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">batchUpdate</span>(whiteVariantRelationReferrerRefList, new SpecifyQuery<WhiteVariantRelationReferrerRefCB>() {
+     *     public void specify(WhiteVariantRelationReferrerRefCB cb) { <span style="color: #3F7E5E">// all columns are updated</span>
      *         cb.specify().<span style="color: #DD4747">columnEveryColumn()</span>; <span style="color: #3F7E5E">// no check of modified properties</span>
      *     }
      * });
@@ -857,13 +741,13 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * and an optimistic lock column because they are specified implicitly.</p>
      * <p>And you should specify columns that are modified in any entities (at least one entity).
      * But if you specify every column, it has no check.</p>
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param updateColumnSpec The specification of update columns. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchUpdate(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, SpecifyQuery<WhiteVariantRelationReferrerCB> updateColumnSpec) {
-        return doBatchUpdate(whiteVariantRelationReferrerList, createSpecifiedUpdateOption(updateColumnSpec));
+    public int[] batchUpdate(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList, SpecifyQuery<WhiteVariantRelationReferrerRefCB> updateColumnSpec) {
+        return doBatchUpdate(whiteVariantRelationReferrerRefList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
     @Override
@@ -873,16 +757,16 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      */
-    public int[] batchDelete(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList) {
-        return doBatchDelete(whiteVariantRelationReferrerList, null);
+    public int[] batchDelete(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList) {
+        return doBatchDelete(whiteVariantRelationReferrerRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteVariantRelationReferrer> ls, DeleteOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerList", ls);
+    protected int[] doBatchDelete(List<WhiteVariantRelationReferrerRef> ls, DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
         prepareDeleteOption(op);
         return delegateBatchDelete(ls, op);
     }
@@ -898,8 +782,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB&gt;() {
-     *     public ConditionBean setup(whiteVariantRelationReferrer entity, WhiteVariantRelationReferrerCB intoCB) {
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB&gt;() {
+     *     public ConditionBean setup(whiteVariantRelationReferrerRef entity, WhiteVariantRelationReferrerRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -921,18 +805,18 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * @param setupper The setup-per of query-insert. (NotNull)
      * @return The inserted count.
      */
-    public int queryInsert(QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB> setupper) {
+    public int queryInsert(QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> setupper) {
         return doQueryInsert(setupper, null);
     }
 
-    protected int doQueryInsert(QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB> sp, InsertOption<WhiteVariantRelationReferrerCB> op) {
+    protected int doQueryInsert(QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> sp, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
         assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteVariantRelationReferrer et = newEntity(); WhiteVariantRelationReferrerCB cb = createCBForQueryInsert();
+        WhiteVariantRelationReferrerRef et = newEntity(); WhiteVariantRelationReferrerRefCB cb = createCBForQueryInsert();
         return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
     }
 
-    protected WhiteVariantRelationReferrerCB createCBForQueryInsert()
-    { WhiteVariantRelationReferrerCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
+    protected WhiteVariantRelationReferrerRefCB createCBForQueryInsert()
+    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
 
     protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
     { return doQueryInsert(downcast(setupper), downcast(op)); }
@@ -940,31 +824,31 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setPK...(value);</span>
-     * whiteVariantRelationReferrer.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setPK...(value);</span>
+     * whiteVariantRelationReferrerRef.setFoo...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set values of common columns</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setRegisterUser(value);</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.set...;</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setRegisterUser(value);</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.set...;</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setVersionNo(value);</span>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setVersionNo(value);</span>
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">queryUpdate</span>(whiteVariantRelationReferrer, cb);
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">queryUpdate</span>(whiteVariantRelationReferrerRef, cb);
      * </pre>
-     * @param whiteVariantRelationReferrer The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param whiteVariantRelationReferrerRef The entity that contains update values. (NotNull, PrimaryKeyNullAllowed)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition.
      */
-    public int queryUpdate(WhiteVariantRelationReferrer whiteVariantRelationReferrer, WhiteVariantRelationReferrerCB cb) {
-        return doQueryUpdate(whiteVariantRelationReferrer, cb, null);
+    public int queryUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB cb) {
+        return doQueryUpdate(whiteVariantRelationReferrerRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteVariantRelationReferrer et, WhiteVariantRelationReferrerCB cb, UpdateOption<WhiteVariantRelationReferrerCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrer", et); assertCBStateValid(cb); prepareUpdateOption(op);
+    protected int doQueryUpdate(WhiteVariantRelationReferrerRef et, WhiteVariantRelationReferrerRefCB cb, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
+        assertObjectNotNull("whiteVariantRelationReferrerRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
     }
 
@@ -974,19 +858,19 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">queryDelete</span>(whiteVariantRelationReferrer, cb);
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">queryDelete</span>(whiteVariantRelationReferrerRef, cb);
      * </pre>
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition.
      */
-    public int queryDelete(WhiteVariantRelationReferrerCB cb) {
+    public int queryDelete(WhiteVariantRelationReferrerRefCB cb) {
         return doQueryDelete(cb, null);
     }
 
-    protected int doQueryDelete(WhiteVariantRelationReferrerCB cb, DeleteOption<WhiteVariantRelationReferrerCB> op) {
+    protected int doQueryDelete(WhiteVariantRelationReferrerRefCB cb, DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
         assertCBStateValid(cb); prepareDeleteOption(op);
         return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
     }
@@ -1004,23 +888,23 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as insert(entity).
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
      * <span style="color: #3F7E5E">// if auto-increment, you don't need to set the PK value</span>
-     * whiteVariantRelationReferrer.setFoo...(value);
-     * whiteVariantRelationReferrer.setBar...(value);
-     * InsertOption<WhiteVariantRelationReferrerCB> option = new InsertOption<WhiteVariantRelationReferrerCB>();
+     * whiteVariantRelationReferrerRef.setFoo...(value);
+     * whiteVariantRelationReferrerRef.setBar...(value);
+     * InsertOption<WhiteVariantRelationReferrerRefCB> option = new InsertOption<WhiteVariantRelationReferrerRefCB>();
      * <span style="color: #3F7E5E">// you can insert by your values for common columns</span>
      * option.disableCommonColumnAutoSetup();
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">varyingInsert</span>(whiteVariantRelationReferrer, option);
-     * ... = whiteVariantRelationReferrer.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">varyingInsert</span>(whiteVariantRelationReferrerRef, option);
+     * ... = whiteVariantRelationReferrerRef.getPK...(); <span style="color: #3F7E5E">// if auto-increment, you can get the value after</span>
      * </pre>
-     * @param whiteVariantRelationReferrer The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
+     * @param whiteVariantRelationReferrerRef The entity of insert. (NotNull, PrimaryKeyNullAllowed: when auto-increment)
      * @param option The option of insert for varying requests. (NotNull)
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsert(WhiteVariantRelationReferrer whiteVariantRelationReferrer, InsertOption<WhiteVariantRelationReferrerCB> option) {
+    public void varyingInsert(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, InsertOption<WhiteVariantRelationReferrerRefCB> option) {
         assertInsertOptionNotNull(option);
-        doInsert(whiteVariantRelationReferrer, option);
+        doInsert(whiteVariantRelationReferrerRef, option);
     }
 
     /**
@@ -1028,62 +912,62 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification), disableCommonColumnAutoSetup(). <br />
      * Other specifications are same as update(entity).
      * <pre>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
-     * whiteVariantRelationReferrer.setPK...(value); <span style="color: #3F7E5E">// required</span>
-     * whiteVariantRelationReferrer.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
+     * whiteVariantRelationReferrerRef.setPK...(value); <span style="color: #3F7E5E">// required</span>
+     * whiteVariantRelationReferrerRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// if exclusive control, the value of concurrency column is required</span>
-     * whiteVariantRelationReferrer.<span style="color: #DD4747">setVersionNo</span>(value);
+     * whiteVariantRelationReferrerRef.<span style="color: #DD4747">setVersionNo</span>(value);
      * try {
      *     <span style="color: #3F7E5E">// you can update by self calculation values</span>
-     *     UpdateOption&lt;WhiteVariantRelationReferrerCB&gt; option = new UpdateOption&lt;WhiteVariantRelationReferrerCB&gt;();
-     *     option.self(new SpecifyQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
-     *         public void specify(WhiteVariantRelationReferrerCB cb) {
+     *     UpdateOption&lt;WhiteVariantRelationReferrerRefCB&gt; option = new UpdateOption&lt;WhiteVariantRelationReferrerRefCB&gt;();
+     *     option.self(new SpecifyQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+     *         public void specify(WhiteVariantRelationReferrerRefCB cb) {
      *             cb.specify().<span style="color: #DD4747">columnXxxCount()</span>;
      *         }
      *     }).plus(1); <span style="color: #3F7E5E">// XXX_COUNT = XXX_COUNT + 1</span>
-     *     whiteVariantRelationReferrerBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteVariantRelationReferrer, option);
+     *     whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">varyingUpdate</span>(whiteVariantRelationReferrerRef, option);
      * } catch (EntityAlreadyUpdatedException e) { <span style="color: #3F7E5E">// if concurrent update</span>
      *     ...
      * }
      * </pre>
-     * @param whiteVariantRelationReferrer The entity of update. (NotNull, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRef The entity of update. (NotNull, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingUpdate(WhiteVariantRelationReferrer whiteVariantRelationReferrer, UpdateOption<WhiteVariantRelationReferrerCB> option) {
+    public void varyingUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, UpdateOption<WhiteVariantRelationReferrerRefCB> option) {
         assertUpdateOptionNotNull(option);
-        doUpdate(whiteVariantRelationReferrer, option);
+        doUpdate(whiteVariantRelationReferrerRef, option);
     }
 
     /**
      * Insert or update the entity with varying requests. (ExclusiveControl: when update) <br />
      * Other specifications are same as insertOrUpdate(entity).
-     * @param whiteVariantRelationReferrer The entity of insert or update. (NotNull)
+     * @param whiteVariantRelationReferrerRef The entity of insert or update. (NotNull)
      * @param insertOption The option of insert for varying requests. (NotNull)
      * @param updateOption The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception EntityAlreadyExistsException When the entity already exists. (unique constraint violation)
      */
-    public void varyingInsertOrUpdate(WhiteVariantRelationReferrer whiteVariantRelationReferrer, InsertOption<WhiteVariantRelationReferrerCB> insertOption, UpdateOption<WhiteVariantRelationReferrerCB> updateOption) {
+    public void varyingInsertOrUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, InsertOption<WhiteVariantRelationReferrerRefCB> insertOption, UpdateOption<WhiteVariantRelationReferrerRefCB> updateOption) {
         assertInsertOptionNotNull(insertOption); assertUpdateOptionNotNull(updateOption);
-        doInsertOrUpdate(whiteVariantRelationReferrer, insertOption, updateOption);
+        doInsertOrUpdate(whiteVariantRelationReferrerRef, insertOption, updateOption);
     }
 
     /**
      * Delete the entity with varying requests. (ZeroUpdateException, NonExclusiveControl) <br />
      * Now a valid option does not exist. <br />
      * Other specifications are same as delete(entity).
-     * @param whiteVariantRelationReferrer The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
+     * @param whiteVariantRelationReferrerRef The entity of delete. (NotNull, PrimaryKeyNotNull, ConcurrencyColumnNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @exception EntityAlreadyDeletedException When the entity has already been deleted. (not found)
      * @exception EntityDuplicatedException When the entity has been duplicated.
      */
-    public void varyingDelete(WhiteVariantRelationReferrer whiteVariantRelationReferrer, DeleteOption<WhiteVariantRelationReferrerCB> option) {
+    public void varyingDelete(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, DeleteOption<WhiteVariantRelationReferrerRefCB> option) {
         assertDeleteOptionNotNull(option);
-        doDelete(whiteVariantRelationReferrer, option);
+        doDelete(whiteVariantRelationReferrerRef, option);
     }
 
     // -----------------------------------------------------
@@ -1094,13 +978,13 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * For example, disableCommonColumnAutoSetup()
      * , disablePrimaryKeyIdentity(), limitBatchInsertLogging(). <br />
      * Other specifications are same as batchInsert(entityList).
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchInsert(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, InsertOption<WhiteVariantRelationReferrerCB> option) {
+    public int[] varyingBatchInsert(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList, InsertOption<WhiteVariantRelationReferrerRefCB> option) {
         assertInsertOptionNotNull(option);
-        return doBatchInsert(whiteVariantRelationReferrerList, option);
+        return doBatchInsert(whiteVariantRelationReferrerRefList, option);
     }
 
     /**
@@ -1108,26 +992,26 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * For example, self(selfCalculationSpecification), specify(updateColumnSpecification)
      * , disableCommonColumnAutoSetup(), limitBatchUpdateLogging(). <br />
      * Other specifications are same as batchUpdate(entityList).
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The array of updated count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchUpdate(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, UpdateOption<WhiteVariantRelationReferrerCB> option) {
+    public int[] varyingBatchUpdate(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList, UpdateOption<WhiteVariantRelationReferrerRefCB> option) {
         assertUpdateOptionNotNull(option);
-        return doBatchUpdate(whiteVariantRelationReferrerList, option);
+        return doBatchUpdate(whiteVariantRelationReferrerRefList, option);
     }
 
     /**
      * Batch-delete the list with varying requests. <br />
      * For example, limitBatchDeleteLogging(). <br />
      * Other specifications are same as batchDelete(entityList).
-     * @param whiteVariantRelationReferrerList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
+     * @param whiteVariantRelationReferrerRefList The list of the entity. (NotNull, EmptyAllowed, PrimaryKeyNotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The array of deleted count. (NotNull, EmptyAllowed)
      */
-    public int[] varyingBatchDelete(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerList, DeleteOption<WhiteVariantRelationReferrerCB> option) {
+    public int[] varyingBatchDelete(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList, DeleteOption<WhiteVariantRelationReferrerRefCB> option) {
         assertDeleteOptionNotNull(option);
-        return doBatchDelete(whiteVariantRelationReferrerList, option);
+        return doBatchDelete(whiteVariantRelationReferrerRefList, option);
     }
 
     // -----------------------------------------------------
@@ -1141,7 +1025,7 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
-    public int varyingQueryInsert(QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB> setupper, InsertOption<WhiteVariantRelationReferrerCB> option) {
+    public int varyingQueryInsert(QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> setupper, InsertOption<WhiteVariantRelationReferrerRefCB> option) {
         assertInsertOptionNotNull(option);
         return doQueryInsert(setupper, option);
     }
@@ -1153,44 +1037,44 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * Other specifications are same as queryUpdate(entity, cb).
      * <pre>
      * <span style="color: #3F7E5E">// ex) you can update by self calculation values</span>
-     * WhiteVariantRelationReferrer whiteVariantRelationReferrer = new WhiteVariantRelationReferrer();
+     * WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef = new WhiteVariantRelationReferrerRef();
      * <span style="color: #3F7E5E">// you don't need to set PK value</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setPK...(value);</span>
-     * whiteVariantRelationReferrer.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setPK...(value);</span>
+     * whiteVariantRelationReferrerRef.setOther...(value); <span style="color: #3F7E5E">// you should set only modified columns</span>
      * <span style="color: #3F7E5E">// you don't need to set a value of concurrency column</span>
      * <span style="color: #3F7E5E">// (auto-increment for version number is valid though non-exclusive control)</span>
-     * <span style="color: #3F7E5E">//whiteVariantRelationReferrer.setVersionNo(value);</span>
-     * WhiteVariantRelationReferrerCB cb = new WhiteVariantRelationReferrerCB();
+     * <span style="color: #3F7E5E">//whiteVariantRelationReferrerRef.setVersionNo(value);</span>
+     * WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB();
      * cb.query().setFoo...(value);
-     * UpdateOption&lt;WhiteVariantRelationReferrerCB&gt; option = new UpdateOption&lt;WhiteVariantRelationReferrerCB&gt;();
-     * option.self(new SpecifyQuery&lt;WhiteVariantRelationReferrerCB&gt;() {
-     *     public void specify(WhiteVariantRelationReferrerCB cb) {
+     * UpdateOption&lt;WhiteVariantRelationReferrerRefCB&gt; option = new UpdateOption&lt;WhiteVariantRelationReferrerRefCB&gt;();
+     * option.self(new SpecifyQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+     *     public void specify(WhiteVariantRelationReferrerRefCB cb) {
      *         cb.specify().<span style="color: #DD4747">columnFooCount()</span>;
      *     }
      * }).plus(1); <span style="color: #3F7E5E">// FOO_COUNT = FOO_COUNT + 1</span>
-     * whiteVariantRelationReferrerBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteVariantRelationReferrer, cb, option);
+     * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">varyingQueryUpdate</span>(whiteVariantRelationReferrerRef, cb, option);
      * </pre>
-     * @param whiteVariantRelationReferrer The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param whiteVariantRelationReferrerRef The entity that contains update values. (NotNull) {PrimaryKeyNotRequired}
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @param option The option of update for varying requests. (NotNull)
      * @return The updated count.
      * @exception NonQueryUpdateNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryUpdate(WhiteVariantRelationReferrer whiteVariantRelationReferrer, WhiteVariantRelationReferrerCB cb, UpdateOption<WhiteVariantRelationReferrerCB> option) {
+    public int varyingQueryUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB cb, UpdateOption<WhiteVariantRelationReferrerRefCB> option) {
         assertUpdateOptionNotNull(option);
-        return doQueryUpdate(whiteVariantRelationReferrer, cb, option);
+        return doQueryUpdate(whiteVariantRelationReferrerRef, cb, option);
     }
 
     /**
      * Delete the several entities by query with varying requests non-strictly. <br />
      * For example, allowNonQueryDelete(). <br />
      * Other specifications are same as batchUpdateNonstrict(entityList).
-     * @param cb The condition-bean of WhiteVariantRelationReferrer. (NotNull)
+     * @param cb The condition-bean of WhiteVariantRelationReferrerRef. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
      * @exception NonQueryDeleteNotAllowedException When the query has no condition (if not allowed).
      */
-    public int varyingQueryDelete(WhiteVariantRelationReferrerCB cb, DeleteOption<WhiteVariantRelationReferrerCB> option) {
+    public int varyingQueryDelete(WhiteVariantRelationReferrerRefCB cb, DeleteOption<WhiteVariantRelationReferrerRefCB> option) {
         assertDeleteOptionNotNull(option);
         return doQueryDelete(cb, option);
     }
@@ -1229,25 +1113,25 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * </pre>
      * @return The basic executor of outside-SQL. (NotNull)
      */
-    public OutsideSqlBasicExecutor<WhiteVariantRelationReferrerBhv> outsideSql() {
+    public OutsideSqlBasicExecutor<WhiteVariantRelationReferrerRefBhv> outsideSql() {
         return doOutsideSql();
     }
 
     // ===================================================================================
     //                                                                       Assist Helper
     //                                                                       =============
-    protected Class<WhiteVariantRelationReferrer> typeOfSelectedEntity() { return WhiteVariantRelationReferrer.class; }
-    protected WhiteVariantRelationReferrer downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteVariantRelationReferrer.class); }
-    protected WhiteVariantRelationReferrerCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationReferrerCB.class); }
+    protected Class<WhiteVariantRelationReferrerRef> typeOfSelectedEntity() { return WhiteVariantRelationReferrerRef.class; }
+    protected WhiteVariantRelationReferrerRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteVariantRelationReferrerRef.class); }
+    protected WhiteVariantRelationReferrerRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationReferrerRefCB.class); }
     @SuppressWarnings("unchecked")
-    protected List<WhiteVariantRelationReferrer> downcast(List<? extends Entity> ls) { return (List<WhiteVariantRelationReferrer>)ls; }
+    protected List<WhiteVariantRelationReferrerRef> downcast(List<? extends Entity> ls) { return (List<WhiteVariantRelationReferrerRef>)ls; }
     @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationReferrerCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationReferrerCB>)op; }
+    protected InsertOption<WhiteVariantRelationReferrerRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationReferrerRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationReferrerCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationReferrerCB>)op; }
+    protected UpdateOption<WhiteVariantRelationReferrerRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationReferrerRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationReferrerCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationReferrerCB>)op; }
+    protected DeleteOption<WhiteVariantRelationReferrerRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationReferrerRefCB>)op; }
     @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB>)sp; }
+    protected QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
+    { return (QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB>)sp; }
 }

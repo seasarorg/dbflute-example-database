@@ -27,21 +27,21 @@ import com.example.dbflute.mysql.dbflute.cbean.cq.bs.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
 
 /**
- * The condition-query for in-line of white_variant_relation_referrer.
+ * The condition-query for in-line of white_variant_relation_referrer_ref.
  * @author DBFlute(AutoGenerator)
  */
-public class WhiteVariantRelationReferrerCIQ extends AbstractBsWhiteVariantRelationReferrerCQ {
+public class WhiteVariantRelationReferrerRefCIQ extends AbstractBsWhiteVariantRelationReferrerRefCQ {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    protected BsWhiteVariantRelationReferrerCQ _myCQ;
+    protected BsWhiteVariantRelationReferrerRefCQ _myCQ;
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public WhiteVariantRelationReferrerCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
-                        , String aliasName, int nestLevel, BsWhiteVariantRelationReferrerCQ myCQ) {
+    public WhiteVariantRelationReferrerRefCIQ(ConditionQuery referrerQuery, SqlClause sqlClause
+                        , String aliasName, int nestLevel, BsWhiteVariantRelationReferrerRefCQ myCQ) {
         super(referrerQuery, sqlClause, aliasName, nestLevel);
         _myCQ = myCQ;
         _foreignPropertyName = _myCQ.xgetForeignPropertyName(); // accept foreign property name
@@ -76,35 +76,24 @@ public class WhiteVariantRelationReferrerCIQ extends AbstractBsWhiteVariantRelat
     // ===================================================================================
     //                                                                Override about Query
     //                                                                ====================
+    protected ConditionValue getCValueRefId() { return _myCQ.getRefId(); }
     protected ConditionValue getCValueReferrerId() { return _myCQ.getReferrerId(); }
-    public String keepReferrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { throwIICBOE("ExistsReferrer"); return null; }
-    public String keepReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { throwIICBOE("NotExistsReferrer"); return null; }
-    public String keepReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { return _myCQ.keepReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList(sq); }
-    public String keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { return _myCQ.keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList(sq); }
-    public String keepReferrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { throwIICBOE("(Specify)DerivedReferrer"); return null; }
-    public String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    public String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefListParameter(Object vl)
-    { throwIICBOE("(Query)DerivedReferrer"); return null; }
-    protected ConditionValue getCValueVariantMasterId() { return _myCQ.getVariantMasterId(); }
-    protected ConditionValue getCValueMasterTypeCode() { return _myCQ.getMasterTypeCode(); }
+    public String keepReferrerId_InScopeRelation_WhiteVariantRelationReferrer(WhiteVariantRelationReferrerCQ sq)
+    { return _myCQ.keepReferrerId_InScopeRelation_WhiteVariantRelationReferrer(sq); }
+    public String keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrer(WhiteVariantRelationReferrerCQ sq)
+    { return _myCQ.keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrer(sq); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
-    public String keepScalarCondition(WhiteVariantRelationReferrerCQ sq)
+    public String keepScalarCondition(WhiteVariantRelationReferrerRefCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }
-    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerCQ sq)
+    public String keepSpecifyMyselfDerived(WhiteVariantRelationReferrerRefCQ sq)
     { throwIICBOE("(Specify)MyselfDerived"); return null;}
-    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerCQ sq)
+    public String keepQueryMyselfDerived(WhiteVariantRelationReferrerRefCQ sq)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
     public String keepQueryMyselfDerivedParameter(Object vl)
     { throwIICBOE("(Query)MyselfDerived"); return null;}
-    public String keepMyselfExists(WhiteVariantRelationReferrerCQ sq)
+    public String keepMyselfExists(WhiteVariantRelationReferrerRefCQ sq)
     { throwIICBOE("MyselfExists"); return null;}
-    public String keepMyselfInScope(WhiteVariantRelationReferrerCQ sq)
+    public String keepMyselfInScope(WhiteVariantRelationReferrerRefCQ sq)
     { throwIICBOE("MyselfInScope"); return null;}
 
     protected void throwIICBOE(String name)
@@ -114,6 +103,6 @@ public class WhiteVariantRelationReferrerCIQ extends AbstractBsWhiteVariantRelat
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')
-    protected String xinCB() { return WhiteVariantRelationReferrerCB.class.getName(); }
-    protected String xinCQ() { return WhiteVariantRelationReferrerCQ.class.getName(); }
+    protected String xinCB() { return WhiteVariantRelationReferrerRefCB.class.getName(); }
+    protected String xinCQ() { return WhiteVariantRelationReferrerRefCQ.class.getName(); }
 }

@@ -285,6 +285,15 @@ create table WHITE_VARIANT_RELATION_REFERRER(
     PRIMARY KEY (REFERRER_ID)
 );
 
+create table WHITE_VARIANT_RELATION_REFERRER_REF(
+    REF_ID BIGINT NOT NULL,
+    REFERRER_ID BIGINT NOT NULL,
+    PRIMARY KEY (REF_ID)
+);
+
+alter table WHITE_VARIANT_RELATION_REFERRER_REF add constraint FK_WHITE_VARIANT_RELATION_REFERRER_REF
+	foreign key (REFERRER_ID) references WHITE_VARIANT_RELATION_REFERRER (REFERRER_ID) ;
+
 -- /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 -- for the test of all-in-one table classification (biz-many-to-one)
 -- = = = = = = = = = =/

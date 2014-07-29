@@ -1,4 +1,17 @@
 map:{
+    ; 2014/07/29 12:58:02 = map:{
+        ; diffDate = 2014/07/29 12:58:02
+        ; tableCount = map:{
+            ; next = 100
+            ; previous = 99
+        }
+        ; tableDiff = map:{
+            ; white_variant_relation_referrer_ref = map:{
+                ; tableName = white_variant_relation_referrer_ref
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/07/25 01:45:59 = map:{
         ; diffDate = 2014/07/25 01:45:59
         ; tableDiff = map:{

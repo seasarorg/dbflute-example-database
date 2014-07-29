@@ -547,6 +547,26 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
             return _whiteVariantRelationMasterCorgeAsVariantByQuxType;
         }
         /**
+         * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
+         * {select max(FOO) from white_variant_relation_referrer_ref where ...) as FOO_MAX} <br />
+         * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
+         * <pre>
+         * cb.specify().<span style="color: #DD4747">derivedWhiteVariantRelationReferrerRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+         *     public void query(WhiteVariantRelationReferrerRefCB subCB) {
+         *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+         *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+         *     }
+         * }, WhiteVariantRelationReferrerRef.<span style="color: #DD4747">ALIAS_foo...</span>);
+         * </pre>
+         * @return The object to set up a function for referrer table. (NotNull)
+         */
+        public HpSDRFunction<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerCQ> derivedWhiteVariantRelationReferrerRefList() {
+            assertDerived("whiteVariantRelationReferrerRefList"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
+            return new HpSDRFunction<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<WhiteVariantRelationReferrerRefCB, WhiteVariantRelationReferrerCQ>() {
+                public void setup(String fn, SubQuery<WhiteVariantRelationReferrerRefCB> sq, WhiteVariantRelationReferrerCQ cq, String al, DerivedReferrerOption op) {
+                    cq.xsderiveWhiteVariantRelationReferrerRefList(fn, sq, al, op); } }, _dbmetaProvider);
+        }
+        /**
          * Prepare for (Specify)MyselfDerived (SubQuery).
          * @return The object to set up a function for myself table. (NotNull)
          */

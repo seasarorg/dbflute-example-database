@@ -48,13 +48,13 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     WHITE_VARIANT_RELATION_MASTER_FOO(AsVariant), WHITE_VARIANT_RELATION_MASTER_BAR(AsVariant), WHITE_VARIANT_RELATION_MASTER_QUX(AsVariantByQue), WHITE_VARIANT_RELATION_MASTER_CORGE(AsVariantByQuxType)
  * 
  * [referrer table]
- *     
+ *     white_variant_relation_referrer_ref
  * 
  * [foreign property]
  *     whiteVariantRelationMasterFooAsVariant, whiteVariantRelationMasterBarAsVariant, whiteVariantRelationMasterQuxAsVariantByQue, whiteVariantRelationMasterCorgeAsVariantByQuxType
  * 
  * [referrer property]
- *     
+ *     whiteVariantRelationReferrerRefList
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
@@ -362,6 +362,26 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
+    /** white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'. */
+    protected List<WhiteVariantRelationReferrerRef> _whiteVariantRelationReferrerRefList;
+
+    /**
+     * [get] white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
+     * @return The entity list of referrer property 'whiteVariantRelationReferrerRefList'. (NotNull: even if no loading, returns empty list)
+     */
+    public List<WhiteVariantRelationReferrerRef> getWhiteVariantRelationReferrerRefList() {
+        if (_whiteVariantRelationReferrerRefList == null) { _whiteVariantRelationReferrerRefList = newReferrerList(); }
+        return _whiteVariantRelationReferrerRefList;
+    }
+
+    /**
+     * [set] white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
+     * @param whiteVariantRelationReferrerRefList The entity list of referrer property 'whiteVariantRelationReferrerRefList'. (NullAllowed)
+     */
+    public void setWhiteVariantRelationReferrerRefList(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList) {
+        _whiteVariantRelationReferrerRefList = whiteVariantRelationReferrerRefList;
+    }
+
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -474,6 +494,8 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
         { sb.append(li).append(xbRDS(_whiteVariantRelationMasterQuxAsVariantByQue, "whiteVariantRelationMasterQuxAsVariantByQue")); }
         if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null)
         { sb.append(li).append(xbRDS(_whiteVariantRelationMasterCorgeAsVariantByQuxType, "whiteVariantRelationMasterCorgeAsVariantByQuxType")); }
+        if (_whiteVariantRelationReferrerRefList != null) { for (Entity et : _whiteVariantRelationReferrerRefList)
+        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteVariantRelationReferrerRefList")); } } }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -510,6 +532,8 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
         if (_whiteVariantRelationMasterBarAsVariant != null) { sb.append(cm).append("whiteVariantRelationMasterBarAsVariant"); }
         if (_whiteVariantRelationMasterQuxAsVariantByQue != null) { sb.append(cm).append("whiteVariantRelationMasterQuxAsVariantByQue"); }
         if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null) { sb.append(cm).append("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
+        if (_whiteVariantRelationReferrerRefList != null && !_whiteVariantRelationReferrerRefList.isEmpty())
+        { sb.append(cm).append("whiteVariantRelationReferrerRefList"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }

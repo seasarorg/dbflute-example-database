@@ -12,6 +12,7 @@ import org.seasar.dbflute.util.Srl;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationMasterFooCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationReferrerCB;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationReferrerRefCB;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterBarBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterQuxBhv;
@@ -323,7 +324,7 @@ public class WxBizManyToOneVariantRelationTest extends UnitContainerTestCase {
         assertEquals(null, fooList.get(2).getHighestPurchasePrice());
     }
 
-    public void test_VariantRelation_DerivedReferrer_union() throws Exception {
+    public void test_VariantRelation_DerivedReferrer_union_basic() throws Exception {
         // ## Arrange ##
         registerTestData();
         WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
@@ -351,6 +352,64 @@ public class WxBizManyToOneVariantRelationTest extends UnitContainerTestCase {
         assertTrue(Srl.containsAll(cb.toDisplaySql(), "union", "max(", // 
                 "where sub1main.VARIANT_MASTER_ID = dfloc.MASTER_FOO_ID", // 
                 "  and sub1main.MASTER_TYPE_CODE = 'FOO'"));
+    }
+
+    public void test_VariantRelation_DerivedReferrer_union_with_nest() throws Exception {
+        // ## Arrange ##
+        registerTestData();
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
+        cb.specify().derivedWhiteVariantRelationReferrerAsVariantList()
+                .max(new SubQuery<WhiteVariantRelationReferrerCB>() {
+                    public void query(WhiteVariantRelationReferrerCB subCB) {
+                        subCB.specify().derivedWhiteVariantRelationReferrerRefList()
+                                .max(new SubQuery<WhiteVariantRelationReferrerRefCB>() {
+                                    public void query(WhiteVariantRelationReferrerRefCB subCB) {
+                                        subCB.specify().columnRefId();
+                                        subCB.query().setReferrerId_LessEqual(100L);
+                                    }
+                                }, null);
+                        subCB.union(new UnionQuery<WhiteVariantRelationReferrerCB>() {
+                            public void query(WhiteVariantRelationReferrerCB unionCB) {
+                                unionCB.query().setMasterTypeCode_Equal_BarCls();
+                            }
+                        });
+                    }
+                }, WhiteVariantRelationMasterFoo.ALIAS_highestPurchasePrice);
+        cb.query().addOrderBy_MasterFooId_Asc();
+
+        // ## Act ##
+        whiteVariantRelationMasterFooBhv.selectList(cb); // expect no exception
+
+        // ## Assert ##
+        String sql = cb.toDisplaySql();
+        assertTrue(sql.contains("select dfloc.MASTER_FOO_ID as MASTER_FOO_ID, dfloc.MASTER_FOO_NAME"));
+        assertTrue(sql.contains("as MASTER_FOO_ID, dfloc.MASTER_FOO_NAME as MASTER_FOO_NAME"));
+        assertTrue(sql.contains("and sub2loc.REFERRER_ID <= 100"));
+        assertTrue(sql.contains("from (select sub1loc.REFERRER_ID, sub1loc.VARIANT_MASTER_ID,"));
+        assertTrue(sql.contains(", sub1loc.VARIANT_MASTER_ID, sub1loc.MASTER_TYPE_CODE"));
+        assertTrue(sql.contains("where sub1loc.MASTER_TYPE_CODE = 'BAR'"));
+        assertTrue(sql.contains("where sub1main.VARIANT_MASTER_ID = dfloc.MASTER_FOO_ID"));
+        assertTrue(sql.contains("  and sub1main.MASTER_TYPE_CODE = 'FOO'"));
+        /*
+        select dfloc.MASTER_FOO_ID as MASTER_FOO_ID, dfloc.MASTER_FOO_NAME as MASTER_FOO_NAME
+             , (select max((select max(sub2loc.REF_ID)
+                              from WHITE_VARIANT_RELATION_REFERRER_REF sub2loc
+                             where sub2loc.REFERRER_ID = sub1main.REFERRER_ID
+                               and sub2loc.REFERRER_ID <= 100
+                       ))
+                  from (select sub1loc.REFERRER_ID, sub1loc.VARIANT_MASTER_ID, sub1loc.MASTER_TYPE_CODE
+                          from WHITE_VARIANT_RELATION_REFERRER sub1loc
+                         union 
+                        select sub1loc.REFERRER_ID, sub1loc.VARIANT_MASTER_ID, sub1loc.MASTER_TYPE_CODE 
+                          from WHITE_VARIANT_RELATION_REFERRER sub1loc 
+                         where sub1loc.MASTER_TYPE_CODE = 'BAR'
+                       ) sub1main
+                 where sub1main.VARIANT_MASTER_ID = dfloc.MASTER_FOO_ID
+                   and sub1main.MASTER_TYPE_CODE = 'FOO'
+               ) as HIGHEST_PURCHASE_PRICE
+          from WHITE_VARIANT_RELATION_MASTER_FOO dfloc 
+         order by dfloc.MASTER_FOO_ID asc
+        */
     }
 
     // ===================================================================================

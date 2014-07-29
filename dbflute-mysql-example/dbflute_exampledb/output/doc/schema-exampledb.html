@@ -1044,12 +1044,23 @@
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> exampledb</td>
 		<td class="relcell"><a href="#white_variant_relation_master_foo" class="additionalfk" title="FK_WHITE_VARIANT_RELATION_FOO: fixedCondition=&quot;$$localAlias$$.MASTER_TYPE_CODE = 'FOO'&quot;">WHITE_VARIANT_RELATION_MASTER_FOO(AsVariant)</a>, <a href="#white_variant_relation_master_bar" class="additionalfk" title="FK_WHITE_VARIANT_RELATION_BAR: fixedCondition=&quot;$$localAlias$$.MASTER_TYPE_CODE = 'BAR'&quot;">WHITE_VARIANT_RELATION_MASTER_BAR(AsVariant)</a>, <a href="#white_variant_relation_master_qux" class="additionalfk" title="FK_WHITE_VARIANT_RELATION_QUX: fixedCondition=&quot;$$localAlias$$.MASTER_TYPE_CODE = 'QUX'\n     and $$foreignAlias$$.QUX_TYPE_CODE = 'Que'&quot;">WHITE_VARIANT_RELATION_MASTER_QUX(AsVariantByQue)</a>, <a href="#white_variant_relation_master_corge" class="additionalfk" title="FK_WHITE_VARIANT_RELATION_CORGE: fixedCondition=&quot;$$localAlias$$.MASTER_TYPE_CODE = 'CORGE'\n     and $$foreignAlias$$.CORGE_TYPE_CODE = /*$$locationBase$$.parameterMapWhiteVariantRelationMasterCorgeAsVariantByQuxType.quxType*/null&quot;">WHITE_VARIANT_RELATION_MASTER_CORGE(AsVariantByQuxType)</a></td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#white_variant_relation_referrer_ref" title="FK_WHITE_VARIANT_RELATION_REFERRER_REF">WHITE_VARIANT_RELATION_REFERRER_REF</a></td>
 		<td class="commentcell"> &nbsp;</td>
 		<td class="subcell">WhiteVariantRelationReferrer</td>
 	</tr>
 	<tr>
 		<td class="rownumcell">93</td>
+		<td class="aliascell"></td>
+		<td><a href="#white_variant_relation_referrer_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=35, columnCount=2">WHITE_VARIANT_RELATION_REFERRER_REF</a></td>
+		<td class="typecell">TABLE</td>
+		<td class="schemacell"> exampledb</td>
+		<td class="relcell"><a href="#white_variant_relation_referrer" title="FK_WHITE_VARIANT_RELATION_REFERRER_REF">WHITE_VARIANT_RELATION_REFERRER</a></td>
+		<td class="relcell">&nbsp;</td>
+		<td class="commentcell"> &nbsp;</td>
+		<td class="subcell">WhiteVariantRelationReferrerRef</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">94</td>
 		<td class="aliascell"></td>
 		<td><a href="#white_xls_man" title="type=TABLE, primaryKey={XLS_MAN_ID}, nameLength=13, columnCount=3">WHITE_XLS_MAN</a></td>
 		<td class="typecell">TABLE</td>
@@ -1060,7 +1071,7 @@
 		<td class="subcell">WhiteXlsMan</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">94</td>
+		<td class="rownumcell">95</td>
 		<td class="aliascell">退会理由</td>
 		<td><a href="#withdrawal_reason" title="type=TABLE, primaryKey={WITHDRAWAL_REASON_CODE}, nameLength=17, columnCount=3">WITHDRAWAL_REASON</a></td>
 		<td class="typecell">TABLE</td>
@@ -1071,7 +1082,7 @@
 		<td class="subcell">WithdrawalReason</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">95</td>
+		<td class="rownumcell">96</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#summary_product" title="type=VIEW, primaryKey={PRODUCT_ID}, nameLength=15, columnCount=5">SUMMARY_PRODUCT</a></td>
 		<td class="typecell">VIEW</td>
@@ -1082,7 +1093,7 @@
 		<td class="subcell">SummaryProduct</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">96</td>
+		<td class="rownumcell">97</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#summary_withdrawal" title="type=VIEW, primaryKey={}, nameLength=18, columnCount=9">SUMMARY_WITHDRAWAL</a></td>
 		<td class="typecell">VIEW</td>
@@ -1093,7 +1104,7 @@
 		<td class="subcell">SummaryWithdrawal</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">97</td>
+		<td class="rownumcell">98</td>
 		<td class="aliascell">VIEW</td>
 		<td><a href="#white_no_pk_relation" title="type=VIEW, primaryKey={}, nameLength=20, columnCount=5">WHITE_NO_PK_RELATION</a></td>
 		<td class="typecell">VIEW</td>
@@ -1104,7 +1115,7 @@
 		<td class="subcell">WhiteNoPkRelation</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">98</td>
+		<td class="rownumcell">99</td>
 		<td class="aliascell">隣の商品</td>
 		<td><a href="#next_schema_product" title="type=TABLE, schema=nextexampledb, primaryKey={PRODUCT_ID}, nameLength=19, columnCount=9">NEXT_SCHEMA_PRODUCT</a></td>
 		<td class="typecell">TABLE</td>
@@ -1115,7 +1126,7 @@
 		<td class="subcell">NextSchemaProduct</td>
 	</tr>
 	<tr>
-		<td class="rownumcell">99</td>
+		<td class="rownumcell">100</td>
 		<td class="aliascell">WXADD</td>
 		<td><a href="#white_additional" title="type=TABLE, primaryKey={foo_id}, nameLength=16, columnCount=4">WHITE_ADDITIONAL</a></td>
 		<td class="typecell">TABLE</td>
@@ -10689,7 +10700,7 @@ WHITE_VARIANT_RELATION_REFERRER
 		<td class="typecell">BIGINT</td>
 		<td class="sizecell"> 19 </td>
 		<td class="relcell">&nbsp;&nbsp;</td>
-		<td class="relcell">&nbsp;</td>
+		<td class="relcell"><a href="#white_variant_relation_referrer_ref" title="FK_WHITE_VARIANT_RELATION_REFERRER_REF">WHITE_VARIANT_RELATION_REFERRER_REF</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="subcell">referrerId</td>
 		<td class="subcell">Long</td>
@@ -10727,6 +10738,65 @@ WHITE_VARIANT_RELATION_REFERRER
 		<td class="relcell"><a href="#VariantRelationMasterTypeCls">VariantRelationMasterType</a></td>
 		<td class="subcell">masterTypeCode</td>
 		<td class="subcell">String</td>
+	</tr>
+</table>
+  <h2 id="white_variant_relation_referrer_ref" title="type=TABLE, primaryKey={REF_ID}, nameLength=35, columnCount=2">
+WHITE_VARIANT_RELATION_REFERRER_REF
+&nbsp;<span class="tableschema">on exampledb</span>
+</h2>
+<table summary="Columns in WHITE_VARIANT_RELATION_REFERRER_REF">
+	<thead>
+	<tr>
+		<th class="rownumhead">No.</th>
+		<th>PK</th>
+		<th>ID</th>
+		<th>UQ</th>
+		<th>IX</th>
+		<th>Not<br />Null</th>
+		<th>Alias</th>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Size</th>
+		<th>ForeignTable</th>
+		<th>ReferrerTable</th>
+		<th>Classification</th>
+		<th>PropertyName</th>
+		<th>JavaType</th>
+	</tr>
+	</thead>
+	<tr>
+		<td class="rownumcell">1</td>
+		<td class="flgcell" title="PRIMARY">o</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_variant_relation_referrer_ref_ref_id">REF_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">refId</td>
+		<td class="subcell">Long</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">2</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell"> &nbsp;</td>
+		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell" title="FK_WHITE_VARIANT_RELATION_REFERRER_REF(REFERRER_ID)">o</td>
+		<td class="flgcell">*</td>
+		<td class="aliascell"></td>
+		<td id="white_variant_relation_referrer_ref_referrer_id">REFERRER_ID</td>
+		<td class="typecell">BIGINT</td>
+		<td class="sizecell"> 19 </td>
+		<td class="relcell"><a href="#white_variant_relation_referrer" title="FK_WHITE_VARIANT_RELATION_REFERRER_REF">WHITE_VARIANT_RELATION_REFERRER</a>&nbsp;</td>
+		<td class="relcell">&nbsp;</td>
+		<td class="relcell"> &nbsp;</td>
+		<td class="subcell">referrerId</td>
+		<td class="subcell">Long</td>
 	</tr>
 </table>
   <h2 id="white_xls_man" title="type=TABLE, primaryKey={XLS_MAN_ID}, nameLength=13, columnCount=3">

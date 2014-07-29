@@ -149,6 +149,123 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
     }
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br />
+     * {exists (select REFERRER_ID from white_variant_relation_referrer_ref where ...)} <br />
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">existsWhiteVariantRelationReferrerRefList</span>(new SubQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+     *     public void query(WhiteVariantRelationReferrerRefCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of WhiteVariantRelationReferrerRefList for 'exists'. (NotNull)
+     */
+    public void existsWhiteVariantRelationReferrerRefList(SubQuery<WhiteVariantRelationReferrerRefCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList(cb.query());
+        registerExistsReferrer(cb.query(), "REFERRER_ID", "REFERRER_ID", pp, "whiteVariantRelationReferrerRefList");
+    }
+    public abstract String keepReferrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select REFERRER_ID from white_variant_relation_referrer_ref where ...)} <br />
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">notExistsWhiteVariantRelationReferrerRefList</span>(new SubQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+     *     public void query(WhiteVariantRelationReferrerRefCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of ReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList for 'not exists'. (NotNull)
+     */
+    public void notExistsWhiteVariantRelationReferrerRefList(SubQuery<WhiteVariantRelationReferrerRefCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList(cb.query());
+        registerNotExistsReferrer(cb.query(), "REFERRER_ID", "REFERRER_ID", pp, "whiteVariantRelationReferrerRefList");
+    }
+    public abstract String keepReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select REFERRER_ID from white_variant_relation_referrer_ref where ...)} <br />
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefAsOne'.
+     * @param subQuery The sub-query of WhiteVariantRelationReferrerRefList for 'in-scope'. (NotNull)
+     */
+    public void inScopeWhiteVariantRelationReferrerRefList(SubQuery<WhiteVariantRelationReferrerRefCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList(cb.query());
+        registerInScopeRelation(cb.query(), "REFERRER_ID", "REFERRER_ID", pp, "whiteVariantRelationReferrerRefList");
+    }
+    public abstract String keepReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select REFERRER_ID from white_variant_relation_referrer_ref where ...)} <br />
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefAsOne'.
+     * @param subQuery The sub-query of WhiteVariantRelationReferrerRefList for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeWhiteVariantRelationReferrerRefList(SubQuery<WhiteVariantRelationReferrerRefCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList(cb.query());
+        registerNotInScopeRelation(cb.query(), "REFERRER_ID", "REFERRER_ID", pp, "whiteVariantRelationReferrerRefList");
+    }
+    public abstract String keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+
+    public void xsderiveWhiteVariantRelationReferrerRefList(String fn, SubQuery<WhiteVariantRelationReferrerRefCB> sq, String al, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String pp = keepReferrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList(cb.query());
+        registerSpecifyDerivedReferrer(fn, cb.query(), "REFERRER_ID", "REFERRER_ID", pp, "whiteVariantRelationReferrerRefList", al, op);
+    }
+    public abstract String keepReferrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+
+    /**
+     * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
+     * {FOO &lt;= (select max(BAR) from white_variant_relation_referrer_ref where ...)} <br />
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">derivedWhiteVariantRelationReferrerRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteVariantRelationReferrerRefCB&gt;() {
+     *     public void query(WhiteVariantRelationReferrerRefCB subCB) {
+     *         subCB.specify().<span style="color: #DD4747">columnFoo...</span> <span style="color: #3F7E5E">// derived column by function</span>
+     *         subCB.query().setBar... <span style="color: #3F7E5E">// referrer condition</span>
+     *     }
+     * }).<span style="color: #DD4747">greaterEqual</span>(123); <span style="color: #3F7E5E">// condition to derived column</span>
+     * </pre>
+     * @return The object to set up a function for referrer table. (NotNull)
+     */
+    public HpQDRFunction<WhiteVariantRelationReferrerRefCB> derivedWhiteVariantRelationReferrerRefList() {
+        return xcreateQDRFunctionWhiteVariantRelationReferrerRefList();
+    }
+    protected HpQDRFunction<WhiteVariantRelationReferrerRefCB> xcreateQDRFunctionWhiteVariantRelationReferrerRefList() {
+        return new HpQDRFunction<WhiteVariantRelationReferrerRefCB>(new HpQDRSetupper<WhiteVariantRelationReferrerRefCB>() {
+            public void setup(String fn, SubQuery<WhiteVariantRelationReferrerRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+                xqderiveWhiteVariantRelationReferrerRefList(fn, sq, rd, vl, op);
+            }
+        });
+    }
+    public void xqderiveWhiteVariantRelationReferrerRefList(String fn, SubQuery<WhiteVariantRelationReferrerRefCB> sq, String rd, Object vl, DerivedReferrerOption op) {
+        assertObjectNotNull("subQuery", sq);
+        WhiteVariantRelationReferrerRefCB cb = new WhiteVariantRelationReferrerRefCB(); cb.xsetupForDerivedReferrer(this);
+        try { lock(); sq.query(cb); } finally { unlock(); }
+        String sqpp = keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList(cb.query()); String prpp = keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefListParameter(vl);
+        registerQueryDerivedReferrer(fn, cb.query(), "REFERRER_ID", "REFERRER_ID", sqpp, "whiteVariantRelationReferrerRefList", rd, vl, prpp, op);
+    }
+    public abstract String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq);
+    public abstract String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefListParameter(Object vl);
+
+    /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * REFERRER_ID: {PK, NotNull, BIGINT(19)}
      */

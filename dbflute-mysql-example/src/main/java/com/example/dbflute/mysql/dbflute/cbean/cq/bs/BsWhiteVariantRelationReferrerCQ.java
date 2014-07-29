@@ -94,6 +94,26 @@ public class BsWhiteVariantRelationReferrerCQ extends AbstractBsWhiteVariantRela
       return _referrerId; }
     protected ConditionValue getCValueReferrerId() { return getReferrerId(); }
 
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_ExistsReferrer_WhiteVariantRelationReferrerRefList", sq); }
+
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_NotExistsReferrer_WhiteVariantRelationReferrerRefList", sq); }
+
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_SpecifyDerivedReferrer_WhiteVariantRelationReferrerRefList", sq); }
+
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_InScopeRelation_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_InScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_InScopeRelation_WhiteVariantRelationReferrerRefList", sq); }
+
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_NotInScopeRelation_WhiteVariantRelationReferrerRefList", sq); }
+
+    public Map<String, WhiteVariantRelationReferrerRefCQ> getReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList() { return xgetSQueMap("referrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList(WhiteVariantRelationReferrerRefCQ sq) { return xkeepSQue("referrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList", sq); }
+    public Map<String, Object> getReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefListParameter() { return xgetSQuePmMap("referrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList"); }
+    public String keepReferrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefListParameter(Object pm) { return xkeepSQuePm("referrerId_QueryDerivedReferrer_WhiteVariantRelationReferrerRefList", pm); }
+
     /** 
      * Add order-by as ascend. <br />
      * REFERRER_ID: {PK, NotNull, BIGINT(19)}

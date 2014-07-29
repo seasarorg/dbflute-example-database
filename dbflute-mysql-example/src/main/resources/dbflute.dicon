@@ -107,6 +107,7 @@
     <component name="whiteVariantRelationMasterFooBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv"/>
     <component name="whiteVariantRelationMasterQuxBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterQuxBhv"/>
     <component name="whiteVariantRelationReferrerBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationReferrerBhv"/>
+    <component name="whiteVariantRelationReferrerRefBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationReferrerRefBhv"/>
     <component name="whiteXlsManBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteXlsManBhv"/>
     <component name="nextSchemaProductBhv" class="com.example.dbflute.mysql.dbflute.exbhv.NextSchemaProductBhv"/>
     <component name="whiteAdditionalBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteAdditionalBhv"/>

@@ -119,7 +119,7 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnReferrerId = cci("REFERRER_ID", "REFERRER_ID", null, null, Long.class, "referrerId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReferrerId = cci("REFERRER_ID", "REFERRER_ID", null, null, Long.class, "referrerId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, null, "whiteVariantRelationReferrerRefList", null);
     protected final ColumnInfo _columnVariantMasterId = cci("VARIANT_MASTER_ID", "VARIANT_MASTER_ID", null, null, Long.class, "variantMasterId", null, false, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationMasterFooAsVariant,whiteVariantRelationMasterBarAsVariant,whiteVariantRelationMasterQuxAsVariantByQue,whiteVariantRelationMasterCorgeAsVariantByQuxType", null, null);
     protected final ColumnInfo _columnMasterTypeCode = cci("MASTER_TYPE_CODE", "MASTER_TYPE_CODE", null, null, String.class, "masterTypeCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, CDef.DefMeta.VariantRelationMasterType);
 
@@ -203,6 +203,14 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
+    /**
+     * white_variant_relation_referrer_ref by REFERRER_ID, named 'whiteVariantRelationReferrerRefList'.
+     * @return The information object of referrer property. (NotNull)
+     */
+    public ReferrerInfo referrerWhiteVariantRelationReferrerRefList() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnReferrerId(), WhiteVariantRelationReferrerRefDbm.getInstance().columnReferrerId());
+        return cri("FK_WHITE_VARIANT_RELATION_REFERRER_REF", "whiteVariantRelationReferrerRefList", this, WhiteVariantRelationReferrerRefDbm.getInstance(), mp, false, "whiteVariantRelationReferrer");
+    }
 
     // ===================================================================================
     //                                                                        Various Info

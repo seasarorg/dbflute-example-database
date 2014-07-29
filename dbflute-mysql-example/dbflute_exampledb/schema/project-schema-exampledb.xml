@@ -1809,6 +1809,20 @@
         <column comment="" dbType="CHAR" javaType="String"
             name="MASTER_TYPE_CODE" required="true" size="3" type="CHAR"/>
     </table>
+    <table name="white_variant_relation_referrer_ref"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long" name="REF_ID"
+            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="REFERRER_ID" required="true" size="19" type="BIGINT"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_variant_relation_referrer" name="FK_WHITE_VARIANT_RELATION_REFERRER_REF">
+            <reference foreign="REFERRER_ID" local="REFERRER_ID"/>
+        </foreign-key>
+        <index name="FK_WHITE_VARIANT_RELATION_REFERRER_REF">
+            <index-column name="REFERRER_ID" position="1"/>
+        </index>
+    </table>
     <table name="white_xls_man" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="XLS_MAN_ID" pkName="PRIMARY"
