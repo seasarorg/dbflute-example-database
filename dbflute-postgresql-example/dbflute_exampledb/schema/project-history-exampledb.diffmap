@@ -1,4 +1,174 @@
 map:{
+    ; 2014/07/30 23:26:40 = map:{
+        ; diffDate = 2014/07/30 23:26:40
+        ; tableCount = map:{
+            ; next = 38
+            ; previous = 52
+        }
+        ; tableDiff = map:{
+            ; vendor_part_man = map:{
+                ; tableName = vendor_part_man
+                ; diffType = ADD
+            }
+            ; vendor_part_man_high = map:{
+                ; tableName = vendor_part_man_high
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports = map:{
+                ; tableName = yahoo_ss_reports
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201406 = map:{
+                ; tableName = yahoo_ss_reports_201406
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201407 = map:{
+                ; tableName = yahoo_ss_reports_201407
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201408 = map:{
+                ; tableName = yahoo_ss_reports_201408
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201409 = map:{
+                ; tableName = yahoo_ss_reports_201409
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201410 = map:{
+                ; tableName = yahoo_ss_reports_201410
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201411 = map:{
+                ; tableName = yahoo_ss_reports_201411
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201412 = map:{
+                ; tableName = yahoo_ss_reports_201412
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201501 = map:{
+                ; tableName = yahoo_ss_reports_201501
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201502 = map:{
+                ; tableName = yahoo_ss_reports_201502
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201503 = map:{
+                ; tableName = yahoo_ss_reports_201503
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201504 = map:{
+                ; tableName = yahoo_ss_reports_201504
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201505 = map:{
+                ; tableName = yahoo_ss_reports_201505
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201506 = map:{
+                ; tableName = yahoo_ss_reports_201506
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201507 = map:{
+                ; tableName = yahoo_ss_reports_201507
+                ; diffType = DELETE
+            }
+            ; yahoo_ss_reports_201508 = map:{
+                ; tableName = yahoo_ss_reports_201508
+                ; diffType = DELETE
+            }
+        }
+        ; procedureDiff = map:{
+            ; exampledb.public.part_man_insert_trigger = map:{
+                ; procedureName = exampledb.public.part_man_insert_trigger
+                ; diffType = ADD
+            }
+            ; exampledb.public.create_month_partition_children_tables = map:{
+                ; procedureName = exampledb.public.create_month_partition_children_tables
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/07/30 18:41:49 = map:{
+        ; diffDate = 2014/07/30 18:41:49
+        ; tableCount = map:{
+            ; next = 52
+            ; previous = 36
+        }
+        ; tableDiff = map:{
+            ; yahoo_ss_reports = map:{
+                ; tableName = yahoo_ss_reports
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201406 = map:{
+                ; tableName = yahoo_ss_reports_201406
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201407 = map:{
+                ; tableName = yahoo_ss_reports_201407
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201408 = map:{
+                ; tableName = yahoo_ss_reports_201408
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201409 = map:{
+                ; tableName = yahoo_ss_reports_201409
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201410 = map:{
+                ; tableName = yahoo_ss_reports_201410
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201411 = map:{
+                ; tableName = yahoo_ss_reports_201411
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201412 = map:{
+                ; tableName = yahoo_ss_reports_201412
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201501 = map:{
+                ; tableName = yahoo_ss_reports_201501
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201502 = map:{
+                ; tableName = yahoo_ss_reports_201502
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201503 = map:{
+                ; tableName = yahoo_ss_reports_201503
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201504 = map:{
+                ; tableName = yahoo_ss_reports_201504
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201505 = map:{
+                ; tableName = yahoo_ss_reports_201505
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201506 = map:{
+                ; tableName = yahoo_ss_reports_201506
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201507 = map:{
+                ; tableName = yahoo_ss_reports_201507
+                ; diffType = ADD
+            }
+            ; yahoo_ss_reports_201508 = map:{
+                ; tableName = yahoo_ss_reports_201508
+                ; diffType = ADD
+            }
+        }
+        ; procedureDiff = map:{
+            ; exampledb.public.create_month_partition_children_tables = map:{
+                ; procedureName = exampledb.public.create_month_partition_children_tables
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/07/25 22:36:12 = map:{
         ; diffDate = 2014/07/25 22:36:12
         ; tableCount = map:{

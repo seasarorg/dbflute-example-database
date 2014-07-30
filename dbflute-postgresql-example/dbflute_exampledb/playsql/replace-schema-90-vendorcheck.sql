@@ -126,6 +126,36 @@ create table VENDOR_INHERIT_NEKO (
 
 
 -- =======================================================================================
+--                                                                               Partition
+--                                                                               =========
+create table VENDOR_PART_MAN (
+    PART_MAN_ID integer NOT NULL PRIMARY KEY,
+    PART_MAN_NAME varchar NOT NULL,
+    PART_MAN_POINT integer NOT NULL,
+    PART_MAN_DATE date
+);
+
+create table VENDOR_PART_MAN_HIGH (
+    like VENDOR_PART_MAN including indexes including defaults including constraints,
+    check(70 <= PART_MAN_POINT and PART_MAN_POINT <= 100)
+) inherits (VENDOR_PART_MAN);
+
+-- #df:begin#
+create function PART_MAN_INSERT_TRIGGER() returns trigger as
+$BODY$
+begin
+  execute 'insert into VENDOR_PART_MAN_HIGH values(($1).*)' USING new;
+  return null;
+end;
+$BODY$
+LANGUAGE plpgsql;
+-- #df:end#
+
+create trigger PART_MAN_INSERT_TRIGGER BEFORE INSERT OR UPDATE ON VENDOR_PART_MAN
+   for each row execute procedure PART_MAN_INSERT_TRIGGER();
+
+
+-- =======================================================================================
 --                                                                             Name Crisis
 --                                                                             ===========
 create table VENDOR_$_DOLLAR (

@@ -743,6 +743,28 @@
             <index-column name="timestamp_index" position="1"/>
         </index>
     </table>
+    <table name="vendor_part_man" schema="exampledb.public" type="TABLE">
+        <column dbType="int4" javaType="Integer" name="part_man_id"
+            pkName="vendor_part_man_pkey" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="part_man_name"
+            required="true" size="2147483647" type="VARCHAR"/>
+        <column dbType="int4" javaType="Integer" name="part_man_point"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="date" javaType="java.util.Date"
+            name="part_man_date" size="13" type="DATE"/>
+    </table>
+    <table name="vendor_part_man_high" schema="exampledb.public" type="TABLE">
+        <column dbType="int4" javaType="Integer" name="part_man_id"
+            pkName="vendor_part_man_high_pkey" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="part_man_name"
+            required="true" size="2147483647" type="VARCHAR"/>
+        <column dbType="int4" javaType="Integer" name="part_man_point"
+            required="true" size="10" type="INTEGER"/>
+        <column dbType="date" javaType="java.util.Date"
+            name="part_man_date" size="13" type="DATE"/>
+    </table>
     <table name="vendor_uuid_bar" schema="exampledb.public" type="TABLE">
         <column dbType="uuid" javaType="java.util.UUID" name="bar_id"
             pkName="vendor_uuid_bar_pkey" primaryKey="true"
@@ -855,11 +877,11 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_login_member_login_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_service_member_service_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
@@ -870,17 +892,20 @@
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="seq_sub_purchase_count" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_not_related_to_table" schema="exampledb.public"/>
         <sequence incrementSize="6" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_purchase" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_sub_display_order" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="seq_sub_purchase_count" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="next_schema_product_product_id_seq" schema="exampledb.nextschema"/>
     </sequenceGroup>
     <procedureGroup>
+        <procedure name="part_man_insert_trigger"
+            schema="exampledb.public" sourceHash="94e6107e"
+            sourceLine="6" sourceSize="98"/>
         <procedure name="sp_in_out_parameter" schema="exampledb.public"
             sourceHash="2b1690a2" sourceLine="6" sourceSize="83"/>
         <procedure name="sp_result_set_parameter"

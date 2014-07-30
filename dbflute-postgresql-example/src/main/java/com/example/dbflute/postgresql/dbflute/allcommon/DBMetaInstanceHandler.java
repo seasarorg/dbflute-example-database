@@ -58,6 +58,8 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("vendor_inherit_neko", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorInheritNekoDbm");
         tmpMap.put("vendor_large_data", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorLargeDataDbm");
         tmpMap.put("vendor_large_data_ref", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorLargeDataRefDbm");
+        tmpMap.put("vendor_part_man", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorPartManDbm");
+        tmpMap.put("vendor_part_man_high", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorPartManHighDbm");
         tmpMap.put("vendor_uuid_bar", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorUuidBarDbm");
         tmpMap.put("vendor_uuid_foo", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.VendorUuidFooDbm");
         tmpMap.put("white_compound_pk", "com.example.dbflute.postgresql.dbflute.bsentity.dbmeta.WhiteCompoundPkDbm");
