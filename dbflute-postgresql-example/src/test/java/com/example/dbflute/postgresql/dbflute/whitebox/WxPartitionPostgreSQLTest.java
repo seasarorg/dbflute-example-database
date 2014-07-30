@@ -23,8 +23,8 @@ public class WxPartitionPostgreSQLTest extends UnitContainerTestCase {
     private VendorPartManHighBhv vendorPartManHighBhv;
 
     // ===================================================================================
-    //                                                                               Basic
-    //                                                                               =====
+    //                                                                              Insert
+    //                                                                              ======
     public void test_insert_sync() throws Exception {
         // ## Arrange ##
         assertEquals(0, vendorPartManHighBhv.selectCount(new VendorPartManHighCB()));
@@ -40,7 +40,7 @@ public class WxPartitionPostgreSQLTest extends UnitContainerTestCase {
         // ## Assert ##
         VendorPartManHighCB highCB = new VendorPartManHighCB();
         ListResultBean<VendorPartManHigh> highList = vendorPartManHighBhv.selectList(highCB);
-        assertHasAnyElement(highList);
+        assertHasOnlyOneElement(highList);
         for (VendorPartManHigh high : highList) {
             log(high);
             assertEquals("sea", high.getPartManName());
@@ -65,6 +65,33 @@ public class WxPartitionPostgreSQLTest extends UnitContainerTestCase {
             String msg = e.getMessage();
             log(msg);
             assertTrue(msg.contains("violates check constraint"));
+        }
+    }
+
+    // ===================================================================================
+    //                                                                              Update
+    //                                                                              ======
+    public void test_update_sync() throws Exception {
+        // ## Arrange ##
+        assertEquals(0, vendorPartManHighBhv.selectCount(new VendorPartManHighCB()));
+        VendorPartMan partMan = new VendorPartMan();
+        partMan.setPartManId(1);
+        partMan.setPartManName("sea");
+        partMan.setPartManPoint(71);
+        partMan.setPartManDate(currentDate());
+        vendorPartManBhv.insert(partMan);
+        partMan.setPartManName("land");
+
+        // ## Act ##
+        vendorPartManBhv.update(partMan);
+
+        // ## Assert ##
+        VendorPartManHighCB highCB = new VendorPartManHighCB();
+        ListResultBean<VendorPartManHigh> highList = vendorPartManHighBhv.selectList(highCB);
+        assertHasOnlyOneElement(highList);
+        for (VendorPartManHigh high : highList) {
+            log(high);
+            assertEquals("land", high.getPartManName());
         }
     }
 }

@@ -151,7 +151,7 @@ $BODY$
 LANGUAGE plpgsql;
 -- #df:end#
 
-create trigger PART_MAN_INSERT_TRIGGER BEFORE INSERT OR UPDATE ON VENDOR_PART_MAN
+create trigger PART_MAN_INSERT_TRIGGER before insert or update on VENDOR_PART_MAN
    for each row execute procedure PART_MAN_INSERT_TRIGGER();
 
 
