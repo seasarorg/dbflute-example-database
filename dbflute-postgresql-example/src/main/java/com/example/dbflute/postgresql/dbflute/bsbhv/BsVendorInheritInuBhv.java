@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
+public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable<VendorInheritInu, VendorInheritInuCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "vendor_inherit_inu"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public VendorInheritInu newEntity() { return new VendorInheritInu(); }
-
     /** {@inheritDoc} */
     public VendorInheritInuCB newConditionBean() { return new VendorInheritInuCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public int selectCount(VendorInheritInuCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(VendorInheritInuCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(VendorInheritInuCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(VendorInheritInuCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorInheritInu> ENTITY doSelectEntity(VendorInheritInuCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends VendorInheritInu> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorInheritInuCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorInheritInu> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorInheritInuCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected VendorInheritInu facadeSelectEntityWithDeletedCheck(VendorInheritInuCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorInheritInu> ENTITY doSelectEntityWithDeletedCheck(VendorInheritInuCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param inuId : PK, NotNull, int4(10). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doSelectByPK(inuId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorInheritInu> ENTITY doSelectByPK(Integer inuId, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorInheritInu> ENTITY doSelectByPK(Integer inuId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(inuId), tp);
     }
 
-    protected <ENTITY extends VendorInheritInu> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer inuId, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorInheritInu> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer inuId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(inuId, tp), inuId);
     }
 
@@ -257,16 +216,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<VendorInheritInu> facadeSelectList(VendorInheritInuCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorInheritInu> ListResultBean<ENTITY> doSelectList(VendorInheritInuCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -296,16 +245,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<VendorInheritInu> facadeSelectPage(VendorInheritInuCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorInheritInu> PagingResultBean<ENTITY> doSelectPage(VendorInheritInuCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -325,16 +264,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(VendorInheritInuCB cb, EntityRowHandler<VendorInheritInu> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(VendorInheritInuCB cb, EntityRowHandler<VendorInheritInu> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorInheritInu> void doSelectCursor(VendorInheritInuCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -358,19 +287,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<VendorInheritInuCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<VendorInheritInuCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends VendorInheritInuCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -494,17 +410,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         doInsert(vendorInheritInu, null);
     }
 
-    protected void doInsert(VendorInheritInu et, InsertOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInu", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<VendorInheritInuCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -531,27 +436,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         doUpdate(vendorInheritInu, null);
     }
 
-    protected void doUpdate(VendorInheritInu et, UpdateOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInu", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<VendorInheritInuCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected VendorInheritInuCB createCBForVaryingUpdate()
-    { VendorInheritInuCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected VendorInheritInuCB createCBForSpecifiedUpdate()
-    { VendorInheritInuCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -564,16 +448,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(VendorInheritInu vendorInheritInu) {
         doInsertOrUpdate(vendorInheritInu, null, null);
     }
-
-    protected void doInsertOrUpdate(VendorInheritInu et, InsertOption<VendorInheritInuCB> iop, UpdateOption<VendorInheritInuCB> uop) {
-        assertObjectNotNull("vendorInheritInu", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -595,17 +469,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public void delete(VendorInheritInu vendorInheritInu) {
         doDelete(vendorInheritInu, null);
     }
-
-    protected void doDelete(VendorInheritInu et, final DeleteOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInu", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<VendorInheritInuCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -638,21 +501,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doBatchInsert(vendorInheritInuList, null);
     }
 
-    protected int[] doBatchInsert(List<VendorInheritInu> ls, InsertOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInuList", ls);
-        InsertOption<VendorInheritInuCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<VendorInheritInu> ls, InsertOption<VendorInheritInuCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -680,20 +528,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<VendorInheritInu> vendorInheritInuList) {
         return doBatchUpdate(vendorInheritInuList, null);
     }
-
-    protected int[] doBatchUpdate(List<VendorInheritInu> ls, UpdateOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInuList", ls);
-        UpdateOption<VendorInheritInuCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<VendorInheritInu> ls, UpdateOption<VendorInheritInuCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -727,10 +561,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(vendorInheritInuList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -742,17 +572,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doBatchDelete(vendorInheritInuList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorInheritInu> ls, DeleteOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInuList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -760,7 +579,7 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * vendorInheritInuBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorInheritInu, VendorInheritInuCB&gt;() {
-     *     public ConditionBean setup(vendorInheritInu entity, VendorInheritInuCB intoCB) {
+     *     public ConditionBean setup(VendorInheritInu entity, VendorInheritInuCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -779,24 +598,12 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<VendorInheritInu, VendorInheritInuCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<VendorInheritInu, VendorInheritInuCB> sp, InsertOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        VendorInheritInu et = newEntity(); VendorInheritInuCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected VendorInheritInuCB createCBForQueryInsert()
-    { VendorInheritInuCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -824,14 +631,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(vendorInheritInu, cb, null);
     }
 
-    protected int doQueryUpdate(VendorInheritInu et, VendorInheritInuCB cb, UpdateOption<VendorInheritInuCB> op) {
-        assertObjectNotNull("vendorInheritInu", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -846,13 +645,6 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     public int queryDelete(VendorInheritInuCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(VendorInheritInuCB cb, DeleteOption<VendorInheritInuCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -998,7 +790,7 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1095,13 +887,11 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<VendorInheritInu> typeOfSelectedEntity() { return VendorInheritInu.class; }
-    protected VendorInheritInu downcast(Entity et) { return helpEntityDowncastInternally(et, VendorInheritInu.class); }
-    protected VendorInheritInuCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, VendorInheritInuCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<VendorInheritInu> downcast(List<? extends Entity> ls) { return (List<VendorInheritInu>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends VendorInheritInu> typeOfSelectedEntity() { return VendorInheritInu.class; }
+    protected Class<VendorInheritInu> typeOfHandlingEntity() { return VendorInheritInu.class; }
+    protected Class<VendorInheritInuCB> typeOfHandlingConditionBean() { return VendorInheritInuCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<VendorInheritInuCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorInheritInuCB>)op; }
     @SuppressWarnings("unchecked")

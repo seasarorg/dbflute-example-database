@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable<WhiteCompoundPkRef, WhiteCompoundPkRefCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_compound_pk_ref"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteCompoundPkRef newEntity() { return new WhiteCompoundPkRef(); }
-
     /** {@inheritDoc} */
     public WhiteCompoundPkRefCB newConditionBean() { return new WhiteCompoundPkRefCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public int selectCount(WhiteCompoundPkRefCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteCompoundPkRefCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteCompoundPkRefCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteCompoundPkRefCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntity(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteCompoundPkRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteCompoundPkRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteCompoundPkRefCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteCompoundPkRef facadeSelectEntityWithDeletedCheck(WhiteCompoundPkRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectEntityWithDeletedCheck(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param multipleFirstId : PK, NotNull, INT(10). (NotNull)
@@ -222,11 +181,11 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doSelectByPK(multipleFirstId, multipleSecondId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectByPK(Integer multipleFirstId, Integer multipleSecondId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteCompoundPkRef> ENTITY doSelectByPK(Integer multipleFirstId, Integer multipleSecondId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(multipleFirstId, multipleSecondId), tp);
     }
 
-    protected <ENTITY extends WhiteCompoundPkRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer multipleFirstId, Integer multipleSecondId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteCompoundPkRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer multipleFirstId, Integer multipleSecondId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(multipleFirstId, multipleSecondId, tp), multipleFirstId, multipleSecondId);
     }
 
@@ -274,16 +233,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteCompoundPkRef> facadeSelectList(WhiteCompoundPkRefCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteCompoundPkRef> ListResultBean<ENTITY> doSelectList(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -313,16 +262,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteCompoundPkRef> facadeSelectPage(WhiteCompoundPkRefCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteCompoundPkRef> PagingResultBean<ENTITY> doSelectPage(WhiteCompoundPkRefCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -342,16 +281,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(WhiteCompoundPkRefCB cb, EntityRowHandler<WhiteCompoundPkRef> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteCompoundPkRefCB cb, EntityRowHandler<WhiteCompoundPkRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteCompoundPkRef> void doSelectCursor(WhiteCompoundPkRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -375,19 +304,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<WhiteCompoundPkRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteCompoundPkRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteCompoundPkRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -549,7 +465,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param whiteCompoundPkRefList The entity list of whiteCompoundPkRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -641,7 +557,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param whiteCompoundPkRefList The entity list of whiteCompoundPkRef. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -695,17 +611,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         doInsert(whiteCompoundPkRef, null);
     }
 
-    protected void doInsert(WhiteCompoundPkRef et, InsertOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRef", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteCompoundPkRefCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -732,27 +637,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         doUpdate(whiteCompoundPkRef, null);
     }
 
-    protected void doUpdate(WhiteCompoundPkRef et, UpdateOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteCompoundPkRefCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteCompoundPkRefCB createCBForVaryingUpdate()
-    { WhiteCompoundPkRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteCompoundPkRefCB createCBForSpecifiedUpdate()
-    { WhiteCompoundPkRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -765,16 +649,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(WhiteCompoundPkRef whiteCompoundPkRef) {
         doInsertOrUpdate(whiteCompoundPkRef, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteCompoundPkRef et, InsertOption<WhiteCompoundPkRefCB> iop, UpdateOption<WhiteCompoundPkRefCB> uop) {
-        assertObjectNotNull("whiteCompoundPkRef", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -796,17 +670,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public void delete(WhiteCompoundPkRef whiteCompoundPkRef) {
         doDelete(whiteCompoundPkRef, null);
     }
-
-    protected void doDelete(WhiteCompoundPkRef et, final DeleteOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteCompoundPkRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -839,21 +702,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doBatchInsert(whiteCompoundPkRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteCompoundPkRef> ls, InsertOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRefList", ls);
-        InsertOption<WhiteCompoundPkRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteCompoundPkRef> ls, InsertOption<WhiteCompoundPkRefCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -881,20 +729,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<WhiteCompoundPkRef> whiteCompoundPkRefList) {
         return doBatchUpdate(whiteCompoundPkRefList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteCompoundPkRef> ls, UpdateOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRefList", ls);
-        UpdateOption<WhiteCompoundPkRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteCompoundPkRef> ls, UpdateOption<WhiteCompoundPkRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -928,10 +762,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(whiteCompoundPkRefList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -943,17 +773,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteCompoundPkRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteCompoundPkRef> ls, DeleteOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRefList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -961,7 +780,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteCompoundPkRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteCompoundPkRef, WhiteCompoundPkRefCB&gt;() {
-     *     public ConditionBean setup(whiteCompoundPkRef entity, WhiteCompoundPkRefCB intoCB) {
+     *     public ConditionBean setup(WhiteCompoundPkRef entity, WhiteCompoundPkRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -980,24 +799,12 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteCompoundPkRef, WhiteCompoundPkRefCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteCompoundPkRef, WhiteCompoundPkRefCB> sp, InsertOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteCompoundPkRef et = newEntity(); WhiteCompoundPkRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteCompoundPkRefCB createCBForQueryInsert()
-    { WhiteCompoundPkRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1025,14 +832,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteCompoundPkRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteCompoundPkRef et, WhiteCompoundPkRefCB cb, UpdateOption<WhiteCompoundPkRefCB> op) {
-        assertObjectNotNull("whiteCompoundPkRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -1047,13 +846,6 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     public int queryDelete(WhiteCompoundPkRefCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteCompoundPkRefCB cb, DeleteOption<WhiteCompoundPkRefCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1199,7 +991,7 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1296,13 +1088,11 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteCompoundPkRef> typeOfSelectedEntity() { return WhiteCompoundPkRef.class; }
-    protected WhiteCompoundPkRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteCompoundPkRef.class); }
-    protected WhiteCompoundPkRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteCompoundPkRefCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteCompoundPkRef> downcast(List<? extends Entity> ls) { return (List<WhiteCompoundPkRef>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteCompoundPkRef> typeOfSelectedEntity() { return WhiteCompoundPkRef.class; }
+    protected Class<WhiteCompoundPkRef> typeOfHandlingEntity() { return WhiteCompoundPkRef.class; }
+    protected Class<WhiteCompoundPkRefCB> typeOfHandlingConditionBean() { return WhiteCompoundPkRefCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteCompoundPkRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteCompoundPkRefCB>)op; }
     @SuppressWarnings("unchecked")

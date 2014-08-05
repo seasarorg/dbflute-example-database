@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable<WhiteIncludeQuery, WhiteIncludeQueryCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_include_query"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteIncludeQuery newEntity() { return new WhiteIncludeQuery(); }
-
     /** {@inheritDoc} */
     public WhiteIncludeQueryCB newConditionBean() { return new WhiteIncludeQueryCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public int selectCount(WhiteIncludeQueryCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteIncludeQueryCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteIncludeQueryCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteIncludeQueryCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectEntity(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteIncludeQueryCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteIncludeQuery facadeSelectEntityWithDeletedCheck(WhiteIncludeQueryCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectEntityWithDeletedCheck(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param includeQueryId : PK, ID, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doSelectByPK(includeQueryId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectByPK(Long includeQueryId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteIncludeQuery> ENTITY doSelectByPK(Long includeQueryId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(includeQueryId), tp);
     }
 
-    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalByPK(Long includeQueryId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteIncludeQuery> OptionalEntity<ENTITY> doSelectOptionalByPK(Long includeQueryId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(includeQueryId, tp), includeQueryId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteIncludeQuery> facadeSelectList(WhiteIncludeQueryCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteIncludeQuery> ListResultBean<ENTITY> doSelectList(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteIncludeQuery> facadeSelectPage(WhiteIncludeQueryCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteIncludeQuery> PagingResultBean<ENTITY> doSelectPage(WhiteIncludeQueryCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<WhiteIncludeQuery> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<WhiteIncludeQuery> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteIncludeQuery> void doSelectCursor(WhiteIncludeQueryCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<WhiteIncludeQueryCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteIncludeQueryCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteIncludeQueryCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -509,17 +425,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         doInsert(whiteIncludeQuery, null);
     }
 
-    protected void doInsert(WhiteIncludeQuery et, InsertOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteIncludeQueryCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -546,27 +451,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         doUpdate(whiteIncludeQuery, null);
     }
 
-    protected void doUpdate(WhiteIncludeQuery et, UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteIncludeQueryCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteIncludeQueryCB createCBForVaryingUpdate()
-    { WhiteIncludeQueryCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteIncludeQueryCB createCBForSpecifiedUpdate()
-    { WhiteIncludeQueryCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -579,16 +463,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(WhiteIncludeQuery whiteIncludeQuery) {
         doInsertOrUpdate(whiteIncludeQuery, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteIncludeQuery et, InsertOption<WhiteIncludeQueryCB> iop, UpdateOption<WhiteIncludeQueryCB> uop) {
-        assertObjectNotNull("whiteIncludeQuery", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -610,17 +484,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public void delete(WhiteIncludeQuery whiteIncludeQuery) {
         doDelete(whiteIncludeQuery, null);
     }
-
-    protected void doDelete(WhiteIncludeQuery et, final DeleteOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteIncludeQueryCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -653,21 +516,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doBatchInsert(whiteIncludeQueryList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteIncludeQuery> ls, InsertOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", ls);
-        InsertOption<WhiteIncludeQueryCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteIncludeQuery> ls, InsertOption<WhiteIncludeQueryCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -695,20 +543,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<WhiteIncludeQuery> whiteIncludeQueryList) {
         return doBatchUpdate(whiteIncludeQueryList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteIncludeQuery> ls, UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", ls);
-        UpdateOption<WhiteIncludeQueryCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteIncludeQuery> ls, UpdateOption<WhiteIncludeQueryCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -742,10 +576,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(whiteIncludeQueryList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -757,17 +587,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteIncludeQueryList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteIncludeQuery> ls, DeleteOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQueryList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -775,7 +594,7 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteIncludeQueryBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteIncludeQuery, WhiteIncludeQueryCB&gt;() {
-     *     public ConditionBean setup(whiteIncludeQuery entity, WhiteIncludeQueryCB intoCB) {
+     *     public ConditionBean setup(WhiteIncludeQuery entity, WhiteIncludeQueryCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -794,24 +613,12 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> sp, InsertOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteIncludeQuery et = newEntity(); WhiteIncludeQueryCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteIncludeQueryCB createCBForQueryInsert()
-    { WhiteIncludeQueryCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -839,14 +646,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteIncludeQuery, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteIncludeQuery et, WhiteIncludeQueryCB cb, UpdateOption<WhiteIncludeQueryCB> op) {
-        assertObjectNotNull("whiteIncludeQuery", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -861,13 +660,6 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     public int queryDelete(WhiteIncludeQueryCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteIncludeQueryCB cb, DeleteOption<WhiteIncludeQueryCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1013,7 +805,7 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1110,13 +902,11 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteIncludeQuery> typeOfSelectedEntity() { return WhiteIncludeQuery.class; }
-    protected WhiteIncludeQuery downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteIncludeQuery.class); }
-    protected WhiteIncludeQueryCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteIncludeQueryCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteIncludeQuery> downcast(List<? extends Entity> ls) { return (List<WhiteIncludeQuery>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteIncludeQuery> typeOfSelectedEntity() { return WhiteIncludeQuery.class; }
+    protected Class<WhiteIncludeQuery> typeOfHandlingEntity() { return WhiteIncludeQuery.class; }
+    protected Class<WhiteIncludeQueryCB> typeOfHandlingConditionBean() { return WhiteIncludeQueryCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteIncludeQueryCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteIncludeQueryCB>)op; }
     @SuppressWarnings("unchecked")

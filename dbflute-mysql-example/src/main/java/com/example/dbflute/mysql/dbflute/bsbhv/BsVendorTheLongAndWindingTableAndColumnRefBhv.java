@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends AbstractBehaviorWritable {
+public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends AbstractBehaviorWritable<VendorTheLongAndWindingTableAndColumnRef, VendorTheLongAndWindingTableAndColumnRefCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "vendor_the_long_and_winding_table_and_column_ref"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public VendorTheLongAndWindingTableAndColumnRef newEntity() { return new VendorTheLongAndWindingTableAndColumnRef(); }
-
     /** {@inheritDoc} */
     public VendorTheLongAndWindingTableAndColumnRefCB newConditionBean() { return new VendorTheLongAndWindingTableAndColumnRefCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public int selectCount(VendorTheLongAndWindingTableAndColumnRefCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(VendorTheLongAndWindingTableAndColumnRefCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(VendorTheLongAndWindingTableAndColumnRefCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(VendorTheLongAndWindingTableAndColumnRefCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> ENTITY doSelectEntity(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected VendorTheLongAndWindingTableAndColumnRef facadeSelectEntityWithDeletedCheck(VendorTheLongAndWindingTableAndColumnRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> ENTITY doSelectEntityWithDeletedCheck(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param theLongAndWindingTableAndColumnRefId : PK, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doSelectByPK(theLongAndWindingTableAndColumnRefId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> ENTITY doSelectByPK(Long theLongAndWindingTableAndColumnRefId, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> ENTITY doSelectByPK(Long theLongAndWindingTableAndColumnRefId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(theLongAndWindingTableAndColumnRefId), tp);
     }
 
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long theLongAndWindingTableAndColumnRefId, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long theLongAndWindingTableAndColumnRefId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(theLongAndWindingTableAndColumnRefId, tp), theLongAndWindingTableAndColumnRefId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<VendorTheLongAndWindingTableAndColumnRef> facadeSelectList(VendorTheLongAndWindingTableAndColumnRefCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> ListResultBean<ENTITY> doSelectList(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<VendorTheLongAndWindingTableAndColumnRef> facadeSelectPage(VendorTheLongAndWindingTableAndColumnRefCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> PagingResultBean<ENTITY> doSelectPage(VendorTheLongAndWindingTableAndColumnRefCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
      */
     public void selectCursor(VendorTheLongAndWindingTableAndColumnRefCB cb, EntityRowHandler<VendorTheLongAndWindingTableAndColumnRef> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(VendorTheLongAndWindingTableAndColumnRefCB cb, EntityRowHandler<VendorTheLongAndWindingTableAndColumnRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorTheLongAndWindingTableAndColumnRef> void doSelectCursor(VendorTheLongAndWindingTableAndColumnRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public <RESULT> HpSLSFunction<VendorTheLongAndWindingTableAndColumnRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<VendorTheLongAndWindingTableAndColumnRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends VendorTheLongAndWindingTableAndColumnRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -517,17 +433,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         doInsert(vendorTheLongAndWindingTableAndColumnRef, null);
     }
 
-    protected void doInsert(VendorTheLongAndWindingTableAndColumnRef et, InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRef", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -554,27 +459,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         doUpdate(vendorTheLongAndWindingTableAndColumnRef, null);
     }
 
-    protected void doUpdate(VendorTheLongAndWindingTableAndColumnRef et, UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected VendorTheLongAndWindingTableAndColumnRefCB createCBForVaryingUpdate()
-    { VendorTheLongAndWindingTableAndColumnRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected VendorTheLongAndWindingTableAndColumnRefCB createCBForSpecifiedUpdate()
-    { VendorTheLongAndWindingTableAndColumnRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -587,16 +471,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public void insertOrUpdate(VendorTheLongAndWindingTableAndColumnRef vendorTheLongAndWindingTableAndColumnRef) {
         doInsertOrUpdate(vendorTheLongAndWindingTableAndColumnRef, null, null);
     }
-
-    protected void doInsertOrUpdate(VendorTheLongAndWindingTableAndColumnRef et, InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> iop, UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> uop) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRef", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -618,17 +492,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public void delete(VendorTheLongAndWindingTableAndColumnRef vendorTheLongAndWindingTableAndColumnRef) {
         doDelete(vendorTheLongAndWindingTableAndColumnRef, null);
     }
-
-    protected void doDelete(VendorTheLongAndWindingTableAndColumnRef et, final DeleteOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<VendorTheLongAndWindingTableAndColumnRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -661,21 +524,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doBatchInsert(vendorTheLongAndWindingTableAndColumnRefList, null);
     }
 
-    protected int[] doBatchInsert(List<VendorTheLongAndWindingTableAndColumnRef> ls, InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRefList", ls);
-        InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<VendorTheLongAndWindingTableAndColumnRef> ls, InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -703,20 +551,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public int[] batchUpdate(List<VendorTheLongAndWindingTableAndColumnRef> vendorTheLongAndWindingTableAndColumnRefList) {
         return doBatchUpdate(vendorTheLongAndWindingTableAndColumnRefList, null);
     }
-
-    protected int[] doBatchUpdate(List<VendorTheLongAndWindingTableAndColumnRef> ls, UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRefList", ls);
-        UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<VendorTheLongAndWindingTableAndColumnRef> ls, UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -750,10 +584,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doBatchUpdate(vendorTheLongAndWindingTableAndColumnRefList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -765,17 +595,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doBatchDelete(vendorTheLongAndWindingTableAndColumnRefList, null);
     }
 
-    protected int[] doBatchDelete(List<VendorTheLongAndWindingTableAndColumnRef> ls, DeleteOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRefList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -783,7 +602,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * vendorTheLongAndWindingTableAndColumnRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorTheLongAndWindingTableAndColumnRef, VendorTheLongAndWindingTableAndColumnRefCB&gt;() {
-     *     public ConditionBean setup(vendorTheLongAndWindingTableAndColumnRef entity, VendorTheLongAndWindingTableAndColumnRefCB intoCB) {
+     *     public ConditionBean setup(VendorTheLongAndWindingTableAndColumnRef entity, VendorTheLongAndWindingTableAndColumnRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -802,24 +621,12 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<VendorTheLongAndWindingTableAndColumnRef, VendorTheLongAndWindingTableAndColumnRefCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<VendorTheLongAndWindingTableAndColumnRef, VendorTheLongAndWindingTableAndColumnRefCB> sp, InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        VendorTheLongAndWindingTableAndColumnRef et = newEntity(); VendorTheLongAndWindingTableAndColumnRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected VendorTheLongAndWindingTableAndColumnRefCB createCBForQueryInsert()
-    { VendorTheLongAndWindingTableAndColumnRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -847,14 +654,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
         return doQueryUpdate(vendorTheLongAndWindingTableAndColumnRef, cb, null);
     }
 
-    protected int doQueryUpdate(VendorTheLongAndWindingTableAndColumnRef et, VendorTheLongAndWindingTableAndColumnRefCB cb, UpdateOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertObjectNotNull("vendorTheLongAndWindingTableAndColumnRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -869,13 +668,6 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     public int queryDelete(VendorTheLongAndWindingTableAndColumnRefCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(VendorTheLongAndWindingTableAndColumnRefCB cb, DeleteOption<VendorTheLongAndWindingTableAndColumnRefCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1021,7 +813,7 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1118,13 +910,11 @@ public abstract class BsVendorTheLongAndWindingTableAndColumnRefBhv extends Abst
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<VendorTheLongAndWindingTableAndColumnRef> typeOfSelectedEntity() { return VendorTheLongAndWindingTableAndColumnRef.class; }
-    protected VendorTheLongAndWindingTableAndColumnRef downcast(Entity et) { return helpEntityDowncastInternally(et, VendorTheLongAndWindingTableAndColumnRef.class); }
-    protected VendorTheLongAndWindingTableAndColumnRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, VendorTheLongAndWindingTableAndColumnRefCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<VendorTheLongAndWindingTableAndColumnRef> downcast(List<? extends Entity> ls) { return (List<VendorTheLongAndWindingTableAndColumnRef>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends VendorTheLongAndWindingTableAndColumnRef> typeOfSelectedEntity() { return VendorTheLongAndWindingTableAndColumnRef.class; }
+    protected Class<VendorTheLongAndWindingTableAndColumnRef> typeOfHandlingEntity() { return VendorTheLongAndWindingTableAndColumnRef.class; }
+    protected Class<VendorTheLongAndWindingTableAndColumnRefCB> typeOfHandlingConditionBean() { return VendorTheLongAndWindingTableAndColumnRefCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<VendorTheLongAndWindingTableAndColumnRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorTheLongAndWindingTableAndColumnRefCB>)op; }
     @SuppressWarnings("unchecked")

@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritable<WhiteStilettoAliasRef, WhiteStilettoAliasRefCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_stiletto_alias_ref"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteStilettoAliasRef newEntity() { return new WhiteStilettoAliasRef(); }
-
     /** {@inheritDoc} */
     public WhiteStilettoAliasRefCB newConditionBean() { return new WhiteStilettoAliasRefCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public int selectCount(WhiteStilettoAliasRefCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteStilettoAliasRefCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteStilettoAliasRefCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteStilettoAliasRefCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteStilettoAliasRef> ENTITY doSelectEntity(WhiteStilettoAliasRefCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteStilettoAliasRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteStilettoAliasRefCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteStilettoAliasRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteStilettoAliasRefCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteStilettoAliasRef facadeSelectEntityWithDeletedCheck(WhiteStilettoAliasRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteStilettoAliasRef> ENTITY doSelectEntityWithDeletedCheck(WhiteStilettoAliasRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param refId : PK, NotNull, INT(10). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doSelectByPK(refId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteStilettoAliasRef> ENTITY doSelectByPK(Integer refId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteStilettoAliasRef> ENTITY doSelectByPK(Integer refId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(refId), tp);
     }
 
-    protected <ENTITY extends WhiteStilettoAliasRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer refId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteStilettoAliasRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer refId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(refId, tp), refId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteStilettoAliasRef> facadeSelectList(WhiteStilettoAliasRefCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteStilettoAliasRef> ListResultBean<ENTITY> doSelectList(WhiteStilettoAliasRefCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteStilettoAliasRef> facadeSelectPage(WhiteStilettoAliasRefCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteStilettoAliasRef> PagingResultBean<ENTITY> doSelectPage(WhiteStilettoAliasRefCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
      */
     public void selectCursor(WhiteStilettoAliasRefCB cb, EntityRowHandler<WhiteStilettoAliasRef> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteStilettoAliasRefCB cb, EntityRowHandler<WhiteStilettoAliasRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteStilettoAliasRef> void doSelectCursor(WhiteStilettoAliasRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public <RESULT> HpSLSFunction<WhiteStilettoAliasRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteStilettoAliasRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteStilettoAliasRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -517,17 +433,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         doInsert(whiteStilettoAliasRef, null);
     }
 
-    protected void doInsert(WhiteStilettoAliasRef et, InsertOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRef", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteStilettoAliasRefCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -554,27 +459,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         doUpdate(whiteStilettoAliasRef, null);
     }
 
-    protected void doUpdate(WhiteStilettoAliasRef et, UpdateOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteStilettoAliasRefCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteStilettoAliasRefCB createCBForVaryingUpdate()
-    { WhiteStilettoAliasRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteStilettoAliasRefCB createCBForSpecifiedUpdate()
-    { WhiteStilettoAliasRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -587,16 +471,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public void insertOrUpdate(WhiteStilettoAliasRef whiteStilettoAliasRef) {
         doInsertOrUpdate(whiteStilettoAliasRef, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteStilettoAliasRef et, InsertOption<WhiteStilettoAliasRefCB> iop, UpdateOption<WhiteStilettoAliasRefCB> uop) {
-        assertObjectNotNull("whiteStilettoAliasRef", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -618,17 +492,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public void delete(WhiteStilettoAliasRef whiteStilettoAliasRef) {
         doDelete(whiteStilettoAliasRef, null);
     }
-
-    protected void doDelete(WhiteStilettoAliasRef et, final DeleteOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteStilettoAliasRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -661,21 +524,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doBatchInsert(whiteStilettoAliasRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteStilettoAliasRef> ls, InsertOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRefList", ls);
-        InsertOption<WhiteStilettoAliasRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteStilettoAliasRef> ls, InsertOption<WhiteStilettoAliasRefCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -703,20 +551,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public int[] batchUpdate(List<WhiteStilettoAliasRef> whiteStilettoAliasRefList) {
         return doBatchUpdate(whiteStilettoAliasRefList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteStilettoAliasRef> ls, UpdateOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRefList", ls);
-        UpdateOption<WhiteStilettoAliasRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteStilettoAliasRef> ls, UpdateOption<WhiteStilettoAliasRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -750,10 +584,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doBatchUpdate(whiteStilettoAliasRefList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -765,17 +595,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doBatchDelete(whiteStilettoAliasRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteStilettoAliasRef> ls, DeleteOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRefList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -783,7 +602,7 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteStilettoAliasRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteStilettoAliasRef, WhiteStilettoAliasRefCB&gt;() {
-     *     public ConditionBean setup(whiteStilettoAliasRef entity, WhiteStilettoAliasRefCB intoCB) {
+     *     public ConditionBean setup(WhiteStilettoAliasRef entity, WhiteStilettoAliasRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -802,24 +621,12 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteStilettoAliasRef, WhiteStilettoAliasRefCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteStilettoAliasRef, WhiteStilettoAliasRefCB> sp, InsertOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteStilettoAliasRef et = newEntity(); WhiteStilettoAliasRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteStilettoAliasRefCB createCBForQueryInsert()
-    { WhiteStilettoAliasRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -847,14 +654,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(whiteStilettoAliasRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteStilettoAliasRef et, WhiteStilettoAliasRefCB cb, UpdateOption<WhiteStilettoAliasRefCB> op) {
-        assertObjectNotNull("whiteStilettoAliasRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -869,13 +668,6 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     public int queryDelete(WhiteStilettoAliasRefCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteStilettoAliasRefCB cb, DeleteOption<WhiteStilettoAliasRefCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1021,7 +813,7 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1118,13 +910,11 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteStilettoAliasRef> typeOfSelectedEntity() { return WhiteStilettoAliasRef.class; }
-    protected WhiteStilettoAliasRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteStilettoAliasRef.class); }
-    protected WhiteStilettoAliasRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteStilettoAliasRefCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteStilettoAliasRef> downcast(List<? extends Entity> ls) { return (List<WhiteStilettoAliasRef>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteStilettoAliasRef> typeOfSelectedEntity() { return WhiteStilettoAliasRef.class; }
+    protected Class<WhiteStilettoAliasRef> typeOfHandlingEntity() { return WhiteStilettoAliasRef.class; }
+    protected Class<WhiteStilettoAliasRefCB> typeOfHandlingConditionBean() { return WhiteStilettoAliasRefCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteStilettoAliasRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteStilettoAliasRefCB>)op; }
     @SuppressWarnings("unchecked")

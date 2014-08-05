@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
+public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable<WhiteNoPkRelation, WhiteNoPkRelationCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_no_pk_relation"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteNoPkRelation newEntity() { return new WhiteNoPkRelation(); }
-
     /** {@inheritDoc} */
     public WhiteNoPkRelationCB newConditionBean() { return new WhiteNoPkRelationCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     public int selectCount(WhiteNoPkRelationCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteNoPkRelationCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteNoPkRelationCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteNoPkRelationCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteNoPkRelation> ENTITY doSelectEntity(WhiteNoPkRelationCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteNoPkRelation> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteNoPkRelationCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteNoPkRelation> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteNoPkRelationCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteNoPkRelation facadeSelectEntityWithDeletedCheck(WhiteNoPkRelationCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteNoPkRelation> ENTITY doSelectEntityWithDeletedCheck(WhiteNoPkRelationCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         List Select
     //                                                                         ===========
@@ -227,16 +186,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     public ListResultBean<WhiteNoPkRelation> selectList(WhiteNoPkRelationCB cb) {
         return facadeSelectList(cb);
     }
-
-    protected ListResultBean<WhiteNoPkRelation> facadeSelectList(WhiteNoPkRelationCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteNoPkRelation> ListResultBean<ENTITY> doSelectList(WhiteNoPkRelationCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -267,16 +216,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteNoPkRelation> facadeSelectPage(WhiteNoPkRelationCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteNoPkRelation> PagingResultBean<ENTITY> doSelectPage(WhiteNoPkRelationCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -296,16 +235,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
      */
     public void selectCursor(WhiteNoPkRelationCB cb, EntityRowHandler<WhiteNoPkRelation> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteNoPkRelationCB cb, EntityRowHandler<WhiteNoPkRelation> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteNoPkRelation> void doSelectCursor(WhiteNoPkRelationCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -329,19 +258,6 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     public <RESULT> HpSLSFunction<WhiteNoPkRelationCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteNoPkRelationCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteNoPkRelationCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -473,11 +389,9 @@ public abstract class BsWhiteNoPkRelationBhv extends AbstractBehaviorReadable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteNoPkRelation> typeOfSelectedEntity() { return WhiteNoPkRelation.class; }
-    protected WhiteNoPkRelation downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteNoPkRelation.class); }
-    protected WhiteNoPkRelationCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteNoPkRelationCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteNoPkRelation> downcast(List<? extends Entity> ls) { return (List<WhiteNoPkRelation>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteNoPkRelation> typeOfSelectedEntity() { return WhiteNoPkRelation.class; }
+    protected Class<WhiteNoPkRelation> typeOfHandlingEntity() { return WhiteNoPkRelation.class; }
+    protected Class<WhiteNoPkRelationCB> typeOfHandlingConditionBean() { return WhiteNoPkRelationCB.class; }
 }

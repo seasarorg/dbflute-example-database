@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable<WhiteDelimiter, WhiteDelimiterCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_delimiter"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteDelimiter newEntity() { return new WhiteDelimiter(); }
-
     /** {@inheritDoc} */
     public WhiteDelimiterCB newConditionBean() { return new WhiteDelimiterCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public int selectCount(WhiteDelimiterCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteDelimiterCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteDelimiterCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteDelimiterCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectEntity(WhiteDelimiterCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteDelimiter> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteDelimiterCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDelimiter> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteDelimiterCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteDelimiter facadeSelectEntityWithDeletedCheck(WhiteDelimiterCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectEntityWithDeletedCheck(WhiteDelimiterCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param delimiterId : PK, ID, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doSelectByPK(delimiterId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPK(Long delimiterId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDelimiter> ENTITY doSelectByPK(Long delimiterId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(delimiterId), tp);
     }
 
-    protected <ENTITY extends WhiteDelimiter> OptionalEntity<ENTITY> doSelectOptionalByPK(Long delimiterId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDelimiter> OptionalEntity<ENTITY> doSelectOptionalByPK(Long delimiterId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(delimiterId, tp), delimiterId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteDelimiter> facadeSelectList(WhiteDelimiterCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDelimiter> ListResultBean<ENTITY> doSelectList(WhiteDelimiterCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteDelimiter> facadeSelectPage(WhiteDelimiterCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDelimiter> PagingResultBean<ENTITY> doSelectPage(WhiteDelimiterCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(WhiteDelimiterCB cb, EntityRowHandler<WhiteDelimiter> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteDelimiterCB cb, EntityRowHandler<WhiteDelimiter> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDelimiter> void doSelectCursor(WhiteDelimiterCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<WhiteDelimiterCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteDelimiterCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteDelimiterCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -509,17 +425,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         doInsert(whiteDelimiter, null);
     }
 
-    protected void doInsert(WhiteDelimiter et, InsertOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiter", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteDelimiterCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -546,27 +451,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         doUpdate(whiteDelimiter, null);
     }
 
-    protected void doUpdate(WhiteDelimiter et, UpdateOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiter", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteDelimiterCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteDelimiterCB createCBForVaryingUpdate()
-    { WhiteDelimiterCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteDelimiterCB createCBForSpecifiedUpdate()
-    { WhiteDelimiterCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -579,16 +463,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(WhiteDelimiter whiteDelimiter) {
         doInsertOrUpdate(whiteDelimiter, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteDelimiter et, InsertOption<WhiteDelimiterCB> iop, UpdateOption<WhiteDelimiterCB> uop) {
-        assertObjectNotNull("whiteDelimiter", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -610,17 +484,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public void delete(WhiteDelimiter whiteDelimiter) {
         doDelete(whiteDelimiter, null);
     }
-
-    protected void doDelete(WhiteDelimiter et, final DeleteOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiter", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteDelimiterCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -653,21 +516,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doBatchInsert(whiteDelimiterList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteDelimiter> ls, InsertOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiterList", ls);
-        InsertOption<WhiteDelimiterCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteDelimiter> ls, InsertOption<WhiteDelimiterCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -695,20 +543,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<WhiteDelimiter> whiteDelimiterList) {
         return doBatchUpdate(whiteDelimiterList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteDelimiter> ls, UpdateOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiterList", ls);
-        UpdateOption<WhiteDelimiterCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteDelimiter> ls, UpdateOption<WhiteDelimiterCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -742,10 +576,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(whiteDelimiterList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -757,17 +587,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteDelimiterList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteDelimiter> ls, DeleteOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiterList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -775,7 +594,7 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteDelimiterBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteDelimiter, WhiteDelimiterCB&gt;() {
-     *     public ConditionBean setup(whiteDelimiter entity, WhiteDelimiterCB intoCB) {
+     *     public ConditionBean setup(WhiteDelimiter entity, WhiteDelimiterCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -794,24 +613,12 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteDelimiter, WhiteDelimiterCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteDelimiter, WhiteDelimiterCB> sp, InsertOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteDelimiter et = newEntity(); WhiteDelimiterCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteDelimiterCB createCBForQueryInsert()
-    { WhiteDelimiterCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -839,14 +646,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteDelimiter, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteDelimiter et, WhiteDelimiterCB cb, UpdateOption<WhiteDelimiterCB> op) {
-        assertObjectNotNull("whiteDelimiter", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -861,13 +660,6 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     public int queryDelete(WhiteDelimiterCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteDelimiterCB cb, DeleteOption<WhiteDelimiterCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1013,7 +805,7 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1110,13 +902,11 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteDelimiter> typeOfSelectedEntity() { return WhiteDelimiter.class; }
-    protected WhiteDelimiter downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteDelimiter.class); }
-    protected WhiteDelimiterCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteDelimiterCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteDelimiter> downcast(List<? extends Entity> ls) { return (List<WhiteDelimiter>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteDelimiter> typeOfSelectedEntity() { return WhiteDelimiter.class; }
+    protected Class<WhiteDelimiter> typeOfHandlingEntity() { return WhiteDelimiter.class; }
+    protected Class<WhiteDelimiterCB> typeOfHandlingConditionBean() { return WhiteDelimiterCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteDelimiterCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDelimiterCB>)op; }
     @SuppressWarnings("unchecked")

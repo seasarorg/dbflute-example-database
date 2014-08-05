@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable<WhiteOnlyOneToOneTo, WhiteOnlyOneToOneToCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_only_one_to_one_to"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteOnlyOneToOneTo newEntity() { return new WhiteOnlyOneToOneTo(); }
-
     /** {@inheritDoc} */
     public WhiteOnlyOneToOneToCB newConditionBean() { return new WhiteOnlyOneToOneToCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public int selectCount(WhiteOnlyOneToOneToCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteOnlyOneToOneToCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteOnlyOneToOneToCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteOnlyOneToOneToCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteOnlyOneToOneTo> ENTITY doSelectEntity(WhiteOnlyOneToOneToCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteOnlyOneToOneToCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteOnlyOneToOneToCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteOnlyOneToOneTo facadeSelectEntityWithDeletedCheck(WhiteOnlyOneToOneToCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteOnlyOneToOneTo> ENTITY doSelectEntityWithDeletedCheck(WhiteOnlyOneToOneToCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param toId : PK, ID, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doSelectByPK(toId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteOnlyOneToOneTo> ENTITY doSelectByPK(Long toId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteOnlyOneToOneTo> ENTITY doSelectByPK(Long toId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(toId), tp);
     }
 
-    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectOptionalByPK(Long toId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectOptionalByPK(Long toId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(toId, tp), toId);
     }
 
@@ -266,7 +225,7 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doSelectByUniqueOf(fromId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectByUniqueOf(Long fromId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteOnlyOneToOneTo> OptionalEntity<ENTITY> doSelectByUniqueOf(Long fromId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(fromId), tp), fromId);
     }
 
@@ -297,16 +256,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteOnlyOneToOneTo> facadeSelectList(WhiteOnlyOneToOneToCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteOnlyOneToOneTo> ListResultBean<ENTITY> doSelectList(WhiteOnlyOneToOneToCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -336,16 +285,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteOnlyOneToOneTo> facadeSelectPage(WhiteOnlyOneToOneToCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteOnlyOneToOneTo> PagingResultBean<ENTITY> doSelectPage(WhiteOnlyOneToOneToCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -365,16 +304,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
      */
     public void selectCursor(WhiteOnlyOneToOneToCB cb, EntityRowHandler<WhiteOnlyOneToOneTo> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteOnlyOneToOneToCB cb, EntityRowHandler<WhiteOnlyOneToOneTo> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteOnlyOneToOneTo> void doSelectCursor(WhiteOnlyOneToOneToCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -398,19 +327,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public <RESULT> HpSLSFunction<WhiteOnlyOneToOneToCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteOnlyOneToOneToCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteOnlyOneToOneToCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -550,17 +466,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         doInsert(whiteOnlyOneToOneTo, null);
     }
 
-    protected void doInsert(WhiteOnlyOneToOneTo et, InsertOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneTo", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteOnlyOneToOneToCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -587,27 +492,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         doUpdate(whiteOnlyOneToOneTo, null);
     }
 
-    protected void doUpdate(WhiteOnlyOneToOneTo et, UpdateOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneTo", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteOnlyOneToOneToCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteOnlyOneToOneToCB createCBForVaryingUpdate()
-    { WhiteOnlyOneToOneToCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteOnlyOneToOneToCB createCBForSpecifiedUpdate()
-    { WhiteOnlyOneToOneToCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -620,16 +504,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public void insertOrUpdate(WhiteOnlyOneToOneTo whiteOnlyOneToOneTo) {
         doInsertOrUpdate(whiteOnlyOneToOneTo, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteOnlyOneToOneTo et, InsertOption<WhiteOnlyOneToOneToCB> iop, UpdateOption<WhiteOnlyOneToOneToCB> uop) {
-        assertObjectNotNull("whiteOnlyOneToOneTo", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -651,17 +525,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public void delete(WhiteOnlyOneToOneTo whiteOnlyOneToOneTo) {
         doDelete(whiteOnlyOneToOneTo, null);
     }
-
-    protected void doDelete(WhiteOnlyOneToOneTo et, final DeleteOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneTo", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteOnlyOneToOneToCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -694,21 +557,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doBatchInsert(whiteOnlyOneToOneToList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteOnlyOneToOneTo> ls, InsertOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneToList", ls);
-        InsertOption<WhiteOnlyOneToOneToCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteOnlyOneToOneTo> ls, InsertOption<WhiteOnlyOneToOneToCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -736,20 +584,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public int[] batchUpdate(List<WhiteOnlyOneToOneTo> whiteOnlyOneToOneToList) {
         return doBatchUpdate(whiteOnlyOneToOneToList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteOnlyOneToOneTo> ls, UpdateOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneToList", ls);
-        UpdateOption<WhiteOnlyOneToOneToCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteOnlyOneToOneTo> ls, UpdateOption<WhiteOnlyOneToOneToCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -783,10 +617,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doBatchUpdate(whiteOnlyOneToOneToList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -798,17 +628,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doBatchDelete(whiteOnlyOneToOneToList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteOnlyOneToOneTo> ls, DeleteOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneToList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -816,7 +635,7 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteOnlyOneToOneToBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteOnlyOneToOneTo, WhiteOnlyOneToOneToCB&gt;() {
-     *     public ConditionBean setup(whiteOnlyOneToOneTo entity, WhiteOnlyOneToOneToCB intoCB) {
+     *     public ConditionBean setup(WhiteOnlyOneToOneTo entity, WhiteOnlyOneToOneToCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -835,24 +654,12 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteOnlyOneToOneTo, WhiteOnlyOneToOneToCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteOnlyOneToOneTo, WhiteOnlyOneToOneToCB> sp, InsertOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteOnlyOneToOneTo et = newEntity(); WhiteOnlyOneToOneToCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteOnlyOneToOneToCB createCBForQueryInsert()
-    { WhiteOnlyOneToOneToCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -880,14 +687,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
         return doQueryUpdate(whiteOnlyOneToOneTo, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteOnlyOneToOneTo et, WhiteOnlyOneToOneToCB cb, UpdateOption<WhiteOnlyOneToOneToCB> op) {
-        assertObjectNotNull("whiteOnlyOneToOneTo", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -902,13 +701,6 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     public int queryDelete(WhiteOnlyOneToOneToCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteOnlyOneToOneToCB cb, DeleteOption<WhiteOnlyOneToOneToCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1054,7 +846,7 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1151,13 +943,11 @@ public abstract class BsWhiteOnlyOneToOneToBhv extends AbstractBehaviorWritable 
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteOnlyOneToOneTo> typeOfSelectedEntity() { return WhiteOnlyOneToOneTo.class; }
-    protected WhiteOnlyOneToOneTo downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteOnlyOneToOneTo.class); }
-    protected WhiteOnlyOneToOneToCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteOnlyOneToOneToCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteOnlyOneToOneTo> downcast(List<? extends Entity> ls) { return (List<WhiteOnlyOneToOneTo>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteOnlyOneToOneTo> typeOfSelectedEntity() { return WhiteOnlyOneToOneTo.class; }
+    protected Class<WhiteOnlyOneToOneTo> typeOfHandlingEntity() { return WhiteOnlyOneToOneTo.class; }
+    protected Class<WhiteOnlyOneToOneToCB> typeOfHandlingConditionBean() { return WhiteOnlyOneToOneToCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteOnlyOneToOneToCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteOnlyOneToOneToCB>)op; }
     @SuppressWarnings("unchecked")

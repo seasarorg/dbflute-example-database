@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWritable<WhiteImplicitConvInteger, WhiteImplicitConvIntegerCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_implicit_conv_integer"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteImplicitConvInteger newEntity() { return new WhiteImplicitConvInteger(); }
-
     /** {@inheritDoc} */
     public WhiteImplicitConvIntegerCB newConditionBean() { return new WhiteImplicitConvIntegerCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public int selectCount(WhiteImplicitConvIntegerCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteImplicitConvIntegerCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteImplicitConvIntegerCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteImplicitConvIntegerCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntity(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteImplicitConvInteger> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteImplicitConvInteger> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteImplicitConvIntegerCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteImplicitConvInteger facadeSelectEntityWithDeletedCheck(WhiteImplicitConvIntegerCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectEntityWithDeletedCheck(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param implicitConvIntegerId : PK, NotNull, INT(10). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doSelectByPK(implicitConvIntegerId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectByPK(Integer implicitConvIntegerId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteImplicitConvInteger> ENTITY doSelectByPK(Integer implicitConvIntegerId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(implicitConvIntegerId), tp);
     }
 
-    protected <ENTITY extends WhiteImplicitConvInteger> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer implicitConvIntegerId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteImplicitConvInteger> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer implicitConvIntegerId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(implicitConvIntegerId, tp), implicitConvIntegerId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteImplicitConvInteger> facadeSelectList(WhiteImplicitConvIntegerCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteImplicitConvInteger> ListResultBean<ENTITY> doSelectList(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteImplicitConvInteger> facadeSelectPage(WhiteImplicitConvIntegerCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteImplicitConvInteger> PagingResultBean<ENTITY> doSelectPage(WhiteImplicitConvIntegerCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
      */
     public void selectCursor(WhiteImplicitConvIntegerCB cb, EntityRowHandler<WhiteImplicitConvInteger> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteImplicitConvIntegerCB cb, EntityRowHandler<WhiteImplicitConvInteger> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteImplicitConvInteger> void doSelectCursor(WhiteImplicitConvIntegerCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public <RESULT> HpSLSFunction<WhiteImplicitConvIntegerCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteImplicitConvIntegerCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteImplicitConvIntegerCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -547,7 +463,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param whiteImplicitConvIntegerList The entity list of whiteImplicitConvInteger. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -639,7 +555,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param whiteImplicitConvIntegerList The entity list of whiteImplicitConvInteger. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -709,17 +625,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         doInsert(whiteImplicitConvInteger, null);
     }
 
-    protected void doInsert(WhiteImplicitConvInteger et, InsertOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvInteger", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteImplicitConvIntegerCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -746,27 +651,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         doUpdate(whiteImplicitConvInteger, null);
     }
 
-    protected void doUpdate(WhiteImplicitConvInteger et, UpdateOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvInteger", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteImplicitConvIntegerCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteImplicitConvIntegerCB createCBForVaryingUpdate()
-    { WhiteImplicitConvIntegerCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteImplicitConvIntegerCB createCBForSpecifiedUpdate()
-    { WhiteImplicitConvIntegerCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -779,16 +663,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public void insertOrUpdate(WhiteImplicitConvInteger whiteImplicitConvInteger) {
         doInsertOrUpdate(whiteImplicitConvInteger, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteImplicitConvInteger et, InsertOption<WhiteImplicitConvIntegerCB> iop, UpdateOption<WhiteImplicitConvIntegerCB> uop) {
-        assertObjectNotNull("whiteImplicitConvInteger", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -810,17 +684,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public void delete(WhiteImplicitConvInteger whiteImplicitConvInteger) {
         doDelete(whiteImplicitConvInteger, null);
     }
-
-    protected void doDelete(WhiteImplicitConvInteger et, final DeleteOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvInteger", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteImplicitConvIntegerCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -853,21 +716,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doBatchInsert(whiteImplicitConvIntegerList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteImplicitConvInteger> ls, InsertOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvIntegerList", ls);
-        InsertOption<WhiteImplicitConvIntegerCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteImplicitConvInteger> ls, InsertOption<WhiteImplicitConvIntegerCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -895,20 +743,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public int[] batchUpdate(List<WhiteImplicitConvInteger> whiteImplicitConvIntegerList) {
         return doBatchUpdate(whiteImplicitConvIntegerList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteImplicitConvInteger> ls, UpdateOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvIntegerList", ls);
-        UpdateOption<WhiteImplicitConvIntegerCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteImplicitConvInteger> ls, UpdateOption<WhiteImplicitConvIntegerCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -942,10 +776,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doBatchUpdate(whiteImplicitConvIntegerList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -957,17 +787,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doBatchDelete(whiteImplicitConvIntegerList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteImplicitConvInteger> ls, DeleteOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvIntegerList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -975,7 +794,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteImplicitConvIntegerBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteImplicitConvInteger, WhiteImplicitConvIntegerCB&gt;() {
-     *     public ConditionBean setup(whiteImplicitConvInteger entity, WhiteImplicitConvIntegerCB intoCB) {
+     *     public ConditionBean setup(WhiteImplicitConvInteger entity, WhiteImplicitConvIntegerCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -994,24 +813,12 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteImplicitConvInteger, WhiteImplicitConvIntegerCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteImplicitConvInteger, WhiteImplicitConvIntegerCB> sp, InsertOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteImplicitConvInteger et = newEntity(); WhiteImplicitConvIntegerCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteImplicitConvIntegerCB createCBForQueryInsert()
-    { WhiteImplicitConvIntegerCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1039,14 +846,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
         return doQueryUpdate(whiteImplicitConvInteger, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteImplicitConvInteger et, WhiteImplicitConvIntegerCB cb, UpdateOption<WhiteImplicitConvIntegerCB> op) {
-        assertObjectNotNull("whiteImplicitConvInteger", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -1061,13 +860,6 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     public int queryDelete(WhiteImplicitConvIntegerCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteImplicitConvIntegerCB cb, DeleteOption<WhiteImplicitConvIntegerCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1213,7 +1005,7 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1310,13 +1102,11 @@ public abstract class BsWhiteImplicitConvIntegerBhv extends AbstractBehaviorWrit
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteImplicitConvInteger> typeOfSelectedEntity() { return WhiteImplicitConvInteger.class; }
-    protected WhiteImplicitConvInteger downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteImplicitConvInteger.class); }
-    protected WhiteImplicitConvIntegerCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteImplicitConvIntegerCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteImplicitConvInteger> downcast(List<? extends Entity> ls) { return (List<WhiteImplicitConvInteger>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteImplicitConvInteger> typeOfSelectedEntity() { return WhiteImplicitConvInteger.class; }
+    protected Class<WhiteImplicitConvInteger> typeOfHandlingEntity() { return WhiteImplicitConvInteger.class; }
+    protected Class<WhiteImplicitConvIntegerCB> typeOfHandlingConditionBean() { return WhiteImplicitConvIntegerCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteImplicitConvIntegerCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteImplicitConvIntegerCB>)op; }
     @SuppressWarnings("unchecked")

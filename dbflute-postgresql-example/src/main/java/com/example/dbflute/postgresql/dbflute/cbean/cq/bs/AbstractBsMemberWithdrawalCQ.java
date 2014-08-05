@@ -1212,6 +1212,9 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
         return DBFluteConfig.getInstance().getFullTextSearchOperand();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -1248,8 +1251,9 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
+
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1276,6 +1280,11 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
         final ManualOrderBean manualOrderBean = new ManualOrderBean();
         manualOrderBean.acceptOrderValueList(orderValueList);
         withManualOrder(manualOrderBean);
+    }
+
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
     }
 
     // ===================================================================================

@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWritable<WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_split_multiple_fk_base"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteSplitMultipleFkBase newEntity() { return new WhiteSplitMultipleFkBase(); }
-
     /** {@inheritDoc} */
     public WhiteSplitMultipleFkBaseCB newConditionBean() { return new WhiteSplitMultipleFkBaseCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public int selectCount(WhiteSplitMultipleFkBaseCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteSplitMultipleFkBaseCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteSplitMultipleFkBaseCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteSplitMultipleFkBaseCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntity(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteSplitMultipleFkBase> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteSplitMultipleFkBase> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteSplitMultipleFkBaseCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteSplitMultipleFkBase facadeSelectEntityWithDeletedCheck(WhiteSplitMultipleFkBaseCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectEntityWithDeletedCheck(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param baseId : PK, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doSelectByPK(baseId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPK(Long baseId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteSplitMultipleFkBase> ENTITY doSelectByPK(Long baseId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(baseId), tp);
     }
 
-    protected <ENTITY extends WhiteSplitMultipleFkBase> OptionalEntity<ENTITY> doSelectOptionalByPK(Long baseId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteSplitMultipleFkBase> OptionalEntity<ENTITY> doSelectOptionalByPK(Long baseId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(baseId, tp), baseId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteSplitMultipleFkBase> facadeSelectList(WhiteSplitMultipleFkBaseCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteSplitMultipleFkBase> ListResultBean<ENTITY> doSelectList(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteSplitMultipleFkBase> facadeSelectPage(WhiteSplitMultipleFkBaseCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteSplitMultipleFkBase> PagingResultBean<ENTITY> doSelectPage(WhiteSplitMultipleFkBaseCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      */
     public void selectCursor(WhiteSplitMultipleFkBaseCB cb, EntityRowHandler<WhiteSplitMultipleFkBase> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteSplitMultipleFkBaseCB cb, EntityRowHandler<WhiteSplitMultipleFkBase> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteSplitMultipleFkBase> void doSelectCursor(WhiteSplitMultipleFkBaseCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public <RESULT> HpSLSFunction<WhiteSplitMultipleFkBaseCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteSplitMultipleFkBaseCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteSplitMultipleFkBaseCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -547,7 +463,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param whiteSplitMultipleFkBaseList The entity list of whiteSplitMultipleFkBase. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -617,17 +533,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         doInsert(whiteSplitMultipleFkBase, null);
     }
 
-    protected void doInsert(WhiteSplitMultipleFkBase et, InsertOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBase", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteSplitMultipleFkBaseCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -654,27 +559,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         doUpdate(whiteSplitMultipleFkBase, null);
     }
 
-    protected void doUpdate(WhiteSplitMultipleFkBase et, UpdateOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBase", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteSplitMultipleFkBaseCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteSplitMultipleFkBaseCB createCBForVaryingUpdate()
-    { WhiteSplitMultipleFkBaseCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteSplitMultipleFkBaseCB createCBForSpecifiedUpdate()
-    { WhiteSplitMultipleFkBaseCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -687,16 +571,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public void insertOrUpdate(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doInsertOrUpdate(whiteSplitMultipleFkBase, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteSplitMultipleFkBase et, InsertOption<WhiteSplitMultipleFkBaseCB> iop, UpdateOption<WhiteSplitMultipleFkBaseCB> uop) {
-        assertObjectNotNull("whiteSplitMultipleFkBase", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -718,17 +592,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public void delete(WhiteSplitMultipleFkBase whiteSplitMultipleFkBase) {
         doDelete(whiteSplitMultipleFkBase, null);
     }
-
-    protected void doDelete(WhiteSplitMultipleFkBase et, final DeleteOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBase", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteSplitMultipleFkBaseCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -761,21 +624,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doBatchInsert(whiteSplitMultipleFkBaseList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteSplitMultipleFkBase> ls, InsertOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBaseList", ls);
-        InsertOption<WhiteSplitMultipleFkBaseCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteSplitMultipleFkBase> ls, InsertOption<WhiteSplitMultipleFkBaseCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -803,20 +651,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public int[] batchUpdate(List<WhiteSplitMultipleFkBase> whiteSplitMultipleFkBaseList) {
         return doBatchUpdate(whiteSplitMultipleFkBaseList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteSplitMultipleFkBase> ls, UpdateOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBaseList", ls);
-        UpdateOption<WhiteSplitMultipleFkBaseCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteSplitMultipleFkBase> ls, UpdateOption<WhiteSplitMultipleFkBaseCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -850,10 +684,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doBatchUpdate(whiteSplitMultipleFkBaseList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -865,17 +695,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doBatchDelete(whiteSplitMultipleFkBaseList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteSplitMultipleFkBase> ls, DeleteOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBaseList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -883,7 +702,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteSplitMultipleFkBaseBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB&gt;() {
-     *     public ConditionBean setup(whiteSplitMultipleFkBase entity, WhiteSplitMultipleFkBaseCB intoCB) {
+     *     public ConditionBean setup(WhiteSplitMultipleFkBase entity, WhiteSplitMultipleFkBaseCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -902,24 +721,12 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteSplitMultipleFkBase, WhiteSplitMultipleFkBaseCB> sp, InsertOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteSplitMultipleFkBase et = newEntity(); WhiteSplitMultipleFkBaseCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteSplitMultipleFkBaseCB createCBForQueryInsert()
-    { WhiteSplitMultipleFkBaseCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -947,14 +754,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
         return doQueryUpdate(whiteSplitMultipleFkBase, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteSplitMultipleFkBase et, WhiteSplitMultipleFkBaseCB cb, UpdateOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertObjectNotNull("whiteSplitMultipleFkBase", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -969,13 +768,6 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     public int queryDelete(WhiteSplitMultipleFkBaseCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteSplitMultipleFkBaseCB cb, DeleteOption<WhiteSplitMultipleFkBaseCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1121,7 +913,7 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1218,13 +1010,11 @@ public abstract class BsWhiteSplitMultipleFkBaseBhv extends AbstractBehaviorWrit
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteSplitMultipleFkBase> typeOfSelectedEntity() { return WhiteSplitMultipleFkBase.class; }
-    protected WhiteSplitMultipleFkBase downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteSplitMultipleFkBase.class); }
-    protected WhiteSplitMultipleFkBaseCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteSplitMultipleFkBaseCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteSplitMultipleFkBase> downcast(List<? extends Entity> ls) { return (List<WhiteSplitMultipleFkBase>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteSplitMultipleFkBase> typeOfSelectedEntity() { return WhiteSplitMultipleFkBase.class; }
+    protected Class<WhiteSplitMultipleFkBase> typeOfHandlingEntity() { return WhiteSplitMultipleFkBase.class; }
+    protected Class<WhiteSplitMultipleFkBaseCB> typeOfHandlingConditionBean() { return WhiteSplitMultipleFkBaseCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteSplitMultipleFkBaseCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSplitMultipleFkBaseCB>)op; }
     @SuppressWarnings("unchecked")

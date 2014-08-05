@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritable {
+public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritable<Vendor_non_compilable, Vendor_non_compilableCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "VENDOR-NON COMPILABLE"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public Vendor_non_compilable newEntity() { return new Vendor_non_compilable(); }
-
     /** {@inheritDoc} */
     public Vendor_non_compilableCB newConditionBean() { return new Vendor_non_compilableCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public int selectCount(Vendor_non_compilableCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(Vendor_non_compilableCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(Vendor_non_compilableCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(Vendor_non_compilableCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntity(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalEntity(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalEntity(Vendor_non_compilableCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected Vendor_non_compilable facadeSelectEntityWithDeletedCheck(Vendor_non_compilableCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectEntityWithDeletedCheck(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param non_compilable_id : PK, NotNull, int4(10). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doSelectByPK(non_compilable_id, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPK(Integer non_compilable_id, Class<ENTITY> tp) {
+    protected <ENTITY extends Vendor_non_compilable> ENTITY doSelectByPK(Integer non_compilable_id, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(non_compilable_id), tp);
     }
 
-    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer non_compilable_id, Class<ENTITY> tp) {
+    protected <ENTITY extends Vendor_non_compilable> OptionalEntity<ENTITY> doSelectOptionalByPK(Integer non_compilable_id, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(non_compilable_id, tp), non_compilable_id);
     }
 
@@ -257,16 +216,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<Vendor_non_compilable> facadeSelectList(Vendor_non_compilableCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Vendor_non_compilable> ListResultBean<ENTITY> doSelectList(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -296,16 +245,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<Vendor_non_compilable> facadeSelectPage(Vendor_non_compilableCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Vendor_non_compilable> PagingResultBean<ENTITY> doSelectPage(Vendor_non_compilableCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -325,16 +264,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      */
     public void selectCursor(Vendor_non_compilableCB cb, EntityRowHandler<Vendor_non_compilable> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(Vendor_non_compilableCB cb, EntityRowHandler<Vendor_non_compilable> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Vendor_non_compilable> void doSelectCursor(Vendor_non_compilableCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -358,19 +287,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public <RESULT> HpSLSFunction<Vendor_non_compilableCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<Vendor_non_compilableCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends Vendor_non_compilableCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -532,7 +448,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -624,7 +540,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param vendor_non_compilableList The entity list of vendor_non_compilable. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -694,17 +610,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         doInsert(vendor_non_compilable, null);
     }
 
-    protected void doInsert(Vendor_non_compilable et, InsertOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilable", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<Vendor_non_compilableCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -731,27 +636,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         doUpdate(vendor_non_compilable, null);
     }
 
-    protected void doUpdate(Vendor_non_compilable et, UpdateOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilable", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<Vendor_non_compilableCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected Vendor_non_compilableCB createCBForVaryingUpdate()
-    { Vendor_non_compilableCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected Vendor_non_compilableCB createCBForSpecifiedUpdate()
-    { Vendor_non_compilableCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -764,16 +648,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public void insertOrUpdate(Vendor_non_compilable vendor_non_compilable) {
         doInsertOrUpdate(vendor_non_compilable, null, null);
     }
-
-    protected void doInsertOrUpdate(Vendor_non_compilable et, InsertOption<Vendor_non_compilableCB> iop, UpdateOption<Vendor_non_compilableCB> uop) {
-        assertObjectNotNull("vendor_non_compilable", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -795,17 +669,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public void delete(Vendor_non_compilable vendor_non_compilable) {
         doDelete(vendor_non_compilable, null);
     }
-
-    protected void doDelete(Vendor_non_compilable et, final DeleteOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilable", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<Vendor_non_compilableCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -838,21 +701,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doBatchInsert(vendor_non_compilableList, null);
     }
 
-    protected int[] doBatchInsert(List<Vendor_non_compilable> ls, InsertOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilableList", ls);
-        InsertOption<Vendor_non_compilableCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<Vendor_non_compilable> ls, InsertOption<Vendor_non_compilableCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -880,20 +728,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public int[] batchUpdate(List<Vendor_non_compilable> vendor_non_compilableList) {
         return doBatchUpdate(vendor_non_compilableList, null);
     }
-
-    protected int[] doBatchUpdate(List<Vendor_non_compilable> ls, UpdateOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilableList", ls);
-        UpdateOption<Vendor_non_compilableCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<Vendor_non_compilable> ls, UpdateOption<Vendor_non_compilableCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -927,10 +761,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doBatchUpdate(vendor_non_compilableList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -942,17 +772,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doBatchDelete(vendor_non_compilableList, null);
     }
 
-    protected int[] doBatchDelete(List<Vendor_non_compilable> ls, DeleteOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilableList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -960,7 +779,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * vendor_non_compilableBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;Vendor_non_compilable, Vendor_non_compilableCB&gt;() {
-     *     public ConditionBean setup(vendor_non_compilable entity, Vendor_non_compilableCB intoCB) {
+     *     public ConditionBean setup(Vendor_non_compilable entity, Vendor_non_compilableCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -979,24 +798,12 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<Vendor_non_compilable, Vendor_non_compilableCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<Vendor_non_compilable, Vendor_non_compilableCB> sp, InsertOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        Vendor_non_compilable et = newEntity(); Vendor_non_compilableCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected Vendor_non_compilableCB createCBForQueryInsert()
-    { Vendor_non_compilableCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1024,14 +831,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(vendor_non_compilable, cb, null);
     }
 
-    protected int doQueryUpdate(Vendor_non_compilable et, Vendor_non_compilableCB cb, UpdateOption<Vendor_non_compilableCB> op) {
-        assertObjectNotNull("vendor_non_compilable", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -1046,13 +845,6 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     public int queryDelete(Vendor_non_compilableCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(Vendor_non_compilableCB cb, DeleteOption<Vendor_non_compilableCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1198,7 +990,7 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1295,13 +1087,11 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<Vendor_non_compilable> typeOfSelectedEntity() { return Vendor_non_compilable.class; }
-    protected Vendor_non_compilable downcast(Entity et) { return helpEntityDowncastInternally(et, Vendor_non_compilable.class); }
-    protected Vendor_non_compilableCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, Vendor_non_compilableCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<Vendor_non_compilable> downcast(List<? extends Entity> ls) { return (List<Vendor_non_compilable>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends Vendor_non_compilable> typeOfSelectedEntity() { return Vendor_non_compilable.class; }
+    protected Class<Vendor_non_compilable> typeOfHandlingEntity() { return Vendor_non_compilable.class; }
+    protected Class<Vendor_non_compilableCB> typeOfHandlingConditionBean() { return Vendor_non_compilableCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<Vendor_non_compilableCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<Vendor_non_compilableCB>)op; }
     @SuppressWarnings("unchecked")

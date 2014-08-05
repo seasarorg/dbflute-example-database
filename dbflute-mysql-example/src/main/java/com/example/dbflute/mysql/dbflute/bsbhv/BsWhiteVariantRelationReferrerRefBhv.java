@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehaviorWritable<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_variant_relation_referrer_ref"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteVariantRelationReferrerRef newEntity() { return new WhiteVariantRelationReferrerRef(); }
-
     /** {@inheritDoc} */
     public WhiteVariantRelationReferrerRefCB newConditionBean() { return new WhiteVariantRelationReferrerRefCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public int selectCount(WhiteVariantRelationReferrerRefCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteVariantRelationReferrerRefCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteVariantRelationReferrerRefCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteVariantRelationReferrerRefCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectEntity(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationReferrerRefCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteVariantRelationReferrerRef facadeSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerRefCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param refId : PK, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doSelectByPK(refId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectByPK(Long refId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> ENTITY doSelectByPK(Long refId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(refId), tp);
     }
 
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationReferrerRef> OptionalEntity<ENTITY> doSelectOptionalByPK(Long refId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(refId, tp), refId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteVariantRelationReferrerRef> facadeSelectList(WhiteVariantRelationReferrerRefCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> ListResultBean<ENTITY> doSelectList(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteVariantRelationReferrerRef> facadeSelectPage(WhiteVariantRelationReferrerRefCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> PagingResultBean<ENTITY> doSelectPage(WhiteVariantRelationReferrerRefCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
      */
     public void selectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<WhiteVariantRelationReferrerRef> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<WhiteVariantRelationReferrerRef> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationReferrerRef> void doSelectCursor(WhiteVariantRelationReferrerRefCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public <RESULT> HpSLSFunction<WhiteVariantRelationReferrerRefCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteVariantRelationReferrerRefCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteVariantRelationReferrerRefCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -517,17 +433,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         doInsert(whiteVariantRelationReferrerRef, null);
     }
 
-    protected void doInsert(WhiteVariantRelationReferrerRef et, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteVariantRelationReferrerRefCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -554,27 +459,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         doUpdate(whiteVariantRelationReferrerRef, null);
     }
 
-    protected void doUpdate(WhiteVariantRelationReferrerRef et, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteVariantRelationReferrerRefCB createCBForVaryingUpdate()
-    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteVariantRelationReferrerRefCB createCBForSpecifiedUpdate()
-    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -587,16 +471,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public void insertOrUpdate(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
         doInsertOrUpdate(whiteVariantRelationReferrerRef, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteVariantRelationReferrerRef et, InsertOption<WhiteVariantRelationReferrerRefCB> iop, UpdateOption<WhiteVariantRelationReferrerRefCB> uop) {
-        assertObjectNotNull("whiteVariantRelationReferrerRef", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -618,17 +492,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public void delete(WhiteVariantRelationReferrerRef whiteVariantRelationReferrerRef) {
         doDelete(whiteVariantRelationReferrerRef, null);
     }
-
-    protected void doDelete(WhiteVariantRelationReferrerRef et, final DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRef", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationReferrerRefCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -661,21 +524,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doBatchInsert(whiteVariantRelationReferrerRefList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteVariantRelationReferrerRef> ls, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
-        InsertOption<WhiteVariantRelationReferrerRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteVariantRelationReferrerRef> ls, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -703,20 +551,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public int[] batchUpdate(List<WhiteVariantRelationReferrerRef> whiteVariantRelationReferrerRefList) {
         return doBatchUpdate(whiteVariantRelationReferrerRefList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteVariantRelationReferrerRef> ls, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
-        UpdateOption<WhiteVariantRelationReferrerRefCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteVariantRelationReferrerRef> ls, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -750,10 +584,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doBatchUpdate(whiteVariantRelationReferrerRefList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -765,17 +595,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doBatchDelete(whiteVariantRelationReferrerRefList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteVariantRelationReferrerRef> ls, DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRefList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -783,7 +602,7 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteVariantRelationReferrerRefBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB&gt;() {
-     *     public ConditionBean setup(whiteVariantRelationReferrerRef entity, WhiteVariantRelationReferrerRefCB intoCB) {
+     *     public ConditionBean setup(WhiteVariantRelationReferrerRef entity, WhiteVariantRelationReferrerRefCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -802,24 +621,12 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteVariantRelationReferrerRef, WhiteVariantRelationReferrerRefCB> sp, InsertOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteVariantRelationReferrerRef et = newEntity(); WhiteVariantRelationReferrerRefCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteVariantRelationReferrerRefCB createCBForQueryInsert()
-    { WhiteVariantRelationReferrerRefCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -847,14 +654,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
         return doQueryUpdate(whiteVariantRelationReferrerRef, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteVariantRelationReferrerRef et, WhiteVariantRelationReferrerRefCB cb, UpdateOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertObjectNotNull("whiteVariantRelationReferrerRef", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -869,13 +668,6 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     public int queryDelete(WhiteVariantRelationReferrerRefCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteVariantRelationReferrerRefCB cb, DeleteOption<WhiteVariantRelationReferrerRefCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1021,7 +813,7 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1118,13 +910,11 @@ public abstract class BsWhiteVariantRelationReferrerRefBhv extends AbstractBehav
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteVariantRelationReferrerRef> typeOfSelectedEntity() { return WhiteVariantRelationReferrerRef.class; }
-    protected WhiteVariantRelationReferrerRef downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteVariantRelationReferrerRef.class); }
-    protected WhiteVariantRelationReferrerRefCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationReferrerRefCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteVariantRelationReferrerRef> downcast(List<? extends Entity> ls) { return (List<WhiteVariantRelationReferrerRef>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteVariantRelationReferrerRef> typeOfSelectedEntity() { return WhiteVariantRelationReferrerRef.class; }
+    protected Class<WhiteVariantRelationReferrerRef> typeOfHandlingEntity() { return WhiteVariantRelationReferrerRef.class; }
+    protected Class<WhiteVariantRelationReferrerRefCB> typeOfHandlingConditionBean() { return WhiteVariantRelationReferrerRefCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteVariantRelationReferrerRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationReferrerRefCB>)op; }
     @SuppressWarnings("unchecked")

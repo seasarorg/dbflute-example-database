@@ -849,6 +849,9 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
         xdoMatchForMySQL(textColumnList, conditionValue, modifier);
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -882,6 +885,15 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
      */
     public void withManualOrder(ManualOrderBean mob) { // is user public!
         xdoWithManualOrder(mob);
+    }
+
+    // ===================================================================================
+    //                                                                    Small Adjustment
+    //                                                                    ================
+
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
     }
 
     // ===================================================================================

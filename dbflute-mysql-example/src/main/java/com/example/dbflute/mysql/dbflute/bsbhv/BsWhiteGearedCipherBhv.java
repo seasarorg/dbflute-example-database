@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable<WhiteGearedCipher, WhiteGearedCipherCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_geared_cipher"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteGearedCipher newEntity() { return new WhiteGearedCipher(); }
-
     /** {@inheritDoc} */
     public WhiteGearedCipherCB newConditionBean() { return new WhiteGearedCipherCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public int selectCount(WhiteGearedCipherCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteGearedCipherCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteGearedCipherCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteGearedCipherCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectEntity(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteGearedCipherCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteGearedCipher facadeSelectEntityWithDeletedCheck(WhiteGearedCipherCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectEntityWithDeletedCheck(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param cipherId : PK, ID, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doSelectByPK(cipherId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectByPK(Long cipherId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> ENTITY doSelectByPK(Long cipherId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(cipherId), tp);
     }
 
-    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalByPK(Long cipherId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteGearedCipher> OptionalEntity<ENTITY> doSelectOptionalByPK(Long cipherId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(cipherId, tp), cipherId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteGearedCipher> facadeSelectList(WhiteGearedCipherCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteGearedCipher> ListResultBean<ENTITY> doSelectList(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteGearedCipher> facadeSelectPage(WhiteGearedCipherCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteGearedCipher> PagingResultBean<ENTITY> doSelectPage(WhiteGearedCipherCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(WhiteGearedCipherCB cb, EntityRowHandler<WhiteGearedCipher> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteGearedCipherCB cb, EntityRowHandler<WhiteGearedCipher> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteGearedCipher> void doSelectCursor(WhiteGearedCipherCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<WhiteGearedCipherCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteGearedCipherCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteGearedCipherCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -509,17 +425,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         doInsert(whiteGearedCipher, null);
     }
 
-    protected void doInsert(WhiteGearedCipher et, InsertOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipher", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteGearedCipherCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -546,27 +451,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         doUpdate(whiteGearedCipher, null);
     }
 
-    protected void doUpdate(WhiteGearedCipher et, UpdateOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipher", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteGearedCipherCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteGearedCipherCB createCBForVaryingUpdate()
-    { WhiteGearedCipherCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteGearedCipherCB createCBForSpecifiedUpdate()
-    { WhiteGearedCipherCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -579,16 +463,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(WhiteGearedCipher whiteGearedCipher) {
         doInsertOrUpdate(whiteGearedCipher, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteGearedCipher et, InsertOption<WhiteGearedCipherCB> iop, UpdateOption<WhiteGearedCipherCB> uop) {
-        assertObjectNotNull("whiteGearedCipher", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -610,17 +484,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public void delete(WhiteGearedCipher whiteGearedCipher) {
         doDelete(whiteGearedCipher, null);
     }
-
-    protected void doDelete(WhiteGearedCipher et, final DeleteOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipher", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteGearedCipherCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -653,21 +516,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doBatchInsert(whiteGearedCipherList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteGearedCipher> ls, InsertOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipherList", ls);
-        InsertOption<WhiteGearedCipherCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteGearedCipher> ls, InsertOption<WhiteGearedCipherCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -695,20 +543,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<WhiteGearedCipher> whiteGearedCipherList) {
         return doBatchUpdate(whiteGearedCipherList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteGearedCipher> ls, UpdateOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipherList", ls);
-        UpdateOption<WhiteGearedCipherCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteGearedCipher> ls, UpdateOption<WhiteGearedCipherCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -742,10 +576,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(whiteGearedCipherList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -757,17 +587,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteGearedCipherList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteGearedCipher> ls, DeleteOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipherList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -775,7 +594,7 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteGearedCipherBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteGearedCipher, WhiteGearedCipherCB&gt;() {
-     *     public ConditionBean setup(whiteGearedCipher entity, WhiteGearedCipherCB intoCB) {
+     *     public ConditionBean setup(WhiteGearedCipher entity, WhiteGearedCipherCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -794,24 +613,12 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> sp, InsertOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteGearedCipher et = newEntity(); WhiteGearedCipherCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteGearedCipherCB createCBForQueryInsert()
-    { WhiteGearedCipherCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -839,14 +646,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteGearedCipher, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteGearedCipher et, WhiteGearedCipherCB cb, UpdateOption<WhiteGearedCipherCB> op) {
-        assertObjectNotNull("whiteGearedCipher", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -861,13 +660,6 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     public int queryDelete(WhiteGearedCipherCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteGearedCipherCB cb, DeleteOption<WhiteGearedCipherCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1013,7 +805,7 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1110,13 +902,11 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteGearedCipher> typeOfSelectedEntity() { return WhiteGearedCipher.class; }
-    protected WhiteGearedCipher downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteGearedCipher.class); }
-    protected WhiteGearedCipherCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteGearedCipherCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteGearedCipher> downcast(List<? extends Entity> ls) { return (List<WhiteGearedCipher>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteGearedCipher> typeOfSelectedEntity() { return WhiteGearedCipher.class; }
+    protected Class<WhiteGearedCipher> typeOfHandlingEntity() { return WhiteGearedCipher.class; }
+    protected Class<WhiteGearedCipherCB> typeOfHandlingConditionBean() { return WhiteGearedCipherCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteGearedCipherCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteGearedCipherCB>)op; }
     @SuppressWarnings("unchecked")

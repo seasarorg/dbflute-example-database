@@ -20,7 +20,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -64,19 +63,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehaviorWritable<WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "white_variant_relation_master_corge"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -90,9 +83,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteVariantRelationMasterCorge newEntity() { return new WhiteVariantRelationMasterCorge(); }
-
     /** {@inheritDoc} */
     public WhiteVariantRelationMasterCorgeCB newConditionBean() { return new WhiteVariantRelationMasterCorgeCB(); }
 
@@ -119,22 +109,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public int selectCount(WhiteVariantRelationMasterCorgeCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteVariantRelationMasterCorgeCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteVariantRelationMasterCorgeCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteVariantRelationMasterCorgeCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -166,11 +140,7 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectEntity(WhiteVariantRelationMasterCorgeCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationMasterCorgeCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteVariantRelationMasterCorgeCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -195,17 +165,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteVariantRelationMasterCorge facadeSelectEntityWithDeletedCheck(WhiteVariantRelationMasterCorgeCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectEntityWithDeletedCheck(WhiteVariantRelationMasterCorgeCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param masterCorgeId : PK, NotNull, BIGINT(19). (NotNull)
@@ -221,11 +180,11 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doSelectByPK(masterCorgeId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPK(Long masterCorgeId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> ENTITY doSelectByPK(Long masterCorgeId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(masterCorgeId), tp);
     }
 
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> OptionalEntity<ENTITY> doSelectOptionalByPK(Long masterCorgeId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteVariantRelationMasterCorge> OptionalEntity<ENTITY> doSelectOptionalByPK(Long masterCorgeId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(masterCorgeId, tp), masterCorgeId);
     }
 
@@ -272,16 +231,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteVariantRelationMasterCorge> facadeSelectList(WhiteVariantRelationMasterCorgeCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> ListResultBean<ENTITY> doSelectList(WhiteVariantRelationMasterCorgeCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -311,16 +260,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteVariantRelationMasterCorge> facadeSelectPage(WhiteVariantRelationMasterCorgeCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> PagingResultBean<ENTITY> doSelectPage(WhiteVariantRelationMasterCorgeCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -340,16 +279,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
      */
     public void selectCursor(WhiteVariantRelationMasterCorgeCB cb, EntityRowHandler<WhiteVariantRelationMasterCorge> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteVariantRelationMasterCorgeCB cb, EntityRowHandler<WhiteVariantRelationMasterCorge> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteVariantRelationMasterCorge> void doSelectCursor(WhiteVariantRelationMasterCorgeCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -373,19 +302,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public <RESULT> HpSLSFunction<WhiteVariantRelationMasterCorgeCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteVariantRelationMasterCorgeCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteVariantRelationMasterCorgeCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -509,17 +425,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         doInsert(whiteVariantRelationMasterCorge, null);
     }
 
-    protected void doInsert(WhiteVariantRelationMasterCorge et, InsertOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorge", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteVariantRelationMasterCorgeCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -546,27 +451,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         doUpdate(whiteVariantRelationMasterCorge, null);
     }
 
-    protected void doUpdate(WhiteVariantRelationMasterCorge et, UpdateOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorge", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteVariantRelationMasterCorgeCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteVariantRelationMasterCorgeCB createCBForVaryingUpdate()
-    { WhiteVariantRelationMasterCorgeCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteVariantRelationMasterCorgeCB createCBForSpecifiedUpdate()
-    { WhiteVariantRelationMasterCorgeCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -579,16 +463,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public void insertOrUpdate(WhiteVariantRelationMasterCorge whiteVariantRelationMasterCorge) {
         doInsertOrUpdate(whiteVariantRelationMasterCorge, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteVariantRelationMasterCorge et, InsertOption<WhiteVariantRelationMasterCorgeCB> iop, UpdateOption<WhiteVariantRelationMasterCorgeCB> uop) {
-        assertObjectNotNull("whiteVariantRelationMasterCorge", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -610,17 +484,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public void delete(WhiteVariantRelationMasterCorge whiteVariantRelationMasterCorge) {
         doDelete(whiteVariantRelationMasterCorge, null);
     }
-
-    protected void doDelete(WhiteVariantRelationMasterCorge et, final DeleteOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorge", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteVariantRelationMasterCorgeCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -653,21 +516,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doBatchInsert(whiteVariantRelationMasterCorgeList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteVariantRelationMasterCorge> ls, InsertOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorgeList", ls);
-        InsertOption<WhiteVariantRelationMasterCorgeCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteVariantRelationMasterCorge> ls, InsertOption<WhiteVariantRelationMasterCorgeCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -695,20 +543,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public int[] batchUpdate(List<WhiteVariantRelationMasterCorge> whiteVariantRelationMasterCorgeList) {
         return doBatchUpdate(whiteVariantRelationMasterCorgeList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteVariantRelationMasterCorge> ls, UpdateOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorgeList", ls);
-        UpdateOption<WhiteVariantRelationMasterCorgeCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteVariantRelationMasterCorge> ls, UpdateOption<WhiteVariantRelationMasterCorgeCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -742,10 +576,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doBatchUpdate(whiteVariantRelationMasterCorgeList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -757,17 +587,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doBatchDelete(whiteVariantRelationMasterCorgeList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteVariantRelationMasterCorge> ls, DeleteOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorgeList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -775,7 +594,7 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteVariantRelationMasterCorgeBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB&gt;() {
-     *     public ConditionBean setup(whiteVariantRelationMasterCorge entity, WhiteVariantRelationMasterCorgeCB intoCB) {
+     *     public ConditionBean setup(WhiteVariantRelationMasterCorge entity, WhiteVariantRelationMasterCorgeCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -794,24 +613,12 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB> sp, InsertOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteVariantRelationMasterCorge et = newEntity(); WhiteVariantRelationMasterCorgeCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteVariantRelationMasterCorgeCB createCBForQueryInsert()
-    { WhiteVariantRelationMasterCorgeCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -839,14 +646,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
         return doQueryUpdate(whiteVariantRelationMasterCorge, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteVariantRelationMasterCorge et, WhiteVariantRelationMasterCorgeCB cb, UpdateOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertObjectNotNull("whiteVariantRelationMasterCorge", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -861,13 +660,6 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     public int queryDelete(WhiteVariantRelationMasterCorgeCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteVariantRelationMasterCorgeCB cb, DeleteOption<WhiteVariantRelationMasterCorgeCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1013,7 +805,7 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1110,13 +902,11 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteVariantRelationMasterCorge> typeOfSelectedEntity() { return WhiteVariantRelationMasterCorge.class; }
-    protected WhiteVariantRelationMasterCorge downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteVariantRelationMasterCorge.class); }
-    protected WhiteVariantRelationMasterCorgeCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteVariantRelationMasterCorgeCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteVariantRelationMasterCorge> downcast(List<? extends Entity> ls) { return (List<WhiteVariantRelationMasterCorge>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteVariantRelationMasterCorge> typeOfSelectedEntity() { return WhiteVariantRelationMasterCorge.class; }
+    protected Class<WhiteVariantRelationMasterCorge> typeOfHandlingEntity() { return WhiteVariantRelationMasterCorge.class; }
+    protected Class<WhiteVariantRelationMasterCorgeCB> typeOfHandlingConditionBean() { return WhiteVariantRelationMasterCorgeCB.class; }
     @SuppressWarnings("unchecked")
     protected InsertOption<WhiteVariantRelationMasterCorgeCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationMasterCorgeCB>)op; }
     @SuppressWarnings("unchecked")
