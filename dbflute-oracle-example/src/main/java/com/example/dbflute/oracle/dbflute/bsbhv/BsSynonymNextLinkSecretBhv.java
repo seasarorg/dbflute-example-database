@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritable {
+public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritable<SynonymNextLinkSecret, SynonymNextLinkSecretCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "SYNONYM_NEXT_LINK_SECRET"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public SynonymNextLinkSecret newEntity() { return new SynonymNextLinkSecret(); }
-
     /** {@inheritDoc} */
     public SynonymNextLinkSecretCB newConditionBean() { return new SynonymNextLinkSecretCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public int selectCount(SynonymNextLinkSecretCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(SynonymNextLinkSecretCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(SynonymNextLinkSecretCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(SynonymNextLinkSecretCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectEntity(SynonymNextLinkSecretCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymNextLinkSecretCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymNextLinkSecretCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected SynonymNextLinkSecret facadeSelectEntityWithDeletedCheck(SynonymNextLinkSecretCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectEntityWithDeletedCheck(SynonymNextLinkSecretCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param secretCode : PK, NotNull, CHAR(3). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doSelectByPK(secretCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPK(String secretCode, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymNextLinkSecret> ENTITY doSelectByPK(String secretCode, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(secretCode), tp);
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectOptionalByPK(String secretCode, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectOptionalByPK(String secretCode, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(secretCode, tp), secretCode);
     }
 
@@ -251,7 +210,7 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doSelectByUniqueOf(secretName, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectByUniqueOf(String secretName, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymNextLinkSecret> OptionalEntity<ENTITY> doSelectByUniqueOf(String secretName, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(secretName), tp), secretName);
     }
 
@@ -282,16 +241,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<SynonymNextLinkSecret> facadeSelectList(SynonymNextLinkSecretCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymNextLinkSecret> ListResultBean<ENTITY> doSelectList(SynonymNextLinkSecretCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -321,16 +270,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<SynonymNextLinkSecret> facadeSelectPage(SynonymNextLinkSecretCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymNextLinkSecret> PagingResultBean<ENTITY> doSelectPage(SynonymNextLinkSecretCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -350,16 +289,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
      */
     public void selectCursor(SynonymNextLinkSecretCB cb, EntityRowHandler<SynonymNextLinkSecret> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(SynonymNextLinkSecretCB cb, EntityRowHandler<SynonymNextLinkSecret> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymNextLinkSecret> void doSelectCursor(SynonymNextLinkSecretCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -383,19 +312,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public <RESULT> HpSLSFunction<SynonymNextLinkSecretCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<SynonymNextLinkSecretCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends SynonymNextLinkSecretCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -527,17 +443,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         doInsert(synonymNextLinkSecret, null);
     }
 
-    protected void doInsert(SynonymNextLinkSecret et, InsertOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecret", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<SynonymNextLinkSecretCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -564,27 +469,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         doUpdate(synonymNextLinkSecret, null);
     }
 
-    protected void doUpdate(SynonymNextLinkSecret et, UpdateOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecret", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<SynonymNextLinkSecretCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected SynonymNextLinkSecretCB createCBForVaryingUpdate()
-    { SynonymNextLinkSecretCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected SynonymNextLinkSecretCB createCBForSpecifiedUpdate()
-    { SynonymNextLinkSecretCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -597,16 +481,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public void insertOrUpdate(SynonymNextLinkSecret synonymNextLinkSecret) {
         doInsertOrUpdate(synonymNextLinkSecret, null, null);
     }
-
-    protected void doInsertOrUpdate(SynonymNextLinkSecret et, InsertOption<SynonymNextLinkSecretCB> iop, UpdateOption<SynonymNextLinkSecretCB> uop) {
-        assertObjectNotNull("synonymNextLinkSecret", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -628,17 +502,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public void delete(SynonymNextLinkSecret synonymNextLinkSecret) {
         doDelete(synonymNextLinkSecret, null);
     }
-
-    protected void doDelete(SynonymNextLinkSecret et, final DeleteOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecret", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<SynonymNextLinkSecretCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -671,21 +534,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doBatchInsert(synonymNextLinkSecretList, null);
     }
 
-    protected int[] doBatchInsert(List<SynonymNextLinkSecret> ls, InsertOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecretList", ls);
-        InsertOption<SynonymNextLinkSecretCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<SynonymNextLinkSecret> ls, InsertOption<SynonymNextLinkSecretCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -713,20 +561,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public int[] batchUpdate(List<SynonymNextLinkSecret> synonymNextLinkSecretList) {
         return doBatchUpdate(synonymNextLinkSecretList, null);
     }
-
-    protected int[] doBatchUpdate(List<SynonymNextLinkSecret> ls, UpdateOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecretList", ls);
-        UpdateOption<SynonymNextLinkSecretCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<SynonymNextLinkSecret> ls, UpdateOption<SynonymNextLinkSecretCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -760,10 +594,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doBatchUpdate(synonymNextLinkSecretList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -775,17 +605,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doBatchDelete(synonymNextLinkSecretList, null);
     }
 
-    protected int[] doBatchDelete(List<SynonymNextLinkSecret> ls, DeleteOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecretList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -793,7 +612,7 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * synonymNextLinkSecretBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymNextLinkSecret, SynonymNextLinkSecretCB&gt;() {
-     *     public ConditionBean setup(synonymNextLinkSecret entity, SynonymNextLinkSecretCB intoCB) {
+     *     public ConditionBean setup(SynonymNextLinkSecret entity, SynonymNextLinkSecretCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -812,24 +631,12 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<SynonymNextLinkSecret, SynonymNextLinkSecretCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<SynonymNextLinkSecret, SynonymNextLinkSecretCB> sp, InsertOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        SynonymNextLinkSecret et = newEntity(); SynonymNextLinkSecretCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected SynonymNextLinkSecretCB createCBForQueryInsert()
-    { SynonymNextLinkSecretCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -857,14 +664,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
         return doQueryUpdate(synonymNextLinkSecret, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymNextLinkSecret et, SynonymNextLinkSecretCB cb, UpdateOption<SynonymNextLinkSecretCB> op) {
-        assertObjectNotNull("synonymNextLinkSecret", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -879,13 +678,6 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     public int queryDelete(SynonymNextLinkSecretCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(SynonymNextLinkSecretCB cb, DeleteOption<SynonymNextLinkSecretCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1031,7 +823,7 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1128,20 +920,9 @@ public abstract class BsSynonymNextLinkSecretBhv extends AbstractBehaviorWritabl
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<SynonymNextLinkSecret> typeOfSelectedEntity() { return SynonymNextLinkSecret.class; }
-    protected SynonymNextLinkSecret downcast(Entity et) { return helpEntityDowncastInternally(et, SynonymNextLinkSecret.class); }
-    protected SynonymNextLinkSecretCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SynonymNextLinkSecretCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<SynonymNextLinkSecret> downcast(List<? extends Entity> ls) { return (List<SynonymNextLinkSecret>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymNextLinkSecretCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<SynonymNextLinkSecretCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymNextLinkSecretCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<SynonymNextLinkSecretCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymNextLinkSecretCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<SynonymNextLinkSecretCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymNextLinkSecret, SynonymNextLinkSecretCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<SynonymNextLinkSecret, SynonymNextLinkSecretCB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends SynonymNextLinkSecret> typeOfSelectedEntity() { return SynonymNextLinkSecret.class; }
+    protected Class<SynonymNextLinkSecret> typeOfHandlingEntity() { return SynonymNextLinkSecret.class; }
+    protected Class<SynonymNextLinkSecretCB> typeOfHandlingConditionBean() { return SynonymNextLinkSecretCB.class; }
 }

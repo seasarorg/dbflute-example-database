@@ -171,7 +171,7 @@ public class BsSpTableSynonymParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInVarcharArray: {TABLE as In} <br />
-     * @return The value of VInVarcharArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarcharArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Object getVInVarcharArray() {
         return _vInVarcharArray;
@@ -187,7 +187,7 @@ public class BsSpTableSynonymParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarcharArray: {TABLE as Out} <br />
-     * @return The value of VOutVarcharArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarcharArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Object getVOutVarcharArray() {
         return _vOutVarcharArray;

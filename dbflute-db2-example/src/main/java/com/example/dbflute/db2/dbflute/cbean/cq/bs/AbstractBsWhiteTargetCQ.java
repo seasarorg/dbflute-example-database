@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TARGET_ID: {PK, NotNull, DECIMAL(16)}
@@ -569,6 +568,9 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     }
     public abstract String keepMyselfInScope(WhiteTargetCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -605,8 +607,8 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -635,6 +637,11 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -642,6 +649,7 @@ public abstract class AbstractBsWhiteTargetCQ extends AbstractConditionQuery {
         return new WhiteTargetCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteTargetCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

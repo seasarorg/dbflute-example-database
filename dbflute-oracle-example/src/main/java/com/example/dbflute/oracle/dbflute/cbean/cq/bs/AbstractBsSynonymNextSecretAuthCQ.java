@@ -44,7 +44,6 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * (隣の秘密２コード)SECRET_AUTH_CODE: {PK, NotNull, CHAR(3)}
@@ -449,6 +448,9 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -485,8 +487,8 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -515,6 +517,11 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -522,6 +529,7 @@ public abstract class AbstractBsSynonymNextSecretAuthCQ extends AbstractConditio
         return new SynonymNextSecretAuthCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SynonymNextSecretAuthCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

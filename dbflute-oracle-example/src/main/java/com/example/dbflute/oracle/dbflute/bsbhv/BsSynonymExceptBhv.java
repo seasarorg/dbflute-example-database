@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
+public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable<SynonymExcept, SynonymExceptCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "SYNONYM_EXCEPT"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public SynonymExcept newEntity() { return new SynonymExcept(); }
-
     /** {@inheritDoc} */
     public SynonymExceptCB newConditionBean() { return new SynonymExceptCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public int selectCount(SynonymExceptCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(SynonymExceptCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(SynonymExceptCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(SynonymExceptCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymExcept> ENTITY doSelectEntity(SynonymExceptCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends SynonymExcept> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymExceptCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymExcept> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymExceptCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected SynonymExcept facadeSelectEntityWithDeletedCheck(SynonymExceptCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymExcept> ENTITY doSelectEntityWithDeletedCheck(SynonymExceptCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param exceptId : PK, NotNull, NUMBER(16). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doSelectByPK(exceptId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymExcept> ENTITY doSelectByPK(Long exceptId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymExcept> ENTITY doSelectByPK(Long exceptId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(exceptId), tp);
     }
 
-    protected <ENTITY extends SynonymExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long exceptId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymExcept> OptionalEntity<ENTITY> doSelectOptionalByPK(Long exceptId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(exceptId, tp), exceptId);
     }
 
@@ -257,16 +216,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<SynonymExcept> facadeSelectList(SynonymExceptCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymExcept> ListResultBean<ENTITY> doSelectList(SynonymExceptCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -296,16 +245,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<SynonymExcept> facadeSelectPage(SynonymExceptCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymExcept> PagingResultBean<ENTITY> doSelectPage(SynonymExceptCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -325,16 +264,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(SynonymExceptCB cb, EntityRowHandler<SynonymExcept> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(SynonymExceptCB cb, EntityRowHandler<SynonymExcept> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymExcept> void doSelectCursor(SynonymExceptCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -358,19 +287,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<SynonymExceptCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<SynonymExceptCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends SynonymExceptCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -532,7 +448,7 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param synonymExceptList The entity list of synonymExcept. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -586,17 +502,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         doInsert(synonymExcept, null);
     }
 
-    protected void doInsert(SynonymExcept et, InsertOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExcept", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<SynonymExceptCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -623,27 +528,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         doUpdate(synonymExcept, null);
     }
 
-    protected void doUpdate(SynonymExcept et, UpdateOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExcept", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<SynonymExceptCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected SynonymExceptCB createCBForVaryingUpdate()
-    { SynonymExceptCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected SynonymExceptCB createCBForSpecifiedUpdate()
-    { SynonymExceptCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -656,16 +540,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(SynonymExcept synonymExcept) {
         doInsertOrUpdate(synonymExcept, null, null);
     }
-
-    protected void doInsertOrUpdate(SynonymExcept et, InsertOption<SynonymExceptCB> iop, UpdateOption<SynonymExceptCB> uop) {
-        assertObjectNotNull("synonymExcept", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -687,17 +561,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public void delete(SynonymExcept synonymExcept) {
         doDelete(synonymExcept, null);
     }
-
-    protected void doDelete(SynonymExcept et, final DeleteOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExcept", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<SynonymExceptCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -730,21 +593,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doBatchInsert(synonymExceptList, null);
     }
 
-    protected int[] doBatchInsert(List<SynonymExcept> ls, InsertOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExceptList", ls);
-        InsertOption<SynonymExceptCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<SynonymExcept> ls, InsertOption<SynonymExceptCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -772,20 +620,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<SynonymExcept> synonymExceptList) {
         return doBatchUpdate(synonymExceptList, null);
     }
-
-    protected int[] doBatchUpdate(List<SynonymExcept> ls, UpdateOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExceptList", ls);
-        UpdateOption<SynonymExceptCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<SynonymExcept> ls, UpdateOption<SynonymExceptCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -819,10 +653,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(synonymExceptList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -834,17 +664,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doBatchDelete(synonymExceptList, null);
     }
 
-    protected int[] doBatchDelete(List<SynonymExcept> ls, DeleteOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExceptList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -852,7 +671,7 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * synonymExceptBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymExcept, SynonymExceptCB&gt;() {
-     *     public ConditionBean setup(synonymExcept entity, SynonymExceptCB intoCB) {
+     *     public ConditionBean setup(SynonymExcept entity, SynonymExceptCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -871,24 +690,12 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<SynonymExcept, SynonymExceptCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<SynonymExcept, SynonymExceptCB> sp, InsertOption<SynonymExceptCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        SynonymExcept et = newEntity(); SynonymExceptCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected SynonymExceptCB createCBForQueryInsert()
-    { SynonymExceptCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -916,14 +723,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(synonymExcept, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymExcept et, SynonymExceptCB cb, UpdateOption<SynonymExceptCB> op) {
-        assertObjectNotNull("synonymExcept", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -938,13 +737,6 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     public int queryDelete(SynonymExceptCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(SynonymExceptCB cb, DeleteOption<SynonymExceptCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1090,7 +882,7 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1187,20 +979,9 @@ public abstract class BsSynonymExceptBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<SynonymExcept> typeOfSelectedEntity() { return SynonymExcept.class; }
-    protected SynonymExcept downcast(Entity et) { return helpEntityDowncastInternally(et, SynonymExcept.class); }
-    protected SynonymExceptCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SynonymExceptCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<SynonymExcept> downcast(List<? extends Entity> ls) { return (List<SynonymExcept>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymExceptCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<SynonymExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymExceptCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<SynonymExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymExceptCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<SynonymExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymExcept, SynonymExceptCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<SynonymExcept, SynonymExceptCB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends SynonymExcept> typeOfSelectedEntity() { return SynonymExcept.class; }
+    protected Class<SynonymExcept> typeOfHandlingEntity() { return SynonymExcept.class; }
+    protected Class<SynonymExceptCB> typeOfHandlingConditionBean() { return SynonymExceptCB.class; }
 }

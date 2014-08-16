@@ -44,7 +44,6 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (隣の商品ID)PRODUCT_ID: {PK, NotNull, NUMBER(16)}
@@ -523,7 +522,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
 
     protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
     protected abstract ConditionValue getCValueUpdateProcess();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VERSION_NO: {NotNull, NUMBER(38)}
@@ -773,6 +772,9 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -809,8 +811,8 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -839,6 +841,11 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -846,6 +853,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
         return new NextSchemaProductCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return NextSchemaProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

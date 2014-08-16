@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * LARGE_DATA_ID: {PK, NotNull, NUMBER(12)}
@@ -522,7 +521,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regStringUniqueIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueStringUniqueIndex(), "STRING_UNIQUE_INDEX"); }
     protected abstract ConditionValue getCValueStringUniqueIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * INTFLG_INDEX: {NotNull, NUMBER(8)}
@@ -613,7 +612,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regIntflgIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIntflgIndex(), "INTFLG_INDEX"); }
     protected abstract ConditionValue getCValueIntflgIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NUMERIC_INTEGER_INDEX: {IX, NotNull, NUMBER(8)}
@@ -704,7 +703,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regNumericIntegerIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNumericIntegerIndex(), "NUMERIC_INTEGER_INDEX"); }
     protected abstract ConditionValue getCValueNumericIntegerIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NUMERIC_INTEGER_NO_INDEX: {NotNull, NUMBER(8)}
@@ -1016,6 +1015,9 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -1052,8 +1054,8 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1082,6 +1084,11 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -1089,6 +1096,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
         return new VendorLargeDataCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorLargeDataCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

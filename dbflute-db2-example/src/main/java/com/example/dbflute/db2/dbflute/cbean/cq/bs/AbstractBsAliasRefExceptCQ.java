@@ -44,7 +44,6 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_EXCEPT_ID: {PK, NotNull, DECIMAL(16)}
@@ -160,7 +159,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
 
     protected void regRefExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefExceptId(), "REF_EXCEPT_ID"); }
     protected abstract ConditionValue getCValueRefExceptId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * EXCEPT_ID: {NotNull, DECIMAL(16), FK to ALIAS_EXCEPT}
@@ -482,6 +481,9 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
     }
     public abstract String keepMyselfInScope(AliasRefExceptCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -518,8 +520,8 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -548,6 +550,11 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -555,6 +562,7 @@ public abstract class AbstractBsAliasRefExceptCQ extends AbstractConditionQuery 
         return new AliasRefExceptCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return AliasRefExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

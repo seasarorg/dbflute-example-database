@@ -178,7 +178,7 @@ public class BsSpStructListParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInFooList: {TABLE as In} <br />
-     * @return The value of VInFooList. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInFooList. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<FooBean> getVInFooList() {
         return _vInFooList;
@@ -194,7 +194,7 @@ public class BsSpStructListParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutFooList: {TABLE as Out} <br />
-     * @return The value of VOutFooList. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutFooList. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<FooBean> getVOutFooList() {
         return _vOutFooList;

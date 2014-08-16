@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DIFF_WORLD_ID: {PK, NotNull, NUMBER(16)}
@@ -454,6 +453,9 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -490,8 +492,8 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -520,6 +522,11 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -527,6 +534,7 @@ public abstract class AbstractBsWhiteDiffWorldCQ extends AbstractConditionQuery 
         return new WhiteDiffWorldCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteDiffWorldCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

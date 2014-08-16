@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VENDOR_CHECK_ID: {PK, NotNull, numeric(16)}
@@ -459,7 +458,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfText(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfText(), "TYPE_OF_TEXT"); }
     protected abstract ConditionValue getCValueTypeOfText();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_NUMERIC_DECIMAL: {numeric(5, 3)}
@@ -562,7 +561,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfNumericDecimal(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericDecimal(), "TYPE_OF_NUMERIC_DECIMAL"); }
     protected abstract ConditionValue getCValueTypeOfNumericDecimal();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_NUMERIC_INTEGER: {numeric(5)}
@@ -665,7 +664,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfNumericInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericInteger(), "TYPE_OF_NUMERIC_INTEGER"); }
     protected abstract ConditionValue getCValueTypeOfNumericInteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_NUMERIC_BIGINT: {numeric(12)}
@@ -768,7 +767,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfNumericBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfNumericBigint(), "TYPE_OF_NUMERIC_BIGINT"); }
     protected abstract ConditionValue getCValueTypeOfNumericBigint();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_SMALLINTEGER: {smallint(5)}
@@ -871,7 +870,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfSmallinteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfSmallinteger(), "TYPE_OF_SMALLINTEGER"); }
     protected abstract ConditionValue getCValueTypeOfSmallinteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_INTEGER: {int(10)}
@@ -974,7 +973,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfInteger(), "TYPE_OF_INTEGER"); }
     protected abstract ConditionValue getCValueTypeOfInteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_BIGINT: {bigint(19)}
@@ -1077,7 +1076,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBigint(), "TYPE_OF_BIGINT"); }
     protected abstract ConditionValue getCValueTypeOfBigint();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_MONEY: {money(19, 4)}
@@ -1180,7 +1179,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfMoney(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfMoney(), "TYPE_OF_MONEY"); }
     protected abstract ConditionValue getCValueTypeOfMoney();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_SMALLMONEY: {smallmoney(10, 4)}
@@ -1536,6 +1535,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     protected void regTypeOfBit(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBit(), "TYPE_OF_BIT"); }
     protected abstract ConditionValue getCValueTypeOfBit();
 
+
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * TYPE_OF_BINARY: {binary(3000)}
@@ -1550,6 +1550,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfBinary(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBinary(), "TYPE_OF_BINARY"); }
     protected abstract ConditionValue getCValueTypeOfBinary();
+
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -1890,6 +1891,9 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     }
     public abstract String keepMyselfInScope(VendorCheckCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -1926,8 +1930,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1956,6 +1960,11 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -1963,6 +1972,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
         return new VendorCheckCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorCheckCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

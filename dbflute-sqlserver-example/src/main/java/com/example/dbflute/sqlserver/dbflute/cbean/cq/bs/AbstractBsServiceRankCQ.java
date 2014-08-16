@@ -44,7 +44,6 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * SERVICE_RANK_CODE: {PK, NotNull, char(3)}
@@ -345,7 +344,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regServiceRankName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueServiceRankName(), "SERVICE_RANK_NAME"); }
     protected abstract ConditionValue getCValueServiceRankName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SERVICE_POINT_INCIDENCE: {NotNull, numeric(5, 3)}
@@ -436,7 +435,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regServicePointIncidence(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueServicePointIncidence(), "SERVICE_POINT_INCIDENCE"); }
     protected abstract ConditionValue getCValueServicePointIncidence();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NEW_ACCEPTABLE_FLG: {NotNull, int(10), classification=Flg}
@@ -610,7 +609,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regDescription(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDescription(), "DESCRIPTION"); }
     protected abstract ConditionValue getCValueDescription();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DISPLAY_ORDER: {UQ, NotNull, int(10)}
@@ -889,6 +888,9 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     }
     public abstract String keepMyselfInScope(ServiceRankCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -925,8 +927,8 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -955,6 +957,11 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -962,6 +969,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
         return new ServiceRankCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return ServiceRankCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

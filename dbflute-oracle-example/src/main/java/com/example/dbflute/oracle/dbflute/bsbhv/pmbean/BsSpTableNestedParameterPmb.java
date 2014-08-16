@@ -177,7 +177,7 @@ public class BsSpTableNestedParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInVarcharArrayArray: {TABLE as In} <br />
-     * @return The value of VInVarcharArrayArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarcharArrayArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<List<String>> getVInVarcharArrayArray() {
         return _vInVarcharArrayArray;
@@ -193,7 +193,7 @@ public class BsSpTableNestedParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarcharArrayArray: {TABLE as Out} <br />
-     * @return The value of VOutVarcharArrayArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarcharArrayArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<List<String>> getVOutVarcharArrayArray() {
         return _vOutVarcharArrayArray;

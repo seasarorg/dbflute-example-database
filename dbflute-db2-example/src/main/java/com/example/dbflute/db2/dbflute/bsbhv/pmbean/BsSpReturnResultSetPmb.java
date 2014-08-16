@@ -167,7 +167,7 @@ public class BsSpReturnResultSetPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] notParamResult1 <br />
-     * @return The value of notParamResult1. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult1. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetNotParamResult1> getNotParamResult1() {
         return _notParamResult1;

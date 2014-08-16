@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteRefNextTargetCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_NEXT_TARGET_ID: {PK, NotNull, NUMBER(16)}
@@ -484,6 +483,9 @@ public abstract class AbstractBsWhiteRefNextTargetCQ extends AbstractConditionQu
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -520,8 +522,8 @@ public abstract class AbstractBsWhiteRefNextTargetCQ extends AbstractConditionQu
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -550,6 +552,11 @@ public abstract class AbstractBsWhiteRefNextTargetCQ extends AbstractConditionQu
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -557,6 +564,7 @@ public abstract class AbstractBsWhiteRefNextTargetCQ extends AbstractConditionQu
         return new WhiteRefNextTargetCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteRefNextTargetCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

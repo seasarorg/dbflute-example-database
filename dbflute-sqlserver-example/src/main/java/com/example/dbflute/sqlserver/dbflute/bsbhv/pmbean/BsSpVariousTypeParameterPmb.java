@@ -231,7 +231,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {int(10) as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getReturnValue() {
         return _returnValue;
@@ -247,7 +247,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInVarchar: {varchar(10) as In} <br />
-     * @return The value of VInVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInVarchar() {
         return filterStringParameter(_vInVarchar);
@@ -263,7 +263,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutNvarchar: {nvarchar(10) as InOut} <br />
-     * @return The value of VOutNvarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutNvarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutNvarchar() {
         return filterStringParameter(_vOutNvarchar);
@@ -279,7 +279,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutChar: {char(3) as InOut} <br />
-     * @return The value of VOutChar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutChar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutChar() {
         return filterStringParameter(_vOutChar);
@@ -295,7 +295,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInText: {text(2147483647) as In} <br />
-     * @return The value of VInText. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInText. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInText() {
         return filterStringParameter(_vInText);
@@ -311,7 +311,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutText: {text(2147483647) as InOut} <br />
-     * @return The value of VOutText. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutText. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutText() {
         return filterStringParameter(_vOutText);
@@ -327,7 +327,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvInNumericInteger: {numeric(5) as In} <br />
-     * @return The value of vvInNumericInteger. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvInNumericInteger. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getVvInNumericInteger() {
         return _vvInNumericInteger;
@@ -343,7 +343,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvInNumericBigint: {numeric(12) as In} <br />
-     * @return The value of vvInNumericBigint. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvInNumericBigint. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getVvInNumericBigint() {
         return _vvInNumericBigint;
@@ -359,7 +359,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvInNumericDecimal: {numeric(5, 3) as In} <br />
-     * @return The value of vvInNumericDecimal. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvInNumericDecimal. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVvInNumericDecimal() {
         return _vvInNumericDecimal;
@@ -375,7 +375,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvInoutInteger: {int(10) as InOut} <br />
-     * @return The value of vvInoutInteger. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvInoutInteger. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getVvInoutInteger() {
         return _vvInoutInteger;
@@ -391,7 +391,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvOutBigint: {bigint(19) as InOut} <br />
-     * @return The value of vvOutBigint. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvOutBigint. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getVvOutBigint() {
         return _vvOutBigint;
@@ -407,7 +407,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvvInDatetime: {datetime(23, 3) as In} <br />
-     * @return The value of vvvInDatetime. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvvInDatetime. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.sql.Timestamp getVvvInDatetime() {
         return _vvvInDatetime;
@@ -423,7 +423,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvvOutDatetime: {datetime(23, 3) as InOut} <br />
-     * @return The value of vvvOutDatetime. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvvOutDatetime. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.sql.Timestamp getVvvOutDatetime() {
         return _vvvOutDatetime;
@@ -439,7 +439,7 @@ public class BsSpVariousTypeParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vvvvInUniqueidentifier: {uniqueidentifier(36) as In} <br />
-     * @return The value of vvvvInUniqueidentifier. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vvvvInUniqueidentifier. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.util.UUID getVvvvInUniqueidentifier() {
         return _vvvvInUniqueidentifier;

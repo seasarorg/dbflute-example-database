@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VENDOR_LARGE_NAME_90123_REF_ID: {PK, NotNull, NUMBER(16)}
@@ -233,7 +232,7 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
 
     protected void regVendorLargeName901RefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVendorLargeName901RefName(), "VENDOR_LARGE_NAME_901_REF_NAME"); }
     protected abstract ConditionValue getCValueVendorLargeName901RefName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VENDOR_LARGE_NAME_901234567_ID: {NUMBER(16), FK to VENDOR_LARGE_NAME_901234567890}
@@ -587,6 +586,9 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -623,8 +625,8 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -653,6 +655,11 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -660,6 +667,7 @@ public abstract class AbstractBsVendorLargeName90123456RefCQ extends AbstractCon
         return new VendorLargeName90123456RefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorLargeName90123456RefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

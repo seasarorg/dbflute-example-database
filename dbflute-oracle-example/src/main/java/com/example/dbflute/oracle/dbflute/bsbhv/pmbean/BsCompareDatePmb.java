@@ -153,7 +153,7 @@ public class BsCompareDatePmb implements ExecuteHandlingPmb<MemberBhv>, FetchBea
     //                                                                            ========
     /**
      * [get] memberId <br />
-     * @return The value of memberId. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberId. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getMemberId() {
         return _memberId;
@@ -169,7 +169,7 @@ public class BsCompareDatePmb implements ExecuteHandlingPmb<MemberBhv>, FetchBea
 
     /**
      * [get] birthdateFrom <br />
-     * @return The value of birthdateFrom. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of birthdateFrom. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Date getBirthdateFrom() {
         return toUtilDate(_birthdateFrom);
@@ -185,7 +185,7 @@ public class BsCompareDatePmb implements ExecuteHandlingPmb<MemberBhv>, FetchBea
 
     /**
      * [get] formalizedDatetimeFrom <br />
-     * @return The value of formalizedDatetimeFrom. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of formalizedDatetimeFrom. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.sql.Timestamp getFormalizedDatetimeFrom() {
         return _formalizedDatetimeFrom;

@@ -172,7 +172,7 @@ public class BsSpReturnResultSetMorePmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] notParamResult1 <br />
-     * @return The value of notParamResult1. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult1. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetMoreNotParamResult1> getNotParamResult1() {
         return _notParamResult1;
@@ -188,7 +188,7 @@ public class BsSpReturnResultSetMorePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] notParamResult2 <br />
-     * @return The value of notParamResult2. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult2. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetMoreNotParamResult2> getNotParamResult2() {
         return _notParamResult2;

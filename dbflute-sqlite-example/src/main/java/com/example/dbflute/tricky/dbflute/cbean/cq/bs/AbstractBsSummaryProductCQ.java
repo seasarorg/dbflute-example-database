@@ -44,7 +44,6 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PRODUCT_ID: {PK, INTEGER(2000000000, 10)}
@@ -794,6 +793,9 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
     }
     public abstract String keepMyselfInScope(SummaryProductCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -830,8 +832,8 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -860,6 +862,11 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -867,6 +874,7 @@ public abstract class AbstractBsSummaryProductCQ extends AbstractConditionQuery 
         return new SummaryProductCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SummaryProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

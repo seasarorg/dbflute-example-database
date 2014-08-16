@@ -44,7 +44,6 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MEMBER_LOGIN_ID: {PK, NotNull, NUMBER(16)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
 
     protected void regMemberLoginId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberLoginId(), "MEMBER_LOGIN_ID"); }
     protected abstract ConditionValue getCValueMemberLoginId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MEMBER_ID: {UQ+, NotNull, NUMBER(16), FK to MEMBER_VENDOR_SYNONYM}
@@ -344,7 +343,7 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
 
     protected void regLoginDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginDatetime(), "LOGIN_DATETIME"); }
     protected abstract ConditionValue getCValueLoginDatetime();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MOBILE_LOGIN_FLG: {NotNull, NUMBER(1), classification=Flg}
@@ -826,6 +825,9 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -862,8 +864,8 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -892,6 +894,11 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -899,6 +906,7 @@ public abstract class AbstractBsSynonymMemberLoginCQ extends AbstractConditionQu
         return new SynonymMemberLoginCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SynonymMemberLoginCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

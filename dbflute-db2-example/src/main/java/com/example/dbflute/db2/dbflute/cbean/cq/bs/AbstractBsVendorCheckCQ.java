@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VENDOR_CHECK_ID: {PK, NotNull, DECIMAL(16)}
@@ -265,6 +264,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     protected void regTypeOfChar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfChar(), "TYPE_OF_CHAR"); }
     protected abstract ConditionValue getCValueTypeOfChar();
 
+
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * TYPE_OF_CHAR_FOR_BIT_DATA: {CHAR () FOR BIT DATA(3)}
@@ -383,6 +383,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfVarchar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfVarchar(), "TYPE_OF_VARCHAR"); }
     protected abstract ConditionValue getCValueTypeOfVarchar();
+
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -594,7 +595,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfDbclob(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDbclob(), "TYPE_OF_DBCLOB"); }
     protected abstract ConditionValue getCValueTypeOfDbclob();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_DECIMAL_DECIMAL: {DECIMAL(5, 3)}
@@ -710,7 +711,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfDecimalDecimal(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDecimalDecimal(), "TYPE_OF_DECIMAL_DECIMAL"); }
     protected abstract ConditionValue getCValueTypeOfDecimalDecimal();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_DECIMAL_INTEGER: {DECIMAL(5)}
@@ -826,7 +827,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfDecimalInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDecimalInteger(), "TYPE_OF_DECIMAL_INTEGER"); }
     protected abstract ConditionValue getCValueTypeOfDecimalInteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_DECIMAL_BIGINT: {DECIMAL(12)}
@@ -942,7 +943,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfDecimalBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDecimalBigint(), "TYPE_OF_DECIMAL_BIGINT"); }
     protected abstract ConditionValue getCValueTypeOfDecimalBigint();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_SMALLINT: {SMALLINT(5)}
@@ -1058,7 +1059,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfSmallint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfSmallint(), "TYPE_OF_SMALLINT"); }
     protected abstract ConditionValue getCValueTypeOfSmallint();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_INTEGER: {INTEGER(10)}
@@ -1174,7 +1175,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfInteger(), "TYPE_OF_INTEGER"); }
     protected abstract ConditionValue getCValueTypeOfInteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_BIGINT: {BIGINT(19)}
@@ -1290,7 +1291,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfBigint(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfBigint(), "TYPE_OF_BIGINT"); }
     protected abstract ConditionValue getCValueTypeOfBigint();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_FLOAT: {DOUBLE(53)}
@@ -1406,7 +1407,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfFloat(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfFloat(), "TYPE_OF_FLOAT"); }
     protected abstract ConditionValue getCValueTypeOfFloat();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_DOUBLE: {DOUBLE(53)}
@@ -1522,7 +1523,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfDouble(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfDouble(), "TYPE_OF_DOUBLE"); }
     protected abstract ConditionValue getCValueTypeOfDouble();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TYPE_OF_REAL: {REAL(24)}
@@ -1874,6 +1875,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     protected void regTypeOfTimestamp(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTypeOfTimestamp(), "TYPE_OF_TIMESTAMP"); }
     protected abstract ConditionValue getCValueTypeOfTimestamp();
+
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -2389,6 +2391,9 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     }
     public abstract String keepMyselfInScope(VendorCheckCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -2425,8 +2430,8 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -2455,6 +2460,11 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -2462,6 +2472,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
         return new VendorCheckCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorCheckCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

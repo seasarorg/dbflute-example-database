@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_REF_ID: {PK, NotNull, NUMBER(16)}
@@ -530,6 +529,9 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -566,8 +568,8 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -596,6 +598,11 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -603,6 +610,7 @@ public abstract class AbstractBsWhiteSameNameRefRefCQ extends AbstractConditionQ
         return new WhiteSameNameRefRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSameNameRefRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

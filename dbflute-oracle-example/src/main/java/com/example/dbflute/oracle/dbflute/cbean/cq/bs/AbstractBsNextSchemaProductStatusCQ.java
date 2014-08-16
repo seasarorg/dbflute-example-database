@@ -44,7 +44,6 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * PRODUCT_STATUS_CODE: {PK, NotNull, CHAR(3)}
@@ -683,6 +682,9 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -719,8 +721,8 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -749,6 +751,11 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -756,6 +763,7 @@ public abstract class AbstractBsNextSchemaProductStatusCQ extends AbstractCondit
         return new NextSchemaProductStatusCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return NextSchemaProductStatusCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorWritable {
+public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorWritable<VendorLargeName901234567890, VendorLargeName901234567890CB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "VENDOR_LARGE_NAME_901234567890"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public VendorLargeName901234567890 newEntity() { return new VendorLargeName901234567890(); }
-
     /** {@inheritDoc} */
     public VendorLargeName901234567890CB newConditionBean() { return new VendorLargeName901234567890CB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public int selectCount(VendorLargeName901234567890CB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(VendorLargeName901234567890CB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(VendorLargeName901234567890CB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(VendorLargeName901234567890CB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntity(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalEntity(VendorLargeName901234567890CB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected VendorLargeName901234567890 facadeSelectEntityWithDeletedCheck(VendorLargeName901234567890CB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectEntityWithDeletedCheck(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param vendorLargeName901234567Id : PK, NotNull, NUMBER(16). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doSelectByPK(vendorLargeName901234567Id, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPK(Long vendorLargeName901234567Id, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorLargeName901234567890> ENTITY doSelectByPK(Long vendorLargeName901234567Id, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(vendorLargeName901234567Id), tp);
     }
 
-    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalByPK(Long vendorLargeName901234567Id, Class<ENTITY> tp) {
+    protected <ENTITY extends VendorLargeName901234567890> OptionalEntity<ENTITY> doSelectOptionalByPK(Long vendorLargeName901234567Id, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(vendorLargeName901234567Id, tp), vendorLargeName901234567Id);
     }
 
@@ -257,16 +216,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<VendorLargeName901234567890> facadeSelectList(VendorLargeName901234567890CB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorLargeName901234567890> ListResultBean<ENTITY> doSelectList(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -296,16 +245,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<VendorLargeName901234567890> facadeSelectPage(VendorLargeName901234567890CB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorLargeName901234567890> PagingResultBean<ENTITY> doSelectPage(VendorLargeName901234567890CB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -325,16 +264,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      */
     public void selectCursor(VendorLargeName901234567890CB cb, EntityRowHandler<VendorLargeName901234567890> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(VendorLargeName901234567890CB cb, EntityRowHandler<VendorLargeName901234567890> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends VendorLargeName901234567890> void doSelectCursor(VendorLargeName901234567890CB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -358,19 +287,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public <RESULT> HpSLSFunction<VendorLargeName901234567890CB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<VendorLargeName901234567890CB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends VendorLargeName901234567890CB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -532,7 +448,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     }
 
     /**
-     * {Refer to overload method that has an argument of condition-bean setupper.} #beforejava8
+     * {Refer to overload method that has an argument of condition-bean set-upper} #beforejava8
      * @param vendorLargeName901234567890List The entity list of vendorLargeName901234567890. (NotNull)
      * @param loadReferrerOption The option of load-referrer. (NotNull)
      * @return The callback interface which you can load nested referrer by calling withNestedReferrer(). (NotNull)
@@ -586,17 +502,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         doInsert(vendorLargeName901234567890, null);
     }
 
-    protected void doInsert(VendorLargeName901234567890 et, InsertOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<VendorLargeName901234567890CB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -623,27 +528,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         doUpdate(vendorLargeName901234567890, null);
     }
 
-    protected void doUpdate(VendorLargeName901234567890 et, UpdateOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<VendorLargeName901234567890CB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected VendorLargeName901234567890CB createCBForVaryingUpdate()
-    { VendorLargeName901234567890CB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected VendorLargeName901234567890CB createCBForSpecifiedUpdate()
-    { VendorLargeName901234567890CB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -656,16 +540,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public void insertOrUpdate(VendorLargeName901234567890 vendorLargeName901234567890) {
         doInsertOrUpdate(vendorLargeName901234567890, null, null);
     }
-
-    protected void doInsertOrUpdate(VendorLargeName901234567890 et, InsertOption<VendorLargeName901234567890CB> iop, UpdateOption<VendorLargeName901234567890CB> uop) {
-        assertObjectNotNull("vendorLargeName901234567890", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -687,17 +561,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public void delete(VendorLargeName901234567890 vendorLargeName901234567890) {
         doDelete(vendorLargeName901234567890, null);
     }
-
-    protected void doDelete(VendorLargeName901234567890 et, final DeleteOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<VendorLargeName901234567890CB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -730,21 +593,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doBatchInsert(vendorLargeName901234567890List, null);
     }
 
-    protected int[] doBatchInsert(List<VendorLargeName901234567890> ls, InsertOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890List", ls);
-        InsertOption<VendorLargeName901234567890CB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<VendorLargeName901234567890> ls, InsertOption<VendorLargeName901234567890CB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -772,20 +620,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public int[] batchUpdate(List<VendorLargeName901234567890> vendorLargeName901234567890List) {
         return doBatchUpdate(vendorLargeName901234567890List, null);
     }
-
-    protected int[] doBatchUpdate(List<VendorLargeName901234567890> ls, UpdateOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890List", ls);
-        UpdateOption<VendorLargeName901234567890CB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<VendorLargeName901234567890> ls, UpdateOption<VendorLargeName901234567890CB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -819,10 +653,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doBatchUpdate(vendorLargeName901234567890List, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -834,17 +664,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doBatchDelete(vendorLargeName901234567890List, null);
     }
 
-    protected int[] doBatchDelete(List<VendorLargeName901234567890> ls, DeleteOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890List", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -852,7 +671,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * vendorLargeName901234567890Bhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;VendorLargeName901234567890, VendorLargeName901234567890CB&gt;() {
-     *     public ConditionBean setup(vendorLargeName901234567890 entity, VendorLargeName901234567890CB intoCB) {
+     *     public ConditionBean setup(VendorLargeName901234567890 entity, VendorLargeName901234567890CB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -871,24 +690,12 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<VendorLargeName901234567890, VendorLargeName901234567890CB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<VendorLargeName901234567890, VendorLargeName901234567890CB> sp, InsertOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        VendorLargeName901234567890 et = newEntity(); VendorLargeName901234567890CB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected VendorLargeName901234567890CB createCBForQueryInsert()
-    { VendorLargeName901234567890CB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -916,14 +723,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
         return doQueryUpdate(vendorLargeName901234567890, cb, null);
     }
 
-    protected int doQueryUpdate(VendorLargeName901234567890 et, VendorLargeName901234567890CB cb, UpdateOption<VendorLargeName901234567890CB> op) {
-        assertObjectNotNull("vendorLargeName901234567890", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -938,13 +737,6 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     public int queryDelete(VendorLargeName901234567890CB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(VendorLargeName901234567890CB cb, DeleteOption<VendorLargeName901234567890CB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1090,7 +882,7 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1187,20 +979,9 @@ public abstract class BsVendorLargeName901234567890Bhv extends AbstractBehaviorW
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<VendorLargeName901234567890> typeOfSelectedEntity() { return VendorLargeName901234567890.class; }
-    protected VendorLargeName901234567890 downcast(Entity et) { return helpEntityDowncastInternally(et, VendorLargeName901234567890.class); }
-    protected VendorLargeName901234567890CB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, VendorLargeName901234567890CB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<VendorLargeName901234567890> downcast(List<? extends Entity> ls) { return (List<VendorLargeName901234567890>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorLargeName901234567890CB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorLargeName901234567890CB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorLargeName901234567890CB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorLargeName901234567890CB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorLargeName901234567890CB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorLargeName901234567890CB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorLargeName901234567890, VendorLargeName901234567890CB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorLargeName901234567890, VendorLargeName901234567890CB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends VendorLargeName901234567890> typeOfSelectedEntity() { return VendorLargeName901234567890.class; }
+    protected Class<VendorLargeName901234567890> typeOfHandlingEntity() { return VendorLargeName901234567890.class; }
+    protected Class<VendorLargeName901234567890CB> typeOfHandlingConditionBean() { return VendorLargeName901234567890CB.class; }
 }

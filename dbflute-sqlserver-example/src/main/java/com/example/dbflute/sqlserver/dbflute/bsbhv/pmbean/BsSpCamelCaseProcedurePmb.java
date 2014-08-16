@@ -191,7 +191,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {int(10) as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getReturnValue() {
         return _returnValue;
@@ -207,7 +207,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] fooParam: {varchar(10) as In} <br />
-     * @return The value of fooParam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of fooParam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getFooParam() {
         return filterStringParameter(_fooParam);
@@ -223,7 +223,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] barParam: {varchar(10) as In} <br />
-     * @return The value of barParam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of barParam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getBarParam() {
         return filterStringParameter(_barParam);
@@ -239,7 +239,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VDonParam: {varchar(10) as InOut} <br />
-     * @return The value of VDonParam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VDonParam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVDonParam() {
         return filterStringParameter(_vDonParam);
@@ -255,7 +255,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VHeeParam: {varchar(10) as In} <br />
-     * @return The value of VHeeParam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VHeeParam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVHeeParam() {
         return filterStringParameter(_vHeeParam);
@@ -271,7 +271,7 @@ public class BsSpCamelCaseProcedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] pooParamName: {varchar(10) as InOut} <br />
-     * @return The value of pooParamName. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of pooParamName. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getPooParamName() {
         return filterStringParameter(_pooParamName);

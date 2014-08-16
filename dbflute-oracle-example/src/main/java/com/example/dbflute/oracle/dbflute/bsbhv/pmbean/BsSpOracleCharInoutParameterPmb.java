@@ -166,7 +166,7 @@ public class BsSpOracleCharInoutParameterPmb implements ProcedurePmb, FetchBean 
     //                                                                            ========
     /**
      * [get] VInoutChar: {CHAR as InOut} <br />
-     * @return The value of VInoutChar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutChar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutChar() {
         return filterStringParameter(_vInoutChar);

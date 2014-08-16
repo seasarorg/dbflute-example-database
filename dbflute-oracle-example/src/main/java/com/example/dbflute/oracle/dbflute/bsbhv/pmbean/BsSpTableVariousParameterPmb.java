@@ -177,7 +177,7 @@ public class BsSpTableVariousParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInClobArray: {TABLE as In} <br />
-     * @return The value of VInClobArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInClobArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<String> getVInClobArray() {
         return _vInClobArray;
@@ -193,7 +193,7 @@ public class BsSpTableVariousParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutClobArray: {TABLE as Out} <br />
-     * @return The value of VOutClobArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutClobArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<String> getVOutClobArray() {
         return _vOutClobArray;

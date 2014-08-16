@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * MEMBER_STATUS_CODE: {PK, NotNull, TEXT(2000000000, 10), classification=MemberStatus}
@@ -601,7 +600,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
 
     protected void regDescription(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDescription(), "DESCRIPTION"); }
     protected abstract ConditionValue getCValueDescription();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DISPLAY_ORDER: {NotNull, INTEGER(2000000000, 10)}
@@ -880,6 +879,9 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
     public abstract String keepMyselfInScope(MemberStatusCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -916,8 +918,8 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -946,6 +948,11 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -953,6 +960,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
         return new MemberStatusCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberStatusCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -154,7 +154,7 @@ public class BsProcReturnResultSetMorePmb implements ListHandlingPmb<VendorCheck
     //                                                                            ========
     /**
      * [get] memberStatusCode:cls(MemberStatus) <br />
-     * @return The value of memberStatusCode. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberStatusCode. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getMemberStatusCode() {
         return filterStringParameter(_memberStatusCode);

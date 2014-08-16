@@ -171,7 +171,7 @@ public class BsOverloadPkgSpOverloadInterruptPmb implements ProcedurePmb, FetchB
     //                                                                            ========
     /**
      * [get] VInVarchar: {VARCHAR2 as In} <br />
-     * @return The value of VInVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInVarchar() {
         return filterStringParameter(_vInVarchar);
@@ -187,7 +187,7 @@ public class BsOverloadPkgSpOverloadInterruptPmb implements ProcedurePmb, FetchB
 
     /**
      * [get] VOutVarchar: {VARCHAR2 as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);

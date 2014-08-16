@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * LARGE_DATA_REF_ID: {PK, NotNull, NUMBER(12)}
@@ -264,7 +263,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regLargeDataRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLargeDataRefId(), "LARGE_DATA_REF_ID"); }
     protected abstract ConditionValue getCValueLargeDataRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * LARGE_DATA_ID: {IX, NotNull, NUMBER(12), FK to VENDOR_LARGE_DATA}
@@ -689,7 +688,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regTimestampNoIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTimestampNoIndex(), "TIMESTAMP_NO_INDEX"); }
     protected abstract ConditionValue getCValueTimestampNoIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NULLABLE_DECIMAL_INDEX: {IX, NUMBER(12, 3)}
@@ -792,7 +791,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regNullableDecimalIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNullableDecimalIndex(), "NULLABLE_DECIMAL_INDEX"); }
     protected abstract ConditionValue getCValueNullableDecimalIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NULLABLE_DECIMAL_NO_INDEX: {NUMBER(12, 3)}
@@ -895,7 +894,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regNullableDecimalNoIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNullableDecimalNoIndex(), "NULLABLE_DECIMAL_NO_INDEX"); }
     protected abstract ConditionValue getCValueNullableDecimalNoIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SELF_PARENT_ID: {NUMBER(12), FK to VENDOR_LARGE_DATA_REF}
@@ -1249,6 +1248,9 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -1285,8 +1287,8 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1315,6 +1317,11 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -1322,6 +1329,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
         return new VendorLargeDataRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorLargeDataRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

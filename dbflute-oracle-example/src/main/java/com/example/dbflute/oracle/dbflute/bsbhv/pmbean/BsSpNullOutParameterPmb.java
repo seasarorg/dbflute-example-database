@@ -181,7 +181,7 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VOutVarchar: {VARCHAR2 as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -197,7 +197,7 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutInteger: {NUMBER(38) as Out} <br />
-     * @return The value of VOutInteger. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutInteger. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVOutInteger() {
         return _vOutInteger;
@@ -213,7 +213,7 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutNumber: {NUMBER(22) as Out} <br />
-     * @return The value of VOutNumber. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutNumber. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVOutNumber() {
         return _vOutNumber;
@@ -229,7 +229,7 @@ public class BsSpNullOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutDate: {DATE as Out} <br />
-     * @return The value of VOutDate. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutDate. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.util.Date getVOutDate() {
         return toUtilDate(_vOutDate);

@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員フォローイングID)MEMBER_FOLLOWING_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -160,7 +159,7 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
 
     protected void regMemberFollowingId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberFollowingId(), "MEMBER_FOLLOWING_ID"); }
     protected abstract ConditionValue getCValueMemberFollowingId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (わたし)MY_MEMBER_ID: {UQ+, NotNull, INTEGER(10), FK to MEMBER}
@@ -294,7 +293,7 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
 
     protected void regMyMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMyMemberId(), "MY_MEMBER_ID"); }
     protected abstract ConditionValue getCValueMyMemberId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (あなた)YOUR_MEMBER_ID: {+UQ, IX+, NotNull, INTEGER(10), FK to MEMBER}
@@ -692,6 +691,9 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
     }
     public abstract String keepMyselfInScope(MemberFollowingCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -728,8 +730,8 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -758,6 +760,11 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -765,6 +772,7 @@ public abstract class AbstractBsMemberFollowingCQ extends AbstractConditionQuery
         return new MemberFollowingCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberFollowingCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

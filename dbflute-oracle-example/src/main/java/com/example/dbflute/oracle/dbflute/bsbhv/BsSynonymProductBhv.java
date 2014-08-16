@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
+public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable<SynonymProduct, SynonymProductCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "SYNONYM_PRODUCT"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public SynonymProduct newEntity() { return new SynonymProduct(); }
-
     /** {@inheritDoc} */
     public SynonymProductCB newConditionBean() { return new SynonymProductCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public int selectCount(SynonymProductCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(SynonymProductCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(SynonymProductCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(SynonymProductCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymProduct> ENTITY doSelectEntity(SynonymProductCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymProductCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymProductCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected SynonymProduct facadeSelectEntityWithDeletedCheck(SynonymProductCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymProduct> ENTITY doSelectEntityWithDeletedCheck(SynonymProductCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param productId : PK, NotNull, NUMBER(16). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doSelectByPK(productId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPK(Long productId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymProduct> ENTITY doSelectByPK(Long productId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(productId), tp);
     }
 
-    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalByPK(Long productId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectOptionalByPK(Long productId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(productId, tp), productId);
     }
 
@@ -251,7 +210,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doSelectByUniqueOf(productHandleCode, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectByUniqueOf(String productHandleCode, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymProduct> OptionalEntity<ENTITY> doSelectByUniqueOf(String productHandleCode, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(productHandleCode), tp), productHandleCode);
     }
 
@@ -282,16 +241,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<SynonymProduct> facadeSelectList(SynonymProductCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymProduct> ListResultBean<ENTITY> doSelectList(SynonymProductCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -321,16 +270,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<SynonymProduct> facadeSelectPage(SynonymProductCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymProduct> PagingResultBean<ENTITY> doSelectPage(SynonymProductCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -350,16 +289,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(SynonymProductCB cb, EntityRowHandler<SynonymProduct> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(SynonymProductCB cb, EntityRowHandler<SynonymProduct> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymProduct> void doSelectCursor(SynonymProductCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -383,19 +312,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<SynonymProductCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<SynonymProductCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends SynonymProductCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -535,17 +451,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         doInsert(synonymProduct, null);
     }
 
-    protected void doInsert(SynonymProduct et, InsertOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<SynonymProductCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, ExclusiveControl)
      * <pre>
@@ -572,24 +477,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         doUpdate(synonymProduct, null);
     }
 
-    protected void doUpdate(SynonymProduct et, UpdateOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<SynonymProductCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected SynonymProductCB createCBForVaryingUpdate()
-    { SynonymProductCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected SynonymProductCB createCBForSpecifiedUpdate()
-    { SynonymProductCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
     /**
      * Update the entity non-strictly modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -613,13 +500,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         doUpdateNonstrict(synonymProduct, null);
     }
 
-    protected void doUpdateNonstrict(SynonymProduct et, UpdateOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); prepareUpdateOption(op); helpUpdateNonstrictInternally(et, op);
-    }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doUpdateNonstrict(downcast(et), downcast(op)); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, ExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -633,13 +513,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         doInsertOrUpdate(synonymProduct, null, null);
     }
 
-    protected void doInsertOrUpdate(SynonymProduct et, InsertOption<SynonymProductCB> iop, UpdateOption<SynonymProductCB> uop) {
-        assertObjectNotNull("synonymProduct", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
     /**
      * Insert or update the entity non-strictly modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() }
@@ -652,13 +525,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public void insertOrUpdateNonstrict(SynonymProduct synonymProduct) {
         doInsertOrUpdateNonstrict(synonymProduct, null, null);
     }
-
-    protected void doInsertOrUpdateNonstrict(SynonymProduct et, InsertOption<SynonymProductCB> iop, UpdateOption<SynonymProductCB> uop) {
-        assertObjectNotNull("synonymProduct", et); helpInsertOrUpdateNonstrictInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdateNonstrict(downcast(et), downcast(iop), downcast(uop)); }
 
     /**
      * Delete the entity. (ZeroUpdateException, ExclusiveControl)
@@ -681,14 +547,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         doDelete(synonymProduct, null);
     }
 
-    protected void doDelete(SynonymProduct et, final DeleteOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<SynonymProductCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
     /**
      * Delete the entity non-strictly. {ZeroUpdateException, NonExclusiveControl}
      * <pre>
@@ -705,10 +563,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      */
     public void deleteNonstrict(SynonymProduct synonymProduct) {
         doDeleteNonstrict(synonymProduct, null);
-    }
-
-    protected void doDeleteNonstrict(SynonymProduct et, final DeleteOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); prepareDeleteOption(op); helpDeleteNonstrictInternally(et, op);
     }
 
     /**
@@ -732,9 +586,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     protected void doDeleteNonstrictIgnoreDeleted(SynonymProduct et, final DeleteOption<SynonymProductCB> op) {
         assertObjectNotNull("synonymProduct", et); prepareDeleteOption(op); helpDeleteNonstrictIgnoreDeletedInternally(et, op);
     }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doDeleteNonstrict(downcast(et), downcast(op)); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -767,21 +618,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doBatchInsert(synonymProductList, null);
     }
 
-    protected int[] doBatchInsert(List<SynonymProduct> ls, InsertOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProductList", ls);
-        InsertOption<SynonymProductCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<SynonymProduct> ls, InsertOption<SynonymProductCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -809,20 +645,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<SynonymProduct> synonymProductList) {
         return doBatchUpdate(synonymProductList, null);
     }
-
-    protected int[] doBatchUpdate(List<SynonymProduct> ls, UpdateOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProductList", ls);
-        UpdateOption<SynonymProductCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<SynonymProduct> ls, UpdateOption<SynonymProductCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (ExclusiveControl) <br />
@@ -884,13 +706,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doBatchUpdateNonstrict(synonymProductList, null);
     }
 
-    protected int[] doBatchUpdateNonstrict(List<SynonymProduct> ls, UpdateOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProductList", ls);
-        UpdateOption<SynonymProductCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop);
-        return delegateBatchUpdateNonstrict(ls, rlop);
-    }
-
     /**
      * Batch-update the entity list non-strictly specified-only. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -922,10 +737,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doBatchUpdateNonstrict(synonymProductList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doBatchUpdateNonstrict(downcast(ls), downcast(op)); }
-
     /**
      * Batch-delete the entity list. (ExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -936,14 +747,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public int[] batchDelete(List<SynonymProduct> synonymProductList) {
         return doBatchDelete(synonymProductList, null);
     }
-
-    protected int[] doBatchDelete(List<SynonymProduct> ls, DeleteOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProductList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
 
     /**
      * Batch-delete the entity list non-strictly. {NonExclusiveControl} <br />
@@ -956,15 +759,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doBatchDeleteNonstrict(synonymProductList, null);
     }
 
-    protected int[] doBatchDeleteNonstrict(List<SynonymProduct> ls, DeleteOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProductList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDeleteNonstrict(ls, op);
-    }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doBatchDeleteNonstrict(downcast(ls), downcast(op)); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -972,7 +766,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * synonymProductBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymProduct, SynonymProductCB&gt;() {
-     *     public ConditionBean setup(synonymProduct entity, SynonymProductCB intoCB) {
+     *     public ConditionBean setup(SynonymProduct entity, SynonymProductCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -991,24 +785,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<SynonymProduct, SynonymProductCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<SynonymProduct, SynonymProductCB> sp, InsertOption<SynonymProductCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        SynonymProduct et = newEntity(); SynonymProductCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected SynonymProductCB createCBForQueryInsert()
-    { SynonymProductCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -1036,14 +818,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(synonymProduct, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymProduct et, SynonymProductCB cb, UpdateOption<SynonymProductCB> op) {
-        assertObjectNotNull("synonymProduct", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -1058,13 +832,6 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     public int queryDelete(SynonymProductCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(SynonymProductCB cb, DeleteOption<SynonymProductCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1297,7 +1064,7 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1397,25 +1164,12 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable {
     //                                                                Optimistic Lock Info
     //                                                                ====================
     @Override
-    protected boolean hasVersionNoValue(Entity et) {
-        return downcast(et).getVersionNo() != null;
-    }
+    protected boolean hasVersionNoValue(Entity et) { return downcast(et).getVersionNo() != null; }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<SynonymProduct> typeOfSelectedEntity() { return SynonymProduct.class; }
-    protected SynonymProduct downcast(Entity et) { return helpEntityDowncastInternally(et, SynonymProduct.class); }
-    protected SynonymProductCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SynonymProductCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<SynonymProduct> downcast(List<? extends Entity> ls) { return (List<SynonymProduct>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymProductCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<SynonymProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymProductCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<SynonymProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymProductCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<SynonymProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymProduct, SynonymProductCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<SynonymProduct, SynonymProductCB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends SynonymProduct> typeOfSelectedEntity() { return SynonymProduct.class; }
+    protected Class<SynonymProduct> typeOfHandlingEntity() { return SynonymProduct.class; }
+    protected Class<SynonymProductCB> typeOfHandlingConditionBean() { return SynonymProductCB.class; }
 }

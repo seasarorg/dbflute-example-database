@@ -44,7 +44,6 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_EXCEPT_ID: {PK, NotNull, NUMBER(16)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
 
     protected void regRefExceptId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefExceptId(), "REF_EXCEPT_ID"); }
     protected abstract ConditionValue getCValueRefExceptId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * EXCEPT_ID: {NotNull, NUMBER(16), FK to SYNONYM_EXCEPT}
@@ -489,6 +488,9 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -525,8 +527,8 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -555,6 +557,11 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -562,6 +569,7 @@ public abstract class AbstractBsSynonymRefExceptCQ extends AbstractConditionQuer
         return new SynonymRefExceptCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SynonymRefExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

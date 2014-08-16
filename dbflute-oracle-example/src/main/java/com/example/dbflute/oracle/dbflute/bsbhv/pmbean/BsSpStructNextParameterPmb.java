@@ -178,7 +178,7 @@ public class BsSpStructNextParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInFooBean: {NEXTEXAMPLEDB.NEXT_FOO_BEAN as In} <br />
-     * @return The value of VInFooBean. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInFooBean. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public NextFooBean getVInFooBean() {
         return _vInFooBean;
@@ -194,7 +194,7 @@ public class BsSpStructNextParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutFooBean: {NEXTEXAMPLEDB.NEXT_FOO_BEAN as Out} <br />
-     * @return The value of VOutFooBean. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutFooBean. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public NextFooBean getVOutFooBean() {
         return _vOutFooBean;

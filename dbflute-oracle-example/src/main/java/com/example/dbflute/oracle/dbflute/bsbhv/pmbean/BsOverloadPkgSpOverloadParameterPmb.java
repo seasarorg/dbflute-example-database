@@ -188,7 +188,7 @@ public class BsOverloadPkgSpOverloadParameterPmb implements ProcedurePmb, FetchB
     //                                                                            ========
     /**
      * [get] VInVarchar: {VARCHAR2 as In} <br />
-     * @return The value of VInVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInVarchar() {
         return filterStringParameter(_vInVarchar);
@@ -204,7 +204,7 @@ public class BsOverloadPkgSpOverloadParameterPmb implements ProcedurePmb, FetchB
 
     /**
      * [get] VOutVarchar: {VARCHAR2 as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -220,7 +220,7 @@ public class BsOverloadPkgSpOverloadParameterPmb implements ProcedurePmb, FetchB
 
     /**
      * [get] VInoutVarchar: {VARCHAR2 as InOut} <br />
-     * @return The value of VInoutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutVarchar() {
         return filterStringParameter(_vInoutVarchar);
@@ -236,7 +236,7 @@ public class BsOverloadPkgSpOverloadParameterPmb implements ProcedurePmb, FetchB
 
     /**
      * [get] VInNumber: {NUMBER(22) as In} <br />
-     * @return The value of VInNumber. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumber. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVInNumber() {
         return _vInNumber;
@@ -252,7 +252,7 @@ public class BsOverloadPkgSpOverloadParameterPmb implements ProcedurePmb, FetchB
 
     /**
      * [get] VOutNumber: {NUMBER(22) as Out} <br />
-     * @return The value of VOutNumber. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutNumber. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVOutNumber() {
         return _vOutNumber;

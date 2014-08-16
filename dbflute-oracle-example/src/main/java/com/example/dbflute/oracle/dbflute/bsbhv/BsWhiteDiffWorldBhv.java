@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
+public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable<WhiteDiffWorld, WhiteDiffWorldCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "WHITE_DIFF_WORLD"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public WhiteDiffWorld newEntity() { return new WhiteDiffWorld(); }
-
     /** {@inheritDoc} */
     public WhiteDiffWorldCB newConditionBean() { return new WhiteDiffWorldCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public int selectCount(WhiteDiffWorldCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(WhiteDiffWorldCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(WhiteDiffWorldCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(WhiteDiffWorldCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntity(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends WhiteDiffWorld> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDiffWorld> OptionalEntity<ENTITY> doSelectOptionalEntity(WhiteDiffWorldCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected WhiteDiffWorld facadeSelectEntityWithDeletedCheck(WhiteDiffWorldCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectEntityWithDeletedCheck(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param diffWorldId : PK, NotNull, NUMBER(16). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doSelectByPK(diffWorldId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPK(Long diffWorldId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDiffWorld> ENTITY doSelectByPK(Long diffWorldId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(diffWorldId), tp);
     }
 
-    protected <ENTITY extends WhiteDiffWorld> OptionalEntity<ENTITY> doSelectOptionalByPK(Long diffWorldId, Class<ENTITY> tp) {
+    protected <ENTITY extends WhiteDiffWorld> OptionalEntity<ENTITY> doSelectOptionalByPK(Long diffWorldId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(diffWorldId, tp), diffWorldId);
     }
 
@@ -257,16 +216,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<WhiteDiffWorld> facadeSelectList(WhiteDiffWorldCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDiffWorld> ListResultBean<ENTITY> doSelectList(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -296,16 +245,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<WhiteDiffWorld> facadeSelectPage(WhiteDiffWorldCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDiffWorld> PagingResultBean<ENTITY> doSelectPage(WhiteDiffWorldCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -325,16 +264,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(WhiteDiffWorldCB cb, EntityRowHandler<WhiteDiffWorld> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(WhiteDiffWorldCB cb, EntityRowHandler<WhiteDiffWorld> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends WhiteDiffWorld> void doSelectCursor(WhiteDiffWorldCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -358,19 +287,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<WhiteDiffWorldCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<WhiteDiffWorldCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends WhiteDiffWorldCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -494,17 +410,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         doInsert(whiteDiffWorld, null);
     }
 
-    protected void doInsert(WhiteDiffWorld et, InsertOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorld", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<WhiteDiffWorldCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -531,27 +436,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         doUpdate(whiteDiffWorld, null);
     }
 
-    protected void doUpdate(WhiteDiffWorld et, UpdateOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorld", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<WhiteDiffWorldCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected WhiteDiffWorldCB createCBForVaryingUpdate()
-    { WhiteDiffWorldCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected WhiteDiffWorldCB createCBForSpecifiedUpdate()
-    { WhiteDiffWorldCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -564,16 +448,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(WhiteDiffWorld whiteDiffWorld) {
         doInsertOrUpdate(whiteDiffWorld, null, null);
     }
-
-    protected void doInsertOrUpdate(WhiteDiffWorld et, InsertOption<WhiteDiffWorldCB> iop, UpdateOption<WhiteDiffWorldCB> uop) {
-        assertObjectNotNull("whiteDiffWorld", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -595,17 +469,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public void delete(WhiteDiffWorld whiteDiffWorld) {
         doDelete(whiteDiffWorld, null);
     }
-
-    protected void doDelete(WhiteDiffWorld et, final DeleteOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorld", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<WhiteDiffWorldCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -638,21 +501,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doBatchInsert(whiteDiffWorldList, null);
     }
 
-    protected int[] doBatchInsert(List<WhiteDiffWorld> ls, InsertOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorldList", ls);
-        InsertOption<WhiteDiffWorldCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<WhiteDiffWorld> ls, InsertOption<WhiteDiffWorldCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -680,20 +528,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<WhiteDiffWorld> whiteDiffWorldList) {
         return doBatchUpdate(whiteDiffWorldList, null);
     }
-
-    protected int[] doBatchUpdate(List<WhiteDiffWorld> ls, UpdateOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorldList", ls);
-        UpdateOption<WhiteDiffWorldCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<WhiteDiffWorld> ls, UpdateOption<WhiteDiffWorldCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -727,10 +561,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(whiteDiffWorldList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -742,17 +572,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doBatchDelete(whiteDiffWorldList, null);
     }
 
-    protected int[] doBatchDelete(List<WhiteDiffWorld> ls, DeleteOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorldList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -760,7 +579,7 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * whiteDiffWorldBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;WhiteDiffWorld, WhiteDiffWorldCB&gt;() {
-     *     public ConditionBean setup(whiteDiffWorld entity, WhiteDiffWorldCB intoCB) {
+     *     public ConditionBean setup(WhiteDiffWorld entity, WhiteDiffWorldCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -779,24 +598,12 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<WhiteDiffWorld, WhiteDiffWorldCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<WhiteDiffWorld, WhiteDiffWorldCB> sp, InsertOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        WhiteDiffWorld et = newEntity(); WhiteDiffWorldCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected WhiteDiffWorldCB createCBForQueryInsert()
-    { WhiteDiffWorldCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -824,14 +631,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(whiteDiffWorld, cb, null);
     }
 
-    protected int doQueryUpdate(WhiteDiffWorld et, WhiteDiffWorldCB cb, UpdateOption<WhiteDiffWorldCB> op) {
-        assertObjectNotNull("whiteDiffWorld", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -846,13 +645,6 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     public int queryDelete(WhiteDiffWorldCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(WhiteDiffWorldCB cb, DeleteOption<WhiteDiffWorldCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -998,7 +790,7 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1095,20 +887,9 @@ public abstract class BsWhiteDiffWorldBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<WhiteDiffWorld> typeOfSelectedEntity() { return WhiteDiffWorld.class; }
-    protected WhiteDiffWorld downcast(Entity et) { return helpEntityDowncastInternally(et, WhiteDiffWorld.class); }
-    protected WhiteDiffWorldCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, WhiteDiffWorldCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<WhiteDiffWorld> downcast(List<? extends Entity> ls) { return (List<WhiteDiffWorld>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDiffWorldCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDiffWorldCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDiffWorldCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteDiffWorldCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDiffWorldCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteDiffWorldCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDiffWorld, WhiteDiffWorldCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteDiffWorld, WhiteDiffWorldCB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends WhiteDiffWorld> typeOfSelectedEntity() { return WhiteDiffWorld.class; }
+    protected Class<WhiteDiffWorld> typeOfHandlingEntity() { return WhiteDiffWorld.class; }
+    protected Class<WhiteDiffWorldCB> typeOfHandlingConditionBean() { return WhiteDiffWorldCB.class; }
 }

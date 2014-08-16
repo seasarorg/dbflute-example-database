@@ -172,7 +172,7 @@ public class BsFnReturnTablePmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] status: {char(3) as In} <br />
-     * @return The value of status. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of status. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getStatus() {
         return filterStringParameter(_status);
@@ -188,7 +188,7 @@ public class BsFnReturnTablePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] returnResult <br />
-     * @return The value of returnResult. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnResult. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<FnReturnTableReturnResult> getReturnResult() {
         return _returnResult;

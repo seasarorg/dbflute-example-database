@@ -167,7 +167,7 @@ public class BsSpResultSetParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] curMember: {REF CURSOR as Out} <br />
-     * @return The value of curMember. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of curMember. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpResultSetParameterCurMember> getCurMember() {
         return _curMember;

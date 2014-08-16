@@ -222,7 +222,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {int(10) as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getReturnValue() {
         return _returnValue;
@@ -238,7 +238,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInChar: {char(3) as In} <br />
-     * @return The value of VInChar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInChar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInChar() {
         return filterStringParameter(_vInChar);
@@ -254,7 +254,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarchar: {varchar(10) as InOut} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -270,7 +270,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInoutVarchar: {varchar(10) as InOut} <br />
-     * @return The value of VInoutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutVarchar() {
         return filterStringParameter(_vInoutVarchar);
@@ -286,7 +286,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInInteger: {int(10) as In} <br />
-     * @return The value of VInInteger. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInInteger. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getVInInteger() {
         return _vInInteger;
@@ -302,7 +302,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInBigint: {bigint(19) as In} <br />
-     * @return The value of VInBigint. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInBigint. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getVInBigint() {
         return _vInBigint;
@@ -318,7 +318,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInNumericDecimal: {numeric(5, 3) as In} <br />
-     * @return The value of VInNumericDecimal. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumericDecimal. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVInNumericDecimal() {
         return _vInNumericDecimal;
@@ -334,7 +334,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInNumericInteger: {numeric(5) as In} <br />
-     * @return The value of VInNumericInteger. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumericInteger. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getVInNumericInteger() {
         return _vInNumericInteger;
@@ -350,7 +350,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInNumericBigint: {numeric(12) as In} <br />
-     * @return The value of VInNumericBigint. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumericBigint. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getVInNumericBigint() {
         return _vInNumericBigint;
@@ -366,7 +366,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInDatetime: {datetime(23, 3) as In} <br />
-     * @return The value of VInDatetime. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInDatetime. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.sql.Timestamp getVInDatetime() {
         return _vInDatetime;
@@ -382,7 +382,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInUuid: {uniqueidentifier(36) as In} <br />
-     * @return The value of VInUuid. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInUuid. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.util.UUID getVInUuid() {
         return _vInUuid;
@@ -398,7 +398,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] notParamResult1 <br />
-     * @return The value of notParamResult1. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult1. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetWithNotParamResult1> getNotParamResult1() {
         return _notParamResult1;

@@ -177,7 +177,7 @@ public class BsSpVarrayManualParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInNumberArray: {VARRAY as In} <br />
-     * @return The value of VInNumberArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumberArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<java.math.BigDecimal> getVInNumberArray() {
         return _vInNumberArray;
@@ -193,7 +193,7 @@ public class BsSpVarrayManualParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutNumberArray: {VARRAY as Out} <br />
-     * @return The value of VOutNumberArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutNumberArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<java.math.BigDecimal> getVOutNumberArray() {
         return _vOutNumberArray;

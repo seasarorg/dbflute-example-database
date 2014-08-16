@@ -44,7 +44,6 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MEMBER_ID: {PK, ID, NotNull, UnknownType}
@@ -160,7 +159,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
 
     protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
     protected abstract ConditionValue getCValueMemberId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ALLSUM_PURCHASE_PRICE: {UnknownType}
@@ -552,6 +551,9 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     }
     public abstract String keepMyselfInScope(SummaryMemberPurchaseCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -588,8 +590,8 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -618,6 +620,11 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -625,6 +632,7 @@ public abstract class AbstractBsSummaryMemberPurchaseCQ extends AbstractConditio
         return new SummaryMemberPurchaseCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SummaryMemberPurchaseCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadable {
+public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadable<SummaryMemberPurchase, SummaryMemberPurchaseCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "SUMMARY_MEMBER_PURCHASE"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public SummaryMemberPurchase newEntity() { return new SummaryMemberPurchase(); }
-
     /** {@inheritDoc} */
     public SummaryMemberPurchaseCB newConditionBean() { return new SummaryMemberPurchaseCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     public int selectCount(SummaryMemberPurchaseCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(SummaryMemberPurchaseCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(SummaryMemberPurchaseCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(SummaryMemberPurchaseCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends SummaryMemberPurchase> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends SummaryMemberPurchase> OptionalEntity<ENTITY> doSelectOptionalEntity(SummaryMemberPurchaseCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected SummaryMemberPurchase facadeSelectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SummaryMemberPurchase> ENTITY doSelectEntityWithDeletedCheck(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         List Select
     //                                                                         ===========
@@ -212,16 +171,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     public ListResultBean<SummaryMemberPurchase> selectList(SummaryMemberPurchaseCB cb) {
         return facadeSelectList(cb);
     }
-
-    protected ListResultBean<SummaryMemberPurchase> facadeSelectList(SummaryMemberPurchaseCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SummaryMemberPurchase> ListResultBean<ENTITY> doSelectList(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
 
     // ===================================================================================
     //                                                                         Page Select
@@ -252,16 +201,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<SummaryMemberPurchase> facadeSelectPage(SummaryMemberPurchaseCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SummaryMemberPurchase> PagingResultBean<ENTITY> doSelectPage(SummaryMemberPurchaseCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -281,16 +220,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
      */
     public void selectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<SummaryMemberPurchase> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<SummaryMemberPurchase> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SummaryMemberPurchase> void doSelectCursor(SummaryMemberPurchaseCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -314,19 +243,6 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     public <RESULT> HpSLSFunction<SummaryMemberPurchaseCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<SummaryMemberPurchaseCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends SummaryMemberPurchaseCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -458,11 +374,9 @@ public abstract class BsSummaryMemberPurchaseBhv extends AbstractBehaviorReadabl
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<SummaryMemberPurchase> typeOfSelectedEntity() { return SummaryMemberPurchase.class; }
-    protected SummaryMemberPurchase downcast(Entity et) { return helpEntityDowncastInternally(et, SummaryMemberPurchase.class); }
-    protected SummaryMemberPurchaseCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SummaryMemberPurchaseCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<SummaryMemberPurchase> downcast(List<? extends Entity> ls) { return (List<SummaryMemberPurchase>)ls; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends SummaryMemberPurchase> typeOfSelectedEntity() { return SummaryMemberPurchase.class; }
+    protected Class<SummaryMemberPurchase> typeOfHandlingEntity() { return SummaryMemberPurchase.class; }
+    protected Class<SummaryMemberPurchaseCB> typeOfHandlingConditionBean() { return SummaryMemberPurchaseCB.class; }
 }

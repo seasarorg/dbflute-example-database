@@ -171,7 +171,7 @@ public class BsFnInOutParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {varchar(32) as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getReturnValue() {
         return filterStringParameter(_returnValue);
@@ -187,7 +187,7 @@ public class BsFnInOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInVarchar: {varchar(32) as In} <br />
-     * @return The value of VInVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInVarchar() {
         return filterStringParameter(_vInVarchar);

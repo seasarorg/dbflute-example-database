@@ -166,7 +166,7 @@ public class BsFnNextNoParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] arg1: {VARCHAR2 as Return} <br />
-     * @return The value of arg1. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of arg1. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getArg1() {
         return filterStringParameter(_arg1);

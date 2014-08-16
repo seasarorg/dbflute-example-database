@@ -171,7 +171,7 @@ public class BsSpTablePackedParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInDateArray: {PL/SQL TABLE as In} <br />
-     * @return The value of VInDateArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInDateArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Object getVInDateArray() {
         return _vInDateArray;
@@ -187,7 +187,7 @@ public class BsSpTablePackedParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutDateArray: {PL/SQL TABLE as Out} <br />
-     * @return The value of VOutDateArray. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutDateArray. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Object getVOutDateArray() {
         return _vOutDateArray;

@@ -44,7 +44,6 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3)}
@@ -462,7 +461,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     protected void regWithdrawalReasonText(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWithdrawalReasonText(), "WITHDRAWAL_REASON_TEXT"); }
     protected abstract ConditionValue getCValueWithdrawalReasonText();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DISPLAY_ORDER: {UQ, NotNull, NUMBER(16)}
@@ -774,6 +773,9 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -810,8 +812,8 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -840,6 +842,11 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -847,6 +854,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
         return new WithdrawalReasonCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WithdrawalReasonCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

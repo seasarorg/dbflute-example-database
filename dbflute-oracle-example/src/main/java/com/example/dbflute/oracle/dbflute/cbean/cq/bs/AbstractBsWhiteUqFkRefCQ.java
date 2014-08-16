@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * UQ_FK_REF_ID: {PK, NotNull, NUMBER(16)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
 
     protected void regUqFkRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
     protected abstract ConditionValue getCValueUqFkRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FK_TO_PK_ID: {NotNull, NUMBER(16), FK to WHITE_UQ_FK}
@@ -777,6 +776,9 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -813,8 +815,8 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -843,6 +845,11 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -850,6 +857,7 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         return new WhiteUqFkRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteUqFkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

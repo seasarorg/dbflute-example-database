@@ -44,7 +44,6 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ログインID)MEMBER_LOGIN_ID: {PK, NotNull, BIGINT(19)}
@@ -160,7 +159,7 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
 
     protected void regMemberLoginId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberLoginId(), "MEMBER_LOGIN_ID"); }
     protected abstract ConditionValue getCValueMemberLoginId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)MEMBER_ID: {UQ+, NotNull, INTEGER(10), FK to ALIAS_MEMBER}
@@ -370,7 +369,7 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
 
     protected void regLoginDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginDatetime(), "LOGIN_DATETIME"); }
     protected abstract ConditionValue getCValueLoginDatetime();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INTEGER(10), classification=Flg}
@@ -858,6 +857,9 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
     }
     public abstract String keepMyselfInScope(AliasMemberLoginCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -894,8 +896,8 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -924,6 +926,11 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -931,6 +938,7 @@ public abstract class AbstractBsAliasMemberLoginCQ extends AbstractConditionQuer
         return new AliasMemberLoginCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return AliasMemberLoginCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

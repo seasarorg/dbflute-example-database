@@ -44,7 +44,6 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PRODUCT_ID: {PK, NotNull, NUMBER(16)}
@@ -493,7 +492,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
 
     protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "UPDATE_PROCESS"); }
     protected abstract ConditionValue getCValueUpdateProcess();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VERSION_NO: {NotNull, NUMBER(38)}
@@ -743,6 +742,9 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
         return new OracleMatchLikeSearch();
     }
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -779,8 +781,8 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -809,6 +811,11 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -816,6 +823,7 @@ public abstract class AbstractBsSynonymNextLinkTableCQ extends AbstractCondition
         return new SynonymNextLinkTableCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return SynonymNextLinkTableCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

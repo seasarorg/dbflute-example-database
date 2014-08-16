@@ -5,7 +5,6 @@ import java.util.List;
 import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
-import org.seasar.dbflute.cbean.chelper.HpSLSExecutor;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
@@ -49,19 +48,13 @@ import com.example.dbflute.oracle.dbflute.cbean.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
+public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable<SynonymMemberLogin, SynonymMemberLoginCB> {
 
     // ===================================================================================
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
     /*df:endQueryPath*/
-
-    // ===================================================================================
-    //                                                                          Table name
-    //                                                                          ==========
-    /** @return The name on database of table. (NotNull) */
-    public String getTableDbName() { return "SYNONYM_MEMBER_LOGIN"; }
 
     // ===================================================================================
     //                                                                              DBMeta
@@ -75,9 +68,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     // ===================================================================================
     //                                                                        New Instance
     //                                                                        ============
-    /** {@inheritDoc} */
-    public SynonymMemberLogin newEntity() { return new SynonymMemberLogin(); }
-
     /** {@inheritDoc} */
     public SynonymMemberLoginCB newConditionBean() { return new SynonymMemberLoginCB(); }
 
@@ -104,22 +94,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public int selectCount(SynonymMemberLoginCB cb) {
         return facadeSelectCount(cb);
     }
-
-    protected int facadeSelectCount(SynonymMemberLoginCB cb) {
-        return doSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountUniquely(SynonymMemberLoginCB cb) { // called by selectCount(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountUniquely(cb);
-    }
-
-    protected int doSelectCountPlainly(SynonymMemberLoginCB cb) { // called by selectPage(cb)
-        assertCBStateValid(cb);
-        return delegateSelectCountPlainly(cb);
-    }
-
-    protected int doReadCount(ConditionBean cb) { return facadeSelectCount(downcast(cb)); }
 
     // ===================================================================================
     //                                                                       Entity Select
@@ -151,11 +125,7 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doSelectEntity(cb, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectEntity(SynonymMemberLoginCB cb, Class<ENTITY> tp) {
-        return helpSelectEntityInternally(cb, tp);
-    }
-
-    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymMemberLoginCB cb, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectOptionalEntity(SynonymMemberLoginCB cb, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(cb, tp), cb);
     }
 
@@ -180,17 +150,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return facadeSelectEntityWithDeletedCheck(cb);
     }
 
-    protected SynonymMemberLogin facadeSelectEntityWithDeletedCheck(SynonymMemberLoginCB cb) {
-        return doSelectEntityWithDeletedCheck(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectEntityWithDeletedCheck(SynonymMemberLoginCB cb, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityType", tp);
-        return helpSelectEntityWithDeletedCheckInternally(cb, tp);
-    }
-
-    protected Entity doReadEntityWithDeletedCheck(ConditionBean cb) { return facadeSelectEntityWithDeletedCheck(downcast(cb)); }
-
     /**
      * Select the entity by the primary-key value.
      * @param memberLoginId : PK, NotNull, NUMBER(16). (NotNull)
@@ -206,11 +165,11 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doSelectByPK(memberLoginId, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPK(Long memberLoginId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymMemberLogin> ENTITY doSelectByPK(Long memberLoginId, Class<? extends ENTITY> tp) {
         return doSelectEntity(xprepareCBAsPK(memberLoginId), tp);
     }
 
-    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberLoginId, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectOptionalByPK(Long memberLoginId, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectByPK(memberLoginId, tp), memberLoginId);
     }
 
@@ -252,7 +211,7 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doSelectByUniqueOf(memberId, loginDatetime, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectByUniqueOf(Long memberId, java.util.Date loginDatetime, Class<ENTITY> tp) {
+    protected <ENTITY extends SynonymMemberLogin> OptionalEntity<ENTITY> doSelectByUniqueOf(Long memberId, java.util.Date loginDatetime, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, loginDatetime), tp), memberId, loginDatetime);
     }
 
@@ -283,16 +242,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return facadeSelectList(cb);
     }
 
-    protected ListResultBean<SynonymMemberLogin> facadeSelectList(SynonymMemberLoginCB cb) {
-        return doSelectList(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymMemberLogin> ListResultBean<ENTITY> doSelectList(SynonymMemberLoginCB cb, Class<ENTITY> tp) {
-        return helpSelectListInternally(cb, tp);
-    }
-
-    protected ListResultBean<? extends Entity> doReadList(ConditionBean cb) { return facadeSelectList(downcast(cb)); }
-
     // ===================================================================================
     //                                                                         Page Select
     //                                                                         ===========
@@ -322,16 +271,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return facadeSelectPage(cb);
     }
 
-    protected PagingResultBean<SynonymMemberLogin> facadeSelectPage(SynonymMemberLoginCB cb) {
-        return doSelectPage(cb, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymMemberLogin> PagingResultBean<ENTITY> doSelectPage(SynonymMemberLoginCB cb, Class<ENTITY> tp) {
-        return helpSelectPageInternally(cb, tp);
-    }
-
-    protected PagingResultBean<? extends Entity> doReadPage(ConditionBean cb) { return facadeSelectPage(downcast(cb)); }
-
     // ===================================================================================
     //                                                                       Cursor Select
     //                                                                       =============
@@ -351,16 +290,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      */
     public void selectCursor(SynonymMemberLoginCB cb, EntityRowHandler<SynonymMemberLogin> entityRowHandler) {
         facadeSelectCursor(cb, entityRowHandler);
-    }
-
-    protected void facadeSelectCursor(SynonymMemberLoginCB cb, EntityRowHandler<SynonymMemberLogin> entityRowHandler) {
-        doSelectCursor(cb, entityRowHandler, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends SynonymMemberLogin> void doSelectCursor(SynonymMemberLoginCB cb, EntityRowHandler<ENTITY> handler, Class<ENTITY> tp) {
-        assertCBStateValid(cb); assertObjectNotNull("entityRowHandler", handler); assertObjectNotNull("entityType", tp);
-        assertSpecifyDerivedReferrerEntityProperty(cb, tp);
-        helpSelectCursorInternally(cb, handler, tp);
     }
 
     // ===================================================================================
@@ -384,19 +313,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public <RESULT> HpSLSFunction<SynonymMemberLoginCB, RESULT> scalarSelect(Class<RESULT> resultType) {
         return facadeScalarSelect(resultType);
     }
-
-    protected <RESULT> HpSLSFunction<SynonymMemberLoginCB, RESULT> facadeScalarSelect(Class<RESULT> resultType) {
-        return doScalarSelect(resultType, newConditionBean());
-    }
-
-    protected <RESULT, CB extends SynonymMemberLoginCB> HpSLSFunction<CB, RESULT> doScalarSelect(final Class<RESULT> tp, final CB cb) {
-        assertObjectNotNull("resultType", tp); assertCBStateValid(cb);
-        cb.xsetupForScalarSelect(); cb.getSqlClause().disableSelectIndex(); // for when you use union
-        HpSLSExecutor<CB, RESULT> executor = createHpSLSExecutor(); // variable to resolve generic
-        return createSLSFunction(cb, tp, executor);
-    }
-
-    protected <RESULT> HpSLSFunction<? extends ConditionBean, RESULT> doReadScalar(Class<RESULT> tp) { return facadeScalarSelect(tp); }
 
     // ===================================================================================
     //                                                                            Sequence
@@ -552,17 +468,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         doInsert(synonymMemberLogin, null);
     }
 
-    protected void doInsert(SynonymMemberLogin et, InsertOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLogin", et); prepareInsertOption(op); delegateInsert(et, op);
-    }
-
-    protected void prepareInsertOption(InsertOption<SynonymMemberLoginCB> op) {
-        if (op == null) { return; } assertInsertOptionStatus(op);
-        if (op.hasSpecifiedInsertColumn()) { op.resolveInsertColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected void doCreate(Entity et, InsertOption<? extends ConditionBean> op) { doInsert(downcast(et), downcast(op)); }
-
     /**
      * Update the entity modified-only. (ZeroUpdateException, NonExclusiveControl)
      * <pre>
@@ -589,27 +494,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         doUpdate(synonymMemberLogin, null);
     }
 
-    protected void doUpdate(SynonymMemberLogin et, UpdateOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLogin", et); prepareUpdateOption(op); helpUpdateInternally(et, op);
-    }
-
-    protected void prepareUpdateOption(UpdateOption<SynonymMemberLoginCB> op) {
-        if (op == null) { return; } assertUpdateOptionStatus(op);
-        if (op.hasSelfSpecification()) { op.resolveSelfSpecification(createCBForVaryingUpdate()); }
-        if (op.hasSpecifiedUpdateColumn()) { op.resolveUpdateColumnSpecification(createCBForSpecifiedUpdate()); }
-    }
-
-    protected SynonymMemberLoginCB createCBForVaryingUpdate()
-    { SynonymMemberLoginCB cb = newConditionBean(); cb.xsetupForVaryingUpdate(); return cb; }
-
-    protected SynonymMemberLoginCB createCBForSpecifiedUpdate()
-    { SynonymMemberLoginCB cb = newConditionBean(); cb.xsetupForSpecifiedUpdate(); return cb; }
-
-    protected void doModify(Entity et, UpdateOption<? extends ConditionBean> op) { doUpdate(downcast(et), downcast(op)); }
-
-    protected void doModifyNonstrict(Entity et, UpdateOption<? extends ConditionBean> op)
-    { doModify(et, op); }
-
     /**
      * Insert or update the entity modified-only. (DefaultConstraintsEnabled, NonExclusiveControl) <br />
      * if (the entity has no PK) { insert() } else { update(), but no data, insert() } <br />
@@ -622,16 +506,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public void insertOrUpdate(SynonymMemberLogin synonymMemberLogin) {
         doInsertOrUpdate(synonymMemberLogin, null, null);
     }
-
-    protected void doInsertOrUpdate(SynonymMemberLogin et, InsertOption<SynonymMemberLoginCB> iop, UpdateOption<SynonymMemberLoginCB> uop) {
-        assertObjectNotNull("synonymMemberLogin", et); helpInsertOrUpdateInternally(et, iop, uop);
-    }
-
-    protected void doCreateOrModify(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doInsertOrUpdate(downcast(et), downcast(iop), downcast(uop)); }
-
-    protected void doCreateOrModifyNonstrict(Entity et, InsertOption<? extends ConditionBean> iop, UpdateOption<? extends ConditionBean> uop)
-    { doCreateOrModify(et, iop, uop); }
 
     /**
      * Delete the entity. (ZeroUpdateException, NonExclusiveControl)
@@ -653,17 +527,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public void delete(SynonymMemberLogin synonymMemberLogin) {
         doDelete(synonymMemberLogin, null);
     }
-
-    protected void doDelete(SynonymMemberLogin et, final DeleteOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLogin", et); prepareDeleteOption(op); helpDeleteInternally(et, op);
-    }
-
-    protected void prepareDeleteOption(DeleteOption<SynonymMemberLoginCB> op) { if (op != null) { assertDeleteOptionStatus(op); } }
-
-    protected void doRemove(Entity et, DeleteOption<? extends ConditionBean> op) { doDelete(downcast(et), downcast(op)); }
-
-    protected void doRemoveNonstrict(Entity et, DeleteOption<? extends ConditionBean> op)
-    { doRemove(et, op); }
 
     // ===================================================================================
     //                                                                        Batch Update
@@ -696,21 +559,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doBatchInsert(synonymMemberLoginList, null);
     }
 
-    protected int[] doBatchInsert(List<SynonymMemberLogin> ls, InsertOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLoginList", ls);
-        InsertOption<SynonymMemberLoginCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainInsertOption(); }
-        prepareBatchInsertOption(ls, rlop); // required
-        return delegateBatchInsert(ls, rlop);
-    }
-
-    protected void prepareBatchInsertOption(List<SynonymMemberLogin> ls, InsertOption<SynonymMemberLoginCB> op) {
-        op.xallowInsertColumnModifiedPropertiesFragmented();
-        op.xacceptInsertColumnModifiedPropertiesIfNeeds(ls);
-        prepareInsertOption(op);
-    }
-
-    protected int[] doLumpCreate(List<Entity> ls, InsertOption<? extends ConditionBean> op) { return doBatchInsert(downcast(ls), downcast(op)); }
-
     /**
      * Batch-update the entity list modified-only of same-set columns. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement. <br />
@@ -738,20 +586,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public int[] batchUpdate(List<SynonymMemberLogin> synonymMemberLoginList) {
         return doBatchUpdate(synonymMemberLoginList, null);
     }
-
-    protected int[] doBatchUpdate(List<SynonymMemberLogin> ls, UpdateOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLoginList", ls);
-        UpdateOption<SynonymMemberLoginCB> rlop; if (op != null) { rlop = op; } else { rlop = createPlainUpdateOption(); }
-        prepareBatchUpdateOption(ls, rlop); // required
-        return delegateBatchUpdate(ls, rlop);
-    }
-
-    protected void prepareBatchUpdateOption(List<SynonymMemberLogin> ls, UpdateOption<SynonymMemberLoginCB> op) {
-        op.xacceptUpdateColumnModifiedPropertiesIfNeeds(ls);
-        prepareUpdateOption(op);
-    }
-
-    protected int[] doLumpModify(List<Entity> ls, UpdateOption<? extends ConditionBean> op) { return doBatchUpdate(downcast(ls), downcast(op)); }
 
     /**
      * Batch-update the entity list specified-only. (NonExclusiveControl) <br />
@@ -785,10 +619,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doBatchUpdate(synonymMemberLoginList, createSpecifiedUpdateOption(updateColumnSpec));
     }
 
-    @Override
-    protected int[] doLumpModifyNonstrict(List<Entity> ls, UpdateOption<? extends ConditionBean> op)
-    { return doLumpModify(ls, op); }
-
     /**
      * Batch-delete the entity list. (NonExclusiveControl) <br />
      * This method uses executeBatch() of java.sql.PreparedStatement.
@@ -800,17 +630,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doBatchDelete(synonymMemberLoginList, null);
     }
 
-    protected int[] doBatchDelete(List<SynonymMemberLogin> ls, DeleteOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLoginList", ls);
-        prepareDeleteOption(op);
-        return delegateBatchDelete(ls, op);
-    }
-
-    protected int[] doLumpRemove(List<Entity> ls, DeleteOption<? extends ConditionBean> op) { return doBatchDelete(downcast(ls), downcast(op)); }
-
-    protected int[] doLumpRemoveNonstrict(List<Entity> ls, DeleteOption<? extends ConditionBean> op)
-    { return doLumpRemove(ls, op); }
-
     // ===================================================================================
     //                                                                        Query Update
     //                                                                        ============
@@ -818,7 +637,7 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query (modified-only for fixed value).
      * <pre>
      * synonymMemberLoginBhv.<span style="color: #DD4747">queryInsert</span>(new QueryInsertSetupper&lt;SynonymMemberLogin, SynonymMemberLoginCB&gt;() {
-     *     public ConditionBean setup(synonymMemberLogin entity, SynonymMemberLoginCB intoCB) {
+     *     public ConditionBean setup(SynonymMemberLogin entity, SynonymMemberLoginCB intoCB) {
      *         FooCB cb = FooCB();
      *         cb.setupSelect_Bar();
      *
@@ -837,24 +656,12 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      *     }
      * });
      * </pre>
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @return The inserted count.
      */
     public int queryInsert(QueryInsertSetupper<SynonymMemberLogin, SynonymMemberLoginCB> setupper) {
         return doQueryInsert(setupper, null);
     }
-
-    protected int doQueryInsert(QueryInsertSetupper<SynonymMemberLogin, SynonymMemberLoginCB> sp, InsertOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("setupper", sp); prepareInsertOption(op);
-        SynonymMemberLogin et = newEntity(); SynonymMemberLoginCB cb = createCBForQueryInsert();
-        return delegateQueryInsert(et, cb, sp.setup(et, cb), op);
-    }
-
-    protected SynonymMemberLoginCB createCBForQueryInsert()
-    { SynonymMemberLoginCB cb = newConditionBean(); cb.xsetupForQueryInsert(); return cb; }
-
-    protected int doRangeCreate(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> setupper, InsertOption<? extends ConditionBean> op)
-    { return doQueryInsert(downcast(setupper), downcast(op)); }
 
     /**
      * Update the several entities by query non-strictly modified-only. (NonExclusiveControl)
@@ -882,14 +689,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
         return doQueryUpdate(synonymMemberLogin, cb, null);
     }
 
-    protected int doQueryUpdate(SynonymMemberLogin et, SynonymMemberLoginCB cb, UpdateOption<SynonymMemberLoginCB> op) {
-        assertObjectNotNull("synonymMemberLogin", et); assertCBStateValid(cb); prepareUpdateOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryUpdate(et, cb, op) : 0;
-    }
-
-    protected int doRangeModify(Entity et, ConditionBean cb, UpdateOption<? extends ConditionBean> op)
-    { return doQueryUpdate(downcast(et), downcast(cb), downcast(op)); }
-
     /**
      * Delete the several entities by query. (NonExclusiveControl)
      * <pre>
@@ -904,13 +703,6 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     public int queryDelete(SynonymMemberLoginCB cb) {
         return doQueryDelete(cb, null);
     }
-
-    protected int doQueryDelete(SynonymMemberLoginCB cb, DeleteOption<SynonymMemberLoginCB> op) {
-        assertCBStateValid(cb); prepareDeleteOption(op);
-        return checkCountBeforeQueryUpdateIfNeeds(cb) ? delegateQueryDelete(cb, op) : 0;
-    }
-
-    protected int doRangeRemove(ConditionBean cb, DeleteOption<? extends ConditionBean> op) { return doQueryDelete(downcast(cb), downcast(op)); }
 
     // ===================================================================================
     //                                                                      Varying Update
@@ -1056,7 +848,7 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
      * Insert the several entities by query with varying requests (modified-only for fixed value). <br />
      * For example, disableCommonColumnAutoSetup(), disablePrimaryKeyIdentity(). <br />
      * Other specifications are same as queryInsert(entity, setupper).
-     * @param setupper The setup-per of query-insert. (NotNull)
+     * @param setupper The set-upper of query-insert. (NotNull)
      * @param option The option of insert for varying requests. (NotNull)
      * @return The inserted count.
      */
@@ -1153,20 +945,9 @@ public abstract class BsSynonymMemberLoginBhv extends AbstractBehaviorWritable {
     }
 
     // ===================================================================================
-    //                                                                       Assist Helper
-    //                                                                       =============
-    protected Class<SynonymMemberLogin> typeOfSelectedEntity() { return SynonymMemberLogin.class; }
-    protected SynonymMemberLogin downcast(Entity et) { return helpEntityDowncastInternally(et, SynonymMemberLogin.class); }
-    protected SynonymMemberLoginCB downcast(ConditionBean cb) { return helpConditionBeanDowncastInternally(cb, SynonymMemberLoginCB.class); }
-    @SuppressWarnings("unchecked")
-    protected List<SynonymMemberLogin> downcast(List<? extends Entity> ls) { return (List<SynonymMemberLogin>)ls; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<SynonymMemberLoginCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<SynonymMemberLoginCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<SynonymMemberLoginCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<SynonymMemberLoginCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<SynonymMemberLoginCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<SynonymMemberLoginCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<SynonymMemberLogin, SynonymMemberLoginCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<SynonymMemberLogin, SynonymMemberLoginCB>)sp; }
+    //                                                                         Type Helper
+    //                                                                         ===========
+    protected Class<? extends SynonymMemberLogin> typeOfSelectedEntity() { return SynonymMemberLogin.class; }
+    protected Class<SynonymMemberLogin> typeOfHandlingEntity() { return SynonymMemberLogin.class; }
+    protected Class<SynonymMemberLoginCB> typeOfHandlingConditionBean() { return SynonymMemberLoginCB.class; }
 }

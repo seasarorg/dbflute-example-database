@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VENDOR_SYMMETRIC_ID: {PK, NotNull, numeric(16)}
@@ -543,6 +542,9 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
     }
     public abstract String keepMyselfInScope(VendorSymmetricCQ sq);
 
+    // ===================================================================================
+    //                                                                        Manual Order
+    //                                                                        ============
     /**
      * Order along manual ordering information.
      * <pre>
@@ -579,8 +581,8 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
     }
 
     // ===================================================================================
-    //                                                                          Compatible
-    //                                                                          ==========
+    //                                                                    Small Adjustment
+    //                                                                    ================
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -609,6 +611,11 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
         withManualOrder(manualOrderBean);
     }
 
+    @Override
+    protected void filterFromToOption(FromToOption option) {
+        option.allowOneSide();
+    }
+
     // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
@@ -616,6 +623,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
         return new VendorSymmetricCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorSymmetricCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

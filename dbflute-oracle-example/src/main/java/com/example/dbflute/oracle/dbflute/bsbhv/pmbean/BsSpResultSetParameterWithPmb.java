@@ -202,7 +202,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] curMember: {REF CURSOR as Out} <br />
-     * @return The value of curMember. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of curMember. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpResultSetParameterWithCurMember> getCurMember() {
         return _curMember;
@@ -218,7 +218,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] curMemberStatus: {REF CURSOR as Out} <br />
-     * @return The value of curMemberStatus. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of curMemberStatus. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpResultSetParameterWithCurMemberStatus> getCurMemberStatus() {
         return _curMemberStatus;
@@ -234,7 +234,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInChar: {CHAR as In} <br />
-     * @return The value of VInChar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInChar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInChar() {
         return filterStringParameter(_vInChar);
@@ -250,7 +250,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarchar: {VARCHAR2 as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -266,7 +266,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInoutVarchar: {VARCHAR2 as InOut} <br />
-     * @return The value of VInoutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutVarchar() {
         return filterStringParameter(_vInoutVarchar);
@@ -282,7 +282,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInNumber: {NUMBER(22) as In} <br />
-     * @return The value of VInNumber. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInNumber. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.math.BigDecimal getVInNumber() {
         return _vInNumber;
@@ -298,7 +298,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInDate: {DATE as In} <br />
-     * @return The value of VInDate. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInDate. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.util.Date getVInDate() {
         return toUtilDate(_vInDate);
@@ -314,7 +314,7 @@ public class BsSpResultSetParameterWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInTimestamp: {TIMESTAMP(6) as In} <br />
-     * @return The value of VInTimestamp. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInTimestamp. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public java.sql.Timestamp getVInTimestamp() {
         return _vInTimestamp;
