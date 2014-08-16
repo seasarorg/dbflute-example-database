@@ -907,13 +907,4 @@ public abstract class BsWhiteGearedCipherBhv extends AbstractBehaviorWritable<Wh
     protected Class<? extends WhiteGearedCipher> typeOfSelectedEntity() { return WhiteGearedCipher.class; }
     protected Class<WhiteGearedCipher> typeOfHandlingEntity() { return WhiteGearedCipher.class; }
     protected Class<WhiteGearedCipherCB> typeOfHandlingConditionBean() { return WhiteGearedCipherCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteGearedCipherCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteGearedCipherCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteGearedCipherCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteGearedCipherCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteGearedCipherCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteGearedCipherCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteGearedCipher, WhiteGearedCipherCB>)sp; }
 }

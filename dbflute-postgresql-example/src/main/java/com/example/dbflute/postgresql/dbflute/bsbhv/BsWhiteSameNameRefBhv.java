@@ -900,13 +900,4 @@ public abstract class BsWhiteSameNameRefBhv extends AbstractBehaviorWritable<Whi
     protected Class<? extends WhiteSameNameRef> typeOfSelectedEntity() { return WhiteSameNameRef.class; }
     protected Class<WhiteSameNameRef> typeOfHandlingEntity() { return WhiteSameNameRef.class; }
     protected Class<WhiteSameNameRefCB> typeOfHandlingConditionBean() { return WhiteSameNameRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSameNameRef, WhiteSameNameRefCB>)sp; }
 }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SELF_REFERENCE_ID: {PK, NotNull, DECIMAL(16)}
@@ -439,7 +438,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
 
     protected void regSelfReferenceName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSelfReferenceName(), "SELF_REFERENCE_NAME"); }
     protected abstract ConditionValue getCValueSelfReferenceName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PARENT_ID: {IX, DECIMAL(16), FK to white_self_reference}
@@ -831,7 +830,6 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -844,6 +842,7 @@ public abstract class AbstractBsWhiteSelfReferenceCQ extends AbstractConditionQu
         return new WhiteSelfReferenceCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSelfReferenceCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

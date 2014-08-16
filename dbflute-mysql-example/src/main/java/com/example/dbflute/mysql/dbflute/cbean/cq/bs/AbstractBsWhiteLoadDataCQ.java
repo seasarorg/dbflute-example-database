@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * LOAD_DATA_ID: {PK, NotNull, BIGINT(19)}
@@ -507,7 +506,6 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -520,6 +518,7 @@ public abstract class AbstractBsWhiteLoadDataCQ extends AbstractConditionQuery {
         return new WhiteLoadDataCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteLoadDataCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

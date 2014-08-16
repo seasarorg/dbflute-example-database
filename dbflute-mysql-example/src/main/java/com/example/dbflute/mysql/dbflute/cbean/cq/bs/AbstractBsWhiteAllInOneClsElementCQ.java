@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * CLS_CATEGORY_CODE: {PK, NotNull, CHAR(3), FK to white_all_in_one_cls_category}
@@ -652,7 +651,6 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -665,6 +663,7 @@ public abstract class AbstractBsWhiteAllInOneClsElementCQ extends AbstractCondit
         return new WhiteAllInOneClsElementCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsElementCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

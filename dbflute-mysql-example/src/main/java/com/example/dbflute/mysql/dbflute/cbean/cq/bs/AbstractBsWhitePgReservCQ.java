@@ -59,7 +59,6 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))CLASS: {PK, NotNull, INT(10)}
@@ -279,7 +278,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regClassSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueClassSynonym(), "CLASS"); }
     protected abstract ConditionValue getCValueClassSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))CASE: {INT(10)}
@@ -382,7 +381,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regCaseSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCaseSynonym(), "CASE"); }
     protected abstract ConditionValue getCValueCaseSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))PACKAGE: {INT(10)}
@@ -485,7 +484,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regPackageSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePackageSynonym(), "PACKAGE"); }
     protected abstract ConditionValue getCValuePackageSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))DEFAULT: {INT(10)}
@@ -588,7 +587,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regDefaultSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDefaultSynonym(), "DEFAULT"); }
     protected abstract ConditionValue getCValueDefaultSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))NEW: {INT(10)}
@@ -691,7 +690,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regNewSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNewSynonym(), "NEW"); }
     protected abstract ConditionValue getCValueNewSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))NATIVE: {INT(10)}
@@ -794,7 +793,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regNativeSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNativeSynonym(), "NATIVE"); }
     protected abstract ConditionValue getCValueNativeSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))VOID: {INT(10)}
@@ -897,7 +896,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regVoidSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueVoidSynonym(), "VOID"); }
     protected abstract ConditionValue getCValueVoidSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))PUBLIC: {INT(10)}
@@ -1000,7 +999,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regPublicSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePublicSynonym(), "PUBLIC"); }
     protected abstract ConditionValue getCValuePublicSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))PROTECTED: {INT(10)}
@@ -1103,7 +1102,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regProtectedSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProtectedSynonym(), "PROTECTED"); }
     protected abstract ConditionValue getCValueProtectedSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))PRIVATE: {INT(10)}
@@ -1206,7 +1205,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regPrivateSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePrivateSynonym(), "PRIVATE"); }
     protected abstract ConditionValue getCValuePrivateSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))INTERFACE: {INT(10)}
@@ -1309,7 +1308,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regInterfaceSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueInterfaceSynonym(), "INTERFACE"); }
     protected abstract ConditionValue getCValueInterfaceSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))ABSTRACT: {INT(10)}
@@ -1412,7 +1411,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regAbstractSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAbstractSynonym(), "ABSTRACT"); }
     protected abstract ConditionValue getCValueAbstractSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))FINAL: {INT(10)}
@@ -1515,7 +1514,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regFinalSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFinalSynonym(), "FINAL"); }
     protected abstract ConditionValue getCValueFinalSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))FINALLY: {INT(10)}
@@ -1618,7 +1617,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regFinallySynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFinallySynonym(), "FINALLY"); }
     protected abstract ConditionValue getCValueFinallySynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))RETURN: {INT(10)}
@@ -1721,7 +1720,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regReturnSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueReturnSynonym(), "RETURN"); }
     protected abstract ConditionValue getCValueReturnSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))DOUBLE: {INT(10)}
@@ -1824,7 +1823,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regDoubleSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDoubleSynonym(), "DOUBLE"); }
     protected abstract ConditionValue getCValueDoubleSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))FLOAT: {INT(10)}
@@ -1927,7 +1926,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
 
     protected void regFloatSynonym(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFloatSynonym(), "FLOAT"); }
     protected abstract ConditionValue getCValueFloatSynonym();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))SHORT: {INT(10)}
@@ -2479,7 +2478,6 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -2492,6 +2490,7 @@ public abstract class AbstractBsWhitePgReservCQ extends AbstractConditionQuery {
         return new WhitePgReservCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhitePgReservCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

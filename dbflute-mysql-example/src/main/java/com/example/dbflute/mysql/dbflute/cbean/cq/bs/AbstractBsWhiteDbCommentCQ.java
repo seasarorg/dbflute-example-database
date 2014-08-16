@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * (Normal)DB_COMMENT_CODE: {PK, NotNull, CHAR(3)}
@@ -520,7 +519,6 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -533,6 +531,7 @@ public abstract class AbstractBsWhiteDbCommentCQ extends AbstractConditionQuery 
         return new WhiteDbCommentCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteDbCommentCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

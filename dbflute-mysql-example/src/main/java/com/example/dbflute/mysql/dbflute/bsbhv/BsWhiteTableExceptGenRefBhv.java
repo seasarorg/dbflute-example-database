@@ -907,13 +907,4 @@ public abstract class BsWhiteTableExceptGenRefBhv extends AbstractBehaviorWritab
     protected Class<? extends WhiteTableExceptGenRef> typeOfSelectedEntity() { return WhiteTableExceptGenRef.class; }
     protected Class<WhiteTableExceptGenRef> typeOfHandlingEntity() { return WhiteTableExceptGenRef.class; }
     protected Class<WhiteTableExceptGenRefCB> typeOfHandlingConditionBean() { return WhiteTableExceptGenRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteTableExceptGenRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteTableExceptGenRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteTableExceptGenRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteTableExceptGenRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteTableExceptGenRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteTableExceptGenRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteTableExceptGenRef, WhiteTableExceptGenRefCB>)sp; }
 }

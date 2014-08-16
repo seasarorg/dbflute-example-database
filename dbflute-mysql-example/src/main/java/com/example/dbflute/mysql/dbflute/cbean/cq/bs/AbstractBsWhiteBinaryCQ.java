@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * BINARY_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -163,6 +162,7 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
     protected void regBinaryId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBinaryId(), "BINARY_ID"); }
     protected abstract ConditionValue getCValueBinaryId();
 
+
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * BINARY_DATA: {BINARY(1)}
@@ -177,6 +177,7 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
 
     protected void regBinaryData(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBinaryData(), "BINARY_DATA"); }
     protected abstract ConditionValue getCValueBinaryData();
+
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -451,7 +452,6 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -464,6 +464,7 @@ public abstract class AbstractBsWhiteBinaryCQ extends AbstractConditionQuery {
         return new WhiteBinaryCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteBinaryCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

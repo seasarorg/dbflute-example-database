@@ -44,7 +44,6 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * product_id: {PK, ID, NotNull, serial(10)}
@@ -668,7 +667,7 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
 
     protected void regProductStatusCode(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueProductStatusCode(), "product_status_code"); }
     protected abstract ConditionValue getCValueProductStatusCode();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * regular_price: {NotNull, int4(10)}
@@ -1255,7 +1254,7 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
 
     protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "update_process"); }
     protected abstract ConditionValue getCValueUpdateProcess();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * version_no: {NotNull, int8(19)}
@@ -1612,7 +1611,6 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1653,6 +1651,7 @@ public abstract class AbstractBsProductCQ extends AbstractConditionQuery {
         return new ProductCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return ProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

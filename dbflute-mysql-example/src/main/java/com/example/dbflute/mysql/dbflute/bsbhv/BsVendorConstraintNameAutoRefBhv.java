@@ -964,13 +964,4 @@ public abstract class BsVendorConstraintNameAutoRefBhv extends AbstractBehaviorW
     protected Class<? extends VendorConstraintNameAutoRef> typeOfSelectedEntity() { return VendorConstraintNameAutoRef.class; }
     protected Class<VendorConstraintNameAutoRef> typeOfHandlingEntity() { return VendorConstraintNameAutoRef.class; }
     protected Class<VendorConstraintNameAutoRefCB> typeOfHandlingConditionBean() { return VendorConstraintNameAutoRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorConstraintNameAutoRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorConstraintNameAutoRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorConstraintNameAutoRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorConstraintNameAutoRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorConstraintNameAutoRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorConstraintNameAutoRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorConstraintNameAutoRef, VendorConstraintNameAutoRefCB>)sp; }
 }

@@ -1017,13 +1017,4 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     protected Class<? extends WhiteImplicitReverseFk> typeOfSelectedEntity() { return WhiteImplicitReverseFk.class; }
     protected Class<WhiteImplicitReverseFk> typeOfHandlingEntity() { return WhiteImplicitReverseFk.class; }
     protected Class<WhiteImplicitReverseFkCB> typeOfHandlingConditionBean() { return WhiteImplicitReverseFkCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitReverseFkCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteImplicitReverseFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitReverseFkCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteImplicitReverseFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitReverseFkCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteImplicitReverseFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitReverseFk, WhiteImplicitReverseFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteImplicitReverseFk, WhiteImplicitReverseFkCB>)sp; }
 }

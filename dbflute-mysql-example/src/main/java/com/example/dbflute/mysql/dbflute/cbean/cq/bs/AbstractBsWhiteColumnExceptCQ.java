@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * EXCEPT_COLUMN_ID: {PK, NotNull, DECIMAL(16)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
 
     protected void regExceptColumnId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueExceptColumnId(), "EXCEPT_COLUMN_ID"); }
     protected abstract ConditionValue getCValueExceptColumnId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * COLUMN_EXCEPT_TEST: {INT(10)}
@@ -524,7 +523,6 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -537,6 +535,7 @@ public abstract class AbstractBsWhiteColumnExceptCQ extends AbstractConditionQue
         return new WhiteColumnExceptCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteColumnExceptCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

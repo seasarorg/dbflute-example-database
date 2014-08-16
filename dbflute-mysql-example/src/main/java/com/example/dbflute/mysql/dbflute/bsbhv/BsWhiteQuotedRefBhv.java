@@ -915,13 +915,4 @@ public abstract class BsWhiteQuotedRefBhv extends AbstractBehaviorWritable<White
     protected Class<? extends WhiteQuotedRef> typeOfSelectedEntity() { return WhiteQuotedRef.class; }
     protected Class<WhiteQuotedRef> typeOfHandlingEntity() { return WhiteQuotedRef.class; }
     protected Class<WhiteQuotedRefCB> typeOfHandlingConditionBean() { return WhiteQuotedRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteQuotedRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteQuotedRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteQuotedRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteQuotedRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteQuotedRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteQuotedRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteQuotedRef, WhiteQuotedRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteQuotedRef, WhiteQuotedRefCB>)sp; }
 }

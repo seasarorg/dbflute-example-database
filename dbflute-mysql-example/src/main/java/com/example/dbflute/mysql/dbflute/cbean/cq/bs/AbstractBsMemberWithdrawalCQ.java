@@ -59,7 +59,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MEMBER_ID: {PK, NotNull, INT(10), FK to member}
@@ -916,7 +915,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -929,6 +927,7 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
         return new MemberWithdrawalCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberWithdrawalCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

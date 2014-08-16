@@ -59,7 +59,6 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_REF_ID: {PK, NotNull, DECIMAL(16)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
 
     protected void regConstraintNameAutoRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueConstraintNameAutoRefId(), "CONSTRAINT_NAME_AUTO_REF_ID"); }
     protected abstract ConditionValue getCValueConstraintNameAutoRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_FOO_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_foo}
@@ -283,7 +282,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
 
     protected void regConstraintNameAutoFooId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueConstraintNameAutoFooId(), "CONSTRAINT_NAME_AUTO_FOO_ID"); }
     protected abstract ConditionValue getCValueConstraintNameAutoFooId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_BAR_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_bar}
@@ -404,7 +403,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
 
     protected void regConstraintNameAutoBarId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueConstraintNameAutoBarId(), "CONSTRAINT_NAME_AUTO_BAR_ID"); }
     protected abstract ConditionValue getCValueConstraintNameAutoBarId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_QUX_ID: {IX, NotNull, DECIMAL(16), FK to vendor_constraint_name_auto_qux}
@@ -525,7 +524,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
 
     protected void regConstraintNameAutoQuxId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueConstraintNameAutoQuxId(), "CONSTRAINT_NAME_AUTO_QUX_ID"); }
     protected abstract ConditionValue getCValueConstraintNameAutoQuxId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_CORGE_ID: {NotNull, DECIMAL(16)}
@@ -961,7 +960,6 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -974,6 +972,7 @@ public abstract class AbstractBsVendorConstraintNameAutoRefCQ extends AbstractCo
         return new VendorConstraintNameAutoRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorConstraintNameAutoRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

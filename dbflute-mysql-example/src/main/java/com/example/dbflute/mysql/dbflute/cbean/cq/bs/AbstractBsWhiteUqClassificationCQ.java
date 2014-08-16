@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteUqClassificationCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * UQ_CLS_ID: {PK, NotNull, DECIMAL(16)}
@@ -516,7 +515,6 @@ public abstract class AbstractBsWhiteUqClassificationCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -529,6 +527,7 @@ public abstract class AbstractBsWhiteUqClassificationCQ extends AbstractConditio
         return new WhiteUqClassificationCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteUqClassificationCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

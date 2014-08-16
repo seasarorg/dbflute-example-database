@@ -919,13 +919,4 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     protected Class<? extends WhiteAllInOneClsNormalColRef> typeOfSelectedEntity() { return WhiteAllInOneClsNormalColRef.class; }
     protected Class<WhiteAllInOneClsNormalColRef> typeOfHandlingEntity() { return WhiteAllInOneClsNormalColRef.class; }
     protected Class<WhiteAllInOneClsNormalColRefCB> typeOfHandlingConditionBean() { return WhiteAllInOneClsNormalColRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsNormalColRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteAllInOneClsNormalColRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsNormalColRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteAllInOneClsNormalColRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsNormalColRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteAllInOneClsNormalColRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteAllInOneClsNormalColRef, WhiteAllInOneClsNormalColRefCB>)sp; }
 }

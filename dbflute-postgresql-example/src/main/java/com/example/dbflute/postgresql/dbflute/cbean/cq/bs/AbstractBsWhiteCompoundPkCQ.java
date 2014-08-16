@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * pk_first_id: {PK, NotNull, int4(10)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     protected void regPkFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkFirstId(), "pk_first_id"); }
     protected abstract ConditionValue getCValuePkFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * pk_second_id: {PK, NotNull, int4(10)}
@@ -538,7 +537,6 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -579,6 +577,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
         return new WhiteCompoundPkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

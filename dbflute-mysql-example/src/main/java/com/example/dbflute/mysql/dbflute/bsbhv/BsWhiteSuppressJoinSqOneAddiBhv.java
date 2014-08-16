@@ -999,13 +999,4 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     protected Class<? extends WhiteSuppressJoinSqOneAddi> typeOfSelectedEntity() { return WhiteSuppressJoinSqOneAddi.class; }
     protected Class<WhiteSuppressJoinSqOneAddi> typeOfHandlingEntity() { return WhiteSuppressJoinSqOneAddi.class; }
     protected Class<WhiteSuppressJoinSqOneAddiCB> typeOfHandlingConditionBean() { return WhiteSuppressJoinSqOneAddiCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSuppressJoinSqOneAddiCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSuppressJoinSqOneAddiCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSuppressJoinSqOneAddiCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSuppressJoinSqOneAddiCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSuppressJoinSqOneAddi, WhiteSuppressJoinSqOneAddiCB>)sp; }
 }

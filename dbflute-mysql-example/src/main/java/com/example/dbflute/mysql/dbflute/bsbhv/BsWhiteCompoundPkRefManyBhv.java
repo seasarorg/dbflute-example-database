@@ -909,13 +909,4 @@ public abstract class BsWhiteCompoundPkRefManyBhv extends AbstractBehaviorWritab
     protected Class<? extends WhiteCompoundPkRefMany> typeOfSelectedEntity() { return WhiteCompoundPkRefMany.class; }
     protected Class<WhiteCompoundPkRefMany> typeOfHandlingEntity() { return WhiteCompoundPkRefMany.class; }
     protected Class<WhiteCompoundPkRefManyCB> typeOfHandlingConditionBean() { return WhiteCompoundPkRefManyCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteCompoundPkRefManyCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteCompoundPkRefManyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteCompoundPkRefManyCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteCompoundPkRefManyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteCompoundPkRefManyCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteCompoundPkRefManyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteCompoundPkRefMany, WhiteCompoundPkRefManyCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteCompoundPkRefMany, WhiteCompoundPkRefManyCB>)sp; }
 }

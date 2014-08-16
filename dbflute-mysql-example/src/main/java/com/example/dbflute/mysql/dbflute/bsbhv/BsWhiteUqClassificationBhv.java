@@ -941,13 +941,4 @@ public abstract class BsWhiteUqClassificationBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhiteUqClassification> typeOfSelectedEntity() { return WhiteUqClassification.class; }
     protected Class<WhiteUqClassification> typeOfHandlingEntity() { return WhiteUqClassification.class; }
     protected Class<WhiteUqClassificationCB> typeOfHandlingConditionBean() { return WhiteUqClassificationCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteUqClassificationCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteUqClassificationCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteUqClassificationCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteUqClassificationCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteUqClassificationCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteUqClassificationCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteUqClassification, WhiteUqClassificationCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteUqClassification, WhiteUqClassificationCB>)sp; }
 }

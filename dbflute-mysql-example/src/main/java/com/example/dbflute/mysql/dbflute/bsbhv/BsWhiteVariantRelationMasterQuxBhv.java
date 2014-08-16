@@ -907,13 +907,4 @@ public abstract class BsWhiteVariantRelationMasterQuxBhv extends AbstractBehavio
     protected Class<? extends WhiteVariantRelationMasterQux> typeOfSelectedEntity() { return WhiteVariantRelationMasterQux.class; }
     protected Class<WhiteVariantRelationMasterQux> typeOfHandlingEntity() { return WhiteVariantRelationMasterQux.class; }
     protected Class<WhiteVariantRelationMasterQuxCB> typeOfHandlingConditionBean() { return WhiteVariantRelationMasterQuxCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationMasterQuxCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationMasterQuxCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationMasterQuxCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationMasterQuxCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationMasterQuxCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationMasterQuxCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteVariantRelationMasterQux, WhiteVariantRelationMasterQuxCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteVariantRelationMasterQux, WhiteVariantRelationMasterQuxCB>)sp; }
 }

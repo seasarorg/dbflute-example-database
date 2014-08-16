@@ -907,13 +907,4 @@ public abstract class BsWhiteDelimiterBhv extends AbstractBehaviorWritable<White
     protected Class<? extends WhiteDelimiter> typeOfSelectedEntity() { return WhiteDelimiter.class; }
     protected Class<WhiteDelimiter> typeOfHandlingEntity() { return WhiteDelimiter.class; }
     protected Class<WhiteDelimiterCB> typeOfHandlingConditionBean() { return WhiteDelimiterCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDelimiterCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDelimiterCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDelimiterCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteDelimiterCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDelimiterCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteDelimiterCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDelimiter, WhiteDelimiterCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteDelimiter, WhiteDelimiterCB>)sp; }
 }

@@ -176,7 +176,7 @@ public class BsSpNextInOutParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInVarchar: {varchar as In} <br />
-     * @return The value of VInVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInVarchar() {
         return filterStringParameter(_vInVarchar);
@@ -192,7 +192,7 @@ public class BsSpNextInOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarchar: {varchar as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -208,7 +208,7 @@ public class BsSpNextInOutParameterPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInoutVarchar: {varchar as Out} <br />
-     * @return The value of VInoutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutVarchar() {
         return filterStringParameter(_vInoutVarchar);

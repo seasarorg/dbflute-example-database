@@ -150,7 +150,7 @@ public class BsUnpaidSummaryMemberPmb extends SimplePagingBean implements Entity
     //                                                                            ========
     /**
      * [get] memberId <br />
-     * @return The value of memberId. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberId. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getMemberId() {
         return _memberId;
@@ -166,7 +166,7 @@ public class BsUnpaidSummaryMemberPmb extends SimplePagingBean implements Entity
 
     /**
      * [get] memberName <br />
-     * @return The value of memberName. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberName. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getMemberName() {
         return filterStringParameter(_memberName);
@@ -182,7 +182,7 @@ public class BsUnpaidSummaryMemberPmb extends SimplePagingBean implements Entity
 
     /**
      * [get] memberStatusCode:cls(MemberStatus) <br />
-     * @return The value of memberStatusCode. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberStatusCode. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getMemberStatusCode() {
         return filterStringParameter(_memberStatusCode);
@@ -214,7 +214,7 @@ public class BsUnpaidSummaryMemberPmb extends SimplePagingBean implements Entity
 
     /**
      * [get] unpaidMemberOnly <br />
-     * @return The value of unpaidMemberOnly. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of unpaidMemberOnly. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public boolean getUnpaidMemberOnly() {
         return _unpaidMemberOnly;

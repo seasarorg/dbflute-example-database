@@ -900,13 +900,4 @@ public abstract class BsVendorUuidFooBhv extends AbstractBehaviorWritable<Vendor
     protected Class<? extends VendorUuidFoo> typeOfSelectedEntity() { return VendorUuidFoo.class; }
     protected Class<VendorUuidFoo> typeOfHandlingEntity() { return VendorUuidFoo.class; }
     protected Class<VendorUuidFooCB> typeOfHandlingConditionBean() { return VendorUuidFooCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorUuidFooCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorUuidFooCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorUuidFooCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorUuidFooCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorUuidFooCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorUuidFooCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorUuidFoo, VendorUuidFooCB>)sp; }
 }

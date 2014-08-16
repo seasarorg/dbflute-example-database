@@ -915,13 +915,4 @@ public abstract class BsWhitePgReservRefBhv extends AbstractBehaviorWritable<Whi
     protected Class<? extends WhitePgReservRef> typeOfSelectedEntity() { return WhitePgReservRef.class; }
     protected Class<WhitePgReservRef> typeOfHandlingEntity() { return WhitePgReservRef.class; }
     protected Class<WhitePgReservRefCB> typeOfHandlingConditionBean() { return WhitePgReservRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePgReservRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePgReservRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePgReservRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePgReservRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePgReservRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePgReservRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhitePgReservRef, WhitePgReservRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhitePgReservRef, WhitePgReservRefCB>)sp; }
 }

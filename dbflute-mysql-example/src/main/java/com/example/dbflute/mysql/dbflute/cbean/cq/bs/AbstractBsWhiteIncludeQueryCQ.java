@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * INCLUDE_QUERY_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -235,7 +234,7 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
 
     protected void regIncludeQueryVarchar(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIncludeQueryVarchar(), "INCLUDE_QUERY_VARCHAR"); }
     protected abstract ConditionValue getCValueIncludeQueryVarchar();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * INCLUDE_QUERY_INTEGER: {INT(10)}
@@ -574,7 +573,6 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -587,6 +585,7 @@ public abstract class AbstractBsWhiteIncludeQueryCQ extends AbstractConditionQue
         return new WhiteIncludeQueryCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteIncludeQueryCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

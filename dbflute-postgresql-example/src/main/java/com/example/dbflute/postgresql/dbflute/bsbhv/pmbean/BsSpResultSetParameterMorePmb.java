@@ -172,7 +172,7 @@ public class BsSpResultSetParameterMorePmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] curMember: {refcursor as Out} <br />
-     * @return The value of curMember. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of curMember. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpResultSetParameterMoreCurMember> getCurMember() {
         return _curMember;
@@ -188,7 +188,7 @@ public class BsSpResultSetParameterMorePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] curMemberStatus: {refcursor as Out} <br />
-     * @return The value of curMemberStatus. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of curMemberStatus. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpResultSetParameterMoreCurMemberStatus> getCurMemberStatus() {
         return _curMemberStatus;

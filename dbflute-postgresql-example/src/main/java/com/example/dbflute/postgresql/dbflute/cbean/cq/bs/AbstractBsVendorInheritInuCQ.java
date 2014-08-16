@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorInheritInuCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * inu_id: {PK, NotNull, int4(10)}
@@ -587,7 +586,6 @@ public abstract class AbstractBsVendorInheritInuCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -628,6 +626,7 @@ public abstract class AbstractBsVendorInheritInuCQ extends AbstractConditionQuer
         return new VendorInheritInuCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorInheritInuCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

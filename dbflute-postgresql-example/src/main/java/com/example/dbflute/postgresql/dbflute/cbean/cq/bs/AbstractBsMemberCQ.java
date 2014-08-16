@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)member_id: {PK, ID, NotNull, serial(10), FK to MEMBER_ADDRESS}
@@ -1663,7 +1662,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     protected void regUpdateProcess(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateProcess(), "update_process"); }
     protected abstract ConditionValue getCValueUpdateProcess();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (バージョンNO)version_no: {NotNull, int8(19)}
@@ -2020,7 +2019,6 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -2061,6 +2059,7 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
         return new MemberCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

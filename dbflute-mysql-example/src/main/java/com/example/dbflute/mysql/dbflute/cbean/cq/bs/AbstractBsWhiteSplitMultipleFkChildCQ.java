@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CHILD_ID: {PK, NotNull, BIGINT(19)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
 
     protected void regChildId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueChildId(), "CHILD_ID"); }
     protected abstract ConditionValue getCValueChildId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * BASE_ID: {IX, NotNull, BIGINT(19), FK to white_split_multiple_fk_base}
@@ -628,7 +627,6 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -641,6 +639,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkChildCQ extends AbstractCond
         return new WhiteSplitMultipleFkChildCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSplitMultipleFkChildCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -907,13 +907,4 @@ public abstract class BsWhiteDateAdjustmentBhv extends AbstractBehaviorWritable<
     protected Class<? extends WhiteDateAdjustment> typeOfSelectedEntity() { return WhiteDateAdjustment.class; }
     protected Class<WhiteDateAdjustment> typeOfHandlingEntity() { return WhiteDateAdjustment.class; }
     protected Class<WhiteDateAdjustmentCB> typeOfHandlingConditionBean() { return WhiteDateAdjustmentCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDateAdjustmentCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDateAdjustmentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDateAdjustmentCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteDateAdjustmentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDateAdjustmentCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteDateAdjustmentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDateAdjustment, WhiteDateAdjustmentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteDateAdjustment, WhiteDateAdjustmentCB>)sp; }
 }

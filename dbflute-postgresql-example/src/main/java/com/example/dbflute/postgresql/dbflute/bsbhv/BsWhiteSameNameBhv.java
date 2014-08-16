@@ -992,13 +992,4 @@ public abstract class BsWhiteSameNameBhv extends AbstractBehaviorWritable<WhiteS
     protected Class<? extends WhiteSameName> typeOfSelectedEntity() { return WhiteSameName.class; }
     protected Class<WhiteSameName> typeOfHandlingEntity() { return WhiteSameName.class; }
     protected Class<WhiteSameNameCB> typeOfHandlingConditionBean() { return WhiteSameNameCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSameNameCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSameNameCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSameNameCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSameNameCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSameNameCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSameNameCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSameName, WhiteSameNameCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSameName, WhiteSameNameCB>)sp; }
 }

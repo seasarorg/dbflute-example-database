@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REFERRER_ID: {PK, NotNull, BIGINT(19)}
@@ -279,7 +278,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
 
     protected void regReferrerId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueReferrerId(), "REFERRER_ID"); }
     protected abstract ConditionValue getCValueReferrerId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VARIANT_MASTER_ID: {NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO}
@@ -798,7 +797,6 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -811,6 +809,7 @@ public abstract class AbstractBsWhiteVariantRelationReferrerCQ extends AbstractC
         return new WhiteVariantRelationReferrerCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteVariantRelationReferrerCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

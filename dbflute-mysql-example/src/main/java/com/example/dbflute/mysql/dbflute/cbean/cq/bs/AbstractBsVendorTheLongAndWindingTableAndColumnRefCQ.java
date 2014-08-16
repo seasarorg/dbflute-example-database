@@ -59,7 +59,6 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnRefCQ exten
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_ID: {PK, NotNull, BIGINT(19)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnRefCQ exten
 
     protected void regTheLongAndWindingTableAndColumnRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTheLongAndWindingTableAndColumnRefId(), "THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_ID"); }
     protected abstract ConditionValue getCValueTheLongAndWindingTableAndColumnRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {IX, NotNull, BIGINT(19), FK to vendor_the_long_and_winding_table_and_column}
@@ -694,7 +693,6 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnRefCQ exten
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -707,6 +705,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnRefCQ exten
         return new VendorTheLongAndWindingTableAndColumnRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorTheLongAndWindingTableAndColumnRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

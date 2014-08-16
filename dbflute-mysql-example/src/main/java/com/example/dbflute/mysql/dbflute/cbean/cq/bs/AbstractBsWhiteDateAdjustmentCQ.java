@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DATE_ADJUSTMENT_ID: {PK, NotNull, BIGINT(19)}
@@ -398,7 +397,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedTime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedTime(), "ADJUSTED_TIME"); }
     protected abstract ConditionValue getCValueAdjustedTime();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ADJUSTED_INTEGER: {INT(10)}
@@ -501,7 +500,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedInteger(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedInteger(), "ADJUSTED_INTEGER"); }
     protected abstract ConditionValue getCValueAdjustedInteger();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (adjusted)ADJUSTED_NAMED_STRING_LONG: {BIGINT(19)}
@@ -604,7 +603,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedNamedStringLong(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedNamedStringLong(), "ADJUSTED_NAMED_STRING_LONG"); }
     protected abstract ConditionValue getCValueAdjustedNamedStringLong();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (adjusted)ADJUSTED_NAMED_TYPED_LONG: {BIGINT(19)}
@@ -707,7 +706,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedNamedTypedLong(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedNamedTypedLong(), "ADJUSTED_NAMED_TYPED_LONG"); }
     protected abstract ConditionValue getCValueAdjustedNamedTypedLong();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (adjusted)ADJUSTED_PINPOINT_STRING_LONG: {BIGINT(19)}
@@ -810,7 +809,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedPinpointStringLong(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedPinpointStringLong(), "ADJUSTED_PINPOINT_STRING_LONG"); }
     protected abstract ConditionValue getCValueAdjustedPinpointStringLong();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (adjusted)ADJUSTED_PINPOINT_TYPED_LONG: {BIGINT(19)}
@@ -913,7 +912,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
 
     protected void regAdjustedPinpointTypedLong(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAdjustedPinpointTypedLong(), "ADJUSTED_PINPOINT_TYPED_LONG"); }
     protected abstract ConditionValue getCValueAdjustedPinpointTypedLong();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ADJUSTED_PLAIN_LONG: {BIGINT(19)}
@@ -1379,7 +1378,6 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -1392,6 +1390,7 @@ public abstract class AbstractBsWhiteDateAdjustmentCQ extends AbstractConditionQ
         return new WhiteDateAdjustmentCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteDateAdjustmentCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

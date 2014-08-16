@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteStilettoAliasRefCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_ID: {PK, NotNull, INT(10)}
@@ -1202,7 +1201,7 @@ public abstract class AbstractBsWhiteStilettoAliasRefCQ extends AbstractConditio
 
     protected void regC23(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueC23(), "c23"); }
     protected abstract ConditionValue getCValueC23();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * STILETTO_ALIAS_ID: {IX, INT(10), FK to white_stiletto_alias}
@@ -1594,7 +1593,6 @@ public abstract class AbstractBsWhiteStilettoAliasRefCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -1607,6 +1605,7 @@ public abstract class AbstractBsWhiteStilettoAliasRefCQ extends AbstractConditio
         return new WhiteStilettoAliasRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteStilettoAliasRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

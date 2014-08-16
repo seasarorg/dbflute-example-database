@@ -915,13 +915,4 @@ public abstract class BsWhiteMyselfCheckBhv extends AbstractBehaviorWritable<Whi
     protected Class<? extends WhiteMyselfCheck> typeOfSelectedEntity() { return WhiteMyselfCheck.class; }
     protected Class<WhiteMyselfCheck> typeOfHandlingEntity() { return WhiteMyselfCheck.class; }
     protected Class<WhiteMyselfCheckCB> typeOfHandlingConditionBean() { return WhiteMyselfCheckCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteMyselfCheckCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteMyselfCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteMyselfCheckCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteMyselfCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteMyselfCheckCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteMyselfCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteMyselfCheck, WhiteMyselfCheckCB>)sp; }
 }

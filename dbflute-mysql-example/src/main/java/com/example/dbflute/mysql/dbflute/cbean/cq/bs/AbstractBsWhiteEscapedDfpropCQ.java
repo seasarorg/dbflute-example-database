@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * ESCAPED_DFPROP_CODE: {PK, NotNull, CHAR(3), classification=EscapedDfpropCls}
@@ -577,7 +576,6 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -590,6 +588,7 @@ public abstract class AbstractBsWhiteEscapedDfpropCQ extends AbstractConditionQu
         return new WhiteEscapedDfpropCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteEscapedDfpropCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

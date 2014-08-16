@@ -166,7 +166,7 @@ public class BsPartManInsertTriggerPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {trigger as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Object getReturnValue() {
         return _returnValue;

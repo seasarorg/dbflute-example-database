@@ -1124,13 +1124,4 @@ public abstract class BsWhiteUqFkBhv extends AbstractBehaviorWritable<WhiteUqFk,
     protected Class<? extends WhiteUqFk> typeOfSelectedEntity() { return WhiteUqFk.class; }
     protected Class<WhiteUqFk> typeOfHandlingEntity() { return WhiteUqFk.class; }
     protected Class<WhiteUqFkCB> typeOfHandlingConditionBean() { return WhiteUqFkCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteUqFkCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteUqFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteUqFkCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteUqFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteUqFkCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteUqFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteUqFk, WhiteUqFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteUqFk, WhiteUqFkCB>)sp; }
 }

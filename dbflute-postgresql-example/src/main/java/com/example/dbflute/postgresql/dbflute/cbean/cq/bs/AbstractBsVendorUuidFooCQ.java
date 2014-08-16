@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorUuidFooCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * foo_id: {PK, NotNull, uuid(2147483647)}
@@ -450,7 +449,6 @@ public abstract class AbstractBsVendorUuidFooCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -491,6 +489,7 @@ public abstract class AbstractBsVendorUuidFooCQ extends AbstractConditionQuery {
         return new VendorUuidFooCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorUuidFooCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

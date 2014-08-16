@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * UQ_FK_REF_NEST_ID: {PK, NotNull, DECIMAL(16)}
@@ -593,7 +592,6 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -606,6 +604,7 @@ public abstract class AbstractBsWhiteUqFkRefNestCQ extends AbstractConditionQuer
         return new WhiteUqFkRefNestCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteUqFkRefNestCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -892,13 +892,4 @@ public abstract class BsWhiteXlsManBhv extends AbstractBehaviorWritable<WhiteXls
     protected Class<? extends WhiteXlsMan> typeOfSelectedEntity() { return WhiteXlsMan.class; }
     protected Class<WhiteXlsMan> typeOfHandlingEntity() { return WhiteXlsMan.class; }
     protected Class<WhiteXlsManCB> typeOfHandlingConditionBean() { return WhiteXlsManCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteXlsManCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteXlsManCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteXlsManCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteXlsManCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteXlsManCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteXlsManCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteXlsMan, WhiteXlsManCB>)sp; }
 }

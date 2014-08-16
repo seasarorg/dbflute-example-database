@@ -59,7 +59,6 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (地域ID)REGION_ID: {PK, NotNull, INT(10), classification=Region}
@@ -637,7 +636,6 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -650,6 +648,7 @@ public abstract class AbstractBsRegionCQ extends AbstractConditionQuery {
         return new RegionCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return RegionCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

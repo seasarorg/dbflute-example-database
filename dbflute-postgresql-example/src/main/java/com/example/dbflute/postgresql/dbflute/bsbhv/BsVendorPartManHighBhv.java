@@ -892,13 +892,4 @@ public abstract class BsVendorPartManHighBhv extends AbstractBehaviorWritable<Ve
     protected Class<? extends VendorPartManHigh> typeOfSelectedEntity() { return VendorPartManHigh.class; }
     protected Class<VendorPartManHigh> typeOfHandlingEntity() { return VendorPartManHigh.class; }
     protected Class<VendorPartManHighCB> typeOfHandlingConditionBean() { return VendorPartManHighCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorPartManHighCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorPartManHighCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorPartManHighCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorPartManHighCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorPartManHighCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorPartManHighCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorPartManHigh, VendorPartManHighCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorPartManHigh, VendorPartManHighCB>)sp; }
 }

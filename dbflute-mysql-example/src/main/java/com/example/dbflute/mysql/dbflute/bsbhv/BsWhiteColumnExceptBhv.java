@@ -907,13 +907,4 @@ public abstract class BsWhiteColumnExceptBhv extends AbstractBehaviorWritable<Wh
     protected Class<? extends WhiteColumnExcept> typeOfSelectedEntity() { return WhiteColumnExcept.class; }
     protected Class<WhiteColumnExcept> typeOfHandlingEntity() { return WhiteColumnExcept.class; }
     protected Class<WhiteColumnExceptCB> typeOfHandlingConditionBean() { return WhiteColumnExceptCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteColumnExceptCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteColumnExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteColumnExceptCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteColumnExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteColumnExceptCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteColumnExceptCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteColumnExcept, WhiteColumnExceptCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteColumnExcept, WhiteColumnExceptCB>)sp; }
 }

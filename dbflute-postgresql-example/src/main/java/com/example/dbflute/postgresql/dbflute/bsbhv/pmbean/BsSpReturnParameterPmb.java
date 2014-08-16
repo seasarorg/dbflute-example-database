@@ -166,7 +166,7 @@ public class BsSpReturnParameterPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] returnValue: {int4 as Return} <br />
-     * @return The value of returnValue. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of returnValue. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getReturnValue() {
         return _returnValue;

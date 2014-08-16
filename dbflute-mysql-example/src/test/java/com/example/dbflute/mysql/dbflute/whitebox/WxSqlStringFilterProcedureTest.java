@@ -244,7 +244,7 @@ public class WxSqlStringFilterProcedureTest extends UnitContainerTestCase {
             member.setMemberName("filterQuery");
             MemberCB cb = new MemberCB();
             cb.query().setMemberId_Equal(3);
-            cb.disableCheckCountBeforeQueryUpdate();
+            cb.disableQueryUpdateCountPreCheck();
             memberBhv.queryUpdate(member, cb);
             assertEquals("filterQuery", memberBhv.selectByPKValueWithDeletedCheck(3).getMemberName());
             assertEquals(5, markList.size());

@@ -908,13 +908,4 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable<
     protected Class<? extends WhiteLineSepComment> typeOfSelectedEntity() { return WhiteLineSepComment.class; }
     protected Class<WhiteLineSepComment> typeOfHandlingEntity() { return WhiteLineSepComment.class; }
     protected Class<WhiteLineSepCommentCB> typeOfHandlingConditionBean() { return WhiteLineSepCommentCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteLineSepCommentCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteLineSepCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteLineSepCommentCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteLineSepCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteLineSepCommentCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteLineSepCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteLineSepComment, WhiteLineSepCommentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteLineSepComment, WhiteLineSepCommentCB>)sp; }
 }

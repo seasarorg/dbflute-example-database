@@ -915,13 +915,4 @@ public abstract class BsWhiteStilettoAliasRefBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhiteStilettoAliasRef> typeOfSelectedEntity() { return WhiteStilettoAliasRef.class; }
     protected Class<WhiteStilettoAliasRef> typeOfHandlingEntity() { return WhiteStilettoAliasRef.class; }
     protected Class<WhiteStilettoAliasRefCB> typeOfHandlingConditionBean() { return WhiteStilettoAliasRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteStilettoAliasRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteStilettoAliasRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteStilettoAliasRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteStilettoAliasRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteStilettoAliasRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteStilettoAliasRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteStilettoAliasRef, WhiteStilettoAliasRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteStilettoAliasRef, WhiteStilettoAliasRefCB>)sp; }
 }

@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員サービスID)member_service_id: {PK, ID, NotNull, serial(10)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regMemberServiceId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberServiceId(), "member_service_id"); }
     protected abstract ConditionValue getCValueMemberServiceId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)member_id: {NotNull, int4(10)}
@@ -238,7 +237,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "member_id"); }
     protected abstract ConditionValue getCValueMemberId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (サービスポイント数)service_point_count: {IX, NotNull, int4(10)}
@@ -941,7 +940,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "update_user"); }
     protected abstract ConditionValue getCValueUpdateUser();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * version_no: {NotNull, int8(19)}
@@ -1298,7 +1297,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1339,6 +1337,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
         return new MemberServiceCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberServiceCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

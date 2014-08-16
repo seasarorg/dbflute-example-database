@@ -907,13 +907,4 @@ public abstract class BsWhiteBinaryBhv extends AbstractBehaviorWritable<WhiteBin
     protected Class<? extends WhiteBinary> typeOfSelectedEntity() { return WhiteBinary.class; }
     protected Class<WhiteBinary> typeOfHandlingEntity() { return WhiteBinary.class; }
     protected Class<WhiteBinaryCB> typeOfHandlingConditionBean() { return WhiteBinaryCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteBinaryCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteBinaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteBinaryCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteBinaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteBinaryCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteBinaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteBinary, WhiteBinaryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteBinary, WhiteBinaryCB>)sp; }
 }

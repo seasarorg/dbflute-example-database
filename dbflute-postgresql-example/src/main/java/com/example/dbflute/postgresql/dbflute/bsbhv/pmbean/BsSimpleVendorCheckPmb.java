@@ -154,7 +154,7 @@ public class BsSimpleVendorCheckPmb implements ListHandlingPmb<VendorCheckBhv, S
     //                                                                            ========
     /**
      * [get] typeOfBoolean:cls(TrueFalse) <br />
-     * @return The value of typeOfBoolean. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of typeOfBoolean. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Boolean getTypeOfBoolean() {
         return _typeOfBoolean;

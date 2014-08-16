@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteColumnExceptGenOnlyCQ extends AbstractCondi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * GEN_ONLY_ID: {PK, NotNull, DECIMAL(16)}
@@ -507,7 +506,6 @@ public abstract class AbstractBsWhiteColumnExceptGenOnlyCQ extends AbstractCondi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -520,6 +518,7 @@ public abstract class AbstractBsWhiteColumnExceptGenOnlyCQ extends AbstractCondi
         return new WhiteColumnExceptGenOnlyCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteColumnExceptGenOnlyCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -907,13 +907,4 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhitePointTypeMapping> typeOfSelectedEntity() { return WhitePointTypeMapping.class; }
     protected Class<WhitePointTypeMapping> typeOfHandlingEntity() { return WhitePointTypeMapping.class; }
     protected Class<WhitePointTypeMappingCB> typeOfHandlingConditionBean() { return WhitePointTypeMappingCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePointTypeMappingCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePointTypeMappingCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePointTypeMappingCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePointTypeMappingCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePointTypeMappingCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePointTypeMappingCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhitePointTypeMapping, WhitePointTypeMappingCB>)sp; }
 }

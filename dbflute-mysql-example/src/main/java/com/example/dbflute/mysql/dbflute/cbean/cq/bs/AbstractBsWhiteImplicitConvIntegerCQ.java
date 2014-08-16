@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * IMPLICIT_CONV_INTEGER_ID: {PK, NotNull, INT(10)}
@@ -396,7 +395,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
 
     protected void regImplicitConvIntegerId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueImplicitConvIntegerId(), "IMPLICIT_CONV_INTEGER_ID"); }
     protected abstract ConditionValue getCValueImplicitConvIntegerId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * IMPLICIT_CONV_NUMERIC_ID: {NotNull, INT(10), FK to WHITE_IMPLICIT_CONV_NUMERIC}
@@ -517,7 +516,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
 
     protected void regImplicitConvNumericId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueImplicitConvNumericId(), "IMPLICIT_CONV_NUMERIC_ID"); }
     protected abstract ConditionValue getCValueImplicitConvNumericId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * IMPLICIT_CONV_STRING_ID: {NotNull, INT(10), FK to WHITE_IMPLICIT_CONV_STRING}
@@ -983,7 +982,6 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -996,6 +994,7 @@ public abstract class AbstractBsWhiteImplicitConvIntegerCQ extends AbstractCondi
         return new WhiteImplicitConvIntegerCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteImplicitConvIntegerCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

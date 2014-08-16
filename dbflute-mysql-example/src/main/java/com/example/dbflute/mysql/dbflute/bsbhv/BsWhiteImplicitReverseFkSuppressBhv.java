@@ -933,13 +933,4 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
     protected Class<? extends WhiteImplicitReverseFkSuppress> typeOfSelectedEntity() { return WhiteImplicitReverseFkSuppress.class; }
     protected Class<WhiteImplicitReverseFkSuppress> typeOfHandlingEntity() { return WhiteImplicitReverseFkSuppress.class; }
     protected Class<WhiteImplicitReverseFkSuppressCB> typeOfHandlingConditionBean() { return WhiteImplicitReverseFkSuppressCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitReverseFkSuppressCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteImplicitReverseFkSuppressCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitReverseFkSuppressCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteImplicitReverseFkSuppressCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitReverseFkSuppressCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteImplicitReverseFkSuppressCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteImplicitReverseFkSuppress, WhiteImplicitReverseFkSuppressCB>)sp; }
 }

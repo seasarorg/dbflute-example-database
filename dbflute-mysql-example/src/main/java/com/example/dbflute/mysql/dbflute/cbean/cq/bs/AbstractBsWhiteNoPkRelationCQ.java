@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (商品ID)PRODUCT_ID: {NotNull, INT(10), default=[0]}
@@ -748,7 +747,6 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -761,6 +759,7 @@ public abstract class AbstractBsWhiteNoPkRelationCQ extends AbstractConditionQue
         return new WhiteNoPkRelationCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteNoPkRelationCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

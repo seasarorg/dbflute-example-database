@@ -1023,13 +1023,4 @@ public abstract class BsWhiteSelfReferenceBhv extends AbstractBehaviorWritable<W
     protected Class<? extends WhiteSelfReference> typeOfSelectedEntity() { return WhiteSelfReference.class; }
     protected Class<WhiteSelfReference> typeOfHandlingEntity() { return WhiteSelfReference.class; }
     protected Class<WhiteSelfReferenceCB> typeOfHandlingConditionBean() { return WhiteSelfReferenceCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSelfReferenceCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSelfReferenceCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSelfReferenceCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSelfReferenceCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSelfReferenceCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSelfReferenceCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSelfReference, WhiteSelfReferenceCB>)sp; }
 }

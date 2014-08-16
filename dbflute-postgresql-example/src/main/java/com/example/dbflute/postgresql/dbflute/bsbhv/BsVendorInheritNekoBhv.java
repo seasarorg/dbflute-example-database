@@ -892,13 +892,4 @@ public abstract class BsVendorInheritNekoBhv extends AbstractBehaviorWritable<Ve
     protected Class<? extends VendorInheritNeko> typeOfSelectedEntity() { return VendorInheritNeko.class; }
     protected Class<VendorInheritNeko> typeOfHandlingEntity() { return VendorInheritNeko.class; }
     protected Class<VendorInheritNekoCB> typeOfHandlingConditionBean() { return VendorInheritNekoCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorInheritNekoCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorInheritNekoCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorInheritNekoCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorInheritNekoCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorInheritNekoCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorInheritNekoCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorInheritNeko, VendorInheritNekoCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorInheritNeko, VendorInheritNekoCB>)sp; }
 }

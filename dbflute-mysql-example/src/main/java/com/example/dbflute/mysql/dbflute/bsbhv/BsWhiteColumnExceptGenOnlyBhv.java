@@ -907,13 +907,4 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
     protected Class<? extends WhiteColumnExceptGenOnly> typeOfSelectedEntity() { return WhiteColumnExceptGenOnly.class; }
     protected Class<WhiteColumnExceptGenOnly> typeOfHandlingEntity() { return WhiteColumnExceptGenOnly.class; }
     protected Class<WhiteColumnExceptGenOnlyCB> typeOfHandlingConditionBean() { return WhiteColumnExceptGenOnlyCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteColumnExceptGenOnlyCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteColumnExceptGenOnlyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteColumnExceptGenOnlyCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteColumnExceptGenOnlyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteColumnExceptGenOnlyCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteColumnExceptGenOnlyCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteColumnExceptGenOnly, WhiteColumnExceptGenOnlyCB>)sp; }
 }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
@@ -624,7 +623,6 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -637,6 +635,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
         return new WhiteVariantRelationMasterFooCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteVariantRelationMasterFooCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

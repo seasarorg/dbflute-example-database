@@ -999,13 +999,4 @@ public abstract class BsWhitePgReservBhv extends AbstractBehaviorWritable<WhiteP
     protected Class<? extends WhitePgReserv> typeOfSelectedEntity() { return WhitePgReserv.class; }
     protected Class<WhitePgReserv> typeOfHandlingEntity() { return WhitePgReserv.class; }
     protected Class<WhitePgReservCB> typeOfHandlingConditionBean() { return WhitePgReservCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePgReservCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePgReservCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePgReservCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePgReservCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePgReservCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePgReservCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhitePgReserv, WhitePgReservCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhitePgReserv, WhitePgReservCB>)sp; }
 }

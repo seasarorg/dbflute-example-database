@@ -915,13 +915,4 @@ public abstract class BsWhiteOnlyOneToOneFromBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhiteOnlyOneToOneFrom> typeOfSelectedEntity() { return WhiteOnlyOneToOneFrom.class; }
     protected Class<WhiteOnlyOneToOneFrom> typeOfHandlingEntity() { return WhiteOnlyOneToOneFrom.class; }
     protected Class<WhiteOnlyOneToOneFromCB> typeOfHandlingConditionBean() { return WhiteOnlyOneToOneFromCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteOnlyOneToOneFromCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteOnlyOneToOneFromCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteOnlyOneToOneFromCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteOnlyOneToOneFromCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteOnlyOneToOneFromCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteOnlyOneToOneFromCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteOnlyOneToOneFrom, WhiteOnlyOneToOneFromCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteOnlyOneToOneFrom, WhiteOnlyOneToOneFromCB>)sp; }
 }

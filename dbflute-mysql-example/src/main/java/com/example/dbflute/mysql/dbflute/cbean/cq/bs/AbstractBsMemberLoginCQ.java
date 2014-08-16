@@ -59,7 +59,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ログインID)MEMBER_LOGIN_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
 
     protected void regMemberLoginId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberLoginId(), "MEMBER_LOGIN_ID"); }
     protected abstract ConditionValue getCValueMemberLoginId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)MEMBER_ID: {UQ+, NotNull, INT(10), FK to member}
@@ -359,7 +358,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
 
     protected void regLoginDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginDatetime(), "LOGIN_DATETIME"); }
     protected abstract ConditionValue getCValueLoginDatetime();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (モバイルログインフラグ)MOBILE_LOGIN_FLG: {NotNull, INT(10), classification=Flg}
@@ -898,7 +897,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -911,6 +909,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
         return new MemberLoginCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberLoginCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -907,13 +907,4 @@ public abstract class BsWhiteLoadDataBhv extends AbstractBehaviorWritable<WhiteL
     protected Class<? extends WhiteLoadData> typeOfSelectedEntity() { return WhiteLoadData.class; }
     protected Class<WhiteLoadData> typeOfHandlingEntity() { return WhiteLoadData.class; }
     protected Class<WhiteLoadDataCB> typeOfHandlingConditionBean() { return WhiteLoadDataCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteLoadDataCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteLoadDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteLoadDataCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteLoadDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteLoadDataCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteLoadDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteLoadData, WhiteLoadDataCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteLoadData, WhiteLoadDataCB>)sp; }
 }

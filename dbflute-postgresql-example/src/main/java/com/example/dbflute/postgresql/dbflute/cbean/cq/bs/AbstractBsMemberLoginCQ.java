@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ログインID)member_login_id: {PK, ID, NotNull, bigserial(19)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
 
     protected void regMemberLoginId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberLoginId(), "member_login_id"); }
     protected abstract ConditionValue getCValueMemberLoginId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
@@ -344,7 +343,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
 
     protected void regLoginDatetime(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLoginDatetime(), "login_datetime"); }
     protected abstract ConditionValue getCValueLoginDatetime();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (モバイルログインフラグ)mobile_login_flg: {NotNull, int4(10), classification=Flg}
@@ -871,7 +870,6 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -912,6 +910,7 @@ public abstract class AbstractBsMemberLoginCQ extends AbstractConditionQuery {
         return new MemberLoginCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberLoginCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

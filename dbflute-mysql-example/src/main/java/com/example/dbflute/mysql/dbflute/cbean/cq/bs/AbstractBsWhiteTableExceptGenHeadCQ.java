@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * GEN_HEAD_ID: {PK, NotNull, DECIMAL(16)}
@@ -248,7 +247,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
 
     protected void regGenHeadName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueGenHeadName(), "GEN_HEAD_NAME"); }
     protected abstract ConditionValue getCValueGenHeadName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NOMETA_ID: {IX, DECIMAL(16)}
@@ -610,7 +609,6 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -623,6 +621,7 @@ public abstract class AbstractBsWhiteTableExceptGenHeadCQ extends AbstractCondit
         return new WhiteTableExceptGenHeadCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteTableExceptGenHeadCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

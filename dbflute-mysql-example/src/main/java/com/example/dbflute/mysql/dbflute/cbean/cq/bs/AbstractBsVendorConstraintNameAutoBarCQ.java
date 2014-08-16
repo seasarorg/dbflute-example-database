@@ -59,7 +59,6 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CONSTRAINT_NAME_AUTO_BAR_ID: {PK, NotNull, DECIMAL(16)}
@@ -624,7 +623,6 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -637,6 +635,7 @@ public abstract class AbstractBsVendorConstraintNameAutoBarCQ extends AbstractCo
         return new VendorConstraintNameAutoBarCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorConstraintNameAutoBarCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

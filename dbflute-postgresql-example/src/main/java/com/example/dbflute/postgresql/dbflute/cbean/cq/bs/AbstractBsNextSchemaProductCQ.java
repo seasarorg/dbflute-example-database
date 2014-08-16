@@ -44,7 +44,6 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * product_id: {PK, ID, NotNull, serial(10)}
@@ -616,7 +615,6 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -657,6 +655,7 @@ public abstract class AbstractBsNextSchemaProductCQ extends AbstractConditionQue
         return new NextSchemaProductCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return NextSchemaProductCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

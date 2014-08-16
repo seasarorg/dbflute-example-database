@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CLS_REF_ID: {NotNull, INT(10)}
@@ -639,7 +638,6 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -652,6 +650,7 @@ public abstract class AbstractBsWhiteAllInOneClsNormalColRefCQ extends AbstractC
         return new WhiteAllInOneClsNormalColRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsNormalColRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員住所ID)member_address_id: {PK, ID, NotNull, serial(10)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     protected void regMemberAddressId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberAddressId(), "member_address_id"); }
     protected abstract ConditionValue getCValueMemberAddressId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)member_id: {UQ+, NotNull, int4(10), FK to member}
@@ -506,7 +505,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     protected void regAddress(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueAddress(), "address"); }
     protected abstract ConditionValue getCValueAddress();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (地域ID)region_id: {NotNull, int4(10), FK to region}
@@ -1123,7 +1122,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "update_user"); }
     protected abstract ConditionValue getCValueUpdateUser();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * version_no: {NotNull, int8(19)}
@@ -1480,7 +1479,6 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1521,6 +1519,7 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
         return new MemberAddressCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberAddressCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

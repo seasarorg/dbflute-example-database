@@ -907,13 +907,4 @@ public abstract class BsNextSchemaProductBhv extends AbstractBehaviorWritable<Ne
     protected Class<? extends NextSchemaProduct> typeOfSelectedEntity() { return NextSchemaProduct.class; }
     protected Class<NextSchemaProduct> typeOfHandlingEntity() { return NextSchemaProduct.class; }
     protected Class<NextSchemaProductCB> typeOfHandlingConditionBean() { return NextSchemaProductCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<NextSchemaProductCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<NextSchemaProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<NextSchemaProductCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<NextSchemaProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<NextSchemaProductCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<NextSchemaProductCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<NextSchemaProduct, NextSchemaProductCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<NextSchemaProduct, NextSchemaProductCB>)sp; }
 }

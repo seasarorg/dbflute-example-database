@@ -941,13 +941,4 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
     protected Class<? extends WhiteImplicitReverseFkRef> typeOfSelectedEntity() { return WhiteImplicitReverseFkRef.class; }
     protected Class<WhiteImplicitReverseFkRef> typeOfHandlingEntity() { return WhiteImplicitReverseFkRef.class; }
     protected Class<WhiteImplicitReverseFkRefCB> typeOfHandlingConditionBean() { return WhiteImplicitReverseFkRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitReverseFkRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteImplicitReverseFkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitReverseFkRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteImplicitReverseFkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitReverseFkRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteImplicitReverseFkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteImplicitReverseFkRef, WhiteImplicitReverseFkRefCB>)sp; }
 }

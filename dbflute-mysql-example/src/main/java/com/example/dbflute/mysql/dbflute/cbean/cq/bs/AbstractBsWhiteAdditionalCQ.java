@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * foo_id: {PK, ID, NotNull, INTEGER}
@@ -674,7 +673,6 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -687,6 +685,7 @@ public abstract class AbstractBsWhiteAdditionalCQ extends AbstractConditionQuery
         return new WhiteAdditionalCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteAdditionalCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

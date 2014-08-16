@@ -1092,13 +1092,4 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
     protected Class<? extends Vendor_non_compilable> typeOfSelectedEntity() { return Vendor_non_compilable.class; }
     protected Class<Vendor_non_compilable> typeOfHandlingEntity() { return Vendor_non_compilable.class; }
     protected Class<Vendor_non_compilableCB> typeOfHandlingConditionBean() { return Vendor_non_compilableCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<Vendor_non_compilableCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<Vendor_non_compilableCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<Vendor_non_compilableCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<Vendor_non_compilableCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<Vendor_non_compilableCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<Vendor_non_compilableCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<Vendor_non_compilable, Vendor_non_compilableCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<Vendor_non_compilable, Vendor_non_compilableCB>)sp; }
 }

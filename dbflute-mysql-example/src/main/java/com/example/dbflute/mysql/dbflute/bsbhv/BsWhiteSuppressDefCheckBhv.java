@@ -907,13 +907,4 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhiteSuppressDefCheck> typeOfSelectedEntity() { return WhiteSuppressDefCheck.class; }
     protected Class<WhiteSuppressDefCheck> typeOfHandlingEntity() { return WhiteSuppressDefCheck.class; }
     protected Class<WhiteSuppressDefCheckCB> typeOfHandlingConditionBean() { return WhiteSuppressDefCheckCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSuppressDefCheckCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSuppressDefCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSuppressDefCheckCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSuppressDefCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSuppressDefCheckCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSuppressDefCheckCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSuppressDefCheck, WhiteSuppressDefCheckCB>)sp; }
 }

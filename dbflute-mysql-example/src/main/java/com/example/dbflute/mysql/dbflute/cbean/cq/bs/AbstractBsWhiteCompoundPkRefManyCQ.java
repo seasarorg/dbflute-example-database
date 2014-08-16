@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MULTIPLE_FIRST_ID: {PK, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
 
     protected void regMultipleFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleFirstId(), "MULTIPLE_FIRST_ID"); }
     protected abstract ConditionValue getCValueMultipleFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MULTIPLE_SECOND_ID: {PK, NotNull, INT(10)}
@@ -265,7 +264,7 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
 
     protected void regMultipleSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleSecondId(), "MULTIPLE_SECOND_ID"); }
     protected abstract ConditionValue getCValueMultipleSecondId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_MANY_FIRST_ID: {NotNull, INT(10), FK to WHITE_COMPOUND_PK}
@@ -356,7 +355,7 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
 
     protected void regRefManyFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefManyFirstId(), "REF_MANY_FIRST_ID"); }
     protected abstract ConditionValue getCValueRefManyFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_MANY_SECOND_ID: {NotNull, INT(10), FK to WHITE_COMPOUND_PK}
@@ -890,7 +889,6 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -903,6 +901,7 @@ public abstract class AbstractBsWhiteCompoundPkRefManyCQ extends AbstractConditi
         return new WhiteCompoundPkRefManyCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkRefManyCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

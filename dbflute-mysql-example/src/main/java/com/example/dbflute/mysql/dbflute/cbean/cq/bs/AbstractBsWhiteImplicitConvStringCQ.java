@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * IMPLICIT_CONV_STRING_ID: {PK, NotNull, VARCHAR(10)}
@@ -968,7 +967,6 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -981,6 +979,7 @@ public abstract class AbstractBsWhiteImplicitConvStringCQ extends AbstractCondit
         return new WhiteImplicitConvStringCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteImplicitConvStringCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

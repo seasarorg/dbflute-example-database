@@ -908,13 +908,4 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
     protected Class<? extends WhiteDeprecatedClsElement> typeOfSelectedEntity() { return WhiteDeprecatedClsElement.class; }
     protected Class<WhiteDeprecatedClsElement> typeOfHandlingEntity() { return WhiteDeprecatedClsElement.class; }
     protected Class<WhiteDeprecatedClsElementCB> typeOfHandlingConditionBean() { return WhiteDeprecatedClsElementCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDeprecatedClsElementCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDeprecatedClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDeprecatedClsElementCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteDeprecatedClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDeprecatedClsElementCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteDeprecatedClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteDeprecatedClsElement, WhiteDeprecatedClsElementCB>)sp; }
 }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyOneCQ extends AbstractCon
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MANY_ONE_ID: {PK, NotNull, INT(10)}
@@ -365,7 +364,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyOneCQ extends AbstractCon
 
     protected void regManyOneName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueManyOneName(), "MANY_ONE_NAME"); }
     protected abstract ConditionValue getCValueManyOneName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MANY_ONE_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one_one}
@@ -745,7 +744,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyOneCQ extends AbstractCon
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -758,6 +756,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyOneCQ extends AbstractCon
         return new WhiteSuppressJoinSqManyOneCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSuppressJoinSqManyOneCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

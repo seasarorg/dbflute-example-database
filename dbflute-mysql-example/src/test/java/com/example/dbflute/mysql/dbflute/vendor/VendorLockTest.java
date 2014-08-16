@@ -307,7 +307,7 @@ public class VendorLockTest extends UnitContainerTestCase {
                 // (if it deletes existing records, second threads waits here)
                 PurchaseCB cb = new PurchaseCB();
                 cb.query().setMemberId_Equal(memberId);
-                cb.disableCheckCountBeforeQueryUpdate();
+                cb.disableQueryUpdateCountPreCheck();
                 purchaseBhv.queryDelete(cb);
 
                 Purchase inserted = source.clone();
@@ -345,6 +345,7 @@ public class VendorLockTest extends UnitContainerTestCase {
         final Set<Integer> insertedIdSet = DfCollectionUtil.newHashSet();
         final Member source = memberBhv.selectByPKValueWithDeletedCheck(3);
         cannonball(new CannonballRun() {
+            @SuppressWarnings("deprecation")
             public void drive(CannonballCar car) {
                 int entryNumber = car.getEntryNumber();
 

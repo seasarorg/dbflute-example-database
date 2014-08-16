@@ -186,7 +186,7 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] fooparam: {varchar as In} <br />
-     * @return The value of fooparam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of fooparam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getFooparam() {
         return filterStringParameter(_fooparam);
@@ -202,7 +202,7 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] barparam: {varchar as In} <br />
-     * @return The value of barparam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of barparam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getBarparam() {
         return filterStringParameter(_barparam);
@@ -218,7 +218,7 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vdonparam: {varchar as Out} <br />
-     * @return The value of vdonparam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vdonparam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVdonparam() {
         return filterStringParameter(_vdonparam);
@@ -234,7 +234,7 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] vheeparam: {varchar as In} <br />
-     * @return The value of vheeparam. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vheeparam. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVheeparam() {
         return filterStringParameter(_vheeparam);
@@ -250,7 +250,7 @@ public class BsSpcamelcaseprocedurePmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] pooParamname: {varchar as Out} <br />
-     * @return The value of pooParamname. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of pooParamname. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getPooParamname() {
         return filterStringParameter(_pooParamname);

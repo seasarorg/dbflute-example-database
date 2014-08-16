@@ -154,7 +154,7 @@ public class BsVendorUnsupportedAliasPmb implements ListHandlingPmb<VendorCheckB
     //                                                                            ========
     /**
      * [get] vendorCheckId:ref(VENDOR_CHECK) :: refers to vendor_check_id: {PK, NotNull, numeric(16)} <br />
-     * @return The value of vendorCheckId. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of vendorCheckId. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Long getVendorCheckId() {
         return _vendorCheckId;

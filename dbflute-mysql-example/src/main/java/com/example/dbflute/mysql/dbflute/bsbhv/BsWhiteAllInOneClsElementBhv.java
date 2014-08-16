@@ -909,13 +909,4 @@ public abstract class BsWhiteAllInOneClsElementBhv extends AbstractBehaviorWrita
     protected Class<? extends WhiteAllInOneClsElement> typeOfSelectedEntity() { return WhiteAllInOneClsElement.class; }
     protected Class<WhiteAllInOneClsElement> typeOfHandlingEntity() { return WhiteAllInOneClsElement.class; }
     protected Class<WhiteAllInOneClsElementCB> typeOfHandlingConditionBean() { return WhiteAllInOneClsElementCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsElementCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteAllInOneClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsElementCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteAllInOneClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsElementCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteAllInOneClsElementCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsElement, WhiteAllInOneClsElementCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteAllInOneClsElement, WhiteAllInOneClsElementCB>)sp; }
 }

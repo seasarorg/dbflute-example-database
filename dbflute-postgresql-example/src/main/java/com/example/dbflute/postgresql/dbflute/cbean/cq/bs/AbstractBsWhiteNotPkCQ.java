@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * not_pk_id: {NotNull, int8(19)}
@@ -239,7 +238,7 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
 
     protected void regNotPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNotPkName(), "not_pk_name"); }
     protected abstract ConditionValue getCValueNotPkName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * not_pk_integer: {int4(10)}
@@ -544,7 +543,6 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -585,6 +583,7 @@ public abstract class AbstractBsWhiteNotPkCQ extends AbstractConditionQuery {
         return new WhiteNotPkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteNotPkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SELF_REFERENCE_ID: {PK, NotNull, DECIMAL(16), FK to white_self_reference}
@@ -659,7 +658,6 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -672,6 +670,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
         return new WhiteSelfReferenceRefOneCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSelfReferenceRefOneCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

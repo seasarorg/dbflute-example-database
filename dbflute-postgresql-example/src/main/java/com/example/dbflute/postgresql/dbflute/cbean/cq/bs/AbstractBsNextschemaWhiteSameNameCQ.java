@@ -44,7 +44,6 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * same_name_id: {PK, NotNull, int4(10)}
@@ -368,7 +367,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
 
     protected void regSameNameName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameName(), "same_name_name"); }
     protected abstract ConditionValue getCValueSameNameName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * same_name_long: {int8(19)}
@@ -737,7 +736,6 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -778,6 +776,7 @@ public abstract class AbstractBsNextschemaWhiteSameNameCQ extends AbstractCondit
         return new NextschemaWhiteSameNameCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return NextschemaWhiteSameNameCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

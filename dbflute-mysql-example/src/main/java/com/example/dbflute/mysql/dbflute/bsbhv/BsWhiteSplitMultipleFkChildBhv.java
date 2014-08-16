@@ -915,13 +915,4 @@ public abstract class BsWhiteSplitMultipleFkChildBhv extends AbstractBehaviorWri
     protected Class<? extends WhiteSplitMultipleFkChild> typeOfSelectedEntity() { return WhiteSplitMultipleFkChild.class; }
     protected Class<WhiteSplitMultipleFkChild> typeOfHandlingEntity() { return WhiteSplitMultipleFkChild.class; }
     protected Class<WhiteSplitMultipleFkChildCB> typeOfHandlingConditionBean() { return WhiteSplitMultipleFkChildCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSplitMultipleFkChildCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSplitMultipleFkChildCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSplitMultipleFkChildCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSplitMultipleFkChildCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSplitMultipleFkChildCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSplitMultipleFkChildCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSplitMultipleFkChild, WhiteSplitMultipleFkChildCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSplitMultipleFkChild, WhiteSplitMultipleFkChildCB>)sp; }
 }

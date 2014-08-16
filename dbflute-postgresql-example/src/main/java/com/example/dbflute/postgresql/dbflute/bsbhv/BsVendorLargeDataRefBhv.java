@@ -1000,13 +1000,4 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable<V
     protected Class<? extends VendorLargeDataRef> typeOfSelectedEntity() { return VendorLargeDataRef.class; }
     protected Class<VendorLargeDataRef> typeOfHandlingEntity() { return VendorLargeDataRef.class; }
     protected Class<VendorLargeDataRefCB> typeOfHandlingConditionBean() { return VendorLargeDataRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorLargeDataRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorLargeDataRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorLargeDataRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorLargeDataRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorLargeDataRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorLargeDataRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorLargeDataRef, VendorLargeDataRefCB>)sp; }
 }

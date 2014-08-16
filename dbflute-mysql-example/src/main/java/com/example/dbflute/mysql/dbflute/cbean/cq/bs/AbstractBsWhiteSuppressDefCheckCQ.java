@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DEF_CHECK_ID: {PK, NotNull, BIGINT(19)}
@@ -507,7 +506,6 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -520,6 +518,7 @@ public abstract class AbstractBsWhiteSuppressDefCheckCQ extends AbstractConditio
         return new WhiteSuppressDefCheckCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSuppressDefCheckCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

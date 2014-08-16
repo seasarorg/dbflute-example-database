@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteOnlyOneToOneToCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * TO_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -248,7 +247,7 @@ public abstract class AbstractBsWhiteOnlyOneToOneToCQ extends AbstractConditionQ
 
     protected void regToName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueToName(), "TO_NAME"); }
     protected abstract ConditionValue getCValueToName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FROM_ID: {UQ, NotNull, BIGINT(19), FK to white_only_one_to_one_from}
@@ -628,7 +627,6 @@ public abstract class AbstractBsWhiteOnlyOneToOneToCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -641,6 +639,7 @@ public abstract class AbstractBsWhiteOnlyOneToOneToCQ extends AbstractConditionQ
         return new WhiteOnlyOneToOneToCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteOnlyOneToOneToCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

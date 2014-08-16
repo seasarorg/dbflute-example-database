@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NO_PK_ID: {NotNull, DECIMAL(16)}
@@ -254,7 +253,7 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
 
     protected void regNoPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNoPkName(), "NO_PK_NAME"); }
     protected abstract ConditionValue getCValueNoPkName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NO_PK_INTEGER: {INT(10)}
@@ -552,7 +551,6 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -565,6 +563,7 @@ public abstract class AbstractBsWhiteNoPkCQ extends AbstractConditionQuery {
         return new WhiteNoPkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteNoPkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

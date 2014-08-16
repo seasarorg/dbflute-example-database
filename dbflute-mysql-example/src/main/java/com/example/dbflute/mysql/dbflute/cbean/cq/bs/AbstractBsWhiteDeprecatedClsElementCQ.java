@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * DEPRECATED_CLS_ELEMENT_CODE: {PK, NotNull, CHAR(3), classification=DeprecatedMapCollaborationType}
@@ -591,7 +590,6 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -604,6 +602,7 @@ public abstract class AbstractBsWhiteDeprecatedClsElementCQ extends AbstractCond
         return new WhiteDeprecatedClsElementCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteDeprecatedClsElementCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

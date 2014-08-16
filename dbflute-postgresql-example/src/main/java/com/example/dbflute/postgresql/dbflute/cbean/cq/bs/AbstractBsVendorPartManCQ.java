@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorPartManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * part_man_id: {PK, NotNull, int4(10)}
@@ -233,7 +232,7 @@ public abstract class AbstractBsVendorPartManCQ extends AbstractConditionQuery {
 
     protected void regPartManName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePartManName(), "part_man_name"); }
     protected abstract ConditionValue getCValuePartManName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * part_man_point: {NotNull, int4(10)}
@@ -678,7 +677,6 @@ public abstract class AbstractBsVendorPartManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -719,6 +717,7 @@ public abstract class AbstractBsVendorPartManCQ extends AbstractConditionQuery {
         return new VendorPartManCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorPartManCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * UQ_FK_REF_ID: {PK, NotNull, DECIMAL(16)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
 
     protected void regUqFkRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUqFkRefId(), "UQ_FK_REF_ID"); }
     protected abstract ConditionValue getCValueUqFkRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FK_TO_PK_ID: {IX, NotNull, DECIMAL(16), FK to white_uq_fk}
@@ -830,7 +829,6 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -843,6 +841,7 @@ public abstract class AbstractBsWhiteUqFkRefCQ extends AbstractConditionQuery {
         return new WhiteUqFkRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteUqFkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -44,7 +44,6 @@ public abstract class AbstractBsVendor$DollarCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * vendor_$_dollar_id: {PK, NotNull, int4(10)}
@@ -517,7 +516,6 @@ public abstract class AbstractBsVendor$DollarCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -558,6 +556,7 @@ public abstract class AbstractBsVendor$DollarCQ extends AbstractConditionQuery {
         return new Vendor$DollarCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return Vendor$DollarCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

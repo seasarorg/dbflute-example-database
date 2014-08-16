@@ -915,13 +915,4 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
     protected Class<? extends WhitePurchaseReferrer> typeOfSelectedEntity() { return WhitePurchaseReferrer.class; }
     protected Class<WhitePurchaseReferrer> typeOfHandlingEntity() { return WhitePurchaseReferrer.class; }
     protected Class<WhitePurchaseReferrerCB> typeOfHandlingConditionBean() { return WhitePurchaseReferrerCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhitePurchaseReferrerCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhitePurchaseReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhitePurchaseReferrerCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhitePurchaseReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhitePurchaseReferrerCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhitePurchaseReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhitePurchaseReferrer, WhitePurchaseReferrerCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhitePurchaseReferrer, WhitePurchaseReferrerCB>)sp; }
 }

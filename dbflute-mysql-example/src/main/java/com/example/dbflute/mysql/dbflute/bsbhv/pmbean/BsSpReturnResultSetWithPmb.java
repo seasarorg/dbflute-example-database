@@ -202,7 +202,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
     //                                                                            ========
     /**
      * [get] VInChar: {CHAR(3) as In} <br />
-     * @return The value of VInChar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInChar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInChar() {
         return filterStringParameter(_vInChar);
@@ -218,7 +218,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VOutVarchar: {VARCHAR(32) as Out} <br />
-     * @return The value of VOutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VOutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVOutVarchar() {
         return filterStringParameter(_vOutVarchar);
@@ -234,7 +234,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] VInoutVarchar: {VARCHAR(32) as InOut} <br />
-     * @return The value of VInoutVarchar. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of VInoutVarchar. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public String getVInoutVarchar() {
         return filterStringParameter(_vInoutVarchar);
@@ -250,7 +250,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] notParamResult1 <br />
-     * @return The value of notParamResult1. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult1. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetWithNotParamResult1> getNotParamResult1() {
         return _notParamResult1;
@@ -266,7 +266,7 @@ public class BsSpReturnResultSetWithPmb implements ProcedurePmb, FetchBean {
 
     /**
      * [get] notParamResult2 <br />
-     * @return The value of notParamResult2. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of notParamResult2. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<SpReturnResultSetWithNotParamResult2> getNotParamResult2() {
         return _notParamResult2;

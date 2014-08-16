@@ -1032,13 +1032,4 @@ public abstract class BsVendorLargeDataBhv extends AbstractBehaviorWritable<Vend
     protected Class<? extends VendorLargeData> typeOfSelectedEntity() { return VendorLargeData.class; }
     protected Class<VendorLargeData> typeOfHandlingEntity() { return VendorLargeData.class; }
     protected Class<VendorLargeDataCB> typeOfHandlingConditionBean() { return VendorLargeDataCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorLargeDataCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorLargeDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorLargeDataCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorLargeDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorLargeDataCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorLargeDataCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorLargeData, VendorLargeDataCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorLargeData, VendorLargeDataCB>)sp; }
 }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PK_FIRST_ID: {PK, +UQ, NotNull, INT(10), FK to WHITE_COMPOUND_PK_REF_MANY}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     protected void regPkFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkFirstId(), "PK_FIRST_ID"); }
     protected abstract ConditionValue getCValuePkFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PK_SECOND_ID: {PK, UQ+, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_PRIMARY}
@@ -381,7 +380,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
 
     protected void regPkName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePkName(), "PK_NAME"); }
     protected abstract ConditionValue getCValuePkName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REFERRED_ID: {+UQ, NotNull, INT(10), FK to WHITE_COMPOUND_REFERRED_NORMALLY}
@@ -697,7 +696,6 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -710,6 +708,7 @@ public abstract class AbstractBsWhiteCompoundPkCQ extends AbstractConditionQuery
         return new WhiteCompoundPkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

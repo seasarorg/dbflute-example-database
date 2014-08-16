@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * ESCAPED_JAVA_DOC_CODE: {PK, NotNull, CHAR(3), classification=EscapedJavaDocCls}
@@ -571,7 +570,6 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -584,6 +582,7 @@ public abstract class AbstractBsWhiteEscapedJavaDocCQ extends AbstractConditionQ
         return new WhiteEscapedJavaDocCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteEscapedJavaDocCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

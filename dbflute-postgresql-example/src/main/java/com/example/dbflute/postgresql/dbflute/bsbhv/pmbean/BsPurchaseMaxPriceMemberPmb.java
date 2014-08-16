@@ -159,7 +159,7 @@ public class BsPurchaseMaxPriceMemberPmb extends SimplePagingBean implements Ent
     //                                                                            ========
     /**
      * [get] memberId <br />
-     * @return The value of memberId. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberId. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public Integer getMemberId() {
         return _memberId;
@@ -175,7 +175,7 @@ public class BsPurchaseMaxPriceMemberPmb extends SimplePagingBean implements Ent
 
     /**
      * [get] memberNameList:likePrefix <br />
-     * @return The value of memberNameList. (Nullable, NotEmptyString(when String): if empty string, returns null)
+     * @return The value of memberNameList. (NullAllowed, NotEmptyString(when String): if empty string, returns null)
      */
     public List<String> getMemberNameList() {
         return _memberNameList;

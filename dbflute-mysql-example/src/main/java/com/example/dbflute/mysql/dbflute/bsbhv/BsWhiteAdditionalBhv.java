@@ -907,13 +907,4 @@ public abstract class BsWhiteAdditionalBhv extends AbstractBehaviorWritable<Whit
     protected Class<? extends WhiteAdditional> typeOfSelectedEntity() { return WhiteAdditional.class; }
     protected Class<WhiteAdditional> typeOfHandlingEntity() { return WhiteAdditional.class; }
     protected Class<WhiteAdditionalCB> typeOfHandlingConditionBean() { return WhiteAdditionalCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAdditionalCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteAdditionalCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAdditionalCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteAdditionalCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAdditionalCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteAdditionalCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAdditional, WhiteAdditionalCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteAdditional, WhiteAdditionalCB>)sp; }
 }

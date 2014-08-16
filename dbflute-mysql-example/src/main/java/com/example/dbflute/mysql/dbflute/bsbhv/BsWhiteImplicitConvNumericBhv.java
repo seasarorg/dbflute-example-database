@@ -1107,13 +1107,4 @@ public abstract class BsWhiteImplicitConvNumericBhv extends AbstractBehaviorWrit
     protected Class<? extends WhiteImplicitConvNumeric> typeOfSelectedEntity() { return WhiteImplicitConvNumeric.class; }
     protected Class<WhiteImplicitConvNumeric> typeOfHandlingEntity() { return WhiteImplicitConvNumeric.class; }
     protected Class<WhiteImplicitConvNumericCB> typeOfHandlingConditionBean() { return WhiteImplicitConvNumericCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteImplicitConvNumericCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteImplicitConvNumericCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteImplicitConvNumericCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteImplicitConvNumericCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteImplicitConvNumericCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteImplicitConvNumericCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteImplicitConvNumeric, WhiteImplicitConvNumericCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteImplicitConvNumeric, WhiteImplicitConvNumericCB>)sp; }
 }

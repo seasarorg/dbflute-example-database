@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * COMPOUND_PK_REF_NEST_ID: {PK, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     protected void regCompoundPkRefNestId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCompoundPkRefNestId(), "COMPOUND_PK_REF_NEST_ID"); }
     protected abstract ConditionValue getCValueCompoundPkRefNestId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FOO_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
@@ -253,7 +252,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     protected void regFooMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFooMultipleId(), "FOO_MULTIPLE_ID"); }
     protected abstract ConditionValue getCValueFooMultipleId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * BAR_MULTIPLE_ID: {IX+, NotNull, INT(10), FK to white_compound_pk_ref}
@@ -344,7 +343,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
 
     protected void regBarMultipleId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBarMultipleId(), "BAR_MULTIPLE_ID"); }
     protected abstract ConditionValue getCValueBarMultipleId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * QUX_MULTIPLE_ID: {NotNull, INT(10), FK to white_compound_pk_ref}
@@ -780,7 +779,6 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -793,6 +791,7 @@ public abstract class AbstractBsWhiteCompoundPkRefNestCQ extends AbstractConditi
         return new WhiteCompoundPkRefNestCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkRefNestCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

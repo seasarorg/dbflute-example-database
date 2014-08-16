@@ -907,13 +907,4 @@ public abstract class BsWhiteVariantRelationMasterCorgeBhv extends AbstractBehav
     protected Class<? extends WhiteVariantRelationMasterCorge> typeOfSelectedEntity() { return WhiteVariantRelationMasterCorge.class; }
     protected Class<WhiteVariantRelationMasterCorge> typeOfHandlingEntity() { return WhiteVariantRelationMasterCorge.class; }
     protected Class<WhiteVariantRelationMasterCorgeCB> typeOfHandlingConditionBean() { return WhiteVariantRelationMasterCorgeCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationMasterCorgeCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationMasterCorgeCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationMasterCorgeCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationMasterCorgeCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationMasterCorgeCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationMasterCorgeCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteVariantRelationMasterCorge, WhiteVariantRelationMasterCorgeCB>)sp; }
 }

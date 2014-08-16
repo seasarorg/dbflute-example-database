@@ -1007,13 +1007,4 @@ public abstract class BsWhiteSuppressJoinSqBhv extends AbstractBehaviorWritable<
     protected Class<? extends WhiteSuppressJoinSq> typeOfSelectedEntity() { return WhiteSuppressJoinSq.class; }
     protected Class<WhiteSuppressJoinSq> typeOfHandlingEntity() { return WhiteSuppressJoinSq.class; }
     protected Class<WhiteSuppressJoinSqCB> typeOfHandlingConditionBean() { return WhiteSuppressJoinSqCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteSuppressJoinSqCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteSuppressJoinSqCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteSuppressJoinSqCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteSuppressJoinSqCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteSuppressJoinSqCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteSuppressJoinSqCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteSuppressJoinSq, WhiteSuppressJoinSqCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteSuppressJoinSq, WhiteSuppressJoinSqCB>)sp; }
 }

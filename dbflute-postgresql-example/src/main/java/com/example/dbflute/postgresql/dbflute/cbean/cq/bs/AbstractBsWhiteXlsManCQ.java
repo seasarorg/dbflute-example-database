@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * xls_man_id: {PK, NotNull, int8(19)}
@@ -781,7 +780,6 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -822,6 +820,7 @@ public abstract class AbstractBsWhiteXlsManCQ extends AbstractConditionQuery {
         return new WhiteXlsManCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteXlsManCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

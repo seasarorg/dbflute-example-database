@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorInheritNekoCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * inu_id: {NotNull, int4(10)}
@@ -309,7 +308,7 @@ public abstract class AbstractBsVendorInheritNekoCQ extends AbstractConditionQue
 
     protected void regInuDate(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueInuDate(), "inu_date"); }
     protected abstract ConditionValue getCValueInuDate();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * neko_id: {PK, NotNull, int4(10)}
@@ -852,7 +851,6 @@ public abstract class AbstractBsVendorInheritNekoCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -893,6 +891,7 @@ public abstract class AbstractBsVendorInheritNekoCQ extends AbstractConditionQue
         return new VendorInheritNekoCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorInheritNekoCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberSecurityCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)member_id: {PK, NotNull, int4(10), FK to member}
@@ -435,7 +434,7 @@ public abstract class AbstractBsMemberSecurityCQ extends AbstractConditionQuery 
 
     protected void regReminderAnswer(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueReminderAnswer(), "reminder_answer"); }
     protected abstract ConditionValue getCValueReminderAnswer();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (リマインダ利用回数)reminder_use_count: {NotNull, int4(10)}
@@ -1022,7 +1021,7 @@ public abstract class AbstractBsMemberSecurityCQ extends AbstractConditionQuery 
 
     protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "update_user"); }
     protected abstract ConditionValue getCValueUpdateUser();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * version_no: {NotNull, int8(19)}
@@ -1379,7 +1378,6 @@ public abstract class AbstractBsMemberSecurityCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1420,6 +1418,7 @@ public abstract class AbstractBsMemberSecurityCQ extends AbstractConditionQuery 
         return new MemberSecurityCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberSecurityCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

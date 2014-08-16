@@ -34,13 +34,13 @@ public class WxBhvDreamCruiseUpdateMySQLTest extends UnitContainerTestCase {
     public void setUp() throws Exception {
         super.setUp();
         DBFluteConfig.getInstance().unlock();
-        DBFluteConfig.getInstance().setCheckCountBeforeQueryUpdate(false);
-        previousCheckCountBeforeQueryUpdate = DBFluteConfig.getInstance().isCheckCountBeforeQueryUpdate();
+        DBFluteConfig.getInstance().setQueryUpdateCountPreCheck(false);
+        previousCheckCountBeforeQueryUpdate = DBFluteConfig.getInstance().isQueryUpdateCountPreCheck();
     }
 
     @Override
     public void tearDown() throws Exception {
-        DBFluteConfig.getInstance().setCheckCountBeforeQueryUpdate(previousCheckCountBeforeQueryUpdate);
+        DBFluteConfig.getInstance().setQueryUpdateCountPreCheck(previousCheckCountBeforeQueryUpdate);
         DBFluteConfig.getInstance().unlock();
         super.tearDown();
     }

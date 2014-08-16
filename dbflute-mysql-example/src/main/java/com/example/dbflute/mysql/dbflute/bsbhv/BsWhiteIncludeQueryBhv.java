@@ -907,13 +907,4 @@ public abstract class BsWhiteIncludeQueryBhv extends AbstractBehaviorWritable<Wh
     protected Class<? extends WhiteIncludeQuery> typeOfSelectedEntity() { return WhiteIncludeQuery.class; }
     protected Class<WhiteIncludeQuery> typeOfHandlingEntity() { return WhiteIncludeQuery.class; }
     protected Class<WhiteIncludeQueryCB> typeOfHandlingConditionBean() { return WhiteIncludeQueryCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteIncludeQueryCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteIncludeQueryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteIncludeQueryCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteIncludeQueryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteIncludeQueryCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteIncludeQueryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteIncludeQuery, WhiteIncludeQueryCB>)sp; }
 }

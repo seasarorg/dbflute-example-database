@@ -900,13 +900,4 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
     protected Class<? extends NextschemaWhiteSameNameRef> typeOfSelectedEntity() { return NextschemaWhiteSameNameRef.class; }
     protected Class<NextschemaWhiteSameNameRef> typeOfHandlingEntity() { return NextschemaWhiteSameNameRef.class; }
     protected Class<NextschemaWhiteSameNameRefCB> typeOfHandlingConditionBean() { return NextschemaWhiteSameNameRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<NextschemaWhiteSameNameRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<NextschemaWhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<NextschemaWhiteSameNameRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<NextschemaWhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<NextschemaWhiteSameNameRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<NextschemaWhiteSameNameRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<NextschemaWhiteSameNameRef, NextschemaWhiteSameNameRefCB>)sp; }
 }

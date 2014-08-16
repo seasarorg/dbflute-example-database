@@ -59,7 +59,6 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * LARGE_DATA_ID: {PK, NotNull, BIGINT(19)}
@@ -537,7 +536,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regStringUniqueIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueStringUniqueIndex(), "STRING_UNIQUE_INDEX"); }
     protected abstract ConditionValue getCValueStringUniqueIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * INTFLG_INDEX: {NotNull, INT(10)}
@@ -628,7 +627,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regIntflgIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueIntflgIndex(), "INTFLG_INDEX"); }
     protected abstract ConditionValue getCValueIntflgIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NUMERIC_INTEGER_INDEX: {IX, NotNull, DECIMAL(8)}
@@ -719,7 +718,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
 
     protected void regNumericIntegerIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNumericIntegerIndex(), "NUMERIC_INTEGER_INDEX"); }
     protected abstract ConditionValue getCValueNumericIntegerIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NUMERIC_INTEGER_NO_INDEX: {NotNull, DECIMAL(8)}
@@ -1069,7 +1068,6 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -1082,6 +1080,7 @@ public abstract class AbstractBsVendorLargeDataCQ extends AbstractConditionQuery
         return new VendorLargeDataCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorLargeDataCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

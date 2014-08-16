@@ -999,13 +999,4 @@ public abstract class BsWhiteVariantRelationMasterBarBhv extends AbstractBehavio
     protected Class<? extends WhiteVariantRelationMasterBar> typeOfSelectedEntity() { return WhiteVariantRelationMasterBar.class; }
     protected Class<WhiteVariantRelationMasterBar> typeOfHandlingEntity() { return WhiteVariantRelationMasterBar.class; }
     protected Class<WhiteVariantRelationMasterBarCB> typeOfHandlingConditionBean() { return WhiteVariantRelationMasterBarCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationMasterBarCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationMasterBarCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationMasterBarCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationMasterBarCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationMasterBarCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationMasterBarCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteVariantRelationMasterBar, WhiteVariantRelationMasterBarCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteVariantRelationMasterBar, WhiteVariantRelationMasterBarCB>)sp; }
 }

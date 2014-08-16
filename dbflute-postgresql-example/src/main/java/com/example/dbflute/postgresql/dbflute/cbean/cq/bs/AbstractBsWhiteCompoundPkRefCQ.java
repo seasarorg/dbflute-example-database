@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * multiple_first_id: {PK, NotNull, int4(10)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     protected void regMultipleFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleFirstId(), "multiple_first_id"); }
     protected abstract ConditionValue getCValueMultipleFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * multiple_second_id: {PK, NotNull, int4(10)}
@@ -250,7 +249,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     protected void regMultipleSecondId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMultipleSecondId(), "multiple_second_id"); }
     protected abstract ConditionValue getCValueMultipleSecondId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ref_first_id: {NotNull, int4(10), FK to white_compound_pk}
@@ -341,7 +340,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
 
     protected void regRefFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefFirstId(), "ref_first_id"); }
     protected abstract ConditionValue getCValueRefFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ref_second_id: {NotNull, int4(10), FK to white_compound_pk}
@@ -634,7 +633,6 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -675,6 +673,7 @@ public abstract class AbstractBsWhiteCompoundPkRefCQ extends AbstractConditionQu
         return new WhiteCompoundPkRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteCompoundPkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

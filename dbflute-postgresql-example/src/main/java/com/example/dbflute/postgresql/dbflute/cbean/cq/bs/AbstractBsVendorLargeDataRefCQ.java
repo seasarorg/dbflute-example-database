@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * large_data_ref_id: {PK, NotNull, int8(19)}
@@ -264,7 +263,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regLargeDataRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueLargeDataRefId(), "large_data_ref_id"); }
     protected abstract ConditionValue getCValueLargeDataRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * large_data_id: {NotNull, int8(19), FK to vendor_large_data}
@@ -689,7 +688,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regTimestampNoIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueTimestampNoIndex(), "timestamp_no_index"); }
     protected abstract ConditionValue getCValueTimestampNoIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * nullable_decimal_index: {IX, numeric(12, 3)}
@@ -792,7 +791,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regNullableDecimalIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNullableDecimalIndex(), "nullable_decimal_index"); }
     protected abstract ConditionValue getCValueNullableDecimalIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * nullable_decimal_no_index: {numeric(12, 3)}
@@ -895,7 +894,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
 
     protected void regNullableDecimalNoIndex(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNullableDecimalNoIndex(), "nullable_decimal_no_index"); }
     protected abstract ConditionValue getCValueNullableDecimalNoIndex();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * self_parent_id: {int8(19), FK to vendor_large_data_ref}
@@ -1294,7 +1293,6 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1335,6 +1333,7 @@ public abstract class AbstractBsVendorLargeDataRefCQ extends AbstractConditionQu
         return new VendorLargeDataRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorLargeDataRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

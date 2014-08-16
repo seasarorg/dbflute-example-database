@@ -44,7 +44,6 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (購入支払ID)purchase_payment_id: {PK, ID, NotNull, bigserial(19)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
 
     protected void regPurchasePaymentId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchasePaymentId(), "purchase_payment_id"); }
     protected abstract ConditionValue getCValuePurchasePaymentId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (購入ID)purchase_id: {NotNull, int8(19), FK to purchase}
@@ -268,7 +267,7 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
 
     protected void regPurchaseId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePurchaseId(), "purchase_id"); }
     protected abstract ConditionValue getCValuePurchaseId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (支払金額)payment_amount: {NotNull, numeric(10, 2)}
@@ -1178,7 +1177,6 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1219,6 +1217,7 @@ public abstract class AbstractBsPurchasePaymentCQ extends AbstractConditionQuery
         return new PurchasePaymentCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return PurchasePaymentCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

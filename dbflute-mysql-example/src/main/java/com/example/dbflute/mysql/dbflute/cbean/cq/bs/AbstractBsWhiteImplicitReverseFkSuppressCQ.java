@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkSuppressCQ extends Abstrac
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID: {PK, ID, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkSuppressCQ extends Abstrac
 
     protected void regWhiteImplicitReverseFkSuppressId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWhiteImplicitReverseFkSuppressId(), "WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID"); }
     protected abstract ConditionValue getCValueWhiteImplicitReverseFkSuppressId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10)}
@@ -664,7 +663,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkSuppressCQ extends Abstrac
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -677,6 +675,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkSuppressCQ extends Abstrac
         return new WhiteImplicitReverseFkSuppressCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteImplicitReverseFkSuppressCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

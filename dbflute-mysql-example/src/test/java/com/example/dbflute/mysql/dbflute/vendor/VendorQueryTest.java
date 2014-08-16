@@ -314,7 +314,7 @@ public class VendorQueryTest extends UnitContainerTestCase {
         }
         {
             MemberWithdrawalCB cb = new MemberWithdrawalCB();
-            cb.allowEmptyStringQuery();
+            cb.enableEmptyStringQuery();
             cb.query().setMemberId_Equal(updated.getMemberId());
             cb.query().setWithdrawalReasonInputText_Equal("");
             memberWithdrawalBhv.selectEntityWithDeletedCheck(cb); // check no exception

@@ -631,7 +631,7 @@ public class WxBizOneToOneOverRelationTest extends UnitContainerTestCase {
     public void test_OverRelation_ForeignForeign_with_WhereUsedInnerJoin() {
         // ## Arrange ##
         MemberCB cb = new MemberCB();
-        cb.allowInnerJoinAutoDetect();
+        cb.enableInnerJoinAutoDetect();
         cb.setupSelect_MemberLoginAsForeignForeignEachOverTest();
         cb.query().queryMemberLoginAsForeignForeignEachOverTest().setMobileLoginFlg_Equal_True();
 

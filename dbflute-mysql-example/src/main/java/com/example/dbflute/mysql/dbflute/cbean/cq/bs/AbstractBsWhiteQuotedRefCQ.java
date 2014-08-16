@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHERE: {PK, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
 
     protected void regWhere(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWhere(), "WHERE"); }
     protected abstract ConditionValue getCValueWhere();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ORDER: {IX, INT(10), FK to white_quoted}
@@ -554,7 +553,6 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -567,6 +565,7 @@ public abstract class AbstractBsWhiteQuotedRefCQ extends AbstractConditionQuery 
         return new WhiteQuotedRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteQuotedRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -908,13 +908,4 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable<
     protected Class<? extends WhiteEscapedJavaDoc> typeOfSelectedEntity() { return WhiteEscapedJavaDoc.class; }
     protected Class<WhiteEscapedJavaDoc> typeOfHandlingEntity() { return WhiteEscapedJavaDoc.class; }
     protected Class<WhiteEscapedJavaDocCB> typeOfHandlingConditionBean() { return WhiteEscapedJavaDocCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteEscapedJavaDocCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteEscapedJavaDocCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteEscapedJavaDocCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteEscapedJavaDocCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteEscapedJavaDocCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteEscapedJavaDocCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteEscapedJavaDoc, WhiteEscapedJavaDocCB>)sp; }
 }

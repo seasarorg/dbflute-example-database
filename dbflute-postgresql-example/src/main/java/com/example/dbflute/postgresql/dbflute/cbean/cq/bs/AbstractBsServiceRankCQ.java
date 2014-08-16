@@ -44,7 +44,6 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * (サービスランクコード)service_rank_code: {PK, NotNull, bpchar(3)}
@@ -345,7 +344,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regServiceRankName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueServiceRankName(), "service_rank_name"); }
     protected abstract ConditionValue getCValueServiceRankName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (サービスポイント発生率)service_point_incidence: {NotNull, numeric(5, 3)}
@@ -436,7 +435,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regServicePointIncidence(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueServicePointIncidence(), "service_point_incidence"); }
     protected abstract ConditionValue getCValueServicePointIncidence();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (新規受け入れ可能フラグ)new_acceptable_flg: {NotNull, int4(10), classification=Flg}
@@ -610,7 +609,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
 
     protected void regDescription(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDescription(), "description"); }
     protected abstract ConditionValue getCValueDescription();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (表示順)display_order: {UQ, NotNull, int4(10)}
@@ -967,7 +966,6 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1008,6 +1006,7 @@ public abstract class AbstractBsServiceRankCQ extends AbstractConditionQuery {
         return new ServiceRankCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return ServiceRankCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

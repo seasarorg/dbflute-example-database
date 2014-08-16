@@ -999,13 +999,4 @@ public abstract class BsWhiteAllInOneClsCategoryBhv extends AbstractBehaviorWrit
     protected Class<? extends WhiteAllInOneClsCategory> typeOfSelectedEntity() { return WhiteAllInOneClsCategory.class; }
     protected Class<WhiteAllInOneClsCategory> typeOfHandlingEntity() { return WhiteAllInOneClsCategory.class; }
     protected Class<WhiteAllInOneClsCategoryCB> typeOfHandlingConditionBean() { return WhiteAllInOneClsCategoryCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsCategoryCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteAllInOneClsCategoryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsCategoryCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteAllInOneClsCategoryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsCategoryCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteAllInOneClsCategoryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteAllInOneClsCategory, WhiteAllInOneClsCategoryCB>)sp; }
 }

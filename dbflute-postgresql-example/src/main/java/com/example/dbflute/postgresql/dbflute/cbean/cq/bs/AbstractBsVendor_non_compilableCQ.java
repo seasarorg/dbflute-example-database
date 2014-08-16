@@ -44,7 +44,6 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NON-COMPILABLE ID: {PK, NotNull, int4(10)}
@@ -485,7 +484,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
 
     protected void regNon_compilable_name(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueNon_compilable_name(), "NON COMPILABLE-NAME"); }
     protected abstract ConditionValue getCValueNon_compilable_name();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * PARENT-ID: {int4(10), FK to VENDOR-NON COMPILABLE}
@@ -618,7 +617,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
 
     protected void regParent_id(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueParent_id(), "PARENT-ID"); }
     protected abstract ConditionValue getCValueParent_id();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * Next_ParentID: {IX, int4(10), FK to VENDOR-NON COMPILABLE}
@@ -1017,7 +1016,6 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1058,6 +1056,7 @@ public abstract class AbstractBsVendor_non_compilableCQ extends AbstractConditio
         return new Vendor_non_compilableCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return Vendor_non_compilableCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

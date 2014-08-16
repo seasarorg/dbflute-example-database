@@ -1031,13 +1031,4 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
     protected Class<? extends WhiteVariantRelationReferrer> typeOfSelectedEntity() { return WhiteVariantRelationReferrer.class; }
     protected Class<WhiteVariantRelationReferrer> typeOfHandlingEntity() { return WhiteVariantRelationReferrer.class; }
     protected Class<WhiteVariantRelationReferrerCB> typeOfHandlingConditionBean() { return WhiteVariantRelationReferrerCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteVariantRelationReferrerCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteVariantRelationReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteVariantRelationReferrerCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteVariantRelationReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteVariantRelationReferrerCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteVariantRelationReferrerCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteVariantRelationReferrer, WhiteVariantRelationReferrerCB>)sp; }
 }

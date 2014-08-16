@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * member_id: {PK, NotNull, int4(10), FK to member}
@@ -1253,7 +1252,6 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1294,6 +1292,7 @@ public abstract class AbstractBsMemberWithdrawalCQ extends AbstractConditionQuer
         return new MemberWithdrawalCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberWithdrawalCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

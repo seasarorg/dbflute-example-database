@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHITE_IMPLICIT_REVERSE_FK_ID: {PK, ID, NotNull, INT(10), FK to WHITE_IMPLICIT_REVERSE_FK_REF}
@@ -629,7 +628,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -642,6 +640,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
         return new WhiteImplicitReverseFkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteImplicitReverseFkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

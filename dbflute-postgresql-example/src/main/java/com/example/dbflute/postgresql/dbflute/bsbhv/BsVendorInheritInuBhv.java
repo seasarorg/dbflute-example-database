@@ -892,13 +892,4 @@ public abstract class BsVendorInheritInuBhv extends AbstractBehaviorWritable<Ven
     protected Class<? extends VendorInheritInu> typeOfSelectedEntity() { return VendorInheritInu.class; }
     protected Class<VendorInheritInu> typeOfHandlingEntity() { return VendorInheritInu.class; }
     protected Class<VendorInheritInuCB> typeOfHandlingConditionBean() { return VendorInheritInuCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorInheritInuCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorInheritInuCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorInheritInuCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorInheritInuCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorInheritInuCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorInheritInuCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorInheritInu, VendorInheritInuCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorInheritInu, VendorInheritInuCB>)sp; }
 }

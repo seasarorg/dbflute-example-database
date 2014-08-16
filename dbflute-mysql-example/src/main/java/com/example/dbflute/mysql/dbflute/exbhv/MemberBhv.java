@@ -17,7 +17,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.bhv.core.BehaviorCommand;
 import org.seasar.dbflute.bhv.core.command.BatchUpdateNonstrictCommand;
 import org.seasar.dbflute.bhv.core.command.SelectListCBCommand;
@@ -34,6 +33,7 @@ import org.seasar.dbflute.util.DfReflectionUtil;
 import com.example.dbflute.mysql.dbflute.exbhv.cursor.PurchaseSummaryMemberCursor;
 import com.example.dbflute.mysql.dbflute.exbhv.cursor.PurchaseSummaryMemberCursorHandler;
 import com.example.dbflute.mysql.dbflute.exbhv.pmbean.PurchaseSummaryMemberPmb;
+import com.example.dbflute.mysql.dbflute.exentity.Member;
 import com.mysql.jdbc.RowData;
 
 /**
@@ -116,8 +116,8 @@ public class MemberBhv extends com.example.dbflute.mysql.dbflute.bsbhv.BsMemberB
     }
 
     @Override
-    protected <ENTITY extends Entity> SelectListCBCommand<ENTITY> newSelectListCBCommand() {
-        return new SelectListCBCommand<ENTITY>() {
+    protected <RESULT extends Member> SelectListCBCommand<RESULT> newSelectListCBCommand() {
+        return new SelectListCBCommand<RESULT>() {
             @Override
             protected SelectCBExecution newSelectCBExecution(Map<String, Class<?>> argNameTypeMap,
                     TnResultSetHandler handler) {

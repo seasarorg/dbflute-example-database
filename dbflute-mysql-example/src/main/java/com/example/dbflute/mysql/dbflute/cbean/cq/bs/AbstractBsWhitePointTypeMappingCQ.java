@@ -59,7 +59,6 @@ public abstract class AbstractBsWhitePointTypeMappingCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * POINT_TYPE_MAPPING_ID: {PK, NotNull, DECIMAL(16)}
@@ -163,6 +162,7 @@ public abstract class AbstractBsWhitePointTypeMappingCQ extends AbstractConditio
     protected void regPointTypeMappingId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePointTypeMappingId(), "POINT_TYPE_MAPPING_ID"); }
     protected abstract ConditionValue getCValuePointTypeMappingId();
 
+
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
      * POINT_TYPE_MAPPING_MEMBER_NAME: {VARCHAR(32)}
@@ -177,6 +177,7 @@ public abstract class AbstractBsWhitePointTypeMappingCQ extends AbstractConditio
 
     protected void regPointTypeMappingMemberName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValuePointTypeMappingMemberName(), "POINT_TYPE_MAPPING_MEMBER_NAME"); }
     protected abstract ConditionValue getCValuePointTypeMappingMemberName();
+
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
@@ -627,7 +628,6 @@ public abstract class AbstractBsWhitePointTypeMappingCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -640,6 +640,7 @@ public abstract class AbstractBsWhitePointTypeMappingCQ extends AbstractConditio
         return new WhitePointTypeMappingCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhitePointTypeMappingCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

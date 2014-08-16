@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MANY_ID: {PK, NotNull, INT(10)}
@@ -248,7 +247,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     protected void regManyName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueManyName(), "MANY_NAME"); }
     protected abstract ConditionValue getCValueManyName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SUPPRESS_JOIN_SQ_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq}
@@ -369,7 +368,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
 
     protected void regSuppressJoinSqId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSuppressJoinSqId(), "SUPPRESS_JOIN_SQ_ID"); }
     protected abstract ConditionValue getCValueSuppressJoinSqId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * MANY_ONE_ID: {IX, NotNull, INT(10), FK to white_suppress_join_sq_many_one}
@@ -749,7 +748,6 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -762,6 +760,7 @@ public abstract class AbstractBsWhiteSuppressJoinSqManyCQ extends AbstractCondit
         return new WhiteSuppressJoinSqManyCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSuppressJoinSqManyCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -59,7 +59,6 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID: {PK, NotNull, BIGINT(19)}
@@ -451,7 +450,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
 
     protected void regShortName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueShortName(), "SHORT_NAME"); }
     protected abstract ConditionValue getCValueShortName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * SHORT_SIZE: {NotNull, INT(10)}
@@ -801,7 +800,6 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -814,6 +812,7 @@ public abstract class AbstractBsVendorTheLongAndWindingTableAndColumnCQ extends 
         return new VendorTheLongAndWindingTableAndColumnCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorTheLongAndWindingTableAndColumnCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

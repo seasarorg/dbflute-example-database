@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * BASE_ID: {PK, NotNull, BIGINT(19)}
@@ -279,7 +278,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
 
     protected void regBaseId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueBaseId(), "BASE_ID"); }
     protected abstract ConditionValue getCValueBaseId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FIRST_ID: {NotNull, INT(10), FK to WHITE_SPLIT_MULTIPLE_FK_REF}
@@ -370,7 +369,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
 
     protected void regFirstId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueFirstId(), "FIRST_ID"); }
     protected abstract ConditionValue getCValueFirstId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NEXT_ID: {IX, NotNull, BIGINT(19), FK to white_split_multiple_fk_next}
@@ -836,7 +835,6 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -849,6 +847,7 @@ public abstract class AbstractBsWhiteSplitMultipleFkBaseCQ extends AbstractCondi
         return new WhiteSplitMultipleFkBaseCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSplitMultipleFkBaseCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

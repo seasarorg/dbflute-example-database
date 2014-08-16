@@ -919,13 +919,4 @@ public abstract class BsWhiteAllInOneClsCompoundPkRefBhv extends AbstractBehavio
     protected Class<? extends WhiteAllInOneClsCompoundPkRef> typeOfSelectedEntity() { return WhiteAllInOneClsCompoundPkRef.class; }
     protected Class<WhiteAllInOneClsCompoundPkRef> typeOfHandlingEntity() { return WhiteAllInOneClsCompoundPkRef.class; }
     protected Class<WhiteAllInOneClsCompoundPkRefCB> typeOfHandlingConditionBean() { return WhiteAllInOneClsCompoundPkRefCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteAllInOneClsCompoundPkRefCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteAllInOneClsCompoundPkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteAllInOneClsCompoundPkRefCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteAllInOneClsCompoundPkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteAllInOneClsCompoundPkRefCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteAllInOneClsCompoundPkRefCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteAllInOneClsCompoundPkRef, WhiteAllInOneClsCompoundPkRefCB>)sp; }
 }

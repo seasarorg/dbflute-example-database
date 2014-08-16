@@ -999,13 +999,4 @@ public abstract class BsWhiteCompoundReferredPrimaryBhv extends AbstractBehavior
     protected Class<? extends WhiteCompoundReferredPrimary> typeOfSelectedEntity() { return WhiteCompoundReferredPrimary.class; }
     protected Class<WhiteCompoundReferredPrimary> typeOfHandlingEntity() { return WhiteCompoundReferredPrimary.class; }
     protected Class<WhiteCompoundReferredPrimaryCB> typeOfHandlingConditionBean() { return WhiteCompoundReferredPrimaryCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteCompoundReferredPrimaryCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteCompoundReferredPrimaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteCompoundReferredPrimaryCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteCompoundReferredPrimaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteCompoundReferredPrimaryCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteCompoundReferredPrimaryCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteCompoundReferredPrimary, WhiteCompoundReferredPrimaryCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteCompoundReferredPrimary, WhiteCompoundReferredPrimaryCB>)sp; }
 }

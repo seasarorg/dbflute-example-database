@@ -900,13 +900,4 @@ public abstract class BsVendorDateFkBhv extends AbstractBehaviorWritable<VendorD
     protected Class<? extends VendorDateFk> typeOfSelectedEntity() { return VendorDateFk.class; }
     protected Class<VendorDateFk> typeOfHandlingEntity() { return VendorDateFk.class; }
     protected Class<VendorDateFkCB> typeOfHandlingConditionBean() { return VendorDateFkCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<VendorDateFkCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<VendorDateFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<VendorDateFkCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<VendorDateFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<VendorDateFkCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<VendorDateFkCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<VendorDateFk, VendorDateFkCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<VendorDateFk, VendorDateFkCB>)sp; }
 }

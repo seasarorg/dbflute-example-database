@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHITE_IMPLICIT_REVERSE_FK_REF_ID: {PK, ID, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
 
     protected void regWhiteImplicitReverseFkRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWhiteImplicitReverseFkRefId(), "WHITE_IMPLICIT_REVERSE_FK_REF_ID"); }
     protected abstract ConditionValue getCValueWhiteImplicitReverseFkRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * WHITE_IMPLICIT_REVERSE_FK_ID: {UQ+, NotNull, INT(10), FK to white_implicit_reverse_fk}
@@ -696,7 +695,6 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -709,6 +707,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
         return new WhiteImplicitReverseFkRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteImplicitReverseFkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

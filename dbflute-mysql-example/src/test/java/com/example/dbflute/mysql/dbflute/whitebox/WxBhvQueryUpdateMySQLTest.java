@@ -355,7 +355,7 @@ public class WxBhvQueryUpdateMySQLTest extends UnitContainerTestCase {
                 }
             });
 
-            cb.disableCheckCountBeforeQueryUpdate();
+            cb.disableQueryUpdateCountPreCheck();
             int deleted = memberBhv.queryDelete(cb);
 
             // ## Assert ##
@@ -388,7 +388,7 @@ public class WxBhvQueryUpdateMySQLTest extends UnitContainerTestCase {
                 }
             });
 
-            cb.disableCheckCountBeforeQueryUpdate();
+            cb.disableQueryUpdateCountPreCheck();
             int deleted = memberBhv.queryDelete(cb);
 
             // ## Assert ##
@@ -421,7 +421,7 @@ public class WxBhvQueryUpdateMySQLTest extends UnitContainerTestCase {
                 }
             });
 
-            cb.disableCheckCountBeforeQueryUpdate();
+            cb.disableQueryUpdateCountPreCheck();
             int deleted = memberBhv.queryDelete(cb);
 
             // ## Assert ##

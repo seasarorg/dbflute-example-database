@@ -44,7 +44,6 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * same_name_ref_id: {PK, NotNull, int4(10)}
@@ -147,7 +146,7 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
 
     protected void regSameNameRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameRefId(), "same_name_ref_id"); }
     protected abstract ConditionValue getCValueSameNameRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * same_name_id: {NotNull, int8(19), FK to white_same_name}
@@ -268,7 +267,7 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
 
     protected void regSameNameId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueSameNameId(), "same_name_id"); }
     protected abstract ConditionValue getCValueSameNameId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * next_same_name_id: {NotNull, int8(19)}
@@ -625,7 +624,6 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -666,6 +664,7 @@ public abstract class AbstractBsWhiteSameNameRefCQ extends AbstractConditionQuer
         return new WhiteSameNameRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteSameNameRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * GEN_REF_ID: {PK, NotNull, DECIMAL(16)}
@@ -248,7 +247,7 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
 
     protected void regGenRefName(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueGenRefName(), "GEN_REF_NAME"); }
     protected abstract ConditionValue getCValueGenRefName();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * GEN_ONLY_ID: {IX, DECIMAL(16)}
@@ -610,7 +609,6 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -623,6 +621,7 @@ public abstract class AbstractBsWhiteTableExceptGenRefCQ extends AbstractConditi
         return new WhiteTableExceptGenRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteTableExceptGenRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

@@ -908,13 +908,4 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable<W
     protected Class<? extends WhiteEscapedDfprop> typeOfSelectedEntity() { return WhiteEscapedDfprop.class; }
     protected Class<WhiteEscapedDfprop> typeOfHandlingEntity() { return WhiteEscapedDfprop.class; }
     protected Class<WhiteEscapedDfpropCB> typeOfHandlingConditionBean() { return WhiteEscapedDfpropCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteEscapedDfpropCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteEscapedDfpropCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteEscapedDfpropCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteEscapedDfpropCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteEscapedDfpropCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteEscapedDfpropCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteEscapedDfprop, WhiteEscapedDfpropCB>)sp; }
 }

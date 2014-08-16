@@ -907,13 +907,4 @@ public abstract class BsWhiteDbCommentBhv extends AbstractBehaviorWritable<White
     protected Class<? extends WhiteDbComment> typeOfSelectedEntity() { return WhiteDbComment.class; }
     protected Class<WhiteDbComment> typeOfHandlingEntity() { return WhiteDbComment.class; }
     protected Class<WhiteDbCommentCB> typeOfHandlingConditionBean() { return WhiteDbCommentCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteDbCommentCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteDbCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteDbCommentCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteDbCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteDbCommentCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteDbCommentCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteDbComment, WhiteDbCommentCB>)sp; }
 }

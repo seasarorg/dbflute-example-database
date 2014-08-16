@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteGearedCipherCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CIPHER_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteGearedCipherCQ extends AbstractConditionQue
 
     protected void regCipherId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueCipherId(), "CIPHER_ID"); }
     protected abstract ConditionValue getCValueCipherId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * CIPHER_INTEGER: {VARCHAR(100)}
@@ -804,7 +803,6 @@ public abstract class AbstractBsWhiteGearedCipherCQ extends AbstractConditionQue
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -817,6 +815,7 @@ public abstract class AbstractBsWhiteGearedCipherCQ extends AbstractConditionQue
         return new WhiteGearedCipherCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteGearedCipherCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

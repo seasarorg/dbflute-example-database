@@ -44,7 +44,6 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * (会員ステータスコード)member_status_code: {PK, NotNull, bpchar(3), classification=MemberStatus}
@@ -605,7 +604,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
 
     protected void regDescription(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDescription(), "description"); }
     protected abstract ConditionValue getCValueDescription();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (表示順)display_order: {UQ, NotNull, int4(10)}
@@ -962,7 +961,6 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -1003,6 +1001,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
         return new MemberStatusCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberStatusCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

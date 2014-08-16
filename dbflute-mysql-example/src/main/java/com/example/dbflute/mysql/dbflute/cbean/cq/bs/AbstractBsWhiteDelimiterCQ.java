@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * DELIMITER_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
 
     protected void regDelimiterId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueDelimiterId(), "DELIMITER_ID"); }
     protected abstract ConditionValue getCValueDelimiterId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * NUMBER_NULLABLE: {INT(10)}
@@ -808,7 +807,6 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -821,6 +819,7 @@ public abstract class AbstractBsWhiteDelimiterCQ extends AbstractConditionQuery 
         return new WhiteDelimiterCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteDelimiterCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

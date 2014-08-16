@@ -44,7 +44,6 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * foo_date: {PK, NotNull, date(13)}
@@ -497,7 +496,6 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     /**
      * Order along the list of manual values. #beforejava8 <br />
      * This function with Union is unsupported! <br />
@@ -538,6 +536,7 @@ public abstract class AbstractBsVendorDatePkCQ extends AbstractConditionQuery {
         return new VendorDatePkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return VendorDatePkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

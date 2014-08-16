@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteOnlyOneToOneFromCQ extends AbstractConditio
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * FROM_ID: {PK, ID, NotNull, BIGINT(19)}
@@ -581,7 +580,6 @@ public abstract class AbstractBsWhiteOnlyOneToOneFromCQ extends AbstractConditio
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -594,6 +592,7 @@ public abstract class AbstractBsWhiteOnlyOneToOneFromCQ extends AbstractConditio
         return new WhiteOnlyOneToOneFromCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteOnlyOneToOneFromCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

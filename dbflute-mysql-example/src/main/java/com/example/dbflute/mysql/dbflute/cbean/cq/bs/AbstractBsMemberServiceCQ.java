@@ -59,7 +59,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員サービスID)MEMBER_SERVICE_ID: {PK, ID, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regMemberServiceId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberServiceId(), "MEMBER_SERVICE_ID"); }
     protected abstract ConditionValue getCValueMemberServiceId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (会員ID)MEMBER_ID: {UQ, NotNull, INT(10), FK to member}
@@ -283,7 +282,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "MEMBER_ID"); }
     protected abstract ConditionValue getCValueMemberId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (サービスポイント数)SERVICE_POINT_COUNT: {IX, NotNull, INT(10)}
@@ -659,7 +658,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     protected void regUpdateUser(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueUpdateUser(), "UPDATE_USER"); }
     protected abstract ConditionValue getCValueUpdateUser();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * VERSION_NO: {NotNull, BIGINT(19)}
@@ -947,7 +946,6 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -960,6 +958,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
         return new MemberServiceCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return MemberServiceCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

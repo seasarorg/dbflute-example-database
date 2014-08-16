@@ -999,13 +999,4 @@ public abstract class BsWhiteQuotedBhv extends AbstractBehaviorWritable<WhiteQuo
     protected Class<? extends WhiteQuoted> typeOfSelectedEntity() { return WhiteQuoted.class; }
     protected Class<WhiteQuoted> typeOfHandlingEntity() { return WhiteQuoted.class; }
     protected Class<WhiteQuotedCB> typeOfHandlingConditionBean() { return WhiteQuotedCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteQuotedCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteQuotedCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteQuotedCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteQuotedCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteQuotedCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteQuotedCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteQuoted, WhiteQuotedCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteQuoted, WhiteQuotedCB>)sp; }
 }

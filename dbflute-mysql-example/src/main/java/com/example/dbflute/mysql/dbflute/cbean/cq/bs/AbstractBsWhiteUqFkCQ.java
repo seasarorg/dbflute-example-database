@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * UQ_FK_ID: {PK, NotNull, DECIMAL(16)}
@@ -741,7 +740,6 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -754,6 +752,7 @@ public abstract class AbstractBsWhiteUqFkCQ extends AbstractConditionQuery {
         return new WhiteUqFkCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteUqFkCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

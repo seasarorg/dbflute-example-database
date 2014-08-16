@@ -59,7 +59,6 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * (退会理由コード)WITHDRAWAL_REASON_CODE: {PK, NotNull, CHAR(3), classification=WithdrawalReason}
@@ -156,7 +155,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
 
     protected void regWithdrawalReasonText(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueWithdrawalReasonText(), "WITHDRAWAL_REASON_TEXT"); }
     protected abstract ConditionValue getCValueWithdrawalReasonText();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * (表示順)DISPLAY_ORDER: {UQ, NotNull, INT(10)}
@@ -244,7 +243,6 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -257,6 +255,7 @@ public abstract class AbstractBsWithdrawalReasonCQ extends AbstractConditionQuer
         return new WithdrawalReasonCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WithdrawalReasonCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

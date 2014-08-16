@@ -999,13 +999,4 @@ public abstract class BsWhiteMyselfBhv extends AbstractBehaviorWritable<WhiteMys
     protected Class<? extends WhiteMyself> typeOfSelectedEntity() { return WhiteMyself.class; }
     protected Class<WhiteMyself> typeOfHandlingEntity() { return WhiteMyself.class; }
     protected Class<WhiteMyselfCB> typeOfHandlingConditionBean() { return WhiteMyselfCB.class; }
-    @SuppressWarnings("unchecked")
-    protected InsertOption<WhiteMyselfCB> downcast(InsertOption<? extends ConditionBean> op) { return (InsertOption<WhiteMyselfCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected UpdateOption<WhiteMyselfCB> downcast(UpdateOption<? extends ConditionBean> op) { return (UpdateOption<WhiteMyselfCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected DeleteOption<WhiteMyselfCB> downcast(DeleteOption<? extends ConditionBean> op) { return (DeleteOption<WhiteMyselfCB>)op; }
-    @SuppressWarnings("unchecked")
-    protected QueryInsertSetupper<WhiteMyself, WhiteMyselfCB> downcast(QueryInsertSetupper<? extends Entity, ? extends ConditionBean> sp)
-    { return (QueryInsertSetupper<WhiteMyself, WhiteMyselfCB>)sp; }
 }

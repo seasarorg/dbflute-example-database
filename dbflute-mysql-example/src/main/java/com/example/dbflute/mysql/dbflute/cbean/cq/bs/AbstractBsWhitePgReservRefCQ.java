@@ -59,7 +59,6 @@ public abstract class AbstractBsWhitePgReservRefCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-    
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * REF_ID: {PK, NotNull, INT(10)}
@@ -162,7 +161,7 @@ public abstract class AbstractBsWhitePgReservRefCQ extends AbstractConditionQuer
 
     protected void regRefId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueRefId(), "REF_ID"); }
     protected abstract ConditionValue getCValueRefId();
-    
+
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
      * ((using DBFlute synonym))CLASS: {IX, INT(10), FK to white_pg_reserv}
@@ -554,7 +553,6 @@ public abstract class AbstractBsWhitePgReservRefCQ extends AbstractConditionQuer
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -567,6 +565,7 @@ public abstract class AbstractBsWhitePgReservRefCQ extends AbstractConditionQuer
         return new WhitePgReservRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhitePgReservRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }

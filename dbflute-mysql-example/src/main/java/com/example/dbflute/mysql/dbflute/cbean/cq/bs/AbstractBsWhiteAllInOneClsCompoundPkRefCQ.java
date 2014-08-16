@@ -59,7 +59,6 @@ public abstract class AbstractBsWhiteAllInOneClsCompoundPkRefCQ extends Abstract
     // ===================================================================================
     //                                                                               Query
     //                                                                               =====
-
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
      * FOO_CODE: {PK, NotNull, CHAR(3), FK to WHITE_ALL_IN_ONE_CLS_ELEMENT}
@@ -548,7 +547,6 @@ public abstract class AbstractBsWhiteAllInOneClsCompoundPkRefCQ extends Abstract
     // ===================================================================================
     //                                                                    Small Adjustment
     //                                                                    ================
-
     @Override
     protected void filterFromToOption(FromToOption option) {
         option.allowOneSide();
@@ -561,6 +559,7 @@ public abstract class AbstractBsWhiteAllInOneClsCompoundPkRefCQ extends Abstract
         return new WhiteAllInOneClsCompoundPkRefCB();
     }
     // very internal (for suppressing warn about 'Not Use Import')
+    protected String xabUDT() { return Date.class.getName(); }
     protected String xabCQ() { return WhiteAllInOneClsCompoundPkRefCQ.class.getName(); }
     protected String xabLSO() { return LikeSearchOption.class.getName(); }
     protected String xabSSQS() { return HpSSQSetupper.class.getName(); }
