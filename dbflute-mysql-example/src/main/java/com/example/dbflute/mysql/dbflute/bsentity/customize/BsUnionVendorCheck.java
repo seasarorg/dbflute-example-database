@@ -541,4 +541,12 @@ public abstract class BsUnionVendorCheck implements Entity, Serializable, Clonea
         __modifiedProperties.addPropertyName("typeOfBlob");
         _typeOfBlob = typeOfBlob;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param typeOfBoolean The value of the column 'TYPE_OF_BOOLEAN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingTypeOfBoolean(Integer typeOfBoolean) {
+        setTypeOfBoolean(typeOfBoolean);
+    }
 }

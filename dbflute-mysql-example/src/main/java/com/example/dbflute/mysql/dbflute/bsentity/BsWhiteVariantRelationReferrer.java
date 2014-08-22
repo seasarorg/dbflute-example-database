@@ -602,12 +602,20 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      * @param masterTypeCode The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setMasterTypeCode(String masterTypeCode) {
-        checkImplicitSet("MASTER_TYPE_CODE", CDef.DefMeta.VariantRelationMasterType, masterTypeCode);
+        checkClassificationCode("MASTER_TYPE_CODE", CDef.DefMeta.VariantRelationMasterType, masterTypeCode);
         __modifiedProperties.addPropertyName("masterTypeCode");
         _masterTypeCode = masterTypeCode;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    /**
+     * For framework so basically DON'T use this method.
+     * @param masterTypeCode The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingMasterTypeCode(String masterTypeCode) {
+        setMasterTypeCode(masterTypeCode);
+    }
+
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

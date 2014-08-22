@@ -47,7 +47,12 @@ public class MemberStatusDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((MemberStatus)et).getMemberStatusCode(); }
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMemberStatusCode();
-            ((MemberStatus)et).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, vl));
+            CDef.MemberStatus cls = (CDef.MemberStatus)gcls(col, vl);
+            if (cls != null) {
+                ((MemberStatus)et).setMemberStatusCodeAsMemberStatus(cls);
+            } else {
+                ((MemberStatus)et).mynativeMappingMemberStatusCode((String)vl);
+            }
         }
     }
     public static class EpgMemberStatusName implements PropertyGateway {

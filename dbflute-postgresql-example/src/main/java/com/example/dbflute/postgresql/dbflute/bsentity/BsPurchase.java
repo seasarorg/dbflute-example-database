@@ -823,4 +823,12 @@ public abstract class BsPurchase implements EntityDefinedCommonColumn, Serializa
         __modifiedProperties.addPropertyName("versionNo");
         _versionNo = versionNo;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param paymentCompleteFlg The value of the column 'payment_complete_flg'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingPaymentCompleteFlg(Integer paymentCompleteFlg) {
+        setPaymentCompleteFlg(paymentCompleteFlg);
+    }
 }

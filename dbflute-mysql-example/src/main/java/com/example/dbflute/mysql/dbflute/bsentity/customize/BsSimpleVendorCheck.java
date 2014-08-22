@@ -541,4 +541,12 @@ public abstract class BsSimpleVendorCheck implements Entity, Serializable, Clone
         __modifiedProperties.addPropertyName("typeOfBlob");
         _typeOfBlob = typeOfBlob;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param typeOfBoolean The value of the column 'TYPE_OF_BOOLEAN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingTypeOfBoolean(Boolean typeOfBoolean) {
+        setTypeOfBoolean(typeOfBoolean);
+    }
 }

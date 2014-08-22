@@ -12,7 +12,7 @@ import java.util.List;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.ManualOrderBean;
 import org.seasar.dbflute.cbean.UnionQuery;
-import org.seasar.dbflute.exception.IllegalClassificationCodeException;
+import org.seasar.dbflute.exception.UndefinedClassificationCodeException;
 import org.seasar.dbflute.util.DfTypeUtil;
 
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
@@ -173,7 +173,7 @@ public class VendorTypeTest extends UnitContainerTestCase {
 
             // ## Assert ##
             fail();
-        } catch (IllegalClassificationCodeException e) {
+        } catch (UndefinedClassificationCodeException e) {
             // OK
             log(e.getMessage());
         }

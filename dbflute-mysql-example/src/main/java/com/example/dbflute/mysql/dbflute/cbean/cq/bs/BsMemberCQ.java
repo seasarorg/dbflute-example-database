@@ -722,6 +722,7 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
      * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The instance of condition-query. (NotNull)
+     * @deprecated the test of dep
      */
     public MemberLoginCQ queryMemberLoginAsLocalBindOverTest(Integer displayOrder) {
         Map<String, Object> parameterMap = getParameterMapMemberLoginAsLocalBindOverTest();

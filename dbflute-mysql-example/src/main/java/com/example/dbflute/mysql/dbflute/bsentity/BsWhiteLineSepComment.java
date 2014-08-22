@@ -423,4 +423,12 @@ public abstract class BsWhiteLineSepComment implements Entity, Serializable, Clo
         __modifiedProperties.addPropertyName("lineSepCommentName");
         _lineSepCommentName = lineSepCommentName;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param lineSepCommentCode The value of the column 'LINE_SEP_COMMENT_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingLineSepCommentCode(String lineSepCommentCode) {
+        setLineSepCommentCode(lineSepCommentCode);
+    }
 }

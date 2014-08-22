@@ -61,7 +61,12 @@ public class WhiteDeprecatedClsElementDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnDeprecatedClsElementCode();
             ccls(col, vl);
-            ((WhiteDeprecatedClsElement)et).setDeprecatedClsElementCodeAsDeprecatedMapCollaborationType((CDef.DeprecatedMapCollaborationType)gcls(col, vl));
+            CDef.DeprecatedMapCollaborationType cls = (CDef.DeprecatedMapCollaborationType)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteDeprecatedClsElement)et).setDeprecatedClsElementCodeAsDeprecatedMapCollaborationType(cls);
+            } else {
+                ((WhiteDeprecatedClsElement)et).mynativeMappingDeprecatedClsElementCode((String)vl);
+            }
         }
     }
     public static class EpgDeprecatedClsElementName implements PropertyGateway {

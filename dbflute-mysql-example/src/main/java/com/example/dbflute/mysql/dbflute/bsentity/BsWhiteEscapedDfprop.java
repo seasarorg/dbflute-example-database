@@ -432,4 +432,12 @@ public abstract class BsWhiteEscapedDfprop implements Entity, Serializable, Clon
         __modifiedProperties.addPropertyName("escapedDfpropName");
         _escapedDfpropName = escapedDfpropName;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param escapedDfpropCode The value of the column 'ESCAPED_DFPROP_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingEscapedDfpropCode(String escapedDfpropCode) {
+        setEscapedDfpropCode(escapedDfpropCode);
+    }
 }

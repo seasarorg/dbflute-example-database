@@ -443,12 +443,20 @@ public abstract class BsWhiteVariantRelationMasterCorge implements Entity, Seria
      * @param corgeTypeCode The value of the column 'CORGE_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setCorgeTypeCode(String corgeTypeCode) {
-        checkImplicitSet("CORGE_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, corgeTypeCode);
+        checkClassificationCode("CORGE_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, corgeTypeCode);
         __modifiedProperties.addPropertyName("corgeTypeCode");
         _corgeTypeCode = corgeTypeCode;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    /**
+     * For framework so basically DON'T use this method.
+     * @param corgeTypeCode The value of the column 'CORGE_TYPE_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingCorgeTypeCode(String corgeTypeCode) {
+        setCorgeTypeCode(corgeTypeCode);
+    }
+
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

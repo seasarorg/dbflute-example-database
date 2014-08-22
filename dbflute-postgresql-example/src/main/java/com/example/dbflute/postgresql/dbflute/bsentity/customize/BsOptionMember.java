@@ -589,4 +589,12 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
         __modifiedProperties.addPropertyName("dummyNoflg");
         _dummyNoflg = dummyNoflg;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param dummyFlg The value of the column 'dummy_flg'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingDummyFlg(Integer dummyFlg) {
+        setDummyFlg(dummyFlg);
+    }
 }

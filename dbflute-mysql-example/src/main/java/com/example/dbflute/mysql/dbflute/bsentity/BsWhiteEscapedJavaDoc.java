@@ -423,4 +423,12 @@ public abstract class BsWhiteEscapedJavaDoc implements Entity, Serializable, Clo
         __modifiedProperties.addPropertyName("escapedJavaDocName");
         _escapedJavaDocName = escapedJavaDocName;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param escapedJavaDocCode The value of the column 'ESCAPED_JAVA_DOC_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingEscapedJavaDocCode(String escapedJavaDocCode) {
+        setEscapedJavaDocCode(escapedJavaDocCode);
+    }
 }

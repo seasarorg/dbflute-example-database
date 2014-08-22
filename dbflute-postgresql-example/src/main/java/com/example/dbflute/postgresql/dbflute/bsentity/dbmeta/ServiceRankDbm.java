@@ -61,7 +61,12 @@ public class ServiceRankDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((ServiceRank)et).getNewAcceptableFlg(); }
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnNewAcceptableFlg();
-            ((ServiceRank)et).setNewAcceptableFlgAsFlg((CDef.Flg)gcls(col, vl));
+            CDef.Flg cls = (CDef.Flg)gcls(col, vl);
+            if (cls != null) {
+                ((ServiceRank)et).setNewAcceptableFlgAsFlg(cls);
+            } else {
+                ((ServiceRank)et).mynativeMappingNewAcceptableFlg(ctn(vl, Integer.class));
+            }
         }
     }
     public static class EpgDescription implements PropertyGateway {

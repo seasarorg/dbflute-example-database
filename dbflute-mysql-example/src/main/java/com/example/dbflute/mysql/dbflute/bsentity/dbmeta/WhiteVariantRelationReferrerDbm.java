@@ -70,7 +70,12 @@ public class WhiteVariantRelationReferrerDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMasterTypeCode();
             ccls(col, vl);
-            ((WhiteVariantRelationReferrer)et).setMasterTypeCodeAsVariantRelationMasterType((CDef.VariantRelationMasterType)gcls(col, vl));
+            CDef.VariantRelationMasterType cls = (CDef.VariantRelationMasterType)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteVariantRelationReferrer)et).setMasterTypeCodeAsVariantRelationMasterType(cls);
+            } else {
+                ((WhiteVariantRelationReferrer)et).mynativeMappingMasterTypeCode((String)vl);
+            }
         }
     }
     public PropertyGateway findPropertyGateway(String prop)

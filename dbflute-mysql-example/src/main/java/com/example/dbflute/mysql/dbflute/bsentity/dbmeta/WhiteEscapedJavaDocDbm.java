@@ -61,7 +61,12 @@ public class WhiteEscapedJavaDocDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnEscapedJavaDocCode();
             ccls(col, vl);
-            ((WhiteEscapedJavaDoc)et).setEscapedJavaDocCodeAsEscapedJavaDocCls((CDef.EscapedJavaDocCls)gcls(col, vl));
+            CDef.EscapedJavaDocCls cls = (CDef.EscapedJavaDocCls)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteEscapedJavaDoc)et).setEscapedJavaDocCodeAsEscapedJavaDocCls(cls);
+            } else {
+                ((WhiteEscapedJavaDoc)et).mynativeMappingEscapedJavaDocCode((String)vl);
+            }
         }
     }
     public static class EpgEscapedJavaDocName implements PropertyGateway {

@@ -443,12 +443,20 @@ public abstract class BsWhiteVariantRelationMasterQux implements Entity, Seriali
      * @param quxTypeCode The value of the column 'QUX_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setQuxTypeCode(String quxTypeCode) {
-        checkImplicitSet("QUX_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, quxTypeCode);
+        checkClassificationCode("QUX_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, quxTypeCode);
         __modifiedProperties.addPropertyName("quxTypeCode");
         _quxTypeCode = quxTypeCode;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    /**
+     * For framework so basically DON'T use this method.
+     * @param quxTypeCode The value of the column 'QUX_TYPE_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingQuxTypeCode(String quxTypeCode) {
+        setQuxTypeCode(quxTypeCode);
+    }
+
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

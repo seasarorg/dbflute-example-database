@@ -70,7 +70,12 @@ public class WhiteVariantRelationMasterQuxDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnQuxTypeCode();
             ccls(col, vl);
-            ((WhiteVariantRelationMasterQux)et).setQuxTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
+            CDef.VariantRelationQuxType cls = (CDef.VariantRelationQuxType)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteVariantRelationMasterQux)et).setQuxTypeCodeAsVariantRelationQuxType(cls);
+            } else {
+                ((WhiteVariantRelationMasterQux)et).mynativeMappingQuxTypeCode((String)vl);
+            }
         }
     }
     public PropertyGateway findPropertyGateway(String prop)

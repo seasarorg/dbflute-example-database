@@ -92,7 +92,12 @@ public class SummaryWithdrawalDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMemberStatusCode();
             ccls(col, vl);
-            ((SummaryWithdrawal)et).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, vl));
+            CDef.MemberStatus cls = (CDef.MemberStatus)gcls(col, vl);
+            if (cls != null) {
+                ((SummaryWithdrawal)et).setMemberStatusCodeAsMemberStatus(cls);
+            } else {
+                ((SummaryWithdrawal)et).mynativeMappingMemberStatusCode((String)vl);
+            }
         }
     }
     public static class EpgMemberStatusName implements PropertyGateway {

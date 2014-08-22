@@ -770,4 +770,12 @@ public abstract class BsProduct implements EntityDefinedCommonColumn, Serializab
         __modifiedProperties.addPropertyName("versionNo");
         _versionNo = versionNo;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingProductStatusCode(String productStatusCode) {
+        setProductStatusCode(productStatusCode);
+    }
 }

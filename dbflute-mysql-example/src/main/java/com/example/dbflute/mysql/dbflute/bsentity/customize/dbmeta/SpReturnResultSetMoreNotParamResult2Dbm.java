@@ -63,7 +63,12 @@ public class SpReturnResultSetMoreNotParamResult2Dbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMemberStatusCode();
             ccls(col, vl);
-            ((SpReturnResultSetMoreNotParamResult2)et).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, vl));
+            CDef.MemberStatus cls = (CDef.MemberStatus)gcls(col, vl);
+            if (cls != null) {
+                ((SpReturnResultSetMoreNotParamResult2)et).setMemberStatusCodeAsMemberStatus(cls);
+            } else {
+                ((SpReturnResultSetMoreNotParamResult2)et).mynativeMappingMemberStatusCode((String)vl);
+            }
         }
     }
     public static class EpgMemberStatusName implements PropertyGateway {

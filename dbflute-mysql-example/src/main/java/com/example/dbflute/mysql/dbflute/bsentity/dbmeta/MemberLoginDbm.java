@@ -76,7 +76,12 @@ public class MemberLoginDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMobileLoginFlg();
             ccls(col, vl);
-            ((MemberLogin)et).setMobileLoginFlgAsFlg((CDef.Flg)gcls(col, vl));
+            CDef.Flg cls = (CDef.Flg)gcls(col, vl);
+            if (cls != null) {
+                ((MemberLogin)et).setMobileLoginFlgAsFlg(cls);
+            } else {
+                ((MemberLogin)et).mynativeMappingMobileLoginFlg(ctn(vl, Integer.class));
+            }
         }
     }
     public class EpgLoginMemberStatusCode implements PropertyGateway {
@@ -84,7 +89,12 @@ public class MemberLoginDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnLoginMemberStatusCode();
             ccls(col, vl);
-            ((MemberLogin)et).setLoginMemberStatusCodeAsSubItemTable((CDef.SubItemTable)gcls(col, vl));
+            CDef.SubItemTable cls = (CDef.SubItemTable)gcls(col, vl);
+            if (cls != null) {
+                ((MemberLogin)et).setLoginMemberStatusCodeAsSubItemTable(cls);
+            } else {
+                ((MemberLogin)et).mynativeMappingLoginMemberStatusCode((String)vl);
+            }
         }
     }
     public PropertyGateway findPropertyGateway(String prop)

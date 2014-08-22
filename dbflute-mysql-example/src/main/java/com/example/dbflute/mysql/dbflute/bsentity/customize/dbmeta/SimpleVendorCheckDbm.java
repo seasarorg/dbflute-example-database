@@ -86,7 +86,12 @@ public class SimpleVendorCheckDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnTypeOfBoolean();
             ccls(col, vl);
-            ((SimpleVendorCheck)et).setTypeOfBooleanAsBooleanFlg((CDef.BooleanFlg)gcls(col, vl));
+            CDef.BooleanFlg cls = (CDef.BooleanFlg)gcls(col, vl);
+            if (cls != null) {
+                ((SimpleVendorCheck)et).setTypeOfBooleanAsBooleanFlg(cls);
+            } else {
+                ((SimpleVendorCheck)et).mynativeMappingTypeOfBoolean((Boolean)vl);
+            }
         }
     }
     public static class EpgTypeOfBlob implements PropertyGateway {

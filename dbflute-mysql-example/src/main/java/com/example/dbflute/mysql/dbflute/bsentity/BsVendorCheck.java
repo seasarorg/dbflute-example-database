@@ -1090,4 +1090,12 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         __modifiedProperties.addPropertyName("typeOfSet");
         _typeOfSet = typeOfSet;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param typeOfBoolean The value of the column 'TYPE_OF_BOOLEAN'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingTypeOfBoolean(Boolean typeOfBoolean) {
+        setTypeOfBoolean(typeOfBoolean);
+    }
 }

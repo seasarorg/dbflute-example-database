@@ -563,4 +563,12 @@ public abstract class BsServiceRank implements Entity, Serializable, Cloneable {
         __modifiedProperties.addPropertyName("displayOrder");
         _displayOrder = displayOrder;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param newAcceptableFlg The value of the column 'new_acceptable_flg'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingNewAcceptableFlg(Integer newAcceptableFlg) {
+        setNewAcceptableFlg(newAcceptableFlg);
+    }
 }

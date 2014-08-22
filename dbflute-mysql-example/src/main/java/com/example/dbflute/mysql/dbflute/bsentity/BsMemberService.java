@@ -726,4 +726,12 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
         __modifiedProperties.addPropertyName("versionNo");
         _versionNo = versionNo;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param serviceRankCode The value of the column 'SERVICE_RANK_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingServiceRankCode(String serviceRankCode) {
+        setServiceRankCode(serviceRankCode);
+    }
 }

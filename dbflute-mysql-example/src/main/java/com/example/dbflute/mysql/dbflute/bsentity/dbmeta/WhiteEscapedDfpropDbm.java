@@ -61,7 +61,12 @@ public class WhiteEscapedDfpropDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnEscapedDfpropCode();
             ccls(col, vl);
-            ((WhiteEscapedDfprop)et).setEscapedDfpropCodeAsEscapedDfpropCls((CDef.EscapedDfpropCls)gcls(col, vl));
+            CDef.EscapedDfpropCls cls = (CDef.EscapedDfpropCls)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteEscapedDfprop)et).setEscapedDfpropCodeAsEscapedDfpropCls(cls);
+            } else {
+                ((WhiteEscapedDfprop)et).mynativeMappingEscapedDfpropCode((String)vl);
+            }
         }
     }
     public static class EpgEscapedDfpropName implements PropertyGateway {

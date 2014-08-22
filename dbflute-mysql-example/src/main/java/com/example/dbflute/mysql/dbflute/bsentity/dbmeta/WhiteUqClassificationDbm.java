@@ -65,7 +65,12 @@ public class WhiteUqClassificationDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnUqClsCode();
             ccls(col, vl);
-            ((WhiteUqClassification)et).setUqClsCodeAsUQClassificationType((CDef.UQClassificationType)gcls(col, vl));
+            CDef.UQClassificationType cls = (CDef.UQClassificationType)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteUqClassification)et).setUqClsCodeAsUQClassificationType(cls);
+            } else {
+                ((WhiteUqClassification)et).mynativeMappingUqClsCode((String)vl);
+            }
         }
     }
     public PropertyGateway findPropertyGateway(String prop)

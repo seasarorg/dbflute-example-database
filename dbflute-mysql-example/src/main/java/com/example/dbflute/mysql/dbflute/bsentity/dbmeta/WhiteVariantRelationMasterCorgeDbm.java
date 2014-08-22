@@ -70,7 +70,12 @@ public class WhiteVariantRelationMasterCorgeDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnCorgeTypeCode();
             ccls(col, vl);
-            ((WhiteVariantRelationMasterCorge)et).setCorgeTypeCodeAsVariantRelationQuxType((CDef.VariantRelationQuxType)gcls(col, vl));
+            CDef.VariantRelationQuxType cls = (CDef.VariantRelationQuxType)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteVariantRelationMasterCorge)et).setCorgeTypeCodeAsVariantRelationQuxType(cls);
+            } else {
+                ((WhiteVariantRelationMasterCorge)et).mynativeMappingCorgeTypeCode((String)vl);
+            }
         }
     }
     public PropertyGateway findPropertyGateway(String prop)

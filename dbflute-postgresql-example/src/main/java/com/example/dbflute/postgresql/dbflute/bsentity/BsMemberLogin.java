@@ -628,4 +628,20 @@ public abstract class BsMemberLogin implements Entity, Serializable, Cloneable {
         __modifiedProperties.addPropertyName("loginMemberStatusCode");
         _loginMemberStatusCode = loginMemberStatusCode;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param mobileLoginFlg The value of the column 'mobile_login_flg'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingMobileLoginFlg(Integer mobileLoginFlg) {
+        setMobileLoginFlg(mobileLoginFlg);
+    }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param loginMemberStatusCode The value of the column 'login_member_status_code'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingLoginMemberStatusCode(String loginMemberStatusCode) {
+        setLoginMemberStatusCode(loginMemberStatusCode);
+    }
 }

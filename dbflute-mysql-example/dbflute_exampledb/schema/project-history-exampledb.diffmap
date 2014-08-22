@@ -1,4 +1,167 @@
 map:{
+    ; 2014/08/22 20:47:31 = map:{
+        ; diffDate = 2014/08/22 20:47:31
+        ; tableCount = map:{
+            ; next = 105
+            ; previous = 104
+        }
+        ; tableDiff = map:{
+            ; white_perrotta_over_member_macho = map:{
+                ; tableName = white_perrotta_over_member_macho
+                ; diffType = ADD
+            }
+            ; white_perrotta_over_member = map:{
+                ; tableName = white_perrotta_over_member
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; MACHO_CODE = map:{
+                        ; columnName = MACHO_CODE
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_MEMBER_MACHO = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_MEMBER_MACHO
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_MEMBER_MACHO = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_MEMBER_MACHO
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/08/22 19:58:13 = map:{
+        ; diffDate = 2014/08/22 19:58:13
+        ; tableDiff = map:{
+            ; white_perrotta_over_product_nested = map:{
+                ; tableName = white_perrotta_over_product_nested
+                ; diffType = ADD
+            }
+            ; white_perrotta_over_product = map:{
+                ; tableName = white_perrotta_over_product
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; PRODUCT_NESTED_CODE = map:{
+                        ; columnName = PRODUCT_NESTED_CODE
+                        ; diffType = ADD
+                    }
+                    ; PRODUCT_STATUS_CODE = map:{
+                        ; columnName = PRODUCT_STATUS_CODE
+                        ; diffType = DELETE
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED
+                        ; diffType = ADD
+                    }
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS
+                        ; diffType = DELETE
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED
+                        ; diffType = ADD
+                    }
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS
+                        ; diffType = DELETE
+                    }
+                }
+            }
+            ; white_perrotta_over_product_status = map:{
+                ; tableName = white_perrotta_over_product_status
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/08/22 19:52:38 = map:{
+        ; diffDate = 2014/08/22 19:52:38
+        ; tableCount = map:{
+            ; next = 104
+            ; previous = 103
+        }
+        ; tableDiff = map:{
+            ; white_perrotta_over_product_status = map:{
+                ; tableName = white_perrotta_over_product_status
+                ; diffType = ADD
+            }
+            ; white_perrotta_over_product = map:{
+                ; tableName = white_perrotta_over_product
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; PRODUCT_STATUS_CODE = map:{
+                        ; columnName = PRODUCT_STATUS_CODE
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS
+                        ; diffType = ADD
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_PRODUCT_STATUS
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/08/22 16:16:08 = map:{
+        ; diffDate = 2014/08/22 16:16:08
+        ; tableDiff = map:{
+            ; white_perrotta_over_member = map:{
+                ; tableName = white_perrotta_over_member
+                ; diffType = CHANGE
+                ; primaryKeyDiff = map:{
+                    ; PRIMARY = map:{
+                        ; constraintName = PRIMARY
+                        ; diffType = CHANGE
+                        ; columnDiff = map:{
+                            ; next = MEMBER_ID
+                            ; previous = PRODUCT_ID
+                        }
+                    }
+                }
+                ; indexDiff = map:{
+                    ; FK_WHITE_PERROTTA_OVER_MEMBER_PRODUCT = map:{
+                        ; constraintName = FK_WHITE_PERROTTA_OVER_MEMBER_PRODUCT
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/08/22 16:02:47 = map:{
+        ; diffDate = 2014/08/22 16:02:47
+        ; tableCount = map:{
+            ; next = 103
+            ; previous = 100
+        }
+        ; tableDiff = map:{
+            ; white_perrotta_over_member = map:{
+                ; tableName = white_perrotta_over_member
+                ; diffType = ADD
+            }
+            ; white_perrotta_over_product = map:{
+                ; tableName = white_perrotta_over_product
+                ; diffType = ADD
+            }
+            ; white_perrotta_over_trace = map:{
+                ; tableName = white_perrotta_over_trace
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/07/29 12:58:02 = map:{
         ; diffDate = 2014/07/29 12:58:02
         ; tableCount = map:{

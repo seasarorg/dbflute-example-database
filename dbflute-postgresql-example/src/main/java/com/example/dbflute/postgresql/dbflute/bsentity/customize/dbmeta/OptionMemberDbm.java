@@ -80,7 +80,12 @@ public class OptionMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((OptionMember)et).getDummyFlg(); }
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnDummyFlg();
-            ((OptionMember)et).setDummyFlgAsFlg((CDef.Flg)gcls(col, vl));
+            CDef.Flg cls = (CDef.Flg)gcls(col, vl);
+            if (cls != null) {
+                ((OptionMember)et).setDummyFlgAsFlg(cls);
+            } else {
+                ((OptionMember)et).mynativeMappingDummyFlg(ctn(vl, Integer.class));
+            }
         }
     }
     public static class EpgDummyNoflg implements PropertyGateway {

@@ -1278,6 +1278,94 @@
             <unique-column name="FROM_ID" position="1"/>
         </unique>
     </table>
+    <table name="white_perrotta_over_member"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="MEMBER_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="MEMBER_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="PRODUCT_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="TRACE_TYPE_CODE" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="MACHO_CODE" required="true" size="3" type="CHAR"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_perrotta_over_member_macho" name="FK_WHITE_PERROTTA_OVER_MEMBER_MACHO">
+            <reference foreign="MACHO_CODE" local="MACHO_CODE"/>
+        </foreign-key>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_perrotta_over_product" name="FK_WHITE_PERROTTA_OVER_MEMBER_PRODUCT">
+            <reference foreign="PRODUCT_ID" local="PRODUCT_ID"/>
+        </foreign-key>
+        <index name="FK_WHITE_PERROTTA_OVER_MEMBER_MACHO">
+            <index-column name="MACHO_CODE" position="1"/>
+        </index>
+        <index name="FK_WHITE_PERROTTA_OVER_MEMBER_PRODUCT">
+            <index-column name="PRODUCT_ID" position="1"/>
+        </index>
+    </table>
+    <table name="white_perrotta_over_member_macho"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="CHAR" javaType="String"
+            name="MACHO_CODE" pkName="PRIMARY" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="MACHO_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_perrotta_over_product"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="PRODUCT_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="PRODUCT_NAME" required="true" size="200" type="VARCHAR"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="PRODUCT_NESTED_CODE" required="true" size="3" type="CHAR"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_perrotta_over_product_nested" name="FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED">
+            <reference foreign="PRODUCT_NESTED_CODE" local="PRODUCT_NESTED_CODE"/>
+        </foreign-key>
+        <index name="FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED">
+            <index-column name="PRODUCT_NESTED_CODE" position="1"/>
+        </index>
+    </table>
+    <table name="white_perrotta_over_product_nested"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="CHAR" javaType="String"
+            name="PRODUCT_NESTED_CODE" pkName="PRIMARY"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="PRODUCT_NESTED_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
+    <table name="white_perrotta_over_trace"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="TRACE_ID" pkName="PRIMARY" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="PREVIOUS_PRODUCT_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="NEXT_PRODUCT_ID" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="TRACE_TYPE_CODE" required="true" size="3" type="CHAR"/>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_perrotta_over_product" name="FK_WHITE_PERROTTA_OVER_TRACE_NEXT">
+            <reference foreign="PRODUCT_ID" local="NEXT_PRODUCT_ID"/>
+        </foreign-key>
+        <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
+            foreignTable="white_perrotta_over_product" name="FK_WHITE_PERROTTA_OVER_TRACE_PREVIOUS">
+            <reference foreign="PRODUCT_ID" local="PREVIOUS_PRODUCT_ID"/>
+        </foreign-key>
+        <unique name="PREVIOUS_PRODUCT_ID">
+            <unique-column name="PREVIOUS_PRODUCT_ID" position="1"/>
+            <unique-column name="NEXT_PRODUCT_ID" position="2"/>
+        </unique>
+        <index name="FK_WHITE_PERROTTA_OVER_TRACE_NEXT">
+            <index-column name="NEXT_PRODUCT_ID" position="1"/>
+        </index>
+    </table>
     <table name="white_pg_reserv" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="CLASS"
             pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>

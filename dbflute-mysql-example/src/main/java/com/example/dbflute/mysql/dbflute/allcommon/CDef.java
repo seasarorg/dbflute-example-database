@@ -20,6 +20,7 @@ import java.util.*;
 import org.seasar.dbflute.jdbc.Classification;
 import org.seasar.dbflute.jdbc.ClassificationCodeType;
 import org.seasar.dbflute.jdbc.ClassificationMeta;
+import org.seasar.dbflute.jdbc.ClassificationUndefinedHandlingType;
 
 /**
  * The definition of classification.
@@ -2089,6 +2090,10 @@ public interface CDef extends Classification {
         /** 商品ステータス: 商品の状態を示す */
         ProductStatus
         ;
+        public String classificationName() {
+            return name(); // same as definition name
+        }
+
         public Classification codeOf(Object code) {
             if ("ServiceRank".equals(name())) { return CDef.ServiceRank.codeOf(code); }
             if ("Region".equals(name())) { return CDef.Region.codeOf(code); }
@@ -2232,6 +2237,34 @@ public interface CDef extends Classification {
             if ("MemberStatus".equals(name())) { return ClassificationCodeType.String; }
             if ("ProductStatus".equals(name())) { return ClassificationCodeType.String; }
             return ClassificationCodeType.String; // as default
+        }
+
+        public ClassificationUndefinedHandlingType undefinedHandlingType() {
+            if ("ServiceRank".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("Region".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("WithdrawalReason".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("PaymentMethod".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("SelfReference".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("TopCommentOnly".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("SubItemImplicit".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("SubItemTable".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("BooleanFlg".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("VariantRelationMasterType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("VariantRelationQuxType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("QuxCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("EscapedDfpropCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("EscapedJavaDocCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("LineSepCommentCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("DeprecatedTopBasicType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("DeprecatedMapBasicType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("DeprecatedMapCollaborationType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("UQClassificationType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("BarCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("FooCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("Flg".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("MemberStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("ProductStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            return ClassificationUndefinedHandlingType.LOGGING; // as default
         }
     }
 }

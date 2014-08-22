@@ -773,4 +773,12 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
         __modifiedProperties.addPropertyName("versionNo");
         _versionNo = versionNo;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param regionId The value of the column 'REGION_ID'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingRegionId(Integer regionId) {
+        setRegionId(regionId);
+    }
 }

@@ -540,4 +540,12 @@ public abstract class BsMemberStatus implements Entity, Serializable, Cloneable 
         __modifiedProperties.addPropertyName("displayOrder");
         _displayOrder = displayOrder;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param memberStatusCode The value of the column 'member_status_code'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingMemberStatusCode(String memberStatusCode) {
+        setMemberStatusCode(memberStatusCode);
+    }
 }

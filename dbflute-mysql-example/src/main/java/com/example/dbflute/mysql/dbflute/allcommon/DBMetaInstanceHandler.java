@@ -106,6 +106,11 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_no_pk_relation", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteNoPkRelationDbm");
         tmpMap.put("white_only_one_to_one_from", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteOnlyOneToOneFromDbm");
         tmpMap.put("white_only_one_to_one_to", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteOnlyOneToOneToDbm");
+        tmpMap.put("white_perrotta_over_member", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePerrottaOverMemberDbm");
+        tmpMap.put("white_perrotta_over_member_macho", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePerrottaOverMemberMachoDbm");
+        tmpMap.put("white_perrotta_over_product", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePerrottaOverProductDbm");
+        tmpMap.put("white_perrotta_over_product_nested", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePerrottaOverProductNestedDbm");
+        tmpMap.put("white_perrotta_over_trace", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePerrottaOverTraceDbm");
         tmpMap.put("white_pg_reserv", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservDbm");
         tmpMap.put("white_pg_reserv_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePgReservRefDbm");
         tmpMap.put("white_point_type_mapping", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhitePointTypeMappingDbm");

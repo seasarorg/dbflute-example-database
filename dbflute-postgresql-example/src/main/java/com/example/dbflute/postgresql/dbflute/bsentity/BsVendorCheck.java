@@ -985,4 +985,12 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         __modifiedProperties.addPropertyName("typeOfXml");
         _typeOfXml = typeOfXml;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param typeOfBool The value of the column 'type_of_bool'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingTypeOfBool(Boolean typeOfBool) {
+        setTypeOfBool(typeOfBool);
+    }
 }

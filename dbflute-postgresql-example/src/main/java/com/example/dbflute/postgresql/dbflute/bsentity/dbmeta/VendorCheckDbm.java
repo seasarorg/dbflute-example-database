@@ -154,7 +154,12 @@ public class VendorCheckDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((VendorCheck)et).getTypeOfBool(); }
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnTypeOfBool();
-            ((VendorCheck)et).setTypeOfBoolAsTrueFalse((CDef.TrueFalse)gcls(col, vl));
+            CDef.TrueFalse cls = (CDef.TrueFalse)gcls(col, vl);
+            if (cls != null) {
+                ((VendorCheck)et).setTypeOfBoolAsTrueFalse(cls);
+            } else {
+                ((VendorCheck)et).mynativeMappingTypeOfBool((Boolean)vl);
+            }
         }
     }
     public static class EpgTypeOfBit implements PropertyGateway {

@@ -61,7 +61,12 @@ public class WhiteLineSepCommentDbm extends AbstractDBMeta {
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnLineSepCommentCode();
             ccls(col, vl);
-            ((WhiteLineSepComment)et).setLineSepCommentCodeAsLineSepCommentCls((CDef.LineSepCommentCls)gcls(col, vl));
+            CDef.LineSepCommentCls cls = (CDef.LineSepCommentCls)gcls(col, vl);
+            if (cls != null) {
+                ((WhiteLineSepComment)et).setLineSepCommentCodeAsLineSepCommentCls(cls);
+            } else {
+                ((WhiteLineSepComment)et).mynativeMappingLineSepCommentCode((String)vl);
+            }
         }
     }
     public static class EpgLineSepCommentName implements PropertyGateway {

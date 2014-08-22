@@ -672,4 +672,12 @@ public abstract class BsMemberWithdrawal implements EntityDefinedCommonColumn, S
         __modifiedProperties.addPropertyName("updateUser");
         _updateUser = updateUser;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param withdrawalReasonCode The value of the column 'WITHDRAWAL_REASON_CODE'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingWithdrawalReasonCode(String withdrawalReasonCode) {
+        setWithdrawalReasonCode(withdrawalReasonCode);
+    }
 }

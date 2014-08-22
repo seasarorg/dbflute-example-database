@@ -569,7 +569,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @param paymentMethodCode The value of the column 'payment_method_code'. (basically NotNull if update: for the constraint)
      */
     protected void setPaymentMethodCode(String paymentMethodCode) {
-        checkImplicitSet("payment_method_code", CDef.DefMeta.PaymentMethod, paymentMethodCode);
+        checkClassificationCode("payment_method_code", CDef.DefMeta.PaymentMethod, paymentMethodCode);
         __modifiedProperties.addPropertyName("paymentMethodCode");
         _paymentMethodCode = paymentMethodCode;
     }
@@ -642,7 +642,15 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
         _updateUser = updateUser;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    /**
+     * For framework so basically DON'T use this method.
+     * @param paymentMethodCode The value of the column 'payment_method_code'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingPaymentMethodCode(String paymentMethodCode) {
+        setPaymentMethodCode(paymentMethodCode);
+    }
+
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

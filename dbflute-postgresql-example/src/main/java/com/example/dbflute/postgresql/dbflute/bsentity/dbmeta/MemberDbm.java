@@ -68,7 +68,12 @@ public class MemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Member)et).getMemberStatusCode(); }
         public void write(Entity et, Object vl) {
             ColumnInfo col = columnMemberStatusCode();
-            ((Member)et).setMemberStatusCodeAsMemberStatus((CDef.MemberStatus)gcls(col, vl));
+            CDef.MemberStatus cls = (CDef.MemberStatus)gcls(col, vl);
+            if (cls != null) {
+                ((Member)et).setMemberStatusCodeAsMemberStatus(cls);
+            } else {
+                ((Member)et).mynativeMappingMemberStatusCode((String)vl);
+            }
         }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {

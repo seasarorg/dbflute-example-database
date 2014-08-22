@@ -620,6 +620,63 @@ create table WHITE_DATE_ADJUSTMENT (
 	PRIMARY KEY (DATE_ADJUSTMENT_ID)
 ) ;
 
+-- /= = = = = = = = = = = = = = = = = = = =
+-- for the test of over relation non cache
+-- = = = = = = = = = =/
+
+create table WHITE_PERROTTA_OVER_MEMBER(
+    MEMBER_ID BIGINT NOT NULL,
+    MEMBER_NAME VARCHAR(200) NOT NULL,
+    PRODUCT_ID BIGINT NOT NULL,
+    TRACE_TYPE_CODE CHAR(3) NOT NULL,
+    MACHO_CODE CHAR(3) NOT NULL,
+    PRIMARY KEY (MEMBER_ID)
+);
+
+create table WHITE_PERROTTA_OVER_MEMBER_MACHO(
+    MACHO_CODE CHAR(3) NOT NULL,
+    MACHO_NAME VARCHAR(200) NOT NULL,
+    PRIMARY KEY (MACHO_CODE)
+);
+
+create table WHITE_PERROTTA_OVER_PRODUCT(
+    PRODUCT_ID BIGINT NOT NULL,
+    PRODUCT_NAME VARCHAR(200) NOT NULL,
+    PRODUCT_NESTED_CODE CHAR(3) NOT NULL,
+    PRIMARY KEY (PRODUCT_ID)
+);
+
+create table WHITE_PERROTTA_OVER_PRODUCT_NESTED(
+    PRODUCT_NESTED_CODE CHAR(3) NOT NULL,
+    PRODUCT_NESTED_NAME VARCHAR(200) NOT NULL,
+    PRIMARY KEY (PRODUCT_NESTED_CODE)
+);
+
+create table WHITE_PERROTTA_OVER_TRACE(
+    TRACE_ID BIGINT NOT NULL,
+    PREVIOUS_PRODUCT_ID BIGINT NOT NULL,
+    NEXT_PRODUCT_ID BIGINT NOT NULL,
+    TRACE_TYPE_CODE CHAR(3) NOT NULL,
+    UNIQUE (PREVIOUS_PRODUCT_ID, NEXT_PRODUCT_ID),
+    PRIMARY KEY (TRACE_ID)
+);
+
+alter table WHITE_PERROTTA_OVER_MEMBER add constraint FK_WHITE_PERROTTA_OVER_MEMBER_PRODUCT
+	foreign key (PRODUCT_ID) references WHITE_PERROTTA_OVER_PRODUCT (PRODUCT_ID) ;
+
+alter table WHITE_PERROTTA_OVER_MEMBER add constraint FK_WHITE_PERROTTA_OVER_MEMBER_MACHO
+	foreign key (MACHO_CODE) references WHITE_PERROTTA_OVER_MEMBER_MACHO (MACHO_CODE) ;
+
+alter table WHITE_PERROTTA_OVER_PRODUCT add constraint FK_WHITE_PERROTTA_OVER_PRODUCT_NESTED
+	foreign key (PRODUCT_NESTED_CODE) references WHITE_PERROTTA_OVER_PRODUCT_NESTED (PRODUCT_NESTED_CODE) ;
+
+alter table WHITE_PERROTTA_OVER_TRACE add constraint FK_WHITE_PERROTTA_OVER_TRACE_PREVIOUS
+	foreign key (PREVIOUS_PRODUCT_ID) references WHITE_PERROTTA_OVER_PRODUCT (PRODUCT_ID) ;
+
+alter table WHITE_PERROTTA_OVER_TRACE add constraint FK_WHITE_PERROTTA_OVER_TRACE_NEXT
+	foreign key (NEXT_PRODUCT_ID) references WHITE_PERROTTA_OVER_PRODUCT (PRODUCT_ID) ;
+
+
 -- =======================================================================================
 --                                                                           Irrgular Case
 --                                                                           =============

@@ -455,6 +455,7 @@ public class BsMemberCB extends AbstractConditionBean {
      * </pre>
      * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     * @deprecated the test of dep
      */
     public MemberLoginNss setupSelect_MemberLoginAsLocalBindOverTest(final Integer displayOrder) {
         assertSetupSelectPurpose("memberLoginAsLocalBindOverTest");
@@ -1323,6 +1324,7 @@ public class BsMemberCB extends AbstractConditionBean {
          * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
          * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
          * @return The instance for specification for relation table to specify. (NotNull)
+         * @deprecated the test of dep
          */
         public MemberLoginCB.HpSpecification specifyMemberLoginAsLocalBindOverTest(final Integer displayOrder) {
             assertRelation("memberLoginAsLocalBindOverTest");

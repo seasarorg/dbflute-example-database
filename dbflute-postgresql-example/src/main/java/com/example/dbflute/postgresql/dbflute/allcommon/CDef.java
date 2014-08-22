@@ -5,6 +5,7 @@ import java.util.*;
 import org.seasar.dbflute.jdbc.Classification;
 import org.seasar.dbflute.jdbc.ClassificationCodeType;
 import org.seasar.dbflute.jdbc.ClassificationMeta;
+import org.seasar.dbflute.jdbc.ClassificationUndefinedHandlingType;
 
 /**
  * The definition of classification.
@@ -340,6 +341,10 @@ public interface CDef extends Classification {
         /** boolean type classification */
         TrueFalse
         ;
+        public String classificationName() {
+            return name(); // same as definition name
+        }
+
         public Classification codeOf(Object code) {
             if ("Flg".equals(name())) { return CDef.Flg.codeOf(code); }
             if ("MemberStatus".equals(name())) { return CDef.MemberStatus.codeOf(code); }
@@ -383,6 +388,14 @@ public interface CDef extends Classification {
             if ("PaymentMethod".equals(name())) { return ClassificationCodeType.String; }
             if ("TrueFalse".equals(name())) { return ClassificationCodeType.Boolean; }
             return ClassificationCodeType.String; // as default
+        }
+
+        public ClassificationUndefinedHandlingType undefinedHandlingType() {
+            if ("Flg".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("MemberStatus".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("PaymentMethod".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("TrueFalse".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            return ClassificationUndefinedHandlingType.LOGGING; // as default
         }
     }
 }

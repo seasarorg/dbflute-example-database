@@ -284,6 +284,19 @@ $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over(PURCHASE.product.productStatu
         ; fixedSuffix = AsReferrerForeignOverTest
     }
 
+
+
+    ; FK_XXX = map:{
+        ; localTableName  = WHITE_PERROTTA_OVER_PRODUCT    ; foreignTableName  = WHITE_PERROTTA_OVER_TRACE
+        ; localColumnName = PRODUCT_ID ; foreignColumnName = PREVIOUS_PRODUCT_ID
+        ; fixedCondition = 
+$$foreignAlias$$.TRACE_TYPE_CODE = $$over(WHITE_PERROTTA_OVER_MEMBER)$$.TRACE_TYPE_CODE
+        ; fixedSuffix = AsPerrotta
+    }
+
+
+
+
     # ====================================================================================
     #                                                                Formatted BizOneToOne
     #                                                                =====================
@@ -543,6 +556,18 @@ select min(many.REF_MANY_DATETIME)
         ; localColumnName = SELF_REFERENCE_ID ; foreignColumnName = PARENT_ID
         ; fixedCondition = 1=1
         ; fixedSuffix = AsDirectParent
+    }
+
+    # ====================================================================================
+    #                                                                           Deprecated
+    #                                                                           ==========
+    ; FK_MEMBER_MEMBER_LOGIN_DEPRECATED_TEST = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = 
+$$over($localTable.memberStatus)$$.DISPLAY_ORDER = /*displayOrder(Integer)*/
+        ; fixedSuffix = AsLocalBindOverTest
+        ; deprecated = the test of dep
     }
 
     # ====================================================================================

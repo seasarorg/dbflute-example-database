@@ -61,7 +61,7 @@ public class WxForceClassificationSettingTest extends UnitContainerTestCase {
         Purchase actual = purchaseBhv.selectByPKValueWithDeletedCheck(3L);
 
         // ## Assert ##
-        assertNull(actual.getPaymentCompleteFlg());
+        assertEquals(99999, actual.getPaymentCompleteFlg());
         assertFalse(actual.isPaymentCompleteFlgTrue());
     }
 }

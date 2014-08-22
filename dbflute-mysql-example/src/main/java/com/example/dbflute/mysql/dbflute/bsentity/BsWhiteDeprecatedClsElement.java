@@ -435,7 +435,7 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
      * @param deprecatedClsElementCode The value of the column 'DEPRECATED_CLS_ELEMENT_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setDeprecatedClsElementCode(String deprecatedClsElementCode) {
-        checkImplicitSet("DEPRECATED_CLS_ELEMENT_CODE", CDef.DefMeta.DeprecatedMapCollaborationType, deprecatedClsElementCode);
+        checkClassificationCode("DEPRECATED_CLS_ELEMENT_CODE", CDef.DefMeta.DeprecatedMapCollaborationType, deprecatedClsElementCode);
         __modifiedProperties.addPropertyName("deprecatedClsElementCode");
         _deprecatedClsElementCode = deprecatedClsElementCode;
     }
@@ -457,7 +457,15 @@ public abstract class BsWhiteDeprecatedClsElement implements Entity, Serializabl
         _deprecatedClsElementName = deprecatedClsElementName;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    /**
+     * For framework so basically DON'T use this method.
+     * @param deprecatedClsElementCode The value of the column 'DEPRECATED_CLS_ELEMENT_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingDeprecatedClsElementCode(String deprecatedClsElementCode) {
+        setDeprecatedClsElementCode(deprecatedClsElementCode);
+    }
+
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

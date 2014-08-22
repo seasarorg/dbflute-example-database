@@ -374,4 +374,12 @@ public abstract class BsWhiteUqClassification implements Entity, Serializable, C
         __modifiedProperties.addPropertyName("uqClsCode");
         _uqClsCode = uqClsCode;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param uqClsCode The value of the column 'UQ_CLS_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingUqClsCode(String uqClsCode) {
+        setUqClsCode(uqClsCode);
+    }
 }

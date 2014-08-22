@@ -3,7 +3,7 @@ package com.example.dbflute.mysql.dbflute.whitebox.dfprop;
 import java.lang.reflect.Field;
 
 import org.seasar.dbflute.dbmeta.info.ColumnInfo;
-import org.seasar.dbflute.exception.IllegalClassificationCodeException;
+import org.seasar.dbflute.exception.UndefinedClassificationCodeException;
 import org.seasar.dbflute.util.DfReflectionUtil;
 
 import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.PurchaseDbm;
@@ -68,7 +68,7 @@ public class WxCheckSelectedClassificationTest extends UnitContainerTestCase {
 
             // ## Assert ##
             fail();
-        } catch (IllegalClassificationCodeException e) {
+        } catch (UndefinedClassificationCodeException e) {
             // OK
             log(e.getMessage());
         }

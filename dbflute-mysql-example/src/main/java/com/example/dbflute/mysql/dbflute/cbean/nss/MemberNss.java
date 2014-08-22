@@ -97,6 +97,7 @@ public class MemberNss {
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLocalBindOverTest'.
      * @param displayOrder The bind parameter of fixed condition for displayOrder. (NotNull)
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     * @deprecated the test of dep
      */
     public MemberLoginNss withMemberLoginAsLocalBindOverTest(final Integer displayOrder) {
         _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsLocalBindOverTest(displayOrder); }});

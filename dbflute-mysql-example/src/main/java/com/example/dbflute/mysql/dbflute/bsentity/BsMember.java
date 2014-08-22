@@ -1383,4 +1383,12 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         __modifiedProperties.addPropertyName("versionNo");
         _versionNo = versionNo;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
+     */
+    public void mynativeMappingMemberStatusCode(String memberStatusCode) {
+        setMemberStatusCode(memberStatusCode);
+    }
 }

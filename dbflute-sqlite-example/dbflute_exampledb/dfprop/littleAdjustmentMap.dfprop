@@ -69,6 +69,19 @@ map:{
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # o isCheckSelectedClassification: (NotRequired - Default false)
+    #   [true]
+    #     Check a code of a column related to classification
+    #     whether it's one of classification when it's selected.
+    #     If wrong, throws an exception (when selecting).
+    #
+    #   [false]
+    #     Non.
+    #
+    ; isCheckSelectedClassification = true
+    # - - - - - - - - - -/
+
+    # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isMakeEntityChaseRelation (NotRequired - Default 'false')
     #   [true]
     #     Make chase-relation methods of entity.

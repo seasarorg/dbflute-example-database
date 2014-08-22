@@ -635,4 +635,12 @@ public abstract class BsSummaryWithdrawal implements Entity, Serializable, Clone
         __modifiedProperties.addPropertyName("maxPurchasePrice");
         _maxPurchasePrice = maxPurchasePrice;
     }
+
+    /**
+     * For framework so basically DON'T use this method.
+     * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
+     */
+    public void mynativeMappingMemberStatusCode(String memberStatusCode) {
+        setMemberStatusCode(memberStatusCode);
+    }
 }
