@@ -652,7 +652,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
      * @param mobileLoginFlg The value of the column 'MOBILE_LOGIN_FLG'. (basically NotNull if update: for the constraint)
      */
     public void setMobileLoginFlg(Integer mobileLoginFlg) {
-        checkImplicitSet("MOBILE_LOGIN_FLG", CDef.DefMeta.Flg, mobileLoginFlg);
+        checkClassificationCode("MOBILE_LOGIN_FLG", CDef.DefMeta.Flg, mobileLoginFlg);
         __modifiedProperties.addPropertyName("mobileLoginFlg");
         _mobileLoginFlg = mobileLoginFlg;
     }
@@ -674,7 +674,7 @@ public abstract class BsSynonymMemberLogin implements Entity, Serializable, Clon
         _loginMemberStatusCode = loginMemberStatusCode;
     }
 
-    protected void checkImplicitSet(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkImplicitSet(this, columnDbName, meta, value);
+    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
+        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }
