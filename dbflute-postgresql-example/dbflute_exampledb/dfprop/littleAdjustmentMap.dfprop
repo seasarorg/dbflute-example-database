@@ -43,6 +43,9 @@ map:{
     ; isCompatibleConditionInlineQueryAlwaysGenerate = true
     ; isCompatibleNestSelectSetupperAlwaysGenerate = true
 
+    # the test of suppressing behavior for table classification
+    ; isSuppressTableClassificationDBAccessClass = true
+
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # o isAvailableAddingSchemaToTableSqlName: (NotRequired - Default false)
     #   [true]

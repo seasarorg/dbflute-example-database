@@ -76,9 +76,13 @@ public class OptionMemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((OptionMember)et).getStatusDisplayOrder(); }
         public void write(Entity et, Object vl) { ((OptionMember)et).setStatusDisplayOrder((String)vl); }
     }
-    public static class EpgDummyFlg implements PropertyGateway {
+    public class EpgDummyFlg implements PropertyGateway {
         public Object read(Entity et) { return ((OptionMember)et).getDummyFlg(); }
-        public void write(Entity et, Object vl) { ((OptionMember)et).setDummyFlg((String)vl); }
+        public void write(Entity et, Object vl) {
+            ColumnInfo col = columnDummyFlg();
+            ccls(col, vl);
+            ((OptionMember)et).setDummyFlg((String)vl);
+        }
     }
     public static class EpgDummyNoflg implements PropertyGateway {
         public Object read(Entity et) { return ((OptionMember)et).getDummyNoflg(); }

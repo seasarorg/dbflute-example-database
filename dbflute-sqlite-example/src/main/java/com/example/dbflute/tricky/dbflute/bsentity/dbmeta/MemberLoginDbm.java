@@ -56,9 +56,13 @@ public class MemberLoginDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((MemberLogin)et).getLoginDatetime(); }
         public void write(Entity et, Object vl) { ((MemberLogin)et).setLoginDatetime((java.sql.Timestamp)vl); }
     }
-    public static class EpgMobileLoginFlg implements PropertyGateway {
+    public class EpgMobileLoginFlg implements PropertyGateway {
         public Object read(Entity et) { return ((MemberLogin)et).getMobileLoginFlg(); }
-        public void write(Entity et, Object vl) { ((MemberLogin)et).setMobileLoginFlg(cti(vl)); }
+        public void write(Entity et, Object vl) {
+            ColumnInfo col = columnMobileLoginFlg();
+            ccls(col, vl);
+            ((MemberLogin)et).setMobileLoginFlg(ctn(vl, Integer.class));
+        }
     }
     public static class EpgLoginMemberStatusCode implements PropertyGateway {
         public Object read(Entity et) { return ((MemberLogin)et).getLoginMemberStatusCode(); }
