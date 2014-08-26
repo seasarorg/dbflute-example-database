@@ -167,7 +167,7 @@ public class WhitePerrottaOverProductDbm extends AbstractDBMeta {
      */
     public ForeignInfo foreignWhitePerrottaOverTraceAsPerrotta() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnProductId(), WhitePerrottaOverTraceDbm.getInstance().columnPreviousProductId());
-        return cfi("FK_XXX", "whitePerrottaOverTraceAsPerrotta", this, WhitePerrottaOverTraceDbm.getInstance(), mp, 1, null, true, true, false, true, "$$foreignAlias$$.TRACE_TYPE_CODE = $$over(WHITE_PERROTTA_OVER_MEMBER)$$.TRACE_TYPE_CODE", null, false, null);
+        return cfi("FK_OVER_RELATION_CACHE_TEST", "whitePerrottaOverTraceAsPerrotta", this, WhitePerrottaOverTraceDbm.getInstance(), mp, 1, null, true, true, false, true, "$$foreignAlias$$.TRACE_TYPE_CODE = $$over(WHITE_PERROTTA_OVER_MEMBER)$$.TRACE_TYPE_CODE", null, false, null);
     }
 
     // -----------------------------------------------------

@@ -283,19 +283,16 @@ $$foreignAlias$$.LOGIN_DATETIME > $$over(PURCHASE)$$.PURCHASE_DATETIME
 $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over(PURCHASE.product.productStatus)$$.PRODUCT_STATUS_NAME
         ; fixedSuffix = AsReferrerForeignOverTest
     }
-
-
-
-    ; FK_XXX = map:{
+    # ------------------------------------------------------
+    #                                      RelationCacheTest
+    #                                      -----------------
+    ; FK_OVER_RELATION_CACHE_TEST = map:{
         ; localTableName  = WHITE_PERROTTA_OVER_PRODUCT    ; foreignTableName  = WHITE_PERROTTA_OVER_TRACE
         ; localColumnName = PRODUCT_ID ; foreignColumnName = PREVIOUS_PRODUCT_ID
         ; fixedCondition = 
 $$foreignAlias$$.TRACE_TYPE_CODE = $$over(WHITE_PERROTTA_OVER_MEMBER)$$.TRACE_TYPE_CODE
         ; fixedSuffix = AsPerrotta
     }
-
-
-
 
     # ====================================================================================
     #                                                                Formatted BizOneToOne
