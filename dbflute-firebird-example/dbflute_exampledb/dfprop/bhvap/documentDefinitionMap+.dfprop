@@ -1,0 +1,4 @@
+map:{
+    ; schemaHtmlFileName = schema-bhvap-outsideSql.html
+    ; loadDataReverseMap = map:{}
+}

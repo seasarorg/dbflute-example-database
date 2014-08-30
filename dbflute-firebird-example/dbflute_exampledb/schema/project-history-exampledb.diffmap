@@ -1,0 +1,43 @@
+map:{
+    ; 2012/12/21 00:08:54 = map:{
+        ; diffDate = 2012/12/21 00:08:54
+        ; tableCount = map:{
+            ; next = 16
+            ; previous = 12
+        }
+        ; tableDiff = map:{
+            ; MEMBER_SERVICE = map:{
+                ; tableName = MEMBER_SERVICE
+                ; diffType = ADD
+            }
+            ; PRODUCT_CATEGORY = map:{
+                ; tableName = PRODUCT_CATEGORY
+                ; diffType = ADD
+            }
+            ; REGION = map:{
+                ; tableName = REGION
+                ; diffType = ADD
+            }
+            ; SERVICE_RANK = map:{
+                ; tableName = SERVICE_RANK
+                ; diffType = ADD
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; REGION_ID = map:{
+                        ; columnName = REGION_ID
+                        ; diffType = ADD
+                    }
+                }
+                ; foreignKeyDiff = map:{
+                    ; FK_MEMBER_ADDRESS_REGION_ID_REGION = map:{
+                        ; constraintName = FK_MEMBER_ADDRESS_REGION_ID_REGION
+                        ; diffType = ADD
+                    }
+                }
+            }
+        }
+    }
+}
