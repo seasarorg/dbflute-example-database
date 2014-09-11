@@ -31,6 +31,7 @@ data-directory: playsql/data/ut/xls
 
 [92-whitebox-escaped-dfprop.xls]
   WHITE_ESCAPED_DFPROP (3)
+  WHITE_ESCAPED_NUMBER_INITIAL (4)
 
 [92-whitebox-loaddata1.xls]
   WHITE_LOAD_DATA (3)

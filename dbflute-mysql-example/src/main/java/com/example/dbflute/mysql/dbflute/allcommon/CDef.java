@@ -363,6 +363,204 @@ public interface CDef extends Classification {
     }
 
     /**
+     * the test of reference variable in grouping map
+     */
+    public enum GroupingReference implements CDef {
+        /** LAND_NAME */
+        LAND_NAME("LND", "LAND_NAME", EMPTY_SISTERS)
+        ,
+        /** SEA_NAME */
+        SEA_NAME("SEA", "SEA_NAME", EMPTY_SISTERS)
+        ,
+        /** IKSPIARY_NAME */
+        IKSPIARY_NAME("IKS", "IKSPIARY_NAME", EMPTY_SISTERS)
+        ,
+        /** AMPHI_NAME */
+        AMPHI_NAME("AMP", "AMPHI_NAME", EMPTY_SISTERS)
+        ;
+        private static final Map<String, GroupingReference> _codeValueMap = new HashMap<String, GroupingReference>();
+        static {
+            for (GroupingReference value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private GroupingReference(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.GroupingReference; }
+
+        /**
+         * Is the classification in the group? <br />
+         * サービスが利用できる会員 <br />
+         * The group elements:[LAND_NAME, SEA_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isServiceAvailable() {
+            return LAND_NAME.equals(this) || SEA_NAME.equals(this);
+        }
+
+        /**
+         * Is the classification in the group? <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isServicePlus() {
+            return LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
+        }
+
+        /**
+         * Is the classification in the group? <br />
+         * The group elements:[AMPHI_NAME, LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isNestedPlus() {
+            return AMPHI_NAME.equals(this) || LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
+        }
+
+        /**
+         * Is the classification in the group? <br />
+         * The group elements:[IKSPIARY_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isOneDef() {
+            return IKSPIARY_NAME.equals(this);
+        }
+
+        /**
+         * Is the classification in the group? <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isTwoRef() {
+            return LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
+        }
+
+        /**
+         * Is the classification in the group? <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The determination, true or false.
+         */
+        public boolean isDupRef() {
+            return LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
+        }
+
+        public boolean inGroup(String groupName) {
+            if ("serviceAvailable".equals(groupName)) { return isServiceAvailable(); }
+            if ("servicePlus".equals(groupName)) { return isServicePlus(); }
+            if ("nestedPlus".equals(groupName)) { return isNestedPlus(); }
+            if ("oneDef".equals(groupName)) { return isOneDef(); }
+            if ("twoRef".equals(groupName)) { return isTwoRef(); }
+            if ("dupRef".equals(groupName)) { return isDupRef(); }
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static GroupingReference codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof GroupingReference) { return (GroupingReference)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static GroupingReference nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<GroupingReference> listAll() {
+            return new ArrayList<GroupingReference>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * サービスが利用できる会員 <br />
+         * The group elements:[LAND_NAME, SEA_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfServiceAvailable() {
+            return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfServicePlus() {
+            return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME, IKSPIARY_NAME));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * The group elements:[AMPHI_NAME, LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfNestedPlus() {
+            return new ArrayList<GroupingReference>(Arrays.asList(AMPHI_NAME, LAND_NAME, SEA_NAME, IKSPIARY_NAME));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * The group elements:[IKSPIARY_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfOneDef() {
+            return new ArrayList<GroupingReference>(Arrays.asList(IKSPIARY_NAME));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfTwoRef() {
+            return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME, IKSPIARY_NAME));
+        }
+
+        /**
+         * Get the list of group classification elements. (returns new copied list) <br />
+         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> listOfDupRef() {
+            return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME, IKSPIARY_NAME));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<GroupingReference> groupOf(String groupName) {
+            if ("serviceAvailable".equals(groupName)) { return listOfServiceAvailable(); }
+            if ("servicePlus".equals(groupName)) { return listOfServicePlus(); }
+            if ("nestedPlus".equals(groupName)) { return listOfNestedPlus(); }
+            if ("oneDef".equals(groupName)) { return listOfOneDef(); }
+            if ("twoRef".equals(groupName)) { return listOfTwoRef(); }
+            if ("dupRef".equals(groupName)) { return listOfDupRef(); }
+            return new ArrayList<GroupingReference>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
      * The test of relation reference
      */
     public enum SelfReference implements CDef {
@@ -1245,6 +1443,82 @@ public interface CDef extends Classification {
     }
 
     /**
+     * 6
+     */
+    public enum EscapedNumberInitialCls implements CDef {
+        /** 1Foo */
+        N1Foo("1FO", "1Foo", EMPTY_SISTERS)
+        ,
+        /** 3Bar */
+        N3Bar("3BA", "3Bar", EMPTY_SISTERS)
+        ,
+        /** 7Qux */
+        N7Qux("7QU", "7Qux", EMPTY_SISTERS)
+        ,
+        /** Corge9 */
+        Corge9("CO9", "Corge9", EMPTY_SISTERS)
+        ;
+        private static final Map<String, EscapedNumberInitialCls> _codeValueMap = new HashMap<String, EscapedNumberInitialCls>();
+        static {
+            for (EscapedNumberInitialCls value : values()) {
+                _codeValueMap.put(value.code().toLowerCase(), value);
+                for (String sister : value.sisters()) { _codeValueMap.put(sister.toLowerCase(), value); }
+            }
+        }
+        private String _code; private String _alias; private String[] _sisters;
+        private EscapedNumberInitialCls(String code, String alias, String[] sisters)
+        { _code = code; _alias = alias; _sisters = sisters; }
+        public String code() { return _code; } public String alias() { return _alias; }
+        private String[] sisters() { return _sisters; }
+        public Map<String, Object> subItemMap() { return EMPTY_SUB_ITEM_MAP; }
+        public ClassificationMeta meta() { return CDef.DefMeta.EscapedNumberInitialCls; }
+
+        public boolean inGroup(String groupName) {
+            return false;
+        }
+
+        /**
+         * Get the classification by the code. (CaseInsensitive)
+         * @param code The value of code, which is case-insensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the code. (NullAllowed: if not found, returns null)
+         */
+        public static EscapedNumberInitialCls codeOf(Object code) {
+            if (code == null) { return null; }
+            if (code instanceof EscapedNumberInitialCls) { return (EscapedNumberInitialCls)code; }
+            return _codeValueMap.get(code.toString().toLowerCase());
+        }
+
+        /**
+         * Get the classification by the name (also called 'value' in ENUM world).
+         * @param name The string of name, which is case-sensitive. (NullAllowed: if null, returns null)
+         * @return The instance of the corresponding classification to the name. (NullAllowed: if not found, returns null)
+         */
+        public static EscapedNumberInitialCls nameOf(String name) {
+            if (name == null) { return null; }
+            try { return valueOf(name); } catch (RuntimeException ignored) { return null; }
+        }
+
+        /**
+         * Get the list of all classification elements. (returns new copied list)
+         * @return The list of all classification elements. (NotNull)
+         */
+        public static List<EscapedNumberInitialCls> listAll() {
+            return new ArrayList<EscapedNumberInitialCls>(Arrays.asList(values()));
+        }
+
+        /**
+         * Get the list of classification elements in the specified group. (returns new copied list) <br />
+         * @param groupName The string of group name, which is case-sensitive. (NullAllowed: if null, returns empty list)
+         * @return The list of classification elements in the group. (NotNull)
+         */
+        public static List<EscapedNumberInitialCls> groupOf(String groupName) {
+            return new ArrayList<EscapedNumberInitialCls>(4);
+        }
+
+        @Override public String toString() { return code(); }
+    }
+
+    /**
      * top first line            top second line            top third line
      */
     public enum LineSepCommentCls implements CDef {
@@ -2030,6 +2304,9 @@ public interface CDef extends Classification {
         /** 支払方法 */
         PaymentMethod
         ,
+        /** the test of reference variable in grouping map */
+        GroupingReference
+        ,
         /** The test of relation reference */
         SelfReference
         ,
@@ -2059,6 +2336,9 @@ public interface CDef extends Classification {
         ,
         /** /*IF pmb.yourTop&#42;/&gt;&lt;& */
         EscapedJavaDocCls
+        ,
+        /** 6 */
+        EscapedNumberInitialCls
         ,
         /** top first line            top second line            top third line */
         LineSepCommentCls
@@ -2099,6 +2379,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return CDef.Region.codeOf(code); }
             if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.codeOf(code); }
             if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.codeOf(code); }
+            if ("GroupingReference".equals(name())) { return CDef.GroupingReference.codeOf(code); }
             if ("SelfReference".equals(name())) { return CDef.SelfReference.codeOf(code); }
             if ("TopCommentOnly".equals(name())) { return CDef.TopCommentOnly.codeOf(code); }
             if ("SubItemImplicit".equals(name())) { return CDef.SubItemImplicit.codeOf(code); }
@@ -2109,6 +2390,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return CDef.QuxCls.codeOf(code); }
             if ("EscapedDfpropCls".equals(name())) { return CDef.EscapedDfpropCls.codeOf(code); }
             if ("EscapedJavaDocCls".equals(name())) { return CDef.EscapedJavaDocCls.codeOf(code); }
+            if ("EscapedNumberInitialCls".equals(name())) { return CDef.EscapedNumberInitialCls.codeOf(code); }
             if ("LineSepCommentCls".equals(name())) { return CDef.LineSepCommentCls.codeOf(code); }
             if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.codeOf(code); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.codeOf(code); }
@@ -2127,6 +2409,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return CDef.Region.valueOf(name); }
             if ("WithdrawalReason".equals(name())) { return CDef.WithdrawalReason.valueOf(name); }
             if ("PaymentMethod".equals(name())) { return CDef.PaymentMethod.valueOf(name); }
+            if ("GroupingReference".equals(name())) { return CDef.GroupingReference.valueOf(name); }
             if ("SelfReference".equals(name())) { return CDef.SelfReference.valueOf(name); }
             if ("TopCommentOnly".equals(name())) { return CDef.TopCommentOnly.valueOf(name); }
             if ("SubItemImplicit".equals(name())) { return CDef.SubItemImplicit.valueOf(name); }
@@ -2137,6 +2420,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return CDef.QuxCls.valueOf(name); }
             if ("EscapedDfpropCls".equals(name())) { return CDef.EscapedDfpropCls.valueOf(name); }
             if ("EscapedJavaDocCls".equals(name())) { return CDef.EscapedJavaDocCls.valueOf(name); }
+            if ("EscapedNumberInitialCls".equals(name())) { return CDef.EscapedNumberInitialCls.valueOf(name); }
             if ("LineSepCommentCls".equals(name())) { return CDef.LineSepCommentCls.valueOf(name); }
             if ("DeprecatedTopBasicType".equals(name())) { return CDef.DeprecatedTopBasicType.valueOf(name); }
             if ("DeprecatedMapBasicType".equals(name())) { return CDef.DeprecatedMapBasicType.valueOf(name); }
@@ -2155,6 +2439,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return toClassificationList(CDef.Region.listAll()); }
             if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.listAll()); }
             if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.listAll()); }
+            if ("GroupingReference".equals(name())) { return toClassificationList(CDef.GroupingReference.listAll()); }
             if ("SelfReference".equals(name())) { return toClassificationList(CDef.SelfReference.listAll()); }
             if ("TopCommentOnly".equals(name())) { return toClassificationList(CDef.TopCommentOnly.listAll()); }
             if ("SubItemImplicit".equals(name())) { return toClassificationList(CDef.SubItemImplicit.listAll()); }
@@ -2165,6 +2450,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return toClassificationList(CDef.QuxCls.listAll()); }
             if ("EscapedDfpropCls".equals(name())) { return toClassificationList(CDef.EscapedDfpropCls.listAll()); }
             if ("EscapedJavaDocCls".equals(name())) { return toClassificationList(CDef.EscapedJavaDocCls.listAll()); }
+            if ("EscapedNumberInitialCls".equals(name())) { return toClassificationList(CDef.EscapedNumberInitialCls.listAll()); }
             if ("LineSepCommentCls".equals(name())) { return toClassificationList(CDef.LineSepCommentCls.listAll()); }
             if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.listAll()); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.listAll()); }
@@ -2183,6 +2469,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return toClassificationList(CDef.Region.groupOf(groupName)); }
             if ("WithdrawalReason".equals(name())) { return toClassificationList(CDef.WithdrawalReason.groupOf(groupName)); }
             if ("PaymentMethod".equals(name())) { return toClassificationList(CDef.PaymentMethod.groupOf(groupName)); }
+            if ("GroupingReference".equals(name())) { return toClassificationList(CDef.GroupingReference.groupOf(groupName)); }
             if ("SelfReference".equals(name())) { return toClassificationList(CDef.SelfReference.groupOf(groupName)); }
             if ("TopCommentOnly".equals(name())) { return toClassificationList(CDef.TopCommentOnly.groupOf(groupName)); }
             if ("SubItemImplicit".equals(name())) { return toClassificationList(CDef.SubItemImplicit.groupOf(groupName)); }
@@ -2193,6 +2480,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return toClassificationList(CDef.QuxCls.groupOf(groupName)); }
             if ("EscapedDfpropCls".equals(name())) { return toClassificationList(CDef.EscapedDfpropCls.groupOf(groupName)); }
             if ("EscapedJavaDocCls".equals(name())) { return toClassificationList(CDef.EscapedJavaDocCls.groupOf(groupName)); }
+            if ("EscapedNumberInitialCls".equals(name())) { return toClassificationList(CDef.EscapedNumberInitialCls.groupOf(groupName)); }
             if ("LineSepCommentCls".equals(name())) { return toClassificationList(CDef.LineSepCommentCls.groupOf(groupName)); }
             if ("DeprecatedTopBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedTopBasicType.groupOf(groupName)); }
             if ("DeprecatedMapBasicType".equals(name())) { return toClassificationList(CDef.DeprecatedMapBasicType.groupOf(groupName)); }
@@ -2216,6 +2504,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return ClassificationCodeType.Number; }
             if ("WithdrawalReason".equals(name())) { return ClassificationCodeType.String; }
             if ("PaymentMethod".equals(name())) { return ClassificationCodeType.String; }
+            if ("GroupingReference".equals(name())) { return ClassificationCodeType.String; }
             if ("SelfReference".equals(name())) { return ClassificationCodeType.Number; }
             if ("TopCommentOnly".equals(name())) { return ClassificationCodeType.String; }
             if ("SubItemImplicit".equals(name())) { return ClassificationCodeType.Number; }
@@ -2226,6 +2515,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return ClassificationCodeType.String; }
             if ("EscapedDfpropCls".equals(name())) { return ClassificationCodeType.String; }
             if ("EscapedJavaDocCls".equals(name())) { return ClassificationCodeType.String; }
+            if ("EscapedNumberInitialCls".equals(name())) { return ClassificationCodeType.String; }
             if ("LineSepCommentCls".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedTopBasicType".equals(name())) { return ClassificationCodeType.String; }
             if ("DeprecatedMapBasicType".equals(name())) { return ClassificationCodeType.String; }
@@ -2244,6 +2534,7 @@ public interface CDef extends Classification {
             if ("Region".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("WithdrawalReason".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("PaymentMethod".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("GroupingReference".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("SelfReference".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("TopCommentOnly".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("SubItemImplicit".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
@@ -2254,6 +2545,7 @@ public interface CDef extends Classification {
             if ("QuxCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("EscapedDfpropCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("EscapedJavaDocCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
+            if ("EscapedNumberInitialCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("LineSepCommentCls".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("DeprecatedTopBasicType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }
             if ("DeprecatedMapBasicType".equals(name())) { return ClassificationUndefinedHandlingType.EXCEPTION; }

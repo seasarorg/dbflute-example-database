@@ -1,4 +1,17 @@
 map:{
+    ; 2014/09/11 23:55:31 = map:{
+        ; diffDate = 2014/09/11 23:55:31
+        ; tableCount = map:{
+            ; next = 106
+            ; previous = 105
+        }
+        ; tableDiff = map:{
+            ; white_escaped_number_initial = map:{
+                ; tableName = white_escaped_number_initial
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/08/22 20:47:31 = map:{
         ; diffDate = 2014/08/22 20:47:31
         ; tableCount = map:{

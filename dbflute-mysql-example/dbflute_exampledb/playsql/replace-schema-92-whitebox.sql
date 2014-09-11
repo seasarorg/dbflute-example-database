@@ -699,6 +699,15 @@ create table WHITE_ESCAPED_JAVA_DOC (
 ) ;
 
 -- /= = = = = = = = = = = = = = = = = = = = = = = = =
+-- for the test of escaped number initial name
+-- = = = = = = = = = =/
+create table WHITE_ESCAPED_NUMBER_INITIAL (
+	NUMBER_INITIAL_CODE CHAR(3) NOT NULL,
+	NUMBER_INITIAL_NAME VARCHAR(20),
+	PRIMARY KEY (NUMBER_INITIAL_CODE)
+) ;
+
+-- /= = = = = = = = = = = = = = = = = = = = = = = = =
 -- for the test of line separator comment
 -- = = = = = = = = = =/
 create table WHITE_LINE_SEP_COMMENT (

@@ -93,6 +93,38 @@ map:{
     # ====================================================================================
     #                                                                        Whitebox Test
     #                                                                        =============
+    ; GroupingReference = list:{
+        ; map:{
+            ; topComment=the test of reference variable in grouping map
+            ; codeType=String
+            ; groupingMap = map:{
+                ; serviceAvailable = map:{
+                    ; groupComment = サービスが利用できる会員
+                    ; elementList = list:{LAND_NAME;SEA_NAME}
+                }
+                ; servicePlus = map:{
+                    ; elementList = list:{$$ref$$.serviceAvailable ; IKSPIARY_NAME}
+                }
+                ; nestedPlus = map:{
+                    ; elementList = list:{ AMPHI_NAME ; $$ref$$.servicePlus }
+                }
+                ; oneDef = map:{
+                    ; elementList = list:{ IKSPIARY_NAME }
+                }
+                ; twoRef = map:{
+                    ; elementList = list:{ $$ref$$.serviceAvailable ; $$ref$$.oneDef }
+                }
+                ; dupRef = map:{
+                    ; elementList = list:{ $$ref$$.servicePlus ; $$ref$$.oneDef }
+                }
+            }
+        }
+        ; map:{code=LND; name=LAND_NAME}
+        ; map:{code=SEA; name=SEA_NAME}
+        ; map:{code=IKS; name=IKSPIARY_NAME}
+        ; map:{code=AMP; name=AMPHI_NAME}
+    }
+
     # the test of 'sql' expression
     ; SelfReference = list:{
         ; map:{topComment=The test of relation reference; codeType=Number}
@@ -265,6 +297,14 @@ select category.CLS_CATEGORY_NAME as classificationName
         ; map:{code=BAR; name=Second
             ; comment=/*IF pmb.yourBarComment*/><&
         }
+    }
+
+    # the test of escaped for DfProp
+    ; EscapedNumberInitialCls = list:{
+        ; map:{
+            ; topComment=6; codeType=String
+        }
+        ; map:{table=WHITE_ESCAPED_NUMBER_INITIAL; code=NUMBER_INITIAL_CODE; name=NUMBER_INITIAL_NAME}
     }
 
     # the test of line separator

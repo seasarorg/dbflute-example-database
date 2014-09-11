@@ -1080,6 +1080,14 @@
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ESCAPED_JAVA_DOC_NAME" size="20" type="VARCHAR"/>
     </table>
+    <table name="white_escaped_number_initial"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="CHAR" javaType="String"
+            name="NUMBER_INITIAL_CODE" pkName="PRIMARY"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="NUMBER_INITIAL_NAME" size="20" type="VARCHAR"/>
+    </table>
     <table name="white_geared_cipher"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"

@@ -21,7 +21,6 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
@@ -76,7 +75,7 @@ public abstract class BsWhiteLineSepCommentBhv extends AbstractBehaviorWritable<
     //                                                                              DBMeta
     //                                                                              ======
     /** {@inheritDoc} */
-    public DBMeta getDBMeta() { return WhiteLineSepCommentDbm.getInstance(); }
+    public WhiteLineSepCommentDbm getDBMeta() { return WhiteLineSepCommentDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
     public WhiteLineSepCommentDbm getMyDBMeta() { return WhiteLineSepCommentDbm.getInstance(); }
