@@ -1103,6 +1103,14 @@
             javaType="java.sql.Timestamp" name="CIPHER_DATETIME"
             size="100" type="TIMESTAMP"/>
     </table>
+    <table name="white_grouping_reference"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column autoIncrement="true" comment="" dbType="BIGINT"
+            javaType="Long" name="GROUPING_REFERENCE_ID"
+            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="GROUPING_REFERENCE_CODE" required="true" size="3" type="CHAR"/>
+    </table>
     <table name="white_implicit_conv_integer"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"

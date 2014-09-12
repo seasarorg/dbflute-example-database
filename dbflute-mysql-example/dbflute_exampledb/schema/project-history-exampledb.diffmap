@@ -1,4 +1,17 @@
 map:{
+    ; 2014/09/12 23:52:04 = map:{
+        ; diffDate = 2014/09/12 23:52:04
+        ; tableCount = map:{
+            ; next = 107
+            ; previous = 106
+        }
+        ; tableDiff = map:{
+            ; white_grouping_reference = map:{
+                ; tableName = white_grouping_reference
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/09/11 23:55:31 = map:{
         ; diffDate = 2014/09/11 23:55:31
         ; tableCount = map:{

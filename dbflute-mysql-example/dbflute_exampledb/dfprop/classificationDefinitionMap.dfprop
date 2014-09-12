@@ -113,6 +113,7 @@ map:{
                 }
                 ; twoRef = map:{
                     ; elementList = list:{ $$ref$$.serviceAvailable ; $$ref$$.oneDef }
+                    ; isUseDocumentOnly = true
                 }
                 ; dupRef = map:{
                     ; elementList = list:{ $$ref$$.servicePlus ; $$ref$$.oneDef }

@@ -92,6 +92,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_escaped_java_doc", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteEscapedJavaDocDbm");
         tmpMap.put("white_escaped_number_initial", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteEscapedNumberInitialDbm");
         tmpMap.put("white_geared_cipher", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteGearedCipherDbm");
+        tmpMap.put("white_grouping_reference", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteGroupingReferenceDbm");
         tmpMap.put("white_implicit_conv_integer", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitConvIntegerDbm");
         tmpMap.put("white_implicit_conv_numeric", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitConvNumericDbm");
         tmpMap.put("white_implicit_conv_string", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteImplicitConvStringDbm");

@@ -396,6 +396,15 @@ create table WHITE_BINARY (
 -- =======================================================================================
 --                                                                        DBFlute Property
 --                                                                        ================
+-- /= = = = = = = = = = = = = = = = = = = = = = = =
+-- for the test of grouping map for classification
+-- = = = = = = = = = =/
+create table WHITE_GROUPING_REFERENCE(
+    GROUPING_REFERENCE_ID BIGINT AUTO_INCREMENT NOT NULL,
+    GROUPING_REFERENCE_CODE CHAR(3) NOT NULL,
+    PRIMARY KEY (GROUPING_REFERENCE_ID)
+);
+
 -- /= = = = = = = = = = = = = = = = = = = = = = = = = =
 -- for the test of implicit conversion foreign key
 -- = = = = = = = = = =/

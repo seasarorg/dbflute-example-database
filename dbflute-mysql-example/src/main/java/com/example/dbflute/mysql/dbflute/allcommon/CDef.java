@@ -435,15 +435,6 @@ public interface CDef extends Classification {
          * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
          * @return The determination, true or false.
          */
-        public boolean isTwoRef() {
-            return LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
-        }
-
-        /**
-         * Is the classification in the group? <br />
-         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
-         * @return The determination, true or false.
-         */
         public boolean isDupRef() {
             return LAND_NAME.equals(this) || SEA_NAME.equals(this) || IKSPIARY_NAME.equals(this);
         }
@@ -453,7 +444,6 @@ public interface CDef extends Classification {
             if ("servicePlus".equals(groupName)) { return isServicePlus(); }
             if ("nestedPlus".equals(groupName)) { return isNestedPlus(); }
             if ("oneDef".equals(groupName)) { return isOneDef(); }
-            if ("twoRef".equals(groupName)) { return isTwoRef(); }
             if ("dupRef".equals(groupName)) { return isDupRef(); }
             return false;
         }
@@ -529,15 +519,6 @@ public interface CDef extends Classification {
          * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
          * @return The list of classification elements in the group. (NotNull)
          */
-        public static List<GroupingReference> listOfTwoRef() {
-            return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME, IKSPIARY_NAME));
-        }
-
-        /**
-         * Get the list of group classification elements. (returns new copied list) <br />
-         * The group elements:[LAND_NAME, SEA_NAME, IKSPIARY_NAME]
-         * @return The list of classification elements in the group. (NotNull)
-         */
         public static List<GroupingReference> listOfDupRef() {
             return new ArrayList<GroupingReference>(Arrays.asList(LAND_NAME, SEA_NAME, IKSPIARY_NAME));
         }
@@ -552,7 +533,6 @@ public interface CDef extends Classification {
             if ("servicePlus".equals(groupName)) { return listOfServicePlus(); }
             if ("nestedPlus".equals(groupName)) { return listOfNestedPlus(); }
             if ("oneDef".equals(groupName)) { return listOfOneDef(); }
-            if ("twoRef".equals(groupName)) { return listOfTwoRef(); }
             if ("dupRef".equals(groupName)) { return listOfDupRef(); }
             return new ArrayList<GroupingReference>(4);
         }

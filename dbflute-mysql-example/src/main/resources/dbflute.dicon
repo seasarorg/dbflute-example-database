@@ -59,6 +59,7 @@
     <component name="whiteEscapedJavaDocBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteEscapedJavaDocBhv"/>
     <component name="whiteEscapedNumberInitialBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteEscapedNumberInitialBhv"/>
     <component name="whiteGearedCipherBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteGearedCipherBhv"/>
+    <component name="whiteGroupingReferenceBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteGroupingReferenceBhv"/>
     <component name="whiteImplicitConvIntegerBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvIntegerBhv"/>
     <component name="whiteImplicitConvNumericBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvNumericBhv"/>
     <component name="whiteImplicitConvStringBhv" class="com.example.dbflute.mysql.dbflute.exbhv.WhiteImplicitConvStringBhv"/>

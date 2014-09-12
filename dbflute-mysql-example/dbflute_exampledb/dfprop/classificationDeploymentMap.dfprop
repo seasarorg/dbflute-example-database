@@ -47,6 +47,11 @@ map:{
         ; CORGE_TYPE_CODE = VariantRelationQuxType
     }
 
+    # the test of grouping map
+    ; WHITE_GROUPING_REFERENCE = map:{
+        ; GROUPING_REFERENCE_CODE = GroupingReference
+    }
+
     # the test of escape and line separator
     ; WHITE_ESCAPED_DFPROP = map:{
         ; ESCAPED_DFPROP_CODE = EscapedDfpropCls
