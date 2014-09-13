@@ -187,7 +187,7 @@ public class ThreadSafeTest extends UnitContainerTestCase {
                 memberBhv.updateNonstrict(member);
                 markHere("success");
             }
-        }, new CannonballOption().commitTx().expectExceptionAny("deadlock detected"));
+        }, new CannonballOption().commitTx().repeatCount(5).expectExceptionAny("deadlock detected"));
         assertMarked("success");
     }
 }
