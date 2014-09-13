@@ -281,7 +281,7 @@ dl.procedurelist dd.column pre {
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> public</td>
 		<td class="relcell"><a href="#member_status" title="fk_member_member_status">member_status</a>, <a href="#member_address" class="additionalfk" title="FK_MEMBER_MEMBER_ADDRESS_VALID: fixedCondition=&quot;$$foreignAlias$$.VALID_BEGIN_DATE &lt;= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE &gt;= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null&quot;">member_address(AsValid)</a>, <a href="#member_login" class="additionalfk" title="FK_MEMBER_MEMBER_LOGIN_LATEST: fixedCondition=&quot;$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect max(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$&quot;">member_login(AsLatest)</a></td>
-		<td class="relcell"><a href="#member_address" title="fk_member_address_member">member_address</a>, <a href="#member_login" title="fk_member_login_member">member_login</a>, <a href="#member_security" title="fk_member_sc_info_member">member_security</a>, <a href="#member_withdrawal" title="fk_member_withdrawal_info_member">member_withdrawal</a>, <a href="#purchase" title="fk_purchase_member">purchase</a></td>
+		<td class="relcell"><a href="#member_address" title="fk_member_address_member">member_address</a>, <a href="#member_login" title="fk_member_login_member">member_login</a>, <a href="#member_security" title="fk_member_sc_info_member">member_security</a>, <a href="#member_service" title="fk_member_service_member">member_service</a>, <a href="#member_withdrawal" title="fk_member_withdrawal_info_member">member_withdrawal</a>, <a href="#purchase" title="fk_purchase_member">purchase</a></td>
 		<td class="commentcell"> 会員登録時にデータが登録される。基本的に物理削除はなく、退会したらステータスが退会会員になる。ライフサイクルやカテゴリの違う会員それぞれの詳細情報は、別途&nbsp;one-to-one&nbsp;のテーブルに。</td>
 		<td class="subcell">Member</td>
 	</tr>
@@ -324,7 +324,7 @@ dl.procedurelist dd.column pre {
 		<td><a href="#member_service" title="type=TABLE, primaryKey={member_service_id}, nameLength=14, columnCount=11">member_service</a></td>
 		<td class="typecell">TABLE</td>
 		<td class="schemacell"> public</td>
-		<td class="relcell"><a href="#service_rank" title="fk_member_service_service_rank_code">service_rank</a></td>
+		<td class="relcell"><a href="#member" title="fk_member_service_member">member</a>, <a href="#service_rank" title="fk_member_service_service_rank_code">service_rank</a></td>
 		<td class="relcell">&nbsp;</td>
 		<td class="commentcell"> 会員のサービス情報（ポイントサービスなど）。<br />ExampleDBとして、あえて統一性を崩してユニーク制約経由の&nbsp;one-to-one&nbsp;を表現している。</td>
 		<td class="subcell">MemberService</td>
@@ -816,7 +816,7 @@ VENDOR-NON COMPILABLE
 		<td class="typecell">serial</td>
 		<td class="sizecell"> 10 </td>
 		<td class="relcell"><a href="#member_address" class="additionalfk" title="FK_MEMBER_MEMBER_ADDRESS_VALID: fixedCondition=&quot;$$foreignAlias$$.VALID_BEGIN_DATE &lt;= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE &gt;= /*$$locationBase$$.parameterMapMemberAddressAsValid.targetDate*/null&quot;">member_address(AsValid)</a>,<br /><a href="#member_login" class="additionalfk" title="FK_MEMBER_MEMBER_LOGIN_LATEST: fixedCondition=&quot;$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect max(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$&quot;">member_login(AsLatest)</a>&nbsp;</td>
-		<td class="relcell"><a href="#member_address" title="fk_member_address_member">member_address</a>,<br /><a href="#member_login" title="fk_member_login_member">member_login</a>,<br /><a href="#member_security" title="fk_member_sc_info_member">member_security</a>,<br /><a href="#member_withdrawal" title="fk_member_withdrawal_info_member">member_withdrawal</a>,<br /><a href="#purchase" title="fk_purchase_member">purchase</a>&nbsp;</td>
+		<td class="relcell"><a href="#member_address" title="fk_member_address_member">member_address</a>,<br /><a href="#member_login" title="fk_member_login_member">member_login</a>,<br /><a href="#member_security" title="fk_member_sc_info_member">member_security</a>,<br /><a href="#member_service" title="fk_member_service_member">member_service</a>,<br /><a href="#member_withdrawal" title="fk_member_withdrawal_info_member">member_withdrawal</a>,<br /><a href="#purchase" title="fk_purchase_member">purchase</a>&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> 会員を識別するID。連番として自動採番される。<br />（会員IDだけに限らず）採番方法はDBMS次第。</td>
 		<td class="subcell">memberId</td>
@@ -1708,14 +1708,14 @@ VENDOR-NON COMPILABLE
 		<td class="rownumcell">2</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell"> &nbsp;</td>
-		<td class="flgcell">&nbsp;</td>
+		<td class="flgcell" title="uq_member_service(member_id)">o</td>
 		<td class="flgcell">&nbsp;</td>
 		<td class="flgcell">*</td>
 		<td class="aliascell">会員ID</td>
 		<td id="member_service_member_id">member_id</td>
 		<td class="typecell">int4</td>
 		<td class="sizecell"> 10 </td>
-		<td class="relcell">&nbsp;&nbsp;</td>
+		<td class="relcell"><a href="#member" title="fk_member_service_member">member</a>&nbsp;</td>
 		<td class="relcell">&nbsp;</td>
 		<td class="relcell"> &nbsp;</td>
 		<td class="commentcell"> 会員を参照するID。ユニークなので、会員とは&nbsp;one-to-one&nbsp;の関係に。</td>

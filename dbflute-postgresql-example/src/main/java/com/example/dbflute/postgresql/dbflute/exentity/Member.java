@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * You can implement your original methods here. <br />
  * This class is NOT overrided when re-generating. <br />
  * @author DBFlute(AutoGenerator)
+ * @author jflute
  */
 public class Member extends com.example.dbflute.postgresql.dbflute.bsentity.BsMember {
 
@@ -26,6 +27,12 @@ public class Member extends com.example.dbflute.postgresql.dbflute.bsentity.BsMe
     protected Timestamp _latestLoginDatetime;
     protected Integer _loginCount;
     protected Integer _productKindCount;
+
+    /** HIGHEST_PURCHASE_PRICE: Derived Referrer Alias. */
+    public static final String ALIAS_highestPurchasePrice = "HIGHEST_PURCHASE_PRICE";
+
+    /** HIGHEST_PURCHASE_PRICE: (Derived Referrer) */
+    protected Integer _highestPurchasePrice;
 
     // ===================================================================================
     //                                                                            Accessor
@@ -52,5 +59,21 @@ public class Member extends com.example.dbflute.postgresql.dbflute.bsentity.BsMe
 
     public void setProductKindCount(Integer productKindCount) {
         this._productKindCount = productKindCount;
+    }
+
+    /**
+     * [get] HIGHEST_PURCHASE_PRICE: (Derived Referrer)
+     * @return The value of the column 'HIGHEST_PURCHASE_PRICE'. (NullAllowed)
+     */
+    public Integer getHighestPurchasePrice() {
+        return _highestPurchasePrice;
+    }
+
+    /**
+     * [set] HIGHEST_PURCHASE_PRICE: (Derived Referrer)
+     * @param highestPurchasePrice The value of the column 'HIGHEST_PURCHASE_PRICE'. (NullAllowed)
+     */
+    public void setHighestPurchasePrice(Integer highestPurchasePrice) {
+        _highestPurchasePrice = highestPurchasePrice;
     }
 }

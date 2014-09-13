@@ -100,6 +100,18 @@ public class BsMemberServiceCB extends AbstractConditionBean {
         cb.query().setMemberServiceId_Equal(memberServiceId);
     }
 
+    /**
+     * Accept the query condition of unique key as equal.
+     * @param memberId (会員ID): UQ, NotNull, int4(10), FK to member. (NotNull)
+     * @return this. (NotNull)
+     */
+    public MemberServiceCB acceptUniqueOf(Integer memberId) {
+        assertObjectNotNull("memberId", memberId);
+        BsMemberServiceCB cb = this;
+        cb.query().setMemberId_Equal(memberId);
+        return (MemberServiceCB)this;
+    }
+
     public ConditionBean addOrderBy_PK_Asc() {
         query().addOrderBy_MemberServiceId_Asc();
         return this;
@@ -275,6 +287,34 @@ public class BsMemberServiceCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    protected MemberNss _nssMember;
+    public MemberNss getNssMember() {
+        if (_nssMember == null) { _nssMember = new MemberNss(null); }
+        return _nssMember;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員)member by my member_id, named 'member'.
+     * <pre>
+     * MemberServiceCB cb = new MemberServiceCB();
+     * cb.<span style="color: #DD4747">setupSelect_Member()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * MemberService memberService = memberServiceBhv.selectEntityWithDeletedCheck(cb);
+     * ... = memberService.<span style="color: #DD4747">getMember()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberNss setupSelect_Member() {
+        assertSetupSelectPurpose("member");
+        if (hasSpecifiedColumn()) { // if reverse call
+            specify().columnMemberId();
+        }
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMember(); } });
+        if (_nssMember == null || !_nssMember.hasConditionQuery())
+        { _nssMember = new MemberNss(query().queryMember()); }
+        return _nssMember;
+    }
+
     protected ServiceRankNss _nssServiceRank;
     public ServiceRankNss getNssServiceRank() {
         if (_nssServiceRank == null) { _nssServiceRank = new ServiceRankNss(null); }
@@ -345,6 +385,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
     }
 
     public static class HpSpecification extends HpAbstractSpecification<MemberServiceCQ> {
+        protected MemberCB.HpSpecification _member;
         protected ServiceRankCB.HpSpecification _serviceRank;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberServiceCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
@@ -355,7 +396,7 @@ public class BsMemberServiceCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberServiceId() { return doColumn("member_service_id"); }
         /**
-         * (会員ID)member_id: {NotNull, int4(10)}
+         * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("member_id"); }
@@ -409,6 +450,10 @@ public class BsMemberServiceCB extends AbstractConditionBean {
         @Override
         protected void doSpecifyRequiredColumn() {
             columnMemberServiceId(); // PK
+            if (qyCall().qy().hasConditionQueryMember()
+                    || qyCall().qy().xgetReferrerQuery() instanceof MemberCQ) {
+                columnMemberId(); // FK or one-to-one referrer
+            }
             if (qyCall().qy().hasConditionQueryServiceRank()
                     || qyCall().qy().xgetReferrerQuery() instanceof ServiceRankCQ) {
                 columnServiceRankCode(); // FK or one-to-one referrer
@@ -416,6 +461,27 @@ public class BsMemberServiceCB extends AbstractConditionBean {
         }
         @Override
         protected String getTableDbName() { return "member_service"; }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員)member by my member_id, named 'member'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberCB.HpSpecification specifyMember() {
+            assertRelation("member");
+            if (_member == null) {
+                _member = new MemberCB.HpSpecification(_baseCB, new HpSpQyCall<MemberCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMember(); }
+                    public MemberCQ qy() { return _qyCall.qy().queryMember(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _member.xsetSyncQyCall(new HpSpQyCall<MemberCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMember(); }
+                        public MemberCQ qy() { return xsyncQyCall().qy().queryMember(); }
+                    });
+                }
+            }
+            return _member;
+        }
         /**
          * Prepare to specify functions about relation table. <br />
          * (サービスランク)service_rank by my service_rank_code, named 'serviceRank'.

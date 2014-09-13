@@ -200,6 +200,28 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up ExistsReferrer (correlated sub-query). <br />
+     * {exists (select member_id from member_service where ...)} <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">existsMemberServiceAsOne</span>(new SubQuery&lt;MemberServiceCB&gt;() {
+     *     public void query(MemberServiceCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of MemberServiceAsOne for 'exists'. (NotNull)
+     */
+    public void existsMemberServiceAsOne(SubQuery<MemberServiceCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_ExistsReferrer_MemberServiceAsOne(cb.query());
+        registerExistsReferrer(cb.query(), "member_id", "member_id", pp, "memberServiceAsOne");
+    }
+    public abstract String keepMemberId_ExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq);
+
+    /**
+     * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select member_id from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
@@ -310,6 +332,28 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select member_id from member_service where ...)} <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">notExistsMemberServiceAsOne</span>(new SubQuery&lt;MemberServiceCB&gt;() {
+     *     public void query(MemberServiceCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of MemberId_NotExistsReferrer_MemberServiceAsOne for 'not exists'. (NotNull)
+     */
+    public void notExistsMemberServiceAsOne(SubQuery<MemberServiceCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_NotExistsReferrer_MemberServiceAsOne(cb.query());
+        registerNotExistsReferrer(cb.query(), "member_id", "member_id", pp, "memberServiceAsOne");
+    }
+    public abstract String keepMemberId_NotExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq);
+
+    /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select member_id from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * <pre>
@@ -399,6 +443,21 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Set up InScopeRelation (sub-query). <br />
+     * {in (select member_id from member_service where ...)} <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @param subQuery The sub-query of MemberServiceAsOne for 'in-scope'. (NotNull)
+     */
+    public void inScopeMemberServiceAsOne(SubQuery<MemberServiceCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_InScopeRelation_MemberServiceAsOne(cb.query());
+        registerInScopeRelation(cb.query(), "member_id", "member_id", pp, "memberServiceAsOne");
+    }
+    public abstract String keepMemberId_InScopeRelation_MemberServiceAsOne(MemberServiceCQ sq);
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
      * {in (select member_id from member_withdrawal where ...)} <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * @param subQuery The sub-query of MemberWithdrawalAsOne for 'in-scope'. (NotNull)
@@ -471,6 +530,21 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
         registerNotInScopeRelation(cb.query(), "member_id", "member_id", pp, "memberSecurityAsOne");
     }
     public abstract String keepMemberId_NotInScopeRelation_MemberSecurityAsOne(MemberSecurityCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select member_id from member_service where ...)} <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @param subQuery The sub-query of MemberServiceAsOne for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeMemberServiceAsOne(SubQuery<MemberServiceCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberServiceCB cb = new MemberServiceCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_NotInScopeRelation_MemberServiceAsOne(cb.query());
+        registerNotInScopeRelation(cb.query(), "member_id", "member_id", pp, "memberServiceAsOne");
+    }
+    public abstract String keepMemberId_NotInScopeRelation_MemberServiceAsOne(MemberServiceCQ sq);
 
     /**
      * Set up NotInScopeRelation (sub-query). <br />

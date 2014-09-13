@@ -88,6 +88,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public Map<String, MemberSecurityCQ> getMemberId_ExistsReferrer_MemberSecurityAsOne() { return xgetSQueMap("memberId_ExistsReferrer_MemberSecurityAsOne"); }
     public String keepMemberId_ExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberSecurityAsOne", sq); }
 
+    public Map<String, MemberServiceCQ> getMemberId_ExistsReferrer_MemberServiceAsOne() { return xgetSQueMap("memberId_ExistsReferrer_MemberServiceAsOne"); }
+    public String keepMemberId_ExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberServiceAsOne", sq); }
+
     public Map<String, MemberWithdrawalCQ> getMemberId_ExistsReferrer_MemberWithdrawalAsOne() { return xgetSQueMap("memberId_ExistsReferrer_MemberWithdrawalAsOne"); }
     public String keepMemberId_ExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq) { return xkeepSQue("memberId_ExistsReferrer_MemberWithdrawalAsOne", sq); }
 
@@ -102,6 +105,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     public Map<String, MemberSecurityCQ> getMemberId_NotExistsReferrer_MemberSecurityAsOne() { return xgetSQueMap("memberId_NotExistsReferrer_MemberSecurityAsOne"); }
     public String keepMemberId_NotExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberSecurityAsOne", sq); }
+
+    public Map<String, MemberServiceCQ> getMemberId_NotExistsReferrer_MemberServiceAsOne() { return xgetSQueMap("memberId_NotExistsReferrer_MemberServiceAsOne"); }
+    public String keepMemberId_NotExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberServiceAsOne", sq); }
 
     public Map<String, MemberWithdrawalCQ> getMemberId_NotExistsReferrer_MemberWithdrawalAsOne() { return xgetSQueMap("memberId_NotExistsReferrer_MemberWithdrawalAsOne"); }
     public String keepMemberId_NotExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq) { return xkeepSQue("memberId_NotExistsReferrer_MemberWithdrawalAsOne", sq); }
@@ -127,6 +133,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     public Map<String, MemberSecurityCQ> getMemberId_InScopeRelation_MemberSecurityAsOne() { return xgetSQueMap("memberId_InScopeRelation_MemberSecurityAsOne"); }
     public String keepMemberId_InScopeRelation_MemberSecurityAsOne(MemberSecurityCQ sq) { return xkeepSQue("memberId_InScopeRelation_MemberSecurityAsOne", sq); }
 
+    public Map<String, MemberServiceCQ> getMemberId_InScopeRelation_MemberServiceAsOne() { return xgetSQueMap("memberId_InScopeRelation_MemberServiceAsOne"); }
+    public String keepMemberId_InScopeRelation_MemberServiceAsOne(MemberServiceCQ sq) { return xkeepSQue("memberId_InScopeRelation_MemberServiceAsOne", sq); }
+
     public Map<String, MemberWithdrawalCQ> getMemberId_InScopeRelation_MemberWithdrawalAsOne() { return xgetSQueMap("memberId_InScopeRelation_MemberWithdrawalAsOne"); }
     public String keepMemberId_InScopeRelation_MemberWithdrawalAsOne(MemberWithdrawalCQ sq) { return xkeepSQue("memberId_InScopeRelation_MemberWithdrawalAsOne", sq); }
 
@@ -141,6 +150,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     public Map<String, MemberSecurityCQ> getMemberId_NotInScopeRelation_MemberSecurityAsOne() { return xgetSQueMap("memberId_NotInScopeRelation_MemberSecurityAsOne"); }
     public String keepMemberId_NotInScopeRelation_MemberSecurityAsOne(MemberSecurityCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_MemberSecurityAsOne", sq); }
+
+    public Map<String, MemberServiceCQ> getMemberId_NotInScopeRelation_MemberServiceAsOne() { return xgetSQueMap("memberId_NotInScopeRelation_MemberServiceAsOne"); }
+    public String keepMemberId_NotInScopeRelation_MemberServiceAsOne(MemberServiceCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_MemberServiceAsOne", sq); }
 
     public Map<String, MemberWithdrawalCQ> getMemberId_NotInScopeRelation_MemberWithdrawalAsOne() { return xgetSQueMap("memberId_NotInScopeRelation_MemberWithdrawalAsOne"); }
     public String keepMemberId_NotInScopeRelation_MemberWithdrawalAsOne(MemberWithdrawalCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_MemberWithdrawalAsOne", sq); }
@@ -477,6 +489,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if (bq.hasConditionQueryMemberSecurityAsOne()) {
             uq.queryMemberSecurityAsOne().reflectRelationOnUnionQuery(bq.queryMemberSecurityAsOne(), uq.queryMemberSecurityAsOne());
         }
+        if (bq.hasConditionQueryMemberServiceAsOne()) {
+            uq.queryMemberServiceAsOne().reflectRelationOnUnionQuery(bq.queryMemberServiceAsOne(), uq.queryMemberServiceAsOne());
+        }
         if (bq.hasConditionQueryMemberWithdrawalAsOne()) {
             uq.queryMemberWithdrawalAsOne().reflectRelationOnUnionQuery(bq.queryMemberWithdrawalAsOne(), uq.queryMemberWithdrawalAsOne());
         }
@@ -572,6 +587,24 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     protected void xsetupOuterJoinMemberSecurityAsOne() { xregOutJo("memberSecurityAsOne"); }
     public boolean hasConditionQueryMemberSecurityAsOne() { return xhasQueRlMap("memberSecurityAsOne"); }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberServiceCQ queryMemberServiceAsOne() { return getConditionQueryMemberServiceAsOne(); }
+    public MemberServiceCQ getConditionQueryMemberServiceAsOne() {
+        String prop = "memberServiceAsOne";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberServiceAsOne()); xsetupOuterJoinMemberServiceAsOne(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberServiceCQ xcreateQueryMemberServiceAsOne() {
+        String nrp = xresolveNRP("member", "memberServiceAsOne"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberServiceCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberServiceAsOne", nrp);
+    }
+    protected void xsetupOuterJoinMemberServiceAsOne() { xregOutJo("memberServiceAsOne"); }
+    public boolean hasConditionQueryMemberServiceAsOne() { return xhasQueRlMap("memberServiceAsOne"); }
 
     /**
      * Get the condition-query for relation table. <br />

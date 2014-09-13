@@ -390,6 +390,30 @@ public class BsMemberCB extends AbstractConditionBean {
         return _nssMemberSecurityAsOne;
     }
 
+    protected MemberServiceNss _nssMemberServiceAsOne;
+    public MemberServiceNss getNssMemberServiceAsOne() {
+        if (_nssMemberServiceAsOne == null) { _nssMemberServiceAsOne = new MemberServiceNss(null); }
+        return _nssMemberServiceAsOne;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.<span style="color: #DD4747">setupSelect_MemberServiceAsOne()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * ... = member.<span style="color: #DD4747">getMemberServiceAsOne()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberServiceNss setupSelect_MemberServiceAsOne() {
+        assertSetupSelectPurpose("memberServiceAsOne");
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberServiceAsOne(); } });
+        if (_nssMemberServiceAsOne == null || !_nssMemberServiceAsOne.hasConditionQuery()) { _nssMemberServiceAsOne = new MemberServiceNss(query().queryMemberServiceAsOne()); }
+        return _nssMemberServiceAsOne;
+    }
+
     protected MemberWithdrawalNss _nssMemberWithdrawalAsOne;
     public MemberWithdrawalNss getNssMemberWithdrawalAsOne() {
         if (_nssMemberWithdrawalAsOne == null) { _nssMemberWithdrawalAsOne = new MemberWithdrawalNss(null); }
@@ -460,6 +484,7 @@ public class BsMemberCB extends AbstractConditionBean {
         protected MemberAddressCB.HpSpecification _memberAddressAsValid;
         protected MemberLoginCB.HpSpecification _memberLoginAsLatest;
         protected MemberSecurityCB.HpSpecification _memberSecurityAsOne;
+        protected MemberServiceCB.HpSpecification _memberServiceAsOne;
         protected MemberWithdrawalCB.HpSpecification _memberWithdrawalAsOne;
         public HpSpecification(ConditionBean baseCB, HpSpQyCall<MemberCQ> qyCall
                              , HpCBPurpose purpose, DBMetaProvider dbmetaProvider)
@@ -646,6 +671,27 @@ public class BsMemberCB extends AbstractConditionBean {
                 }
             }
             return _memberSecurityAsOne;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberServiceCB.HpSpecification specifyMemberServiceAsOne() {
+            assertRelation("memberServiceAsOne");
+            if (_memberServiceAsOne == null) {
+                _memberServiceAsOne = new MemberServiceCB.HpSpecification(_baseCB, new HpSpQyCall<MemberServiceCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberServiceAsOne(); }
+                    public MemberServiceCQ qy() { return _qyCall.qy().queryMemberServiceAsOne(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberServiceAsOne.xsetSyncQyCall(new HpSpQyCall<MemberServiceCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberServiceAsOne(); }
+                        public MemberServiceCQ qy() { return xsyncQyCall().qy().queryMemberServiceAsOne(); }
+                    });
+                }
+            }
+            return _memberServiceAsOne;
         }
         /**
          * Prepare to specify functions about relation table. <br />

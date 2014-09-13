@@ -58,6 +58,15 @@ public class MemberNss {
     }
     /**
      * With nested relation columns to select clause. <br />
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberServiceNss withMemberServiceAsOne() {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberServiceAsOne(); }});
+        return new MemberServiceNss(_query.queryMemberServiceAsOne());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */

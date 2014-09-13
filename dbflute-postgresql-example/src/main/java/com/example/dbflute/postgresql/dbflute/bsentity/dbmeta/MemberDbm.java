@@ -138,11 +138,16 @@ public class MemberDbm extends AbstractDBMeta {
     }
     {
         setupEfpg(_efpgMap, new EfpgMemberSecurityAsOne(), "memberSecurityAsOne");
+        setupEfpg(_efpgMap, new EfpgMemberServiceAsOne(), "memberServiceAsOne");
         setupEfpg(_efpgMap, new EfpgMemberWithdrawalAsOne(), "memberWithdrawalAsOne");
     }
     public class EfpgMemberSecurityAsOne implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberSecurityAsOne(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberSecurityAsOne((MemberSecurity)vl); }
+    }
+    public class EfpgMemberServiceAsOne implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberServiceAsOne(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberServiceAsOne((MemberService)vl); }
     }
     public class EfpgMemberWithdrawalAsOne implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberWithdrawalAsOne(); }
@@ -169,7 +174,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, true, true, true, "serial", 10, 0, "nextval('member_member_id_seq'::regclass)", false, null, "会員を識別するID。連番として自動採番される。\n（会員IDだけに限らず）採番方法はDBMS次第。", "memberAddressAsValid,memberLoginAsLatest,memberSecurityAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, true, true, true, "serial", 10, 0, "nextval('member_member_id_seq'::regclass)", false, null, "会員を識別するID。連番として自動採番される。\n（会員IDだけに限らず）採番方法はDBMS次第。", "memberAddressAsValid,memberLoginAsLatest,memberSecurityAsOne,memberServiceAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
     protected final ColumnInfo _columnMemberName = cci("member_name", "member_name", null, "会員名称", String.class, "memberName", null, false, false, true, "varchar", 200, 0, null, false, null, "会員のフルネームの名称。\n苗字と名前を分けて管理することも多いが、ここでは Example なので単純にひとまとめ。", null, null, null);
     protected final ColumnInfo _columnMemberAccount = cci("member_account", "member_account", null, "会員アカウント", String.class, "memberAccount", null, false, false, true, "varchar", 50, 0, null, false, null, "会員がログイン時に利用するアカウントNO。\n昨今、メールアドレスをログインIDとすることが多いので、あまり見かけなくないかも。", null, null, null);
     protected final ColumnInfo _columnMemberStatusCode = cci("member_status_code", "member_status_code", null, "会員ステータスコード", String.class, "memberStatusCode", null, false, false, true, "bpchar", 3, 0, null, false, null, "会員ステータスを参照するコード。\nステータスが変わるたびに、このカラムが更新される。", "memberStatus", null, CDef.DefMeta.MemberStatus);
@@ -320,12 +325,20 @@ public class MemberDbm extends AbstractDBMeta {
         return cfi("fk_member_sc_info_member", "memberSecurityAsOne", this, MemberSecurityDbm.getInstance(), mp, 3, null, true, false, true, false, null, null, false, "member");
     }
     /**
+     * (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @return The information object of foreign property(referrer-as-one). (NotNull)
+     */
+    public ForeignInfo foreignMemberServiceAsOne() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberServiceDbm.getInstance().columnMemberId());
+        return cfi("fk_member_service_member", "memberServiceAsOne", this, MemberServiceDbm.getInstance(), mp, 4, null, true, false, true, false, null, null, false, "member");
+    }
+    /**
      * (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'.
      * @return The information object of foreign property(referrer-as-one). (NotNull)
      */
     public ForeignInfo foreignMemberWithdrawalAsOne() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberWithdrawalDbm.getInstance().columnMemberId());
-        return cfi("fk_member_withdrawal_info_member", "memberWithdrawalAsOne", this, MemberWithdrawalDbm.getInstance(), mp, 4, null, true, false, true, false, null, null, false, "member");
+        return cfi("fk_member_withdrawal_info_member", "memberWithdrawalAsOne", this, MemberWithdrawalDbm.getInstance(), mp, 5, null, true, false, true, false, null, null, false, "member");
     }
 
     // -----------------------------------------------------

@@ -27,13 +27,13 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  *     version_no
  *
  * [foreign table]
- *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_withdrawal(AsOne)
+ *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_service(AsOne), member_withdrawal(AsOne)
  *
  * [referrer table]
- *     member_address, member_login, purchase, member_security, member_withdrawal
+ *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -130,6 +130,14 @@ public class LoaderOfMember {
         List<MemberSecurity> pulledList = myBhv().pulloutMemberSecurityAsOne(_selectedList);
         _foreignMemberSecurityAsOneLoader = new LoaderOfMemberSecurity().ready(pulledList, _selector);
         return _foreignMemberSecurityAsOneLoader;
+    }
+
+    protected LoaderOfMemberService _foreignMemberServiceAsOneLoader;
+    public LoaderOfMemberService pulloutMemberServiceAsOne() {
+        if (_foreignMemberServiceAsOneLoader != null) { return _foreignMemberServiceAsOneLoader; }
+        List<MemberService> pulledList = myBhv().pulloutMemberServiceAsOne(_selectedList);
+        _foreignMemberServiceAsOneLoader = new LoaderOfMemberService().ready(pulledList, _selector);
+        return _foreignMemberServiceAsOneLoader;
     }
 
     protected LoaderOfMemberWithdrawal _foreignMemberWithdrawalAsOneLoader;

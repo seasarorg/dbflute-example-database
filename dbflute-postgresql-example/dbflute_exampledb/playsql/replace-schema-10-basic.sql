@@ -73,7 +73,8 @@ create table MEMBER_SERVICE(
     UPDATE_DATETIME timestamp(3) NOT NULL,
     UPDATE_PROCESS VARCHAR(200) NOT NULL,
     UPDATE_USER VARCHAR(200) NOT NULL,
-    VERSION_NO BIGINT NOT NULL
+    VERSION_NO BIGINT NOT NULL,
+    constraint UQ_MEMBER_SERVICE unique (MEMBER_ID)
 );
 
 
@@ -207,6 +208,9 @@ alter table MEMBER_LOGIN add constraint FK_MEMBER_LOGIN_MEMBER_STATUS
 
 alter table MEMBER_SECURITY add constraint FK_MEMBER_SC_INFO_MEMBER 
     foreign key (MEMBER_ID) references MEMBER (MEMBER_ID) ;
+
+alter table MEMBER_SERVICE add constraint FK_MEMBER_SERVICE_MEMBER 
+    foreign key (MEMBER_ID) references MEMBER (MEMBER_ID);
 
 alter table MEMBER_SERVICE add constraint FK_MEMBER_SERVICE_SERVICE_RANK_CODE 
     foreign key (SERVICE_RANK_CODE) references SERVICE_RANK (SERVICE_RANK_CODE);

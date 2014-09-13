@@ -102,7 +102,12 @@ public class MemberServiceDbm extends AbstractDBMeta {
     //                                      ----------------
     protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
     {
+        setupEfpg(_efpgMap, new EfpgMember(), "member");
         setupEfpg(_efpgMap, new EfpgServiceRank(), "serviceRank");
+    }
+    public class EfpgMember implements PropertyGateway {
+        public Object read(Entity et) { return ((MemberService)et).getMember(); }
+        public void write(Entity et, Object vl) { ((MemberService)et).setMember((Member)vl); }
     }
     public class EfpgServiceRank implements PropertyGateway {
         public Object read(Entity et) { return ((MemberService)et).getServiceRank(); }
@@ -130,7 +135,7 @@ public class MemberServiceDbm extends AbstractDBMeta {
     //                                                                         Column Info
     //                                                                         ===========
     protected final ColumnInfo _columnMemberServiceId = cci("member_service_id", "member_service_id", null, "会員サービスID", Integer.class, "memberServiceId", null, true, true, true, "serial", 10, 0, "nextval('member_service_member_service_id_seq'::regclass)", false, null, "独立した主キーとなるが、実質的に会員IDとは one-to-one である。", null, null, null);
-    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, false, false, true, "int4", 10, 0, null, false, null, "会員を参照するID。ユニークなので、会員とは one-to-one の関係に。", null, null, null);
+    protected final ColumnInfo _columnMemberId = cci("member_id", "member_id", null, "会員ID", Integer.class, "memberId", null, false, false, true, "int4", 10, 0, null, false, null, "会員を参照するID。ユニークなので、会員とは one-to-one の関係に。", "member", null, null);
     protected final ColumnInfo _columnServicePointCount = cci("service_point_count", "service_point_count", null, "サービスポイント数", Integer.class, "servicePointCount", null, false, false, true, "int4", 10, 0, null, false, null, "会員が現在利用できるサービスポイントの数。\n基本的に、購入時には増えてポイントを使ったら減る。", null, null, null);
     protected final ColumnInfo _columnServiceRankCode = cci("service_rank_code", "service_rank_code", null, "サービスランクコード", String.class, "serviceRankCode", null, false, false, true, "bpchar", 3, 0, null, false, null, "サービスランクを参照するコード。\nどんなランクがあるのかドキドキですね。", "serviceRank", null, null);
     protected final ColumnInfo _columnRegisterDatetime = cci("register_datetime", "register_datetime", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "timestamp", 26, 3, null, true, null, null, null, null, null);
@@ -147,7 +152,7 @@ public class MemberServiceDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnMemberServiceId() { return _columnMemberServiceId; }
     /**
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
@@ -234,12 +239,20 @@ public class MemberServiceDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
+     * (会員)member by my member_id, named 'member'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMember() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberDbm.getInstance().columnMemberId());
+        return cfi("fk_member_service_member", "member", this, MemberDbm.getInstance(), mp, 0, null, true, false, false, false, null, null, false, "memberServiceAsOne");
+    }
+    /**
      * (サービスランク)service_rank by my service_rank_code, named 'serviceRank'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignServiceRank() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnServiceRankCode(), ServiceRankDbm.getInstance().columnServiceRankCode());
-        return cfi("fk_member_service_service_rank_code", "serviceRank", this, ServiceRankDbm.getInstance(), mp, 0, null, false, false, false, false, null, null, false, "memberServiceList");
+        return cfi("fk_member_service_service_rank_code", "serviceRank", this, ServiceRankDbm.getInstance(), mp, 1, null, false, false, false, false, null, null, false, "memberServiceList");
     }
 
     // -----------------------------------------------------

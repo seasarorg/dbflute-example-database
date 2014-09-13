@@ -34,13 +34,13 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  *     version_no
  *
  * [foreign table]
- *     service_rank
+ *     member, service_rank
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     serviceRank
+ *     member, serviceRank
  *
  * [referrer property]
  *     
@@ -191,6 +191,31 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable<Member
     protected MemberServiceCB xprepareCBAsPK(Integer memberServiceId) {
         assertObjectNotNull("memberServiceId", memberServiceId);
         return newConditionBean().acceptPK(memberServiceId);
+    }
+
+    /**
+     * Select the entity by the unique-key value.
+     * @param memberId (会員ID): UQ, NotNull, int4(10), FK to member. (NotNull)
+     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
+     * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
+     * @exception EntityDuplicatedException When the entity has been duplicated.
+     * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
+     */
+    public OptionalEntity<MemberService> selectByUniqueOf(Integer memberId) {
+        return facadeSelectByUniqueOf(memberId);
+    }
+
+    protected OptionalEntity<MemberService> facadeSelectByUniqueOf(Integer memberId) {
+        return doSelectByUniqueOf(memberId, typeOfSelectedEntity());
+    }
+
+    protected <ENTITY extends MemberService> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer memberId, Class<? extends ENTITY> tp) {
+        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId), tp), memberId);
+    }
+
+    protected MemberServiceCB xprepareCBAsUniqueOf(Integer memberId) {
+        assertObjectNotNull("memberId", memberId);
+        return newConditionBean().acceptUniqueOf(memberId);
     }
 
     // ===================================================================================
@@ -392,6 +417,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable<Member
     //                                                                   Pull out Relation
     //                                                                   =================
     /**
+     * Pull out the list of foreign table 'Member'.
+     * @param memberServiceList The list of memberService. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<Member> pulloutMember(List<MemberService> memberServiceList)
+    { return helpPulloutInternally(memberServiceList, "member"); }
+
+    /**
      * Pull out the list of foreign table 'ServiceRank'.
      * @param memberServiceList The list of memberService. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
@@ -409,6 +442,14 @@ public abstract class BsMemberServiceBhv extends AbstractBehaviorWritable<Member
      */
     public List<Integer> extractMemberServiceIdList(List<MemberService> memberServiceList)
     { return helpExtractListInternally(memberServiceList, "memberServiceId"); }
+
+    /**
+     * Extract the value list of (single) unique key memberId.
+     * @param memberServiceList The list of memberService. (NotNull, EmptyAllowed)
+     * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<Integer> extractMemberIdList(List<MemberService> memberServiceList)
+    { return helpExtractListInternally(memberServiceList, "memberId"); }
 
     // ===================================================================================
     //                                                                       Entity Update

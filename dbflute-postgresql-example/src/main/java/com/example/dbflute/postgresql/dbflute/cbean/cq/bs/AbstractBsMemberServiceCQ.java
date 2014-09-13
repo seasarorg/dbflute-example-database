@@ -149,7 +149,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberId The value of memberId as equal. (NullAllowed: if null, no condition)
      */
     public void setMemberId_Equal(Integer memberId) {
@@ -162,7 +162,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberId The value of memberId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setMemberId_GreaterThan(Integer memberId) {
@@ -171,7 +171,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberId The value of memberId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setMemberId_LessThan(Integer memberId) {
@@ -180,7 +180,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberId The value of memberId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setMemberId_GreaterEqual(Integer memberId) {
@@ -189,7 +189,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberId The value of memberId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setMemberId_LessEqual(Integer memberId) {
@@ -200,7 +200,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param minNumber The min number of memberId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of memberId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -211,7 +211,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberIdList The collection of memberId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_InScope(Collection<Integer> memberIdList) {
@@ -224,7 +224,7 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @param memberIdList The collection of memberId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMemberId_NotInScope(Collection<Integer> memberIdList) {
@@ -234,6 +234,36 @@ public abstract class AbstractBsMemberServiceCQ extends AbstractConditionQuery {
     protected void doSetMemberId_NotInScope(Collection<Integer> memberIdList) {
         regINS(CK_NINS, cTL(memberIdList), getCValueMemberId(), "member_id");
     }
+
+    /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select member_id from member where ...)} <br />
+     * (会員)member by my member_id, named 'member'.
+     * @param subQuery The sub-query of Member for 'in-scope'. (NotNull)
+     */
+    public void inScopeMember(SubQuery<MemberCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_InScopeRelation_Member(cb.query());
+        registerInScopeRelation(cb.query(), "member_id", "member_id", pp, "member");
+    }
+    public abstract String keepMemberId_InScopeRelation_Member(MemberCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select member_id from member where ...)} <br />
+     * (会員)member by my member_id, named 'member'.
+     * @param subQuery The sub-query of Member for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeMember(SubQuery<MemberCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        MemberCB cb = new MemberCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMemberId_NotInScopeRelation_Member(cb.query());
+        registerNotInScopeRelation(cb.query(), "member_id", "member_id", pp, "member");
+    }
+    public abstract String keepMemberId_NotInScopeRelation_Member(MemberCQ sq);
 
     protected void regMemberId(ConditionKey ky, Object vl) { regQ(ky, vl, getCValueMemberId(), "member_id"); }
     protected abstract ConditionValue getCValueMemberId();

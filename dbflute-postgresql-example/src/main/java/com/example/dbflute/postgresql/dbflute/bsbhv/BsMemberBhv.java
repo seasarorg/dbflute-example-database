@@ -34,13 +34,13 @@ import com.example.dbflute.postgresql.dbflute.cbean.*;
  *     version_no
  *
  * [foreign table]
- *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_withdrawal(AsOne)
+ *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_service(AsOne), member_withdrawal(AsOne)
  *
  * [referrer table]
- *     member_address, member_login, purchase, member_security, member_withdrawal
+ *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -742,6 +742,14 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
      */
     public List<MemberSecurity> pulloutMemberSecurityAsOne(List<Member> memberList)
     { return helpPulloutInternally(memberList, "memberSecurityAsOne"); }
+
+    /**
+     * Pull out the list of referrer-as-one table 'MemberService'.
+     * @param memberList The list of member. (NotNull, EmptyAllowed)
+     * @return The list of referrer-as-one table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MemberService> pulloutMemberServiceAsOne(List<Member> memberList)
+    { return helpPulloutInternally(memberList, "memberServiceAsOne"); }
 
     /**
      * Pull out the list of referrer-as-one table 'MemberWithdrawal'.

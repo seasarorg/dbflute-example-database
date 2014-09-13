@@ -33,13 +33,13 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     version_no
  * 
  * [foreign table]
- *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_withdrawal(AsOne)
+ *     member_status, MEMBER_ADDRESS(AsValid), MEMBER_LOGIN(AsLatest), member_security(AsOne), member_service(AsOne), member_withdrawal(AsOne)
  * 
  * [referrer table]
- *     member_address, member_login, purchase, member_security, member_withdrawal
+ *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  * 
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberLoginAsLatest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  * 
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -370,6 +370,25 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         _memberSecurityAsOne = memberSecurityAsOne;
     }
 
+    /** (会員サービス)member_service by member_id, named 'memberServiceAsOne'. */
+    protected MemberService _memberServiceAsOne;
+
+    /**
+     * [get] (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @return the entity of foreign property(referrer-as-one) 'memberServiceAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
+     */
+    public MemberService getMemberServiceAsOne() {
+        return _memberServiceAsOne;
+    }
+
+    /**
+     * [set] (会員サービス)member_service by member_id, named 'memberServiceAsOne'.
+     * @param memberServiceAsOne The entity of foreign property(referrer-as-one) 'memberServiceAsOne'. (NullAllowed)
+     */
+    public void setMemberServiceAsOne(MemberService memberServiceAsOne) {
+        _memberServiceAsOne = memberServiceAsOne;
+    }
+
     /** (会員退会情報)member_withdrawal by member_id, named 'memberWithdrawalAsOne'. */
     protected MemberWithdrawal _memberWithdrawalAsOne;
 
@@ -588,6 +607,8 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(li).append(xbRDS(_memberLoginAsLatest, "memberLoginAsLatest")); }
         if (_memberSecurityAsOne != null)
         { sb.append(li).append(xbRDS(_memberSecurityAsOne, "memberSecurityAsOne")); }
+        if (_memberServiceAsOne != null)
+        { sb.append(li).append(xbRDS(_memberServiceAsOne, "memberServiceAsOne")); }
         if (_memberWithdrawalAsOne != null)
         { sb.append(li).append(xbRDS(_memberWithdrawalAsOne, "memberWithdrawalAsOne")); }
         if (_memberAddressList != null) { for (Entity et : _memberAddressList)
@@ -648,6 +669,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         if (_memberAddressAsValid != null) { sb.append(cm).append("memberAddressAsValid"); }
         if (_memberLoginAsLatest != null) { sb.append(cm).append("memberLoginAsLatest"); }
         if (_memberSecurityAsOne != null) { sb.append(cm).append("memberSecurityAsOne"); }
+        if (_memberServiceAsOne != null) { sb.append(cm).append("memberServiceAsOne"); }
         if (_memberWithdrawalAsOne != null) { sb.append(cm).append("memberWithdrawalAsOne"); }
         if (_memberAddressList != null && !_memberAddressList.isEmpty())
         { sb.append(cm).append("memberAddressList"); }

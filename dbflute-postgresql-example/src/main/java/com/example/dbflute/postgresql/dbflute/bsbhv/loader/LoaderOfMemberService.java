@@ -25,13 +25,13 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     version_no
  *
  * [foreign table]
- *     service_rank
+ *     member, service_rank
  *
  * [referrer table]
  *     
  *
  * [foreign property]
- *     serviceRank
+ *     member, serviceRank
  *
  * [referrer property]
  *     
@@ -59,6 +59,14 @@ public class LoaderOfMemberService {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfMember _foreignMemberLoader;
+    public LoaderOfMember pulloutMember() {
+        if (_foreignMemberLoader != null) { return _foreignMemberLoader; }
+        List<Member> pulledList = myBhv().pulloutMember(_selectedList);
+        _foreignMemberLoader = new LoaderOfMember().ready(pulledList, _selector);
+        return _foreignMemberLoader;
+    }
+
     protected LoaderOfServiceRank _foreignServiceRankLoader;
     public LoaderOfServiceRank pulloutServiceRank() {
         if (_foreignServiceRankLoader != null) { return _foreignServiceRankLoader; }

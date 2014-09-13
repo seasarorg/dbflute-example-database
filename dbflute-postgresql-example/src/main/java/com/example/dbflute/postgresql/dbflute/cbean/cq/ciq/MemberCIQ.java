@@ -68,6 +68,8 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberId_ExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
+    public String keepMemberId_ExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq)
+    { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberId_ExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq)
     { throwIICBOE("ExistsReferrer"); return null; }
     public String keepMemberId_ExistsReferrer_PurchaseList(PurchaseCQ sq)
@@ -77,6 +79,8 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     public String keepMemberId_NotExistsReferrer_MemberLoginList(MemberLoginCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberId_NotExistsReferrer_MemberSecurityAsOne(MemberSecurityCQ sq)
+    { throwIICBOE("NotExistsReferrer"); return null; }
+    public String keepMemberId_NotExistsReferrer_MemberServiceAsOne(MemberServiceCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
     public String keepMemberId_NotExistsReferrer_MemberWithdrawalAsOne(MemberWithdrawalCQ sq)
     { throwIICBOE("NotExistsReferrer"); return null; }
@@ -88,6 +92,8 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { return _myCQ.keepMemberId_InScopeRelation_MemberLoginList(sq); }
     public String keepMemberId_InScopeRelation_MemberSecurityAsOne(MemberSecurityCQ sq)
     { return _myCQ.keepMemberId_InScopeRelation_MemberSecurityAsOne(sq); }
+    public String keepMemberId_InScopeRelation_MemberServiceAsOne(MemberServiceCQ sq)
+    { return _myCQ.keepMemberId_InScopeRelation_MemberServiceAsOne(sq); }
     public String keepMemberId_InScopeRelation_MemberWithdrawalAsOne(MemberWithdrawalCQ sq)
     { return _myCQ.keepMemberId_InScopeRelation_MemberWithdrawalAsOne(sq); }
     public String keepMemberId_InScopeRelation_PurchaseList(PurchaseCQ sq)
@@ -98,6 +104,8 @@ public class MemberCIQ extends AbstractBsMemberCQ {
     { return _myCQ.keepMemberId_NotInScopeRelation_MemberLoginList(sq); }
     public String keepMemberId_NotInScopeRelation_MemberSecurityAsOne(MemberSecurityCQ sq)
     { return _myCQ.keepMemberId_NotInScopeRelation_MemberSecurityAsOne(sq); }
+    public String keepMemberId_NotInScopeRelation_MemberServiceAsOne(MemberServiceCQ sq)
+    { return _myCQ.keepMemberId_NotInScopeRelation_MemberServiceAsOne(sq); }
     public String keepMemberId_NotInScopeRelation_MemberWithdrawalAsOne(MemberWithdrawalCQ sq)
     { return _myCQ.keepMemberId_NotInScopeRelation_MemberWithdrawalAsOne(sq); }
     public String keepMemberId_NotInScopeRelation_PurchaseList(PurchaseCQ sq)

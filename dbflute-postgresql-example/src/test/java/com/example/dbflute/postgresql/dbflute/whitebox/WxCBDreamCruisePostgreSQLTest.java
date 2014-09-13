@@ -1,4 +1,4 @@
-package com.example.dbflute.mysql.dbflute.whitebox;
+package com.example.dbflute.postgresql.dbflute.whitebox;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,40 +9,35 @@ import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.ManualOrderBean;
 import org.seasar.dbflute.cbean.SpecifyQuery;
 import org.seasar.dbflute.cbean.SubQuery;
-import org.seasar.dbflute.cbean.UnionQuery;
 import org.seasar.dbflute.cbean.chelper.HpSpecifiedColumn;
 import org.seasar.dbflute.cbean.coption.ColumnConversionOption;
 import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.util.Srl;
 
-import com.example.dbflute.mysql.dbflute.cbean.MemberCB;
-import com.example.dbflute.mysql.dbflute.cbean.MemberSecurityCB;
-import com.example.dbflute.mysql.dbflute.cbean.MemberServiceCB;
-import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
-import com.example.dbflute.mysql.dbflute.exbhv.MemberBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.MemberSecurityBhv;
-import com.example.dbflute.mysql.dbflute.exbhv.MemberServiceBhv;
-import com.example.dbflute.mysql.dbflute.exentity.Member;
-import com.example.dbflute.mysql.dbflute.exentity.MemberSecurity;
-import com.example.dbflute.mysql.dbflute.exentity.MemberService;
-import com.example.dbflute.mysql.unit.UnitContainerTestCase;
+import com.example.dbflute.postgresql.dbflute.cbean.MemberCB;
+import com.example.dbflute.postgresql.dbflute.cbean.MemberServiceCB;
+import com.example.dbflute.postgresql.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.postgresql.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.postgresql.dbflute.exbhv.MemberServiceBhv;
+import com.example.dbflute.postgresql.dbflute.exentity.Member;
+import com.example.dbflute.postgresql.dbflute.exentity.MemberService;
+import com.example.dbflute.postgresql.unit.UnitContainerTestCase;
 
 /**
  * @author jflute
- * @since 0.9.9.4C (2012/04/26 Wednesday)
+ * @since 1.0.5K (2014/09/13 Saturday)
  */
-public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
+public class WxCBDreamCruisePostgreSQLTest extends UnitContainerTestCase {
 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
     private MemberBhv memberBhv;
-    private MemberSecurityBhv memberSecurityBhv;
     private MemberServiceBhv memberServiceBhv;
 
     // ===================================================================================
-    //                                                                        OverTheWaves
-    //                                                                        ============
+    //                                                                         ColumnQuery
+    //                                                                         ===========
     public void test_DreamCruise_ColumnQuery_basic() throws Exception {
         // ## Arrange ##
         List<Member> expectedList = selectMyOnlyProductMember();
@@ -169,6 +164,39 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
     }
 
     // ===================================================================================
+    //                                                                          LikeSearch
+    //                                                                          ==========
+    public void test_DreamCruise_LikeSearch_basic() throws Exception {
+        // ## Arrange ##
+        MemberCB cb = new MemberCB();
+        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+        LikeSearchOption option = new LikeSearchOption().likeContain();
+        option.addCompoundColumn(dreamCruiseCB.specify().columnMemberAccount());
+        cb.query().setMemberName_LikeSearch("P", option);
+
+        // ## Act ##
+        ListResultBean<Member> memberList = memberBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(memberList);
+        boolean existsAccountOnly = false;
+        boolean existsBoth = false;
+        for (Member member : memberList) {
+            log(member);
+            String memberName = member.getMemberName();
+            String memberAccount = member.getMemberAccount();
+            if (!memberName.contains("P") && memberAccount.contains("P")) {
+                existsAccountOnly = true;
+            }
+            if (memberName.contains("P") && memberAccount.contains("P")) {
+                existsBoth = true;
+            }
+        }
+        assertTrue(existsAccountOnly);
+        assertTrue(existsBoth);
+    }
+
+    // ===================================================================================
     //                                                                        MysticRythms
     //                                                                        ============
     public void test_ColumnQuery_MysticRythms_basic() throws Exception {
@@ -225,10 +253,12 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         }
         assertMarked("exists");
         String sql = cb.toDisplaySql();
-        assertContains(sql, "where dfloc.BIRTHDATE <= date_add('2015-04-05', interval dfloc.VERSION_NO month)");
         assertContains(sql,
-                "and dfloc.BIRTHDATE < date_add(date_add('2014-09-01', interval dfloc.MEMBER_ID day), interval 1 minute)");
-        assertContains(sql, "and dfloc.BIRTHDATE >= '2006-09-26'");
+                "where dfloc.birthdate <= cast('2015-04-05' as timestamp) + (dfloc.version_no || 'months')::interval");
+        assertContains(
+                sql,
+                "and dfloc.birthdate < cast(cast('2014-09-01' as timestamp) + (dfloc.member_id || 'days')::interval as timestamp) + '1 minutes'");
+        assertContains(sql, "and dfloc.birthdate >= '2006-09-26'");
     }
 
     public void test_ColumnQuery_MysticRythms_timestamp() throws Exception {
@@ -280,12 +310,13 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
             assertTrue(member.getMemberId() >= 10);
         }
         String sql = cb.toDisplaySql();
-        assertContains(sql,
-                "where dfloc.FORMALIZED_DATETIME <= date_add('2015-04-05 12:34:56.000', interval dfloc.VERSION_NO month)");
         assertContains(
                 sql,
-                "and dfloc.FORMALIZED_DATETIME <= date_add(date_add('2014-09-01 15:00:00.000', interval dfloc.MEMBER_ID day), interval -3 hour)");
-        assertContains(sql, "and dfloc.FORMALIZED_DATETIME >= '2006-09-26 12:34:56.789'");
+                "where dfloc.formalized_datetime <= cast('2015-04-05 12:34:56.000' as timestamp) + (dfloc.version_no || 'months')::interval");
+        assertContains(
+                sql,
+                "and dfloc.formalized_datetime <= cast(cast('2014-09-01 15:00:00.000' as timestamp) + (dfloc.member_id || 'days')::interval as timestamp) + '-3 hours'");
+        assertContains(sql, "and dfloc.formalized_datetime >= '2006-09-26 12:34:56.789'");
     }
 
     public void test_ColumnQuery_MysticRhythms_subtract() throws Exception {
@@ -342,43 +373,12 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         }
         assertMarked("exists");
         String sql = cb.toDisplaySql();
-        assertContains(sql, "where dfloc.BIRTHDATE >= date_add('2006-09-26', interval -dfloc.VERSION_NO month)");
         assertContains(sql,
-                "and dfloc.BIRTHDATE <= date_add(date_add('2014-09-20', interval -dfloc.MEMBER_ID day), interval -1 minute)");
-        assertContains(sql, "and dfloc.BIRTHDATE <= '2015-04-05'");
-    }
-
-    // ===================================================================================
-    //                                                                          LikeSearch
-    //                                                                          ==========
-    public void test_DreamCruise_LikeSearch_basic() throws Exception {
-        // ## Arrange ##
-        MemberCB cb = new MemberCB();
-        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
-        LikeSearchOption option = new LikeSearchOption().likeContain();
-        option.addCompoundColumn(dreamCruiseCB.specify().columnMemberAccount());
-        cb.query().setMemberName_LikeSearch("P", option);
-
-        // ## Act ##
-        ListResultBean<Member> memberList = memberBhv.selectList(cb);
-
-        // ## Assert ##
-        assertHasAnyElement(memberList);
-        boolean existsAccountOnly = false;
-        boolean existsBoth = false;
-        for (Member member : memberList) {
-            log(member);
-            String memberName = member.getMemberName();
-            String memberAccount = member.getMemberAccount();
-            if (!memberName.contains("P") && memberAccount.contains("P")) {
-                existsAccountOnly = true;
-            }
-            if (memberName.contains("P") && memberAccount.contains("P")) {
-                existsBoth = true;
-            }
-        }
-        assertTrue(existsAccountOnly);
-        assertTrue(existsBoth);
+                "where dfloc.birthdate >= cast('2006-09-26' as timestamp) - (dfloc.version_no || 'months')::interval");
+        assertContains(
+                sql,
+                "and dfloc.birthdate <= cast(cast('2014-09-20' as timestamp) - (dfloc.member_id || 'days')::interval as timestamp) + '-1 minutes'");
+        assertContains(sql, "and dfloc.birthdate <= '2015-04-05'");
     }
 
     // ===================================================================================
@@ -415,103 +415,107 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         }
     }
 
-    public void test_DreamCruise_ManualOrder_derivedColumn_basic() throws Exception {
-        // ## Arrange ##
-        ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
-        for (MemberService service : serviceList) {
-            serviceMap.put(service.getMemberId(), service);
-        }
-        MemberCB cb = new MemberCB();
-        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
-            public void query(PurchaseCB subCB) {
-                subCB.specify().columnPurchasePrice();
-            }
-        }, Member.ALIAS_highestPurchasePrice);
-        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
-        ManualOrderBean mob = new ManualOrderBean();
-        mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
-        cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+    // PostgreSQL: unsupported? "order by column * derived-column"
+    //public void test_DreamCruise_ManualOrder_derivedColumn_basic() throws Exception {
+    //    // ## Arrange ##
+    //    ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
+    //    Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+    //    for (MemberService service : serviceList) {
+    //        serviceMap.put(service.getMemberId(), service);
+    //    }
+    //    MemberCB cb = new MemberCB();
+    //    cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+    //        public void query(PurchaseCB subCB) {
+    //            subCB.specify().columnPurchasePrice();
+    //        }
+    //    }, Member.ALIAS_highestPurchasePrice);
+    //    MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+    //    ManualOrderBean mob = new ManualOrderBean();
+    //    mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
+    //    cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+    //
+    //    // ## Act ##
+    //    ListResultBean<Member> memberList = memberBhv.selectList(cb);
+    //
+    //    // ## Assert ##
+    //    assertHasAnyElement(memberList);
+    //    String sql = cb.toDisplaySql();
+    //    log(ln() + sql);
+    //    String exp = "dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE";
+    //    assertTrue(sql.contains("order by " + exp + " asc"));
+    //}
+    //
+    //public void test_DreamCruise_ManualOrder_derivedColumn_twice() throws Exception {
+    //    // ## Arrange ##
+    //    ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
+    //    Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+    //    for (MemberService service : serviceList) {
+    //        serviceMap.put(service.getMemberId(), service);
+    //    }
+    //    MemberCB cb = new MemberCB();
+    //    cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+    //        public void query(PurchaseCB subCB) {
+    //            subCB.specify().columnPurchasePrice();
+    //        }
+    //    }, Member.ALIAS_highestPurchasePrice);
+    //    cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
+    //        public void query(PurchaseCB subCB) {
+    //            subCB.specify().columnPurchaseCount();
+    //        }
+    //    }, Member.ALIAS_loginCount);
+    //    MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+    //    ManualOrderBean mob = new ManualOrderBean();
+    //    mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
+    //    mob.plus(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_loginCount));
+    //    cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+    //
+    //    // ## Act ##
+    //    ListResultBean<Member> memberList = memberBhv.selectList(cb);
+    //
+    //    // ## Assert ##
+    //    assertHasAnyElement(memberList);
+    //    String sql = cb.toDisplaySql();
+    //    log(ln() + sql);
+    //    String exp = "(dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE) + LOGIN_COUNT";
+    //    assertTrue(sql.contains("order by " + exp + " asc"));
+    //}
 
-        // ## Act ##
-        ListResultBean<Member> memberList = memberBhv.selectList(cb);
-
-        // ## Assert ##
-        assertHasAnyElement(memberList);
-        String sql = cb.toDisplaySql();
-        log(ln() + sql);
-        String exp = "dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE";
-        assertTrue(sql.contains("order by " + exp + " asc"));
-    }
-
-    public void test_DreamCruise_ManualOrder_derivedColumn_twice() throws Exception {
-        // ## Arrange ##
-        ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
-        for (MemberService service : serviceList) {
-            serviceMap.put(service.getMemberId(), service);
-        }
-        MemberCB cb = new MemberCB();
-        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
-            public void query(PurchaseCB subCB) {
-                subCB.specify().columnPurchasePrice();
-            }
-        }, Member.ALIAS_highestPurchasePrice);
-        cb.specify().derivedPurchaseList().max(new SubQuery<PurchaseCB>() {
-            public void query(PurchaseCB subCB) {
-                subCB.specify().columnPurchaseCount();
-            }
-        }, Member.ALIAS_loginCount);
-        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
-        ManualOrderBean mob = new ManualOrderBean();
-        mob.multiply(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_highestPurchasePrice));
-        mob.plus(dreamCruiseCB.inviteDerivedToDreamCruise(Member.ALIAS_loginCount));
-        cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
-
-        // ## Act ##
-        ListResultBean<Member> memberList = memberBhv.selectList(cb);
-
-        // ## Assert ##
-        assertHasAnyElement(memberList);
-        String sql = cb.toDisplaySql();
-        log(ln() + sql);
-        String exp = "(dfloc.MEMBER_ID * HIGHEST_PURCHASE_PRICE) + LOGIN_COUNT";
-        assertTrue(sql.contains("order by " + exp + " asc"));
-    }
-
-    public void test_DreamCruise_ManualOrder_union() throws Exception {
-        // ## Arrange ##
-        ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(new MemberSecurityCB());
-        Map<Integer, MemberSecurity> securityMap = new HashMap<Integer, MemberSecurity>();
-        for (MemberSecurity security : securityList) {
-            securityMap.put(security.getMemberId(), security);
-        }
-        MemberCB cb = new MemberCB();
-        //cb.setupSelect_MemberSecurityAsOne(); // auto-resolved
-        cb.union(new UnionQuery<MemberCB>() {
-            public void query(MemberCB unionCB) {
-            }
-        });
-        MemberCB dreamCruiseCB = cb.dreamCruiseCB();
-        ManualOrderBean mob = new ManualOrderBean();
-        mob.multiply(dreamCruiseCB.specify().specifyMemberSecurityAsOne().columnReminderUseCount());
-        cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
-
-        // ## Act ##
-        ListResultBean<Member> memberList = memberBhv.selectList(cb);
-
-        // ## Assert ##
-        assertHasAnyElement(memberList);
-        Integer previousSortValue = null;
-        for (Member member : memberList) {
-            Integer memberId = member.getMemberId();
-            Integer useCount = securityMap.get(memberId).getReminderUseCount();
-            Integer sortValue = memberId * useCount;
-            if (previousSortValue != null && previousSortValue > sortValue) {
-                fail();
-            }
-            previousSortValue = sortValue;
-            log(member.getMemberId() + ", " + useCount + ", " + sortValue);
-        }
-    }
+    // org.postgresql.util.PSQLException: ERROR: invalid UNION/INTERSECT/EXCEPT ORDER BY clause
+    // Only result column names can be used, not expressions or functions.
+    // Add the expression/function to every SELECT, or move the UNION into a FROM clause.
+    //public void test_DreamCruise_ManualOrder_union() throws Exception {
+    //    // ## Arrange ##
+    //    ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(new MemberSecurityCB());
+    //    Map<Integer, MemberSecurity> securityMap = new HashMap<Integer, MemberSecurity>();
+    //    for (MemberSecurity security : securityList) {
+    //        securityMap.put(security.getMemberId(), security);
+    //    }
+    //    MemberCB cb = new MemberCB();
+    //    //cb.setupSelect_MemberSecurityAsOne(); // auto-resolved
+    //    cb.union(new UnionQuery<MemberCB>() {
+    //        public void query(MemberCB unionCB) {
+    //        }
+    //    });
+    //    MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+    //    ManualOrderBean mob = new ManualOrderBean();
+    //    mob.multiply(dreamCruiseCB.specify().specifyMemberSecurityAsOne().columnReminderUseCount());
+    //    cb.query().addOrderBy_MemberId_Asc().withManualOrder(mob);
+    //
+    //    // ## Act ##
+    //    ListResultBean<Member> memberList = memberBhv.selectList(cb);
+    //
+    //    // ## Assert ##
+    //    assertHasAnyElement(memberList);
+    //    Integer previousSortValue = null;
+    //    for (Member member : memberList) {
+    //        Integer memberId = member.getMemberId();
+    //        Integer useCount = securityMap.get(memberId).getReminderUseCount();
+    //        Integer sortValue = memberId * useCount;
+    //        if (previousSortValue != null && previousSortValue > sortValue) {
+    //            fail();
+    //        }
+    //        previousSortValue = sortValue;
+    //        log(member.getMemberId() + ", " + useCount + ", " + sortValue);
+    //    }
+    //}
 }

@@ -279,9 +279,15 @@
             required="true" size="200" type="VARCHAR"/>
         <column dbType="int8" javaType="Long" name="version_no"
             required="true" size="19" type="BIGINT"/>
+        <foreign-key foreignSchema="public" foreignTable="member" name="fk_member_service_member">
+            <reference foreign="member_id" local="member_id"/>
+        </foreign-key>
         <foreign-key foreignSchema="public" foreignTable="service_rank" name="fk_member_service_service_rank_code">
             <reference foreign="service_rank_code" local="service_rank_code"/>
         </foreign-key>
+        <unique name="uq_member_service">
+            <unique-column name="member_id" position="1"/>
+        </unique>
         <index name="ix_member_service_point_count">
             <index-column name="service_point_count" position="1"/>
         </index>
@@ -877,13 +883,13 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_login_member_login_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_service_member_service_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="purchase_purchase_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"

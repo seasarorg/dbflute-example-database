@@ -99,16 +99,22 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
       return _memberId; }
     protected ConditionValue getCValueMemberId() { return getMemberId(); }
 
+    public Map<String, MemberCQ> getMemberId_InScopeRelation_Member() { return xgetSQueMap("memberId_InScopeRelation_Member"); }
+    public String keepMemberId_InScopeRelation_Member(MemberCQ sq) { return xkeepSQue("memberId_InScopeRelation_Member", sq); }
+
+    public Map<String, MemberCQ> getMemberId_NotInScopeRelation_Member() { return xgetSQueMap("memberId_NotInScopeRelation_Member"); }
+    public String keepMemberId_NotInScopeRelation_Member(MemberCQ sq) { return xkeepSQue("memberId_NotInScopeRelation_Member", sq); }
+
     /** 
      * Add order-by as ascend. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberId_Asc() { regOBA("member_id"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * (会員ID)member_id: {NotNull, int4(10)}
+     * (会員ID)member_id: {UQ, NotNull, int4(10), FK to member}
      * @return this. (NotNull)
      */
     public BsMemberServiceCQ addOrderBy_MemberId_Desc() { regOBD("member_id"); return this; }
@@ -340,6 +346,9 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
     public void reflectRelationOnUnionQuery(ConditionQuery bqs, ConditionQuery uqs) {
         MemberServiceCQ bq = (MemberServiceCQ)bqs;
         MemberServiceCQ uq = (MemberServiceCQ)uqs;
+        if (bq.hasConditionQueryMember()) {
+            uq.queryMember().reflectRelationOnUnionQuery(bq.queryMember(), uq.queryMember());
+        }
         if (bq.hasConditionQueryServiceRank()) {
             uq.queryServiceRank().reflectRelationOnUnionQuery(bq.queryServiceRank(), uq.queryServiceRank());
         }
@@ -348,6 +357,26 @@ public class BsMemberServiceCQ extends AbstractBsMemberServiceCQ {
     // ===================================================================================
     //                                                                       Foreign Query
     //                                                                       =============
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員)member by my member_id, named 'member'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberCQ queryMember() {
+        return getConditionQueryMember();
+    }
+    public MemberCQ getConditionQueryMember() {
+        String prop = "member";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMember()); xsetupOuterJoinMember(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberCQ xcreateQueryMember() {
+        String nrp = xresolveNRP("member_service", "member"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "member", nrp);
+    }
+    protected void xsetupOuterJoinMember() { xregOutJo("member"); }
+    public boolean hasConditionQueryMember() { return xhasQueRlMap("member"); }
+
     /**
      * Get the condition-query for relation table. <br />
      * (サービスランク)service_rank by my service_rank_code, named 'serviceRank'.

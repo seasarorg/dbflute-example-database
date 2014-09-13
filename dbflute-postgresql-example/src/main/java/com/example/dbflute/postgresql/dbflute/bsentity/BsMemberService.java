@@ -32,13 +32,13 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  *     version_no
  * 
  * [foreign table]
- *     service_rank
+ *     member, service_rank
  * 
  * [referrer table]
  *     
  * 
  * [foreign property]
- *     serviceRank
+ *     member, serviceRank
  * 
  * [referrer property]
  *     
@@ -88,7 +88,7 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     /** (会員サービスID)member_service_id: {PK, ID, NotNull, serial(10)} */
     protected Integer _memberServiceId;
 
-    /** (会員ID)member_id: {NotNull, int4(10)} */
+    /** (会員ID)member_id: {UQ, NotNull, int4(10), FK to member} */
     protected Integer _memberId;
 
     /** (サービスポイント数)service_point_count: {IX, NotNull, int4(10)} */
@@ -172,6 +172,17 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     }
 
     /**
+     * To be unique by the unique column. <br />
+     * You can update the entity by the key when entity update (NOT batch update).
+     * @param memberId (会員ID): UQ, NotNull, int4(10), FK to member. (NotNull)
+     */
+    public void uniqueBy(Integer memberId) {
+        __uniqueDrivenProperties.clear();
+        __uniqueDrivenProperties.addPropertyName("memberId");
+        setMemberId(memberId);
+    }
+
+    /**
      * {@inheritDoc}
      */
     public Set<String> myuniqueDrivenProperties() {
@@ -185,6 +196,25 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
+    /** (会員)member by my member_id, named 'member'. */
+    protected Member _member;
+
+    /**
+     * [get] (会員)member by my member_id, named 'member'.
+     * @return The entity of foreign property 'member'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public Member getMember() {
+        return _member;
+    }
+
+    /**
+     * [set] (会員)member by my member_id, named 'member'.
+     * @param member The entity of foreign property 'member'. (NullAllowed)
+     */
+    public void setMember(Member member) {
+        _member = member;
+    }
+
     /** (サービスランク)service_rank by my service_rank_code, named 'serviceRank'. */
     protected ServiceRank _serviceRank;
 
@@ -335,6 +365,8 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String li = "\n  ";
+        if (_member != null)
+        { sb.append(li).append(xbRDS(_member, "member")); }
         if (_serviceRank != null)
         { sb.append(li).append(xbRDS(_serviceRank, "serviceRank")); }
         return sb.toString();
@@ -377,6 +409,7 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String cm = ",";
+        if (_member != null) { sb.append(cm).append("member"); }
         if (_serviceRank != null) { sb.append(cm).append("serviceRank"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
@@ -419,7 +452,7 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     }
 
     /**
-     * [get] (会員ID)member_id: {NotNull, int4(10)} <br />
+     * [get] (会員ID)member_id: {UQ, NotNull, int4(10), FK to member} <br />
      * 会員を参照するID。ユニークなので、会員とは one-to-one の関係に。
      * @return The value of the column 'member_id'. (basically NotNull if selected: for the constraint)
      */
@@ -428,7 +461,7 @@ public abstract class BsMemberService implements EntityDefinedCommonColumn, Seri
     }
 
     /**
-     * [set] (会員ID)member_id: {NotNull, int4(10)} <br />
+     * [set] (会員ID)member_id: {UQ, NotNull, int4(10), FK to member} <br />
      * 会員を参照するID。ユニークなので、会員とは one-to-one の関係に。
      * @param memberId The value of the column 'member_id'. (basically NotNull if update: for the constraint)
      */

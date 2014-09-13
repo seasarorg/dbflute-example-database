@@ -21,6 +21,15 @@ public class MemberServiceNss {
     //                                                                     ===============
     /**
      * With nested relation columns to select clause. <br />
+     * (会員)member by my member_id, named 'member'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberNss withMember() {
+        _query.doNss(new MemberServiceCQ.NssCall() { public ConditionQuery qf() { return _query.queryMember(); }});
+        return new MemberNss(_query.queryMember());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
      * (サービスランク)service_rank by my service_rank_code, named 'serviceRank'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
