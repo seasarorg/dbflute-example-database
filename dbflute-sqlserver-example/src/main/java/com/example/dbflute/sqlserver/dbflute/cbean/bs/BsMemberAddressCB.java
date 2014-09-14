@@ -103,10 +103,10 @@ public class BsMemberAddressCB extends AbstractConditionBean {
     /**
      * Accept the query condition of unique key as equal.
      * @param memberId : UQ+, NotNull, int(10), FK to MEMBER. (NotNull)
-     * @param validBeginDate : +UQ, NotNull, datetime(23, 3). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, date(10). (NotNull)
      * @return this. (NotNull)
      */
-    public MemberAddressCB acceptUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+    public MemberAddressCB acceptUniqueOf(Integer memberId, java.util.Date validBeginDate) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("validBeginDate", validBeginDate);
         BsMemberAddressCB cb = this;
         cb.query().setMemberId_Equal(memberId);cb.query().setValidBeginDate_Equal(validBeginDate);
@@ -379,12 +379,12 @@ public class BsMemberAddressCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnMemberId() { return doColumn("MEMBER_ID"); }
         /**
-         * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+         * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnValidBeginDate() { return doColumn("VALID_BEGIN_DATE"); }
         /**
-         * VALID_END_DATE: {NotNull, datetime(23, 3)}
+         * VALID_END_DATE: {NotNull, date(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnValidEndDate() { return doColumn("VALID_END_DATE"); }

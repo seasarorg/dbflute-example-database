@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Date;
 
 import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
@@ -44,7 +45,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.customize.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer memberId = entity.getMemberId();
  * String memberName = entity.getMemberName();
- * java.sql.Timestamp birthdate = entity.getBirthdate();
+ * java.util.Date birthdate = entity.getBirthdate();
  * java.sql.Timestamp formalizedDatetime = entity.getFormalizedDatetime();
  * String memberStatusCode = entity.getMemberStatusCode();
  * String memberStatusName = entity.getMemberStatusName();
@@ -84,8 +85,8 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
     /** MEMBER_NAME: {nvarchar(200)} */
     protected String _memberName;
 
-    /** BIRTHDATE: {datetime(23, 3)} */
-    protected java.sql.Timestamp _birthdate;
+    /** BIRTHDATE: {date(10)} */
+    protected java.util.Date _birthdate;
 
     /** FORMALIZED_DATETIME: {datetime(23, 3)} */
     protected java.sql.Timestamp _formalizedDatetime;
@@ -494,7 +495,7 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
         String dm = ", ";
         sb.append(dm).append(getMemberId());
         sb.append(dm).append(getMemberName());
-        sb.append(dm).append(getBirthdate());
+        sb.append(dm).append(xfUD(getBirthdate()));
         sb.append(dm).append(getFormalizedDatetime());
         sb.append(dm).append(getMemberStatusCode());
         sb.append(dm).append(getMemberStatusName());
@@ -506,6 +507,12 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
+    }
+    protected String xfUD(Date date) { // formatUtilDate()
+        return FunCustodial.toString(date, xgDP());
+    }
+    protected String xgDP() { // getDatePattern
+        return "yyyy-MM-dd";
     }
     protected String buildRelationString() {
         return "";
@@ -561,18 +568,18 @@ public abstract class BsOptionMember implements Entity, Serializable, Cloneable 
     }
 
     /**
-     * [get] BIRTHDATE: {datetime(23, 3)} <br />
+     * [get] BIRTHDATE: {date(10)} <br />
      * @return The value of the column 'BIRTHDATE'. (NullAllowed even if selected: for no constraint)
      */
-    public java.sql.Timestamp getBirthdate() {
+    public java.util.Date getBirthdate() {
         return _birthdate;
     }
 
     /**
-     * [set] BIRTHDATE: {datetime(23, 3)} <br />
+     * [set] BIRTHDATE: {date(10)} <br />
      * @param birthdate The value of the column 'BIRTHDATE'. (NullAllowed: null update allowed for no constraint)
      */
-    public void setBirthdate(java.sql.Timestamp birthdate) {
+    public void setBirthdate(java.util.Date birthdate) {
         __modifiedProperties.addPropertyName("birthdate");
         _birthdate = birthdate;
     }

@@ -152,7 +152,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     /** TYPE_OF_UNIQUEIDENTIFIER: {uniqueidentifier(36)} */
     protected java.util.UUID _typeOfUniqueidentifier;
 
-    /** TYPE_OF_XML: {xml(1073741823)} */
+    /** TYPE_OF_XML: {xml(2147483647)} */
     protected String _typeOfXml;
 
     // -----------------------------------------------------
@@ -696,7 +696,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [get] TYPE_OF_XML: {xml(1073741823)} <br />
+     * [get] TYPE_OF_XML: {xml(2147483647)} <br />
      * @return The value of the column 'TYPE_OF_XML'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfXml() {
@@ -704,7 +704,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     /**
-     * [set] TYPE_OF_XML: {xml(1073741823)} <br />
+     * [set] TYPE_OF_XML: {xml(2147483647)} <br />
      * @param typeOfXml The value of the column 'TYPE_OF_XML'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfXml(String typeOfXml) {

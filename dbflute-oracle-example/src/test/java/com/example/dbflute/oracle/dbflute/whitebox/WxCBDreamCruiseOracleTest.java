@@ -1,4 +1,4 @@
-package com.example.dbflute.db2.dbflute.whitebox;
+package com.example.dbflute.oracle.dbflute.whitebox;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,23 +16,23 @@ import org.seasar.dbflute.cbean.coption.LikeSearchOption;
 import org.seasar.dbflute.exception.SQLFailureException;
 import org.seasar.dbflute.util.Srl;
 
-import com.example.dbflute.db2.dbflute.cbean.MemberCB;
-import com.example.dbflute.db2.dbflute.cbean.MemberSecurityCB;
-import com.example.dbflute.db2.dbflute.cbean.MemberServiceCB;
-import com.example.dbflute.db2.dbflute.cbean.PurchaseCB;
-import com.example.dbflute.db2.dbflute.exbhv.MemberBhv;
-import com.example.dbflute.db2.dbflute.exbhv.MemberSecurityBhv;
-import com.example.dbflute.db2.dbflute.exbhv.MemberServiceBhv;
-import com.example.dbflute.db2.dbflute.exentity.Member;
-import com.example.dbflute.db2.dbflute.exentity.MemberSecurity;
-import com.example.dbflute.db2.dbflute.exentity.MemberService;
-import com.example.dbflute.db2.unit.UnitContainerTestCase;
+import com.example.dbflute.oracle.dbflute.cbean.MemberCB;
+import com.example.dbflute.oracle.dbflute.cbean.MemberSecurityCB;
+import com.example.dbflute.oracle.dbflute.cbean.MemberServiceCB;
+import com.example.dbflute.oracle.dbflute.cbean.PurchaseCB;
+import com.example.dbflute.oracle.dbflute.exbhv.MemberBhv;
+import com.example.dbflute.oracle.dbflute.exbhv.MemberSecurityBhv;
+import com.example.dbflute.oracle.dbflute.exbhv.MemberServiceBhv;
+import com.example.dbflute.oracle.dbflute.exentity.Member;
+import com.example.dbflute.oracle.dbflute.exentity.MemberSecurity;
+import com.example.dbflute.oracle.dbflute.exentity.MemberService;
+import com.example.dbflute.oracle.unit.UnitContainerTestCase;
 
 /**
  * @author jflute
- * @since 1.0.5L (2014/09/13 Saturday)
+ * @since 1.0.5K (2014/09/14 Sunday)
  */
-public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
+public class WxCBDreamCruiseOracleTest extends UnitContainerTestCase {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -137,6 +137,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
 
     public void test_DreamCruise_ColumnQuery_relation_convert() throws Exception {
         // ## Arrange ##
+        List<Member> expectedList = selectMyOnlyProductMember();
         MemberCB cb = new MemberCB();
         cb.specify().columnBirthdate();
         final MemberCB dreamCruiseCB = cb.dreamCruiseCB();
@@ -160,21 +161,16 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
         cb.addOrderBy_PK_Asc();
 
         // ## Act ##
-        try {
-            memberBhv.selectList(cb);
-        } catch (SQLFailureException e) {
-            log(e.getMessage());
-        }
+        ListResultBean<Member> memberList = memberBhv.selectList(cb);
 
-        // DB2 SQL Error: SQLCODE=-418, SQLSTATE=42610, SQLERRMC=null, DRIVER=3.52.95
-        //// ## Assert ##
-        //assertHasAnyElement(memberList);
-        //for (Member member : memberList) {
-        //    log(member);
-        //}
-        //assertEquals(expectedList, memberList);
-        //String sql = cb.toDisplaySql();
-        //assertTrue(sql.contains("trunc"));
+        // ## Assert ##
+        assertHasAnyElement(memberList);
+        for (Member member : memberList) {
+            log(member);
+        }
+        assertEquals(expectedList, memberList);
+        String sql = cb.toDisplaySql();
+        assertTrue(sql.contains("trunc"));
     }
 
     // ===================================================================================
@@ -208,7 +204,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
             public void specify(MemberCB cb) {
                 cb.mysticRhythms(toDate("2014/09/01"));
             }
-        }).convert(new ColumnConversionOption().addDay(dreamCruiseCB.specify().columnMemberId()).addDay(1));
+        }).convert(new ColumnConversionOption().addDay(dreamCruiseCB.specify().columnMemberId()).addMinute(1));
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
                 cb.specify().columnBirthdate();
@@ -220,33 +216,23 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
         });
 
         // ## Act ##
-        try {
-            memberBhv.selectList(cb);
-            fail();
-        } catch (SQLFailureException e) {
-            log(e.getMessage());
-        }
+        ListResultBean<Member> memberList = memberBhv.selectList(cb);
 
         // ## Assert ##
-        // using Date, why?
-        // DB2 SQL Error: SQLCODE=-727, SQLSTATE=56098, SQLERRMC=2;-461;42846;SYSIBM.DATE|SYSIBM.TIMESTAMP, DRIVER=3.52.95
-        //assertHasAnyElement(memberList);
-        //for (Member member : memberList) {
-        //    Integer memberId = member.getMemberId();
-        //    log(memberId, member.getMemberName());
-        //    assertTrue(memberId >= 9);
-        //    if (memberId.equals(9)) {
-        //        markHere("exists");
-        //    }
-        //}
-        //assertMarked("exists");
+        assertHasAnyElement(memberList);
+        for (Member member : memberList) {
+            Long memberId = member.getMemberId();
+            log(memberId, member.getMemberName());
+            assertTrue(memberId >= 9L);
+            if (memberId.equals(9L)) {
+                markHere("exists");
+            }
+        }
+        assertMarked("exists");
         String sql = cb.toDisplaySql();
-        assertContains(sql,
-                "where dfloc.BIRTHDATE <= cast(cast('2015-04-05' as timestamp) + dfloc.VERSION_NO month as date)");
-        assertContains(
-                sql,
-                "and dfloc.BIRTHDATE < cast(cast(cast(cast('2014-09-01' as timestamp) + dfloc.MEMBER_ID day as date) as timestamp) + 1 day as date)");
-        assertContains(sql, "and dfloc.BIRTHDATE >= '2006-09-26'");
+        assertContains(sql, "where dfloc.BIRTHDATE <= add_months(timestamp '2015-04-05 00:00:00', dfloc.VERSION_NO)");
+        assertContains(sql, "and dfloc.BIRTHDATE < timestamp '2014-09-01 00:00:00' + dfloc.MEMBER_ID + 1 / 1440");
+        assertContains(sql, "and dfloc.BIRTHDATE >= timestamp '2006-09-26 00:00:00'");
     }
 
     public void test_ColumnQuery_MysticRythms_timestamp() throws Exception {
@@ -295,23 +281,21 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
         assertHasAnyElement(memberList);
         for (Member member : memberList) {
             log(member.getMemberId(), member.getMemberName());
-            assertTrue(member.getMemberId() >= 10);
+            assertTrue(member.getMemberId() >= 10L);
         }
         String sql = cb.toDisplaySql();
         assertContains(sql,
-                "where dfloc.FORMALIZED_DATETIME <= cast('2015-04-05 12:34:56.000' as timestamp) + dfloc.VERSION_NO month");
-        assertContains(
-                sql,
-                "and dfloc.FORMALIZED_DATETIME <= cast(cast('2014-09-01 15:00:00.000' as timestamp) + dfloc.MEMBER_ID day as timestamp) + -3 hour");
-        assertContains(sql, "and dfloc.FORMALIZED_DATETIME >= '2006-09-26 12:34:56.789'");
+                "where dfloc.FORMALIZED_DATETIME <= add_months(timestamp '2015-04-05 12:34:56.000', dfloc.VERSION_NO)");
+        assertContains(sql,
+                "and dfloc.FORMALIZED_DATETIME <= timestamp '2014-09-01 15:00:00.000' + dfloc.MEMBER_ID + -3 / 24");
+        assertContains(sql, "and dfloc.FORMALIZED_DATETIME >= timestamp '2006-09-26 12:34:56.789'");
     }
 
     public void test_ColumnQuery_MysticRhythms_subtract() throws Exception {
         // ## Arrange ##
-        // using toTimestamp() to avoid unknown exception
         {
             Member member = new Member();
-            member.setFormalizedDatetime(toTimestamp("2014/09/10"));
+            member.setBirthdate(toDate("2014/09/10"));
             UpdateOption<MemberCB> option = new UpdateOption<MemberCB>().allowNonQueryUpdate();
             memberBhv.varyingQueryUpdate(member, new MemberCB(), option);
         }
@@ -320,29 +304,29 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
         MemberCB dreamCruiseCB = cb.dreamCruiseCB();
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.specify().columnFormalizedDatetime();
+                cb.specify().columnBirthdate();
             }
         }).greaterEqual(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.mysticRhythms(toTimestamp("2006/09/26"));
+                cb.mysticRhythms(toDate("2006/09/26"));
             }
         }).convert(new ColumnConversionOption().subtractMonth(dreamCruiseCB.specify().columnVersionNo()));
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.specify().columnFormalizedDatetime();
+                cb.specify().columnBirthdate();
             }
         }).lessEqual(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.mysticRhythms(toTimestamp("2014/09/20"));
+                cb.mysticRhythms(toDate("2014/09/20"));
             }
         }).convert(new ColumnConversionOption().subtractDay(dreamCruiseCB.specify().columnMemberId()).addMinute(-1));
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.specify().columnFormalizedDatetime();
+                cb.specify().columnBirthdate();
             }
         }).lessEqual(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.mysticRhythms(toTimestamp("2015/04/05"));
+                cb.mysticRhythms(toDate("2015/04/05"));
             }
         });
 
@@ -352,21 +336,18 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         for (Member member : memberList) {
-            Integer memberId = member.getMemberId();
+            Long memberId = member.getMemberId();
             log(memberId, member.getMemberName());
-            assertTrue(memberId <= 9);
-            if (memberId.equals(9)) {
+            assertTrue(memberId <= 9L);
+            if (memberId.equals(9L)) {
                 markHere("exists");
             }
         }
         assertMarked("exists");
         String sql = cb.toDisplaySql();
-        assertContains(sql,
-                "where dfloc.FORMALIZED_DATETIME >= cast('2006-09-26 00:00:00.000' as timestamp) - dfloc.VERSION_NO month");
-        assertContains(
-                sql,
-                "and dfloc.FORMALIZED_DATETIME <= cast(cast('2014-09-20 00:00:00.000' as timestamp) - dfloc.MEMBER_ID day as timestamp) + -1 minute");
-        assertContains(sql, "and dfloc.FORMALIZED_DATETIME <= '2015-04-05 00:00:00.000'");
+        assertContains(sql, "where dfloc.BIRTHDATE >= add_months(timestamp '2006-09-26 00:00:00', -dfloc.VERSION_NO)");
+        assertContains(sql, "and dfloc.BIRTHDATE <= timestamp '2014-09-20 00:00:00' - dfloc.MEMBER_ID + -1 / 1440");
+        assertContains(sql, "and dfloc.BIRTHDATE <= timestamp '2015-04-05 00:00:00'");
     }
 
     // ===================================================================================
@@ -408,7 +389,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
     public void test_DreamCruise_ManualOrder_basic() throws Exception {
         // ## Arrange ##
         ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+        Map<Long, MemberService> serviceMap = new HashMap<Long, MemberService>();
         for (MemberService service : serviceList) {
             serviceMap.put(service.getMemberId(), service);
         }
@@ -423,11 +404,11 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
 
         // ## Assert ##
         assertHasAnyElement(memberList);
-        Integer previousSortValue = null;
+        Long previousSortValue = null;
         for (Member member : memberList) {
-            Integer memberId = member.getMemberId();
+            Long memberId = member.getMemberId();
             Integer servicePointCount = serviceMap.get(memberId).getServicePointCount();
-            Integer sortValue = memberId * servicePointCount;
+            Long sortValue = memberId * servicePointCount;
             if (previousSortValue != null && previousSortValue > sortValue) {
                 fail();
             }
@@ -439,7 +420,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
     public void test_DreamCruise_ManualOrder_derivedColumn_basic() throws Exception {
         // ## Arrange ##
         ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+        Map<Long, MemberService> serviceMap = new HashMap<Long, MemberService>();
         for (MemberService service : serviceList) {
             serviceMap.put(service.getMemberId(), service);
         }
@@ -468,7 +449,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
     public void test_DreamCruise_ManualOrder_derivedColumn_twice() throws Exception {
         // ## Arrange ##
         ListResultBean<MemberService> serviceList = memberServiceBhv.selectList(new MemberServiceCB());
-        Map<Integer, MemberService> serviceMap = new HashMap<Integer, MemberService>();
+        Map<Long, MemberService> serviceMap = new HashMap<Long, MemberService>();
         for (MemberService service : serviceList) {
             serviceMap.put(service.getMemberId(), service);
         }
@@ -503,7 +484,7 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
     public void test_DreamCruise_ManualOrder_union() throws Exception {
         // ## Arrange ##
         ListResultBean<MemberSecurity> securityList = memberSecurityBhv.selectList(new MemberSecurityCB());
-        Map<Integer, MemberSecurity> securityMap = new HashMap<Integer, MemberSecurity>();
+        Map<Long, MemberSecurity> securityMap = new HashMap<Long, MemberSecurity>();
         for (MemberSecurity security : securityList) {
             securityMap.put(security.getMemberId(), security);
         }
@@ -526,19 +507,21 @@ public class WxCBDreamCruiseDB2Test extends UnitContainerTestCase {
             log(e.getMessage());
         }
 
-        // DB2 SQL Error: SQLCODE=-214, SQLSTATE=42822, SQLERRMC=MEMBER_ID...;ORDER BY;1, DRIVER=3.52.95
-        //// ## Assert ##
+        // ## Assert ##
+        // java.sql.SQLSyntaxErrorException: ORA-01785
         //assertHasAnyElement(memberList);
-        //Integer previousSortValue = null;
+        //Long previousSortValue = null;
         //for (Member member : memberList) {
-        //    Integer memberId = member.getMemberId();
+        //    Long memberId = member.getMemberId();
         //    Integer useCount = securityMap.get(memberId).getReminderUseCount();
-        //    Integer sortValue = memberId * useCount;
+        //    Long sortValue = memberId * useCount;
         //    if (previousSortValue != null && previousSortValue > sortValue) {
         //        fail();
         //    }
         //    previousSortValue = sortValue;
         //    log(member.getMemberId() + ", " + useCount + ", " + sortValue);
         //}
+        String sql = cb.toDisplaySql();
+        assertContains(sql, "order by MEMBER_ID * REMINDER_USE_COUNT_3 asc");
     }
 }

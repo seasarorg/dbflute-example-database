@@ -6,7 +6,6 @@ import org.seasar.dbflute.*;
 import org.seasar.dbflute.bhv.*;
 import org.seasar.dbflute.cbean.*;
 import org.seasar.dbflute.cbean.chelper.HpSLSFunction;
-import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.exception.*;
 import org.seasar.dbflute.optional.OptionalEntity;
 import org.seasar.dbflute.outsidesql.executor.*;
@@ -60,7 +59,7 @@ public abstract class BsMemberAddressBhv extends AbstractBehaviorWritable<Member
     //                                                                              DBMeta
     //                                                                              ======
     /** {@inheritDoc} */
-    public DBMeta getDBMeta() { return MemberAddressDbm.getInstance(); }
+    public MemberAddressDbm getDBMeta() { return MemberAddressDbm.getInstance(); }
 
     /** @return The instance of DBMeta as my table type. (NotNull) */
     public MemberAddressDbm getMyDBMeta() { return MemberAddressDbm.getInstance(); }
@@ -197,25 +196,25 @@ public abstract class BsMemberAddressBhv extends AbstractBehaviorWritable<Member
     /**
      * Select the entity by the unique-key value.
      * @param memberId : UQ+, NotNull, int(10), FK to MEMBER. (NotNull)
-     * @param validBeginDate : +UQ, NotNull, datetime(23, 3). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, date(10). (NotNull)
      * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
      * @exception EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
      * @exception EntityDuplicatedException When the entity has been duplicated.
      * @exception SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
      */
-    public OptionalEntity<MemberAddress> selectByUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+    public OptionalEntity<MemberAddress> selectByUniqueOf(Integer memberId, java.util.Date validBeginDate) {
         return facadeSelectByUniqueOf(memberId, validBeginDate);
     }
 
-    protected OptionalEntity<MemberAddress> facadeSelectByUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+    protected OptionalEntity<MemberAddress> facadeSelectByUniqueOf(Integer memberId, java.util.Date validBeginDate) {
         return doSelectByUniqueOf(memberId, validBeginDate, typeOfSelectedEntity());
     }
 
-    protected <ENTITY extends MemberAddress> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate, Class<? extends ENTITY> tp) {
+    protected <ENTITY extends MemberAddress> OptionalEntity<ENTITY> doSelectByUniqueOf(Integer memberId, java.util.Date validBeginDate, Class<? extends ENTITY> tp) {
         return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(memberId, validBeginDate), tp), memberId, validBeginDate);
     }
 
-    protected MemberAddressCB xprepareCBAsUniqueOf(Integer memberId, java.sql.Timestamp validBeginDate) {
+    protected MemberAddressCB xprepareCBAsUniqueOf(Integer memberId, java.util.Date validBeginDate) {
         assertObjectNotNull("memberId", memberId);assertObjectNotNull("validBeginDate", validBeginDate);
         return newConditionBean().acceptUniqueOf(memberId, validBeginDate);
     }

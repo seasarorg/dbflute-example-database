@@ -74,7 +74,7 @@ public class MemberDbm extends AbstractDBMeta {
     }
     public static class EpgBirthdate implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getBirthdate(); }
-        public void write(Entity et, Object vl) { ((Member)et).setBirthdate((java.sql.Timestamp)vl); }
+        public void write(Entity et, Object vl) { ((Member)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgRegisterDatetime implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getRegisterDatetime(); }
@@ -169,7 +169,7 @@ public class MemberDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, null, String.class, "memberAccount", null, false, false, true, "nvarchar", 50, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, null, String.class, "memberStatusCode", null, false, false, true, "char", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
     protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, java.sql.Timestamp.class, "birthdate", null, false, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, java.util.Date.class, "birthdate", null, false, false, false, "date", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "datetime", 23, 3, null, true, null, null, null, null, null);
     protected final ColumnInfo _columnRegisterUser = cci("REGISTER_USER", "REGISTER_USER", null, null, String.class, "registerUser", null, false, false, true, "nvarchar", 200, 0, null, true, null, null, null, null, null);
     protected final ColumnInfo _columnRegisterProcess = cci("REGISTER_PROCESS", "REGISTER_PROCESS", null, null, String.class, "registerProcess", null, false, false, true, "nvarchar", 200, 0, null, true, null, null, null, null, null);
@@ -204,7 +204,7 @@ public class MemberDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnFormalizedDatetime() { return _columnFormalizedDatetime; }
     /**
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }

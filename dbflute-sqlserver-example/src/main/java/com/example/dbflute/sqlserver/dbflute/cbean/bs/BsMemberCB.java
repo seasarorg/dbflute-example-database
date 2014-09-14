@@ -492,7 +492,7 @@ public class BsMemberCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnFormalizedDatetime() { return doColumn("FORMALIZED_DATETIME"); }
         /**
-         * BIRTHDATE: {datetime(23, 3)}
+         * BIRTHDATE: {date(10)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnBirthdate() { return doColumn("BIRTHDATE"); }

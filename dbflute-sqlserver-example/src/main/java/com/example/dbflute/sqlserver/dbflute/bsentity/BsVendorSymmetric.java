@@ -72,7 +72,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
     /** PLAIN_TEXT: {nvarchar(100)} */
     protected String _plainText;
 
-    /** ENCRYPTED_DATA: {image(2147483647)} */
+    /** ENCRYPTED_DATA: {varbinary(2147483647)} */
     protected String _encryptedData;
 
     // -----------------------------------------------------
@@ -325,7 +325,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [get] ENCRYPTED_DATA: {image(2147483647)} <br />
+     * [get] ENCRYPTED_DATA: {varbinary(2147483647)} <br />
      * @return The value of the column 'ENCRYPTED_DATA'. (NullAllowed even if selected: for no constraint)
      */
     public String getEncryptedData() {
@@ -333,7 +333,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
     }
 
     /**
-     * [set] ENCRYPTED_DATA: {image(2147483647)} <br />
+     * [set] ENCRYPTED_DATA: {varbinary(2147483647)} <br />
      * @param encryptedData The value of the column 'ENCRYPTED_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEncryptedData(String encryptedData) {

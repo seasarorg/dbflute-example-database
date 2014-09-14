@@ -396,7 +396,7 @@ public class BsVendorCheckCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnTypeOfUniqueidentifier() { return doColumn("TYPE_OF_UNIQUEIDENTIFIER"); }
         /**
-         * TYPE_OF_XML: {xml(1073741823)}
+         * TYPE_OF_XML: {xml(2147483647)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnTypeOfXml() { return doColumn("TYPE_OF_XML"); }

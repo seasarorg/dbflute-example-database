@@ -73,7 +73,7 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnVendorSymmetricId = cci("VENDOR_SYMMETRIC_ID", "VENDOR_SYMMETRIC_ID", null, null, Long.class, "vendorSymmetricId", null, true, false, true, "numeric", 16, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnPlainText = cci("PLAIN_TEXT", "PLAIN_TEXT", null, null, String.class, "plainText", null, false, false, false, "nvarchar", 100, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, String.class, "encryptedData", null, false, false, false, "image", 2147483647, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnEncryptedData = cci("ENCRYPTED_DATA", "ENCRYPTED_DATA", null, null, String.class, "encryptedData", null, false, false, false, "varbinary", 2147483647, 0, null, false, null, null, null, null, null);
 
     /**
      * VENDOR_SYMMETRIC_ID: {PK, NotNull, numeric(16)}
@@ -86,7 +86,7 @@ public class VendorSymmetricDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnPlainText() { return _columnPlainText; }
     /**
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnEncryptedData() { return _columnEncryptedData; }

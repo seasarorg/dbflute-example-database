@@ -1181,66 +1181,66 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdate The value of birthdate as equal. (NullAllowed: if null, no condition)
      */
-    public void setBirthdate_Equal(java.sql.Timestamp birthdate) {
-        regBirthdate(CK_EQ,  birthdate);
+    public void setBirthdate_Equal(java.util.Date birthdate) {
+        regBirthdate(CK_EQ,  fCTPD(birthdate));
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdate The value of birthdate as greaterThan. (NullAllowed: if null, no condition)
      */
-    public void setBirthdate_GreaterThan(java.sql.Timestamp birthdate) {
-        regBirthdate(CK_GT,  birthdate);
+    public void setBirthdate_GreaterThan(java.util.Date birthdate) {
+        regBirthdate(CK_GT,  fCTPD(birthdate));
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdate The value of birthdate as lessThan. (NullAllowed: if null, no condition)
      */
-    public void setBirthdate_LessThan(java.sql.Timestamp birthdate) {
-        regBirthdate(CK_LT,  birthdate);
+    public void setBirthdate_LessThan(java.util.Date birthdate) {
+        regBirthdate(CK_LT,  fCTPD(birthdate));
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdate The value of birthdate as greaterEqual. (NullAllowed: if null, no condition)
      */
-    public void setBirthdate_GreaterEqual(java.sql.Timestamp birthdate) {
-        regBirthdate(CK_GE,  birthdate);
+    public void setBirthdate_GreaterEqual(java.util.Date birthdate) {
+        regBirthdate(CK_GE,  fCTPD(birthdate));
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdate The value of birthdate as lessEqual. (NullAllowed: if null, no condition)
      */
-    public void setBirthdate_LessEqual(java.sql.Timestamp birthdate) {
-        regBirthdate(CK_LE, birthdate);
+    public void setBirthdate_LessEqual(java.util.Date birthdate) {
+        regBirthdate(CK_LE, fCTPD(birthdate));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * <pre>e.g. setBirthdate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of birthdate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
     public void setBirthdate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
-        regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueBirthdate(), "BIRTHDATE", fromToOption);
+        regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueBirthdate(), "BIRTHDATE", fromToOption);
     }
 
     /**
      * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
      *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
@@ -1254,39 +1254,39 @@ public abstract class AbstractBsMemberCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdateList The collection of birthdate as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setBirthdate_InScope(Collection<java.sql.Timestamp> birthdateList) {
+    public void setBirthdate_InScope(Collection<java.util.Date> birthdateList) {
         doSetBirthdate_InScope(birthdateList);
     }
 
-    protected void doSetBirthdate_InScope(Collection<java.sql.Timestamp> birthdateList) {
+    protected void doSetBirthdate_InScope(Collection<java.util.Date> birthdateList) {
         regINS(CK_INS, cTL(birthdateList), getCValueBirthdate(), "BIRTHDATE");
     }
 
     /**
      * NotInScope {not in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @param birthdateList The collection of birthdate as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setBirthdate_NotInScope(Collection<java.sql.Timestamp> birthdateList) {
+    public void setBirthdate_NotInScope(Collection<java.util.Date> birthdateList) {
         doSetBirthdate_NotInScope(birthdateList);
     }
 
-    protected void doSetBirthdate_NotInScope(Collection<java.sql.Timestamp> birthdateList) {
+    protected void doSetBirthdate_NotInScope(Collection<java.util.Date> birthdateList) {
         regINS(CK_NINS, cTL(birthdateList), getCValueBirthdate(), "BIRTHDATE");
     }
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      */
     public void setBirthdate_IsNull() { regBirthdate(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      */
     public void setBirthdate_IsNotNull() { regBirthdate(CK_ISNN, DOBJ); }
 

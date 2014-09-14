@@ -435,7 +435,7 @@ public class VendorFunctionTest extends UnitContainerTestCase {
             }
         }).lessEqual(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.specify().columnBirthdate();
+                cb.specify().columnFormalizedDatetime();
             }
         }).convert(option);
 
@@ -448,7 +448,7 @@ public class VendorFunctionTest extends UnitContainerTestCase {
         assertEquals(6, Srl.count(sql, "dateadd("));
         assertTrue(Srl.contains(sql, "dateadd(second, 50, dateadd(minute, 20, dateadd(hour, 5, dateadd(day, 7"));
         assertTrue(Srl.contains(sql, "day, 7, dateadd(month, 3, dateadd(year, 10"));
-        assertTrue(Srl.contains(sql, "dateadd(year, 10, dfloc.BIRTHDATE))))))"));
+        assertTrue(Srl.contains(sql, "dateadd(year, 10, dfloc.FORMALIZED_DATETIME))))))"));
         assertTrue(Srl.contains(sql, "where dfloc.BIRTHDATE <= "));
     }
 
@@ -459,7 +459,7 @@ public class VendorFunctionTest extends UnitContainerTestCase {
         option.addYear(10).addMonth(3).addDay(7).addHour(5).addMinute(20).addSecond(50);
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
-                cb.specify().columnBirthdate();
+                cb.specify().columnFormalizedDatetime();
             }
         }).greaterEqual(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
@@ -476,7 +476,7 @@ public class VendorFunctionTest extends UnitContainerTestCase {
         assertEquals(6, Srl.count(sql, "dateadd("));
         assertTrue(Srl.contains(sql, "dateadd(second, 50, dateadd(minute, 20, dateadd(hour, 5, dateadd(day, 7"));
         assertTrue(Srl.contains(sql, "day, 7, dateadd(month, 3, dateadd(year, 10"));
-        assertTrue(Srl.contains(sql, "dateadd(year, 10, dfloc.BIRTHDATE))))))"));
+        assertTrue(Srl.contains(sql, "dateadd(year, 10, dfloc.FORMALIZED_DATETIME))))))"));
         assertTrue(Srl.contains(sql, ") >= dfloc.BIRTHDATE"));
     }
 

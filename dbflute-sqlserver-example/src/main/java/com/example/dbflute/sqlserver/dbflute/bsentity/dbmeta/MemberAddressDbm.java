@@ -62,11 +62,11 @@ public class MemberAddressDbm extends AbstractDBMeta {
     }
     public static class EpgValidBeginDate implements PropertyGateway {
         public Object read(Entity et) { return ((MemberAddress)et).getValidBeginDate(); }
-        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidBeginDate((java.sql.Timestamp)vl); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidBeginDate((java.util.Date)vl); }
     }
     public static class EpgValidEndDate implements PropertyGateway {
         public Object read(Entity et) { return ((MemberAddress)et).getValidEndDate(); }
-        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidEndDate((java.sql.Timestamp)vl); }
+        public void write(Entity et, Object vl) { ((MemberAddress)et).setValidEndDate((java.util.Date)vl); }
     }
     public static class EpgAddress implements PropertyGateway {
         public Object read(Entity et) { return ((MemberAddress)et).getAddress(); }
@@ -142,8 +142,8 @@ public class MemberAddressDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnMemberAddressId = cci("MEMBER_ADDRESS_ID", "MEMBER_ADDRESS_ID", null, null, Integer.class, "memberAddressId", null, true, false, true, "int", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, true, "int", 10, 0, null, false, null, null, "member", null, null);
-    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, java.sql.Timestamp.class, "validBeginDate", null, false, false, true, "datetime", 23, 3, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, java.sql.Timestamp.class, "validEndDate", null, false, false, true, "datetime", 23, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnValidBeginDate = cci("VALID_BEGIN_DATE", "VALID_BEGIN_DATE", null, null, java.util.Date.class, "validBeginDate", null, false, false, true, "date", 10, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnValidEndDate = cci("VALID_END_DATE", "VALID_END_DATE", null, null, java.util.Date.class, "validEndDate", null, false, false, true, "date", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnAddress = cci("ADDRESS", "ADDRESS", null, null, String.class, "address", null, false, false, true, "nvarchar", 200, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnRegionId = cci("REGION_ID", "REGION_ID", null, null, Integer.class, "regionId", null, false, false, true, "int", 10, 0, null, false, null, null, "region", null, null);
     protected final ColumnInfo _columnRegisterDatetime = cci("REGISTER_DATETIME", "REGISTER_DATETIME", null, null, java.sql.Timestamp.class, "registerDatetime", null, false, false, true, "datetime", 23, 3, null, true, null, null, null, null, null);
@@ -165,12 +165,12 @@ public class MemberAddressDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnMemberId() { return _columnMemberId; }
     /**
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnValidBeginDate() { return _columnValidBeginDate; }
     /**
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnValidEndDate() { return _columnValidEndDate; }

@@ -169,7 +169,7 @@ public class VendorCheckDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnTypeOfBinary = cci("TYPE_OF_BINARY", "TYPE_OF_BINARY", null, null, byte[].class, "typeOfBinary", null, false, false, false, "binary", 3000, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfVarbinary = cci("TYPE_OF_VARBINARY", "TYPE_OF_VARBINARY", null, null, byte[].class, "typeOfVarbinary", null, false, false, false, "varbinary", 3000, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnTypeOfUniqueidentifier = cci("TYPE_OF_UNIQUEIDENTIFIER", "TYPE_OF_UNIQUEIDENTIFIER", null, null, java.util.UUID.class, "typeOfUniqueidentifier", null, false, false, false, "uniqueidentifier", 36, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnTypeOfXml = cci("TYPE_OF_XML", "TYPE_OF_XML", null, null, String.class, "typeOfXml", null, false, false, false, "xml", 1073741823, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnTypeOfXml = cci("TYPE_OF_XML", "TYPE_OF_XML", null, null, String.class, "typeOfXml", null, false, false, false, "xml", 2147483647, 0, null, false, null, null, null, null, null);
 
     /**
      * VENDOR_CHECK_ID: {PK, NotNull, numeric(16)}
@@ -262,7 +262,7 @@ public class VendorCheckDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnTypeOfUniqueidentifier() { return _columnTypeOfUniqueidentifier; }
     /**
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnTypeOfXml() { return _columnTypeOfXml; }

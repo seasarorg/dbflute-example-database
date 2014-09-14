@@ -5,7 +5,7 @@
     <table comment="会員: 会員登録時にInsertされる。&#xa;物理削除されることはない" name="MEMBER"
         schema="EXAMPLEDB" type="TABLE">
         <column comment="会員ID: 連番" dbType="NUMBER" javaType="Long"
-            name="MEMBER_ID" pkName="SYS_C0026627" primaryKey="true"
+            name="MEMBER_ID" pkName="SYS_C0027751" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column comment="会員名称: 会員検索の条件となる。" dbType="VARCHAR2"
             javaType="String" name="MEMBER_NAME" required="true"
@@ -50,7 +50,7 @@
     </table>
     <table name="MEMBER_ADDRESS" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ADDRESS_ID"
-            pkName="SYS_C0026641" primaryKey="true" required="true"
+            pkName="SYS_C0027765" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -90,7 +90,7 @@
     <table comment="会員ログイン: ログインの度にInsertされる" name="MEMBER_LOGIN"
         schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_LOGIN_ID"
-            pkName="SYS_C0026647" primaryKey="true" required="true"
+            pkName="SYS_C0027771" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -117,7 +117,7 @@
     </table>
     <table name="MEMBER_SECURITY" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
-            pkName="SYS_C0026672" primaryKey="true" required="true"
+            pkName="SYS_C0027796" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="LOGIN_PASSWORD" required="true" size="50" type="VARCHAR"/>
@@ -147,7 +147,7 @@
     </table>
     <table name="MEMBER_SERVICE" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_SERVICE_ID"
-            pkName="SYS_C0026659" primaryKey="true" required="true"
+            pkName="SYS_C0027783" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -186,7 +186,7 @@
     <table comment="会員ステータス: 固定の区分値" name="MEMBER_STATUS"
         schema="EXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="MEMBER_STATUS_CODE" pkName="SYS_C0026733"
+            name="MEMBER_STATUS_CODE" pkName="SYS_C0027857"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="MEMBER_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -204,7 +204,7 @@
     <table comment="会員: 会員登録時にInsertされる。&#xa;物理削除されることはない"
         name="MEMBER_VENDOR_SYNONYM" schema="EXAMPLEDB" type="SYNONYM">
         <column comment="会員ID: 連番" dbType="NUMBER" javaType="Long"
-            name="MEMBER_ID" pkName="SYS_C0026627" primaryKey="true"
+            name="MEMBER_ID" pkName="SYS_C0027751" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column comment="会員名称: 会員検索の条件となる。" dbType="VARCHAR2"
             javaType="String" name="MEMBER_NAME" required="true"
@@ -250,7 +250,7 @@
     <table comment="退会するとInsertされる" name="MEMBER_WITHDRAWAL"
         schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
-            pkName="SYS_C0026682" primaryKey="true" required="true"
+            pkName="SYS_C0027806" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String"
             name="WITHDRAWAL_REASON_CODE" size="3" type="CHAR"/>
@@ -282,7 +282,7 @@
     </table>
     <table comment="商品: " name="PRODUCT" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="PRODUCT_ID"
-            pkName="SYS_C0026711" primaryKey="true" required="true"
+            pkName="SYS_C0027835" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="PRODUCT_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -321,7 +321,7 @@
     </table>
     <table name="PRODUCT_CATEGORY" schema="EXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="PRODUCT_CATEGORY_CODE" pkName="SYS_C0026714"
+            name="PRODUCT_CATEGORY_CODE" pkName="SYS_C0027838"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="PRODUCT_CATEGORY_NAME" required="true" size="50" type="VARCHAR"/>
@@ -334,7 +334,7 @@
     </table>
     <table comment=": 商品ステータス" name="PRODUCT_STATUS" schema="EXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" pkName="SYS_C0026718"
+            name="PRODUCT_STATUS_CODE" pkName="SYS_C0027842"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -347,7 +347,7 @@
     <table comment="購入: 購入の度ににInsertされる" name="PURCHASE"
         schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="PURCHASE_ID"
-            pkName="SYS_C0026697" primaryKey="true" required="true"
+            pkName="SYS_C0027821" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -400,14 +400,14 @@
     </table>
     <table name="REGION" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="java.math.BigDecimal"
-            name="REGION_ID" pkName="SYS_C0026721" primaryKey="true"
+            name="REGION_ID" pkName="SYS_C0027845" primaryKey="true"
             required="true" size="22" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REGION_NAME"
             required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="SERVICE_RANK" schema="EXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String" name="SERVICE_RANK_CODE"
-            pkName="SYS_C0026728" primaryKey="true" required="true"
+            pkName="SYS_C0027852" primaryKey="true" required="true"
             size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="SERVICE_RANK_NAME" required="true" size="50" type="VARCHAR"/>
@@ -448,7 +448,7 @@
     </table>
     <table name="SYNONYM_EXCEPT" schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="NUMBER" javaType="Long" name="EXCEPT_ID"
-            pkName="SYS_C0026792" primaryKey="true" required="true"
+            pkName="SYS_C0027916" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="EXCEPT_NAME"
             size="256" type="VARCHAR"/>
@@ -456,7 +456,7 @@
     <table comment="会員: 会員登録時にInsertされる。&#xa;物理削除されることはない"
         name="SYNONYM_MEMBER" schema="EXAMPLEDB" type="SYNONYM">
         <column comment="会員ID: 連番" dbType="NUMBER" javaType="Long"
-            name="MEMBER_ID" pkName="SYS_C0026627" primaryKey="true"
+            name="MEMBER_ID" pkName="SYS_C0027751" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column comment="会員名称: 会員検索の条件となる。" dbType="VARCHAR2"
             javaType="String" name="MEMBER_NAME" required="true"
@@ -502,7 +502,7 @@
     <table comment="会員ログイン: ログインの度にInsertされる"
         name="SYNONYM_MEMBER_LOGIN" schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_LOGIN_ID"
-            pkName="SYS_C0026647" primaryKey="true" required="true"
+            pkName="SYS_C0027771" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -539,7 +539,7 @@
     <table comment="退会するとInsertされる" name="SYNONYM_MEMBER_WITHDRAWAL"
         schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="NUMBER" javaType="Long" name="MEMBER_ID"
-            pkName="SYS_C0026682" primaryKey="true" required="true"
+            pkName="SYS_C0027806" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String"
             name="WITHDRAWAL_REASON_CODE" size="3" type="CHAR"/>
@@ -660,7 +660,7 @@
     </table>
     <table comment="商品: " name="SYNONYM_PRODUCT" schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="NUMBER" javaType="Long" name="PRODUCT_ID"
-            pkName="SYS_C0026711" primaryKey="true" required="true"
+            pkName="SYS_C0027835" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="PRODUCT_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -700,7 +700,7 @@
     <table comment=": 商品ステータス" name="SYNONYM_PRODUCT_STATUS"
         schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" pkName="SYS_C0026718"
+            name="PRODUCT_STATUS_CODE" pkName="SYS_C0027842"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -712,7 +712,7 @@
     </table>
     <table name="SYNONYM_REF_EXCEPT" schema="EXAMPLEDB" type="SYNONYM">
         <column dbType="NUMBER" javaType="Long" name="REF_EXCEPT_ID"
-            pkName="SYS_C0026797" primaryKey="true" required="true"
+            pkName="SYS_C0027921" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="EXCEPT_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -723,14 +723,14 @@
     </table>
     <table name="VENDOR_$_DOLLAR" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long"
-            name="VENDOR_$_DOLLAR_ID" pkName="SYS_C0026774"
+            name="VENDOR_$_DOLLAR_ID" pkName="SYS_C0027898"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="VENDOR_$_DOLLAR_NAME" required="true" size="32" type="VARCHAR"/>
     </table>
     <table name="VENDOR_CHECK" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="VENDOR_CHECK_ID"
-            pkName="SYS_C0026764" primaryKey="true" required="true"
+            pkName="SYS_C0027888" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String" name="TYPE_OF_CHAR"
             size="3" type="CHAR"/>
@@ -794,7 +794,7 @@
     </table>
     <table name="VENDOR_LARGE_DATA" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="LARGE_DATA_ID"
-            pkName="SYS_C0026782" primaryKey="true" required="true"
+            pkName="SYS_C0027906" primaryKey="true" required="true"
             size="12" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="STRING_INDEX"
             required="true" size="200" type="VARCHAR"/>
@@ -808,7 +808,7 @@
             name="NUMERIC_INTEGER_INDEX" required="true" size="8" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Integer"
             name="NUMERIC_INTEGER_NO_INDEX" required="true" size="8" type="DECIMAL"/>
-        <unique name="SYS_C0026783">
+        <unique name="SYS_C0027907">
             <unique-column name="STRING_UNIQUE_INDEX" position="1"/>
         </unique>
         <index name="IX_LARGE_DATA_NUMERIC_INTEGER">
@@ -820,7 +820,7 @@
     </table>
     <table name="VENDOR_LARGE_DATA_REF" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="LARGE_DATA_REF_ID"
-            pkName="SYS_C0026790" primaryKey="true" required="true"
+            pkName="SYS_C0027914" primaryKey="true" required="true"
             size="12" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="LARGE_DATA_ID"
             required="true" size="12" type="DECIMAL"/>
@@ -861,7 +861,7 @@
     </table>
     <table name="VENDOR_LARGE_NAME_901234567890" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long"
-            name="VENDOR_LARGE_NAME_901234567_ID" pkName="SYS_C0026767"
+            name="VENDOR_LARGE_NAME_901234567_ID" pkName="SYS_C0027891"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="VENDOR_LARGE_NAME_9012345_NAME" required="true"
@@ -869,7 +869,7 @@
     </table>
     <table name="VENDOR_LARGE_NAME_90123456_REF" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long"
-            name="VENDOR_LARGE_NAME_90123_REF_ID" pkName="SYS_C0026770"
+            name="VENDOR_LARGE_NAME_90123_REF_ID" pkName="SYS_C0027894"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="VENDOR_LARGE_NAME_901_REF_NAME" required="true"
@@ -884,7 +884,7 @@
     <table comment="会員: 会員登録時にInsertされる。&#xa;物理削除されることはない"
         name="VENDOR_SYNONYM_MEMBER" schema="EXAMPLEDB" type="SYNONYM">
         <column comment="会員ID: 連番" dbType="NUMBER" javaType="Long"
-            name="MEMBER_ID" pkName="SYS_C0026627" primaryKey="true"
+            name="MEMBER_ID" pkName="SYS_C0027751" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column comment="会員名称: 会員検索の条件となる。" dbType="VARCHAR2"
             javaType="String" name="MEMBER_NAME" required="true"
@@ -929,21 +929,21 @@
     </table>
     <table name="WHITE_DIFF_WORLD" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="DIFF_WORLD_ID"
-            pkName="SYS_C0026844" primaryKey="true" required="true"
+            pkName="SYS_C0027968" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="DIFF_WORLD_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_REF_NEXT_EXCEPT" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long"
-            name="REF_NEXT_EXCEPT_ID" pkName="SYS_C0026801"
+            name="REF_NEXT_EXCEPT_ID" pkName="SYS_C0027925"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String" name="NEXT_EXCEPT_CODE"
             required="true" size="3" type="CHAR"/>
     </table>
     <table name="WHITE_REF_NEXT_TARGET" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long"
-            name="REF_NEXT_TARGET_ID" pkName="SYS_C0026809"
+            name="REF_NEXT_TARGET_ID" pkName="SYS_C0027933"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String" name="NEXT_TARGET_CODE"
             required="true" size="3" type="CHAR"/>
@@ -954,7 +954,7 @@
     </table>
     <table name="WHITE_REF_TARGET" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_TARGET_ID"
-            pkName="SYS_C0026805" primaryKey="true" required="true"
+            pkName="SYS_C0027929" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="TARGET_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -965,14 +965,14 @@
     </table>
     <table name="WHITE_SAME_NAME" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="SAME_NAME_ID"
-            pkName="SYS_C0026813" primaryKey="true" required="true"
+            pkName="SYS_C0027937" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="SAME_NAME_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_SAME_NAME_REF_REF" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_REF_ID"
-            pkName="SYS_C0026817" primaryKey="true" required="true"
+            pkName="SYS_C0027941" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REF_REF_NAME"
             required="true" size="100" type="VARCHAR"/>
@@ -981,24 +981,24 @@
     </table>
     <table name="WHITE_TARGET" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="TARGET_ID"
-            pkName="SYS_C0026794" primaryKey="true" required="true"
+            pkName="SYS_C0027918" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="TARGET_NAME"
             size="256" type="VARCHAR"/>
     </table>
     <table name="WHITE_UQ_FK" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="UQ_FK_ID"
-            pkName="SYS_C0026820" primaryKey="true" required="true"
+            pkName="SYS_C0027944" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String" name="UQ_FK_CODE"
             required="true" size="3" type="CHAR"/>
-        <unique name="SYS_C0026821">
+        <unique name="SYS_C0027945">
             <unique-column name="UQ_FK_CODE" position="1"/>
         </unique>
     </table>
     <table name="WHITE_UQ_FK_REF" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="UQ_FK_REF_ID"
-            pkName="SYS_C0026827" primaryKey="true" required="true"
+            pkName="SYS_C0027951" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="NUMBER" javaType="Long" name="FK_TO_PK_ID"
             required="true" size="16" type="DECIMAL"/>
@@ -1016,14 +1016,14 @@
             foreignTable="WHITE_UQ_FK" name="FK_WHITE_UQ_FK_REF_UQ">
             <reference foreign="UQ_FK_CODE" local="FK_TO_UQ_CODE"/>
         </foreign-key>
-        <unique name="SYS_C0026828">
+        <unique name="SYS_C0027952">
             <unique-column name="COMPOUND_UQ_FIRST_CODE" position="1"/>
             <unique-column name="COMPOUND_UQ_SECOND_CODE" position="2"/>
         </unique>
     </table>
     <table name="WHITE_UQ_FK_REF_NEST" schema="EXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="UQ_FK_REF_NEST_ID"
-            pkName="SYS_C0026834" primaryKey="true" required="true"
+            pkName="SYS_C0027958" primaryKey="true" required="true"
             size="16" type="DECIMAL"/>
         <column dbType="CHAR" javaType="String"
             name="COMPOUND_UQ_FIRST_CODE" required="true" size="3" type="CHAR"/>
@@ -1040,7 +1040,7 @@
             required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String" name="UQ_FK_NAME"
             required="true" size="64" type="VARCHAR"/>
-        <unique name="SYS_C0026838">
+        <unique name="SYS_C0027962">
             <unique-column name="UQ_FK_CODE" position="1"/>
         </unique>
     </table>
@@ -1056,7 +1056,7 @@
     </table>
     <table name="WITHDRAWAL_REASON" schema="EXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="WITHDRAWAL_REASON_CODE" pkName="SYS_C0026737"
+            name="WITHDRAWAL_REASON_CODE" pkName="SYS_C0027861"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="CLOB" javaType="String"
             name="WITHDRAWAL_REASON_TEXT" required="true" size="4000" type="CLOB"/>

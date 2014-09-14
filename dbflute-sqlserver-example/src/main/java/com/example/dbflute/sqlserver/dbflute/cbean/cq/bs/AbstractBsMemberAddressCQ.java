@@ -270,66 +270,66 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDate The value of validBeginDate as equal. (NullAllowed: if null, no condition)
      */
-    public void setValidBeginDate_Equal(java.sql.Timestamp validBeginDate) {
-        regValidBeginDate(CK_EQ,  validBeginDate);
+    public void setValidBeginDate_Equal(java.util.Date validBeginDate) {
+        regValidBeginDate(CK_EQ,  fCTPD(validBeginDate));
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDate The value of validBeginDate as greaterThan. (NullAllowed: if null, no condition)
      */
-    public void setValidBeginDate_GreaterThan(java.sql.Timestamp validBeginDate) {
-        regValidBeginDate(CK_GT,  validBeginDate);
+    public void setValidBeginDate_GreaterThan(java.util.Date validBeginDate) {
+        regValidBeginDate(CK_GT,  fCTPD(validBeginDate));
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDate The value of validBeginDate as lessThan. (NullAllowed: if null, no condition)
      */
-    public void setValidBeginDate_LessThan(java.sql.Timestamp validBeginDate) {
-        regValidBeginDate(CK_LT,  validBeginDate);
+    public void setValidBeginDate_LessThan(java.util.Date validBeginDate) {
+        regValidBeginDate(CK_LT,  fCTPD(validBeginDate));
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDate The value of validBeginDate as greaterEqual. (NullAllowed: if null, no condition)
      */
-    public void setValidBeginDate_GreaterEqual(java.sql.Timestamp validBeginDate) {
-        regValidBeginDate(CK_GE,  validBeginDate);
+    public void setValidBeginDate_GreaterEqual(java.util.Date validBeginDate) {
+        regValidBeginDate(CK_GE,  fCTPD(validBeginDate));
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDate The value of validBeginDate as lessEqual. (NullAllowed: if null, no condition)
      */
-    public void setValidBeginDate_LessEqual(java.sql.Timestamp validBeginDate) {
-        regValidBeginDate(CK_LE, validBeginDate);
+    public void setValidBeginDate_LessEqual(java.util.Date validBeginDate) {
+        regValidBeginDate(CK_LE, fCTPD(validBeginDate));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * <pre>e.g. setValidBeginDate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validBeginDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
     public void setValidBeginDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
-        regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueValidBeginDate(), "VALID_BEGIN_DATE", fromToOption);
+        regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueValidBeginDate(), "VALID_BEGIN_DATE", fromToOption);
     }
 
     /**
      * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
      *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
@@ -343,27 +343,27 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDateList The collection of validBeginDate as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setValidBeginDate_InScope(Collection<java.sql.Timestamp> validBeginDateList) {
+    public void setValidBeginDate_InScope(Collection<java.util.Date> validBeginDateList) {
         doSetValidBeginDate_InScope(validBeginDateList);
     }
 
-    protected void doSetValidBeginDate_InScope(Collection<java.sql.Timestamp> validBeginDateList) {
+    protected void doSetValidBeginDate_InScope(Collection<java.util.Date> validBeginDateList) {
         regINS(CK_INS, cTL(validBeginDateList), getCValueValidBeginDate(), "VALID_BEGIN_DATE");
     }
 
     /**
      * NotInScope {not in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @param validBeginDateList The collection of validBeginDate as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setValidBeginDate_NotInScope(Collection<java.sql.Timestamp> validBeginDateList) {
+    public void setValidBeginDate_NotInScope(Collection<java.util.Date> validBeginDateList) {
         doSetValidBeginDate_NotInScope(validBeginDateList);
     }
 
-    protected void doSetValidBeginDate_NotInScope(Collection<java.sql.Timestamp> validBeginDateList) {
+    protected void doSetValidBeginDate_NotInScope(Collection<java.util.Date> validBeginDateList) {
         regINS(CK_NINS, cTL(validBeginDateList), getCValueValidBeginDate(), "VALID_BEGIN_DATE");
     }
 
@@ -372,66 +372,66 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDate The value of validEndDate as equal. (NullAllowed: if null, no condition)
      */
-    public void setValidEndDate_Equal(java.sql.Timestamp validEndDate) {
-        regValidEndDate(CK_EQ,  validEndDate);
+    public void setValidEndDate_Equal(java.util.Date validEndDate) {
+        regValidEndDate(CK_EQ,  fCTPD(validEndDate));
     }
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDate The value of validEndDate as greaterThan. (NullAllowed: if null, no condition)
      */
-    public void setValidEndDate_GreaterThan(java.sql.Timestamp validEndDate) {
-        regValidEndDate(CK_GT,  validEndDate);
+    public void setValidEndDate_GreaterThan(java.util.Date validEndDate) {
+        regValidEndDate(CK_GT,  fCTPD(validEndDate));
     }
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDate The value of validEndDate as lessThan. (NullAllowed: if null, no condition)
      */
-    public void setValidEndDate_LessThan(java.sql.Timestamp validEndDate) {
-        regValidEndDate(CK_LT,  validEndDate);
+    public void setValidEndDate_LessThan(java.util.Date validEndDate) {
+        regValidEndDate(CK_LT,  fCTPD(validEndDate));
     }
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDate The value of validEndDate as greaterEqual. (NullAllowed: if null, no condition)
      */
-    public void setValidEndDate_GreaterEqual(java.sql.Timestamp validEndDate) {
-        regValidEndDate(CK_GE,  validEndDate);
+    public void setValidEndDate_GreaterEqual(java.util.Date validEndDate) {
+        regValidEndDate(CK_GE,  fCTPD(validEndDate));
     }
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDate The value of validEndDate as lessEqual. (NullAllowed: if null, no condition)
      */
-    public void setValidEndDate_LessEqual(java.sql.Timestamp validEndDate) {
-        regValidEndDate(CK_LE, validEndDate);
+    public void setValidEndDate_LessEqual(java.util.Date validEndDate) {
+        regValidEndDate(CK_LE, fCTPD(validEndDate));
     }
 
     /**
      * FromTo with various options. (versatile) {(default) fromDatetime &lt;= column &lt;= toDatetime} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * <pre>e.g. setValidEndDate_FromTo(fromDate, toDate, new <span style="color: #DD4747">FromToOption</span>().compareAsDate());</pre>
      * @param fromDatetime The from-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validEndDate. (NullAllowed: if null, no from-condition)
      * @param toDatetime The to-datetime(yyyy/MM/dd HH:mm:ss.SSS) of validEndDate. (NullAllowed: if null, no to-condition)
      * @param fromToOption The option of from-to. (NotNull)
      */
     public void setValidEndDate_FromTo(Date fromDatetime, Date toDatetime, FromToOption fromToOption) {
-        regFTQ((fromDatetime != null ? new java.sql.Timestamp(fromDatetime.getTime()) : null), (toDatetime != null ? new java.sql.Timestamp(toDatetime.getTime()) : null), getCValueValidEndDate(), "VALID_END_DATE", fromToOption);
+        regFTQ(fCTPD(fromDatetime), fCTPD(toDatetime), getCValueValidEndDate(), "VALID_END_DATE", fromToOption);
     }
 
     /**
      * DateFromTo. (Date means yyyy/MM/dd) {fromDate &lt;= column &lt; toDate + 1 day} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * <pre>
      * e.g. from:{2007/04/10 08:24:53} to:{2007/04/16 14:36:29}
      *  column &gt;= '2007/04/10 00:00:00' and column <span style="color: #DD4747">&lt; '2007/04/17 00:00:00'</span>
@@ -445,27 +445,27 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDateList The collection of validEndDate as inScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setValidEndDate_InScope(Collection<java.sql.Timestamp> validEndDateList) {
+    public void setValidEndDate_InScope(Collection<java.util.Date> validEndDateList) {
         doSetValidEndDate_InScope(validEndDateList);
     }
 
-    protected void doSetValidEndDate_InScope(Collection<java.sql.Timestamp> validEndDateList) {
+    protected void doSetValidEndDate_InScope(Collection<java.util.Date> validEndDateList) {
         regINS(CK_INS, cTL(validEndDateList), getCValueValidEndDate(), "VALID_END_DATE");
     }
 
     /**
      * NotInScope {not in ('1965-03-03', '1966-09-15')}. And NullOrEmptyIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @param validEndDateList The collection of validEndDate as notInScope. (NullAllowed: if null (or empty), no condition)
      */
-    public void setValidEndDate_NotInScope(Collection<java.sql.Timestamp> validEndDateList) {
+    public void setValidEndDate_NotInScope(Collection<java.util.Date> validEndDateList) {
         doSetValidEndDate_NotInScope(validEndDateList);
     }
 
-    protected void doSetValidEndDate_NotInScope(Collection<java.sql.Timestamp> validEndDateList) {
+    protected void doSetValidEndDate_NotInScope(Collection<java.util.Date> validEndDateList) {
         regINS(CK_NINS, cTL(validEndDateList), getCValueValidEndDate(), "VALID_END_DATE");
     }
 

@@ -441,14 +441,14 @@ public class BsVendorCheckCQ extends AbstractBsVendorCheckCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfXml_Asc() { regOBA("TYPE_OF_XML"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @return this. (NotNull)
      */
     public BsVendorCheckCQ addOrderBy_TypeOfXml_Desc() { regOBD("TYPE_OF_XML"); return this; }

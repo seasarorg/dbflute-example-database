@@ -253,7 +253,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedData The value of encryptedData as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setEncryptedData_Equal(String encryptedData) {
@@ -266,7 +266,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedData The value of encryptedData as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setEncryptedData_NotEqual(String encryptedData) {
@@ -279,7 +279,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedDataList The collection of encryptedData as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setEncryptedData_InScope(Collection<String> encryptedDataList) {
@@ -292,7 +292,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedDataList The collection of encryptedData as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setEncryptedData_NotInScope(Collection<String> encryptedDataList) {
@@ -305,7 +305,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedData The value of encryptedData as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setEncryptedData_PrefixSearch(String encryptedData) {
@@ -314,7 +314,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)} <br />
+     * ENCRYPTED_DATA: {varbinary(2147483647)} <br />
      * <pre>e.g. setEncryptedData_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param encryptedData The value of encryptedData as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -326,7 +326,7 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @param encryptedData The value of encryptedData as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -336,19 +336,19 @@ public abstract class AbstractBsVendorSymmetricCQ extends AbstractConditionQuery
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      */
     public void setEncryptedData_IsNull() { regEncryptedData(CK_ISN, DOBJ); }
 
     /**
      * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      */
     public void setEncryptedData_IsNullOrEmpty() { regEncryptedData(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      */
     public void setEncryptedData_IsNotNull() { regEncryptedData(CK_ISNN, DOBJ); }
 

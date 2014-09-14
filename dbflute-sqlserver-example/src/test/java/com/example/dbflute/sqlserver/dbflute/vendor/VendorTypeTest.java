@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 import org.seasar.dbflute.bhv.DeleteOption;
+import org.seasar.dbflute.exception.EntityAlreadyDeletedException;
 import org.seasar.dbflute.util.DfTypeUtil;
 
 import com.example.dbflute.sqlserver.dbflute.cbean.VendorCheckCB;
@@ -50,10 +51,17 @@ public class VendorTypeTest extends UnitContainerTestCase {
         // ## Assert ##
         VendorCheckCB cb = new VendorCheckCB();
         cb.query().setVendorCheckId_Equal(99999L);
-        // becomes '2009/12/24 00:00:00.000' by SQLServer
         cb.query().setTypeOfDatetime_LessEqual(datetimeFullMillis);
-        VendorCheck actual = vendorCheckBhv.selectEntityWithDeletedCheck(cb);
-        assertEquals(datetimeNonMillis, actual.getTypeOfDatetime());
+        try {
+            vendorCheckBhv.selectEntityWithDeletedCheck(cb);
+            fail();
+        } catch (EntityAlreadyDeletedException e) {
+            log(e.getMessage());
+        }
+        // changed by new JDBC driveer
+        // becomes '2009/12/24 00:00:00.000' by SQLServer
+        //VendorCheck actual = vendorCheckBhv.selectEntityWithDeletedCheck(cb);
+        //assertEquals(datetimeNonMillis, actual.getTypeOfDatetime());
     }
 
     // ===================================================================================

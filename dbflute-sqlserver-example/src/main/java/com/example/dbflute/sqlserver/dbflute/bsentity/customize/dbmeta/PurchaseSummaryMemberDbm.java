@@ -54,7 +54,7 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     }
     public static class EpgBirthdate implements PropertyGateway {
         public Object read(Entity et) { return ((PurchaseSummaryMember)et).getBirthdate(); }
-        public void write(Entity et, Object vl) { ((PurchaseSummaryMember)et).setBirthdate((java.sql.Timestamp)vl); }
+        public void write(Entity et, Object vl) { ((PurchaseSummaryMember)et).setBirthdate((java.util.Date)vl); }
     }
     public static class EpgFormalizedDatetime implements PropertyGateway {
         public Object read(Entity et) { return ((PurchaseSummaryMember)et).getFormalizedDatetime(); }
@@ -83,7 +83,7 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
     //                                                                         ===========
     protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, null, Integer.class, "memberId", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, null, String.class, "memberName", null, false, false, false, "nvarchar", 200, 0, null, false, null, null, null, null, null);
-    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, java.sql.Timestamp.class, "birthdate", null, false, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnBirthdate = cci("BIRTHDATE", "BIRTHDATE", null, null, java.util.Date.class, "birthdate", null, false, false, false, "date", 10, 0, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnFormalizedDatetime = cci("FORMALIZED_DATETIME", "FORMALIZED_DATETIME", null, null, java.sql.Timestamp.class, "formalizedDatetime", null, false, false, false, "datetime", 23, 3, null, false, null, null, null, null, null);
     protected final ColumnInfo _columnPurchaseSummary = cci("PURCHASE_SUMMARY", "PURCHASE_SUMMARY", null, null, Integer.class, "purchaseSummary", null, false, false, false, "int", 10, 0, null, false, null, null, null, null, null);
 
@@ -98,7 +98,7 @@ public class PurchaseSummaryMemberDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnMemberName() { return _columnMemberName; }
     /**
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnBirthdate() { return _columnBirthdate; }

@@ -41,7 +41,7 @@ public class BsPurchaseSummaryMemberCursor {
 
     protected ValueType _vtMemberId = vt(Integer.class);
     protected ValueType _vtMemberName = vt(String.class);
-    protected ValueType _vtBirthdate = vt(java.sql.Timestamp.class);
+    protected ValueType _vtBirthdate = vt(java.util.Date.class);
     protected ValueType _vtFormalizedDatetime = vt(java.sql.Timestamp.class);
     protected ValueType _vtPurchaseSummary = vt(Integer.class);
 
@@ -116,12 +116,12 @@ public class BsPurchaseSummaryMemberCursor {
     }
 
     /**
-     * [get] BIRTHDATE: {datetime(23, 3)} <br />
+     * [get] BIRTHDATE: {date(10)} <br />
      * @return The value of birthdate. (NullAllowed)
      * @throws java.sql.SQLException
      */
-    public java.sql.Timestamp getBirthdate() throws SQLException {
-        return (java.sql.Timestamp)_vtBirthdate.getValue(_rs, DB_NAME_BIRTHDATE);
+    public java.util.Date getBirthdate() throws SQLException {
+        return (java.util.Date)_vtBirthdate.getValue(_rs, DB_NAME_BIRTHDATE);
     }
 
     /**

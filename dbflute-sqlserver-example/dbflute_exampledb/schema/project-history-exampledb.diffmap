@@ -1,4 +1,90 @@
 map:{
+    ; 2014/09/14 12:06:51 = map:{
+        ; diffDate = 2014/09/14 12:06:51
+        ; tableDiff = map:{
+            ; VENDOR_CHECK = map:{
+                ; tableName = VENDOR_CHECK
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; TYPE_OF_XML = map:{
+                        ; columnName = TYPE_OF_XML
+                        ; diffType = CHANGE
+                        ; columnSizeDiff = map:{
+                            ; next = 2147483647
+                            ; previous = 1073741823
+                        }
+                    }
+                }
+            }
+            ; VENDOR_SYMMETRIC = map:{
+                ; tableName = VENDOR_SYMMETRIC
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; ENCRYPTED_DATA = map:{
+                        ; columnName = ENCRYPTED_DATA
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = varbinary
+                            ; previous = image
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ; 2014/09/14 12:00:57 = map:{
+        ; diffDate = 2014/09/14 12:00:57
+        ; tableDiff = map:{
+            ; MEMBER = map:{
+                ; tableName = MEMBER
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; BIRTHDATE = map:{
+                        ; columnName = BIRTHDATE
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = date
+                            ; previous = datetime
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 23, 3
+                        }
+                    }
+                }
+            }
+            ; MEMBER_ADDRESS = map:{
+                ; tableName = MEMBER_ADDRESS
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; VALID_BEGIN_DATE = map:{
+                        ; columnName = VALID_BEGIN_DATE
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = date
+                            ; previous = datetime
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 23, 3
+                        }
+                    }
+                    ; VALID_END_DATE = map:{
+                        ; columnName = VALID_END_DATE
+                        ; diffType = CHANGE
+                        ; dbTypeDiff = map:{
+                            ; next = date
+                            ; previous = datetime
+                        }
+                        ; columnSizeDiff = map:{
+                            ; next = 10
+                            ; previous = 23, 3
+                        }
+                    }
+                }
+            }
+        }
+    }
     ; 2014/05/28 22:43:43 = map:{
         ; diffDate = 2014/05/28 22:43:43
         ; tableDiff = map:{

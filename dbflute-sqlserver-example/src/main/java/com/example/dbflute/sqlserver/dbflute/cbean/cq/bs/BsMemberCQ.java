@@ -283,14 +283,14 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @return this. (NotNull)
      */
     public BsMemberCQ addOrderBy_Birthdate_Asc() { regOBA("BIRTHDATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * BIRTHDATE: {datetime(23, 3)}
+     * BIRTHDATE: {date(10)}
      * @return this. (NotNull)
      */
     public BsMemberCQ addOrderBy_Birthdate_Desc() { regOBD("BIRTHDATE"); return this; }

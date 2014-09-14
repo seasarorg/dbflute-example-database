@@ -189,10 +189,9 @@ public class VendorMetaDataTest extends UnitContainerTestCase {
     public void test_DatabaseMetaData_getProcedureColumns_tableValuedFunction() throws SQLException {
         DatabaseMetaData metaData = _conn.getMetaData();
         ResultSet rs = metaData.getProcedures("exampledb", "dbo", null);
-        boolean existsNumberFormat = false;
-        boolean existsNullPointer = false;
         log("[Procedure]");
         while (rs.next()) {
+            markHere("exists");
             String catalog = rs.getString("PROCEDURE_CAT");
             String schema = rs.getString("PROCEDURE_SCHEM");
             String procedure = rs.getString("PROCEDURE_NAME");
@@ -207,26 +206,10 @@ public class VendorMetaDataTest extends UnitContainerTestCase {
             log("  returns " + name + " (" + type + ")");
             assertEquals("@TABLE_RETURN_VALUE", name); // Why?
             assertEquals(String.valueOf(DatabaseMetaData.procedureColumnResult), type); // Oh!?
-            try {
-                columnRs.getString("DATA_TYPE");
-
-                fail();
-            } catch (NumberFormatException e) {
-                // Why?
-                log("Number: " + e.getMessage());
-                existsNumberFormat = true;
-            }
-            try {
-                columnRs.getInt("DATA_TYPE");
-
-                fail();
-            } catch (NullPointerException e) {
-                // Why?
-                log("Null: " + e.getMessage());
-                existsNullPointer = true;
-            }
+            String dataTypeStr = columnRs.getString("DATA_TYPE");
+            int dataType = columnRs.getInt("DATA_TYPE");
+            log("  dataTypeStr: " + dataTypeStr + ", dataType: " + dataType);
         }
-        assertTrue(existsNumberFormat);
-        assertTrue(existsNullPointer);
+        assertMarked("exists");
     }
 }

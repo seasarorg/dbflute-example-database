@@ -121,14 +121,14 @@ public class BsVendorSymmetricCQ extends AbstractBsVendorSymmetricCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @return this. (NotNull)
      */
     public BsVendorSymmetricCQ addOrderBy_EncryptedData_Asc() { regOBA("ENCRYPTED_DATA"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * ENCRYPTED_DATA: {image(2147483647)}
+     * ENCRYPTED_DATA: {varbinary(2147483647)}
      * @return this. (NotNull)
      */
     public BsVendorSymmetricCQ addOrderBy_EncryptedData_Desc() { regOBD("ENCRYPTED_DATA"); return this; }

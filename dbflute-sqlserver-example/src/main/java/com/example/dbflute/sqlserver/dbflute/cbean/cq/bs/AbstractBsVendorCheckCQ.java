@@ -1602,7 +1602,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXml The value of typeOfXml as equal. (NullAllowed: if null (or empty), no condition)
      */
     public void setTypeOfXml_Equal(String typeOfXml) {
@@ -1615,7 +1615,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXml The value of typeOfXml as notEqual. (NullAllowed: if null (or empty), no condition)
      */
     public void setTypeOfXml_NotEqual(String typeOfXml) {
@@ -1628,7 +1628,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXmlList The collection of typeOfXml as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTypeOfXml_InScope(Collection<String> typeOfXmlList) {
@@ -1641,7 +1641,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXmlList The collection of typeOfXml as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setTypeOfXml_NotInScope(Collection<String> typeOfXmlList) {
@@ -1654,7 +1654,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * PrefixSearch {like 'xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXml The value of typeOfXml as prefixSearch. (NullAllowed: if null (or empty), no condition)
      */
     public void setTypeOfXml_PrefixSearch(String typeOfXml) {
@@ -1663,7 +1663,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)} <br />
+     * TYPE_OF_XML: {xml(2147483647)} <br />
      * <pre>e.g. setTypeOfXml_LikeSearch("xxx", new <span style="color: #DD4747">LikeSearchOption</span>().likeContain());</pre>
      * @param typeOfXml The value of typeOfXml as likeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -1675,7 +1675,7 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br />
      * And NullOrEmptyIgnored, SeveralRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      * @param typeOfXml The value of typeOfXml as notLikeSearch. (NullAllowed: if null (or empty), no condition)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */
@@ -1685,19 +1685,19 @@ public abstract class AbstractBsVendorCheckCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      */
     public void setTypeOfXml_IsNull() { regTypeOfXml(CK_ISN, DOBJ); }
 
     /**
      * IsNullOrEmpty {is null or empty}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      */
     public void setTypeOfXml_IsNullOrEmpty() { regTypeOfXml(CK_ISNOE, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * TYPE_OF_XML: {xml(1073741823)}
+     * TYPE_OF_XML: {xml(2147483647)}
      */
     public void setTypeOfXml_IsNotNull() { regTypeOfXml(CK_ISNN, DOBJ); }
 

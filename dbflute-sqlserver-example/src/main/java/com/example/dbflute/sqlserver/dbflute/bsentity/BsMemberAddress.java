@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.Date;
 
 import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
@@ -45,8 +46,8 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer memberAddressId = entity.getMemberAddressId();
  * Integer memberId = entity.getMemberId();
- * java.sql.Timestamp validBeginDate = entity.getValidBeginDate();
- * java.sql.Timestamp validEndDate = entity.getValidEndDate();
+ * java.util.Date validBeginDate = entity.getValidBeginDate();
+ * java.util.Date validEndDate = entity.getValidEndDate();
  * String address = entity.getAddress();
  * Integer regionId = entity.getRegionId();
  * java.sql.Timestamp registerDatetime = entity.getRegisterDatetime();
@@ -93,11 +94,11 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
     /** MEMBER_ID: {UQ+, NotNull, int(10), FK to MEMBER} */
     protected Integer _memberId;
 
-    /** VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)} */
-    protected java.sql.Timestamp _validBeginDate;
+    /** VALID_BEGIN_DATE: {+UQ, NotNull, date(10)} */
+    protected java.util.Date _validBeginDate;
 
-    /** VALID_END_DATE: {NotNull, datetime(23, 3)} */
-    protected java.sql.Timestamp _validEndDate;
+    /** VALID_END_DATE: {NotNull, date(10)} */
+    protected java.util.Date _validEndDate;
 
     /** ADDRESS: {NotNull, nvarchar(200)} */
     protected String _address;
@@ -183,9 +184,9 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
      * To be unique by the unique column. <br />
      * You can update the entity by the key when entity update (NOT batch update).
      * @param memberId : UQ+, NotNull, int(10), FK to MEMBER. (NotNull)
-     * @param validBeginDate : +UQ, NotNull, datetime(23, 3). (NotNull)
+     * @param validBeginDate : +UQ, NotNull, date(10). (NotNull)
      */
-    public void uniqueBy(Integer memberId, java.sql.Timestamp validBeginDate) {
+    public void uniqueBy(Integer memberId, java.util.Date validBeginDate) {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberId");
         __uniqueDrivenProperties.addPropertyName("validBeginDate");
@@ -401,8 +402,8 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
         String dm = ", ";
         sb.append(dm).append(getMemberAddressId());
         sb.append(dm).append(getMemberId());
-        sb.append(dm).append(getValidBeginDate());
-        sb.append(dm).append(getValidEndDate());
+        sb.append(dm).append(xfUD(getValidBeginDate()));
+        sb.append(dm).append(xfUD(getValidEndDate()));
         sb.append(dm).append(getAddress());
         sb.append(dm).append(getRegionId());
         sb.append(dm).append(getRegisterDatetime());
@@ -417,6 +418,12 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
+    }
+    protected String xfUD(Date date) { // formatUtilDate()
+        return FunCustodial.toString(date, xgDP());
+    }
+    protected String xgDP() { // getDatePattern
+        return "yyyy-MM-dd";
     }
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
@@ -479,35 +486,35 @@ public abstract class BsMemberAddress implements EntityDefinedCommonColumn, Seri
     }
 
     /**
-     * [get] VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)} <br />
+     * [get] VALID_BEGIN_DATE: {+UQ, NotNull, date(10)} <br />
      * @return The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if selected: for the constraint)
      */
-    public java.sql.Timestamp getValidBeginDate() {
+    public java.util.Date getValidBeginDate() {
         return _validBeginDate;
     }
 
     /**
-     * [set] VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)} <br />
+     * [set] VALID_BEGIN_DATE: {+UQ, NotNull, date(10)} <br />
      * @param validBeginDate The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if update: for the constraint)
      */
-    public void setValidBeginDate(java.sql.Timestamp validBeginDate) {
+    public void setValidBeginDate(java.util.Date validBeginDate) {
         __modifiedProperties.addPropertyName("validBeginDate");
         _validBeginDate = validBeginDate;
     }
 
     /**
-     * [get] VALID_END_DATE: {NotNull, datetime(23, 3)} <br />
+     * [get] VALID_END_DATE: {NotNull, date(10)} <br />
      * @return The value of the column 'VALID_END_DATE'. (basically NotNull if selected: for the constraint)
      */
-    public java.sql.Timestamp getValidEndDate() {
+    public java.util.Date getValidEndDate() {
         return _validEndDate;
     }
 
     /**
-     * [set] VALID_END_DATE: {NotNull, datetime(23, 3)} <br />
+     * [set] VALID_END_DATE: {NotNull, date(10)} <br />
      * @param validEndDate The value of the column 'VALID_END_DATE'. (basically NotNull if update: for the constraint)
      */
-    public void setValidEndDate(java.sql.Timestamp validEndDate) {
+    public void setValidEndDate(java.util.Date validEndDate) {
         __modifiedProperties.addPropertyName("validEndDate");
         _validEndDate = validEndDate;
     }

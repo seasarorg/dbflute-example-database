@@ -127,14 +127,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Asc() { regOBA("VALID_BEGIN_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * VALID_BEGIN_DATE: {+UQ, NotNull, datetime(23, 3)}
+     * VALID_BEGIN_DATE: {+UQ, NotNull, date(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidBeginDate_Desc() { regOBD("VALID_BEGIN_DATE"); return this; }
@@ -147,14 +147,14 @@ public class BsMemberAddressCQ extends AbstractBsMemberAddressCQ {
 
     /** 
      * Add order-by as ascend. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidEndDate_Asc() { regOBA("VALID_END_DATE"); return this; }
 
     /**
      * Add order-by as descend. <br />
-     * VALID_END_DATE: {NotNull, datetime(23, 3)}
+     * VALID_END_DATE: {NotNull, date(10)}
      * @return this. (NotNull)
      */
     public BsMemberAddressCQ addOrderBy_ValidEndDate_Desc() { regOBD("VALID_END_DATE"); return this; }

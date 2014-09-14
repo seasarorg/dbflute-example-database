@@ -316,7 +316,7 @@ public class BsVendorSymmetricCB extends AbstractConditionBean {
          */
         public HpSpecifiedColumn columnPlainText() { return doColumn("PLAIN_TEXT"); }
         /**
-         * ENCRYPTED_DATA: {image(2147483647)}
+         * ENCRYPTED_DATA: {varbinary(2147483647)}
          * @return The information object of specified column. (NotNull)
          */
         public HpSpecifiedColumn columnEncryptedData() { return doColumn("ENCRYPTED_DATA"); }
