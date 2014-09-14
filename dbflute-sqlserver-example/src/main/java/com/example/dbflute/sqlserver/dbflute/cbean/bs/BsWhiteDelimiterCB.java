@@ -372,7 +372,7 @@ public class BsWhiteDelimiterCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteDelimiterCB> columnQuery(final SpecifyQuery<WhiteDelimiterCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteDelimiterCB>(new HpColQyHandler<WhiteDelimiterCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteDelimiterCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteDelimiterCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

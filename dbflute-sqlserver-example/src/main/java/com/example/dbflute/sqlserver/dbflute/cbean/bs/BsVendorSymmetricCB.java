@@ -362,7 +362,7 @@ public class BsVendorSymmetricCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<VendorSymmetricCB> columnQuery(final SpecifyQuery<VendorSymmetricCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorSymmetricCB>(new HpColQyHandler<VendorSymmetricCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<VendorSymmetricCB>() {
             public HpCalculator handle(SpecifyQuery<VendorSymmetricCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }
