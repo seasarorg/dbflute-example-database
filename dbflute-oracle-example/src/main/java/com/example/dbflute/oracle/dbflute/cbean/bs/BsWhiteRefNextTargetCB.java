@@ -418,7 +418,7 @@ public class BsWhiteRefNextTargetCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteRefNextTargetCB> columnQuery(final SpecifyQuery<WhiteRefNextTargetCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteRefNextTargetCB>(new HpColQyHandler<WhiteRefNextTargetCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteRefNextTargetCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteRefNextTargetCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

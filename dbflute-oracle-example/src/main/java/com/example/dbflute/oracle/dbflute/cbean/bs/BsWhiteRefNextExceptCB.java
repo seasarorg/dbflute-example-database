@@ -373,7 +373,7 @@ public class BsWhiteRefNextExceptCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteRefNextExceptCB> columnQuery(final SpecifyQuery<WhiteRefNextExceptCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteRefNextExceptCB>(new HpColQyHandler<WhiteRefNextExceptCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteRefNextExceptCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteRefNextExceptCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -416,8 +416,8 @@ public class BsWhiteDateAdjustmentCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteDateAdjustmentCB> columnQuery(final SpecifyQuery<WhiteDateAdjustmentCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteDateAdjustmentCB>(new HpColQyHandler<WhiteDateAdjustmentCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteDateAdjustmentCB> columnQuery(final SpecifyQuery<WhiteDateAdjustmentCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteDateAdjustmentCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteDateAdjustmentCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

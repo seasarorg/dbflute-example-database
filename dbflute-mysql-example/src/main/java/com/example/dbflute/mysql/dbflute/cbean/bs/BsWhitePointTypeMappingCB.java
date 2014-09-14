@@ -386,8 +386,8 @@ public class BsWhitePointTypeMappingCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhitePointTypeMappingCB> columnQuery(final SpecifyQuery<WhitePointTypeMappingCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhitePointTypeMappingCB>(new HpColQyHandler<WhitePointTypeMappingCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhitePointTypeMappingCB> columnQuery(final SpecifyQuery<WhitePointTypeMappingCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhitePointTypeMappingCB>() {
             public HpCalculator handle(SpecifyQuery<WhitePointTypeMappingCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

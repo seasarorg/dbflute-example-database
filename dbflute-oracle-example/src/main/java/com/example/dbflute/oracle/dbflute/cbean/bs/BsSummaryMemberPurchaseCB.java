@@ -345,7 +345,7 @@ public class BsSummaryMemberPurchaseCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SummaryMemberPurchaseCB> columnQuery(final SpecifyQuery<SummaryMemberPurchaseCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SummaryMemberPurchaseCB>(new HpColQyHandler<SummaryMemberPurchaseCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SummaryMemberPurchaseCB>() {
             public HpCalculator handle(SpecifyQuery<SummaryMemberPurchaseCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

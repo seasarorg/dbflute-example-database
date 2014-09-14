@@ -530,7 +530,7 @@ public class BsVendor_non_compilableCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<Vendor_non_compilableCB> columnQuery(final SpecifyQuery<Vendor_non_compilableCB> leftSpecifyQuery) {
-        return new HpColQyOperand<Vendor_non_compilableCB>(new HpColQyHandler<Vendor_non_compilableCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<Vendor_non_compilableCB>() {
             public HpCalculator handle(SpecifyQuery<Vendor_non_compilableCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

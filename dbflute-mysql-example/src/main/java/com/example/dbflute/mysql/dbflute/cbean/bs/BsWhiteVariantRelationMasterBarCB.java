@@ -391,8 +391,8 @@ public class BsWhiteVariantRelationMasterBarCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteVariantRelationMasterBarCB> columnQuery(final SpecifyQuery<WhiteVariantRelationMasterBarCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteVariantRelationMasterBarCB>(new HpColQyHandler<WhiteVariantRelationMasterBarCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteVariantRelationMasterBarCB> columnQuery(final SpecifyQuery<WhiteVariantRelationMasterBarCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteVariantRelationMasterBarCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteVariantRelationMasterBarCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

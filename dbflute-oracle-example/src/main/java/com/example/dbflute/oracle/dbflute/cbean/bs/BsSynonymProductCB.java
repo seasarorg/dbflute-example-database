@@ -485,7 +485,7 @@ public class BsSynonymProductCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymProductCB> columnQuery(final SpecifyQuery<SynonymProductCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymProductCB>(new HpColQyHandler<SynonymProductCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymProductCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymProductCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

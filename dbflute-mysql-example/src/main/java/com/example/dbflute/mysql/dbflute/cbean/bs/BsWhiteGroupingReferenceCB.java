@@ -371,8 +371,8 @@ public class BsWhiteGroupingReferenceCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteGroupingReferenceCB> columnQuery(final SpecifyQuery<WhiteGroupingReferenceCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteGroupingReferenceCB>(new HpColQyHandler<WhiteGroupingReferenceCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteGroupingReferenceCB> columnQuery(final SpecifyQuery<WhiteGroupingReferenceCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteGroupingReferenceCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteGroupingReferenceCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

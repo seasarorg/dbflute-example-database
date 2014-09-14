@@ -609,7 +609,7 @@ public class BsSynonymMemberLoginCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymMemberLoginCB> columnQuery(final SpecifyQuery<SynonymMemberLoginCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymMemberLoginCB>(new HpColQyHandler<SynonymMemberLoginCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymMemberLoginCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymMemberLoginCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -459,8 +459,8 @@ public class BsMemberSecurityCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<MemberSecurityCB> columnQuery(final SpecifyQuery<MemberSecurityCB> leftSpecifyQuery) {
-        return new HpColQyOperand<MemberSecurityCB>(new HpColQyHandler<MemberSecurityCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<MemberSecurityCB> columnQuery(final SpecifyQuery<MemberSecurityCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<MemberSecurityCB>() {
             public HpCalculator handle(SpecifyQuery<MemberSecurityCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

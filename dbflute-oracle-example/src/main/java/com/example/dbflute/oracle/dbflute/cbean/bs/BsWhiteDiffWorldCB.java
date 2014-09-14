@@ -373,7 +373,7 @@ public class BsWhiteDiffWorldCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteDiffWorldCB> columnQuery(final SpecifyQuery<WhiteDiffWorldCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteDiffWorldCB>(new HpColQyHandler<WhiteDiffWorldCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteDiffWorldCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteDiffWorldCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -376,8 +376,8 @@ public class BsSummaryWithdrawalCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<SummaryWithdrawalCB> columnQuery(final SpecifyQuery<SummaryWithdrawalCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SummaryWithdrawalCB>(new HpColQyHandler<SummaryWithdrawalCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<SummaryWithdrawalCB> columnQuery(final SpecifyQuery<SummaryWithdrawalCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<SummaryWithdrawalCB>() {
             public HpCalculator handle(SpecifyQuery<SummaryWithdrawalCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

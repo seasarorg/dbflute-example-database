@@ -343,7 +343,7 @@ public class BsWhiteNotPkCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteNotPkCB> columnQuery(final SpecifyQuery<WhiteNotPkCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteNotPkCB>(new HpColQyHandler<WhiteNotPkCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteNotPkCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteNotPkCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

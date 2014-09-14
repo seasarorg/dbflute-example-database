@@ -394,8 +394,8 @@ public class BsWhiteImplicitReverseFkSuppressCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteImplicitReverseFkSuppressCB> columnQuery(final SpecifyQuery<WhiteImplicitReverseFkSuppressCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteImplicitReverseFkSuppressCB>(new HpColQyHandler<WhiteImplicitReverseFkSuppressCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteImplicitReverseFkSuppressCB> columnQuery(final SpecifyQuery<WhiteImplicitReverseFkSuppressCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteImplicitReverseFkSuppressCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteImplicitReverseFkSuppressCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

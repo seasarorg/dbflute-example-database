@@ -378,7 +378,7 @@ public class BsSynonymNextSameNameFkCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymNextSameNameFkCB> columnQuery(final SpecifyQuery<SynonymNextSameNameFkCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymNextSameNameFkCB>(new HpColQyHandler<SynonymNextSameNameFkCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymNextSameNameFkCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymNextSameNameFkCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

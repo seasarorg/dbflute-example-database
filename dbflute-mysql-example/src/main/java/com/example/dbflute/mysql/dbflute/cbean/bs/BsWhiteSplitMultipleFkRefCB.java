@@ -371,8 +371,8 @@ public class BsWhiteSplitMultipleFkRefCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteSplitMultipleFkRefCB> columnQuery(final SpecifyQuery<WhiteSplitMultipleFkRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteSplitMultipleFkRefCB>(new HpColQyHandler<WhiteSplitMultipleFkRefCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteSplitMultipleFkRefCB> columnQuery(final SpecifyQuery<WhiteSplitMultipleFkRefCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteSplitMultipleFkRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteSplitMultipleFkRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -431,7 +431,7 @@ public class BsWhiteSameNameRefCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteSameNameRefCB> columnQuery(final SpecifyQuery<WhiteSameNameRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteSameNameRefCB>(new HpColQyHandler<WhiteSameNameRefCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteSameNameRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteSameNameRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

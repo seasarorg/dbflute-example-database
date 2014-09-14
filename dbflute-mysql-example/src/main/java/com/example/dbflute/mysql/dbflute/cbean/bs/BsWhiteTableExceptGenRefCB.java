@@ -376,8 +376,8 @@ public class BsWhiteTableExceptGenRefCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteTableExceptGenRefCB> columnQuery(final SpecifyQuery<WhiteTableExceptGenRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteTableExceptGenRefCB>(new HpColQyHandler<WhiteTableExceptGenRefCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteTableExceptGenRefCB> columnQuery(final SpecifyQuery<WhiteTableExceptGenRefCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteTableExceptGenRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteTableExceptGenRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -390,7 +390,7 @@ public class BsSynonymNextLinkSecretCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymNextLinkSecretCB> columnQuery(final SpecifyQuery<SynonymNextLinkSecretCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymNextLinkSecretCB>(new HpColQyHandler<SynonymNextLinkSecretCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymNextLinkSecretCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymNextLinkSecretCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

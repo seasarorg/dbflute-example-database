@@ -371,8 +371,8 @@ public class BsWhiteSuppressDefCheckCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteSuppressDefCheckCB> columnQuery(final SpecifyQuery<WhiteSuppressDefCheckCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteSuppressDefCheckCB>(new HpColQyHandler<WhiteSuppressDefCheckCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteSuppressDefCheckCB> columnQuery(final SpecifyQuery<WhiteSuppressDefCheckCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteSuppressDefCheckCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteSuppressDefCheckCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -393,7 +393,7 @@ public class BsSynonymExceptCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymExceptCB> columnQuery(final SpecifyQuery<SynonymExceptCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymExceptCB>(new HpColQyHandler<SynonymExceptCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymExceptCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymExceptCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

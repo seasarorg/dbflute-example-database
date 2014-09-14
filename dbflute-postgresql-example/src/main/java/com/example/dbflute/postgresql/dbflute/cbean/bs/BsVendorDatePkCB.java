@@ -371,7 +371,7 @@ public class BsVendorDatePkCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<VendorDatePkCB> columnQuery(final SpecifyQuery<VendorDatePkCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorDatePkCB>(new HpColQyHandler<VendorDatePkCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<VendorDatePkCB>() {
             public HpCalculator handle(SpecifyQuery<VendorDatePkCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

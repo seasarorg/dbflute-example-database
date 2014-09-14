@@ -403,8 +403,8 @@ public class BsVendorConstraintNameAutoQuxCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<VendorConstraintNameAutoQuxCB> columnQuery(final SpecifyQuery<VendorConstraintNameAutoQuxCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorConstraintNameAutoQuxCB>(new HpColQyHandler<VendorConstraintNameAutoQuxCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<VendorConstraintNameAutoQuxCB> columnQuery(final SpecifyQuery<VendorConstraintNameAutoQuxCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<VendorConstraintNameAutoQuxCB>() {
             public HpCalculator handle(SpecifyQuery<VendorConstraintNameAutoQuxCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

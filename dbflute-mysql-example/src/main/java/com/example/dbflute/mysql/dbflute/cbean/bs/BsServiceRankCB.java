@@ -424,8 +424,8 @@ public class BsServiceRankCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<ServiceRankCB> columnQuery(final SpecifyQuery<ServiceRankCB> leftSpecifyQuery) {
-        return new HpColQyOperand<ServiceRankCB>(new HpColQyHandler<ServiceRankCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<ServiceRankCB> columnQuery(final SpecifyQuery<ServiceRankCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<ServiceRankCB>() {
             public HpCalculator handle(SpecifyQuery<ServiceRankCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

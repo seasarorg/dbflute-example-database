@@ -381,7 +381,7 @@ public class BsVendorPartManHighCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<VendorPartManHighCB> columnQuery(final SpecifyQuery<VendorPartManHighCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorPartManHighCB>(new HpColQyHandler<VendorPartManHighCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<VendorPartManHighCB>() {
             public HpCalculator handle(SpecifyQuery<VendorPartManHighCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

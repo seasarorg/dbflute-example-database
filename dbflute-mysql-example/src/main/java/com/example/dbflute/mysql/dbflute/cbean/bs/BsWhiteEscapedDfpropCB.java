@@ -372,8 +372,8 @@ public class BsWhiteEscapedDfpropCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteEscapedDfpropCB> columnQuery(final SpecifyQuery<WhiteEscapedDfpropCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteEscapedDfpropCB>(new HpColQyHandler<WhiteEscapedDfpropCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteEscapedDfpropCB> columnQuery(final SpecifyQuery<WhiteEscapedDfpropCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteEscapedDfpropCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteEscapedDfpropCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

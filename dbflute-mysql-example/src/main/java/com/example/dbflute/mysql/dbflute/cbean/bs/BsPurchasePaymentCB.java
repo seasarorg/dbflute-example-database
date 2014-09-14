@@ -461,8 +461,8 @@ public class BsPurchasePaymentCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<PurchasePaymentCB> columnQuery(final SpecifyQuery<PurchasePaymentCB> leftSpecifyQuery) {
-        return new HpColQyOperand<PurchasePaymentCB>(new HpColQyHandler<PurchasePaymentCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<PurchasePaymentCB> columnQuery(final SpecifyQuery<PurchasePaymentCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<PurchasePaymentCB>() {
             public HpCalculator handle(SpecifyQuery<PurchasePaymentCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

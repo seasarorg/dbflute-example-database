@@ -443,8 +443,8 @@ public class BsWhiteOnlyOneToOneToCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteOnlyOneToOneToCB> columnQuery(final SpecifyQuery<WhiteOnlyOneToOneToCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteOnlyOneToOneToCB>(new HpColQyHandler<WhiteOnlyOneToOneToCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteOnlyOneToOneToCB> columnQuery(final SpecifyQuery<WhiteOnlyOneToOneToCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteOnlyOneToOneToCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteOnlyOneToOneToCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

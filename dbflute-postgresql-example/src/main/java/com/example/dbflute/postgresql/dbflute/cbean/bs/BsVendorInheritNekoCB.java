@@ -391,7 +391,7 @@ public class BsVendorInheritNekoCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<VendorInheritNekoCB> columnQuery(final SpecifyQuery<VendorInheritNekoCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorInheritNekoCB>(new HpColQyHandler<VendorInheritNekoCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<VendorInheritNekoCB>() {
             public HpCalculator handle(SpecifyQuery<VendorInheritNekoCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -372,8 +372,8 @@ public class BsWhiteEscapedNumberInitialCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteEscapedNumberInitialCB> columnQuery(final SpecifyQuery<WhiteEscapedNumberInitialCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteEscapedNumberInitialCB>(new HpColQyHandler<WhiteEscapedNumberInitialCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteEscapedNumberInitialCB> columnQuery(final SpecifyQuery<WhiteEscapedNumberInitialCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteEscapedNumberInitialCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteEscapedNumberInitialCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

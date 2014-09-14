@@ -441,8 +441,8 @@ public class BsWhiteSuppressJoinSqManyOneCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteSuppressJoinSqManyOneCB> columnQuery(final SpecifyQuery<WhiteSuppressJoinSqManyOneCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteSuppressJoinSqManyOneCB>(new HpColQyHandler<WhiteSuppressJoinSqManyOneCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteSuppressJoinSqManyOneCB> columnQuery(final SpecifyQuery<WhiteSuppressJoinSqManyOneCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteSuppressJoinSqManyOneCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteSuppressJoinSqManyOneCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

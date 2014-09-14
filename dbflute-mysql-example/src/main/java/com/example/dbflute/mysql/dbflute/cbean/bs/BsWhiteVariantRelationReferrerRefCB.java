@@ -426,8 +426,8 @@ public class BsWhiteVariantRelationReferrerRefCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteVariantRelationReferrerRefCB> columnQuery(final SpecifyQuery<WhiteVariantRelationReferrerRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteVariantRelationReferrerRefCB>(new HpColQyHandler<WhiteVariantRelationReferrerRefCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteVariantRelationReferrerRefCB> columnQuery(final SpecifyQuery<WhiteVariantRelationReferrerRefCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteVariantRelationReferrerRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteVariantRelationReferrerRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

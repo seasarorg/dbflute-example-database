@@ -428,8 +428,8 @@ public class BsVendorLargeDataCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<VendorLargeDataCB> columnQuery(final SpecifyQuery<VendorLargeDataCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorLargeDataCB>(new HpColQyHandler<VendorLargeDataCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<VendorLargeDataCB> columnQuery(final SpecifyQuery<VendorLargeDataCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<VendorLargeDataCB>() {
             public HpCalculator handle(SpecifyQuery<VendorLargeDataCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

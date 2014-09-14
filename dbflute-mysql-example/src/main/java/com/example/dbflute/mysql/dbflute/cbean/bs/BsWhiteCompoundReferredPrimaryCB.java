@@ -391,8 +391,8 @@ public class BsWhiteCompoundReferredPrimaryCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteCompoundReferredPrimaryCB> columnQuery(final SpecifyQuery<WhiteCompoundReferredPrimaryCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteCompoundReferredPrimaryCB>(new HpColQyHandler<WhiteCompoundReferredPrimaryCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteCompoundReferredPrimaryCB> columnQuery(final SpecifyQuery<WhiteCompoundReferredPrimaryCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteCompoundReferredPrimaryCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteCompoundReferredPrimaryCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

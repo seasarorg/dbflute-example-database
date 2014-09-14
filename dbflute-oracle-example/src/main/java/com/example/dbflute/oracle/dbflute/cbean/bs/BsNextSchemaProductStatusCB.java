@@ -425,7 +425,7 @@ public class BsNextSchemaProductStatusCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<NextSchemaProductStatusCB> columnQuery(final SpecifyQuery<NextSchemaProductStatusCB> leftSpecifyQuery) {
-        return new HpColQyOperand<NextSchemaProductStatusCB>(new HpColQyHandler<NextSchemaProductStatusCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<NextSchemaProductStatusCB>() {
             public HpCalculator handle(SpecifyQuery<NextSchemaProductStatusCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

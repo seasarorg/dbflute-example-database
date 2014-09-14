@@ -386,8 +386,8 @@ public class BsWhiteIncludeQueryCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteIncludeQueryCB> columnQuery(final SpecifyQuery<WhiteIncludeQueryCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteIncludeQueryCB>(new HpColQyHandler<WhiteIncludeQueryCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteIncludeQueryCB> columnQuery(final SpecifyQuery<WhiteIncludeQueryCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteIncludeQueryCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteIncludeQueryCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

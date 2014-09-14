@@ -386,7 +386,7 @@ public class BsWhiteXlsManCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteXlsManCB> columnQuery(final SpecifyQuery<WhiteXlsManCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteXlsManCB>(new HpColQyHandler<WhiteXlsManCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteXlsManCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteXlsManCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

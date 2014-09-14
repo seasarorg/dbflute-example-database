@@ -386,8 +386,8 @@ public class BsWhiteDelimiterCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteDelimiterCB> columnQuery(final SpecifyQuery<WhiteDelimiterCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteDelimiterCB>(new HpColQyHandler<WhiteDelimiterCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteDelimiterCB> columnQuery(final SpecifyQuery<WhiteDelimiterCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteDelimiterCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteDelimiterCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

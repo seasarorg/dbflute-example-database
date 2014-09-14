@@ -391,8 +391,8 @@ public class BsWhitePerrottaOverMemberMachoCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhitePerrottaOverMemberMachoCB> columnQuery(final SpecifyQuery<WhitePerrottaOverMemberMachoCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhitePerrottaOverMemberMachoCB>(new HpColQyHandler<WhitePerrottaOverMemberMachoCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhitePerrottaOverMemberMachoCB> columnQuery(final SpecifyQuery<WhitePerrottaOverMemberMachoCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhitePerrottaOverMemberMachoCB>() {
             public HpCalculator handle(SpecifyQuery<WhitePerrottaOverMemberMachoCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

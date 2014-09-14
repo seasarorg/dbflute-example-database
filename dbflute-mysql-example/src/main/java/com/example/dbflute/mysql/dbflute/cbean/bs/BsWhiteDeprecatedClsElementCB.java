@@ -372,8 +372,8 @@ public class BsWhiteDeprecatedClsElementCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteDeprecatedClsElementCB> columnQuery(final SpecifyQuery<WhiteDeprecatedClsElementCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteDeprecatedClsElementCB>(new HpColQyHandler<WhiteDeprecatedClsElementCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteDeprecatedClsElementCB> columnQuery(final SpecifyQuery<WhiteDeprecatedClsElementCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteDeprecatedClsElementCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteDeprecatedClsElementCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

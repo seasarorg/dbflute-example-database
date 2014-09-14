@@ -385,7 +385,7 @@ public class BsWhiteUqFkWithoutPkRefCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<WhiteUqFkWithoutPkRefCB> columnQuery(final SpecifyQuery<WhiteUqFkWithoutPkRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteUqFkWithoutPkRefCB>(new HpColQyHandler<WhiteUqFkWithoutPkRefCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<WhiteUqFkWithoutPkRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteUqFkWithoutPkRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

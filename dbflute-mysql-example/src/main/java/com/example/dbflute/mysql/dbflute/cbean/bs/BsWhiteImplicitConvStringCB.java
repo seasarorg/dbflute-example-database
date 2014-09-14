@@ -530,8 +530,8 @@ public class BsWhiteImplicitConvStringCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteImplicitConvStringCB> columnQuery(final SpecifyQuery<WhiteImplicitConvStringCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteImplicitConvStringCB>(new HpColQyHandler<WhiteImplicitConvStringCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteImplicitConvStringCB> columnQuery(final SpecifyQuery<WhiteImplicitConvStringCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteImplicitConvStringCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteImplicitConvStringCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

@@ -420,7 +420,7 @@ public class BsAliasRefExceptCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<AliasRefExceptCB> columnQuery(final SpecifyQuery<AliasRefExceptCB> leftSpecifyQuery) {
-        return new HpColQyOperand<AliasRefExceptCB>(new HpColQyHandler<AliasRefExceptCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<AliasRefExceptCB>() {
             public HpCalculator handle(SpecifyQuery<AliasRefExceptCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

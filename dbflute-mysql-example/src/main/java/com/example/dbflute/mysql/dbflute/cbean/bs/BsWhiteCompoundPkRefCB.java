@@ -478,8 +478,8 @@ public class BsWhiteCompoundPkRefCB extends AbstractConditionBean {
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<WhiteCompoundPkRefCB> columnQuery(final SpecifyQuery<WhiteCompoundPkRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<WhiteCompoundPkRefCB>(new HpColQyHandler<WhiteCompoundPkRefCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<WhiteCompoundPkRefCB> columnQuery(final SpecifyQuery<WhiteCompoundPkRefCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<WhiteCompoundPkRefCB>() {
             public HpCalculator handle(SpecifyQuery<WhiteCompoundPkRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

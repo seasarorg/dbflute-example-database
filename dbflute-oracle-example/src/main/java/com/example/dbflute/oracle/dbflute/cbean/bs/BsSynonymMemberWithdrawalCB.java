@@ -605,7 +605,7 @@ public class BsSynonymMemberWithdrawalCB extends AbstractConditionBean {
      * @return The object for setting up operand and right column. (NotNull)
      */
     public HpColQyOperand<SynonymMemberWithdrawalCB> columnQuery(final SpecifyQuery<SynonymMemberWithdrawalCB> leftSpecifyQuery) {
-        return new HpColQyOperand<SynonymMemberWithdrawalCB>(new HpColQyHandler<SynonymMemberWithdrawalCB>() {
+        return xcreateColQyOperand(new HpColQyHandler<SynonymMemberWithdrawalCB>() {
             public HpCalculator handle(SpecifyQuery<SynonymMemberWithdrawalCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }

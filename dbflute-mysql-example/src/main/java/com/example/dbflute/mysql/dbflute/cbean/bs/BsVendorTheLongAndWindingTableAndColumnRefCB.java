@@ -426,8 +426,8 @@ public class BsVendorTheLongAndWindingTableAndColumnRefCB extends AbstractCondit
      * @param leftSpecifyQuery The specify-query for left column. (NotNull)
      * @return The object for setting up operand and right column. (NotNull)
      */
-    public HpColQyOperand<VendorTheLongAndWindingTableAndColumnRefCB> columnQuery(final SpecifyQuery<VendorTheLongAndWindingTableAndColumnRefCB> leftSpecifyQuery) {
-        return new HpColQyOperand<VendorTheLongAndWindingTableAndColumnRefCB>(new HpColQyHandler<VendorTheLongAndWindingTableAndColumnRefCB>() {
+    public HpColQyOperand.HpExtendedColQyOperandMySql<VendorTheLongAndWindingTableAndColumnRefCB> columnQuery(final SpecifyQuery<VendorTheLongAndWindingTableAndColumnRefCB> leftSpecifyQuery) {
+        return xcreateColQyOperandMySql(new HpColQyHandler<VendorTheLongAndWindingTableAndColumnRefCB>() {
             public HpCalculator handle(SpecifyQuery<VendorTheLongAndWindingTableAndColumnRefCB> rightSp, String operand) {
                 return xcolqy(xcreateColumnQueryCB(), xcreateColumnQueryCB(), leftSpecifyQuery, rightSp, operand);
             }
