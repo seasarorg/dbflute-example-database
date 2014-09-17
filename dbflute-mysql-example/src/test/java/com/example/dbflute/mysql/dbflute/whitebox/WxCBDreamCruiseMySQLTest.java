@@ -186,6 +186,7 @@ public class WxCBDreamCruiseMySQLTest extends UnitContainerTestCase {
         MemberCB cb = new MemberCB();
         cb.setupSelect_MemberStatus();
         MemberCB dreamCruiseCB = cb.dreamCruiseCB();
+
         cb.columnQuery(new SpecifyQuery<MemberCB>() {
             public void specify(MemberCB cb) {
                 cb.specify().columnBirthdate();

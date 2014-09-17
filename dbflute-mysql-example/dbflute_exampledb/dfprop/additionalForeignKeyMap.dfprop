@@ -302,8 +302,8 @@ $$foreignAlias$$.TRACE_TYPE_CODE = $$over(WHITE_PERROTTA_OVER_MEMBER)$$.TRACE_TY
         ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_ADDRESS
         ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
         ; fixedCondition = 
-               $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/null
-and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/null
+               $$foreignAlias$$.VALID_BEGIN_DATE <= /*targetDate(Date)*/
+and $$foreignAlias$$.VALID_END_DATE >= /*targetDate(Date)*/
     
         ; fixedSuffix = AsFormattedBasic
     }
@@ -327,6 +327,18 @@ and $$over($foreignTable.member.memberWithdrawalAsOne)$$.WITHDRAWAL_DATETIME is 
     and $$over($localTable.memberSecurityAsOne)$$.REMINDER_QUESTION is not null
      and $$over($localTable.memberServiceAsOne)$$.SERVICE_POINT_COUNT is not null
         ; fixedSuffix = AsFormattedMany
+    }
+
+    # ====================================================================================
+    #                                                       EmbeddedComment Classification
+    #                                                       ==============================
+    ; FK_MEMBER_MEMBER_LOGIN_EMBEDDED_COMMENT_CLASSIFICATION = map:{
+        ; localTableName  = MEMBER    ; foreignTableName  = MEMBER_LOGIN
+        ; localColumnName = MEMBER_ID ; foreignColumnName = MEMBER_ID
+        ; fixedCondition = $$foreignAlias$$.MOBILE_LOGIN_FLG = /*$cls(Flg.True)*/
+      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in /*$cls(SubItemTable.serviceAvailable)*/
+      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in /*$cls(SubItemTable.lastestStatus)*/
+        ; fixedSuffix = AsEmbeddedCommentClassificationTest
     }
 
     # ====================================================================================

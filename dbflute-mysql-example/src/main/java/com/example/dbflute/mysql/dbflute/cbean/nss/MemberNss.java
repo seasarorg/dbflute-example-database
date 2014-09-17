@@ -238,6 +238,15 @@ public class MemberNss {
     }
     /**
      * With nested relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
+     */
+    public MemberLoginNss withMemberLoginAsEmbeddedCommentClassificationTest() {
+        _query.doNss(new MemberCQ.NssCall() { public ConditionQuery qf() { return _query.queryMemberLoginAsEmbeddedCommentClassificationTest(); }});
+        return new MemberLoginNss(_query.queryMemberLoginAsEmbeddedCommentClassificationTest());
+    }
+    /**
+     * With nested relation columns to select clause. <br />
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */

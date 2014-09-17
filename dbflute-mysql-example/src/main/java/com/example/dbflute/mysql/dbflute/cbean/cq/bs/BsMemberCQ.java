@@ -526,6 +526,9 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if (bq.hasConditionQueryMemberLoginAsFormattedMany()) {
             uq.queryMemberLoginAsFormattedMany().reflectRelationOnUnionQuery(bq.queryMemberLoginAsFormattedMany(), uq.queryMemberLoginAsFormattedMany());
         }
+        if (bq.hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest()) {
+            uq.queryMemberLoginAsEmbeddedCommentClassificationTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsEmbeddedCommentClassificationTest(), uq.queryMemberLoginAsEmbeddedCommentClassificationTest());
+        }
         if (bq.hasConditionQueryMemberLoginAsLatest()) {
             uq.queryMemberLoginAsLatest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLatest(), uq.queryMemberLoginAsLatest());
         }
@@ -1088,6 +1091,26 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     protected void xsetupOuterJoinMemberLoginAsFormattedMany() { xregOutJo("memberLoginAsFormattedMany"); }
     public boolean hasConditionQueryMemberLoginAsFormattedMany() { return xhasQueRlMap("memberLoginAsFormattedMany"); }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsEmbeddedCommentClassificationTest() {
+        return getConditionQueryMemberLoginAsEmbeddedCommentClassificationTest();
+    }
+    public MemberLoginCQ getConditionQueryMemberLoginAsEmbeddedCommentClassificationTest() {
+        String prop = "memberLoginAsEmbeddedCommentClassificationTest";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsEmbeddedCommentClassificationTest()); xsetupOuterJoinMemberLoginAsEmbeddedCommentClassificationTest(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsEmbeddedCommentClassificationTest() {
+        String nrp = xresolveNRP("member", "memberLoginAsEmbeddedCommentClassificationTest"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsEmbeddedCommentClassificationTest", nrp);
+    }
+    protected void xsetupOuterJoinMemberLoginAsEmbeddedCommentClassificationTest() { xregOutJo("memberLoginAsEmbeddedCommentClassificationTest"); }
+    public boolean hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest() { return xhasQueRlMap("memberLoginAsEmbeddedCommentClassificationTest"); }
 
     /**
      * Get the condition-query for relation table. <br />

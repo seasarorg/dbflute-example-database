@@ -822,6 +822,31 @@ public class BsMemberCB extends AbstractConditionBean {
         return _nssMemberLoginAsFormattedMany;
     }
 
+    protected MemberLoginNss _nssMemberLoginAsEmbeddedCommentClassificationTest;
+    public MemberLoginNss getNssMemberLoginAsEmbeddedCommentClassificationTest() {
+        if (_nssMemberLoginAsEmbeddedCommentClassificationTest == null) { _nssMemberLoginAsEmbeddedCommentClassificationTest = new MemberLoginNss(null); }
+        return _nssMemberLoginAsEmbeddedCommentClassificationTest;
+    }
+    /**
+     * Set up relation columns to select clause. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
+     * <pre>
+     * MemberCB cb = new MemberCB();
+     * cb.<span style="color: #DD4747">setupSelect_MemberLoginAsEmbeddedCommentClassificationTest()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
+     * cb.query().setFoo...(value);
+     * Member member = memberBhv.selectEntityWithDeletedCheck(cb);
+     * ... = member.<span style="color: #DD4747">getMemberLoginAsEmbeddedCommentClassificationTest()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
+     * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
+     */
+    public MemberLoginNss setupSelect_MemberLoginAsEmbeddedCommentClassificationTest() {
+        assertSetupSelectPurpose("memberLoginAsEmbeddedCommentClassificationTest");
+        doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryMemberLoginAsEmbeddedCommentClassificationTest(); } });
+        if (_nssMemberLoginAsEmbeddedCommentClassificationTest == null || !_nssMemberLoginAsEmbeddedCommentClassificationTest.hasConditionQuery())
+        { _nssMemberLoginAsEmbeddedCommentClassificationTest = new MemberLoginNss(query().queryMemberLoginAsEmbeddedCommentClassificationTest()); }
+        return _nssMemberLoginAsEmbeddedCommentClassificationTest;
+    }
+
     protected MemberLoginNss _nssMemberLoginAsLatest;
     public MemberLoginNss getNssMemberLoginAsLatest() {
         if (_nssMemberLoginAsLatest == null) { _nssMemberLoginAsLatest = new MemberLoginNss(null); }
@@ -1007,6 +1032,7 @@ public class BsMemberCB extends AbstractConditionBean {
         protected MemberAddressCB.HpSpecification _memberAddressAsFormattedBasic;
         protected MemberAddressCB.HpSpecification _memberAddressAsFormattedLong;
         protected MemberLoginCB.HpSpecification _memberLoginAsFormattedMany;
+        protected MemberLoginCB.HpSpecification _memberLoginAsEmbeddedCommentClassificationTest;
         protected MemberLoginCB.HpSpecification _memberLoginAsLatest;
         protected MemberLoginCB.HpSpecification _memberLoginAsOldest;
         protected MemberSecurityCB.HpSpecification _memberSecurityAsOne;
@@ -1789,6 +1815,27 @@ public class BsMemberCB extends AbstractConditionBean {
                 }
             }
             return _memberLoginAsFormattedMany;
+        }
+        /**
+         * Prepare to specify functions about relation table. <br />
+         * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
+         * @return The instance for specification for relation table to specify. (NotNull)
+         */
+        public MemberLoginCB.HpSpecification specifyMemberLoginAsEmbeddedCommentClassificationTest() {
+            assertRelation("memberLoginAsEmbeddedCommentClassificationTest");
+            if (_memberLoginAsEmbeddedCommentClassificationTest == null) {
+                _memberLoginAsEmbeddedCommentClassificationTest = new MemberLoginCB.HpSpecification(_baseCB, new HpSpQyCall<MemberLoginCQ>() {
+                    public boolean has() { return _qyCall.has() && _qyCall.qy().hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest(); }
+                    public MemberLoginCQ qy() { return _qyCall.qy().queryMemberLoginAsEmbeddedCommentClassificationTest(); } }
+                    , _purpose, _dbmetaProvider);
+                if (xhasSyncQyCall()) { // inherits it
+                    _memberLoginAsEmbeddedCommentClassificationTest.xsetSyncQyCall(new HpSpQyCall<MemberLoginCQ>() {
+                        public boolean has() { return xsyncQyCall().has() && xsyncQyCall().qy().hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest(); }
+                        public MemberLoginCQ qy() { return xsyncQyCall().qy().queryMemberLoginAsEmbeddedCommentClassificationTest(); }
+                    });
+                }
+            }
+            return _memberLoginAsEmbeddedCommentClassificationTest;
         }
         /**
          * Prepare to specify functions about relation table. <br />

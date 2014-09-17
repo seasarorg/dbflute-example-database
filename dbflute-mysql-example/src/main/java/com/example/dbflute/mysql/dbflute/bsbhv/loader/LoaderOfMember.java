@@ -48,7 +48,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -281,6 +281,14 @@ public class LoaderOfMember {
         List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsFormattedMany(_selectedList);
         _foreignMemberLoginAsFormattedManyLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
         return _foreignMemberLoginAsFormattedManyLoader;
+    }
+
+    protected LoaderOfMemberLogin _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader;
+    public LoaderOfMemberLogin pulloutMemberLoginAsEmbeddedCommentClassificationTest() {
+        if (_foreignMemberLoginAsEmbeddedCommentClassificationTestLoader != null) { return _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader; }
+        List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsEmbeddedCommentClassificationTest(_selectedList);
+        _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
+        return _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader;
     }
 
     protected LoaderOfMemberLogin _foreignMemberLoginAsLatestLoader;
