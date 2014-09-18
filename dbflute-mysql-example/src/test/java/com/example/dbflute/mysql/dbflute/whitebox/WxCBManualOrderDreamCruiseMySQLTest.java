@@ -49,7 +49,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertContains(sql, "when dfloc.MEMBER_ID >= dfrel_24.SERVICE_POINT_COUNT then 0");
+        assertContains(sql, "when dfloc.MEMBER_ID >= dfrel_");
+        assertContains(sql, ".SERVICE_POINT_COUNT then 0");
     }
 
     public void test_DreamCruise_ManualOrder_CaseWhen_SpecifyCalculation_basic() throws Exception {
@@ -67,7 +68,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertContains(sql, "when dfloc.MEMBER_ID >= dfrel_24.SERVICE_POINT_COUNT + dfloc.VERSION_NO then 0");
+        assertContains(sql, "when dfloc.MEMBER_ID >= dfrel_");
+        assertContains(sql, ".SERVICE_POINT_COUNT + dfloc.VERSION_NO then 0");
     }
 
     public void test_DreamCruise_ManualOrder_CaseWhen_SpecifyCalculation_convert() throws Exception {
@@ -85,8 +87,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertContains(sql,
-                "when dfloc.MEMBER_ID >= round((dfrel_24.SERVICE_POINT_COUNT + dfloc.VERSION_NO), 1) then 0");
+        assertContains(sql, "when dfloc.MEMBER_ID >= round((dfrel_");
+        assertContains(sql, ".SERVICE_POINT_COUNT + dfloc.VERSION_NO), 1) then 0");
     }
 
     public void test_DreamCruise_ManualOrder_CaseWhen_SpecifyCalculation_freedom() throws Exception {
@@ -108,8 +110,9 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         String sql = cb.toDisplaySql();
         // when dfloc.MEMBER_ID * dfrel_3.REMINDER_USE_COUNT
         //        >= round((dfrel_4.SERVICE_POINT_COUNT + dfloc.VERSION_NO + 1), 2) then 0
-        assertContains(sql, "when dfloc.MEMBER_ID * dfrel_23.REMINDER_USE_COUNT >= round((dfrel_24.SERVICE_POINT");
-        assertContains(sql, "round((dfrel_24.SERVICE_POINT_COUNT * (dfloc.VERSION_NO + 1)), 2) then 0");
+        assertContains(sql, "when dfloc.MEMBER_ID * dfrel_");
+        assertContains(sql, ".REMINDER_USE_COUNT >= round((dfrel_");
+        assertContains(sql, ".SERVICE_POINT_COUNT * (dfloc.VERSION_NO + 1)), 2) then 0");
     }
 
     // ===================================================================================
@@ -198,7 +201,7 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
         log(ln() + sql);
-        String exp = "(dfloc.MEMBER_ID * dfrel_24.SERVICE_POINT_COUNT) * dfrel_23.REMINDER_USE_COUNT";
+        String exp = "(dfloc.MEMBER_ID * dfrel_25.SERVICE_POINT_COUNT) * dfrel_24.REMINDER_USE_COUNT";
         assertContains(sql, "order by " + exp + " asc");
         assertEquals(2, Srl.count(sql, "left outer join"));
     }
@@ -287,7 +290,7 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
         log(ln() + sql);
-        String exp = "(dfloc.MEMBER_ID * dfrel_24.SERVICE_POINT_COUNT) * dfrel_23.REMINDER_USE_COUNT";
+        String exp = "(dfloc.MEMBER_ID * dfrel_25.SERVICE_POINT_COUNT) * dfrel_24.REMINDER_USE_COUNT";
         assertContains(sql, "order by " + exp + " asc");
         assertEquals(2, Srl.count(sql, "left outer join"));
     }
@@ -322,10 +325,10 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         String sql = cb.toDisplaySql();
         log(ln() + sql);
         assertContains(sql, "union");
-        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_24 asc");
-        assertEquals(2, Srl.count(sql, ", dfrel_24.MEMBER_SERVICE_ID as MEMBER_SERVICE_ID_24"));
+        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_25 asc");
+        assertEquals(2, Srl.count(sql, ", dfrel_25.MEMBER_SERVICE_ID as MEMBER_SERVICE_ID_25"));
         assertEquals(2,
-                Srl.count(sql, "left outer join MEMBER_SERVICE dfrel_24 on dfloc.MEMBER_ID = dfrel_24.MEMBER_ID"));
+                Srl.count(sql, "left outer join MEMBER_SERVICE dfrel_25 on dfloc.MEMBER_ID = dfrel_25.MEMBER_ID"));
     }
 
     public void test_DreamCruise_ManualOrder_union_journeyLogBook_nested() throws Exception {
@@ -359,9 +362,10 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         String sql = cb.toDisplaySql();
         log(ln() + sql);
         assertContains(sql, "union");
-        assertContains(sql, "order by (MEMBER_ID * VERSION_NO) * SERVICE_POINT_COUNT_24 asc");
-        assertEquals(2, Srl.count(sql, ", dfrel_24.MEMBER_SERVICE_ID as MEMBER_SERVICE_ID_24"));
-        assertEquals(2, Srl.count(sql, "left outer join MEMBER_SERVICE dfrel_24 on dfloc.MEMBER_ID = dfrel_24.MEMBER_ID"));
+        assertContains(sql, "order by (MEMBER_ID * VERSION_NO) * SERVICE_POINT_COUNT_25 asc");
+        assertEquals(2, Srl.count(sql, ", dfrel_25.MEMBER_SERVICE_ID as MEMBER_SERVICE_ID_25"));
+        assertEquals(2,
+                Srl.count(sql, "left outer join MEMBER_SERVICE dfrel_25 on dfloc.MEMBER_ID = dfrel_25.MEMBER_ID"));
     }
 
     // ===================================================================================
@@ -449,7 +453,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         //     )
         // , 3) asc
         assertContains(sql, "order by coalesce(((coalesce(dfloc.MEMBER_ID, 1)) * ((coalesce(dfrel");
-        assertContains(sql, ".SERVICE_POINT_COUNT, 2)) + dfrel_23.REMINDER_USE_COUNT)), 3");
+        assertContains(sql, ".SERVICE_POINT_COUNT, 2)) + dfrel_");
+        assertContains(sql, ".REMINDER_USE_COUNT)), 3");
     }
 
     // ===================================================================================
@@ -480,7 +485,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
         log(ln() + sql);
-        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_24 asc");
+        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_");
+        assertContains(sql, " asc");
         assertEquals(2, Srl.count(sql, "left outer join"));
     }
 
@@ -508,7 +514,8 @@ public class WxCBManualOrderDreamCruiseMySQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_24 desc");
+        assertContains(sql, "order by MEMBER_ID * SERVICE_POINT_COUNT_");
+        assertContains(sql, " desc");
         assertEquals(2, Srl.count(sql, "left outer join"));
     }
 }

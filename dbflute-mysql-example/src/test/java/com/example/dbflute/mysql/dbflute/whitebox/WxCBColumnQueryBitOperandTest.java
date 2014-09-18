@@ -13,7 +13,7 @@ import com.example.dbflute.mysql.unit.UnitContainerTestCase;
  * @author jflute
  * @since 1.0.5L (2014/09/14 Sunday)
  */
-public class WxCBColumnQueryMySQLTest extends UnitContainerTestCase {
+public class WxCBColumnQueryBitOperandTest extends UnitContainerTestCase {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -59,7 +59,7 @@ public class WxCBColumnQueryMySQLTest extends UnitContainerTestCase {
             public void specify(MemberCB cb) {
                 cb.specify().columnVersionNo();
             }
-        }).left().multiply(0).plus(1).right().multiply(0).plus(1);
+        }).left().multiply(0).plus(5).right().multiply(0).plus(4);
 
         // ## Act ##
         List<Member> memberList = memberBhv.selectList(cb);
@@ -67,7 +67,7 @@ public class WxCBColumnQueryMySQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertTrue(sql.contains("where (dfloc.MEMBER_ID * 0) + 1 & (dfloc.VERSION_NO * 0) + 1"));
+        assertTrue(sql.contains("where (dfloc.MEMBER_ID * 0) + 5 & (dfloc.VERSION_NO * 0) + 4"));
     }
 
     public void test_bitOr_basic() {
@@ -90,5 +90,27 @@ public class WxCBColumnQueryMySQLTest extends UnitContainerTestCase {
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
         assertTrue(sql.contains("where dfloc.MEMBER_ID | dfloc.VERSION_NO"));
+    }
+
+    public void test_bitAnd_mysticRhythms() {
+        // ## Arrange ##
+        MemberCB cb = new MemberCB();
+        cb.columnQuery(new SpecifyQuery<MemberCB>() {
+            public void specify(MemberCB cb) {
+                cb.specify().columnMemberId();
+            }
+        }).bitAnd(new SpecifyQuery<MemberCB>() {
+            public void specify(MemberCB cb) {
+                cb.mysticRhythms(4);
+            }
+        }).left().multiply(0).plus(5);
+
+        // ## Act ##
+        List<Member> memberList = memberBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(memberList);
+        String sql = cb.toDisplaySql();
+        assertTrue(sql.contains("where (dfloc.MEMBER_ID * 0) + 5 & 4"));
     }
 }

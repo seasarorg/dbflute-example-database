@@ -1885,6 +1885,14 @@
             <index-column name="FK_TO_UQ_CODE" position="1"/>
         </index>
     </table>
+    <table name="white_variant_relation_local_pk_referrer"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="BIGINT" javaType="Long"
+            name="REVERSEFK_SUPPRESSED_ID" pkName="PRIMARY"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
+        <column comment="" dbType="CHAR" javaType="String"
+            name="MASTER_TYPE_CODE" required="true" size="3" type="CHAR"/>
+    </table>
     <table name="white_variant_relation_master_bar"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"

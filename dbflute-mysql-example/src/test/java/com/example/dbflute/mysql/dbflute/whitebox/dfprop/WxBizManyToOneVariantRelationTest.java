@@ -7,12 +7,15 @@ import org.seasar.dbflute.bhv.ConditionBeanSetupper;
 import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.cbean.SubQuery;
 import org.seasar.dbflute.cbean.UnionQuery;
+import org.seasar.dbflute.exception.SQLFailureException;
 import org.seasar.dbflute.util.Srl;
 
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
+import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationLocalPkReferrerCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationMasterFooCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationReferrerCB;
 import com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationReferrerRefCB;
+import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationLocalPkReferrerBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterBarBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv;
 import com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterQuxBhv;
@@ -36,6 +39,7 @@ public class WxBizManyToOneVariantRelationTest extends UnitContainerTestCase {
     private WhiteVariantRelationMasterBarBhv whiteVariantRelationMasterBarBhv;
     private WhiteVariantRelationMasterQuxBhv whiteVariantRelationMasterQuxBhv;
     private WhiteVariantRelationReferrerBhv whiteVariantRelationReferrerBhv;
+    private WhiteVariantRelationLocalPkReferrerBhv whiteVariantRelationLocalPkReferrerBhv;
 
     // ===================================================================================
     //                                                                         SetupSelect
@@ -501,6 +505,60 @@ public class WxBizManyToOneVariantRelationTest extends UnitContainerTestCase {
         assertEquals(2, Srl.countIgnoreCase(sql, " where sub1loc.MASTER_TYPE_CODE = 'FOO'"));
         assertTrue(Srl.containsIgnoreCase(sql, "  and sub1loc.VARIANT_MASTER_ID >= 1"));
         assertTrue(Srl.containsIgnoreCase(sql, "  and sub1loc.VARIANT_MASTER_ID <= 2"));
+    }
+
+    // ===================================================================================
+    //                                                        BizOneToOne for BizManyToOne
+    //                                                        ============================
+    public void test_VariantRelation_SetupSelect_BizOneToOneForBizManyToOne() throws Exception {
+        // ## Arrange ##
+        registerTestData();
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
+        cb.setupSelect_WhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne();
+
+        // ## Act ##
+        ListResultBean<WhiteVariantRelationMasterFoo> masterList = whiteVariantRelationMasterFooBhv.selectList(cb);
+
+        // ## Assert ##
+        assertHasAnyElement(masterList);
+        for (WhiteVariantRelationMasterFoo master : masterList) {
+            log(master);
+        }
+    }
+
+    // ===================================================================================
+    //                                                       BizManyToOne-like BizOneToOne
+    //                                                       =============================
+    public void test_BizManyToOneLikeOneToOne_basic() throws Exception {
+        // ## Arrange ##
+        WhiteVariantRelationLocalPkReferrerCB cb = new WhiteVariantRelationLocalPkReferrerCB();
+        cb.setupSelect_WhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne();
+
+        // ## Act ##
+        whiteVariantRelationLocalPkReferrerBhv.selectList(cb); // expect no exception
+
+        // ## Assert ##
+        String sql = cb.toDisplaySql();
+        assertContains(sql, "and dfloc.MASTER_TYPE_CODE = 'FOO'");
+    }
+
+    public void test_BizManyToOneLikeOneToOne_referrer() throws Exception {
+        // ## Arrange ##
+        WhiteVariantRelationMasterFooCB cb = new WhiteVariantRelationMasterFooCB();
+        cb.setupSelect_WhiteVariantRelationLocalPkReferrerAsOne();
+
+        // ## Act ##
+        // unsupported for now, $$localAlias$$ should be resolved as foreign here
+        // so you should fixedReferre = false
+        try {
+            whiteVariantRelationMasterFooBhv.selectList(cb);
+            // ## Assert ##
+            fail();
+        } catch (SQLFailureException e) {
+            log(e.getMessage());
+        }
+        String sql = cb.toDisplaySql();
+        assertContains(sql, "and dfloc.MASTER_TYPE_CODE = 'FOO'");
     }
 
     // ===================================================================================

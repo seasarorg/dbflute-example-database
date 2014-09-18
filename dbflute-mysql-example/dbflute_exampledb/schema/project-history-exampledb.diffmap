@@ -1,4 +1,30 @@
 map:{
+    ; 2014/09/17 21:31:14 = map:{
+        ; diffDate = 2014/09/17 21:31:14
+        ; tableDiff = map:{
+            ; white_variant_relation_local_pk_referrer = map:{
+                ; tableName = white_variant_relation_local_pk_referrer
+                ; diffType = ADD
+            }
+            ; white_variant_relation_reversefk_suppressed = map:{
+                ; tableName = white_variant_relation_reversefk_suppressed
+                ; diffType = DELETE
+            }
+        }
+    }
+    ; 2014/09/17 21:19:03 = map:{
+        ; diffDate = 2014/09/17 21:19:03
+        ; tableCount = map:{
+            ; next = 108
+            ; previous = 107
+        }
+        ; tableDiff = map:{
+            ; white_variant_relation_reversefk_suppressed = map:{
+                ; tableName = white_variant_relation_reversefk_suppressed
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/09/12 23:52:04 = map:{
         ; diffDate = 2014/09/12 23:52:04
         ; tableCount = map:{

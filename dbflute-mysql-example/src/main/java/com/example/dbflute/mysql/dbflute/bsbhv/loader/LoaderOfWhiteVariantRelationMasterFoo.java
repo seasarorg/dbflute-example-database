@@ -42,13 +42,13 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     
  *
  * [foreign table]
- *     
+ *     WHITE_VARIANT_RELATION_REFERRER(AsBizOneToOneForBizManyToOne), white_variant_relation_local_pk_referrer(AsOne)
  *
  * [referrer table]
- *     white_variant_relation_referrer
+ *     white_variant_relation_referrer, white_variant_relation_local_pk_referrer
  *
  * [foreign property]
- *     
+ *     whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne, whiteVariantRelationLocalPkReferrerAsOne
  *
  * [referrer property]
  *     whiteVariantRelationReferrerAsVariantList
@@ -91,6 +91,22 @@ public class LoaderOfWhiteVariantRelationMasterFoo {
     // ===================================================================================
     //                                                                    Pull out Foreign
     //                                                                    ================
+    protected LoaderOfWhiteVariantRelationReferrer _foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOneLoader;
+    public LoaderOfWhiteVariantRelationReferrer pulloutWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne() {
+        if (_foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOneLoader != null) { return _foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOneLoader; }
+        List<WhiteVariantRelationReferrer> pulledList = myBhv().pulloutWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne(_selectedList);
+        _foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOneLoader = new LoaderOfWhiteVariantRelationReferrer().ready(pulledList, _selector);
+        return _foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOneLoader;
+    }
+
+    protected LoaderOfWhiteVariantRelationLocalPkReferrer _foreignWhiteVariantRelationLocalPkReferrerAsOneLoader;
+    public LoaderOfWhiteVariantRelationLocalPkReferrer pulloutWhiteVariantRelationLocalPkReferrerAsOne() {
+        if (_foreignWhiteVariantRelationLocalPkReferrerAsOneLoader != null) { return _foreignWhiteVariantRelationLocalPkReferrerAsOneLoader; }
+        List<WhiteVariantRelationLocalPkReferrer> pulledList = myBhv().pulloutWhiteVariantRelationLocalPkReferrerAsOne(_selectedList);
+        _foreignWhiteVariantRelationLocalPkReferrerAsOneLoader = new LoaderOfWhiteVariantRelationLocalPkReferrer().ready(pulledList, _selector);
+        return _foreignWhiteVariantRelationLocalPkReferrerAsOneLoader;
+    }
+
     // ===================================================================================
     //                                                                            Accessor
     //                                                                            ========

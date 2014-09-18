@@ -37,9 +37,11 @@ public class WhiteVariantRelationReferrerNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
+     * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
-    public void withWhiteVariantRelationMasterFooAsVariant() {
+    public WhiteVariantRelationMasterFooNss withWhiteVariantRelationMasterFooAsVariant() {
         _query.doNss(new WhiteVariantRelationReferrerCQ.NssCall() { public ConditionQuery qf() { return _query.queryWhiteVariantRelationMasterFooAsVariant(); }});
+        return new WhiteVariantRelationMasterFooNss(_query.queryWhiteVariantRelationMasterFooAsVariant());
     }
     /**
      * With nested relation columns to select clause. <br />

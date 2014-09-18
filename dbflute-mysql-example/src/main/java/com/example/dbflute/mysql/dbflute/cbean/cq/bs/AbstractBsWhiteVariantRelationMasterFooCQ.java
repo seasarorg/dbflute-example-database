@@ -61,7 +61,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooId The value of masterFooId as equal. (NullAllowed: if null, no condition)
      */
     public void setMasterFooId_Equal(Long masterFooId) {
@@ -74,7 +74,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooId The value of masterFooId as greaterThan. (NullAllowed: if null, no condition)
      */
     public void setMasterFooId_GreaterThan(Long masterFooId) {
@@ -83,7 +83,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooId The value of masterFooId as lessThan. (NullAllowed: if null, no condition)
      */
     public void setMasterFooId_LessThan(Long masterFooId) {
@@ -92,7 +92,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooId The value of masterFooId as greaterEqual. (NullAllowed: if null, no condition)
      */
     public void setMasterFooId_GreaterEqual(Long masterFooId) {
@@ -101,7 +101,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooId The value of masterFooId as lessEqual. (NullAllowed: if null, no condition)
      */
     public void setMasterFooId_LessEqual(Long masterFooId) {
@@ -112,7 +112,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
      * RangeOf with various options. (versatile) <br />
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br />
      * And NullIgnored, OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param minNumber The min number of masterFooId. (NullAllowed: if null, no from-condition)
      * @param maxNumber The max number of masterFooId. (NullAllowed: if null, no to-condition)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -123,7 +123,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooIdList The collection of masterFooId as inScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMasterFooId_InScope(Collection<Long> masterFooIdList) {
@@ -136,7 +136,7 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      * @param masterFooIdList The collection of masterFooId as notInScope. (NullAllowed: if null (or empty), no condition)
      */
     public void setMasterFooId_NotInScope(Collection<Long> masterFooIdList) {
@@ -170,6 +170,28 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     public abstract String keepMasterFooId_ExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
+     * Set up ExistsReferrer (correlated sub-query). <br />
+     * {exists (select REVERSEFK_SUPPRESSED_ID from white_variant_relation_local_pk_referrer where ...)} <br />
+     * white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">existsWhiteVariantRelationLocalPkReferrerAsOne</span>(new SubQuery&lt;WhiteVariantRelationLocalPkReferrerCB&gt;() {
+     *     public void query(WhiteVariantRelationLocalPkReferrerCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of WhiteVariantRelationLocalPkReferrerAsOne for 'exists'. (NotNull)
+     */
+    public void existsWhiteVariantRelationLocalPkReferrerAsOne(SubQuery<WhiteVariantRelationLocalPkReferrerCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationLocalPkReferrerCB cb = new WhiteVariantRelationLocalPkReferrerCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMasterFooId_ExistsReferrer_WhiteVariantRelationLocalPkReferrerAsOne(cb.query());
+        registerExistsReferrer(cb.query(), "MASTER_FOO_ID", "REVERSEFK_SUPPRESSED_ID", pp, "whiteVariantRelationLocalPkReferrerAsOne");
+    }
+    public abstract String keepMasterFooId_ExistsReferrer_WhiteVariantRelationLocalPkReferrerAsOne(WhiteVariantRelationLocalPkReferrerCQ sq);
+
+    /**
      * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select VARIANT_MASTER_ID from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
@@ -192,6 +214,28 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     public abstract String keepMasterFooId_NotExistsReferrer_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
+     * Set up NotExistsReferrer (correlated sub-query). <br />
+     * {not exists (select REVERSEFK_SUPPRESSED_ID from white_variant_relation_local_pk_referrer where ...)} <br />
+     * white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
+     * <pre>
+     * cb.query().<span style="color: #DD4747">notExistsWhiteVariantRelationLocalPkReferrerAsOne</span>(new SubQuery&lt;WhiteVariantRelationLocalPkReferrerCB&gt;() {
+     *     public void query(WhiteVariantRelationLocalPkReferrerCB subCB) {
+     *         subCB.query().setXxx...
+     *     }
+     * });
+     * </pre>
+     * @param subQuery The sub-query of MasterFooId_NotExistsReferrer_WhiteVariantRelationLocalPkReferrerAsOne for 'not exists'. (NotNull)
+     */
+    public void notExistsWhiteVariantRelationLocalPkReferrerAsOne(SubQuery<WhiteVariantRelationLocalPkReferrerCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationLocalPkReferrerCB cb = new WhiteVariantRelationLocalPkReferrerCB(); cb.xsetupForExistsReferrer(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMasterFooId_NotExistsReferrer_WhiteVariantRelationLocalPkReferrerAsOne(cb.query());
+        registerNotExistsReferrer(cb.query(), "MASTER_FOO_ID", "REVERSEFK_SUPPRESSED_ID", pp, "whiteVariantRelationLocalPkReferrerAsOne");
+    }
+    public abstract String keepMasterFooId_NotExistsReferrer_WhiteVariantRelationLocalPkReferrerAsOne(WhiteVariantRelationLocalPkReferrerCQ sq);
+
+    /**
      * Set up InScopeRelation (sub-query). <br />
      * {in (select VARIANT_MASTER_ID from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
@@ -207,6 +251,21 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
     public abstract String keepMasterFooId_InScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
 
     /**
+     * Set up InScopeRelation (sub-query). <br />
+     * {in (select REVERSEFK_SUPPRESSED_ID from white_variant_relation_local_pk_referrer where ...)} <br />
+     * white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
+     * @param subQuery The sub-query of WhiteVariantRelationLocalPkReferrerAsOne for 'in-scope'. (NotNull)
+     */
+    public void inScopeWhiteVariantRelationLocalPkReferrerAsOne(SubQuery<WhiteVariantRelationLocalPkReferrerCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationLocalPkReferrerCB cb = new WhiteVariantRelationLocalPkReferrerCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMasterFooId_InScopeRelation_WhiteVariantRelationLocalPkReferrerAsOne(cb.query());
+        registerInScopeRelation(cb.query(), "MASTER_FOO_ID", "REVERSEFK_SUPPRESSED_ID", pp, "whiteVariantRelationLocalPkReferrerAsOne");
+    }
+    public abstract String keepMasterFooId_InScopeRelation_WhiteVariantRelationLocalPkReferrerAsOne(WhiteVariantRelationLocalPkReferrerCQ sq);
+
+    /**
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select VARIANT_MASTER_ID from white_variant_relation_referrer where ...)} <br />
      * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsOne'.
@@ -220,6 +279,21 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
         registerNotInScopeRelation(cb.query(), "MASTER_FOO_ID", "VARIANT_MASTER_ID", pp, "whiteVariantRelationReferrerAsVariantList");
     }
     public abstract String keepMasterFooId_NotInScopeRelation_WhiteVariantRelationReferrerAsVariantList(WhiteVariantRelationReferrerCQ sq);
+
+    /**
+     * Set up NotInScopeRelation (sub-query). <br />
+     * {not in (select REVERSEFK_SUPPRESSED_ID from white_variant_relation_local_pk_referrer where ...)} <br />
+     * white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
+     * @param subQuery The sub-query of WhiteVariantRelationLocalPkReferrerAsOne for 'not in-scope'. (NotNull)
+     */
+    public void notInScopeWhiteVariantRelationLocalPkReferrerAsOne(SubQuery<WhiteVariantRelationLocalPkReferrerCB> subQuery) {
+        assertObjectNotNull("subQuery", subQuery);
+        WhiteVariantRelationLocalPkReferrerCB cb = new WhiteVariantRelationLocalPkReferrerCB(); cb.xsetupForInScopeRelation(this);
+        try { lock(); subQuery.query(cb); } finally { unlock(); }
+        String pp = keepMasterFooId_NotInScopeRelation_WhiteVariantRelationLocalPkReferrerAsOne(cb.query());
+        registerNotInScopeRelation(cb.query(), "MASTER_FOO_ID", "REVERSEFK_SUPPRESSED_ID", pp, "whiteVariantRelationLocalPkReferrerAsOne");
+    }
+    public abstract String keepMasterFooId_NotInScopeRelation_WhiteVariantRelationLocalPkReferrerAsOne(WhiteVariantRelationLocalPkReferrerCQ sq);
 
     public void xsderiveWhiteVariantRelationReferrerAsVariantList(String fn, SubQuery<WhiteVariantRelationReferrerCB> sq, String al, DerivedReferrerOption op) {
         assertObjectNotNull("subQuery", sq);
@@ -266,13 +340,13 @@ public abstract class AbstractBsWhiteVariantRelationMasterFooCQ extends Abstract
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      */
     public void setMasterFooId_IsNull() { regMasterFooId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br />
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19)}
+     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
      */
     public void setMasterFooId_IsNotNull() { regMasterFooId(CK_ISNN, DOBJ); }
 

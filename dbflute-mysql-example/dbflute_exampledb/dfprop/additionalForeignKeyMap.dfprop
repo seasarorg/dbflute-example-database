@@ -397,6 +397,21 @@ $$over($localTable.whiteSplitMultipleFkNext)$$.SECOND_CODE = $$foreignAlias$$.SE
         # fixedInline with localAlias is not available
         #; fixedInline = true
     }
+    # biz-one-to-one for biz-many-to-one
+    ; FK_WHITE_VARIANT_RELATION_BIZ_ONE_TO_ONE_FOR_BIZ_MANY_TO_ONE = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_MASTER_FOO ; foreignTableName = WHITE_VARIANT_RELATION_REFERRER
+        ; localColumnName = MASTER_FOO_ID ; foreignColumnName = VARIANT_MASTER_ID
+        ; fixedCondition = $$foreignAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.FooCls)*/null
+        ; fixedSuffix = AsBizOneToOneForBizManyToOne
+    }
+    # biz-many-to-one-like biz-one-to-one: reverse-FK suppressed when local column is PK
+    ; FK_WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER = map:{
+        ; localTableName  = WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER ; foreignTableName = WHITE_VARIANT_RELATION_MASTER_FOO
+        ; localColumnName = REVERSEFK_SUPPRESSED_ID ; foreignColumnName = MASTER_FOO_ID
+        ; fixedCondition = $$localAlias$$.MASTER_TYPE_CODE = /*$cls(VariantRelationMasterType.FooCls)*/null
+        ; fixedSuffix = AsBizManyToOneLikeBizOneToOne
+        ; fixedReferrer = true
+    }
 
     #
     # for the test of all-in-one table classification (biz-many-to-one)

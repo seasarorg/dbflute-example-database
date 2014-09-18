@@ -35,6 +35,7 @@ import com.example.dbflute.mysql.dbflute.allcommon.ImplementedInvokerAssistant;
 import com.example.dbflute.mysql.dbflute.allcommon.ImplementedSqlClauseCreator;
 import com.example.dbflute.mysql.dbflute.cbean.*;
 import com.example.dbflute.mysql.dbflute.cbean.cq.*;
+import com.example.dbflute.mysql.dbflute.cbean.nss.*;
 
 /**
  * The base condition-bean of white_variant_relation_referrer.
@@ -275,6 +276,11 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                         SetupSelect
     //                                                                         ===========
+    protected WhiteVariantRelationMasterFooNss _nssWhiteVariantRelationMasterFooAsVariant;
+    public WhiteVariantRelationMasterFooNss getNssWhiteVariantRelationMasterFooAsVariant() {
+        if (_nssWhiteVariantRelationMasterFooAsVariant == null) { _nssWhiteVariantRelationMasterFooAsVariant = new WhiteVariantRelationMasterFooNss(null); }
+        return _nssWhiteVariantRelationMasterFooAsVariant;
+    }
     /**
      * Set up relation columns to select clause. <br />
      * white_variant_relation_master_foo by my VARIANT_MASTER_ID, named 'whiteVariantRelationMasterFooAsVariant'.
@@ -285,13 +291,17 @@ public class BsWhiteVariantRelationReferrerCB extends AbstractConditionBean {
      * WhiteVariantRelationReferrer whiteVariantRelationReferrer = whiteVariantRelationReferrerBhv.selectEntityWithDeletedCheck(cb);
      * ... = whiteVariantRelationReferrer.<span style="color: #DD4747">getWhiteVariantRelationMasterFooAsVariant()</span>; <span style="color: #3F7E5E">// you can get by using SetupSelect</span>
      * </pre>
+     * @return The set-upper of nested relation. {setupSelect...().with[nested-relation]} (NotNull)
      */
-    public void setupSelect_WhiteVariantRelationMasterFooAsVariant() {
+    public WhiteVariantRelationMasterFooNss setupSelect_WhiteVariantRelationMasterFooAsVariant() {
         assertSetupSelectPurpose("whiteVariantRelationMasterFooAsVariant");
         if (hasSpecifiedColumn()) { // if reverse call
             specify().columnVariantMasterId();
         }
         doSetupSelect(new SsCall() { public ConditionQuery qf() { return query().queryWhiteVariantRelationMasterFooAsVariant(); } });
+        if (_nssWhiteVariantRelationMasterFooAsVariant == null || !_nssWhiteVariantRelationMasterFooAsVariant.hasConditionQuery())
+        { _nssWhiteVariantRelationMasterFooAsVariant = new WhiteVariantRelationMasterFooNss(query().queryWhiteVariantRelationMasterFooAsVariant()); }
+        return _nssWhiteVariantRelationMasterFooAsVariant;
     }
 
     /**

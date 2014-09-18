@@ -142,6 +142,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("white_uq_fk_ref_nest", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkRefNestDbm");
         tmpMap.put("white_uq_fk_without_pk", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkDbm");
         tmpMap.put("white_uq_fk_without_pk_ref", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteUqFkWithoutPkRefDbm");
+        tmpMap.put("white_variant_relation_local_pk_referrer", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationLocalPkReferrerDbm");
         tmpMap.put("white_variant_relation_master_bar", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterBarDbm");
         tmpMap.put("white_variant_relation_master_corge", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterCorgeDbm");
         tmpMap.put("white_variant_relation_master_foo", "com.example.dbflute.mysql.dbflute.bsentity.dbmeta.WhiteVariantRelationMasterFooDbm");

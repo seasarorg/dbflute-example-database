@@ -28,17 +28,17 @@ import com.example.dbflute.mysql.dbflute.allcommon.*;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
 /**
- * The DB meta of white_variant_relation_master_foo. (Singleton)
+ * The DB meta of white_variant_relation_local_pk_referrer. (Singleton)
  * @author DBFlute(AutoGenerator)
  */
-public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
+public class WhiteVariantRelationLocalPkReferrerDbm extends AbstractDBMeta {
 
     // ===================================================================================
     //                                                                           Singleton
     //                                                                           =========
-    private static final WhiteVariantRelationMasterFooDbm _instance = new WhiteVariantRelationMasterFooDbm();
-    private WhiteVariantRelationMasterFooDbm() {}
-    public static WhiteVariantRelationMasterFooDbm getInstance() { return _instance; }
+    private static final WhiteVariantRelationLocalPkReferrerDbm _instance = new WhiteVariantRelationLocalPkReferrerDbm();
+    private WhiteVariantRelationLocalPkReferrerDbm() {}
+    public static WhiteVariantRelationLocalPkReferrerDbm getInstance() { return _instance; }
 
     // ===================================================================================
     //                                                                       Current DBDef
@@ -53,16 +53,16 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     //                                       ---------------
     protected final Map<String, PropertyGateway> _epgMap = newHashMap();
     {
-        setupEpg(_epgMap, new EpgMasterFooId(), "masterFooId");
-        setupEpg(_epgMap, new EpgMasterFooName(), "masterFooName");
+        setupEpg(_epgMap, new EpgReversefkSuppressedId(), "reversefkSuppressedId");
+        setupEpg(_epgMap, new EpgMasterTypeCode(), "masterTypeCode");
     }
-    public static class EpgMasterFooId implements PropertyGateway {
-        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooId(); }
-        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooId(ctl(vl)); }
+    public static class EpgReversefkSuppressedId implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationLocalPkReferrer)et).getReversefkSuppressedId(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationLocalPkReferrer)et).setReversefkSuppressedId(ctl(vl)); }
     }
-    public static class EpgMasterFooName implements PropertyGateway {
-        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getMasterFooName(); }
-        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setMasterFooName((String)vl); }
+    public static class EpgMasterTypeCode implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationLocalPkReferrer)et).getMasterTypeCode(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationLocalPkReferrer)et).setMasterTypeCode((String)vl); }
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
@@ -72,18 +72,11 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     //                                      ----------------
     protected final Map<String, PropertyGateway> _efpgMap = newHashMap();
     {
-        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne(), "whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne");
+        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne(), "whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne");
     }
-    public class EfpgWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne implements PropertyGateway {
-        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne(); }
-        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne((WhiteVariantRelationReferrer)vl); }
-    }
-    {
-        setupEfpg(_efpgMap, new EfpgWhiteVariantRelationLocalPkReferrerAsOne(), "whiteVariantRelationLocalPkReferrerAsOne");
-    }
-    public class EfpgWhiteVariantRelationLocalPkReferrerAsOne implements PropertyGateway {
-        public Object read(Entity et) { return ((WhiteVariantRelationMasterFoo)et).getWhiteVariantRelationLocalPkReferrerAsOne(); }
-        public void write(Entity et, Object vl) { ((WhiteVariantRelationMasterFoo)et).setWhiteVariantRelationLocalPkReferrerAsOne((WhiteVariantRelationLocalPkReferrer)vl); }
+    public class EfpgWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne implements PropertyGateway {
+        public Object read(Entity et) { return ((WhiteVariantRelationLocalPkReferrer)et).getWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne(); }
+        public void write(Entity et, Object vl) { ((WhiteVariantRelationLocalPkReferrer)et).setWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne((WhiteVariantRelationMasterFoo)vl); }
     }
     public PropertyGateway findForeignPropertyGateway(String prop)
     { return doFindEfpg(_efpgMap, prop); }
@@ -91,9 +84,9 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                          Table Info
     //                                                                          ==========
-    protected final String _tableDbName = "white_variant_relation_master_foo";
-    protected final String _tablePropertyName = "whiteVariantRelationMasterFoo";
-    protected final TableSqlName _tableSqlName = new TableSqlName("WHITE_VARIANT_RELATION_MASTER_FOO", _tableDbName);
+    protected final String _tableDbName = "white_variant_relation_local_pk_referrer";
+    protected final String _tablePropertyName = "whiteVariantRelationLocalPkReferrer";
+    protected final TableSqlName _tableSqlName = new TableSqlName("WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTablePropertyName() { return _tablePropertyName; }
@@ -102,24 +95,24 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMasterFooId = cci("MASTER_FOO_ID", "MASTER_FOO_ID", null, null, Long.class, "masterFooId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne,whiteVariantRelationLocalPkReferrerAsOne", "whiteVariantRelationReferrerAsVariantList", null);
-    protected final ColumnInfo _columnMasterFooName = cci("MASTER_FOO_NAME", "MASTER_FOO_NAME", null, null, String.class, "masterFooName", null, false, false, true, "VARCHAR", 200, 0, null, false, null, null, null, null, null);
+    protected final ColumnInfo _columnReversefkSuppressedId = cci("REVERSEFK_SUPPRESSED_ID", "REVERSEFK_SUPPRESSED_ID", null, null, Long.class, "reversefkSuppressedId", null, true, false, true, "BIGINT", 19, 0, null, false, null, null, "whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne", null, null);
+    protected final ColumnInfo _columnMasterTypeCode = cci("MASTER_TYPE_CODE", "MASTER_TYPE_CODE", null, null, String.class, "masterTypeCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, null, null, null);
 
     /**
-     * MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER}
+     * REVERSEFK_SUPPRESSED_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnMasterFooId() { return _columnMasterFooId; }
+    public ColumnInfo columnReversefkSuppressedId() { return _columnReversefkSuppressedId; }
     /**
-     * MASTER_FOO_NAME: {NotNull, VARCHAR(200)}
+     * MASTER_TYPE_CODE: {NotNull, CHAR(3)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnMasterFooName() { return _columnMasterFooName; }
+    public ColumnInfo columnMasterTypeCode() { return _columnMasterTypeCode; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
-        ls.add(columnMasterFooId());
-        ls.add(columnMasterFooName());
+        ls.add(columnReversefkSuppressedId());
+        ls.add(columnMasterTypeCode());
         return ls;
     }
 
@@ -131,7 +124,7 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnMasterFooId()); }
+    protected UniqueInfo cpui() { return hpcpui(columnReversefkSuppressedId()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
@@ -144,33 +137,17 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     //                                      Foreign Property
     //                                      ----------------
     /**
-     * white_variant_relation_referrer by my MASTER_FOO_ID, named 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'.
+     * white_variant_relation_master_foo by my REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'.
      * @return The information object of foreign property. (NotNull)
      */
-    public ForeignInfo foreignWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMasterFooId(), WhiteVariantRelationReferrerDbm.getInstance().columnVariantMasterId());
-        return cfi("FK_WHITE_VARIANT_RELATION_BIZ_ONE_TO_ONE_FOR_BIZ_MANY_TO_ONE", "whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne", this, WhiteVariantRelationReferrerDbm.getInstance(), mp, 0, null, true, true, false, true, "$$foreignAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, null);
-    }
-    /**
-     * white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
-     * @return The information object of foreign property(referrer-as-one). (NotNull)
-     */
-    public ForeignInfo foreignWhiteVariantRelationLocalPkReferrerAsOne() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMasterFooId(), WhiteVariantRelationLocalPkReferrerDbm.getInstance().columnReversefkSuppressedId());
-        return cfi("FK_WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER", "whiteVariantRelationLocalPkReferrerAsOne", this, WhiteVariantRelationLocalPkReferrerDbm.getInstance(), mp, 1, null, true, true, true, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne");
+    public ForeignInfo foreignWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnReversefkSuppressedId(), WhiteVariantRelationMasterFooDbm.getInstance().columnMasterFooId());
+        return cfi("FK_WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER", "whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne", this, WhiteVariantRelationMasterFooDbm.getInstance(), mp, 0, null, true, true, false, true, "$$localAlias$$.MASTER_TYPE_CODE = 'FOO'", null, false, "whiteVariantRelationLocalPkReferrerAsOne");
     }
 
     // -----------------------------------------------------
     //                                     Referrer Property
     //                                     -----------------
-    /**
-     * white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
-     * @return The information object of referrer property. (NotNull)
-     */
-    public ReferrerInfo referrerWhiteVariantRelationReferrerAsVariantList() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMasterFooId(), WhiteVariantRelationReferrerDbm.getInstance().columnVariantMasterId());
-        return cri("FK_WHITE_VARIANT_RELATION_FOO", "whiteVariantRelationReferrerAsVariantList", this, WhiteVariantRelationReferrerDbm.getInstance(), mp, false, "whiteVariantRelationMasterFooAsVariant");
-    }
 
     // ===================================================================================
     //                                                                        Various Info
@@ -179,28 +156,28 @@ public class WhiteVariantRelationMasterFooDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                           Type Name
     //                                                                           =========
-    public String getEntityTypeName() { return "com.example.dbflute.mysql.dbflute.exentity.WhiteVariantRelationMasterFoo"; }
-    public String getConditionBeanTypeName() { return "com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationMasterFooCB"; }
-    public String getBehaviorTypeName() { return "com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationMasterFooBhv"; }
+    public String getEntityTypeName() { return "com.example.dbflute.mysql.dbflute.exentity.WhiteVariantRelationLocalPkReferrer"; }
+    public String getConditionBeanTypeName() { return "com.example.dbflute.mysql.dbflute.cbean.WhiteVariantRelationLocalPkReferrerCB"; }
+    public String getBehaviorTypeName() { return "com.example.dbflute.mysql.dbflute.exbhv.WhiteVariantRelationLocalPkReferrerBhv"; }
 
     // ===================================================================================
     //                                                                         Object Type
     //                                                                         ===========
-    public Class<WhiteVariantRelationMasterFoo> getEntityType() { return WhiteVariantRelationMasterFoo.class; }
+    public Class<WhiteVariantRelationLocalPkReferrer> getEntityType() { return WhiteVariantRelationLocalPkReferrer.class; }
 
     // ===================================================================================
     //                                                                     Object Instance
     //                                                                     ===============
-    public WhiteVariantRelationMasterFoo newEntity() { return new WhiteVariantRelationMasterFoo(); }
-    public WhiteVariantRelationMasterFoo newMyEntity() { return new WhiteVariantRelationMasterFoo(); }
+    public WhiteVariantRelationLocalPkReferrer newEntity() { return new WhiteVariantRelationLocalPkReferrer(); }
+    public WhiteVariantRelationLocalPkReferrer newMyEntity() { return new WhiteVariantRelationLocalPkReferrer(); }
 
     // ===================================================================================
     //                                                                   Map Communication
     //                                                                   =================
     public void acceptPrimaryKeyMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptPrimaryKeyMap((WhiteVariantRelationMasterFoo)et, mp); }
+    { doAcceptPrimaryKeyMap((WhiteVariantRelationLocalPkReferrer)et, mp); }
     public void acceptAllColumnMap(Entity et, Map<String, ? extends Object> mp)
-    { doAcceptAllColumnMap((WhiteVariantRelationMasterFoo)et, mp); }
+    { doAcceptAllColumnMap((WhiteVariantRelationLocalPkReferrer)et, mp); }
     public Map<String, Object> extractPrimaryKeyMap(Entity et) { return doExtractPrimaryKeyMap(et); }
     public Map<String, Object> extractAllColumnMap(Entity et) { return doExtractAllColumnMap(et); }
 }

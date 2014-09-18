@@ -26,13 +26,13 @@ import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
 /**
- * The entity of WHITE_VARIANT_RELATION_MASTER_FOO as TABLE. <br />
+ * The entity of WHITE_VARIANT_RELATION_LOCAL_PK_REFERRER as TABLE. <br />
  * <pre>
  * [primary-key]
- *     MASTER_FOO_ID
+ *     REVERSEFK_SUPPRESSED_ID
  * 
  * [column]
- *     MASTER_FOO_ID, MASTER_FOO_NAME
+ *     REVERSEFK_SUPPRESSED_ID, MASTER_TYPE_CODE
  * 
  * [sequence]
  *     
@@ -44,28 +44,28 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  *     
  * 
  * [foreign table]
- *     WHITE_VARIANT_RELATION_REFERRER(AsBizOneToOneForBizManyToOne), white_variant_relation_local_pk_referrer(AsOne)
+ *     WHITE_VARIANT_RELATION_MASTER_FOO(AsBizManyToOneLikeBizOneToOne)
  * 
  * [referrer table]
- *     white_variant_relation_referrer, white_variant_relation_local_pk_referrer
+ *     
  * 
  * [foreign property]
- *     whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne, whiteVariantRelationLocalPkReferrerAsOne
+ *     whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne
  * 
  * [referrer property]
- *     whiteVariantRelationReferrerAsVariantList
+ *     
  * 
  * [get/set template]
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
- * Long masterFooId = entity.getMasterFooId();
- * String masterFooName = entity.getMasterFooName();
- * entity.setMasterFooId(masterFooId);
- * entity.setMasterFooName(masterFooName);
+ * Long reversefkSuppressedId = entity.getReversefkSuppressedId();
+ * String masterTypeCode = entity.getMasterTypeCode();
+ * entity.setReversefkSuppressedId(reversefkSuppressedId);
+ * entity.setMasterTypeCode(masterTypeCode);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteVariantRelationLocalPkReferrer implements Entity, Serializable, Cloneable {
 
     // ===================================================================================
     //                                                                          Definition
@@ -79,11 +79,11 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     // -----------------------------------------------------
     //                                                Column
     //                                                ------
-    /** MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER} */
-    protected Long _masterFooId;
+    /** REVERSEFK_SUPPRESSED_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO} */
+    protected Long _reversefkSuppressedId;
 
-    /** MASTER_FOO_NAME: {NotNull, VARCHAR(200)} */
-    protected String _masterFooName;
+    /** MASTER_TYPE_CODE: {NotNull, CHAR(3)} */
+    protected String _masterTypeCode;
 
     // -----------------------------------------------------
     //                                              Internal
@@ -104,14 +104,14 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      * {@inheritDoc}
      */
     public String getTableDbName() {
-        return "white_variant_relation_master_foo";
+        return "white_variant_relation_local_pk_referrer";
     }
 
     /**
      * {@inheritDoc}
      */
     public String getTablePropertyName() { // according to Java Beans rule
-        return "whiteVariantRelationMasterFoo";
+        return "whiteVariantRelationLocalPkReferrer";
     }
 
     // ===================================================================================
@@ -131,7 +131,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      * {@inheritDoc}
      */
     public boolean hasPrimaryKeyValue() {
-        if (getMasterFooId() == null) { return false; }
+        if (getReversefkSuppressedId() == null) { return false; }
         return true;
     }
 
@@ -149,67 +149,28 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
-    /** white_variant_relation_referrer by my MASTER_FOO_ID, named 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'. */
-    protected WhiteVariantRelationReferrer _whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne;
+    /** white_variant_relation_master_foo by my REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'. */
+    protected WhiteVariantRelationMasterFoo _whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne;
 
     /**
-     * [get] white_variant_relation_referrer by my MASTER_FOO_ID, named 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'.
-     * @return The entity of foreign property 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     * [get] white_variant_relation_master_foo by my REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'.
+     * @return The entity of foreign property 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
-    public WhiteVariantRelationReferrer getWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne() {
-        return _whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne;
+    public WhiteVariantRelationMasterFoo getWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne() {
+        return _whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne;
     }
 
     /**
-     * [set] white_variant_relation_referrer by my MASTER_FOO_ID, named 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'.
-     * @param whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne The entity of foreign property 'whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne'. (NullAllowed)
+     * [set] white_variant_relation_master_foo by my REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'.
+     * @param whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne The entity of foreign property 'whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne'. (NullAllowed)
      */
-    public void setWhiteVariantRelationReferrerAsBizOneToOneForBizManyToOne(WhiteVariantRelationReferrer whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne) {
-        _whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne = whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne;
-    }
-
-    /** white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'. */
-    protected WhiteVariantRelationLocalPkReferrer _whiteVariantRelationLocalPkReferrerAsOne;
-
-    /**
-     * [get] white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
-     * @return the entity of foreign property(referrer-as-one) 'whiteVariantRelationLocalPkReferrerAsOne'. (NullAllowed: when e.g. no data, no setupSelect)
-     */
-    public WhiteVariantRelationLocalPkReferrer getWhiteVariantRelationLocalPkReferrerAsOne() {
-        return _whiteVariantRelationLocalPkReferrerAsOne;
-    }
-
-    /**
-     * [set] white_variant_relation_local_pk_referrer by REVERSEFK_SUPPRESSED_ID, named 'whiteVariantRelationLocalPkReferrerAsOne'.
-     * @param whiteVariantRelationLocalPkReferrerAsOne The entity of foreign property(referrer-as-one) 'whiteVariantRelationLocalPkReferrerAsOne'. (NullAllowed)
-     */
-    public void setWhiteVariantRelationLocalPkReferrerAsOne(WhiteVariantRelationLocalPkReferrer whiteVariantRelationLocalPkReferrerAsOne) {
-        _whiteVariantRelationLocalPkReferrerAsOne = whiteVariantRelationLocalPkReferrerAsOne;
+    public void setWhiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne(WhiteVariantRelationMasterFoo whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne) {
+        _whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne = whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne;
     }
 
     // ===================================================================================
     //                                                                   Referrer Property
     //                                                                   =================
-    /** white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'. */
-    protected List<WhiteVariantRelationReferrer> _whiteVariantRelationReferrerAsVariantList;
-
-    /**
-     * [get] white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
-     * @return The entity list of referrer property 'whiteVariantRelationReferrerAsVariantList'. (NotNull: even if no loading, returns empty list)
-     */
-    public List<WhiteVariantRelationReferrer> getWhiteVariantRelationReferrerAsVariantList() {
-        if (_whiteVariantRelationReferrerAsVariantList == null) { _whiteVariantRelationReferrerAsVariantList = newReferrerList(); }
-        return _whiteVariantRelationReferrerAsVariantList;
-    }
-
-    /**
-     * [set] white_variant_relation_referrer by VARIANT_MASTER_ID, named 'whiteVariantRelationReferrerAsVariantList'.
-     * @param whiteVariantRelationReferrerAsVariantList The entity list of referrer property 'whiteVariantRelationReferrerAsVariantList'. (NullAllowed)
-     */
-    public void setWhiteVariantRelationReferrerAsVariantList(List<WhiteVariantRelationReferrer> whiteVariantRelationReferrerAsVariantList) {
-        _whiteVariantRelationReferrerAsVariantList = whiteVariantRelationReferrerAsVariantList;
-    }
-
     protected <ELEMENT> List<ELEMENT> newReferrerList() {
         return new ArrayList<ELEMENT>();
     }
@@ -269,9 +230,9 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      * @return Comparing result.
      */
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteVariantRelationMasterFoo)) { return false; }
-        BsWhiteVariantRelationMasterFoo other = (BsWhiteVariantRelationMasterFoo)obj;
-        if (!xSV(getMasterFooId(), other.getMasterFooId())) { return false; }
+        if (obj == null || !(obj instanceof BsWhiteVariantRelationLocalPkReferrer)) { return false; }
+        BsWhiteVariantRelationLocalPkReferrer other = (BsWhiteVariantRelationLocalPkReferrer)obj;
+        if (!xSV(getReversefkSuppressedId(), other.getReversefkSuppressedId())) { return false; }
         return true;
     }
     protected boolean xSV(Object v1, Object v2) {
@@ -285,7 +246,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     public int hashCode() {
         int hs = 17;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getMasterFooId());
+        hs = xCH(hs, getReversefkSuppressedId());
         return hs;
     }
     protected int xCH(int hs, Object vl) {
@@ -314,12 +275,8 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
         StringBuilder sb = new StringBuilder();
         sb.append(toString());
         String li = "\n  ";
-        if (_whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne != null)
-        { sb.append(li).append(xbRDS(_whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne, "whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne")); }
-        if (_whiteVariantRelationLocalPkReferrerAsOne != null)
-        { sb.append(li).append(xbRDS(_whiteVariantRelationLocalPkReferrerAsOne, "whiteVariantRelationLocalPkReferrerAsOne")); }
-        if (_whiteVariantRelationReferrerAsVariantList != null) { for (Entity et : _whiteVariantRelationReferrerAsVariantList)
-        { if (et != null) { sb.append(li).append(xbRDS(et, "whiteVariantRelationReferrerAsVariantList")); } } }
+        if (_whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne != null)
+        { sb.append(li).append(xbRDS(_whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne, "whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne")); }
         return sb.toString();
     }
     protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
@@ -340,8 +297,8 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     protected String buildColumnString() {
         StringBuilder sb = new StringBuilder();
         String dm = ", ";
-        sb.append(dm).append(getMasterFooId());
-        sb.append(dm).append(getMasterFooName());
+        sb.append(dm).append(getReversefkSuppressedId());
+        sb.append(dm).append(getMasterTypeCode());
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -351,10 +308,7 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     protected String buildRelationString() {
         StringBuilder sb = new StringBuilder();
         String cm = ",";
-        if (_whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne != null) { sb.append(cm).append("whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne"); }
-        if (_whiteVariantRelationLocalPkReferrerAsOne != null) { sb.append(cm).append("whiteVariantRelationLocalPkReferrerAsOne"); }
-        if (_whiteVariantRelationReferrerAsVariantList != null && !_whiteVariantRelationReferrerAsVariantList.isEmpty())
-        { sb.append(cm).append("whiteVariantRelationReferrerAsVariantList"); }
+        if (_whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne != null) { sb.append(cm).append("whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne"); }
         if (sb.length() > cm.length()) {
             sb.delete(0, cm.length()).insert(0, "(").append(")");
         }
@@ -365,9 +319,9 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
      * Clone entity instance using super.clone(). (shallow copy) 
      * @return The cloned instance of this entity. (NotNull)
      */
-    public WhiteVariantRelationMasterFoo clone() {
+    public WhiteVariantRelationLocalPkReferrer clone() {
         try {
-            return (WhiteVariantRelationMasterFoo)super.clone();
+            return (WhiteVariantRelationLocalPkReferrer)super.clone();
         } catch (CloneNotSupportedException e) {
             throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
         }
@@ -377,36 +331,36 @@ public abstract class BsWhiteVariantRelationMasterFoo implements Entity, Seriali
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER} <br />
-     * @return The value of the column 'MASTER_FOO_ID'. (basically NotNull if selected: for the constraint)
+     * [get] REVERSEFK_SUPPRESSED_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO} <br />
+     * @return The value of the column 'REVERSEFK_SUPPRESSED_ID'. (basically NotNull if selected: for the constraint)
      */
-    public Long getMasterFooId() {
-        return _masterFooId;
+    public Long getReversefkSuppressedId() {
+        return _reversefkSuppressedId;
     }
 
     /**
-     * [set] MASTER_FOO_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_REFERRER} <br />
-     * @param masterFooId The value of the column 'MASTER_FOO_ID'. (basically NotNull if update: for the constraint)
+     * [set] REVERSEFK_SUPPRESSED_ID: {PK, NotNull, BIGINT(19), FK to WHITE_VARIANT_RELATION_MASTER_FOO} <br />
+     * @param reversefkSuppressedId The value of the column 'REVERSEFK_SUPPRESSED_ID'. (basically NotNull if update: for the constraint)
      */
-    public void setMasterFooId(Long masterFooId) {
-        __modifiedProperties.addPropertyName("masterFooId");
-        _masterFooId = masterFooId;
+    public void setReversefkSuppressedId(Long reversefkSuppressedId) {
+        __modifiedProperties.addPropertyName("reversefkSuppressedId");
+        _reversefkSuppressedId = reversefkSuppressedId;
     }
 
     /**
-     * [get] MASTER_FOO_NAME: {NotNull, VARCHAR(200)} <br />
-     * @return The value of the column 'MASTER_FOO_NAME'. (basically NotNull if selected: for the constraint)
+     * [get] MASTER_TYPE_CODE: {NotNull, CHAR(3)} <br />
+     * @return The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
-    public String getMasterFooName() {
-        return _masterFooName;
+    public String getMasterTypeCode() {
+        return _masterTypeCode;
     }
 
     /**
-     * [set] MASTER_FOO_NAME: {NotNull, VARCHAR(200)} <br />
-     * @param masterFooName The value of the column 'MASTER_FOO_NAME'. (basically NotNull if update: for the constraint)
+     * [set] MASTER_TYPE_CODE: {NotNull, CHAR(3)} <br />
+     * @param masterTypeCode The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
-    public void setMasterFooName(String masterFooName) {
-        __modifiedProperties.addPropertyName("masterFooName");
-        _masterFooName = masterFooName;
+    public void setMasterTypeCode(String masterTypeCode) {
+        __modifiedProperties.addPropertyName("masterTypeCode");
+        _masterTypeCode = masterTypeCode;
     }
 }
