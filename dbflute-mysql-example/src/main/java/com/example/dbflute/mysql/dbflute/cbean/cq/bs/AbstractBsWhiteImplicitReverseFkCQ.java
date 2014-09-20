@@ -151,7 +151,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * cb.query().<span style="color: #DD4747">existsWhiteImplicitReverseFkRefList</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void query(WhiteImplicitReverseFkRefCB subCB) {
@@ -174,7 +174,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * cb.query().<span style="color: #DD4747">notExistsWhiteImplicitReverseFkRefList</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void query(WhiteImplicitReverseFkRefCB subCB) {
@@ -197,7 +197,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * Set up InScopeRelation (sub-query). <br />
      * {in (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @param subQuery The sub-query of WhiteImplicitReverseFkRefList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
@@ -213,7 +213,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @param subQuery The sub-query of WhiteImplicitReverseFkRefList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteImplicitReverseFkRefList(SubQuery<WhiteImplicitReverseFkRefCB> subQuery) {
@@ -238,7 +238,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkCQ extends AbstractConditi
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_implicit_reverse_fk_ref where ...)} <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * cb.query().<span style="color: #DD4747">derivedWhiteImplicitReverseFkRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void query(WhiteImplicitReverseFkRefCB subCB) {

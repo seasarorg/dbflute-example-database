@@ -474,7 +474,7 @@ public class BsWhiteImplicitReverseFkCB extends AbstractConditionBean {
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from white_implicit_reverse_fk_ref where ...) as FOO_MAX} <br />
          * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
-         * This relation is auto-detected as implicit reverse FK.
+         * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
          * <pre>
          * cb.specify().<span style="color: #DD4747">derivedWhiteImplicitReverseFkRefList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteImplicitReverseFkRefCB&gt;() {
          *     public void query(WhiteImplicitReverseFkRefCB subCB) {

@@ -297,7 +297,7 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
     /**
      * Set up relation columns to select clause. <br />
      * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * WhiteImplicitReverseFkRefCB cb = new WhiteImplicitReverseFkRefCB();
      * cb.<span style="color: #DD4747">setupSelect_WhiteImplicitReverseFk()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
@@ -399,7 +399,7 @@ public class BsWhiteImplicitReverseFkRefCB extends AbstractConditionBean {
         /**
          * Prepare to specify functions about relation table. <br />
          * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-         * This relation is auto-detected as implicit reverse FK.
+         * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public WhiteImplicitReverseFkCB.HpSpecification specifyWhiteImplicitReverseFk() {

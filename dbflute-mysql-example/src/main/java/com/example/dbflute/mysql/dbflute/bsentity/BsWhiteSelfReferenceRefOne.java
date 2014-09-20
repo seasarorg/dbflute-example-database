@@ -195,7 +195,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
 
     /**
      * [get] white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @return The entity list of referrer property 'whiteSelfReferenceByParentIdList'. (NotNull: even if no loading, returns empty list)
      */
     public List<WhiteSelfReference> getWhiteSelfReferenceByParentIdList() {
@@ -205,7 +205,7 @@ public abstract class BsWhiteSelfReferenceRefOne implements Entity, Serializable
 
     /**
      * [set] white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @param whiteSelfReferenceByParentIdList The entity list of referrer property 'whiteSelfReferenceByParentIdList'. (NullAllowed)
      */
     public void setWhiteSelfReferenceByParentIdList(List<WhiteSelfReference> whiteSelfReferenceByParentIdList) {

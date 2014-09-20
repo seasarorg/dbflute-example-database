@@ -9,6 +9,7 @@ import org.seasar.dbflute.unit.spring.ContainerTestCase;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberAddressBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberLoginBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberSecurityBhv;
+import com.example.dbflute.postgresql.dbflute.exbhv.MemberServiceBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.MemberWithdrawalBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.PurchaseBhv;
 import com.example.dbflute.postgresql.dbflute.exbhv.PurchasePaymentBhv;
@@ -36,7 +37,7 @@ public abstract class UnitContainerTestCase extends ContainerTestCase {
 
     protected void deleteMemberReferrer() {
         // not create yet
-        //deleteAll(MemberServiceBhv.class);
+        deleteAll(MemberServiceBhv.class);
         //deleteAll(MemberFollowingBhv.class);
         deleteAll(MemberAddressBhv.class);
         deleteAll(MemberLoginBhv.class);

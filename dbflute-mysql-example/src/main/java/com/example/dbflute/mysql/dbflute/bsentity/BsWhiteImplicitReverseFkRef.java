@@ -178,7 +178,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
 
     /**
      * [get] white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @return The entity of foreign property 'whiteImplicitReverseFk'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteImplicitReverseFk getWhiteImplicitReverseFk() {
@@ -187,7 +187,7 @@ public abstract class BsWhiteImplicitReverseFkRef implements Entity, Serializabl
 
     /**
      * [set] white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @param whiteImplicitReverseFk The entity of foreign property 'whiteImplicitReverseFk'. (NullAllowed)
      */
     public void setWhiteImplicitReverseFk(WhiteImplicitReverseFk whiteImplicitReverseFk) {

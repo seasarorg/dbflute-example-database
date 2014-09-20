@@ -57,7 +57,7 @@ import com.example.dbflute.mysql.dbflute.nogen.cache.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  * 
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberLoginAsLatest, memberLoginAsOldest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  * 
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -668,6 +668,44 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         _memberLoginAsReferrerForeignOverTest = memberLoginAsReferrerForeignOverTest;
     }
 
+    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'. */
+    protected MemberLogin _memberLoginAsLatest;
+
+    /**
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
+     * @return The entity of foreign property 'memberLoginAsLatest'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberLogin getMemberLoginAsLatest() {
+        return _memberLoginAsLatest;
+    }
+
+    /**
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
+     * @param memberLoginAsLatest The entity of foreign property 'memberLoginAsLatest'. (NullAllowed)
+     */
+    public void setMemberLoginAsLatest(MemberLogin memberLoginAsLatest) {
+        _memberLoginAsLatest = memberLoginAsLatest;
+    }
+
+    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'. */
+    protected MemberLogin _memberLoginAsOldest;
+
+    /**
+     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @return The entity of foreign property 'memberLoginAsOldest'. (NullAllowed: when e.g. null FK column, no setupSelect)
+     */
+    public MemberLogin getMemberLoginAsOldest() {
+        return _memberLoginAsOldest;
+    }
+
+    /**
+     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @param memberLoginAsOldest The entity of foreign property 'memberLoginAsOldest'. (NullAllowed)
+     */
+    public void setMemberLoginAsOldest(MemberLogin memberLoginAsOldest) {
+        _memberLoginAsOldest = memberLoginAsOldest;
+    }
+
     /** (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'. */
     protected MemberAddress _memberAddressAsFormattedBasic;
 
@@ -742,44 +780,6 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      */
     public void setMemberLoginAsEmbeddedCommentClassificationTest(MemberLogin memberLoginAsEmbeddedCommentClassificationTest) {
         _memberLoginAsEmbeddedCommentClassificationTest = memberLoginAsEmbeddedCommentClassificationTest;
-    }
-
-    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'. */
-    protected MemberLogin _memberLoginAsLatest;
-
-    /**
-     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
-     * @return The entity of foreign property 'memberLoginAsLatest'. (NullAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public MemberLogin getMemberLoginAsLatest() {
-        return _memberLoginAsLatest;
-    }
-
-    /**
-     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
-     * @param memberLoginAsLatest The entity of foreign property 'memberLoginAsLatest'. (NullAllowed)
-     */
-    public void setMemberLoginAsLatest(MemberLogin memberLoginAsLatest) {
-        _memberLoginAsLatest = memberLoginAsLatest;
-    }
-
-    /** (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'. */
-    protected MemberLogin _memberLoginAsOldest;
-
-    /**
-     * [get] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
-     * @return The entity of foreign property 'memberLoginAsOldest'. (NullAllowed: when e.g. null FK column, no setupSelect)
-     */
-    public MemberLogin getMemberLoginAsOldest() {
-        return _memberLoginAsOldest;
-    }
-
-    /**
-     * [set] (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
-     * @param memberLoginAsOldest The entity of foreign property 'memberLoginAsOldest'. (NullAllowed)
-     */
-    public void setMemberLoginAsOldest(MemberLogin memberLoginAsOldest) {
-        _memberLoginAsOldest = memberLoginAsOldest;
     }
 
     /** (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'. */
@@ -1069,6 +1069,10 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(li).append(xbRDS(_memberLoginAsReferrerOverTest, "memberLoginAsReferrerOverTest")); }
         if (_memberLoginAsReferrerForeignOverTest != null)
         { sb.append(li).append(xbRDS(_memberLoginAsReferrerForeignOverTest, "memberLoginAsReferrerForeignOverTest")); }
+        if (_memberLoginAsLatest != null)
+        { sb.append(li).append(xbRDS(_memberLoginAsLatest, "memberLoginAsLatest")); }
+        if (_memberLoginAsOldest != null)
+        { sb.append(li).append(xbRDS(_memberLoginAsOldest, "memberLoginAsOldest")); }
         if (_memberAddressAsFormattedBasic != null)
         { sb.append(li).append(xbRDS(_memberAddressAsFormattedBasic, "memberAddressAsFormattedBasic")); }
         if (_memberAddressAsFormattedLong != null)
@@ -1077,10 +1081,6 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(li).append(xbRDS(_memberLoginAsFormattedMany, "memberLoginAsFormattedMany")); }
         if (_memberLoginAsEmbeddedCommentClassificationTest != null)
         { sb.append(li).append(xbRDS(_memberLoginAsEmbeddedCommentClassificationTest, "memberLoginAsEmbeddedCommentClassificationTest")); }
-        if (_memberLoginAsLatest != null)
-        { sb.append(li).append(xbRDS(_memberLoginAsLatest, "memberLoginAsLatest")); }
-        if (_memberLoginAsOldest != null)
-        { sb.append(li).append(xbRDS(_memberLoginAsOldest, "memberLoginAsOldest")); }
         if (_memberSecurityAsOne != null)
         { sb.append(li).append(xbRDS(_memberSecurityAsOne, "memberSecurityAsOne")); }
         if (_memberServiceAsOne != null)
@@ -1157,12 +1157,12 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         if (_memberLoginAsForeignForeignVariousOverTest != null) { sb.append(cm).append("memberLoginAsForeignForeignVariousOverTest"); }
         if (_memberLoginAsReferrerOverTest != null) { sb.append(cm).append("memberLoginAsReferrerOverTest"); }
         if (_memberLoginAsReferrerForeignOverTest != null) { sb.append(cm).append("memberLoginAsReferrerForeignOverTest"); }
+        if (_memberLoginAsLatest != null) { sb.append(cm).append("memberLoginAsLatest"); }
+        if (_memberLoginAsOldest != null) { sb.append(cm).append("memberLoginAsOldest"); }
         if (_memberAddressAsFormattedBasic != null) { sb.append(cm).append("memberAddressAsFormattedBasic"); }
         if (_memberAddressAsFormattedLong != null) { sb.append(cm).append("memberAddressAsFormattedLong"); }
         if (_memberLoginAsFormattedMany != null) { sb.append(cm).append("memberLoginAsFormattedMany"); }
         if (_memberLoginAsEmbeddedCommentClassificationTest != null) { sb.append(cm).append("memberLoginAsEmbeddedCommentClassificationTest"); }
-        if (_memberLoginAsLatest != null) { sb.append(cm).append("memberLoginAsLatest"); }
-        if (_memberLoginAsOldest != null) { sb.append(cm).append("memberLoginAsOldest"); }
         if (_memberSecurityAsOne != null) { sb.append(cm).append("memberSecurityAsOne"); }
         if (_memberServiceAsOne != null) { sb.append(cm).append("memberServiceAsOne"); }
         if (_memberWithdrawalAsOne != null) { sb.append(cm).append("memberWithdrawalAsOne"); }

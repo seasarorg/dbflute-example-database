@@ -389,7 +389,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
     /**
      * Load referrer of whiteSelfReferenceByParentIdList by the set-upper of referrer. <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * whiteSelfReferenceRefOneBhv.<span style="color: #DD4747">loadWhiteSelfReferenceByParentIdList</span>(whiteSelfReferenceRefOneList, new ConditionBeanSetupper&lt;WhiteSelfReferenceCB&gt;() {
      *     public void setup(WhiteSelfReferenceCB cb) {
@@ -423,7 +423,7 @@ public abstract class BsWhiteSelfReferenceRefOneBhv extends AbstractBehaviorWrit
     /**
      * Load referrer of whiteSelfReferenceByParentIdList by the set-upper of referrer. <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * whiteSelfReferenceRefOneBhv.<span style="color: #DD4747">loadWhiteSelfReferenceByParentIdList</span>(whiteSelfReferenceRefOneList, new ConditionBeanSetupper&lt;WhiteSelfReferenceCB&gt;() {
      *     public void setup(WhiteSelfReferenceCB cb) {

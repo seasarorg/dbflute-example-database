@@ -48,7 +48,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberLoginAsLatest, memberLoginAsOldest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -259,6 +259,22 @@ public class LoaderOfMember {
         return _foreignMemberLoginAsReferrerForeignOverTestLoader;
     }
 
+    protected LoaderOfMemberLogin _foreignMemberLoginAsLatestLoader;
+    public LoaderOfMemberLogin pulloutMemberLoginAsLatest() {
+        if (_foreignMemberLoginAsLatestLoader != null) { return _foreignMemberLoginAsLatestLoader; }
+        List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsLatest(_selectedList);
+        _foreignMemberLoginAsLatestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
+        return _foreignMemberLoginAsLatestLoader;
+    }
+
+    protected LoaderOfMemberLogin _foreignMemberLoginAsOldestLoader;
+    public LoaderOfMemberLogin pulloutMemberLoginAsOldest() {
+        if (_foreignMemberLoginAsOldestLoader != null) { return _foreignMemberLoginAsOldestLoader; }
+        List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsOldest(_selectedList);
+        _foreignMemberLoginAsOldestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
+        return _foreignMemberLoginAsOldestLoader;
+    }
+
     protected LoaderOfMemberAddress _foreignMemberAddressAsFormattedBasicLoader;
     public LoaderOfMemberAddress pulloutMemberAddressAsFormattedBasic() {
         if (_foreignMemberAddressAsFormattedBasicLoader != null) { return _foreignMemberAddressAsFormattedBasicLoader; }
@@ -289,22 +305,6 @@ public class LoaderOfMember {
         List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsEmbeddedCommentClassificationTest(_selectedList);
         _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
         return _foreignMemberLoginAsEmbeddedCommentClassificationTestLoader;
-    }
-
-    protected LoaderOfMemberLogin _foreignMemberLoginAsLatestLoader;
-    public LoaderOfMemberLogin pulloutMemberLoginAsLatest() {
-        if (_foreignMemberLoginAsLatestLoader != null) { return _foreignMemberLoginAsLatestLoader; }
-        List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsLatest(_selectedList);
-        _foreignMemberLoginAsLatestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
-        return _foreignMemberLoginAsLatestLoader;
-    }
-
-    protected LoaderOfMemberLogin _foreignMemberLoginAsOldestLoader;
-    public LoaderOfMemberLogin pulloutMemberLoginAsOldest() {
-        if (_foreignMemberLoginAsOldestLoader != null) { return _foreignMemberLoginAsOldestLoader; }
-        List<MemberLogin> pulledList = myBhv().pulloutMemberLoginAsOldest(_selectedList);
-        _foreignMemberLoginAsOldestLoader = new LoaderOfMemberLogin().ready(pulledList, _selector);
-        return _foreignMemberLoginAsOldestLoader;
     }
 
     protected LoaderOfMemberSecurity _foreignMemberSecurityAsOneLoader;

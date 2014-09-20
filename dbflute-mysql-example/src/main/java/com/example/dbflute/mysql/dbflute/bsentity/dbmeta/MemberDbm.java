@@ -144,12 +144,12 @@ public class MemberDbm extends AbstractDBMeta {
         setupEfpg(_efpgMap, new EfpgMemberLoginAsForeignForeignVariousOverTest(), "memberLoginAsForeignForeignVariousOverTest");
         setupEfpg(_efpgMap, new EfpgMemberLoginAsReferrerOverTest(), "memberLoginAsReferrerOverTest");
         setupEfpg(_efpgMap, new EfpgMemberLoginAsReferrerForeignOverTest(), "memberLoginAsReferrerForeignOverTest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsLatest(), "memberLoginAsLatest");
+        setupEfpg(_efpgMap, new EfpgMemberLoginAsOldest(), "memberLoginAsOldest");
         setupEfpg(_efpgMap, new EfpgMemberAddressAsFormattedBasic(), "memberAddressAsFormattedBasic");
         setupEfpg(_efpgMap, new EfpgMemberAddressAsFormattedLong(), "memberAddressAsFormattedLong");
         setupEfpg(_efpgMap, new EfpgMemberLoginAsFormattedMany(), "memberLoginAsFormattedMany");
         setupEfpg(_efpgMap, new EfpgMemberLoginAsEmbeddedCommentClassificationTest(), "memberLoginAsEmbeddedCommentClassificationTest");
-        setupEfpg(_efpgMap, new EfpgMemberLoginAsLatest(), "memberLoginAsLatest");
-        setupEfpg(_efpgMap, new EfpgMemberLoginAsOldest(), "memberLoginAsOldest");
     }
     public class EfpgMemberStatus implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberStatus(); }
@@ -223,6 +223,14 @@ public class MemberDbm extends AbstractDBMeta {
         public Object read(Entity et) { return ((Member)et).getMemberLoginAsReferrerForeignOverTest(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsReferrerForeignOverTest((MemberLogin)vl); }
     }
+    public class EfpgMemberLoginAsLatest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsLatest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsLatest((MemberLogin)vl); }
+    }
+    public class EfpgMemberLoginAsOldest implements PropertyGateway {
+        public Object read(Entity et) { return ((Member)et).getMemberLoginAsOldest(); }
+        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsOldest((MemberLogin)vl); }
+    }
     public class EfpgMemberAddressAsFormattedBasic implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberAddressAsFormattedBasic(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberAddressAsFormattedBasic((MemberAddress)vl); }
@@ -238,14 +246,6 @@ public class MemberDbm extends AbstractDBMeta {
     public class EfpgMemberLoginAsEmbeddedCommentClassificationTest implements PropertyGateway {
         public Object read(Entity et) { return ((Member)et).getMemberLoginAsEmbeddedCommentClassificationTest(); }
         public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsEmbeddedCommentClassificationTest((MemberLogin)vl); }
-    }
-    public class EfpgMemberLoginAsLatest implements PropertyGateway {
-        public Object read(Entity et) { return ((Member)et).getMemberLoginAsLatest(); }
-        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsLatest((MemberLogin)vl); }
-    }
-    public class EfpgMemberLoginAsOldest implements PropertyGateway {
-        public Object read(Entity et) { return ((Member)et).getMemberLoginAsOldest(); }
-        public void write(Entity et, Object vl) { ((Member)et).setMemberLoginAsOldest((MemberLogin)vl); }
     }
     {
         setupEfpg(_efpgMap, new EfpgMemberSecurityAsOne(), "memberSecurityAsOne");
@@ -285,7 +285,7 @@ public class MemberDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", Integer.class, "memberId", null, true, true, true, "INT", 10, 0, null, false, null, "会員を識別するID。連番として基本的に自動採番される。\n（会員IDだけに限らず）採番方法はDBMSによって変わる。", "memberAddressAsValid,memberAddressAsValidBefore,memberLoginAsLoginStatus,memberAddressAsIfComment,memberAddressAsOnlyOneDate,memberLoginAsLocalBindOverTest,memberLoginAsLocalForeignOverTest,memberLoginAsForeignForeignBindOverTest,memberLoginAsForeignForeignEachOverTest,memberLoginAsForeignForeignOptimizedBasicOverTest,memberLoginAsForeignForeignOptimizedMarkOverTest,memberLoginAsForeignForeignOptimizedPartOverTest,memberLoginAsForeignForeignOptimizedWholeOverTest,memberLoginAsForeignForeignParameterOverTest,memberLoginAsForeignForeignVariousOverTest,memberLoginAsReferrerOverTest,memberLoginAsReferrerForeignOverTest,memberAddressAsFormattedBasic,memberAddressAsFormattedLong,memberLoginAsFormattedMany,memberLoginAsEmbeddedCommentClassificationTest,memberLoginAsLatest,memberLoginAsOldest,memberSecurityAsOne,memberServiceAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
+    protected final ColumnInfo _columnMemberId = cci("MEMBER_ID", "MEMBER_ID", null, "会員ID", Integer.class, "memberId", null, true, true, true, "INT", 10, 0, null, false, null, "会員を識別するID。連番として基本的に自動採番される。\n（会員IDだけに限らず）採番方法はDBMSによって変わる。", "memberAddressAsValid,memberAddressAsValidBefore,memberLoginAsLoginStatus,memberAddressAsIfComment,memberAddressAsOnlyOneDate,memberLoginAsLocalBindOverTest,memberLoginAsLocalForeignOverTest,memberLoginAsForeignForeignBindOverTest,memberLoginAsForeignForeignEachOverTest,memberLoginAsForeignForeignOptimizedBasicOverTest,memberLoginAsForeignForeignOptimizedMarkOverTest,memberLoginAsForeignForeignOptimizedPartOverTest,memberLoginAsForeignForeignOptimizedWholeOverTest,memberLoginAsForeignForeignParameterOverTest,memberLoginAsForeignForeignVariousOverTest,memberLoginAsReferrerOverTest,memberLoginAsReferrerForeignOverTest,memberLoginAsLatest,memberLoginAsOldest,memberAddressAsFormattedBasic,memberAddressAsFormattedLong,memberLoginAsFormattedMany,memberLoginAsEmbeddedCommentClassificationTest,memberSecurityAsOne,memberServiceAsOne,memberWithdrawalAsOne", "memberAddressList,memberLoginList,purchaseList", null);
     protected final ColumnInfo _columnMemberName = cci("MEMBER_NAME", "MEMBER_NAME", null, "会員名称", String.class, "memberName", null, false, false, true, "VARCHAR", 180, 0, null, false, null, "会員のフルネームの名称。", null, null, null);
     protected final ColumnInfo _columnMemberAccount = cci("MEMBER_ACCOUNT", "MEMBER_ACCOUNT", null, "会員アカウント", String.class, "memberAccount", null, false, false, true, "VARCHAR", 50, 0, null, false, null, "会員がログイン時に利用するアカウントNO。", null, null, null);
     protected final ColumnInfo _columnMemberStatusCode = cci("MEMBER_STATUS_CODE", "MEMBER_STATUS_CODE", null, "会員ステータスコード", String.class, "memberStatusCode", null, false, false, true, "CHAR", 3, 0, null, false, null, null, "memberStatus", null, CDef.DefMeta.MemberStatus);
@@ -534,44 +534,12 @@ public class MemberDbm extends AbstractDBMeta {
         return cfi("FK_MEMBER_MEMBER_LOGIN_REFERRER_FOREIGN_OVER_TEST", "memberLoginAsReferrerForeignOverTest", this, MemberLoginDbm.getInstance(), mp, 17, null, true, true, false, true, "$$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE = $$over(PURCHASE.product.productStatus)$$.PRODUCT_STATUS_NAME", null, false, null);
     }
     /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMemberAddressAsFormattedBasic() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_ADDRESS_FORMATTED_BASIC", "memberAddressAsFormattedBasic", this, MemberAddressDbm.getInstance(), mp, 18, null, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsFormattedBasic.targetDate*/\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsFormattedBasic.targetDate*/", newArrayList("targetDate"), false, null);
-    }
-    /**
-     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMemberAddressAsFormattedLong() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_ADDRESS_FORMATTED_LONG", "memberAddressAsFormattedLong", this, MemberAddressDbm.getInstance(), mp, 19, null, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsFormattedLong.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE\n >= /*$$locationBase$$.parameterMapMemberAddressAsFormattedLong.targetDate*/null", newArrayList("targetDate"), false, null);
-    }
-    /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMemberLoginAsFormattedMany() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_LOGIN_FORMATTED_MANY", "memberLoginAsFormattedMany", this, MemberLoginDbm.getInstance(), mp, 20, null, true, true, false, true, "$$over($foreignTable.member.memberStatus)$$.DISPLAY_ORDER is not null\n     and $$over($foreignTable.member.memberWithdrawalAsOne)$$.WITHDRAWAL_DATETIME is not null\n     and $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER is not null\n     and $$over($foreignTable.member.memberWithdrawalAsOne.withdrawalReason, DISPLAY_ORDER)$$.REASON_ORDER is not null\n     and $$over($foreignTable.memberStatus)$$.MEMBER_STATUS_NAME is not null\n     and $$over($localTable.memberSecurityAsOne)$$.REMINDER_QUESTION is not null\n     and $$over($localTable.memberServiceAsOne)$$.SERVICE_POINT_COUNT is not null", null, false, null);
-    }
-    /**
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
-     * @return The information object of foreign property. (NotNull)
-     */
-    public ForeignInfo foreignMemberLoginAsEmbeddedCommentClassificationTest() {
-        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_LOGIN_EMBEDDED_COMMENT_CLASSIFICATION", "memberLoginAsEmbeddedCommentClassificationTest", this, MemberLoginDbm.getInstance(), mp, 21, null, true, true, false, true, "$$foreignAlias$$.MOBILE_LOGIN_FLG = 1\n      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in ('FML', 'PRV')\n      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in ('WDL')", null, false, null);
-    }
-    /**
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignMemberLoginAsLatest() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_LOGIN_LATEST", "memberLoginAsLatest", this, MemberLoginDbm.getInstance(), mp, 22, null, true, true, false, true, "$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect max(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$", null, false, null);
+        return cfi("FK_MEMBER_MEMBER_LOGIN_LATEST", "memberLoginAsLatest", this, MemberLoginDbm.getInstance(), mp, 18, null, true, true, false, true, "$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect max(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$", null, false, null);
     }
     /**
      * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
@@ -579,7 +547,39 @@ public class MemberDbm extends AbstractDBMeta {
      */
     public ForeignInfo foreignMemberLoginAsOldest() {
         Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
-        return cfi("FK_MEMBER_MEMBER_LOGIN_OLDEST", "memberLoginAsOldest", this, MemberLoginDbm.getInstance(), mp, 23, null, true, true, false, true, "$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect min(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$", null, false, null);
+        return cfi("FK_MEMBER_MEMBER_LOGIN_OLDEST", "memberLoginAsOldest", this, MemberLoginDbm.getInstance(), mp, 19, null, true, true, false, true, "$$foreignAlias$$.LOGIN_DATETIME = ($$sqbegin$$\nselect min(login.LOGIN_DATETIME)\n  from MEMBER_LOGIN login\n where login.MEMBER_ID = $$foreignAlias$$.MEMBER_ID\n)$$sqend$$", null, false, null);
+    }
+    /**
+     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMemberAddressAsFormattedBasic() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_MEMBER_ADDRESS_FORMATTED_BASIC", "memberAddressAsFormattedBasic", this, MemberAddressDbm.getInstance(), mp, 20, null, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsFormattedBasic.targetDate*/\n     and $$foreignAlias$$.VALID_END_DATE >= /*$$locationBase$$.parameterMapMemberAddressAsFormattedBasic.targetDate*/", newArrayList("targetDate"), false, null);
+    }
+    /**
+     * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedLong'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMemberAddressAsFormattedLong() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberAddressDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_MEMBER_ADDRESS_FORMATTED_LONG", "memberAddressAsFormattedLong", this, MemberAddressDbm.getInstance(), mp, 21, null, true, true, false, true, "$$foreignAlias$$.VALID_BEGIN_DATE <= /*$$locationBase$$.parameterMapMemberAddressAsFormattedLong.targetDate*/null\n     and $$foreignAlias$$.VALID_END_DATE\n >= /*$$locationBase$$.parameterMapMemberAddressAsFormattedLong.targetDate*/null", newArrayList("targetDate"), false, null);
+    }
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsFormattedMany'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMemberLoginAsFormattedMany() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_MEMBER_LOGIN_FORMATTED_MANY", "memberLoginAsFormattedMany", this, MemberLoginDbm.getInstance(), mp, 22, null, true, true, false, true, "$$over($foreignTable.member.memberStatus)$$.DISPLAY_ORDER is not null\n     and $$over($foreignTable.member.memberWithdrawalAsOne)$$.WITHDRAWAL_DATETIME is not null\n     and $$over($foreignTable.memberStatus, DISPLAY_ORDER)$$.STATUS_ORDER is not null\n     and $$over($foreignTable.member.memberWithdrawalAsOne.withdrawalReason, DISPLAY_ORDER)$$.REASON_ORDER is not null\n     and $$over($foreignTable.memberStatus)$$.MEMBER_STATUS_NAME is not null\n     and $$over($localTable.memberSecurityAsOne)$$.REMINDER_QUESTION is not null\n     and $$over($localTable.memberServiceAsOne)$$.SERVICE_POINT_COUNT is not null", null, false, null);
+    }
+    /**
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsEmbeddedCommentClassificationTest'.
+     * @return The information object of foreign property. (NotNull)
+     */
+    public ForeignInfo foreignMemberLoginAsEmbeddedCommentClassificationTest() {
+        Map<ColumnInfo, ColumnInfo> mp = newLinkedHashMap(columnMemberId(), MemberLoginDbm.getInstance().columnMemberId());
+        return cfi("FK_MEMBER_MEMBER_LOGIN_EMBEDDED_COMMENT_CLASSIFICATION", "memberLoginAsEmbeddedCommentClassificationTest", this, MemberLoginDbm.getInstance(), mp, 23, null, true, true, false, true, "$$foreignAlias$$.MOBILE_LOGIN_FLG = 1\n      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in ('FML', 'PRV')\n      or $$foreignAlias$$.LOGIN_MEMBER_STATUS_CODE in ('WDL')", null, false, null);
     }
     /**
      * (会員セキュリティ情報)member_security by MEMBER_ID, named 'memberSecurityAsOne'.

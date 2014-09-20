@@ -437,7 +437,7 @@ public class BsWhiteSelfReferenceRefOneCB extends AbstractConditionBean {
          * Prepare for (Specify)DerivedReferrer (correlated sub-query). <br />
          * {select max(FOO) from white_self_reference where ...) as FOO_MAX} <br />
          * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-         * This relation is auto-detected as implicit reverse FK.
+         * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
          * <pre>
          * cb.specify().<span style="color: #DD4747">derivedWhiteSelfReferenceByParentIdList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
          *     public void query(WhiteSelfReferenceCB subCB) {

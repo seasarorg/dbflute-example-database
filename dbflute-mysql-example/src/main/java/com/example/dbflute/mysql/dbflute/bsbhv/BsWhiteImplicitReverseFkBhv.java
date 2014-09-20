@@ -389,7 +389,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Load referrer of whiteImplicitReverseFkRefList by the set-upper of referrer. <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * whiteImplicitReverseFkBhv.<span style="color: #DD4747">loadWhiteImplicitReverseFkRefList</span>(whiteImplicitReverseFkList, new ConditionBeanSetupper&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void setup(WhiteImplicitReverseFkRefCB cb) {
@@ -423,7 +423,7 @@ public abstract class BsWhiteImplicitReverseFkBhv extends AbstractBehaviorWritab
     /**
      * Load referrer of whiteImplicitReverseFkRefList by the set-upper of referrer. <br />
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * <pre>
      * whiteImplicitReverseFkBhv.<span style="color: #DD4747">loadWhiteImplicitReverseFkRefList</span>(whiteImplicitReverseFkList, new ConditionBeanSetupper&lt;WhiteImplicitReverseFkRefCB&gt;() {
      *     public void setup(WhiteImplicitReverseFkRefCB cb) {

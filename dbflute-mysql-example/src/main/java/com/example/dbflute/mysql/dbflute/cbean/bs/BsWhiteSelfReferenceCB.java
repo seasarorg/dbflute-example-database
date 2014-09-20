@@ -312,7 +312,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
     /**
      * Set up relation columns to select clause. <br />
      * white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * WhiteSelfReferenceCB cb = new WhiteSelfReferenceCB();
      * cb.<span style="color: #DD4747">setupSelect_WhiteSelfReferenceRefOneByParentId()</span>; <span style="color: #3F7E5E">// ...().with[nested-relation]()</span>
@@ -460,7 +460,7 @@ public class BsWhiteSelfReferenceCB extends AbstractConditionBean {
         /**
          * Prepare to specify functions about relation table. <br />
          * white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-         * This relation is auto-detected as implicit reverse FK.
+         * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
          * @return The instance for specification for relation table to specify. (NotNull)
          */
         public WhiteSelfReferenceRefOneCB.HpSpecification specifyWhiteSelfReferenceRefOneByParentId() {

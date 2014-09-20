@@ -46,7 +46,7 @@ public class WhiteSelfReferenceNss {
     /**
      * With nested relation columns to select clause. <br />
      * white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @return The set-upper of more nested relation. {...with[nested-relation].with[more-nested-relation]} (NotNull)
      */
     public WhiteSelfReferenceRefOneNss withWhiteSelfReferenceRefOneByParentId() {

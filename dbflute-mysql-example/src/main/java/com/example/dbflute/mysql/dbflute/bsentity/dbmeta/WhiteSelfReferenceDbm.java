@@ -170,7 +170,7 @@ public class WhiteSelfReferenceDbm extends AbstractDBMeta {
     }
     /**
      * white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @return The information object of foreign property. (NotNull)
      */
     public ForeignInfo foreignWhiteSelfReferenceRefOneByParentId() {

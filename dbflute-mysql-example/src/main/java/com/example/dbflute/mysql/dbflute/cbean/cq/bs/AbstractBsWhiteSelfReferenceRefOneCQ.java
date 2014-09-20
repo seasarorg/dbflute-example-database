@@ -151,7 +151,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * Set up ExistsReferrer (correlated sub-query). <br />
      * {exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * cb.query().<span style="color: #DD4747">existsWhiteSelfReferenceByParentIdList</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB subCB) {
@@ -174,7 +174,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * Set up NotExistsReferrer (correlated sub-query). <br />
      * {not exists (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * cb.query().<span style="color: #DD4747">notExistsWhiteSelfReferenceByParentIdList</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB subCB) {
@@ -212,7 +212,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * Set up InScopeRelation (sub-query). <br />
      * {in (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @param subQuery The sub-query of WhiteSelfReferenceByParentIdList for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
@@ -243,7 +243,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select PARENT_ID from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @param subQuery The sub-query of WhiteSelfReferenceByParentIdList for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteSelfReferenceByParentIdList(SubQuery<WhiteSelfReferenceCB> subQuery) {
@@ -268,7 +268,7 @@ public abstract class AbstractBsWhiteSelfReferenceRefOneCQ extends AbstractCondi
      * Prepare for (Query)DerivedReferrer (correlated sub-query). <br />
      * {FOO &lt;= (select max(BAR) from white_self_reference where ...)} <br />
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceAsOne'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * <pre>
      * cb.query().<span style="color: #DD4747">derivedWhiteSelfReferenceByParentIdList()</span>.<span style="color: #DD4747">max</span>(new SubQuery&lt;WhiteSelfReferenceCB&gt;() {
      *     public void query(WhiteSelfReferenceCB subCB) {

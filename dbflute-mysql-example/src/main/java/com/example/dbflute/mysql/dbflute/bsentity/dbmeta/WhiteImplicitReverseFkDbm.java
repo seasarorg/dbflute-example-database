@@ -163,7 +163,7 @@ public class WhiteImplicitReverseFkDbm extends AbstractDBMeta {
     //                                     -----------------
     /**
      * white_implicit_reverse_fk_ref by WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFkRefList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @return The information object of referrer property. (NotNull)
      */
     public ReferrerInfo referrerWhiteImplicitReverseFkRefList() {

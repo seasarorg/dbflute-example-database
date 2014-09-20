@@ -55,7 +55,7 @@ import com.example.dbflute.mysql.dbflute.cbean.*;
  *     member_address, member_login, purchase, member_security, member_service, member_withdrawal
  *
  * [foreign property]
- *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberLoginAsLatest, memberLoginAsOldest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
+ *     memberStatus, memberAddressAsValid, memberAddressAsValidBefore, memberLoginAsLoginStatus, memberAddressAsIfComment, memberAddressAsOnlyOneDate, memberLoginAsLocalBindOverTest, memberLoginAsLocalForeignOverTest, memberLoginAsForeignForeignBindOverTest, memberLoginAsForeignForeignEachOverTest, memberLoginAsForeignForeignOptimizedBasicOverTest, memberLoginAsForeignForeignOptimizedMarkOverTest, memberLoginAsForeignForeignOptimizedPartOverTest, memberLoginAsForeignForeignOptimizedWholeOverTest, memberLoginAsForeignForeignParameterOverTest, memberLoginAsForeignForeignVariousOverTest, memberLoginAsReferrerOverTest, memberLoginAsReferrerForeignOverTest, memberLoginAsLatest, memberLoginAsOldest, memberAddressAsFormattedBasic, memberAddressAsFormattedLong, memberLoginAsFormattedMany, memberLoginAsEmbeddedCommentClassificationTest, memberSecurityAsOne, memberServiceAsOne, memberWithdrawalAsOne
  *
  * [referrer property]
  *     memberAddressList, memberLoginList, purchaseList
@@ -871,6 +871,22 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
     { return helpPulloutInternally(memberList, "memberLoginAsReferrerForeignOverTest"); }
 
     /**
+     * Pull out the list of foreign table 'MemberLogin'.
+     * @param memberList The list of member. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MemberLogin> pulloutMemberLoginAsLatest(List<Member> memberList)
+    { return helpPulloutInternally(memberList, "memberLoginAsLatest"); }
+
+    /**
+     * Pull out the list of foreign table 'MemberLogin'.
+     * @param memberList The list of member. (NotNull, EmptyAllowed)
+     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
+     */
+    public List<MemberLogin> pulloutMemberLoginAsOldest(List<Member> memberList)
+    { return helpPulloutInternally(memberList, "memberLoginAsOldest"); }
+
+    /**
      * Pull out the list of foreign table 'MemberAddress'.
      * @param memberList The list of member. (NotNull, EmptyAllowed)
      * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
@@ -901,22 +917,6 @@ public abstract class BsMemberBhv extends AbstractBehaviorWritable<Member, Membe
      */
     public List<MemberLogin> pulloutMemberLoginAsEmbeddedCommentClassificationTest(List<Member> memberList)
     { return helpPulloutInternally(memberList, "memberLoginAsEmbeddedCommentClassificationTest"); }
-
-    /**
-     * Pull out the list of foreign table 'MemberLogin'.
-     * @param memberList The list of member. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<MemberLogin> pulloutMemberLoginAsLatest(List<Member> memberList)
-    { return helpPulloutInternally(memberList, "memberLoginAsLatest"); }
-
-    /**
-     * Pull out the list of foreign table 'MemberLogin'.
-     * @param memberList The list of member. (NotNull, EmptyAllowed)
-     * @return The list of foreign table. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<MemberLogin> pulloutMemberLoginAsOldest(List<Member> memberList)
-    { return helpPulloutInternally(memberList, "memberLoginAsOldest"); }
 
     /**
      * Pull out the list of referrer-as-one table 'MemberSecurity'.

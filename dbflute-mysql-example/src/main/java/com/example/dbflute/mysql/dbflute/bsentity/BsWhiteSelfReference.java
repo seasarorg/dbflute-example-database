@@ -178,7 +178,7 @@ public abstract class BsWhiteSelfReference implements Entity, Serializable, Clon
 
     /**
      * [get] white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @return The entity of foreign property 'whiteSelfReferenceRefOneByParentId'. (NullAllowed: when e.g. null FK column, no setupSelect)
      */
     public WhiteSelfReferenceRefOne getWhiteSelfReferenceRefOneByParentId() {
@@ -187,7 +187,7 @@ public abstract class BsWhiteSelfReference implements Entity, Serializable, Clon
 
     /**
      * [set] white_self_reference_ref_one by my PARENT_ID, named 'whiteSelfReferenceRefOneByParentId'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @param whiteSelfReferenceRefOneByParentId The entity of foreign property 'whiteSelfReferenceRefOneByParentId'. (NullAllowed)
      */
     public void setWhiteSelfReferenceRefOneByParentId(WhiteSelfReferenceRefOne whiteSelfReferenceRefOneByParentId) {

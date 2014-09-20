@@ -32,8 +32,11 @@ public class WxFixedConditionEmbeddedCommentClassificationTest extends UnitConta
         // ## Assert ##
         assertHasAnyElement(memberList);
         String sql = cb.toDisplaySql();
-        assertContains(sql, "and dfrel_21.MOBILE_LOGIN_FLG = 1");
-        assertContains(sql, "or dfrel_21.LOGIN_MEMBER_STATUS_CODE in ('FML', 'PRV')");
-        assertContains(sql, "or dfrel_21.LOGIN_MEMBER_STATUS_CODE in ('WDL')");
+        assertContains(sql, ".MOBILE_LOGIN_FLG = 1");
+        assertContains(sql, ".LOGIN_MEMBER_STATUS_CODE in ('FML', 'PRV')");
+        assertContains(sql, ".LOGIN_MEMBER_STATUS_CODE in ('WDL')");
+        assertContains(sql, "and dfrel_");
+        assertContains(sql, "or dfrel_");
+        assertContains(sql, "or dfrel_");
     }
 }

@@ -163,7 +163,7 @@ public class WhiteSelfReferenceRefOneDbm extends AbstractDBMeta {
     //                                     -----------------
     /**
      * white_self_reference by PARENT_ID, named 'whiteSelfReferenceByParentIdList'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_SELF_REFERENCE_REF_ONE_DIRECT_PARENT
      * @return The information object of referrer property. (NotNull)
      */
     public ReferrerInfo referrerWhiteSelfReferenceByParentIdList() {

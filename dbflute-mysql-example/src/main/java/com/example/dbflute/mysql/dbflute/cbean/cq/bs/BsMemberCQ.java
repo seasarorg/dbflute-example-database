@@ -515,6 +515,12 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         if (bq.hasConditionQueryMemberLoginAsReferrerForeignOverTest()) {
             uq.queryMemberLoginAsReferrerForeignOverTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsReferrerForeignOverTest(), uq.queryMemberLoginAsReferrerForeignOverTest());
         }
+        if (bq.hasConditionQueryMemberLoginAsLatest()) {
+            uq.queryMemberLoginAsLatest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLatest(), uq.queryMemberLoginAsLatest());
+        }
+        if (bq.hasConditionQueryMemberLoginAsOldest()) {
+            uq.queryMemberLoginAsOldest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsOldest(), uq.queryMemberLoginAsOldest());
+        }
         if (bq.hasConditionQueryMemberAddressAsFormattedBasic()) {
             uq.xsetParameterMapMemberAddressAsFormattedBasic(bq.getParameterMapMemberAddressAsFormattedBasic());
             uq.getConditionQueryMemberAddressAsFormattedBasic().reflectRelationOnUnionQuery(bq.getConditionQueryMemberAddressAsFormattedBasic(), uq.getConditionQueryMemberAddressAsFormattedBasic());
@@ -528,12 +534,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
         }
         if (bq.hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest()) {
             uq.queryMemberLoginAsEmbeddedCommentClassificationTest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsEmbeddedCommentClassificationTest(), uq.queryMemberLoginAsEmbeddedCommentClassificationTest());
-        }
-        if (bq.hasConditionQueryMemberLoginAsLatest()) {
-            uq.queryMemberLoginAsLatest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsLatest(), uq.queryMemberLoginAsLatest());
-        }
-        if (bq.hasConditionQueryMemberLoginAsOldest()) {
-            uq.queryMemberLoginAsOldest().reflectRelationOnUnionQuery(bq.queryMemberLoginAsOldest(), uq.queryMemberLoginAsOldest());
         }
         if (bq.hasConditionQueryMemberSecurityAsOne()) {
             uq.queryMemberSecurityAsOne().reflectRelationOnUnionQuery(bq.queryMemberSecurityAsOne(), uq.queryMemberSecurityAsOne());
@@ -1014,6 +1014,46 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
 
     /**
      * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsLatest() {
+        return getConditionQueryMemberLoginAsLatest();
+    }
+    public MemberLoginCQ getConditionQueryMemberLoginAsLatest() {
+        String prop = "memberLoginAsLatest";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsLatest()); xsetupOuterJoinMemberLoginAsLatest(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsLatest() {
+        String nrp = xresolveNRP("member", "memberLoginAsLatest"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsLatest", nrp);
+    }
+    protected void xsetupOuterJoinMemberLoginAsLatest() { xregOutJo("memberLoginAsLatest"); }
+    public boolean hasConditionQueryMemberLoginAsLatest() { return xhasQueRlMap("memberLoginAsLatest"); }
+
+    /**
+     * Get the condition-query for relation table. <br />
+     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
+     * @return The instance of condition-query. (NotNull)
+     */
+    public MemberLoginCQ queryMemberLoginAsOldest() {
+        return getConditionQueryMemberLoginAsOldest();
+    }
+    public MemberLoginCQ getConditionQueryMemberLoginAsOldest() {
+        String prop = "memberLoginAsOldest";
+        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsOldest()); xsetupOuterJoinMemberLoginAsOldest(); }
+        return xgetQueRlMap(prop);
+    }
+    protected MemberLoginCQ xcreateQueryMemberLoginAsOldest() {
+        String nrp = xresolveNRP("member", "memberLoginAsOldest"); String jan = xresolveJAN(nrp, xgetNNLvl());
+        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsOldest", nrp);
+    }
+    protected void xsetupOuterJoinMemberLoginAsOldest() { xregOutJo("memberLoginAsOldest"); }
+    public boolean hasConditionQueryMemberLoginAsOldest() { return xhasQueRlMap("memberLoginAsOldest"); }
+
+    /**
+     * Get the condition-query for relation table. <br />
      * (会員住所情報)member_address by my MEMBER_ID, named 'memberAddressAsFormattedBasic'.
      * @param targetDate The bind parameter of fixed condition for targetDate. (NotNull)
      * @return The instance of condition-query. (NotNull)
@@ -1111,46 +1151,6 @@ public class BsMemberCQ extends AbstractBsMemberCQ {
     }
     protected void xsetupOuterJoinMemberLoginAsEmbeddedCommentClassificationTest() { xregOutJo("memberLoginAsEmbeddedCommentClassificationTest"); }
     public boolean hasConditionQueryMemberLoginAsEmbeddedCommentClassificationTest() { return xhasQueRlMap("memberLoginAsEmbeddedCommentClassificationTest"); }
-
-    /**
-     * Get the condition-query for relation table. <br />
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsLatest'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberLoginCQ queryMemberLoginAsLatest() {
-        return getConditionQueryMemberLoginAsLatest();
-    }
-    public MemberLoginCQ getConditionQueryMemberLoginAsLatest() {
-        String prop = "memberLoginAsLatest";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsLatest()); xsetupOuterJoinMemberLoginAsLatest(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberLoginCQ xcreateQueryMemberLoginAsLatest() {
-        String nrp = xresolveNRP("member", "memberLoginAsLatest"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsLatest", nrp);
-    }
-    protected void xsetupOuterJoinMemberLoginAsLatest() { xregOutJo("memberLoginAsLatest"); }
-    public boolean hasConditionQueryMemberLoginAsLatest() { return xhasQueRlMap("memberLoginAsLatest"); }
-
-    /**
-     * Get the condition-query for relation table. <br />
-     * (会員ログイン情報)member_login by my MEMBER_ID, named 'memberLoginAsOldest'.
-     * @return The instance of condition-query. (NotNull)
-     */
-    public MemberLoginCQ queryMemberLoginAsOldest() {
-        return getConditionQueryMemberLoginAsOldest();
-    }
-    public MemberLoginCQ getConditionQueryMemberLoginAsOldest() {
-        String prop = "memberLoginAsOldest";
-        if (!xhasQueRlMap(prop)) { xregQueRl(prop, xcreateQueryMemberLoginAsOldest()); xsetupOuterJoinMemberLoginAsOldest(); }
-        return xgetQueRlMap(prop);
-    }
-    protected MemberLoginCQ xcreateQueryMemberLoginAsOldest() {
-        String nrp = xresolveNRP("member", "memberLoginAsOldest"); String jan = xresolveJAN(nrp, xgetNNLvl());
-        return xinitRelCQ(new MemberLoginCQ(this, xgetSqlClause(), jan, xgetNNLvl()), _baseCB, "memberLoginAsOldest", nrp);
-    }
-    protected void xsetupOuterJoinMemberLoginAsOldest() { xregOutJo("memberLoginAsOldest"); }
-    public boolean hasConditionQueryMemberLoginAsOldest() { return xhasQueRlMap("memberLoginAsOldest"); }
 
     /**
      * Get the condition-query for relation table. <br />

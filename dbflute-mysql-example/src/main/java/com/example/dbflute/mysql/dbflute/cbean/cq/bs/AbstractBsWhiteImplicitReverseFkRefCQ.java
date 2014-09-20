@@ -254,7 +254,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
      * Set up InScopeRelation (sub-query). <br />
      * {in (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk where ...)} <br />
      * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @param subQuery The sub-query of WhiteImplicitReverseFk for 'in-scope'. (NotNull)
      */
     public void inScopeWhiteImplicitReverseFk(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
@@ -270,7 +270,7 @@ public abstract class AbstractBsWhiteImplicitReverseFkRefCQ extends AbstractCond
      * Set up NotInScopeRelation (sub-query). <br />
      * {not in (select WHITE_IMPLICIT_REVERSE_FK_ID from white_implicit_reverse_fk where ...)} <br />
      * white_implicit_reverse_fk by my WHITE_IMPLICIT_REVERSE_FK_ID, named 'whiteImplicitReverseFk'. <br />
-     * This relation is auto-detected as implicit reverse FK.
+     * Implicit Reverse FK to FK_WHITE_IMPLICIT_REVERSE_FK_REF_WITH
      * @param subQuery The sub-query of WhiteImplicitReverseFk for 'not in-scope'. (NotNull)
      */
     public void notInScopeWhiteImplicitReverseFk(SubQuery<WhiteImplicitReverseFkCB> subQuery) {
