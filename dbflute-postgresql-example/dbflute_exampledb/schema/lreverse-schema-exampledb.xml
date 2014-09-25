@@ -852,11 +852,11 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_login_member_login_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_service_member_service_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
@@ -867,13 +867,13 @@
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="seq_sub_purchase_count" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_not_related_to_table" schema="exampledb.public"/>
         <sequence incrementSize="6" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_purchase" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_sub_display_order" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="seq_sub_purchase_count" schema="exampledb.public"/>
     </sequenceGroup>
     <procedureGroup>
         <procedure name="part_man_insert_trigger"

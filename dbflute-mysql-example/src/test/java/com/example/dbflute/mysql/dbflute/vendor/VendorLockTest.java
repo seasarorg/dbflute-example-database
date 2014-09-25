@@ -77,7 +77,7 @@ public class VendorLockTest extends UnitContainerTestCase {
                 purchase.setPurchaseDatetime(purchaseDatetime);
                 purchaseBhv.insert(purchase);
             }
-        }, new CannonballOption().threadCount(3).expectExceptionAny(expected));
+        }, new CannonballOption().threadCount(3).repeatCount(5).expectExceptionAny(expected));
 
         /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
         Failed to execute the SQL for insert.
