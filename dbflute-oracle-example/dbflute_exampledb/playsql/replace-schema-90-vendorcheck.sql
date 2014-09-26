@@ -56,14 +56,6 @@ CREATE TABLE VENDOR_LARGE_NAME_90123456_REF
 ALTER TABLE VENDOR_LARGE_NAME_90123456_REF ADD CONSTRAINT FK_VENDOR_LARGE_NAME_$$$_REF 
 	FOREIGN KEY (VENDOR_LARGE_NAME_901234567_ID) REFERENCES VENDOR_LARGE_NAME_901234567890 (VENDOR_LARGE_NAME_901234567_ID) ;
 
--- =======================================================================================
---                                                                               Mark Name
---                                                                               =========
-CREATE TABLE VENDOR_$_DOLLAR
-(
-	VENDOR_$_DOLLAR_ID NUMBER(16) NOT NULL PRIMARY KEY,
-	VENDOR_$_DOLLAR_NAME VARCHAR(32) NOT NULL
-)  ;
 
 -- =======================================================================================
 --                                                                              Large Data
@@ -95,3 +87,13 @@ CREATE TABLE VENDOR_LARGE_DATA_REF
 	NULLABLE_DECIMAL_NO_INDEX NUMBER(12, 3),
 	SELF_PARENT_ID NUMBER(12, 0)
 );
+
+
+-- =======================================================================================
+--                                                                             Name Crisis
+--                                                                             ===========
+CREATE TABLE VENDOR_$_DOLLAR
+(
+	VENDOR_$_DOLLAR_ID NUMBER(16) NOT NULL PRIMARY KEY,
+	VENDOR_$_DOLLAR_NAME VARCHAR(32) NOT NULL
+)  ;

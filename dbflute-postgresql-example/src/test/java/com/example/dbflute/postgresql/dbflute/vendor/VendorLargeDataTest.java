@@ -381,9 +381,9 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
     // Switch the first method definition and execute it
     // and the data can be registered when ReplaceSchema.
     // (The TSV files are SVN-ignored)
-    //public void test_making_TSV() throws Exception {
-    protected void invalid_now() throws Exception {
-        final int dataSize = 30000;
+    public void test_making_TSV() throws Exception {
+    //protected void invalid_now() throws Exception {
+        final int dataSize = 120003;
         final int refSize = 1000000;
         final String outputDir;
         {
