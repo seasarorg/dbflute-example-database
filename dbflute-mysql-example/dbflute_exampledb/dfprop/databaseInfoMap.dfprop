@@ -28,6 +28,9 @@ map:{
     ; propertiesMap = map:{
         # If you use Oracle and its Synonym, specify this property.
         #; includeSynonyms=true
+
+        # though MySQL does not support batch update,
+        # you can use rewriting statements, basically for ReplaceSchema
         ; rewriteBatchedStatements=true
     }
     # - - - - - - - - - -/
