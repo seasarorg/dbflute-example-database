@@ -16,6 +16,12 @@
 		</property>
 		<property name="user">"exampledb"</property>
 		<property name="password">"exampledb"</property>
+		<!-- if you use this
+		<initMethod name="addProperty">
+			<arg>"rewriteBatchedStatements"</arg>
+			<arg>"true"</arg>
+		</initMethod>
+		-->
 	</component>
 
 	<component name="connectionPool"
