@@ -897,7 +897,8 @@ public abstract class BsWhiteDateAdjustmentBhv extends AbstractBehaviorWritable<
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteDateAdjustmentBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteDateAdjustmentBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

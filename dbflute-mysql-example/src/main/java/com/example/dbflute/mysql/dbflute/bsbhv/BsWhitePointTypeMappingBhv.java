@@ -897,7 +897,8 @@ public abstract class BsWhitePointTypeMappingBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhitePointTypeMappingBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhitePointTypeMappingBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

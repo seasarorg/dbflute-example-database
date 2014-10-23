@@ -897,7 +897,8 @@ public abstract class BsWhiteSuppressDefCheckBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteSuppressDefCheckBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteSuppressDefCheckBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

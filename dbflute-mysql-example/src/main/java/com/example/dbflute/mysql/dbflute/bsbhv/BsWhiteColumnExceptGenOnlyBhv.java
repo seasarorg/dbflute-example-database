@@ -897,7 +897,8 @@ public abstract class BsWhiteColumnExceptGenOnlyBhv extends AbstractBehaviorWrit
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteColumnExceptGenOnlyBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteColumnExceptGenOnlyBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

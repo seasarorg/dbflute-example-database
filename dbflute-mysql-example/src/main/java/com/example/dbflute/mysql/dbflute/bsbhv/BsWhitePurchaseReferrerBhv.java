@@ -905,7 +905,8 @@ public abstract class BsWhitePurchaseReferrerBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhitePurchaseReferrerBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhitePurchaseReferrerBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

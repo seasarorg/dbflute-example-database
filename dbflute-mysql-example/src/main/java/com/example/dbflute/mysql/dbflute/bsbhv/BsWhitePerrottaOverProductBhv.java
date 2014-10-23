@@ -1189,7 +1189,8 @@ public abstract class BsWhitePerrottaOverProductBhv extends AbstractBehaviorWrit
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhitePerrottaOverProductBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhitePerrottaOverProductBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

@@ -898,7 +898,8 @@ public abstract class BsWhiteEscapedNumberInitialBhv extends AbstractBehaviorWri
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteEscapedNumberInitialBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteEscapedNumberInitialBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

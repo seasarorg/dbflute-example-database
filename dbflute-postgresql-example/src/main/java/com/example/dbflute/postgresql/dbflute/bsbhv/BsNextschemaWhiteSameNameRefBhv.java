@@ -890,7 +890,8 @@ public abstract class BsNextschemaWhiteSameNameRefBhv extends AbstractBehaviorWr
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<NextschemaWhiteSameNameRefBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<NextschemaWhiteSameNameRefBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

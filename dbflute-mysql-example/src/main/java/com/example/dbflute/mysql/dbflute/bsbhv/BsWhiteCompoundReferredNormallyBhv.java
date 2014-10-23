@@ -989,7 +989,8 @@ public abstract class BsWhiteCompoundReferredNormallyBhv extends AbstractBehavio
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteCompoundReferredNormallyBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteCompoundReferredNormallyBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

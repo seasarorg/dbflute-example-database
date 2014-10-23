@@ -898,7 +898,8 @@ public abstract class BsWhiteDeprecatedClsElementBhv extends AbstractBehaviorWri
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteDeprecatedClsElementBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteDeprecatedClsElementBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

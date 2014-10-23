@@ -898,7 +898,8 @@ public abstract class BsWhiteEscapedDfpropBhv extends AbstractBehaviorWritable<W
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteEscapedDfpropBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteEscapedDfpropBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

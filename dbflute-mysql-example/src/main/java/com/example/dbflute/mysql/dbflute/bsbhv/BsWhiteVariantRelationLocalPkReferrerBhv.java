@@ -905,7 +905,8 @@ public abstract class BsWhiteVariantRelationLocalPkReferrerBhv extends AbstractB
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteVariantRelationLocalPkReferrerBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteVariantRelationLocalPkReferrerBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

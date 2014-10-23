@@ -946,7 +946,8 @@ public abstract class BsWhiteSuppressJoinSqOneBhv extends AbstractBehaviorWritab
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteSuppressJoinSqOneBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteSuppressJoinSqOneBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

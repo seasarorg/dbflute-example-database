@@ -923,7 +923,8 @@ public abstract class BsWhiteImplicitReverseFkSuppressBhv extends AbstractBehavi
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteImplicitReverseFkSuppressBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteImplicitReverseFkSuppressBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

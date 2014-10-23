@@ -989,7 +989,8 @@ public abstract class BsWhitePerrottaOverProductNestedBhv extends AbstractBehavi
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhitePerrottaOverProductNestedBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhitePerrottaOverProductNestedBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

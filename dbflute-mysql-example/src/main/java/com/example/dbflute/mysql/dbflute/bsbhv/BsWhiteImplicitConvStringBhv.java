@@ -1097,7 +1097,8 @@ public abstract class BsWhiteImplicitConvStringBhv extends AbstractBehaviorWrita
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteImplicitConvStringBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteImplicitConvStringBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

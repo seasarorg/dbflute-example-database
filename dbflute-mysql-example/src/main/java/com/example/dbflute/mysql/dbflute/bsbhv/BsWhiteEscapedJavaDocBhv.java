@@ -898,7 +898,8 @@ public abstract class BsWhiteEscapedJavaDocBhv extends AbstractBehaviorWritable<
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteEscapedJavaDocBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteEscapedJavaDocBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

@@ -1021,7 +1021,8 @@ public abstract class BsWhiteVariantRelationReferrerBhv extends AbstractBehavior
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteVariantRelationReferrerBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteVariantRelationReferrerBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

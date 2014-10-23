@@ -899,7 +899,8 @@ public abstract class BsWhiteCompoundPkRefManyBhv extends AbstractBehaviorWritab
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteCompoundPkRefManyBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteCompoundPkRefManyBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

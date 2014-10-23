@@ -905,7 +905,8 @@ public abstract class BsWhiteSplitMultipleFkChildBhv extends AbstractBehaviorWri
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteSplitMultipleFkChildBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteSplitMultipleFkChildBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

@@ -931,7 +931,8 @@ public abstract class BsWhiteImplicitReverseFkRefBhv extends AbstractBehaviorWri
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteImplicitReverseFkRefBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteImplicitReverseFkRefBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

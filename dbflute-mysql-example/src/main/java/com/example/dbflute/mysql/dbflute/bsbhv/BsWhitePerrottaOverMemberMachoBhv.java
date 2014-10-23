@@ -989,7 +989,8 @@ public abstract class BsWhitePerrottaOverMemberMachoBhv extends AbstractBehavior
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhitePerrottaOverMemberMachoBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhitePerrottaOverMemberMachoBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

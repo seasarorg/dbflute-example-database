@@ -909,7 +909,8 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteAllInOneClsNormalColRefBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteAllInOneClsNormalColRefBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

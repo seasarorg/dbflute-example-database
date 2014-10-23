@@ -905,7 +905,8 @@ public abstract class BsWhiteOnlyOneToOneFromBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<WhiteOnlyOneToOneFromBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<WhiteOnlyOneToOneFromBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

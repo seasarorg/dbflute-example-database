@@ -1082,7 +1082,8 @@ public abstract class BsVendor_non_compilableBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<Vendor_non_compilableBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<Vendor_non_compilableBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================
