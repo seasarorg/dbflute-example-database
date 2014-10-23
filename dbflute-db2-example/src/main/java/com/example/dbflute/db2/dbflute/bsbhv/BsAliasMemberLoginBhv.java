@@ -924,7 +924,8 @@ public abstract class BsAliasMemberLoginBhv extends AbstractBehaviorWritable<Ali
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<AliasMemberLoginBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<AliasMemberLoginBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

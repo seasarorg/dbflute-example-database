@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
 import com.example.dbflute.mysql.dbflute.exentity.*;
@@ -68,7 +66,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteVariantRelationReferrer extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -90,18 +88,6 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
 
     /** MASTER_TYPE_CODE: {NotNull, CHAR(3), classification=VariantRelationMasterType} */
     protected String _masterTypeCode;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -139,17 +125,6 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     public boolean hasPrimaryKeyValue() {
         if (getReferrerId() == null) { return false; }
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -387,105 +362,30 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteVariantRelationReferrer)) { return false; }
-        BsWhiteVariantRelationReferrer other = (BsWhiteVariantRelationReferrer)obj;
-        if (!xSV(getReferrerId(), other.getReferrerId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteVariantRelationReferrer) {
+            BsWhiteVariantRelationReferrer other = (BsWhiteVariantRelationReferrer)obj;
+            if (!xSV(_referrerId, other._referrerId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getReferrerId());
+        hs = xCH(hs, _referrerId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_whiteVariantRelationMasterFooAsVariant != null)
         { sb.append(li).append(xbRDS(_whiteVariantRelationMasterFooAsVariant, "whiteVariantRelationMasterFooAsVariant")); }
         if (_whiteVariantRelationMasterBarAsVariant != null)
@@ -494,62 +394,42 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
         { sb.append(li).append(xbRDS(_whiteVariantRelationMasterQuxAsVariantByQue, "whiteVariantRelationMasterQuxAsVariantByQue")); }
         if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null)
         { sb.append(li).append(xbRDS(_whiteVariantRelationMasterCorgeAsVariantByQuxType, "whiteVariantRelationMasterCorgeAsVariantByQuxType")); }
-        if (_whiteVariantRelationReferrerRefList != null) { for (Entity et : _whiteVariantRelationReferrerRefList)
+        if (_whiteVariantRelationReferrerRefList != null) { for (WhiteVariantRelationReferrerRef et : _whiteVariantRelationReferrerRefList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteVariantRelationReferrerRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getReferrerId());
-        sb.append(dm).append(getVariantMasterId());
-        sb.append(dm).append(getMasterTypeCode());
+        sb.append(dm).append(xfND(_referrerId));
+        sb.append(dm).append(xfND(_variantMasterId));
+        sb.append(dm).append(xfND(_masterTypeCode));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_whiteVariantRelationMasterFooAsVariant != null) { sb.append(cm).append("whiteVariantRelationMasterFooAsVariant"); }
-        if (_whiteVariantRelationMasterBarAsVariant != null) { sb.append(cm).append("whiteVariantRelationMasterBarAsVariant"); }
-        if (_whiteVariantRelationMasterQuxAsVariantByQue != null) { sb.append(cm).append("whiteVariantRelationMasterQuxAsVariantByQue"); }
-        if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null) { sb.append(cm).append("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
+        if (_whiteVariantRelationMasterFooAsVariant != null) { sb.append(dm).append("whiteVariantRelationMasterFooAsVariant"); }
+        if (_whiteVariantRelationMasterBarAsVariant != null) { sb.append(dm).append("whiteVariantRelationMasterBarAsVariant"); }
+        if (_whiteVariantRelationMasterQuxAsVariantByQue != null) { sb.append(dm).append("whiteVariantRelationMasterQuxAsVariantByQue"); }
+        if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null) { sb.append(dm).append("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
         if (_whiteVariantRelationReferrerRefList != null && !_whiteVariantRelationReferrerRefList.isEmpty())
-        { sb.append(cm).append("whiteVariantRelationReferrerRefList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whiteVariantRelationReferrerRefList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteVariantRelationReferrer clone() {
-        try {
-            return (WhiteVariantRelationReferrer)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteVariantRelationReferrer)super.clone();
     }
 
     // ===================================================================================
@@ -560,6 +440,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      * @return The value of the column 'REFERRER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getReferrerId() {
+        checkSpecifiedProperty("referrerId");
         return _referrerId;
     }
 
@@ -577,6 +458,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      * @return The value of the column 'VARIANT_MASTER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getVariantMasterId() {
+        checkSpecifiedProperty("variantMasterId");
         return _variantMasterId;
     }
 
@@ -594,6 +476,7 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      * @return The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getMasterTypeCode() {
+        checkSpecifiedProperty("masterTypeCode");
         return _masterTypeCode;
     }
 
@@ -613,9 +496,5 @@ public abstract class BsWhiteVariantRelationReferrer implements Entity, Serializ
      */
     public void mynativeMappingMasterTypeCode(String masterTypeCode) {
         setMasterTypeCode(masterTypeCode);
-    }
-
-    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

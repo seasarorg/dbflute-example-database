@@ -1156,7 +1156,8 @@ public abstract class BsSynonymProductBhv extends AbstractBehaviorWritable<Synon
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<SynonymProductBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<SynonymProductBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

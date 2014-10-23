@@ -25,7 +25,7 @@ public class WxBhvDreamCruiseUpdateMySQLTest extends UnitContainerTestCase {
     //                                                                           Attribute
     //                                                                           =========
     private PurchaseBhv purchaseBhv;
-    private boolean previousCheckCountBeforeQueryUpdate;
+    private boolean originallyCheckCountBeforeQueryUpdate;
 
     // ===================================================================================
     //                                                                             Prepare
@@ -33,14 +33,14 @@ public class WxBhvDreamCruiseUpdateMySQLTest extends UnitContainerTestCase {
     @Override
     public void setUp() throws Exception {
         super.setUp();
+        originallyCheckCountBeforeQueryUpdate = DBFluteConfig.getInstance().isQueryUpdateCountPreCheck();
         DBFluteConfig.getInstance().unlock();
         DBFluteConfig.getInstance().setQueryUpdateCountPreCheck(false);
-        previousCheckCountBeforeQueryUpdate = DBFluteConfig.getInstance().isQueryUpdateCountPreCheck();
     }
 
     @Override
     public void tearDown() throws Exception {
-        DBFluteConfig.getInstance().setQueryUpdateCountPreCheck(previousCheckCountBeforeQueryUpdate);
+        DBFluteConfig.getInstance().setQueryUpdateCountPreCheck(originallyCheckCountBeforeQueryUpdate);
         DBFluteConfig.getInstance().unlock();
         super.tearDown();
     }

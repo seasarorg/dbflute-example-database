@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -65,7 +63,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteUqFk extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -84,18 +82,6 @@ public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
 
     /** UQ_FK_CODE: {UQ, NotNull, CHAR(3)} */
     protected String _uqFkCode;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -144,17 +130,6 @@ public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("uqFkCode");
         setUqFkCode(uqFkCode);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -208,160 +183,65 @@ public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteUqFk)) { return false; }
-        BsWhiteUqFk other = (BsWhiteUqFk)obj;
-        if (!xSV(getUqFkId(), other.getUqFkId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteUqFk) {
+            BsWhiteUqFk other = (BsWhiteUqFk)obj;
+            if (!xSV(_uqFkId, other._uqFkId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getUqFkId());
+        hs = xCH(hs, _uqFkId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
-        if (_whiteUqFkRefByFkToPkIdList != null) { for (Entity et : _whiteUqFkRefByFkToPkIdList)
+        if (_whiteUqFkRefByFkToPkIdList != null) { for (WhiteUqFkRef et : _whiteUqFkRefByFkToPkIdList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteUqFkRefByFkToPkIdList")); } } }
-        if (_whiteUqFkRefByFkToUqCodeList != null) { for (Entity et : _whiteUqFkRefByFkToUqCodeList)
+        if (_whiteUqFkRefByFkToUqCodeList != null) { for (WhiteUqFkRef et : _whiteUqFkRefByFkToUqCodeList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteUqFkRefByFkToUqCodeList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getUqFkId());
-        sb.append(dm).append(getUqFkCode());
+        sb.append(dm).append(xfND(_uqFkId));
+        sb.append(dm).append(xfND(_uqFkCode));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
         if (_whiteUqFkRefByFkToPkIdList != null && !_whiteUqFkRefByFkToPkIdList.isEmpty())
-        { sb.append(cm).append("whiteUqFkRefByFkToPkIdList"); }
+        { sb.append(dm).append("whiteUqFkRefByFkToPkIdList"); }
         if (_whiteUqFkRefByFkToUqCodeList != null && !_whiteUqFkRefByFkToUqCodeList.isEmpty())
-        { sb.append(cm).append("whiteUqFkRefByFkToUqCodeList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whiteUqFkRefByFkToUqCodeList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteUqFk clone() {
-        try {
-            return (WhiteUqFk)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteUqFk)super.clone();
     }
 
     // ===================================================================================
@@ -372,6 +252,7 @@ public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
      * @return The value of the column 'UQ_FK_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getUqFkId() {
+        checkSpecifiedProperty("uqFkId");
         return _uqFkId;
     }
 
@@ -389,6 +270,7 @@ public abstract class BsWhiteUqFk implements Entity, Serializable, Cloneable {
      * @return The value of the column 'UQ_FK_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getUqFkCode() {
+        checkSpecifiedProperty("uqFkCode");
         return _uqFkCode;
     }
 

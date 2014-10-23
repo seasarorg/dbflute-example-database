@@ -882,7 +882,8 @@ public abstract class BsSynonymNextSecretAuthBhv extends AbstractBehaviorWritabl
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<SynonymNextSecretAuthBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<SynonymNextSecretAuthBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

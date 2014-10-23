@@ -59,7 +59,7 @@ public class WxCheckSelectedClassificationTest extends UnitContainerTestCase {
         String propertyName = paymentCompleteFlg.getPropertyName();
         Field field = DfReflectionUtil.getAccessibleField(Purchase.class, "_" + propertyName);
         DfReflectionUtil.setValueForcedly(field, purchase, 99999);
-        purchase.modifiedProperties().add(propertyName);
+        purchase.mymodifiedProperties().add(propertyName);
         purchaseBhv.updateNonstrict(purchase);
 
         // ## Act ##

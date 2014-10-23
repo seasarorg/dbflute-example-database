@@ -1,13 +1,10 @@
 package com.example.dbflute.oracle.dbflute.bsentity.customize;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -62,7 +59,7 @@ import com.example.dbflute.oracle.dbflute.exentity.customize.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsCommonColumnMember implements Entity, Serializable, Cloneable {
+public abstract class BsCommonColumnMember extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -99,18 +96,6 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
 
     /** UPDATE_PROCESS: {VARCHAR2(200)} */
     protected String _updateProcess;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -149,17 +134,6 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -171,169 +145,77 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsCommonColumnMember)) { return false; }
-        BsCommonColumnMember other = (BsCommonColumnMember)obj;
-        if (!xSV(getMemberId(), other.getMemberId())) { return false; }
-        if (!xSV(getMemberName(), other.getMemberName())) { return false; }
-        if (!xSV(getRegisterDatetime(), other.getRegisterDatetime())) { return false; }
-        if (!xSV(getRegisterUser(), other.getRegisterUser())) { return false; }
-        if (!xSV(getRegisterProcess(), other.getRegisterProcess())) { return false; }
-        if (!xSV(getUpdateDatetime(), other.getUpdateDatetime())) { return false; }
-        if (!xSV(getUpdateUser(), other.getUpdateUser())) { return false; }
-        if (!xSV(getUpdateProcess(), other.getUpdateProcess())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsCommonColumnMember) {
+            BsCommonColumnMember other = (BsCommonColumnMember)obj;
+            if (!xSV(_memberId, other._memberId)) { return false; }
+            if (!xSV(_memberName, other._memberName)) { return false; }
+            if (!xSV(_registerDatetime, other._registerDatetime)) { return false; }
+            if (!xSV(_registerUser, other._registerUser)) { return false; }
+            if (!xSV(_registerProcess, other._registerProcess)) { return false; }
+            if (!xSV(_updateDatetime, other._updateDatetime)) { return false; }
+            if (!xSV(_updateUser, other._updateUser)) { return false; }
+            if (!xSV(_updateProcess, other._updateProcess)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getMemberId());
-        hs = xCH(hs, getMemberName());
-        hs = xCH(hs, getRegisterDatetime());
-        hs = xCH(hs, getRegisterUser());
-        hs = xCH(hs, getRegisterProcess());
-        hs = xCH(hs, getUpdateDatetime());
-        hs = xCH(hs, getUpdateUser());
-        hs = xCH(hs, getUpdateProcess());
+        hs = xCH(hs, _memberId);
+        hs = xCH(hs, _memberName);
+        hs = xCH(hs, _registerDatetime);
+        hs = xCH(hs, _registerUser);
+        hs = xCH(hs, _registerProcess);
+        hs = xCH(hs, _updateDatetime);
+        hs = xCH(hs, _updateUser);
+        hs = xCH(hs, _updateProcess);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getMemberId());
-        sb.append(dm).append(getMemberName());
-        sb.append(dm).append(xfUD(getRegisterDatetime()));
-        sb.append(dm).append(getRegisterUser());
-        sb.append(dm).append(getRegisterProcess());
-        sb.append(dm).append(xfUD(getUpdateDatetime()));
-        sb.append(dm).append(getUpdateUser());
-        sb.append(dm).append(getUpdateProcess());
+        sb.append(dm).append(xfND(_memberId));
+        sb.append(dm).append(xfND(_memberName));
+        sb.append(dm).append(xfUD(_registerDatetime));
+        sb.append(dm).append(xfND(_registerUser));
+        sb.append(dm).append(xfND(_registerProcess));
+        sb.append(dm).append(xfUD(_updateDatetime));
+        sb.append(dm).append(xfND(_updateUser));
+        sb.append(dm).append(xfND(_updateProcess));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
+
+    @Override
+    protected String myutilDatePattern() {
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public CommonColumnMember clone() {
-        try {
-            return (CommonColumnMember)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (CommonColumnMember)super.clone();
     }
 
     // ===================================================================================
@@ -344,6 +226,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'MEMBER_ID'. (NullAllowed even if selected: for no constraint)
      */
     public Long getMemberId() {
+        checkSpecifiedProperty("memberId");
         return _memberId;
     }
 
@@ -361,6 +244,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'MEMBER_NAME'. (NullAllowed even if selected: for no constraint)
      */
     public String getMemberName() {
+        checkSpecifiedProperty("memberName");
         return _memberName;
     }
 
@@ -378,6 +262,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'REGISTER_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getRegisterDatetime() {
+        checkSpecifiedProperty("registerDatetime");
         return _registerDatetime;
     }
 
@@ -395,6 +280,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'REGISTER_USER'. (NullAllowed even if selected: for no constraint)
      */
     public String getRegisterUser() {
+        checkSpecifiedProperty("registerUser");
         return _registerUser;
     }
 
@@ -412,6 +298,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'REGISTER_PROCESS'. (NullAllowed even if selected: for no constraint)
      */
     public String getRegisterProcess() {
+        checkSpecifiedProperty("registerProcess");
         return _registerProcess;
     }
 
@@ -429,6 +316,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'UPDATE_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getUpdateDatetime() {
+        checkSpecifiedProperty("updateDatetime");
         return _updateDatetime;
     }
 
@@ -446,6 +334,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'UPDATE_USER'. (NullAllowed even if selected: for no constraint)
      */
     public String getUpdateUser() {
+        checkSpecifiedProperty("updateUser");
         return _updateUser;
     }
 
@@ -463,6 +352,7 @@ public abstract class BsCommonColumnMember implements Entity, Serializable, Clon
      * @return The value of the column 'UPDATE_PROCESS'. (NullAllowed even if selected: for no constraint)
      */
     public String getUpdateProcess() {
+        checkSpecifiedProperty("updateProcess");
         return _updateProcess;
     }
 

@@ -1,12 +1,10 @@
 package com.example.dbflute.postgresql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.postgresql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.postgresql.dbflute.allcommon.CDef;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -67,7 +65,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsPurchasePayment implements Entity, Serializable, Cloneable {
+public abstract class BsPurchasePayment extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -108,18 +106,6 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     /** update_user: {NotNull, varchar(200)} */
     protected String _updateUser;
 
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
-
     // ===================================================================================
     //                                                                          Table Name
     //                                                                          ==========
@@ -156,17 +142,6 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     public boolean hasPrimaryKeyValue() {
         if (getPurchasePaymentId() == null) { return false; }
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -317,162 +292,67 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsPurchasePayment)) { return false; }
-        BsPurchasePayment other = (BsPurchasePayment)obj;
-        if (!xSV(getPurchasePaymentId(), other.getPurchasePaymentId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsPurchasePayment) {
+            BsPurchasePayment other = (BsPurchasePayment)obj;
+            if (!xSV(_purchasePaymentId, other._purchasePaymentId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getPurchasePaymentId());
+        hs = xCH(hs, _purchasePaymentId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_purchase != null)
         { sb.append(li).append(xbRDS(_purchase, "purchase")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getPurchasePaymentId());
-        sb.append(dm).append(getPurchaseId());
-        sb.append(dm).append(getPaymentAmount());
-        sb.append(dm).append(getPaymentDatetime());
-        sb.append(dm).append(getPaymentMethodCode());
-        sb.append(dm).append(getRegisterDatetime());
-        sb.append(dm).append(getRegisterUser());
-        sb.append(dm).append(getUpdateDatetime());
-        sb.append(dm).append(getUpdateUser());
+        sb.append(dm).append(xfND(_purchasePaymentId));
+        sb.append(dm).append(xfND(_purchaseId));
+        sb.append(dm).append(xfND(_paymentAmount));
+        sb.append(dm).append(xfND(_paymentDatetime));
+        sb.append(dm).append(xfND(_paymentMethodCode));
+        sb.append(dm).append(xfND(_registerDatetime));
+        sb.append(dm).append(xfND(_registerUser));
+        sb.append(dm).append(xfND(_updateDatetime));
+        sb.append(dm).append(xfND(_updateUser));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_purchase != null) { sb.append(cm).append("purchase"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        if (_purchase != null) { sb.append(dm).append("purchase"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public PurchasePayment clone() {
-        try {
-            return (PurchasePayment)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (PurchasePayment)super.clone();
     }
 
     // ===================================================================================
@@ -484,6 +364,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'purchase_payment_id'. (basically NotNull if selected: for the constraint)
      */
     public Long getPurchasePaymentId() {
+        checkSpecifiedProperty("purchasePaymentId");
         return _purchasePaymentId;
     }
 
@@ -503,6 +384,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'purchase_id'. (basically NotNull if selected: for the constraint)
      */
     public Long getPurchaseId() {
+        checkSpecifiedProperty("purchaseId");
         return _purchaseId;
     }
 
@@ -522,6 +404,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'payment_amount'. (basically NotNull if selected: for the constraint)
      */
     public java.math.BigDecimal getPaymentAmount() {
+        checkSpecifiedProperty("paymentAmount");
         return _paymentAmount;
     }
 
@@ -541,6 +424,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'payment_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.sql.Timestamp getPaymentDatetime() {
+        checkSpecifiedProperty("paymentDatetime");
         return _paymentDatetime;
     }
 
@@ -560,6 +444,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'payment_method_code'. (basically NotNull if selected: for the constraint)
      */
     public String getPaymentMethodCode() {
+        checkSpecifiedProperty("paymentMethodCode");
         return _paymentMethodCode;
     }
 
@@ -579,6 +464,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'register_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.sql.Timestamp getRegisterDatetime() {
+        checkSpecifiedProperty("registerDatetime");
         return _registerDatetime;
     }
 
@@ -596,6 +482,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'register_user'. (basically NotNull if selected: for the constraint)
      */
     public String getRegisterUser() {
+        checkSpecifiedProperty("registerUser");
         return _registerUser;
     }
 
@@ -613,6 +500,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'update_datetime'. (basically NotNull if selected: for the constraint)
      */
     public java.sql.Timestamp getUpdateDatetime() {
+        checkSpecifiedProperty("updateDatetime");
         return _updateDatetime;
     }
 
@@ -630,6 +518,7 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      * @return The value of the column 'update_user'. (basically NotNull if selected: for the constraint)
      */
     public String getUpdateUser() {
+        checkSpecifiedProperty("updateUser");
         return _updateUser;
     }
 
@@ -648,9 +537,5 @@ public abstract class BsPurchasePayment implements Entity, Serializable, Cloneab
      */
     public void mynativeMappingPaymentMethodCode(String paymentMethodCode) {
         setPaymentMethodCode(paymentMethodCode);
-    }
-
-    protected void checkClassificationCode(String columnDbName, CDef.DefMeta meta, Object value) {
-        FunCustodial.checkClassificationCode(this, columnDbName, meta, value);
     }
 }

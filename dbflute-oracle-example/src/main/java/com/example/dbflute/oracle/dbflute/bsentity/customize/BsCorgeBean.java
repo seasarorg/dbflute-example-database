@@ -1,14 +1,11 @@
 package com.example.dbflute.oracle.dbflute.bsentity.customize;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
-import org.seasar.dbflute.dbmeta.MappingValueType;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -59,7 +56,7 @@ import com.example.dbflute.oracle.dbflute.exentity.customize.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
+public abstract class BsCorgeBean extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -90,18 +87,6 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
 
     /** CORGE_CLOB: {CLOB} */
     protected String _corgeClob;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -140,17 +125,6 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -162,163 +136,71 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsCorgeBean)) { return false; }
-        BsCorgeBean other = (BsCorgeBean)obj;
-        if (!xSV(getCorgeId(), other.getCorgeId())) { return false; }
-        if (!xSV(getCorgeName(), other.getCorgeName())) { return false; }
-        if (!xSV(getCorgeDecimal(), other.getCorgeDecimal())) { return false; }
-        if (!xSV(getCorgeDate(), other.getCorgeDate())) { return false; }
-        if (!xSV(getCorgeTimestamp(), other.getCorgeTimestamp())) { return false; }
-        if (!xSV(getCorgeClob(), other.getCorgeClob())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsCorgeBean) {
+            BsCorgeBean other = (BsCorgeBean)obj;
+            if (!xSV(_corgeId, other._corgeId)) { return false; }
+            if (!xSV(_corgeName, other._corgeName)) { return false; }
+            if (!xSV(_corgeDecimal, other._corgeDecimal)) { return false; }
+            if (!xSV(_corgeDate, other._corgeDate)) { return false; }
+            if (!xSV(_corgeTimestamp, other._corgeTimestamp)) { return false; }
+            if (!xSV(_corgeClob, other._corgeClob)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getCorgeId());
-        hs = xCH(hs, getCorgeName());
-        hs = xCH(hs, getCorgeDecimal());
-        hs = xCH(hs, getCorgeDate());
-        hs = xCH(hs, getCorgeTimestamp());
-        hs = xCH(hs, getCorgeClob());
+        hs = xCH(hs, _corgeId);
+        hs = xCH(hs, _corgeName);
+        hs = xCH(hs, _corgeDecimal);
+        hs = xCH(hs, _corgeDate);
+        hs = xCH(hs, _corgeTimestamp);
+        hs = xCH(hs, _corgeClob);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getCorgeId());
-        sb.append(dm).append(getCorgeName());
-        sb.append(dm).append(getCorgeDecimal());
-        sb.append(dm).append(xfUD(getCorgeDate()));
-        sb.append(dm).append(getCorgeTimestamp());
-        sb.append(dm).append(getCorgeClob());
+        sb.append(dm).append(xfND(_corgeId));
+        sb.append(dm).append(xfND(_corgeName));
+        sb.append(dm).append(xfND(_corgeDecimal));
+        sb.append(dm).append(xfUD(_corgeDate));
+        sb.append(dm).append(xfND(_corgeTimestamp));
+        sb.append(dm).append(xfND(_corgeClob));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
+
+    @Override
+    protected String myutilDatePattern() {
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public CorgeBean clone() {
-        try {
-            return (CorgeBean)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (CorgeBean)super.clone();
     }
 
     // ===================================================================================
@@ -329,6 +211,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'CORGE_ID'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCorgeId() {
+        checkSpecifiedProperty("corgeId");
         return _corgeId;
     }
 
@@ -346,6 +229,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'CORGE_NAME'. (NullAllowed even if selected: for no constraint)
      */
     public String getCorgeName() {
+        checkSpecifiedProperty("corgeName");
         return _corgeName;
     }
 
@@ -363,6 +247,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'CORGE_DECIMAL'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getCorgeDecimal() {
+        checkSpecifiedProperty("corgeDecimal");
         return _corgeDecimal;
     }
 
@@ -380,6 +265,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'CORGE_DATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getCorgeDate() {
+        checkSpecifiedProperty("corgeDate");
         return _corgeDate;
     }
 
@@ -397,6 +283,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'CORGE_TIMESTAMP'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getCorgeTimestamp() {
+        checkSpecifiedProperty("corgeTimestamp");
         return _corgeTimestamp;
     }
 
@@ -415,6 +302,7 @@ public abstract class BsCorgeBean implements Entity, Serializable, Cloneable {
      */
     @MappingValueType(keyName = "stringClobType")
     public String getCorgeClob() {
+        checkSpecifiedProperty("corgeClob");
         return _corgeClob;
     }
 

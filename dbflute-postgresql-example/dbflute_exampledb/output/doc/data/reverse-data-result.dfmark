@@ -9,14 +9,38 @@
   isOverrideExistingDataFile = true
   isSynchronizeOriginDate = false
 
-[reverse-data-99-added-table.xls]: tables=6
-  vendor_inherit_inu (0)
-  vendor_inherit_neko (0)
+[reverse-data-99-added-table.xls]: tables=30
+  VENDOR-NON COMPILABLE (0)
+  member_status (3)
+  product_category (5)
+  product_status (3)
+  region (4)
+  service_rank (5)
+  vendor_$_dollar (0)
+  vendor_check (8)
+  vendor_date_pk (0)
 ...Outputting the over-xls-limit table: vendor_large_data
  -> ./output/doc/data/big-data/vendor_large_data.tsv (120003)
 ...Outputting the over-xls-limit table: vendor_large_data_ref
  -> ./output/doc/data/big-data/vendor_large_data_ref.tsv (1000000)
-  vendor_part_man (0)
-  vendor_part_man_high (0)
+  vendor_uuid_bar (0)
+  vendor_uuid_foo (0)
+  white_compound_pk (0)
+  white_compound_pk_ref (0)
+  white_not_pk (0)
+  white_same_name (0)
+  white_same_name_ref (0)
+  white_xls_man (6)
+  withdrawal_reason (4)
+  product (20)
+  vendor_date_fk (0)
+  member (20)
+  member_address (20)
+  member_login (56)
+  member_security (20)
+  member_service (20)
+  member_withdrawal (4)
+  purchase (70)
+  purchase_payment (100)
 
-Output Date: 2014/10/23 11:25:21
+Output Date: 2014/10/24 02:03:37

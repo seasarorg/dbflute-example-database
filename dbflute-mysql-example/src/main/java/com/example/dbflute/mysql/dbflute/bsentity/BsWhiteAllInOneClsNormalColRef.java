@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -69,7 +67,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -94,18 +92,6 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
 
     /** QUX_CODE: {PK, NotNull, CHAR(3)} */
     protected String _quxCode;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -145,17 +131,6 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
         if (getBarCode() == null) { return false; }
         if (getQuxCode() == null) { return false; }
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -207,164 +182,69 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteAllInOneClsNormalColRef)) { return false; }
-        BsWhiteAllInOneClsNormalColRef other = (BsWhiteAllInOneClsNormalColRef)obj;
-        if (!xSV(getFooCode(), other.getFooCode())) { return false; }
-        if (!xSV(getBarCode(), other.getBarCode())) { return false; }
-        if (!xSV(getQuxCode(), other.getQuxCode())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteAllInOneClsNormalColRef) {
+            BsWhiteAllInOneClsNormalColRef other = (BsWhiteAllInOneClsNormalColRef)obj;
+            if (!xSV(_fooCode, other._fooCode)) { return false; }
+            if (!xSV(_barCode, other._barCode)) { return false; }
+            if (!xSV(_quxCode, other._quxCode)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getFooCode());
-        hs = xCH(hs, getBarCode());
-        hs = xCH(hs, getQuxCode());
+        hs = xCH(hs, _fooCode);
+        hs = xCH(hs, _barCode);
+        hs = xCH(hs, _quxCode);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_whiteAllInOneClsElementAsFoo != null)
         { sb.append(li).append(xbRDS(_whiteAllInOneClsElementAsFoo, "whiteAllInOneClsElementAsFoo")); }
         if (_whiteAllInOneClsElementAsBar != null)
         { sb.append(li).append(xbRDS(_whiteAllInOneClsElementAsBar, "whiteAllInOneClsElementAsBar")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getClsRefId());
-        sb.append(dm).append(getFooCode());
-        sb.append(dm).append(getBarCode());
-        sb.append(dm).append(getQuxCode());
+        sb.append(dm).append(xfND(_clsRefId));
+        sb.append(dm).append(xfND(_fooCode));
+        sb.append(dm).append(xfND(_barCode));
+        sb.append(dm).append(xfND(_quxCode));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_whiteAllInOneClsElementAsFoo != null) { sb.append(cm).append("whiteAllInOneClsElementAsFoo"); }
-        if (_whiteAllInOneClsElementAsBar != null) { sb.append(cm).append("whiteAllInOneClsElementAsBar"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        if (_whiteAllInOneClsElementAsFoo != null) { sb.append(dm).append("whiteAllInOneClsElementAsFoo"); }
+        if (_whiteAllInOneClsElementAsBar != null) { sb.append(dm).append("whiteAllInOneClsElementAsBar"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteAllInOneClsNormalColRef clone() {
-        try {
-            return (WhiteAllInOneClsNormalColRef)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteAllInOneClsNormalColRef)super.clone();
     }
 
     // ===================================================================================
@@ -375,6 +255,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
      * @return The value of the column 'CLS_REF_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getClsRefId() {
+        checkSpecifiedProperty("clsRefId");
         return _clsRefId;
     }
 
@@ -392,6 +273,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
      * @return The value of the column 'FOO_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getFooCode() {
+        checkSpecifiedProperty("fooCode");
         return _fooCode;
     }
 
@@ -409,6 +291,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
      * @return The value of the column 'BAR_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getBarCode() {
+        checkSpecifiedProperty("barCode");
         return _barCode;
     }
 
@@ -426,6 +309,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef implements Entity, Serializ
      * @return The value of the column 'QUX_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getQuxCode() {
+        checkSpecifiedProperty("quxCode");
         return _quxCode;
     }
 

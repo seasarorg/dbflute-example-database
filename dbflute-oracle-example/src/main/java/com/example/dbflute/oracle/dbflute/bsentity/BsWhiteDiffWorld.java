@@ -1,12 +1,10 @@
 package com.example.dbflute.oracle.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.oracle.dbflute.exentity.*;
 
@@ -50,7 +48,7 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteDiffWorld extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -69,18 +67,6 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
 
     /** DIFF_WORLD_NAME: {NotNull, VARCHAR2(50)} */
     protected String _diffWorldName;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -120,17 +106,6 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -142,143 +117,57 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteDiffWorld)) { return false; }
-        BsWhiteDiffWorld other = (BsWhiteDiffWorld)obj;
-        if (!xSV(getDiffWorldId(), other.getDiffWorldId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteDiffWorld) {
+            BsWhiteDiffWorld other = (BsWhiteDiffWorld)obj;
+            if (!xSV(_diffWorldId, other._diffWorldId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getDiffWorldId());
+        hs = xCH(hs, _diffWorldId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getDiffWorldId());
-        sb.append(dm).append(getDiffWorldName());
+        sb.append(dm).append(xfND(_diffWorldId));
+        sb.append(dm).append(xfND(_diffWorldName));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String myutilDatePattern() {
+        return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
+    }
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteDiffWorld clone() {
-        try {
-            return (WhiteDiffWorld)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteDiffWorld)super.clone();
     }
 
     // ===================================================================================
@@ -289,6 +178,7 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
      * @return The value of the column 'DIFF_WORLD_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getDiffWorldId() {
+        checkSpecifiedProperty("diffWorldId");
         return _diffWorldId;
     }
 
@@ -306,6 +196,7 @@ public abstract class BsWhiteDiffWorld implements Entity, Serializable, Cloneabl
      * @return The value of the column 'DIFF_WORLD_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getDiffWorldName() {
+        checkSpecifiedProperty("diffWorldName");
         return _diffWorldName;
     }
 

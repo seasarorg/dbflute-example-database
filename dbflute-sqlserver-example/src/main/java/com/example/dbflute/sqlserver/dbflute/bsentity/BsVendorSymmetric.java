@@ -1,12 +1,10 @@
 package com.example.dbflute.sqlserver.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
 
@@ -52,7 +50,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneable {
+public abstract class BsVendorSymmetric extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -74,18 +72,6 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
 
     /** ENCRYPTED_DATA: {varbinary(2147483647)} */
     protected String _encryptedData;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -125,17 +111,6 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -147,144 +122,53 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsVendorSymmetric)) { return false; }
-        BsVendorSymmetric other = (BsVendorSymmetric)obj;
-        if (!xSV(getVendorSymmetricId(), other.getVendorSymmetricId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsVendorSymmetric) {
+            BsVendorSymmetric other = (BsVendorSymmetric)obj;
+            if (!xSV(_vendorSymmetricId, other._vendorSymmetricId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getVendorSymmetricId());
+        hs = xCH(hs, _vendorSymmetricId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getVendorSymmetricId());
-        sb.append(dm).append(getPlainText());
-        sb.append(dm).append(getEncryptedData());
+        sb.append(dm).append(xfND(_vendorSymmetricId));
+        sb.append(dm).append(xfND(_plainText));
+        sb.append(dm).append(xfND(_encryptedData));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public VendorSymmetric clone() {
-        try {
-            return (VendorSymmetric)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (VendorSymmetric)super.clone();
     }
 
     // ===================================================================================
@@ -295,6 +179,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      * @return The value of the column 'VENDOR_SYMMETRIC_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getVendorSymmetricId() {
+        checkSpecifiedProperty("vendorSymmetricId");
         return _vendorSymmetricId;
     }
 
@@ -312,6 +197,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      * @return The value of the column 'PLAIN_TEXT'. (NullAllowed even if selected: for no constraint)
      */
     public String getPlainText() {
+        checkSpecifiedProperty("plainText");
         return _plainText;
     }
 
@@ -329,6 +215,7 @@ public abstract class BsVendorSymmetric implements Entity, Serializable, Cloneab
      * @return The value of the column 'ENCRYPTED_DATA'. (NullAllowed even if selected: for no constraint)
      */
     public String getEncryptedData() {
+        checkSpecifiedProperty("encryptedData");
         return _encryptedData;
     }
 

@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -79,7 +77,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteStilettoAlias extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -120,18 +118,6 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
     /** QUX: {VARCHAR(200)} */
     protected String _qux;
 
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
-
     // ===================================================================================
     //                                                                          Table Name
     //                                                                          ==========
@@ -170,17 +156,6 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -212,163 +187,68 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteStilettoAlias)) { return false; }
-        BsWhiteStilettoAlias other = (BsWhiteStilettoAlias)obj;
-        if (!xSV(getStilettoAliasId(), other.getStilettoAliasId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteStilettoAlias) {
+            BsWhiteStilettoAlias other = (BsWhiteStilettoAlias)obj;
+            if (!xSV(_stilettoAliasId, other._stilettoAliasId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getStilettoAliasId());
+        hs = xCH(hs, _stilettoAliasId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
-        if (_whiteStilettoAliasRefList != null) { for (Entity et : _whiteStilettoAliasRefList)
+        if (_whiteStilettoAliasRefList != null) { for (WhiteStilettoAliasRef et : _whiteStilettoAliasRefList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteStilettoAliasRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getStilettoAliasId());
-        sb.append(dm).append(getFoo());
-        sb.append(dm).append(getFoo0());
-        sb.append(dm).append(getFoo1());
-        sb.append(dm).append(getFoo2());
-        sb.append(dm).append(getFoo3());
-        sb.append(dm).append(getFoo4());
-        sb.append(dm).append(getBar());
-        sb.append(dm).append(getQux());
+        sb.append(dm).append(xfND(_stilettoAliasId));
+        sb.append(dm).append(xfND(_foo));
+        sb.append(dm).append(xfND(_foo0));
+        sb.append(dm).append(xfND(_foo1));
+        sb.append(dm).append(xfND(_foo2));
+        sb.append(dm).append(xfND(_foo3));
+        sb.append(dm).append(xfND(_foo4));
+        sb.append(dm).append(xfND(_bar));
+        sb.append(dm).append(xfND(_qux));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
         if (_whiteStilettoAliasRefList != null && !_whiteStilettoAliasRefList.isEmpty())
-        { sb.append(cm).append("whiteStilettoAliasRefList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whiteStilettoAliasRefList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteStilettoAlias clone() {
-        try {
-            return (WhiteStilettoAlias)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteStilettoAlias)super.clone();
     }
 
     // ===================================================================================
@@ -379,6 +259,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'STILETTO_ALIAS_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getStilettoAliasId() {
+        checkSpecifiedProperty("stilettoAliasId");
         return _stilettoAliasId;
     }
 
@@ -396,6 +277,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo() {
+        checkSpecifiedProperty("foo");
         return _foo;
     }
 
@@ -413,6 +295,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO_0'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo0() {
+        checkSpecifiedProperty("foo0");
         return _foo0;
     }
 
@@ -430,6 +313,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO_1'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo1() {
+        checkSpecifiedProperty("foo1");
         return _foo1;
     }
 
@@ -447,6 +331,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO2'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo2() {
+        checkSpecifiedProperty("foo2");
         return _foo2;
     }
 
@@ -464,6 +349,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO_3'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo3() {
+        checkSpecifiedProperty("foo3");
         return _foo3;
     }
 
@@ -481,6 +367,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'FOO4'. (NullAllowed even if selected: for no constraint)
      */
     public String getFoo4() {
+        checkSpecifiedProperty("foo4");
         return _foo4;
     }
 
@@ -498,6 +385,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'BAR'. (NullAllowed even if selected: for no constraint)
      */
     public String getBar() {
+        checkSpecifiedProperty("bar");
         return _bar;
     }
 
@@ -515,6 +403,7 @@ public abstract class BsWhiteStilettoAlias implements Entity, Serializable, Clon
      * @return The value of the column 'QUX'. (NullAllowed even if selected: for no constraint)
      */
     public String getQux() {
+        checkSpecifiedProperty("qux");
         return _qux;
     }
 

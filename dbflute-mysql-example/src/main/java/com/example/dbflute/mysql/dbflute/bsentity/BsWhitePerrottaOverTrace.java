@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -69,7 +67,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, Cloneable {
+public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -94,18 +92,6 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
 
     /** TRACE_TYPE_CODE: {NotNull, CHAR(3)} */
     protected String _traceTypeCode;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -158,17 +144,6 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
         setPreviousProductId(previousProductId);setNextProductId(nextProductId);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -218,160 +193,65 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhitePerrottaOverTrace)) { return false; }
-        BsWhitePerrottaOverTrace other = (BsWhitePerrottaOverTrace)obj;
-        if (!xSV(getTraceId(), other.getTraceId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhitePerrottaOverTrace) {
+            BsWhitePerrottaOverTrace other = (BsWhitePerrottaOverTrace)obj;
+            if (!xSV(_traceId, other._traceId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getTraceId());
+        hs = xCH(hs, _traceId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_whitePerrottaOverProductByNextProductId != null)
         { sb.append(li).append(xbRDS(_whitePerrottaOverProductByNextProductId, "whitePerrottaOverProductByNextProductId")); }
         if (_whitePerrottaOverProductByPreviousProductId != null)
         { sb.append(li).append(xbRDS(_whitePerrottaOverProductByPreviousProductId, "whitePerrottaOverProductByPreviousProductId")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getTraceId());
-        sb.append(dm).append(getPreviousProductId());
-        sb.append(dm).append(getNextProductId());
-        sb.append(dm).append(getTraceTypeCode());
+        sb.append(dm).append(xfND(_traceId));
+        sb.append(dm).append(xfND(_previousProductId));
+        sb.append(dm).append(xfND(_nextProductId));
+        sb.append(dm).append(xfND(_traceTypeCode));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_whitePerrottaOverProductByNextProductId != null) { sb.append(cm).append("whitePerrottaOverProductByNextProductId"); }
-        if (_whitePerrottaOverProductByPreviousProductId != null) { sb.append(cm).append("whitePerrottaOverProductByPreviousProductId"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        if (_whitePerrottaOverProductByNextProductId != null) { sb.append(dm).append("whitePerrottaOverProductByNextProductId"); }
+        if (_whitePerrottaOverProductByPreviousProductId != null) { sb.append(dm).append("whitePerrottaOverProductByPreviousProductId"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhitePerrottaOverTrace clone() {
-        try {
-            return (WhitePerrottaOverTrace)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhitePerrottaOverTrace)super.clone();
     }
 
     // ===================================================================================
@@ -382,6 +262,7 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
      * @return The value of the column 'TRACE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getTraceId() {
+        checkSpecifiedProperty("traceId");
         return _traceId;
     }
 
@@ -399,6 +280,7 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
      * @return The value of the column 'PREVIOUS_PRODUCT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getPreviousProductId() {
+        checkSpecifiedProperty("previousProductId");
         return _previousProductId;
     }
 
@@ -416,6 +298,7 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
      * @return The value of the column 'NEXT_PRODUCT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getNextProductId() {
+        checkSpecifiedProperty("nextProductId");
         return _nextProductId;
     }
 
@@ -433,6 +316,7 @@ public abstract class BsWhitePerrottaOverTrace implements Entity, Serializable, 
      * @return The value of the column 'TRACE_TYPE_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getTraceTypeCode() {
+        checkSpecifiedProperty("traceTypeCode");
         return _traceTypeCode;
     }
 

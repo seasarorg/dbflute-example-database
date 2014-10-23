@@ -890,7 +890,8 @@ public abstract class BsAliasRefExceptBhv extends AbstractBehaviorWritable<Alias
      * @return The basic executor of outside-SQL. (NotNull)
      */
     public OutsideSqlBasicExecutor<AliasRefExceptBhv> outsideSql() {
-        return doOutsideSql();
+        OutsideSqlAllFacadeExecutor<AliasRefExceptBhv> facadeExecutor = doOutsideSql();
+        return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
     }
 
     // ===================================================================================

@@ -15,14 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -84,7 +81,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteDateAdjustment extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -131,18 +128,6 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     /** ADJUSTED_STRING: {VARCHAR(32)} */
     protected String _adjustedString;
 
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
-
     // ===================================================================================
     //                                                                          Table Name
     //                                                                          ==========
@@ -181,17 +166,6 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -203,158 +177,61 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteDateAdjustment)) { return false; }
-        BsWhiteDateAdjustment other = (BsWhiteDateAdjustment)obj;
-        if (!xSV(getDateAdjustmentId(), other.getDateAdjustmentId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteDateAdjustment) {
+            BsWhiteDateAdjustment other = (BsWhiteDateAdjustment)obj;
+            if (!xSV(_dateAdjustmentId, other._dateAdjustmentId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getDateAdjustmentId());
+        hs = xCH(hs, _dateAdjustmentId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getDateAdjustmentId());
-        sb.append(dm).append(xfUD(getAdjustedDate()));
-        sb.append(dm).append(getAdjustedDatetime());
-        sb.append(dm).append(getAdjustedTime());
-        sb.append(dm).append(getAdjustedInteger());
-        sb.append(dm).append(getAdjustedNamedStringLong());
-        sb.append(dm).append(getAdjustedNamedTypedLong());
-        sb.append(dm).append(getAdjustedPinpointStringLong());
-        sb.append(dm).append(getAdjustedPinpointTypedLong());
-        sb.append(dm).append(getAdjustedPlainLong());
-        sb.append(dm).append(getAdjustedString());
+        sb.append(dm).append(xfND(_dateAdjustmentId));
+        sb.append(dm).append(xfUD(_adjustedDate));
+        sb.append(dm).append(xfND(_adjustedDatetime));
+        sb.append(dm).append(xfND(_adjustedTime));
+        sb.append(dm).append(xfND(_adjustedInteger));
+        sb.append(dm).append(xfND(_adjustedNamedStringLong));
+        sb.append(dm).append(xfND(_adjustedNamedTypedLong));
+        sb.append(dm).append(xfND(_adjustedPinpointStringLong));
+        sb.append(dm).append(xfND(_adjustedPinpointTypedLong));
+        sb.append(dm).append(xfND(_adjustedPlainLong));
+        sb.append(dm).append(xfND(_adjustedString));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
-        return "yyyy-MM-dd";
-    }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteDateAdjustment clone() {
-        try {
-            return (WhiteDateAdjustment)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteDateAdjustment)super.clone();
     }
 
     // ===================================================================================
@@ -365,6 +242,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'DATE_ADJUSTMENT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getDateAdjustmentId() {
+        checkSpecifiedProperty("dateAdjustmentId");
         return _dateAdjustmentId;
     }
 
@@ -382,6 +260,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_DATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getAdjustedDate() {
+        checkSpecifiedProperty("adjustedDate");
         return _adjustedDate;
     }
 
@@ -399,6 +278,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getAdjustedDatetime() {
+        checkSpecifiedProperty("adjustedDatetime");
         return _adjustedDatetime;
     }
 
@@ -416,6 +296,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_TIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Time getAdjustedTime() {
+        checkSpecifiedProperty("adjustedTime");
         return _adjustedTime;
     }
 
@@ -433,6 +314,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_INTEGER'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getAdjustedInteger() {
+        checkSpecifiedProperty("adjustedInteger");
         return _adjustedInteger;
     }
 
@@ -450,6 +332,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_NAMED_STRING_LONG'. (NullAllowed even if selected: for no constraint)
      */
     public Long getAdjustedNamedStringLong() {
+        checkSpecifiedProperty("adjustedNamedStringLong");
         return _adjustedNamedStringLong;
     }
 
@@ -467,6 +350,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_NAMED_TYPED_LONG'. (NullAllowed even if selected: for no constraint)
      */
     public Long getAdjustedNamedTypedLong() {
+        checkSpecifiedProperty("adjustedNamedTypedLong");
         return _adjustedNamedTypedLong;
     }
 
@@ -484,6 +368,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_PINPOINT_STRING_LONG'. (NullAllowed even if selected: for no constraint)
      */
     public Long getAdjustedPinpointStringLong() {
+        checkSpecifiedProperty("adjustedPinpointStringLong");
         return _adjustedPinpointStringLong;
     }
 
@@ -501,6 +386,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_PINPOINT_TYPED_LONG'. (NullAllowed even if selected: for no constraint)
      */
     public Long getAdjustedPinpointTypedLong() {
+        checkSpecifiedProperty("adjustedPinpointTypedLong");
         return _adjustedPinpointTypedLong;
     }
 
@@ -518,6 +404,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_PLAIN_LONG'. (NullAllowed even if selected: for no constraint)
      */
     public Long getAdjustedPlainLong() {
+        checkSpecifiedProperty("adjustedPlainLong");
         return _adjustedPlainLong;
     }
 
@@ -535,6 +422,7 @@ public abstract class BsWhiteDateAdjustment implements Entity, Serializable, Clo
      * @return The value of the column 'ADJUSTED_STRING'. (NullAllowed even if selected: for no constraint)
      */
     public String getAdjustedString() {
+        checkSpecifiedProperty("adjustedString");
         return _adjustedString;
     }
 

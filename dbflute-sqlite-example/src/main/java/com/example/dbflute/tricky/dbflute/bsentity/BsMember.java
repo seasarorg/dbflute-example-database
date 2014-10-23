@@ -1,13 +1,10 @@
 package com.example.dbflute.tricky.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.tricky.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.allcommon.CDef;
@@ -75,7 +72,7 @@ import com.example.dbflute.tricky.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsMember implements EntityDefinedCommonColumn, Serializable, Cloneable {
+public abstract class BsMember extends AbstractEntity implements EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition
@@ -131,17 +128,8 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     // -----------------------------------------------------
     //                                              Internal
     //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
     /** Is common column auto set up effective? */
     protected boolean __canCommonColumnAutoSetup = true;
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -190,17 +178,6 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("memberAccount");
         setMemberAccount(memberAccount);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -503,51 +480,6 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                       Common Column
     //                                                                       =============
     /**
@@ -574,58 +506,28 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
     // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsMember)) { return false; }
-        BsMember other = (BsMember)obj;
-        if (!xSV(getMemberId(), other.getMemberId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsMember) {
+            BsMember other = (BsMember)obj;
+            if (!xSV(_memberId, other._memberId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getMemberId());
+        hs = xCH(hs, _memberId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_memberStatus != null)
         { sb.append(li).append(xbRDS(_memberStatus, "memberStatus")); }
         if (_memberAddressAsValid != null)
@@ -634,90 +536,64 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
         { sb.append(li).append(xbRDS(_memberSecurityAsOne, "memberSecurityAsOne")); }
         if (_memberWithdrawalAsOne != null)
         { sb.append(li).append(xbRDS(_memberWithdrawalAsOne, "memberWithdrawalAsOne")); }
-        if (_memberAddressList != null) { for (Entity et : _memberAddressList)
+        if (_memberAddressList != null) { for (MemberAddress et : _memberAddressList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "memberAddressList")); } } }
-        if (_memberLoginList != null) { for (Entity et : _memberLoginList)
+        if (_memberLoginList != null) { for (MemberLogin et : _memberLoginList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "memberLoginList")); } } }
-        if (_memberServiceList != null) { for (Entity et : _memberServiceList)
+        if (_memberServiceList != null) { for (MemberService et : _memberServiceList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "memberServiceList")); } } }
-        if (_purchaseList != null) { for (Entity et : _purchaseList)
+        if (_purchaseList != null) { for (Purchase et : _purchaseList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "purchaseList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getMemberId());
-        sb.append(dm).append(getMemberName());
-        sb.append(dm).append(getMemberAccount());
-        sb.append(dm).append(getMemberStatusCode());
-        sb.append(dm).append(getFormalizedDatetime());
-        sb.append(dm).append(xfUD(getBirthdate()));
-        sb.append(dm).append(getMemberRegisterDatetime());
-        sb.append(dm).append(getMemberRegisterUser());
-        sb.append(dm).append(getMemberRegisterProcess());
-        sb.append(dm).append(getMemberUpdateDatetime());
-        sb.append(dm).append(getMemberUpdateUser());
-        sb.append(dm).append(getMemberUpdateProcess());
-        sb.append(dm).append(getVersionNo());
+        sb.append(dm).append(xfND(_memberId));
+        sb.append(dm).append(xfND(_memberName));
+        sb.append(dm).append(xfND(_memberAccount));
+        sb.append(dm).append(xfND(_memberStatusCode));
+        sb.append(dm).append(xfND(_formalizedDatetime));
+        sb.append(dm).append(xfUD(_birthdate));
+        sb.append(dm).append(xfND(_memberRegisterDatetime));
+        sb.append(dm).append(xfND(_memberRegisterUser));
+        sb.append(dm).append(xfND(_memberRegisterProcess));
+        sb.append(dm).append(xfND(_memberUpdateDatetime));
+        sb.append(dm).append(xfND(_memberUpdateUser));
+        sb.append(dm).append(xfND(_memberUpdateProcess));
+        sb.append(dm).append(xfND(_versionNo));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
-        return "yyyy-MM-dd";
-    }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_memberStatus != null) { sb.append(cm).append("memberStatus"); }
-        if (_memberAddressAsValid != null) { sb.append(cm).append("memberAddressAsValid"); }
-        if (_memberSecurityAsOne != null) { sb.append(cm).append("memberSecurityAsOne"); }
-        if (_memberWithdrawalAsOne != null) { sb.append(cm).append("memberWithdrawalAsOne"); }
+        if (_memberStatus != null) { sb.append(dm).append("memberStatus"); }
+        if (_memberAddressAsValid != null) { sb.append(dm).append("memberAddressAsValid"); }
+        if (_memberSecurityAsOne != null) { sb.append(dm).append("memberSecurityAsOne"); }
+        if (_memberWithdrawalAsOne != null) { sb.append(dm).append("memberWithdrawalAsOne"); }
         if (_memberAddressList != null && !_memberAddressList.isEmpty())
-        { sb.append(cm).append("memberAddressList"); }
+        { sb.append(dm).append("memberAddressList"); }
         if (_memberLoginList != null && !_memberLoginList.isEmpty())
-        { sb.append(cm).append("memberLoginList"); }
+        { sb.append(dm).append("memberLoginList"); }
         if (_memberServiceList != null && !_memberServiceList.isEmpty())
-        { sb.append(cm).append("memberServiceList"); }
+        { sb.append(dm).append("memberServiceList"); }
         if (_purchaseList != null && !_purchaseList.isEmpty())
-        { sb.append(cm).append("purchaseList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("purchaseList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public Member clone() {
-        try {
-            return (Member)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (Member)super.clone();
     }
 
     // ===================================================================================
@@ -728,6 +604,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getMemberId() {
+        checkSpecifiedProperty("memberId");
         return _memberId;
     }
 
@@ -745,6 +622,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberName() {
+        checkSpecifiedProperty("memberName");
         return _memberName;
     }
 
@@ -762,6 +640,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_ACCOUNT'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberAccount() {
+        checkSpecifiedProperty("memberAccount");
         return _memberAccount;
     }
 
@@ -779,6 +658,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberStatusCode() {
+        checkSpecifiedProperty("memberStatusCode");
         return _memberStatusCode;
     }
 
@@ -796,6 +676,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'FORMALIZED_DATETIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getFormalizedDatetime() {
+        checkSpecifiedProperty("formalizedDatetime");
         return _formalizedDatetime;
     }
 
@@ -813,6 +694,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'BIRTHDATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getBirthdate() {
+        checkSpecifiedProperty("birthdate");
         return _birthdate;
     }
 
@@ -830,6 +712,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_REGISTER_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.sql.Timestamp getMemberRegisterDatetime() {
+        checkSpecifiedProperty("memberRegisterDatetime");
         return _memberRegisterDatetime;
     }
 
@@ -847,6 +730,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_REGISTER_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberRegisterUser() {
+        checkSpecifiedProperty("memberRegisterUser");
         return _memberRegisterUser;
     }
 
@@ -864,6 +748,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_REGISTER_PROCESS'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberRegisterProcess() {
+        checkSpecifiedProperty("memberRegisterProcess");
         return _memberRegisterProcess;
     }
 
@@ -881,6 +766,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_UPDATE_DATETIME'. (basically NotNull if selected: for the constraint)
      */
     public java.sql.Timestamp getMemberUpdateDatetime() {
+        checkSpecifiedProperty("memberUpdateDatetime");
         return _memberUpdateDatetime;
     }
 
@@ -898,6 +784,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_UPDATE_USER'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberUpdateUser() {
+        checkSpecifiedProperty("memberUpdateUser");
         return _memberUpdateUser;
     }
 
@@ -915,6 +802,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'MEMBER_UPDATE_PROCESS'. (basically NotNull if selected: for the constraint)
      */
     public String getMemberUpdateProcess() {
+        checkSpecifiedProperty("memberUpdateProcess");
         return _memberUpdateProcess;
     }
 
@@ -932,6 +820,7 @@ public abstract class BsMember implements EntityDefinedCommonColumn, Serializabl
      * @return The value of the column 'VERSION_NO'. (basically NotNull if selected: for the constraint)
      */
     public Integer getVersionNo() {
+        checkSpecifiedProperty("versionNo");
         return _versionNo;
     }
 

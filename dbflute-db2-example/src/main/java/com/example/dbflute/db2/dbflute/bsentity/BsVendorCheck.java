@@ -1,13 +1,10 @@
 package com.example.dbflute.db2.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.db2.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.db2.dbflute.exentity.*;
 
@@ -93,7 +90,7 @@ import com.example.dbflute.db2.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
+public abstract class BsVendorCheck extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -176,18 +173,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     /** TYPE_OF_LONG_VARGRAPHIC: {LONG VARGRAPHIC(32700)} */
     protected String _typeOfLongVargraphic;
 
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
-
     // ===================================================================================
     //                                                                          Table Name
     //                                                                          ==========
@@ -226,17 +211,6 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -248,173 +222,73 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsVendorCheck)) { return false; }
-        BsVendorCheck other = (BsVendorCheck)obj;
-        if (!xSV(getVendorCheckId(), other.getVendorCheckId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsVendorCheck) {
+            BsVendorCheck other = (BsVendorCheck)obj;
+            if (!xSV(_vendorCheckId, other._vendorCheckId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getVendorCheckId());
+        hs = xCH(hs, _vendorCheckId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getVendorCheckId());
-        sb.append(dm).append(getTypeOfChar());
-        sb.append(dm).append(xfBA(getTypeOfCharForBitData()));
-        sb.append(dm).append(getTypeOfVarchar());
-        sb.append(dm).append(xfBA(getTypeOfVarcharForBitData()));
-        sb.append(dm).append(getTypeOfClob());
-        sb.append(dm).append(getTypeOfDbclob());
-        sb.append(dm).append(getTypeOfDecimalDecimal());
-        sb.append(dm).append(getTypeOfDecimalInteger());
-        sb.append(dm).append(getTypeOfDecimalBigint());
-        sb.append(dm).append(getTypeOfSmallint());
-        sb.append(dm).append(getTypeOfInteger());
-        sb.append(dm).append(getTypeOfBigint());
-        sb.append(dm).append(getTypeOfFloat());
-        sb.append(dm).append(getTypeOfDouble());
-        sb.append(dm).append(getTypeOfReal());
-        sb.append(dm).append(xfUD(getTypeOfDate()));
-        sb.append(dm).append(getTypeOfTime());
-        sb.append(dm).append(getTypeOfTimestamp());
-        sb.append(dm).append(xfBA(getTypeOfBlob()));
-        sb.append(dm).append(getTypeOfGraphic());
-        sb.append(dm).append(getTypeOfVargraphic());
-        sb.append(dm).append(getTypeOfLongVargraphic());
+        sb.append(dm).append(xfND(_vendorCheckId));
+        sb.append(dm).append(xfND(_typeOfChar));
+        sb.append(dm).append(xfBA(_typeOfCharForBitData));
+        sb.append(dm).append(xfND(_typeOfVarchar));
+        sb.append(dm).append(xfBA(_typeOfVarcharForBitData));
+        sb.append(dm).append(xfND(_typeOfClob));
+        sb.append(dm).append(xfND(_typeOfDbclob));
+        sb.append(dm).append(xfND(_typeOfDecimalDecimal));
+        sb.append(dm).append(xfND(_typeOfDecimalInteger));
+        sb.append(dm).append(xfND(_typeOfDecimalBigint));
+        sb.append(dm).append(xfND(_typeOfSmallint));
+        sb.append(dm).append(xfND(_typeOfInteger));
+        sb.append(dm).append(xfND(_typeOfBigint));
+        sb.append(dm).append(xfND(_typeOfFloat));
+        sb.append(dm).append(xfND(_typeOfDouble));
+        sb.append(dm).append(xfND(_typeOfReal));
+        sb.append(dm).append(xfUD(_typeOfDate));
+        sb.append(dm).append(xfND(_typeOfTime));
+        sb.append(dm).append(xfND(_typeOfTimestamp));
+        sb.append(dm).append(xfBA(_typeOfBlob));
+        sb.append(dm).append(xfND(_typeOfGraphic));
+        sb.append(dm).append(xfND(_typeOfVargraphic));
+        sb.append(dm).append(xfND(_typeOfLongVargraphic));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
-        return "yyyy-MM-dd";
-    }
-    protected String xfBA(byte[] bytes) { // formatByteArray()
-        return FunCustodial.toString(bytes);
-    }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public VendorCheck clone() {
-        try {
-            return (VendorCheck)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (VendorCheck)super.clone();
     }
 
     // ===================================================================================
@@ -425,6 +299,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'VENDOR_CHECK_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getVendorCheckId() {
+        checkSpecifiedProperty("vendorCheckId");
         return _vendorCheckId;
     }
 
@@ -442,6 +317,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_CHAR'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfChar() {
+        checkSpecifiedProperty("typeOfChar");
         return _typeOfChar;
     }
 
@@ -459,6 +335,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_CHAR_FOR_BIT_DATA'. (NullAllowed even if selected: for no constraint)
      */
     public byte[] getTypeOfCharForBitData() {
+        checkSpecifiedProperty("typeOfCharForBitData");
         return _typeOfCharForBitData;
     }
 
@@ -476,6 +353,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_VARCHAR'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfVarchar() {
+        checkSpecifiedProperty("typeOfVarchar");
         return _typeOfVarchar;
     }
 
@@ -493,6 +371,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_VARCHAR_FOR_BIT_DATA'. (NullAllowed even if selected: for no constraint)
      */
     public byte[] getTypeOfVarcharForBitData() {
+        checkSpecifiedProperty("typeOfVarcharForBitData");
         return _typeOfVarcharForBitData;
     }
 
@@ -510,6 +389,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_CLOB'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfClob() {
+        checkSpecifiedProperty("typeOfClob");
         return _typeOfClob;
     }
 
@@ -527,6 +407,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DBCLOB'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfDbclob() {
+        checkSpecifiedProperty("typeOfDbclob");
         return _typeOfDbclob;
     }
 
@@ -544,6 +425,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DECIMAL_DECIMAL'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getTypeOfDecimalDecimal() {
+        checkSpecifiedProperty("typeOfDecimalDecimal");
         return _typeOfDecimalDecimal;
     }
 
@@ -561,6 +443,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DECIMAL_INTEGER'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getTypeOfDecimalInteger() {
+        checkSpecifiedProperty("typeOfDecimalInteger");
         return _typeOfDecimalInteger;
     }
 
@@ -578,6 +461,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DECIMAL_BIGINT'. (NullAllowed even if selected: for no constraint)
      */
     public Long getTypeOfDecimalBigint() {
+        checkSpecifiedProperty("typeOfDecimalBigint");
         return _typeOfDecimalBigint;
     }
 
@@ -595,6 +479,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_SMALLINT'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getTypeOfSmallint() {
+        checkSpecifiedProperty("typeOfSmallint");
         return _typeOfSmallint;
     }
 
@@ -612,6 +497,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_INTEGER'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getTypeOfInteger() {
+        checkSpecifiedProperty("typeOfInteger");
         return _typeOfInteger;
     }
 
@@ -629,6 +515,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_BIGINT'. (NullAllowed even if selected: for no constraint)
      */
     public Long getTypeOfBigint() {
+        checkSpecifiedProperty("typeOfBigint");
         return _typeOfBigint;
     }
 
@@ -646,6 +533,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_FLOAT'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getTypeOfFloat() {
+        checkSpecifiedProperty("typeOfFloat");
         return _typeOfFloat;
     }
 
@@ -663,6 +551,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DOUBLE'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getTypeOfDouble() {
+        checkSpecifiedProperty("typeOfDouble");
         return _typeOfDouble;
     }
 
@@ -680,6 +569,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_REAL'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getTypeOfReal() {
+        checkSpecifiedProperty("typeOfReal");
         return _typeOfReal;
     }
 
@@ -697,6 +587,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_DATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getTypeOfDate() {
+        checkSpecifiedProperty("typeOfDate");
         return _typeOfDate;
     }
 
@@ -714,6 +605,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_TIME'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Time getTypeOfTime() {
+        checkSpecifiedProperty("typeOfTime");
         return _typeOfTime;
     }
 
@@ -731,6 +623,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_TIMESTAMP'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getTypeOfTimestamp() {
+        checkSpecifiedProperty("typeOfTimestamp");
         return _typeOfTimestamp;
     }
 
@@ -748,6 +641,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_BLOB'. (NullAllowed even if selected: for no constraint)
      */
     public byte[] getTypeOfBlob() {
+        checkSpecifiedProperty("typeOfBlob");
         return _typeOfBlob;
     }
 
@@ -765,6 +659,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_GRAPHIC'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfGraphic() {
+        checkSpecifiedProperty("typeOfGraphic");
         return _typeOfGraphic;
     }
 
@@ -782,6 +677,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_VARGRAPHIC'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfVargraphic() {
+        checkSpecifiedProperty("typeOfVargraphic");
         return _typeOfVargraphic;
     }
 
@@ -799,6 +695,7 @@ public abstract class BsVendorCheck implements Entity, Serializable, Cloneable {
      * @return The value of the column 'TYPE_OF_LONG_VARGRAPHIC'. (NullAllowed even if selected: for no constraint)
      */
     public String getTypeOfLongVargraphic() {
+        checkSpecifiedProperty("typeOfLongVargraphic");
         return _typeOfLongVargraphic;
     }
 

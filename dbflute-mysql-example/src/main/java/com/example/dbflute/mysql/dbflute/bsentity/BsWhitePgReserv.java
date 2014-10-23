@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -101,7 +99,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable {
+public abstract class BsWhitePgReserv extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -175,18 +173,6 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
     /** RESERV_NAME: {NotNull, VARCHAR(32)} */
     protected String _reservName;
 
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
-
     // ===================================================================================
     //                                                                          Table Name
     //                                                                          ==========
@@ -225,17 +211,6 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -267,174 +242,79 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhitePgReserv)) { return false; }
-        BsWhitePgReserv other = (BsWhitePgReserv)obj;
-        if (!xSV(getClassSynonym(), other.getClassSynonym())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhitePgReserv) {
+            BsWhitePgReserv other = (BsWhitePgReserv)obj;
+            if (!xSV(_classSynonym, other._classSynonym)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getClassSynonym());
+        hs = xCH(hs, _classSynonym);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
-        if (_whitePgReservRefList != null) { for (Entity et : _whitePgReservRefList)
+        if (_whitePgReservRefList != null) { for (WhitePgReservRef et : _whitePgReservRefList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whitePgReservRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getClassSynonym());
-        sb.append(dm).append(getCaseSynonym());
-        sb.append(dm).append(getPackageSynonym());
-        sb.append(dm).append(getDefaultSynonym());
-        sb.append(dm).append(getNewSynonym());
-        sb.append(dm).append(getNativeSynonym());
-        sb.append(dm).append(getVoidSynonym());
-        sb.append(dm).append(getPublicSynonym());
-        sb.append(dm).append(getProtectedSynonym());
-        sb.append(dm).append(getPrivateSynonym());
-        sb.append(dm).append(getInterfaceSynonym());
-        sb.append(dm).append(getAbstractSynonym());
-        sb.append(dm).append(getFinalSynonym());
-        sb.append(dm).append(getFinallySynonym());
-        sb.append(dm).append(getReturnSynonym());
-        sb.append(dm).append(getDoubleSynonym());
-        sb.append(dm).append(getFloatSynonym());
-        sb.append(dm).append(getShortSynonym());
-        sb.append(dm).append(getType());
-        sb.append(dm).append(getReservName());
+        sb.append(dm).append(xfND(_classSynonym));
+        sb.append(dm).append(xfND(_caseSynonym));
+        sb.append(dm).append(xfND(_packageSynonym));
+        sb.append(dm).append(xfND(_defaultSynonym));
+        sb.append(dm).append(xfND(_newSynonym));
+        sb.append(dm).append(xfND(_nativeSynonym));
+        sb.append(dm).append(xfND(_voidSynonym));
+        sb.append(dm).append(xfND(_publicSynonym));
+        sb.append(dm).append(xfND(_protectedSynonym));
+        sb.append(dm).append(xfND(_privateSynonym));
+        sb.append(dm).append(xfND(_interfaceSynonym));
+        sb.append(dm).append(xfND(_abstractSynonym));
+        sb.append(dm).append(xfND(_finalSynonym));
+        sb.append(dm).append(xfND(_finallySynonym));
+        sb.append(dm).append(xfND(_returnSynonym));
+        sb.append(dm).append(xfND(_doubleSynonym));
+        sb.append(dm).append(xfND(_floatSynonym));
+        sb.append(dm).append(xfND(_shortSynonym));
+        sb.append(dm).append(xfND(_type));
+        sb.append(dm).append(xfND(_reservName));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
         if (_whitePgReservRefList != null && !_whitePgReservRefList.isEmpty())
-        { sb.append(cm).append("whitePgReservRefList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whitePgReservRefList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhitePgReserv clone() {
-        try {
-            return (WhitePgReserv)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhitePgReserv)super.clone();
     }
 
     // ===================================================================================
@@ -445,6 +325,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'CLASS'. (basically NotNull if selected: for the constraint)
      */
     public Integer getClassSynonym() {
+        checkSpecifiedProperty("classSynonym");
         return _classSynonym;
     }
 
@@ -462,6 +343,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'CASE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getCaseSynonym() {
+        checkSpecifiedProperty("caseSynonym");
         return _caseSynonym;
     }
 
@@ -479,6 +361,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'PACKAGE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getPackageSynonym() {
+        checkSpecifiedProperty("packageSynonym");
         return _packageSynonym;
     }
 
@@ -496,6 +379,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'DEFAULT'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getDefaultSynonym() {
+        checkSpecifiedProperty("defaultSynonym");
         return _defaultSynonym;
     }
 
@@ -513,6 +397,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'NEW'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getNewSynonym() {
+        checkSpecifiedProperty("newSynonym");
         return _newSynonym;
     }
 
@@ -530,6 +415,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'NATIVE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getNativeSynonym() {
+        checkSpecifiedProperty("nativeSynonym");
         return _nativeSynonym;
     }
 
@@ -547,6 +433,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'VOID'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getVoidSynonym() {
+        checkSpecifiedProperty("voidSynonym");
         return _voidSynonym;
     }
 
@@ -564,6 +451,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'PUBLIC'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getPublicSynonym() {
+        checkSpecifiedProperty("publicSynonym");
         return _publicSynonym;
     }
 
@@ -581,6 +469,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'PROTECTED'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getProtectedSynonym() {
+        checkSpecifiedProperty("protectedSynonym");
         return _protectedSynonym;
     }
 
@@ -598,6 +487,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'PRIVATE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getPrivateSynonym() {
+        checkSpecifiedProperty("privateSynonym");
         return _privateSynonym;
     }
 
@@ -615,6 +505,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'INTERFACE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getInterfaceSynonym() {
+        checkSpecifiedProperty("interfaceSynonym");
         return _interfaceSynonym;
     }
 
@@ -632,6 +523,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'ABSTRACT'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getAbstractSynonym() {
+        checkSpecifiedProperty("abstractSynonym");
         return _abstractSynonym;
     }
 
@@ -649,6 +541,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'FINAL'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getFinalSynonym() {
+        checkSpecifiedProperty("finalSynonym");
         return _finalSynonym;
     }
 
@@ -666,6 +559,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'FINALLY'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getFinallySynonym() {
+        checkSpecifiedProperty("finallySynonym");
         return _finallySynonym;
     }
 
@@ -683,6 +577,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'RETURN'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getReturnSynonym() {
+        checkSpecifiedProperty("returnSynonym");
         return _returnSynonym;
     }
 
@@ -700,6 +595,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'DOUBLE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getDoubleSynonym() {
+        checkSpecifiedProperty("doubleSynonym");
         return _doubleSynonym;
     }
 
@@ -717,6 +613,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'FLOAT'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getFloatSynonym() {
+        checkSpecifiedProperty("floatSynonym");
         return _floatSynonym;
     }
 
@@ -734,6 +631,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'SHORT'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getShortSynonym() {
+        checkSpecifiedProperty("shortSynonym");
         return _shortSynonym;
     }
 
@@ -751,6 +649,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'TYPE'. (NullAllowed even if selected: for no constraint)
      */
     public String getType() {
+        checkSpecifiedProperty("type");
         return _type;
     }
 
@@ -768,6 +667,7 @@ public abstract class BsWhitePgReserv implements Entity, Serializable, Cloneable
      * @return The value of the column 'RESERV_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getReservName() {
+        checkSpecifiedProperty("reservName");
         return _reservName;
     }
 

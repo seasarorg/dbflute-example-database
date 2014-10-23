@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -69,7 +67,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -94,18 +92,6 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
 
     /** SPLIT_NAME: {NotNull, VARCHAR(200)} */
     protected String _splitName;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -143,17 +129,6 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     public boolean hasPrimaryKeyValue() {
         if (getBaseId() == null) { return false; }
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -225,164 +200,69 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteSplitMultipleFkBase)) { return false; }
-        BsWhiteSplitMultipleFkBase other = (BsWhiteSplitMultipleFkBase)obj;
-        if (!xSV(getBaseId(), other.getBaseId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteSplitMultipleFkBase) {
+            BsWhiteSplitMultipleFkBase other = (BsWhiteSplitMultipleFkBase)obj;
+            if (!xSV(_baseId, other._baseId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getBaseId());
+        hs = xCH(hs, _baseId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_whiteSplitMultipleFkNext != null)
         { sb.append(li).append(xbRDS(_whiteSplitMultipleFkNext, "whiteSplitMultipleFkNext")); }
         if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null)
         { sb.append(li).append(xbRDS(_whiteSplitMultipleFkRefAsSplitMultipleFkTest, "whiteSplitMultipleFkRefAsSplitMultipleFkTest")); }
-        if (_whiteSplitMultipleFkChildList != null) { for (Entity et : _whiteSplitMultipleFkChildList)
+        if (_whiteSplitMultipleFkChildList != null) { for (WhiteSplitMultipleFkChild et : _whiteSplitMultipleFkChildList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSplitMultipleFkChildList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getBaseId());
-        sb.append(dm).append(getFirstId());
-        sb.append(dm).append(getNextId());
-        sb.append(dm).append(getSplitName());
+        sb.append(dm).append(xfND(_baseId));
+        sb.append(dm).append(xfND(_firstId));
+        sb.append(dm).append(xfND(_nextId));
+        sb.append(dm).append(xfND(_splitName));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_whiteSplitMultipleFkNext != null) { sb.append(cm).append("whiteSplitMultipleFkNext"); }
-        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null) { sb.append(cm).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
+        if (_whiteSplitMultipleFkNext != null) { sb.append(dm).append("whiteSplitMultipleFkNext"); }
+        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null) { sb.append(dm).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
         if (_whiteSplitMultipleFkChildList != null && !_whiteSplitMultipleFkChildList.isEmpty())
-        { sb.append(cm).append("whiteSplitMultipleFkChildList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whiteSplitMultipleFkChildList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteSplitMultipleFkBase clone() {
-        try {
-            return (WhiteSplitMultipleFkBase)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteSplitMultipleFkBase)super.clone();
     }
 
     // ===================================================================================
@@ -393,6 +273,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      * @return The value of the column 'BASE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getBaseId() {
+        checkSpecifiedProperty("baseId");
         return _baseId;
     }
 
@@ -410,6 +291,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      * @return The value of the column 'FIRST_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getFirstId() {
+        checkSpecifiedProperty("firstId");
         return _firstId;
     }
 
@@ -427,6 +309,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      * @return The value of the column 'NEXT_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getNextId() {
+        checkSpecifiedProperty("nextId");
         return _nextId;
     }
 
@@ -444,6 +327,7 @@ public abstract class BsWhiteSplitMultipleFkBase implements Entity, Serializable
      * @return The value of the column 'SPLIT_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getSplitName() {
+        checkSpecifiedProperty("splitName");
         return _splitName;
     }
 

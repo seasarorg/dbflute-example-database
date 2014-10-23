@@ -1,12 +1,10 @@
 package com.example.dbflute.postgresql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.postgresql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
 
@@ -52,7 +50,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsNextschemaWhiteSameName implements Entity, Serializable, Cloneable {
+public abstract class BsNextschemaWhiteSameName extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -74,18 +72,6 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
 
     /** same_name_long: {int8(19)} */
     protected Long _sameNameLong;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -125,17 +111,6 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -167,157 +142,62 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsNextschemaWhiteSameName)) { return false; }
-        BsNextschemaWhiteSameName other = (BsNextschemaWhiteSameName)obj;
-        if (!xSV(getSameNameId(), other.getSameNameId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsNextschemaWhiteSameName) {
+            BsNextschemaWhiteSameName other = (BsNextschemaWhiteSameName)obj;
+            if (!xSV(_sameNameId, other._sameNameId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getSameNameId());
+        hs = xCH(hs, _sameNameId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
-        if (_whiteSameNameRefList != null) { for (Entity et : _whiteSameNameRefList)
+        if (_whiteSameNameRefList != null) { for (NextschemaWhiteSameNameRef et : _whiteSameNameRefList)
         { if (et != null) { sb.append(li).append(xbRDS(et, "whiteSameNameRefList")); } } }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getSameNameId());
-        sb.append(dm).append(getSameNameName());
-        sb.append(dm).append(getSameNameLong());
+        sb.append(dm).append(xfND(_sameNameId));
+        sb.append(dm).append(xfND(_sameNameName));
+        sb.append(dm).append(xfND(_sameNameLong));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
         if (_whiteSameNameRefList != null && !_whiteSameNameRefList.isEmpty())
-        { sb.append(cm).append("whiteSameNameRefList"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        { sb.append(dm).append("whiteSameNameRefList"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public NextschemaWhiteSameName clone() {
-        try {
-            return (NextschemaWhiteSameName)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (NextschemaWhiteSameName)super.clone();
     }
 
     // ===================================================================================
@@ -328,6 +208,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      * @return The value of the column 'same_name_id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getSameNameId() {
+        checkSpecifiedProperty("sameNameId");
         return _sameNameId;
     }
 
@@ -345,6 +226,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      * @return The value of the column 'same_name_name'. (NullAllowed even if selected: for no constraint)
      */
     public String getSameNameName() {
+        checkSpecifiedProperty("sameNameName");
         return _sameNameName;
     }
 
@@ -362,6 +244,7 @@ public abstract class BsNextschemaWhiteSameName implements Entity, Serializable,
      * @return The value of the column 'same_name_long'. (NullAllowed even if selected: for no constraint)
      */
     public Long getSameNameLong() {
+        checkSpecifiedProperty("sameNameLong");
         return _sameNameLong;
     }
 

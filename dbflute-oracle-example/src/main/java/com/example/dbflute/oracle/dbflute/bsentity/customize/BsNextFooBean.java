@@ -1,14 +1,11 @@
 package com.example.dbflute.oracle.dbflute.bsentity.customize;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
-import org.seasar.dbflute.dbmeta.MappingValueType;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -59,7 +56,7 @@ import com.example.dbflute.oracle.dbflute.exentity.customize.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
+public abstract class BsNextFooBean extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -90,18 +87,6 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
 
     /** FOO_CLOB: {CLOB} */
     protected String _fooClob;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -140,17 +125,6 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -162,163 +136,71 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsNextFooBean)) { return false; }
-        BsNextFooBean other = (BsNextFooBean)obj;
-        if (!xSV(getFooId(), other.getFooId())) { return false; }
-        if (!xSV(getFooName(), other.getFooName())) { return false; }
-        if (!xSV(getFooDecimal(), other.getFooDecimal())) { return false; }
-        if (!xSV(getFooDate(), other.getFooDate())) { return false; }
-        if (!xSV(getFooTimestamp(), other.getFooTimestamp())) { return false; }
-        if (!xSV(getFooClob(), other.getFooClob())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsNextFooBean) {
+            BsNextFooBean other = (BsNextFooBean)obj;
+            if (!xSV(_fooId, other._fooId)) { return false; }
+            if (!xSV(_fooName, other._fooName)) { return false; }
+            if (!xSV(_fooDecimal, other._fooDecimal)) { return false; }
+            if (!xSV(_fooDate, other._fooDate)) { return false; }
+            if (!xSV(_fooTimestamp, other._fooTimestamp)) { return false; }
+            if (!xSV(_fooClob, other._fooClob)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getFooId());
-        hs = xCH(hs, getFooName());
-        hs = xCH(hs, getFooDecimal());
-        hs = xCH(hs, getFooDate());
-        hs = xCH(hs, getFooTimestamp());
-        hs = xCH(hs, getFooClob());
+        hs = xCH(hs, _fooId);
+        hs = xCH(hs, _fooName);
+        hs = xCH(hs, _fooDecimal);
+        hs = xCH(hs, _fooDate);
+        hs = xCH(hs, _fooTimestamp);
+        hs = xCH(hs, _fooClob);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getFooId());
-        sb.append(dm).append(getFooName());
-        sb.append(dm).append(getFooDecimal());
-        sb.append(dm).append(xfUD(getFooDate()));
-        sb.append(dm).append(getFooTimestamp());
-        sb.append(dm).append(getFooClob());
+        sb.append(dm).append(xfND(_fooId));
+        sb.append(dm).append(xfND(_fooName));
+        sb.append(dm).append(xfND(_fooDecimal));
+        sb.append(dm).append(xfUD(_fooDate));
+        sb.append(dm).append(xfND(_fooTimestamp));
+        sb.append(dm).append(xfND(_fooClob));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
+
+    @Override
+    protected String myutilDatePattern() {
         return "yyyy-MM-dd HH:mm:ss"; // time parts for Oracle only
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public NextFooBean clone() {
-        try {
-            return (NextFooBean)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (NextFooBean)super.clone();
     }
 
     // ===================================================================================
@@ -329,6 +211,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'FOO_ID'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getFooId() {
+        checkSpecifiedProperty("fooId");
         return _fooId;
     }
 
@@ -346,6 +229,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'FOO_NAME'. (NullAllowed even if selected: for no constraint)
      */
     public String getFooName() {
+        checkSpecifiedProperty("fooName");
         return _fooName;
     }
 
@@ -363,6 +247,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'FOO_DECIMAL'. (NullAllowed even if selected: for no constraint)
      */
     public java.math.BigDecimal getFooDecimal() {
+        checkSpecifiedProperty("fooDecimal");
         return _fooDecimal;
     }
 
@@ -380,6 +265,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'FOO_DATE'. (NullAllowed even if selected: for no constraint)
      */
     public java.util.Date getFooDate() {
+        checkSpecifiedProperty("fooDate");
         return _fooDate;
     }
 
@@ -397,6 +283,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      * @return The value of the column 'FOO_TIMESTAMP'. (NullAllowed even if selected: for no constraint)
      */
     public java.sql.Timestamp getFooTimestamp() {
+        checkSpecifiedProperty("fooTimestamp");
         return _fooTimestamp;
     }
 
@@ -415,6 +302,7 @@ public abstract class BsNextFooBean implements Entity, Serializable, Cloneable {
      */
     @MappingValueType(keyName = "stringClobType")
     public String getFooClob() {
+        checkSpecifiedProperty("fooClob");
         return _fooClob;
     }
 

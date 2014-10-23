@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -73,7 +71,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializable, Cloneable {
+public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -104,18 +102,6 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
 
     /** CONSTRAINT_NAME_AUTO_UNIQUE: {UQ, NotNull, VARCHAR(50)} */
     protected String _constraintNameAutoUnique;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -164,17 +150,6 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
         __uniqueDrivenProperties.clear();
         __uniqueDrivenProperties.addPropertyName("constraintNameAutoUnique");
         setConstraintNameAutoUnique(constraintNameAutoUnique);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
     }
 
     // ===================================================================================
@@ -245,105 +220,30 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsVendorConstraintNameAutoRef)) { return false; }
-        BsVendorConstraintNameAutoRef other = (BsVendorConstraintNameAutoRef)obj;
-        if (!xSV(getConstraintNameAutoRefId(), other.getConstraintNameAutoRefId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsVendorConstraintNameAutoRef) {
+            BsVendorConstraintNameAutoRef other = (BsVendorConstraintNameAutoRef)obj;
+            if (!xSV(_constraintNameAutoRefId, other._constraintNameAutoRefId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getConstraintNameAutoRefId());
+        hs = xCH(hs, _constraintNameAutoRefId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_vendorConstraintNameAutoFoo != null)
         { sb.append(li).append(xbRDS(_vendorConstraintNameAutoFoo, "vendorConstraintNameAutoFoo")); }
         if (_vendorConstraintNameAutoBar != null)
@@ -352,58 +252,38 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
         { sb.append(li).append(xbRDS(_vendorConstraintNameAutoQux, "vendorConstraintNameAutoQux")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getConstraintNameAutoRefId());
-        sb.append(dm).append(getConstraintNameAutoFooId());
-        sb.append(dm).append(getConstraintNameAutoBarId());
-        sb.append(dm).append(getConstraintNameAutoQuxId());
-        sb.append(dm).append(getConstraintNameAutoCorgeId());
-        sb.append(dm).append(getConstraintNameAutoUnique());
+        sb.append(dm).append(xfND(_constraintNameAutoRefId));
+        sb.append(dm).append(xfND(_constraintNameAutoFooId));
+        sb.append(dm).append(xfND(_constraintNameAutoBarId));
+        sb.append(dm).append(xfND(_constraintNameAutoQuxId));
+        sb.append(dm).append(xfND(_constraintNameAutoCorgeId));
+        sb.append(dm).append(xfND(_constraintNameAutoUnique));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_vendorConstraintNameAutoFoo != null) { sb.append(cm).append("vendorConstraintNameAutoFoo"); }
-        if (_vendorConstraintNameAutoBar != null) { sb.append(cm).append("vendorConstraintNameAutoBar"); }
-        if (_vendorConstraintNameAutoQux != null) { sb.append(cm).append("vendorConstraintNameAutoQux"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        if (_vendorConstraintNameAutoFoo != null) { sb.append(dm).append("vendorConstraintNameAutoFoo"); }
+        if (_vendorConstraintNameAutoBar != null) { sb.append(dm).append("vendorConstraintNameAutoBar"); }
+        if (_vendorConstraintNameAutoQux != null) { sb.append(dm).append("vendorConstraintNameAutoQux"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public VendorConstraintNameAutoRef clone() {
-        try {
-            return (VendorConstraintNameAutoRef)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (VendorConstraintNameAutoRef)super.clone();
     }
 
     // ===================================================================================
@@ -414,6 +294,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_REF_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getConstraintNameAutoRefId() {
+        checkSpecifiedProperty("constraintNameAutoRefId");
         return _constraintNameAutoRefId;
     }
 
@@ -431,6 +312,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_FOO_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getConstraintNameAutoFooId() {
+        checkSpecifiedProperty("constraintNameAutoFooId");
         return _constraintNameAutoFooId;
     }
 
@@ -448,6 +330,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_BAR_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getConstraintNameAutoBarId() {
+        checkSpecifiedProperty("constraintNameAutoBarId");
         return _constraintNameAutoBarId;
     }
 
@@ -465,6 +348,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_QUX_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getConstraintNameAutoQuxId() {
+        checkSpecifiedProperty("constraintNameAutoQuxId");
         return _constraintNameAutoQuxId;
     }
 
@@ -482,6 +366,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_CORGE_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getConstraintNameAutoCorgeId() {
+        checkSpecifiedProperty("constraintNameAutoCorgeId");
         return _constraintNameAutoCorgeId;
     }
 
@@ -499,6 +384,7 @@ public abstract class BsVendorConstraintNameAutoRef implements Entity, Serializa
      * @return The value of the column 'CONSTRAINT_NAME_AUTO_UNIQUE'. (basically NotNull if selected: for the constraint)
      */
     public String getConstraintNameAutoUnique() {
+        checkSpecifiedProperty("constraintNameAutoUnique");
         return _constraintNameAutoUnique;
     }
 

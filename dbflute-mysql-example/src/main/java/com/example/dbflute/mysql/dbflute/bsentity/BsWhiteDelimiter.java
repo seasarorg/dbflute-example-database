@@ -15,14 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.Date;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -72,7 +69,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteDelimiter extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -100,18 +97,6 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
 
     /** DATE_DEFAULT: {NotNull, DATE(10)} */
     protected java.util.Date _dateDefault;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -151,17 +136,6 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -173,152 +147,55 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteDelimiter)) { return false; }
-        BsWhiteDelimiter other = (BsWhiteDelimiter)obj;
-        if (!xSV(getDelimiterId(), other.getDelimiterId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteDelimiter) {
+            BsWhiteDelimiter other = (BsWhiteDelimiter)obj;
+            if (!xSV(_delimiterId, other._delimiterId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getDelimiterId());
+        hs = xCH(hs, _delimiterId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
+
+    @Override
+    protected String doBuildStringWithRelation(String li) {
+        return "";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        return sb.toString();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
-        StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getDelimiterId());
-        sb.append(dm).append(getNumberNullable());
-        sb.append(dm).append(getStringConverted());
-        sb.append(dm).append(getStringNonConverted());
-        sb.append(dm).append(xfUD(getDateDefault()));
+        sb.append(dm).append(xfND(_delimiterId));
+        sb.append(dm).append(xfND(_numberNullable));
+        sb.append(dm).append(xfND(_stringConverted));
+        sb.append(dm).append(xfND(_stringNonConverted));
+        sb.append(dm).append(xfUD(_dateDefault));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String xfUD(Date date) { // formatUtilDate()
-        return FunCustodial.toString(date, xgDP());
-    }
-    protected String xgDP() { // getDatePattern
-        return "yyyy-MM-dd";
-    }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         return "";
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteDelimiter clone() {
-        try {
-            return (WhiteDelimiter)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteDelimiter)super.clone();
     }
 
     // ===================================================================================
@@ -329,6 +206,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      * @return The value of the column 'DELIMITER_ID'. (basically NotNull if selected: for the constraint)
      */
     public Long getDelimiterId() {
+        checkSpecifiedProperty("delimiterId");
         return _delimiterId;
     }
 
@@ -346,6 +224,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      * @return The value of the column 'NUMBER_NULLABLE'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getNumberNullable() {
+        checkSpecifiedProperty("numberNullable");
         return _numberNullable;
     }
 
@@ -363,6 +242,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      * @return The value of the column 'STRING_CONVERTED'. (NullAllowed even if selected: for no constraint)
      */
     public String getStringConverted() {
+        checkSpecifiedProperty("stringConverted");
         return _stringConverted;
     }
 
@@ -380,6 +260,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      * @return The value of the column 'STRING_NON_CONVERTED'. (NullAllowed even if selected: for no constraint)
      */
     public String getStringNonConverted() {
+        checkSpecifiedProperty("stringNonConverted");
         return _stringNonConverted;
     }
 
@@ -397,6 +278,7 @@ public abstract class BsWhiteDelimiter implements Entity, Serializable, Cloneabl
      * @return The value of the column 'DATE_DEFAULT'. (basically NotNull if selected: for the constraint)
      */
     public java.util.Date getDateDefault() {
+        checkSpecifiedProperty("dateDefault");
         return _dateDefault;
     }
 

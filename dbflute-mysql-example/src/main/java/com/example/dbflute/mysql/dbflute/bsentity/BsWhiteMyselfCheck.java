@@ -15,13 +15,11 @@
  */
 package com.example.dbflute.mysql.dbflute.bsentity;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-import org.seasar.dbflute.Entity;
 import org.seasar.dbflute.dbmeta.DBMeta;
+import org.seasar.dbflute.dbmeta.AbstractEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.exentity.*;
 
@@ -67,7 +65,7 @@ import com.example.dbflute.mysql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Cloneable {
+public abstract class BsWhiteMyselfCheck extends AbstractEntity {
 
     // ===================================================================================
     //                                                                          Definition
@@ -89,18 +87,6 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
 
     /** MYSELF_ID: {IX, INT(10), FK to white_myself} */
     protected Integer _myselfId;
-
-    // -----------------------------------------------------
-    //                                              Internal
-    //                                              --------
-    /** The unique-driven properties for this entity. (NotNull) */
-    protected final EntityUniqueDrivenProperties __uniqueDrivenProperties = newUniqueDrivenProperties();
-
-    /** The modified properties for this entity. (NotNull) */
-    protected final EntityModifiedProperties __modifiedProperties = newModifiedProperties();
-
-    /** Is the entity created by DBFlute select process? */
-    protected boolean __createdBySelect;
 
     // ===================================================================================
     //                                                                          Table Name
@@ -140,17 +126,6 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
         return true;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> myuniqueDrivenProperties() {
-        return __uniqueDrivenProperties.getPropertyNames();
-    }
-
-    protected EntityUniqueDrivenProperties newUniqueDrivenProperties() {
-        return new EntityUniqueDrivenProperties();
-    }
-
     // ===================================================================================
     //                                                                    Foreign Property
     //                                                                    ================
@@ -181,156 +156,61 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
     }
 
     // ===================================================================================
-    //                                                                 Modified Properties
-    //                                                                 ===================
-    /**
-     * {@inheritDoc}
-     */
-    public Set<String> modifiedProperties() {
-        return __modifiedProperties.getPropertyNames();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public void clearModifiedInfo() {
-        __modifiedProperties.clear();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean hasModification() {
-        return !__modifiedProperties.isEmpty();
-    }
-
-    protected EntityModifiedProperties newModifiedProperties() {
-        return new EntityModifiedProperties();
-    }
-
-    // ===================================================================================
-    //                                                                     Birthplace Mark
-    //                                                                     ===============
-    /**
-     * {@inheritDoc}
-     */
-    public void markAsSelect() {
-        __createdBySelect = true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public boolean createdBySelect() {
-        return __createdBySelect;
-    }
-
-    // ===================================================================================
     //                                                                      Basic Override
     //                                                                      ==============
-    /**
-     * Determine the object is equal with this. <br />
-     * If primary-keys or columns of the other are same as this one, returns true.
-     * @param obj The object as other entity. (NullAllowed: if null, returns false fixedly)
-     * @return Comparing result.
-     */
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof BsWhiteMyselfCheck)) { return false; }
-        BsWhiteMyselfCheck other = (BsWhiteMyselfCheck)obj;
-        if (!xSV(getMyselfCheckId(), other.getMyselfCheckId())) { return false; }
-        return true;
-    }
-    protected boolean xSV(Object v1, Object v2) {
-        return FunCustodial.isSameValue(v1, v2);
+    @Override
+    protected boolean doEquals(Object obj) {
+        if (obj instanceof BsWhiteMyselfCheck) {
+            BsWhiteMyselfCheck other = (BsWhiteMyselfCheck)obj;
+            if (!xSV(_myselfCheckId, other._myselfCheckId)) { return false; }
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    /**
-     * Calculate the hash-code from primary-keys or columns.
-     * @return The hash-code from primary-key or columns.
-     */
-    public int hashCode() {
-        int hs = 17;
+    @Override
+    protected int doHashCode(int initial) {
+        int hs = initial;
         hs = xCH(hs, getTableDbName());
-        hs = xCH(hs, getMyselfCheckId());
+        hs = xCH(hs, _myselfCheckId);
         return hs;
     }
-    protected int xCH(int hs, Object vl) {
-        return FunCustodial.calculateHashcode(hs, vl);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public int instanceHash() {
-        return super.hashCode();
-    }
-
-    /**
-     * Convert to display string of entity's data. (no relation data)
-     * @return The display string of all columns and relation existences. (NotNull)
-     */
-    public String toString() {
-        return buildDisplayString(FunCustodial.toClassTitle(this), true, true);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public String toStringWithRelation() {
+    @Override
+    protected String doBuildStringWithRelation(String li) {
         StringBuilder sb = new StringBuilder();
-        sb.append(toString());
-        String li = "\n  ";
         if (_whiteMyself != null)
         { sb.append(li).append(xbRDS(_whiteMyself, "whiteMyself")); }
         return sb.toString();
     }
-    protected String xbRDS(Entity et, String name) { // buildRelationDisplayString()
-        return et.buildDisplayString(name, true, true);
-    }
 
-    /**
-     * {@inheritDoc}
-     */
-    public String buildDisplayString(String name, boolean column, boolean relation) {
+    @Override
+    protected String doBuildColumnString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (name != null) { sb.append(name).append(column || relation ? ":" : ""); }
-        if (column) { sb.append(buildColumnString()); }
-        if (relation) { sb.append(buildRelationString()); }
-        sb.append("@").append(Integer.toHexString(hashCode()));
-        return sb.toString();
-    }
-    protected String buildColumnString() {
-        StringBuilder sb = new StringBuilder();
-        String dm = ", ";
-        sb.append(dm).append(getMyselfCheckId());
-        sb.append(dm).append(getMyselfCheckName());
-        sb.append(dm).append(getMyselfId());
+        sb.append(dm).append(xfND(_myselfCheckId));
+        sb.append(dm).append(xfND(_myselfCheckName));
+        sb.append(dm).append(xfND(_myselfId));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
         sb.insert(0, "{").append("}");
         return sb.toString();
     }
-    protected String buildRelationString() {
+
+    @Override
+    protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        String cm = ",";
-        if (_whiteMyself != null) { sb.append(cm).append("whiteMyself"); }
-        if (sb.length() > cm.length()) {
-            sb.delete(0, cm.length()).insert(0, "(").append(")");
+        if (_whiteMyself != null) { sb.append(dm).append("whiteMyself"); }
+        if (sb.length() > dm.length()) {
+            sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
         return sb.toString();
     }
 
-    /**
-     * Clone entity instance using super.clone(). (shallow copy) 
-     * @return The cloned instance of this entity. (NotNull)
-     */
+    @Override
     public WhiteMyselfCheck clone() {
-        try {
-            return (WhiteMyselfCheck)super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Failed to clone the entity: " + toString(), e);
-        }
+        return (WhiteMyselfCheck)super.clone();
     }
 
     // ===================================================================================
@@ -341,6 +221,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      * @return The value of the column 'MYSELF_CHECK_ID'. (basically NotNull if selected: for the constraint)
      */
     public Integer getMyselfCheckId() {
+        checkSpecifiedProperty("myselfCheckId");
         return _myselfCheckId;
     }
 
@@ -358,6 +239,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      * @return The value of the column 'MYSELF_CHECK_NAME'. (basically NotNull if selected: for the constraint)
      */
     public String getMyselfCheckName() {
+        checkSpecifiedProperty("myselfCheckName");
         return _myselfCheckName;
     }
 
@@ -375,6 +257,7 @@ public abstract class BsWhiteMyselfCheck implements Entity, Serializable, Clonea
      * @return The value of the column 'MYSELF_ID'. (NullAllowed even if selected: for no constraint)
      */
     public Integer getMyselfId() {
+        checkSpecifiedProperty("myselfId");
         return _myselfId;
     }
 
