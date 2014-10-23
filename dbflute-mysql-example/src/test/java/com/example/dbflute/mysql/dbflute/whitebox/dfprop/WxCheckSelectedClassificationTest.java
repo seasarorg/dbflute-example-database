@@ -1,12 +1,7 @@
 package com.example.dbflute.mysql.dbflute.whitebox.dfprop;
 
-import java.lang.reflect.Field;
-
-import org.seasar.dbflute.dbmeta.info.ColumnInfo;
 import org.seasar.dbflute.exception.UndefinedClassificationCodeException;
-import org.seasar.dbflute.util.DfReflectionUtil;
 
-import com.example.dbflute.mysql.dbflute.bsentity.dbmeta.PurchaseDbm;
 import com.example.dbflute.mysql.dbflute.cbean.PurchaseCB;
 import com.example.dbflute.mysql.dbflute.exbhv.PurchaseBhv;
 import com.example.dbflute.mysql.dbflute.exentity.Purchase;
@@ -55,11 +50,7 @@ public class WxCheckSelectedClassificationTest extends UnitContainerTestCase {
         // ## Arrange ##
         Purchase purchase = new Purchase();
         purchase.setPurchaseId(3L);
-        ColumnInfo paymentCompleteFlg = PurchaseDbm.getInstance().columnPaymentCompleteFlg();
-        String propertyName = paymentCompleteFlg.getPropertyName();
-        Field field = DfReflectionUtil.getAccessibleField(Purchase.class, "_" + propertyName);
-        DfReflectionUtil.setValueForcedly(field, purchase, 99999);
-        purchase.mymodifiedProperties().add(propertyName);
+        purchase.xznocheckSetPaymentCompleteFlg(99999);
         purchaseBhv.updateNonstrict(purchase);
 
         // ## Act ##
