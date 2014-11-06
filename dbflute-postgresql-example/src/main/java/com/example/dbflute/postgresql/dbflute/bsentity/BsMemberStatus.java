@@ -359,7 +359,7 @@ public abstract class BsMemberStatus extends AbstractEntity {
      * @param memberStatusCode The value of the column 'member_status_code'. (basically NotNull if update: for the constraint)
      */
     protected void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -377,7 +377,7 @@ public abstract class BsMemberStatus extends AbstractEntity {
      * @param memberStatusName The value of the column 'member_status_name'. (basically NotNull if update: for the constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 
@@ -399,7 +399,7 @@ public abstract class BsMemberStatus extends AbstractEntity {
      * @param description The value of the column 'description'. (basically NotNull if update: for the constraint)
      */
     public void setDescription(String description) {
-        __modifiedProperties.addPropertyName("description");
+        registerModifiedProperty("description");
         _description = description;
     }
 
@@ -421,7 +421,7 @@ public abstract class BsMemberStatus extends AbstractEntity {
      * @param displayOrder The value of the column 'display_order'. (basically NotNull if update: for the constraint)
      */
     public void setDisplayOrder(Integer displayOrder) {
-        __modifiedProperties.addPropertyName("displayOrder");
+        registerModifiedProperty("displayOrder");
         _displayOrder = displayOrder;
     }
 

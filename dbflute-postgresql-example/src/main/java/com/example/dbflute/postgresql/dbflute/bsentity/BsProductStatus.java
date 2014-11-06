@@ -231,7 +231,7 @@ public abstract class BsProductStatus extends AbstractEntity {
      * @param productStatusCode The value of the column 'product_status_code'. (basically NotNull if update: for the constraint)
      */
     public void setProductStatusCode(String productStatusCode) {
-        __modifiedProperties.addPropertyName("productStatusCode");
+        registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
@@ -249,7 +249,7 @@ public abstract class BsProductStatus extends AbstractEntity {
      * @param productStatusName The value of the column 'product_status_name'. (basically NotNull if update: for the constraint)
      */
     public void setProductStatusName(String productStatusName) {
-        __modifiedProperties.addPropertyName("productStatusName");
+        registerModifiedProperty("productStatusName");
         _productStatusName = productStatusName;
     }
 
@@ -267,7 +267,7 @@ public abstract class BsProductStatus extends AbstractEntity {
      * @param displayOrder The value of the column 'display_order'. (basically NotNull if update: for the constraint)
      */
     public void setDisplayOrder(Integer displayOrder) {
-        __modifiedProperties.addPropertyName("displayOrder");
+        registerModifiedProperty("displayOrder");
         _displayOrder = displayOrder;
     }
 }

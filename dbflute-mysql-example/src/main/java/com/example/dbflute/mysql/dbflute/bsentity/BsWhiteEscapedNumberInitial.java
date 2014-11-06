@@ -304,7 +304,7 @@ public abstract class BsWhiteEscapedNumberInitial extends AbstractEntity {
      * @param numberInitialCode The value of the column 'NUMBER_INITIAL_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setNumberInitialCode(String numberInitialCode) {
-        __modifiedProperties.addPropertyName("numberInitialCode");
+        registerModifiedProperty("numberInitialCode");
         _numberInitialCode = numberInitialCode;
     }
 
@@ -322,7 +322,7 @@ public abstract class BsWhiteEscapedNumberInitial extends AbstractEntity {
      * @param numberInitialName The value of the column 'NUMBER_INITIAL_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNumberInitialName(String numberInitialName) {
-        __modifiedProperties.addPropertyName("numberInitialName");
+        registerModifiedProperty("numberInitialName");
         _numberInitialName = numberInitialName;
     }
 

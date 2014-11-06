@@ -408,7 +408,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param memberId The value of the column 'MEMBER_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -430,7 +430,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -450,7 +450,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param birthdate The value of the column 'BIRTHDATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -472,7 +472,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param formalizedDatetime The value of the column 'FORMALIZED_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -494,7 +494,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -514,7 +514,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param memberStatusName The value of the column 'MEMBER_STATUS_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 
@@ -532,7 +532,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param statusDisplayOrder The value of the column 'STATUS_DISPLAY_ORDER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStatusDisplayOrder(Integer statusDisplayOrder) {
-        __modifiedProperties.addPropertyName("statusDisplayOrder");
+        registerModifiedProperty("statusDisplayOrder");
         _statusDisplayOrder = statusDisplayOrder;
     }
 
@@ -550,7 +550,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param dummyFlg The value of the column 'DUMMY_FLG'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDummyFlg(Integer dummyFlg) {
-        __modifiedProperties.addPropertyName("dummyFlg");
+        registerModifiedProperty("dummyFlg");
         _dummyFlg = dummyFlg;
     }
 
@@ -568,7 +568,7 @@ public abstract class BsOptionMember extends AbstractEntity {
      * @param dummyNoflg The value of the column 'DUMMY_NOFLG'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDummyNoflg(Integer dummyNoflg) {
-        __modifiedProperties.addPropertyName("dummyNoflg");
+        registerModifiedProperty("dummyNoflg");
         _dummyNoflg = dummyNoflg;
     }
 }

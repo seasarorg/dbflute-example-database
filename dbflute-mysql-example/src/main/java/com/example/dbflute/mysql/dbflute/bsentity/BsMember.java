@@ -1022,33 +1022,60 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_memberStatus != null) { sb.append(dm).append("memberStatus"); }
-        if (_memberAddressAsValid != null) { sb.append(dm).append("memberAddressAsValid"); }
-        if (_memberAddressAsValidBefore != null) { sb.append(dm).append("memberAddressAsValidBefore"); }
-        if (_memberLoginAsLoginStatus != null) { sb.append(dm).append("memberLoginAsLoginStatus"); }
-        if (_memberAddressAsIfComment != null) { sb.append(dm).append("memberAddressAsIfComment"); }
-        if (_memberAddressAsOnlyOneDate != null) { sb.append(dm).append("memberAddressAsOnlyOneDate"); }
-        if (_memberLoginAsLocalBindOverTest != null) { sb.append(dm).append("memberLoginAsLocalBindOverTest"); }
-        if (_memberLoginAsLocalForeignOverTest != null) { sb.append(dm).append("memberLoginAsLocalForeignOverTest"); }
-        if (_memberLoginAsForeignForeignBindOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignBindOverTest"); }
-        if (_memberLoginAsForeignForeignEachOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignEachOverTest"); }
-        if (_memberLoginAsForeignForeignOptimizedBasicOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignOptimizedBasicOverTest"); }
-        if (_memberLoginAsForeignForeignOptimizedMarkOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignOptimizedMarkOverTest"); }
-        if (_memberLoginAsForeignForeignOptimizedPartOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignOptimizedPartOverTest"); }
-        if (_memberLoginAsForeignForeignOptimizedWholeOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignOptimizedWholeOverTest"); }
-        if (_memberLoginAsForeignForeignParameterOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignParameterOverTest"); }
-        if (_memberLoginAsForeignForeignVariousOverTest != null) { sb.append(dm).append("memberLoginAsForeignForeignVariousOverTest"); }
-        if (_memberLoginAsReferrerOverTest != null) { sb.append(dm).append("memberLoginAsReferrerOverTest"); }
-        if (_memberLoginAsReferrerForeignOverTest != null) { sb.append(dm).append("memberLoginAsReferrerForeignOverTest"); }
-        if (_memberLoginAsLatest != null) { sb.append(dm).append("memberLoginAsLatest"); }
-        if (_memberLoginAsOldest != null) { sb.append(dm).append("memberLoginAsOldest"); }
-        if (_memberAddressAsFormattedBasic != null) { sb.append(dm).append("memberAddressAsFormattedBasic"); }
-        if (_memberAddressAsFormattedLong != null) { sb.append(dm).append("memberAddressAsFormattedLong"); }
-        if (_memberLoginAsFormattedMany != null) { sb.append(dm).append("memberLoginAsFormattedMany"); }
-        if (_memberLoginAsEmbeddedCommentClassificationTest != null) { sb.append(dm).append("memberLoginAsEmbeddedCommentClassificationTest"); }
-        if (_memberSecurityAsOne != null) { sb.append(dm).append("memberSecurityAsOne"); }
-        if (_memberServiceAsOne != null) { sb.append(dm).append("memberServiceAsOne"); }
-        if (_memberWithdrawalAsOne != null) { sb.append(dm).append("memberWithdrawalAsOne"); }
+        if (_memberStatus != null)
+        { sb.append(dm).append("memberStatus"); }
+        if (_memberAddressAsValid != null)
+        { sb.append(dm).append("memberAddressAsValid"); }
+        if (_memberAddressAsValidBefore != null)
+        { sb.append(dm).append("memberAddressAsValidBefore"); }
+        if (_memberLoginAsLoginStatus != null)
+        { sb.append(dm).append("memberLoginAsLoginStatus"); }
+        if (_memberAddressAsIfComment != null)
+        { sb.append(dm).append("memberAddressAsIfComment"); }
+        if (_memberAddressAsOnlyOneDate != null)
+        { sb.append(dm).append("memberAddressAsOnlyOneDate"); }
+        if (_memberLoginAsLocalBindOverTest != null)
+        { sb.append(dm).append("memberLoginAsLocalBindOverTest"); }
+        if (_memberLoginAsLocalForeignOverTest != null)
+        { sb.append(dm).append("memberLoginAsLocalForeignOverTest"); }
+        if (_memberLoginAsForeignForeignBindOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignBindOverTest"); }
+        if (_memberLoginAsForeignForeignEachOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignEachOverTest"); }
+        if (_memberLoginAsForeignForeignOptimizedBasicOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignOptimizedBasicOverTest"); }
+        if (_memberLoginAsForeignForeignOptimizedMarkOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignOptimizedMarkOverTest"); }
+        if (_memberLoginAsForeignForeignOptimizedPartOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignOptimizedPartOverTest"); }
+        if (_memberLoginAsForeignForeignOptimizedWholeOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignOptimizedWholeOverTest"); }
+        if (_memberLoginAsForeignForeignParameterOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignParameterOverTest"); }
+        if (_memberLoginAsForeignForeignVariousOverTest != null)
+        { sb.append(dm).append("memberLoginAsForeignForeignVariousOverTest"); }
+        if (_memberLoginAsReferrerOverTest != null)
+        { sb.append(dm).append("memberLoginAsReferrerOverTest"); }
+        if (_memberLoginAsReferrerForeignOverTest != null)
+        { sb.append(dm).append("memberLoginAsReferrerForeignOverTest"); }
+        if (_memberLoginAsLatest != null)
+        { sb.append(dm).append("memberLoginAsLatest"); }
+        if (_memberLoginAsOldest != null)
+        { sb.append(dm).append("memberLoginAsOldest"); }
+        if (_memberAddressAsFormattedBasic != null)
+        { sb.append(dm).append("memberAddressAsFormattedBasic"); }
+        if (_memberAddressAsFormattedLong != null)
+        { sb.append(dm).append("memberAddressAsFormattedLong"); }
+        if (_memberLoginAsFormattedMany != null)
+        { sb.append(dm).append("memberLoginAsFormattedMany"); }
+        if (_memberLoginAsEmbeddedCommentClassificationTest != null)
+        { sb.append(dm).append("memberLoginAsEmbeddedCommentClassificationTest"); }
+        if (_memberSecurityAsOne != null)
+        { sb.append(dm).append("memberSecurityAsOne"); }
+        if (_memberServiceAsOne != null)
+        { sb.append(dm).append("memberServiceAsOne"); }
+        if (_memberWithdrawalAsOne != null)
+        { sb.append(dm).append("memberWithdrawalAsOne"); }
         if (_memberAddressList != null && !_memberAddressList.isEmpty())
         { sb.append(dm).append("memberAddressList"); }
         if (_memberLoginList != null && !_memberLoginList.isEmpty())
@@ -1087,7 +1114,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -1107,7 +1134,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberName The value of the column 'MEMBER_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -1127,7 +1154,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberAccount The value of the column 'MEMBER_ACCOUNT'. (basically NotNull if update: for the constraint)
      */
     public void setMemberAccount(String memberAccount) {
-        __modifiedProperties.addPropertyName("memberAccount");
+        registerModifiedProperty("memberAccount");
         _memberAccount = memberAccount;
     }
 
@@ -1145,7 +1172,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -1167,7 +1194,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param formalizedDatetime The value of the column 'FORMALIZED_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -1187,7 +1214,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param birthdate The value of the column 'BIRTHDATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -1207,7 +1234,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -1227,7 +1254,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -1247,7 +1274,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -1267,7 +1294,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -1289,7 +1316,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 

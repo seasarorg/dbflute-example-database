@@ -250,8 +250,10 @@ public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSplitMultipleFkNext != null) { sb.append(dm).append("whiteSplitMultipleFkNext"); }
-        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null) { sb.append(dm).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
+        if (_whiteSplitMultipleFkNext != null)
+        { sb.append(dm).append("whiteSplitMultipleFkNext"); }
+        if (_whiteSplitMultipleFkRefAsSplitMultipleFkTest != null)
+        { sb.append(dm).append("whiteSplitMultipleFkRefAsSplitMultipleFkTest"); }
         if (_whiteSplitMultipleFkChildList != null && !_whiteSplitMultipleFkChildList.isEmpty())
         { sb.append(dm).append("whiteSplitMultipleFkChildList"); }
         if (sb.length() > dm.length()) {
@@ -282,7 +284,7 @@ public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
      * @param baseId The value of the column 'BASE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setBaseId(Long baseId) {
-        __modifiedProperties.addPropertyName("baseId");
+        registerModifiedProperty("baseId");
         _baseId = baseId;
     }
 
@@ -300,7 +302,7 @@ public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
      * @param firstId The value of the column 'FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setFirstId(Integer firstId) {
-        __modifiedProperties.addPropertyName("firstId");
+        registerModifiedProperty("firstId");
         _firstId = firstId;
     }
 
@@ -318,7 +320,7 @@ public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
      * @param nextId The value of the column 'NEXT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setNextId(Long nextId) {
-        __modifiedProperties.addPropertyName("nextId");
+        registerModifiedProperty("nextId");
         _nextId = nextId;
     }
 
@@ -336,7 +338,7 @@ public abstract class BsWhiteSplitMultipleFkBase extends AbstractEntity {
      * @param splitName The value of the column 'SPLIT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setSplitName(String splitName) {
-        __modifiedProperties.addPropertyName("splitName");
+        registerModifiedProperty("splitName");
         _splitName = splitName;
     }
 }

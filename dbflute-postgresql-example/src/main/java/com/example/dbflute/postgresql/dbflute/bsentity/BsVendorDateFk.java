@@ -180,7 +180,8 @@ public abstract class BsVendorDateFk extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendorDatePk != null) { sb.append(dm).append("vendorDatePk"); }
+        if (_vendorDatePk != null)
+        { sb.append(dm).append("vendorDatePk"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -209,7 +210,7 @@ public abstract class BsVendorDateFk extends AbstractEntity {
      * @param barId The value of the column 'bar_id'. (basically NotNull if update: for the constraint)
      */
     public void setBarId(Integer barId) {
-        __modifiedProperties.addPropertyName("barId");
+        registerModifiedProperty("barId");
         _barId = barId;
     }
 
@@ -227,7 +228,7 @@ public abstract class BsVendorDateFk extends AbstractEntity {
      * @param barDate The value of the column 'bar_date'. (basically NotNull if update: for the constraint)
      */
     public void setBarDate(java.util.Date barDate) {
-        __modifiedProperties.addPropertyName("barDate");
+        registerModifiedProperty("barDate");
         _barDate = barDate;
     }
 }

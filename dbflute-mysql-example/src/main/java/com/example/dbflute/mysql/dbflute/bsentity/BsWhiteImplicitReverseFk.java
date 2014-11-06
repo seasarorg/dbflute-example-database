@@ -240,8 +240,10 @@ public abstract class BsWhiteImplicitReverseFk extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteImplicitReverseFkRefWithImplicitReverseFK != null) { sb.append(dm).append("whiteImplicitReverseFkRefWithImplicitReverseFK"); }
-        if (_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK != null) { sb.append(dm).append("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK"); }
+        if (_whiteImplicitReverseFkRefWithImplicitReverseFK != null)
+        { sb.append(dm).append("whiteImplicitReverseFkRefWithImplicitReverseFK"); }
+        if (_whiteImplicitReverseFkSuppressSuppressImplicitReverseFK != null)
+        { sb.append(dm).append("whiteImplicitReverseFkSuppressSuppressImplicitReverseFK"); }
         if (_whiteImplicitReverseFkRefList != null && !_whiteImplicitReverseFkRefList.isEmpty())
         { sb.append(dm).append("whiteImplicitReverseFkRefList"); }
         if (sb.length() > dm.length()) {
@@ -272,7 +274,7 @@ public abstract class BsWhiteImplicitReverseFk extends AbstractEntity {
      * @param whiteImplicitReverseFkId The value of the column 'WHITE_IMPLICIT_REVERSE_FK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
-        __modifiedProperties.addPropertyName("whiteImplicitReverseFkId");
+        registerModifiedProperty("whiteImplicitReverseFkId");
         _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
     }
 
@@ -290,7 +292,7 @@ public abstract class BsWhiteImplicitReverseFk extends AbstractEntity {
      * @param whiteImplicitReverseFkName The value of the column 'WHITE_IMPLICIT_REVERSE_FK_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setWhiteImplicitReverseFkName(String whiteImplicitReverseFkName) {
-        __modifiedProperties.addPropertyName("whiteImplicitReverseFkName");
+        registerModifiedProperty("whiteImplicitReverseFkName");
         _whiteImplicitReverseFkName = whiteImplicitReverseFkName;
     }
 }

@@ -288,7 +288,7 @@ public abstract class BsWhiteEscapedJavaDoc extends AbstractEntity {
      * @param escapedJavaDocCode The value of the column 'ESCAPED_JAVA_DOC_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setEscapedJavaDocCode(String escapedJavaDocCode) {
-        __modifiedProperties.addPropertyName("escapedJavaDocCode");
+        registerModifiedProperty("escapedJavaDocCode");
         _escapedJavaDocCode = escapedJavaDocCode;
     }
 
@@ -306,7 +306,7 @@ public abstract class BsWhiteEscapedJavaDoc extends AbstractEntity {
      * @param escapedJavaDocName The value of the column 'ESCAPED_JAVA_DOC_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEscapedJavaDocName(String escapedJavaDocName) {
-        __modifiedProperties.addPropertyName("escapedJavaDocName");
+        registerModifiedProperty("escapedJavaDocName");
         _escapedJavaDocName = escapedJavaDocName;
     }
 

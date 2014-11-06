@@ -226,7 +226,7 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne extends AbstractEntity {
      * @param manyOneOneId The value of the column 'MANY_ONE_ONE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setManyOneOneId(Integer manyOneOneId) {
-        __modifiedProperties.addPropertyName("manyOneOneId");
+        registerModifiedProperty("manyOneOneId");
         _manyOneOneId = manyOneOneId;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhiteSuppressJoinSqManyOneOne extends AbstractEntity {
      * @param manyOneOneName The value of the column 'MANY_ONE_ONE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setManyOneOneName(String manyOneOneName) {
-        __modifiedProperties.addPropertyName("manyOneOneName");
+        registerModifiedProperty("manyOneOneName");
         _manyOneOneName = manyOneOneName;
     }
 }

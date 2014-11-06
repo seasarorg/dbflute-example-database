@@ -331,7 +331,7 @@ public abstract class BsWhiteNoPkRelation extends AbstractEntity {
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Integer productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -349,7 +349,7 @@ public abstract class BsWhiteNoPkRelation extends AbstractEntity {
      * @param productName The value of the column 'PRODUCT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 
@@ -369,7 +369,7 @@ public abstract class BsWhiteNoPkRelation extends AbstractEntity {
      * @param productHandleCode The value of the column 'PRODUCT_HANDLE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductHandleCode(String productHandleCode) {
-        __modifiedProperties.addPropertyName("productHandleCode");
+        registerModifiedProperty("productHandleCode");
         _productHandleCode = productHandleCode;
     }
 
@@ -387,7 +387,7 @@ public abstract class BsWhiteNoPkRelation extends AbstractEntity {
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setProductStatusCode(String productStatusCode) {
-        __modifiedProperties.addPropertyName("productStatusCode");
+        registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
@@ -405,7 +405,7 @@ public abstract class BsWhiteNoPkRelation extends AbstractEntity {
      * @param latestPurchaseDatetime The value of the column 'LATEST_PURCHASE_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setLatestPurchaseDatetime(java.sql.Timestamp latestPurchaseDatetime) {
-        __modifiedProperties.addPropertyName("latestPurchaseDatetime");
+        registerModifiedProperty("latestPurchaseDatetime");
         _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 

@@ -203,7 +203,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param xlsManId The value of the column 'XLS_MAN_ID'. (basically NotNull if update: for the constraint)
      */
     public void setXlsManId(Long xlsManId) {
-        __modifiedProperties.addPropertyName("xlsManId");
+        registerModifiedProperty("xlsManId");
         _xlsManId = xlsManId;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param stringConverted The value of the column 'STRING_CONVERTED'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStringConverted(String stringConverted) {
-        __modifiedProperties.addPropertyName("stringConverted");
+        registerModifiedProperty("stringConverted");
         _stringConverted = stringConverted;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param timestampConverted The value of the column 'TIMESTAMP_CONVERTED'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTimestampConverted(java.sql.Timestamp timestampConverted) {
-        __modifiedProperties.addPropertyName("timestampConverted");
+        registerModifiedProperty("timestampConverted");
         _timestampConverted = timestampConverted;
     }
 }

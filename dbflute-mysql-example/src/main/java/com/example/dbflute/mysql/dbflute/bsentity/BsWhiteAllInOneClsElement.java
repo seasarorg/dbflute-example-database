@@ -210,7 +210,8 @@ public abstract class BsWhiteAllInOneClsElement extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteAllInOneClsCategory != null) { sb.append(dm).append("whiteAllInOneClsCategory"); }
+        if (_whiteAllInOneClsCategory != null)
+        { sb.append(dm).append("whiteAllInOneClsCategory"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -239,7 +240,7 @@ public abstract class BsWhiteAllInOneClsElement extends AbstractEntity {
      * @param clsCategoryCode The value of the column 'CLS_CATEGORY_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setClsCategoryCode(String clsCategoryCode) {
-        __modifiedProperties.addPropertyName("clsCategoryCode");
+        registerModifiedProperty("clsCategoryCode");
         _clsCategoryCode = clsCategoryCode;
     }
 
@@ -257,7 +258,7 @@ public abstract class BsWhiteAllInOneClsElement extends AbstractEntity {
      * @param clsElementCode The value of the column 'CLS_ELEMENT_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setClsElementCode(String clsElementCode) {
-        __modifiedProperties.addPropertyName("clsElementCode");
+        registerModifiedProperty("clsElementCode");
         _clsElementCode = clsElementCode;
     }
 
@@ -275,7 +276,7 @@ public abstract class BsWhiteAllInOneClsElement extends AbstractEntity {
      * @param clsElementName The value of the column 'CLS_ELEMENT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setClsElementName(String clsElementName) {
-        __modifiedProperties.addPropertyName("clsElementName");
+        registerModifiedProperty("clsElementName");
         _clsElementName = clsElementName;
     }
 
@@ -293,7 +294,7 @@ public abstract class BsWhiteAllInOneClsElement extends AbstractEntity {
      * @param attributeExp The value of the column 'ATTRIBUTE_EXP'. (basically NotNull if update: for the constraint)
      */
     public void setAttributeExp(String attributeExp) {
-        __modifiedProperties.addPropertyName("attributeExp");
+        registerModifiedProperty("attributeExp");
         _attributeExp = attributeExp;
     }
 }

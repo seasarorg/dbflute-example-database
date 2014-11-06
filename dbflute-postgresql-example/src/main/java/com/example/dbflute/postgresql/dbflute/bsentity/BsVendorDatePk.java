@@ -211,7 +211,7 @@ public abstract class BsVendorDatePk extends AbstractEntity {
      * @param fooDate The value of the column 'foo_date'. (basically NotNull if update: for the constraint)
      */
     public void setFooDate(java.util.Date fooDate) {
-        __modifiedProperties.addPropertyName("fooDate");
+        registerModifiedProperty("fooDate");
         _fooDate = fooDate;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsVendorDatePk extends AbstractEntity {
      * @param fooName The value of the column 'foo_name'. (basically NotNull if update: for the constraint)
      */
     public void setFooName(String fooName) {
-        __modifiedProperties.addPropertyName("fooName");
+        registerModifiedProperty("fooName");
         _fooName = fooName;
     }
 }

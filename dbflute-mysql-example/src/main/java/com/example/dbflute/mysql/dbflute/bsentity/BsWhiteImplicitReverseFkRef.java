@@ -222,7 +222,8 @@ public abstract class BsWhiteImplicitReverseFkRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteImplicitReverseFk != null) { sb.append(dm).append("whiteImplicitReverseFk"); }
+        if (_whiteImplicitReverseFk != null)
+        { sb.append(dm).append("whiteImplicitReverseFk"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -251,7 +252,7 @@ public abstract class BsWhiteImplicitReverseFkRef extends AbstractEntity {
      * @param whiteImplicitReverseFkRefId The value of the column 'WHITE_IMPLICIT_REVERSE_FK_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setWhiteImplicitReverseFkRefId(Integer whiteImplicitReverseFkRefId) {
-        __modifiedProperties.addPropertyName("whiteImplicitReverseFkRefId");
+        registerModifiedProperty("whiteImplicitReverseFkRefId");
         _whiteImplicitReverseFkRefId = whiteImplicitReverseFkRefId;
     }
 
@@ -269,7 +270,7 @@ public abstract class BsWhiteImplicitReverseFkRef extends AbstractEntity {
      * @param whiteImplicitReverseFkId The value of the column 'WHITE_IMPLICIT_REVERSE_FK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setWhiteImplicitReverseFkId(Integer whiteImplicitReverseFkId) {
-        __modifiedProperties.addPropertyName("whiteImplicitReverseFkId");
+        registerModifiedProperty("whiteImplicitReverseFkId");
         _whiteImplicitReverseFkId = whiteImplicitReverseFkId;
     }
 
@@ -287,7 +288,7 @@ public abstract class BsWhiteImplicitReverseFkRef extends AbstractEntity {
      * @param validBeginDate The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setValidBeginDate(java.util.Date validBeginDate) {
-        __modifiedProperties.addPropertyName("validBeginDate");
+        registerModifiedProperty("validBeginDate");
         _validBeginDate = validBeginDate;
     }
 
@@ -305,7 +306,7 @@ public abstract class BsWhiteImplicitReverseFkRef extends AbstractEntity {
      * @param validEndDate The value of the column 'VALID_END_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setValidEndDate(java.util.Date validEndDate) {
-        __modifiedProperties.addPropertyName("validEndDate");
+        registerModifiedProperty("validEndDate");
         _validEndDate = validEndDate;
     }
 }

@@ -288,8 +288,10 @@ public abstract class BsWhitePerrottaOverProduct extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whitePerrottaOverProductNested != null) { sb.append(dm).append("whitePerrottaOverProductNested"); }
-        if (_whitePerrottaOverTraceAsPerrotta != null) { sb.append(dm).append("whitePerrottaOverTraceAsPerrotta"); }
+        if (_whitePerrottaOverProductNested != null)
+        { sb.append(dm).append("whitePerrottaOverProductNested"); }
+        if (_whitePerrottaOverTraceAsPerrotta != null)
+        { sb.append(dm).append("whitePerrottaOverTraceAsPerrotta"); }
         if (_whitePerrottaOverMemberList != null && !_whitePerrottaOverMemberList.isEmpty())
         { sb.append(dm).append("whitePerrottaOverMemberList"); }
         if (_whitePerrottaOverTraceByNextProductIdList != null && !_whitePerrottaOverTraceByNextProductIdList.isEmpty())
@@ -324,7 +326,7 @@ public abstract class BsWhitePerrottaOverProduct extends AbstractEntity {
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Long productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -342,7 +344,7 @@ public abstract class BsWhitePerrottaOverProduct extends AbstractEntity {
      * @param productName The value of the column 'PRODUCT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 
@@ -360,7 +362,7 @@ public abstract class BsWhitePerrottaOverProduct extends AbstractEntity {
      * @param productNestedCode The value of the column 'PRODUCT_NESTED_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductNestedCode(String productNestedCode) {
-        __modifiedProperties.addPropertyName("productNestedCode");
+        registerModifiedProperty("productNestedCode");
         _productNestedCode = productNestedCode;
     }
 }

@@ -226,7 +226,7 @@ public abstract class BsWhiteMyself extends AbstractEntity {
      * @param myselfId The value of the column 'MYSELF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMyselfId(Integer myselfId) {
-        __modifiedProperties.addPropertyName("myselfId");
+        registerModifiedProperty("myselfId");
         _myselfId = myselfId;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhiteMyself extends AbstractEntity {
      * @param myselfName The value of the column 'MYSELF_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMyselfName(String myselfName) {
-        __modifiedProperties.addPropertyName("myselfName");
+        registerModifiedProperty("myselfName");
         _myselfName = myselfName;
     }
 }

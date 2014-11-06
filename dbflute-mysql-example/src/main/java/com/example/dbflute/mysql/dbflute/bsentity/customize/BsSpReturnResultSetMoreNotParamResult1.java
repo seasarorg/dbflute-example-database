@@ -334,7 +334,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult1 extends AbstractEnt
      * @param memberId The value of the column 'MEMBER_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -354,7 +354,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult1 extends AbstractEnt
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -374,7 +374,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult1 extends AbstractEnt
      * @param birthdate The value of the column 'BIRTHDATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -396,7 +396,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult1 extends AbstractEnt
      * @param formalizedDatetime The value of the column 'FORMALIZED_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -414,7 +414,7 @@ public abstract class BsSpReturnResultSetMoreNotParamResult1 extends AbstractEnt
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     protected void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 

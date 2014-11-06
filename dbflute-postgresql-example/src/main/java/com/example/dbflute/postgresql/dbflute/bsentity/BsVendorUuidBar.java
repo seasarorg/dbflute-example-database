@@ -211,7 +211,7 @@ public abstract class BsVendorUuidBar extends AbstractEntity {
      * @param barId The value of the column 'bar_id'. (basically NotNull if update: for the constraint)
      */
     public void setBarId(java.util.UUID barId) {
-        __modifiedProperties.addPropertyName("barId");
+        registerModifiedProperty("barId");
         _barId = barId;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsVendorUuidBar extends AbstractEntity {
      * @param barName The value of the column 'bar_name'. (basically NotNull if update: for the constraint)
      */
     public void setBarName(String barName) {
-        __modifiedProperties.addPropertyName("barName");
+        registerModifiedProperty("barName");
         _barName = barName;
     }
 }

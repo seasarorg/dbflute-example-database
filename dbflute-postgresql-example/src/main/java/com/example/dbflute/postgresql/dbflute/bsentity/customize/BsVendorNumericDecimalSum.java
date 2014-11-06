@@ -174,7 +174,7 @@ public abstract class BsVendorNumericDecimalSum extends AbstractEntity {
      * @param decimalDigitSum The value of the column 'decimal_digit_sum'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDecimalDigitSum(java.math.BigDecimal decimalDigitSum) {
-        __modifiedProperties.addPropertyName("decimalDigitSum");
+        registerModifiedProperty("decimalDigitSum");
         _decimalDigitSum = decimalDigitSum;
     }
 }

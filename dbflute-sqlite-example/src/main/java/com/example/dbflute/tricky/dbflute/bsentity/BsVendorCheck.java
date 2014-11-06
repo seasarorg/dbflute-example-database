@@ -194,7 +194,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param vendorCheckId The value of the column 'VENDOR_CHECK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendorCheckId(Integer vendorCheckId) {
-        __modifiedProperties.addPropertyName("vendorCheckId");
+        registerModifiedProperty("vendorCheckId");
         _vendorCheckId = vendorCheckId;
     }
 
@@ -212,7 +212,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfText The value of the column 'TYPE_OF_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfText(String typeOfText) {
-        __modifiedProperties.addPropertyName("typeOfText");
+        registerModifiedProperty("typeOfText");
         _typeOfText = typeOfText;
     }
 
@@ -230,7 +230,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfInteger The value of the column 'TYPE_OF_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfInteger(Integer typeOfInteger) {
-        __modifiedProperties.addPropertyName("typeOfInteger");
+        registerModifiedProperty("typeOfInteger");
         _typeOfInteger = typeOfInteger;
     }
 
@@ -248,7 +248,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfReal The value of the column 'TYPE_OF_REAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfReal(String typeOfReal) {
-        __modifiedProperties.addPropertyName("typeOfReal");
+        registerModifiedProperty("typeOfReal");
         _typeOfReal = typeOfReal;
     }
 }

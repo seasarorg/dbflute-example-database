@@ -195,7 +195,8 @@ public abstract class BsWhiteVariantRelationLocalPkReferrer extends AbstractEnti
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne != null) { sb.append(dm).append("whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne"); }
+        if (_whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne != null)
+        { sb.append(dm).append("whiteVariantRelationMasterFooAsBizManyToOneLikeBizOneToOne"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhiteVariantRelationLocalPkReferrer extends AbstractEnti
      * @param reversefkSuppressedId The value of the column 'REVERSEFK_SUPPRESSED_ID'. (basically NotNull if update: for the constraint)
      */
     public void setReversefkSuppressedId(Long reversefkSuppressedId) {
-        __modifiedProperties.addPropertyName("reversefkSuppressedId");
+        registerModifiedProperty("reversefkSuppressedId");
         _reversefkSuppressedId = reversefkSuppressedId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhiteVariantRelationLocalPkReferrer extends AbstractEnti
      * @param masterTypeCode The value of the column 'MASTER_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setMasterTypeCode(String masterTypeCode) {
-        __modifiedProperties.addPropertyName("masterTypeCode");
+        registerModifiedProperty("masterTypeCode");
         _masterTypeCode = masterTypeCode;
     }
 }

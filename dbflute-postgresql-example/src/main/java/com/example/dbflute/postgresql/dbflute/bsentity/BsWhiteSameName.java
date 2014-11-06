@@ -214,7 +214,8 @@ public abstract class BsWhiteSameName extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_nextSchemaProduct != null) { sb.append(dm).append("nextSchemaProduct"); }
+        if (_nextSchemaProduct != null)
+        { sb.append(dm).append("nextSchemaProduct"); }
         if (_whiteSameNameRefList != null && !_whiteSameNameRefList.isEmpty())
         { sb.append(dm).append("whiteSameNameRefList"); }
         if (sb.length() > dm.length()) {
@@ -245,7 +246,7 @@ public abstract class BsWhiteSameName extends AbstractEntity {
      * @param sameNameId The value of the column 'same_name_id'. (basically NotNull if update: for the constraint)
      */
     public void setSameNameId(Long sameNameId) {
-        __modifiedProperties.addPropertyName("sameNameId");
+        registerModifiedProperty("sameNameId");
         _sameNameId = sameNameId;
     }
 
@@ -263,7 +264,7 @@ public abstract class BsWhiteSameName extends AbstractEntity {
      * @param sameNameName The value of the column 'same_name_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSameNameName(String sameNameName) {
-        __modifiedProperties.addPropertyName("sameNameName");
+        registerModifiedProperty("sameNameName");
         _sameNameName = sameNameName;
     }
 
@@ -281,7 +282,7 @@ public abstract class BsWhiteSameName extends AbstractEntity {
      * @param sameNameInteger The value of the column 'same_name_integer'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSameNameInteger(Integer sameNameInteger) {
-        __modifiedProperties.addPropertyName("sameNameInteger");
+        registerModifiedProperty("sameNameInteger");
         _sameNameInteger = sameNameInteger;
     }
 
@@ -299,7 +300,7 @@ public abstract class BsWhiteSameName extends AbstractEntity {
      * @param nextSchemaProductId The value of the column 'next_schema_product_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNextSchemaProductId(Integer nextSchemaProductId) {
-        __modifiedProperties.addPropertyName("nextSchemaProductId");
+        registerModifiedProperty("nextSchemaProductId");
         _nextSchemaProductId = nextSchemaProductId;
     }
 }

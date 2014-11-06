@@ -206,7 +206,7 @@ public abstract class BsWhiteNoPk extends AbstractEntity {
      * @param noPkId The value of the column 'NO_PK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setNoPkId(Long noPkId) {
-        __modifiedProperties.addPropertyName("noPkId");
+        registerModifiedProperty("noPkId");
         _noPkId = noPkId;
     }
 
@@ -224,7 +224,7 @@ public abstract class BsWhiteNoPk extends AbstractEntity {
      * @param noPkName The value of the column 'NO_PK_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNoPkName(String noPkName) {
-        __modifiedProperties.addPropertyName("noPkName");
+        registerModifiedProperty("noPkName");
         _noPkName = noPkName;
     }
 
@@ -242,7 +242,7 @@ public abstract class BsWhiteNoPk extends AbstractEntity {
      * @param noPkInteger The value of the column 'NO_PK_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNoPkInteger(Integer noPkInteger) {
-        __modifiedProperties.addPropertyName("noPkInteger");
+        registerModifiedProperty("noPkInteger");
         _noPkInteger = noPkInteger;
     }
 }

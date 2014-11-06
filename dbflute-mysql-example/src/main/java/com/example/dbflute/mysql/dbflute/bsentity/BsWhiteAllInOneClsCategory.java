@@ -232,7 +232,7 @@ public abstract class BsWhiteAllInOneClsCategory extends AbstractEntity {
      * @param clsCategoryCode The value of the column 'CLS_CATEGORY_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setClsCategoryCode(String clsCategoryCode) {
-        __modifiedProperties.addPropertyName("clsCategoryCode");
+        registerModifiedProperty("clsCategoryCode");
         _clsCategoryCode = clsCategoryCode;
     }
 
@@ -250,7 +250,7 @@ public abstract class BsWhiteAllInOneClsCategory extends AbstractEntity {
      * @param clsCategoryName The value of the column 'CLS_CATEGORY_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setClsCategoryName(String clsCategoryName) {
-        __modifiedProperties.addPropertyName("clsCategoryName");
+        registerModifiedProperty("clsCategoryName");
         _clsCategoryName = clsCategoryName;
     }
 
@@ -268,7 +268,7 @@ public abstract class BsWhiteAllInOneClsCategory extends AbstractEntity {
      * @param description The value of the column 'DESCRIPTION'. (basically NotNull if update: for the constraint)
      */
     public void setDescription(String description) {
-        __modifiedProperties.addPropertyName("description");
+        registerModifiedProperty("description");
         _description = description;
     }
 }

@@ -346,7 +346,7 @@ public abstract class BsWhiteGroupingReference extends AbstractEntity {
      * @param groupingReferenceId The value of the column 'GROUPING_REFERENCE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setGroupingReferenceId(Long groupingReferenceId) {
-        __modifiedProperties.addPropertyName("groupingReferenceId");
+        registerModifiedProperty("groupingReferenceId");
         _groupingReferenceId = groupingReferenceId;
     }
 
@@ -364,7 +364,7 @@ public abstract class BsWhiteGroupingReference extends AbstractEntity {
      * @param groupingReferenceCode The value of the column 'GROUPING_REFERENCE_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setGroupingReferenceCode(String groupingReferenceCode) {
-        __modifiedProperties.addPropertyName("groupingReferenceCode");
+        registerModifiedProperty("groupingReferenceCode");
         _groupingReferenceCode = groupingReferenceCode;
     }
 

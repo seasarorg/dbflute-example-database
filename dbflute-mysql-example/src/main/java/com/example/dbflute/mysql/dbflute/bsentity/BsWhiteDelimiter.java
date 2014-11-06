@@ -215,7 +215,7 @@ public abstract class BsWhiteDelimiter extends AbstractEntity {
      * @param delimiterId The value of the column 'DELIMITER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setDelimiterId(Long delimiterId) {
-        __modifiedProperties.addPropertyName("delimiterId");
+        registerModifiedProperty("delimiterId");
         _delimiterId = delimiterId;
     }
 
@@ -233,7 +233,7 @@ public abstract class BsWhiteDelimiter extends AbstractEntity {
      * @param numberNullable The value of the column 'NUMBER_NULLABLE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNumberNullable(Integer numberNullable) {
-        __modifiedProperties.addPropertyName("numberNullable");
+        registerModifiedProperty("numberNullable");
         _numberNullable = numberNullable;
     }
 
@@ -251,7 +251,7 @@ public abstract class BsWhiteDelimiter extends AbstractEntity {
      * @param stringConverted The value of the column 'STRING_CONVERTED'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStringConverted(String stringConverted) {
-        __modifiedProperties.addPropertyName("stringConverted");
+        registerModifiedProperty("stringConverted");
         _stringConverted = stringConverted;
     }
 
@@ -269,7 +269,7 @@ public abstract class BsWhiteDelimiter extends AbstractEntity {
      * @param stringNonConverted The value of the column 'STRING_NON_CONVERTED'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStringNonConverted(String stringNonConverted) {
-        __modifiedProperties.addPropertyName("stringNonConverted");
+        registerModifiedProperty("stringNonConverted");
         _stringNonConverted = stringNonConverted;
     }
 
@@ -287,7 +287,7 @@ public abstract class BsWhiteDelimiter extends AbstractEntity {
      * @param dateDefault The value of the column 'DATE_DEFAULT'. (basically NotNull if update: for the constraint)
      */
     public void setDateDefault(java.util.Date dateDefault) {
-        __modifiedProperties.addPropertyName("dateDefault");
+        registerModifiedProperty("dateDefault");
         _dateDefault = dateDefault;
     }
 }

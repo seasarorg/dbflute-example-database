@@ -198,7 +198,7 @@ public abstract class BsVendorUnsupportedAlias extends AbstractEntity {
      * @param vendorCheckId The value of the column 'vendor_check_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVendorCheckId(Long vendorCheckId) {
-        __modifiedProperties.addPropertyName("vendorCheckId");
+        registerModifiedProperty("vendorCheckId");
         _vendorCheckId = vendorCheckId;
     }
 
@@ -216,7 +216,7 @@ public abstract class BsVendorUnsupportedAlias extends AbstractEntity {
      * @param hyphen_exists The value of the column 'HYPHEN-EXISTS'. (NullAllowed: null update allowed for no constraint)
      */
     public void setHyphen_exists(String hyphen_exists) {
-        __modifiedProperties.addPropertyName("hyphen_exists");
+        registerModifiedProperty("hyphen_exists");
         _hyphen_exists = hyphen_exists;
     }
 
@@ -234,7 +234,7 @@ public abstract class BsVendorUnsupportedAlias extends AbstractEntity {
      * @param space_exists The value of the column 'SPACE EXISTS'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSpace_exists(Integer space_exists) {
-        __modifiedProperties.addPropertyName("space_exists");
+        registerModifiedProperty("space_exists");
         _space_exists = space_exists;
     }
 
@@ -252,7 +252,7 @@ public abstract class BsVendorUnsupportedAlias extends AbstractEntity {
      * @param dollar$exists The value of the column 'DOLLAR$EXISTS'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDollar$exists(java.util.Date dollar$exists) {
-        __modifiedProperties.addPropertyName("dollar$exists");
+        registerModifiedProperty("dollar$exists");
         _dollar$exists = dollar$exists;
     }
 }

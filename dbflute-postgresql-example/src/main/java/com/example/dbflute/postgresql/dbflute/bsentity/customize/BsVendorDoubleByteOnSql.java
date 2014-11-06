@@ -190,7 +190,7 @@ public abstract class BsVendorDoubleByteOnSql extends AbstractEntity {
      * @param memberId The value of the column 'member_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -208,7 +208,7 @@ public abstract class BsVendorDoubleByteOnSql extends AbstractEntity {
      * @param memberNameWithSpace The value of the column 'member_name_with_space'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberNameWithSpace(String memberNameWithSpace) {
-        __modifiedProperties.addPropertyName("memberNameWithSpace");
+        registerModifiedProperty("memberNameWithSpace");
         _memberNameWithSpace = memberNameWithSpace;
     }
 
@@ -226,7 +226,7 @@ public abstract class BsVendorDoubleByteOnSql extends AbstractEntity {
      * @param memberStatusName The value of the column 'member_status_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 }

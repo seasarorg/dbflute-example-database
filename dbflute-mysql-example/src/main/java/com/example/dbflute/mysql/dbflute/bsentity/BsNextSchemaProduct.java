@@ -233,7 +233,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Long productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -251,7 +251,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param productName The value of the column 'PRODUCT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 
@@ -269,7 +269,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -287,7 +287,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -305,7 +305,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -323,7 +323,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -341,7 +341,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -359,7 +359,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 }

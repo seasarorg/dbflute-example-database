@@ -195,7 +195,8 @@ public abstract class BsWhitePgReservRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whitePgReserv != null) { sb.append(dm).append("whitePgReserv"); }
+        if (_whitePgReserv != null)
+        { sb.append(dm).append("whitePgReserv"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhitePgReservRef extends AbstractEntity {
      * @param refId The value of the column 'REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefId(Integer refId) {
-        __modifiedProperties.addPropertyName("refId");
+        registerModifiedProperty("refId");
         _refId = refId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhitePgReservRef extends AbstractEntity {
      * @param classSynonym The value of the column 'CLASS'. (NullAllowed: null update allowed for no constraint)
      */
     public void setClassSynonym(Integer classSynonym) {
-        __modifiedProperties.addPropertyName("classSynonym");
+        registerModifiedProperty("classSynonym");
         _classSynonym = classSynonym;
     }
 }

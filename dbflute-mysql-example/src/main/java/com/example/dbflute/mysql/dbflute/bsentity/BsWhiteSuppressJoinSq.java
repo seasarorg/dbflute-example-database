@@ -217,7 +217,8 @@ public abstract class BsWhiteSuppressJoinSq extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSuppressJoinSqOneAsOne != null) { sb.append(dm).append("whiteSuppressJoinSqOneAsOne"); }
+        if (_whiteSuppressJoinSqOneAsOne != null)
+        { sb.append(dm).append("whiteSuppressJoinSqOneAsOne"); }
         if (_whiteSuppressJoinSqManyList != null && !_whiteSuppressJoinSqManyList.isEmpty())
         { sb.append(dm).append("whiteSuppressJoinSqManyList"); }
         if (sb.length() > dm.length()) {
@@ -248,7 +249,7 @@ public abstract class BsWhiteSuppressJoinSq extends AbstractEntity {
      * @param suppressJoinSqId The value of the column 'SUPPRESS_JOIN_SQ_ID'. (basically NotNull if update: for the constraint)
      */
     public void setSuppressJoinSqId(Integer suppressJoinSqId) {
-        __modifiedProperties.addPropertyName("suppressJoinSqId");
+        registerModifiedProperty("suppressJoinSqId");
         _suppressJoinSqId = suppressJoinSqId;
     }
 
@@ -266,7 +267,7 @@ public abstract class BsWhiteSuppressJoinSq extends AbstractEntity {
      * @param suppressJoinSqName The value of the column 'SUPPRESS_JOIN_SQ_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setSuppressJoinSqName(String suppressJoinSqName) {
-        __modifiedProperties.addPropertyName("suppressJoinSqName");
+        registerModifiedProperty("suppressJoinSqName");
         _suppressJoinSqName = suppressJoinSqName;
     }
 }

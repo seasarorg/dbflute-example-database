@@ -321,7 +321,7 @@ public abstract class BsWhiteDeprecatedClsElement extends AbstractEntity {
      */
     protected void setDeprecatedClsElementCode(String deprecatedClsElementCode) {
         checkClassificationCode("DEPRECATED_CLS_ELEMENT_CODE", CDef.DefMeta.DeprecatedMapCollaborationType, deprecatedClsElementCode);
-        __modifiedProperties.addPropertyName("deprecatedClsElementCode");
+        registerModifiedProperty("deprecatedClsElementCode");
         _deprecatedClsElementCode = deprecatedClsElementCode;
     }
 
@@ -339,7 +339,7 @@ public abstract class BsWhiteDeprecatedClsElement extends AbstractEntity {
      * @param deprecatedClsElementName The value of the column 'DEPRECATED_CLS_ELEMENT_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDeprecatedClsElementName(String deprecatedClsElementName) {
-        __modifiedProperties.addPropertyName("deprecatedClsElementName");
+        registerModifiedProperty("deprecatedClsElementName");
         _deprecatedClsElementName = deprecatedClsElementName;
     }
 

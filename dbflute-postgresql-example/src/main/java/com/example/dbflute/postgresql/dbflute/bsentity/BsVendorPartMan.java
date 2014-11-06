@@ -194,7 +194,7 @@ public abstract class BsVendorPartMan extends AbstractEntity {
      * @param partManId The value of the column 'part_man_id'. (basically NotNull if update: for the constraint)
      */
     public void setPartManId(Integer partManId) {
-        __modifiedProperties.addPropertyName("partManId");
+        registerModifiedProperty("partManId");
         _partManId = partManId;
     }
 
@@ -212,7 +212,7 @@ public abstract class BsVendorPartMan extends AbstractEntity {
      * @param partManName The value of the column 'part_man_name'. (basically NotNull if update: for the constraint)
      */
     public void setPartManName(String partManName) {
-        __modifiedProperties.addPropertyName("partManName");
+        registerModifiedProperty("partManName");
         _partManName = partManName;
     }
 
@@ -230,7 +230,7 @@ public abstract class BsVendorPartMan extends AbstractEntity {
      * @param partManPoint The value of the column 'part_man_point'. (basically NotNull if update: for the constraint)
      */
     public void setPartManPoint(Integer partManPoint) {
-        __modifiedProperties.addPropertyName("partManPoint");
+        registerModifiedProperty("partManPoint");
         _partManPoint = partManPoint;
     }
 
@@ -248,7 +248,7 @@ public abstract class BsVendorPartMan extends AbstractEntity {
      * @param partManDate The value of the column 'part_man_date'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPartManDate(java.util.Date partManDate) {
-        __modifiedProperties.addPropertyName("partManDate");
+        registerModifiedProperty("partManDate");
         _partManDate = partManDate;
     }
 }

@@ -272,9 +272,12 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendorConstraintNameAutoFoo != null) { sb.append(dm).append("vendorConstraintNameAutoFoo"); }
-        if (_vendorConstraintNameAutoBar != null) { sb.append(dm).append("vendorConstraintNameAutoBar"); }
-        if (_vendorConstraintNameAutoQux != null) { sb.append(dm).append("vendorConstraintNameAutoQux"); }
+        if (_vendorConstraintNameAutoFoo != null)
+        { sb.append(dm).append("vendorConstraintNameAutoFoo"); }
+        if (_vendorConstraintNameAutoBar != null)
+        { sb.append(dm).append("vendorConstraintNameAutoBar"); }
+        if (_vendorConstraintNameAutoQux != null)
+        { sb.append(dm).append("vendorConstraintNameAutoQux"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -303,7 +306,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoRefId The value of the column 'CONSTRAINT_NAME_AUTO_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoRefId(Long constraintNameAutoRefId) {
-        __modifiedProperties.addPropertyName("constraintNameAutoRefId");
+        registerModifiedProperty("constraintNameAutoRefId");
         _constraintNameAutoRefId = constraintNameAutoRefId;
     }
 
@@ -321,7 +324,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoFooId The value of the column 'CONSTRAINT_NAME_AUTO_FOO_ID'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoFooId(Long constraintNameAutoFooId) {
-        __modifiedProperties.addPropertyName("constraintNameAutoFooId");
+        registerModifiedProperty("constraintNameAutoFooId");
         _constraintNameAutoFooId = constraintNameAutoFooId;
     }
 
@@ -339,7 +342,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoBarId The value of the column 'CONSTRAINT_NAME_AUTO_BAR_ID'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoBarId(Long constraintNameAutoBarId) {
-        __modifiedProperties.addPropertyName("constraintNameAutoBarId");
+        registerModifiedProperty("constraintNameAutoBarId");
         _constraintNameAutoBarId = constraintNameAutoBarId;
     }
 
@@ -357,7 +360,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoQuxId The value of the column 'CONSTRAINT_NAME_AUTO_QUX_ID'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoQuxId(Long constraintNameAutoQuxId) {
-        __modifiedProperties.addPropertyName("constraintNameAutoQuxId");
+        registerModifiedProperty("constraintNameAutoQuxId");
         _constraintNameAutoQuxId = constraintNameAutoQuxId;
     }
 
@@ -375,7 +378,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoCorgeId The value of the column 'CONSTRAINT_NAME_AUTO_CORGE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoCorgeId(Long constraintNameAutoCorgeId) {
-        __modifiedProperties.addPropertyName("constraintNameAutoCorgeId");
+        registerModifiedProperty("constraintNameAutoCorgeId");
         _constraintNameAutoCorgeId = constraintNameAutoCorgeId;
     }
 
@@ -393,7 +396,7 @@ public abstract class BsVendorConstraintNameAutoRef extends AbstractEntity {
      * @param constraintNameAutoUnique The value of the column 'CONSTRAINT_NAME_AUTO_UNIQUE'. (basically NotNull if update: for the constraint)
      */
     public void setConstraintNameAutoUnique(String constraintNameAutoUnique) {
-        __modifiedProperties.addPropertyName("constraintNameAutoUnique");
+        registerModifiedProperty("constraintNameAutoUnique");
         _constraintNameAutoUnique = constraintNameAutoUnique;
     }
 }

@@ -200,7 +200,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param xlsManId The value of the column 'xls_man_id'. (basically NotNull if update: for the constraint)
      */
     public void setXlsManId(Long xlsManId) {
-        __modifiedProperties.addPropertyName("xlsManId");
+        registerModifiedProperty("xlsManId");
         _xlsManId = xlsManId;
     }
 
@@ -218,7 +218,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param stringConverted The value of the column 'string_converted'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStringConverted(String stringConverted) {
-        __modifiedProperties.addPropertyName("stringConverted");
+        registerModifiedProperty("stringConverted");
         _stringConverted = stringConverted;
     }
 
@@ -236,7 +236,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param timestampZeroDefaultMillis The value of the column 'timestamp_zero_default_millis'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTimestampZeroDefaultMillis(java.sql.Timestamp timestampZeroDefaultMillis) {
-        __modifiedProperties.addPropertyName("timestampZeroDefaultMillis");
+        registerModifiedProperty("timestampZeroDefaultMillis");
         _timestampZeroDefaultMillis = timestampZeroDefaultMillis;
     }
 
@@ -254,7 +254,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param timestampZeroPrefixMillis The value of the column 'timestamp_zero_prefix_millis'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTimestampZeroPrefixMillis(java.sql.Timestamp timestampZeroPrefixMillis) {
-        __modifiedProperties.addPropertyName("timestampZeroPrefixMillis");
+        registerModifiedProperty("timestampZeroPrefixMillis");
         _timestampZeroPrefixMillis = timestampZeroPrefixMillis;
     }
 
@@ -272,7 +272,7 @@ public abstract class BsWhiteXlsMan extends AbstractEntity {
      * @param timestampZeroSuffixMillis The value of the column 'timestamp_zero_suffix_millis'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTimestampZeroSuffixMillis(java.sql.Timestamp timestampZeroSuffixMillis) {
-        __modifiedProperties.addPropertyName("timestampZeroSuffixMillis");
+        registerModifiedProperty("timestampZeroSuffixMillis");
         _timestampZeroSuffixMillis = timestampZeroSuffixMillis;
     }
 }

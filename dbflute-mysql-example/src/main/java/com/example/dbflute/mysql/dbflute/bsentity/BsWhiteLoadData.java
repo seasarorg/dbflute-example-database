@@ -197,7 +197,7 @@ public abstract class BsWhiteLoadData extends AbstractEntity {
      * @param loadDataId The value of the column 'LOAD_DATA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setLoadDataId(Long loadDataId) {
-        __modifiedProperties.addPropertyName("loadDataId");
+        registerModifiedProperty("loadDataId");
         _loadDataId = loadDataId;
     }
 
@@ -215,7 +215,7 @@ public abstract class BsWhiteLoadData extends AbstractEntity {
      * @param loadDataName The value of the column 'LOAD_DATA_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setLoadDataName(String loadDataName) {
-        __modifiedProperties.addPropertyName("loadDataName");
+        registerModifiedProperty("loadDataName");
         _loadDataName = loadDataName;
     }
 }

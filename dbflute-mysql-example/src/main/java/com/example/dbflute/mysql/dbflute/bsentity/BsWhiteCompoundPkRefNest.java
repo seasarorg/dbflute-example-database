@@ -234,8 +234,10 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteCompoundPkRefByQuxMultipleId != null) { sb.append(dm).append("whiteCompoundPkRefByQuxMultipleId"); }
-        if (_whiteCompoundPkRefByFooMultipleId != null) { sb.append(dm).append("whiteCompoundPkRefByFooMultipleId"); }
+        if (_whiteCompoundPkRefByQuxMultipleId != null)
+        { sb.append(dm).append("whiteCompoundPkRefByQuxMultipleId"); }
+        if (_whiteCompoundPkRefByFooMultipleId != null)
+        { sb.append(dm).append("whiteCompoundPkRefByFooMultipleId"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -264,7 +266,7 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
      * @param compoundPkRefNestId The value of the column 'COMPOUND_PK_REF_NEST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCompoundPkRefNestId(Integer compoundPkRefNestId) {
-        __modifiedProperties.addPropertyName("compoundPkRefNestId");
+        registerModifiedProperty("compoundPkRefNestId");
         _compoundPkRefNestId = compoundPkRefNestId;
     }
 
@@ -282,7 +284,7 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
      * @param fooMultipleId The value of the column 'FOO_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setFooMultipleId(Integer fooMultipleId) {
-        __modifiedProperties.addPropertyName("fooMultipleId");
+        registerModifiedProperty("fooMultipleId");
         _fooMultipleId = fooMultipleId;
     }
 
@@ -300,7 +302,7 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
      * @param barMultipleId The value of the column 'BAR_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setBarMultipleId(Integer barMultipleId) {
-        __modifiedProperties.addPropertyName("barMultipleId");
+        registerModifiedProperty("barMultipleId");
         _barMultipleId = barMultipleId;
     }
 
@@ -318,7 +320,7 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
      * @param quxMultipleId The value of the column 'QUX_MULTIPLE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setQuxMultipleId(Integer quxMultipleId) {
-        __modifiedProperties.addPropertyName("quxMultipleId");
+        registerModifiedProperty("quxMultipleId");
         _quxMultipleId = quxMultipleId;
     }
 
@@ -336,7 +338,7 @@ public abstract class BsWhiteCompoundPkRefNest extends AbstractEntity {
      * @param nestName The value of the column 'NEST_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setNestName(String nestName) {
-        __modifiedProperties.addPropertyName("nestName");
+        registerModifiedProperty("nestName");
         _nestName = nestName;
     }
 }

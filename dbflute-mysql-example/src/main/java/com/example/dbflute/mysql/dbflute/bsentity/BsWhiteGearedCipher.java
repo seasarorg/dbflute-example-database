@@ -215,7 +215,7 @@ public abstract class BsWhiteGearedCipher extends AbstractEntity {
      * @param cipherId The value of the column 'CIPHER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setCipherId(Long cipherId) {
-        __modifiedProperties.addPropertyName("cipherId");
+        registerModifiedProperty("cipherId");
         _cipherId = cipherId;
     }
 
@@ -233,7 +233,7 @@ public abstract class BsWhiteGearedCipher extends AbstractEntity {
      * @param cipherInteger The value of the column 'CIPHER_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherInteger(Integer cipherInteger) {
-        __modifiedProperties.addPropertyName("cipherInteger");
+        registerModifiedProperty("cipherInteger");
         _cipherInteger = cipherInteger;
     }
 
@@ -251,7 +251,7 @@ public abstract class BsWhiteGearedCipher extends AbstractEntity {
      * @param cipherVarchar The value of the column 'CIPHER_VARCHAR'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherVarchar(String cipherVarchar) {
-        __modifiedProperties.addPropertyName("cipherVarchar");
+        registerModifiedProperty("cipherVarchar");
         _cipherVarchar = cipherVarchar;
     }
 
@@ -269,7 +269,7 @@ public abstract class BsWhiteGearedCipher extends AbstractEntity {
      * @param cipherDate The value of the column 'CIPHER_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherDate(java.util.Date cipherDate) {
-        __modifiedProperties.addPropertyName("cipherDate");
+        registerModifiedProperty("cipherDate");
         _cipherDate = cipherDate;
     }
 
@@ -287,7 +287,7 @@ public abstract class BsWhiteGearedCipher extends AbstractEntity {
      * @param cipherDatetime The value of the column 'CIPHER_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCipherDatetime(java.sql.Timestamp cipherDatetime) {
-        __modifiedProperties.addPropertyName("cipherDatetime");
+        registerModifiedProperty("cipherDatetime");
         _cipherDatetime = cipherDatetime;
     }
 }

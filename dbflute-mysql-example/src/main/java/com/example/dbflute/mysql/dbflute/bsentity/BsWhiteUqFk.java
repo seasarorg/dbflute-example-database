@@ -261,7 +261,7 @@ public abstract class BsWhiteUqFk extends AbstractEntity {
      * @param uqFkId The value of the column 'UQ_FK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setUqFkId(Long uqFkId) {
-        __modifiedProperties.addPropertyName("uqFkId");
+        registerModifiedProperty("uqFkId");
         _uqFkId = uqFkId;
     }
 
@@ -279,7 +279,7 @@ public abstract class BsWhiteUqFk extends AbstractEntity {
      * @param uqFkCode The value of the column 'UQ_FK_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setUqFkCode(String uqFkCode) {
-        __modifiedProperties.addPropertyName("uqFkCode");
+        registerModifiedProperty("uqFkCode");
         _uqFkCode = uqFkCode;
     }
 }

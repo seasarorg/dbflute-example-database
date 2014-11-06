@@ -186,7 +186,8 @@ public abstract class BsVendorUuidFoo extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendorUuidBar != null) { sb.append(dm).append("vendorUuidBar"); }
+        if (_vendorUuidBar != null)
+        { sb.append(dm).append("vendorUuidBar"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -215,7 +216,7 @@ public abstract class BsVendorUuidFoo extends AbstractEntity {
      * @param fooId The value of the column 'foo_id'. (basically NotNull if update: for the constraint)
      */
     public void setFooId(java.util.UUID fooId) {
-        __modifiedProperties.addPropertyName("fooId");
+        registerModifiedProperty("fooId");
         _fooId = fooId;
     }
 
@@ -233,7 +234,7 @@ public abstract class BsVendorUuidFoo extends AbstractEntity {
      * @param fooName The value of the column 'foo_name'. (basically NotNull if update: for the constraint)
      */
     public void setFooName(String fooName) {
-        __modifiedProperties.addPropertyName("fooName");
+        registerModifiedProperty("fooName");
         _fooName = fooName;
     }
 
@@ -251,7 +252,7 @@ public abstract class BsVendorUuidFoo extends AbstractEntity {
      * @param barId The value of the column 'bar_id'. (basically NotNull if update: for the constraint)
      */
     public void setBarId(java.util.UUID barId) {
-        __modifiedProperties.addPropertyName("barId");
+        registerModifiedProperty("barId");
         _barId = barId;
     }
 }

@@ -195,7 +195,8 @@ public abstract class BsWhiteVariantRelationReferrerRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteVariantRelationReferrer != null) { sb.append(dm).append("whiteVariantRelationReferrer"); }
+        if (_whiteVariantRelationReferrer != null)
+        { sb.append(dm).append("whiteVariantRelationReferrer"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhiteVariantRelationReferrerRef extends AbstractEntity {
      * @param refId The value of the column 'REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefId(Long refId) {
-        __modifiedProperties.addPropertyName("refId");
+        registerModifiedProperty("refId");
         _refId = refId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhiteVariantRelationReferrerRef extends AbstractEntity {
      * @param referrerId The value of the column 'REFERRER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setReferrerId(Long referrerId) {
-        __modifiedProperties.addPropertyName("referrerId");
+        registerModifiedProperty("referrerId");
         _referrerId = referrerId;
     }
 }

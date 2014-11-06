@@ -415,10 +415,14 @@ public abstract class BsWhiteVariantRelationReferrer extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteVariantRelationMasterFooAsVariant != null) { sb.append(dm).append("whiteVariantRelationMasterFooAsVariant"); }
-        if (_whiteVariantRelationMasterBarAsVariant != null) { sb.append(dm).append("whiteVariantRelationMasterBarAsVariant"); }
-        if (_whiteVariantRelationMasterQuxAsVariantByQue != null) { sb.append(dm).append("whiteVariantRelationMasterQuxAsVariantByQue"); }
-        if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null) { sb.append(dm).append("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
+        if (_whiteVariantRelationMasterFooAsVariant != null)
+        { sb.append(dm).append("whiteVariantRelationMasterFooAsVariant"); }
+        if (_whiteVariantRelationMasterBarAsVariant != null)
+        { sb.append(dm).append("whiteVariantRelationMasterBarAsVariant"); }
+        if (_whiteVariantRelationMasterQuxAsVariantByQue != null)
+        { sb.append(dm).append("whiteVariantRelationMasterQuxAsVariantByQue"); }
+        if (_whiteVariantRelationMasterCorgeAsVariantByQuxType != null)
+        { sb.append(dm).append("whiteVariantRelationMasterCorgeAsVariantByQuxType"); }
         if (_whiteVariantRelationReferrerRefList != null && !_whiteVariantRelationReferrerRefList.isEmpty())
         { sb.append(dm).append("whiteVariantRelationReferrerRefList"); }
         if (sb.length() > dm.length()) {
@@ -449,7 +453,7 @@ public abstract class BsWhiteVariantRelationReferrer extends AbstractEntity {
      * @param referrerId The value of the column 'REFERRER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setReferrerId(Long referrerId) {
-        __modifiedProperties.addPropertyName("referrerId");
+        registerModifiedProperty("referrerId");
         _referrerId = referrerId;
     }
 
@@ -467,7 +471,7 @@ public abstract class BsWhiteVariantRelationReferrer extends AbstractEntity {
      * @param variantMasterId The value of the column 'VARIANT_MASTER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVariantMasterId(Long variantMasterId) {
-        __modifiedProperties.addPropertyName("variantMasterId");
+        registerModifiedProperty("variantMasterId");
         _variantMasterId = variantMasterId;
     }
 
@@ -486,7 +490,7 @@ public abstract class BsWhiteVariantRelationReferrer extends AbstractEntity {
      */
     protected void setMasterTypeCode(String masterTypeCode) {
         checkClassificationCode("MASTER_TYPE_CODE", CDef.DefMeta.VariantRelationMasterType, masterTypeCode);
-        __modifiedProperties.addPropertyName("masterTypeCode");
+        registerModifiedProperty("masterTypeCode");
         _masterTypeCode = masterTypeCode;
     }
 

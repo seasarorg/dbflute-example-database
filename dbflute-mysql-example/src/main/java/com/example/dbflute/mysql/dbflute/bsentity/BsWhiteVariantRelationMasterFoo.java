@@ -238,8 +238,10 @@ public abstract class BsWhiteVariantRelationMasterFoo extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne != null) { sb.append(dm).append("whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne"); }
-        if (_whiteVariantRelationLocalPkReferrerAsOne != null) { sb.append(dm).append("whiteVariantRelationLocalPkReferrerAsOne"); }
+        if (_whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne != null)
+        { sb.append(dm).append("whiteVariantRelationReferrerAsBizOneToOneForBizManyToOne"); }
+        if (_whiteVariantRelationLocalPkReferrerAsOne != null)
+        { sb.append(dm).append("whiteVariantRelationLocalPkReferrerAsOne"); }
         if (_whiteVariantRelationReferrerAsVariantList != null && !_whiteVariantRelationReferrerAsVariantList.isEmpty())
         { sb.append(dm).append("whiteVariantRelationReferrerAsVariantList"); }
         if (sb.length() > dm.length()) {
@@ -270,7 +272,7 @@ public abstract class BsWhiteVariantRelationMasterFoo extends AbstractEntity {
      * @param masterFooId The value of the column 'MASTER_FOO_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMasterFooId(Long masterFooId) {
-        __modifiedProperties.addPropertyName("masterFooId");
+        registerModifiedProperty("masterFooId");
         _masterFooId = masterFooId;
     }
 
@@ -288,7 +290,7 @@ public abstract class BsWhiteVariantRelationMasterFoo extends AbstractEntity {
      * @param masterFooName The value of the column 'MASTER_FOO_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMasterFooName(String masterFooName) {
-        __modifiedProperties.addPropertyName("masterFooName");
+        registerModifiedProperty("masterFooName");
         _masterFooName = masterFooName;
     }
 }

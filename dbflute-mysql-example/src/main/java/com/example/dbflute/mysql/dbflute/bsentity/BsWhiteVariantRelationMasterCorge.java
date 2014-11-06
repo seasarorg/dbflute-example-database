@@ -294,7 +294,7 @@ public abstract class BsWhiteVariantRelationMasterCorge extends AbstractEntity {
      * @param masterCorgeId The value of the column 'MASTER_CORGE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMasterCorgeId(Long masterCorgeId) {
-        __modifiedProperties.addPropertyName("masterCorgeId");
+        registerModifiedProperty("masterCorgeId");
         _masterCorgeId = masterCorgeId;
     }
 
@@ -312,7 +312,7 @@ public abstract class BsWhiteVariantRelationMasterCorge extends AbstractEntity {
      * @param masterCorgeName The value of the column 'MASTER_CORGE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMasterCorgeName(String masterCorgeName) {
-        __modifiedProperties.addPropertyName("masterCorgeName");
+        registerModifiedProperty("masterCorgeName");
         _masterCorgeName = masterCorgeName;
     }
 
@@ -331,7 +331,7 @@ public abstract class BsWhiteVariantRelationMasterCorge extends AbstractEntity {
      */
     protected void setCorgeTypeCode(String corgeTypeCode) {
         checkClassificationCode("CORGE_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, corgeTypeCode);
-        __modifiedProperties.addPropertyName("corgeTypeCode");
+        registerModifiedProperty("corgeTypeCode");
         _corgeTypeCode = corgeTypeCode;
     }
 

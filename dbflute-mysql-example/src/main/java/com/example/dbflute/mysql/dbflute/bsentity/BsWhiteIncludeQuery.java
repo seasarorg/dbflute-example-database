@@ -215,7 +215,7 @@ public abstract class BsWhiteIncludeQuery extends AbstractEntity {
      * @param includeQueryId The value of the column 'INCLUDE_QUERY_ID'. (basically NotNull if update: for the constraint)
      */
     public void setIncludeQueryId(Long includeQueryId) {
-        __modifiedProperties.addPropertyName("includeQueryId");
+        registerModifiedProperty("includeQueryId");
         _includeQueryId = includeQueryId;
     }
 
@@ -233,7 +233,7 @@ public abstract class BsWhiteIncludeQuery extends AbstractEntity {
      * @param includeQueryVarchar The value of the column 'INCLUDE_QUERY_VARCHAR'. (NullAllowed: null update allowed for no constraint)
      */
     public void setIncludeQueryVarchar(String includeQueryVarchar) {
-        __modifiedProperties.addPropertyName("includeQueryVarchar");
+        registerModifiedProperty("includeQueryVarchar");
         _includeQueryVarchar = includeQueryVarchar;
     }
 
@@ -251,7 +251,7 @@ public abstract class BsWhiteIncludeQuery extends AbstractEntity {
      * @param includeQueryInteger The value of the column 'INCLUDE_QUERY_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setIncludeQueryInteger(Integer includeQueryInteger) {
-        __modifiedProperties.addPropertyName("includeQueryInteger");
+        registerModifiedProperty("includeQueryInteger");
         _includeQueryInteger = includeQueryInteger;
     }
 
@@ -269,7 +269,7 @@ public abstract class BsWhiteIncludeQuery extends AbstractEntity {
      * @param includeQueryDate The value of the column 'INCLUDE_QUERY_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setIncludeQueryDate(java.util.Date includeQueryDate) {
-        __modifiedProperties.addPropertyName("includeQueryDate");
+        registerModifiedProperty("includeQueryDate");
         _includeQueryDate = includeQueryDate;
     }
 
@@ -287,7 +287,7 @@ public abstract class BsWhiteIncludeQuery extends AbstractEntity {
      * @param includeQueryDatetime The value of the column 'INCLUDE_QUERY_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setIncludeQueryDatetime(java.sql.Timestamp includeQueryDatetime) {
-        __modifiedProperties.addPropertyName("includeQueryDatetime");
+        registerModifiedProperty("includeQueryDatetime");
         _includeQueryDatetime = includeQueryDatetime;
     }
 }

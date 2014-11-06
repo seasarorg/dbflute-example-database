@@ -203,7 +203,7 @@ public abstract class BsWhiteTableExceptGenRef extends AbstractEntity {
      * @param genRefId The value of the column 'GEN_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setGenRefId(Long genRefId) {
-        __modifiedProperties.addPropertyName("genRefId");
+        registerModifiedProperty("genRefId");
         _genRefId = genRefId;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsWhiteTableExceptGenRef extends AbstractEntity {
      * @param genRefName The value of the column 'GEN_REF_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setGenRefName(String genRefName) {
-        __modifiedProperties.addPropertyName("genRefName");
+        registerModifiedProperty("genRefName");
         _genRefName = genRefName;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsWhiteTableExceptGenRef extends AbstractEntity {
      * @param genOnlyId The value of the column 'GEN_ONLY_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setGenOnlyId(Long genOnlyId) {
-        __modifiedProperties.addPropertyName("genOnlyId");
+        registerModifiedProperty("genOnlyId");
         _genOnlyId = genOnlyId;
     }
 }

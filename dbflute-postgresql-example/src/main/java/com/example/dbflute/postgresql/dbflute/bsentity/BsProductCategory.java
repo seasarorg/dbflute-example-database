@@ -232,7 +232,8 @@ public abstract class BsProductCategory extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_productCategorySelf != null) { sb.append(dm).append("productCategorySelf"); }
+        if (_productCategorySelf != null)
+        { sb.append(dm).append("productCategorySelf"); }
         if (_productList != null && !_productList.isEmpty())
         { sb.append(dm).append("productList"); }
         if (_productCategorySelfList != null && !_productCategorySelfList.isEmpty())
@@ -265,7 +266,7 @@ public abstract class BsProductCategory extends AbstractEntity {
      * @param productCategoryCode The value of the column 'product_category_code'. (basically NotNull if update: for the constraint)
      */
     public void setProductCategoryCode(String productCategoryCode) {
-        __modifiedProperties.addPropertyName("productCategoryCode");
+        registerModifiedProperty("productCategoryCode");
         _productCategoryCode = productCategoryCode;
     }
 
@@ -283,7 +284,7 @@ public abstract class BsProductCategory extends AbstractEntity {
      * @param productCategoryName The value of the column 'product_category_name'. (basically NotNull if update: for the constraint)
      */
     public void setProductCategoryName(String productCategoryName) {
-        __modifiedProperties.addPropertyName("productCategoryName");
+        registerModifiedProperty("productCategoryName");
         _productCategoryName = productCategoryName;
     }
 
@@ -303,7 +304,7 @@ public abstract class BsProductCategory extends AbstractEntity {
      * @param parentCategoryCode The value of the column 'parent_category_code'. (NullAllowed: null update allowed for no constraint)
      */
     public void setParentCategoryCode(String parentCategoryCode) {
-        __modifiedProperties.addPropertyName("parentCategoryCode");
+        registerModifiedProperty("parentCategoryCode");
         _parentCategoryCode = parentCategoryCode;
     }
 }

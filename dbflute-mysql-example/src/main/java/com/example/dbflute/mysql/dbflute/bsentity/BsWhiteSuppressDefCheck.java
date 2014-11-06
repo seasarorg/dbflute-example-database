@@ -197,7 +197,7 @@ public abstract class BsWhiteSuppressDefCheck extends AbstractEntity {
      * @param defCheckId The value of the column 'DEF_CHECK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setDefCheckId(Long defCheckId) {
-        __modifiedProperties.addPropertyName("defCheckId");
+        registerModifiedProperty("defCheckId");
         _defCheckId = defCheckId;
     }
 
@@ -215,7 +215,7 @@ public abstract class BsWhiteSuppressDefCheck extends AbstractEntity {
      * @param defCheckName The value of the column 'DEF_CHECK_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setDefCheckName(String defCheckName) {
-        __modifiedProperties.addPropertyName("defCheckName");
+        registerModifiedProperty("defCheckName");
         _defCheckName = defCheckName;
     }
 }

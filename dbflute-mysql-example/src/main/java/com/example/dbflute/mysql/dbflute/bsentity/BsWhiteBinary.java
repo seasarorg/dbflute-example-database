@@ -203,7 +203,7 @@ public abstract class BsWhiteBinary extends AbstractEntity {
      * @param binaryId The value of the column 'BINARY_ID'. (basically NotNull if update: for the constraint)
      */
     public void setBinaryId(Long binaryId) {
-        __modifiedProperties.addPropertyName("binaryId");
+        registerModifiedProperty("binaryId");
         _binaryId = binaryId;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsWhiteBinary extends AbstractEntity {
      * @param binaryData The value of the column 'BINARY_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBinaryData(byte[] binaryData) {
-        __modifiedProperties.addPropertyName("binaryData");
+        registerModifiedProperty("binaryData");
         _binaryData = binaryData;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsWhiteBinary extends AbstractEntity {
      * @param blobData The value of the column 'BLOB_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBlobData(byte[] blobData) {
-        __modifiedProperties.addPropertyName("blobData");
+        registerModifiedProperty("blobData");
         _blobData = blobData;
     }
 }

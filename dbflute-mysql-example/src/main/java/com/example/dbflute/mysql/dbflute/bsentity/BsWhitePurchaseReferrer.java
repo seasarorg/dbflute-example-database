@@ -195,7 +195,8 @@ public abstract class BsWhitePurchaseReferrer extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_purchase != null) { sb.append(dm).append("purchase"); }
+        if (_purchase != null)
+        { sb.append(dm).append("purchase"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhitePurchaseReferrer extends AbstractEntity {
      * @param purchaseReferrerId The value of the column 'PURCHASE_REFERRER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPurchaseReferrerId(Long purchaseReferrerId) {
-        __modifiedProperties.addPropertyName("purchaseReferrerId");
+        registerModifiedProperty("purchaseReferrerId");
         _purchaseReferrerId = purchaseReferrerId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhitePurchaseReferrer extends AbstractEntity {
      * @param purchaseReferrerName The value of the column 'PURCHASE_REFERRER_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setPurchaseReferrerName(String purchaseReferrerName) {
-        __modifiedProperties.addPropertyName("purchaseReferrerName");
+        registerModifiedProperty("purchaseReferrerName");
         _purchaseReferrerName = purchaseReferrerName;
     }
 }

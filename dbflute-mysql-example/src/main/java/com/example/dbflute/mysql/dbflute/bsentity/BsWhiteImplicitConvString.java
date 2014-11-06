@@ -272,8 +272,10 @@ public abstract class BsWhiteImplicitConvString extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteImplicitConvInteger != null) { sb.append(dm).append("whiteImplicitConvInteger"); }
-        if (_whiteImplicitConvNumeric != null) { sb.append(dm).append("whiteImplicitConvNumeric"); }
+        if (_whiteImplicitConvInteger != null)
+        { sb.append(dm).append("whiteImplicitConvInteger"); }
+        if (_whiteImplicitConvNumeric != null)
+        { sb.append(dm).append("whiteImplicitConvNumeric"); }
         if (_whiteImplicitConvIntegerList != null && !_whiteImplicitConvIntegerList.isEmpty())
         { sb.append(dm).append("whiteImplicitConvIntegerList"); }
         if (_whiteImplicitConvNumericList != null && !_whiteImplicitConvNumericList.isEmpty())
@@ -306,7 +308,7 @@ public abstract class BsWhiteImplicitConvString extends AbstractEntity {
      * @param implicitConvStringId The value of the column 'IMPLICIT_CONV_STRING_ID'. (basically NotNull if update: for the constraint)
      */
     public void setImplicitConvStringId(String implicitConvStringId) {
-        __modifiedProperties.addPropertyName("implicitConvStringId");
+        registerModifiedProperty("implicitConvStringId");
         _implicitConvStringId = implicitConvStringId;
     }
 
@@ -324,7 +326,7 @@ public abstract class BsWhiteImplicitConvString extends AbstractEntity {
      * @param implicitConvIntegerId The value of the column 'IMPLICIT_CONV_INTEGER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setImplicitConvIntegerId(String implicitConvIntegerId) {
-        __modifiedProperties.addPropertyName("implicitConvIntegerId");
+        registerModifiedProperty("implicitConvIntegerId");
         _implicitConvIntegerId = implicitConvIntegerId;
     }
 
@@ -342,7 +344,7 @@ public abstract class BsWhiteImplicitConvString extends AbstractEntity {
      * @param implicitConvNumericId The value of the column 'IMPLICIT_CONV_NUMERIC_ID'. (basically NotNull if update: for the constraint)
      */
     public void setImplicitConvNumericId(String implicitConvNumericId) {
-        __modifiedProperties.addPropertyName("implicitConvNumericId");
+        registerModifiedProperty("implicitConvNumericId");
         _implicitConvNumericId = implicitConvNumericId;
     }
 
@@ -360,7 +362,7 @@ public abstract class BsWhiteImplicitConvString extends AbstractEntity {
      * @param implicitConvName The value of the column 'IMPLICIT_CONV_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setImplicitConvName(String implicitConvName) {
-        __modifiedProperties.addPropertyName("implicitConvName");
+        registerModifiedProperty("implicitConvName");
         _implicitConvName = implicitConvName;
     }
 }

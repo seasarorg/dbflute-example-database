@@ -234,8 +234,10 @@ public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteAllInOneClsElementAsFoo != null) { sb.append(dm).append("whiteAllInOneClsElementAsFoo"); }
-        if (_whiteAllInOneClsElementAsBar != null) { sb.append(dm).append("whiteAllInOneClsElementAsBar"); }
+        if (_whiteAllInOneClsElementAsFoo != null)
+        { sb.append(dm).append("whiteAllInOneClsElementAsFoo"); }
+        if (_whiteAllInOneClsElementAsBar != null)
+        { sb.append(dm).append("whiteAllInOneClsElementAsBar"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -264,7 +266,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
      * @param clsRefId The value of the column 'CLS_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setClsRefId(Integer clsRefId) {
-        __modifiedProperties.addPropertyName("clsRefId");
+        registerModifiedProperty("clsRefId");
         _clsRefId = clsRefId;
     }
 
@@ -282,7 +284,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
      * @param fooCode The value of the column 'FOO_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setFooCode(String fooCode) {
-        __modifiedProperties.addPropertyName("fooCode");
+        registerModifiedProperty("fooCode");
         _fooCode = fooCode;
     }
 
@@ -300,7 +302,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
      * @param barCode The value of the column 'BAR_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setBarCode(String barCode) {
-        __modifiedProperties.addPropertyName("barCode");
+        registerModifiedProperty("barCode");
         _barCode = barCode;
     }
 
@@ -318,7 +320,7 @@ public abstract class BsWhiteAllInOneClsNormalColRef extends AbstractEntity {
      * @param quxCode The value of the column 'QUX_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setQuxCode(String quxCode) {
-        __modifiedProperties.addPropertyName("quxCode");
+        registerModifiedProperty("quxCode");
         _quxCode = quxCode;
     }
 }

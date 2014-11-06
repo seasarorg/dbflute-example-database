@@ -548,12 +548,18 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_memberStatus != null) { sb.append(dm).append("memberStatus"); }
-        if (_memberAddressAsValid != null) { sb.append(dm).append("memberAddressAsValid"); }
-        if (_memberLoginAsLatest != null) { sb.append(dm).append("memberLoginAsLatest"); }
-        if (_memberSecurityAsOne != null) { sb.append(dm).append("memberSecurityAsOne"); }
-        if (_memberServiceAsOne != null) { sb.append(dm).append("memberServiceAsOne"); }
-        if (_memberWithdrawalAsOne != null) { sb.append(dm).append("memberWithdrawalAsOne"); }
+        if (_memberStatus != null)
+        { sb.append(dm).append("memberStatus"); }
+        if (_memberAddressAsValid != null)
+        { sb.append(dm).append("memberAddressAsValid"); }
+        if (_memberLoginAsLatest != null)
+        { sb.append(dm).append("memberLoginAsLatest"); }
+        if (_memberSecurityAsOne != null)
+        { sb.append(dm).append("memberSecurityAsOne"); }
+        if (_memberServiceAsOne != null)
+        { sb.append(dm).append("memberServiceAsOne"); }
+        if (_memberWithdrawalAsOne != null)
+        { sb.append(dm).append("memberWithdrawalAsOne"); }
         if (_memberAddressList != null && !_memberAddressList.isEmpty())
         { sb.append(dm).append("memberAddressList"); }
         if (_memberLoginList != null && !_memberLoginList.isEmpty())
@@ -592,7 +598,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberId The value of the column 'member_id'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -614,7 +620,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberName The value of the column 'member_name'. (basically NotNull if update: for the constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -636,7 +642,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberAccount The value of the column 'member_account'. (basically NotNull if update: for the constraint)
      */
     public void setMemberAccount(String memberAccount) {
-        __modifiedProperties.addPropertyName("memberAccount");
+        registerModifiedProperty("memberAccount");
         _memberAccount = memberAccount;
     }
 
@@ -658,7 +664,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param memberStatusCode The value of the column 'member_status_code'. (basically NotNull if update: for the constraint)
      */
     protected void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -680,7 +686,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param formalizedDatetime The value of the column 'formalized_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -700,7 +706,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param birthdate The value of the column 'birthdate'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -724,7 +730,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param registerDatetime The value of the column 'register_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -746,7 +752,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param registerUser The value of the column 'register_user'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -764,7 +770,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param registerProcess The value of the column 'register_process'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -786,7 +792,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param updateDatetime The value of the column 'update_datetime'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -808,7 +814,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param updateUser The value of the column 'update_user'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -826,7 +832,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param updateProcess The value of the column 'update_process'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 
@@ -848,7 +854,7 @@ public abstract class BsMember extends AbstractEntity implements EntityDefinedCo
      * @param versionNo The value of the column 'version_no'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 

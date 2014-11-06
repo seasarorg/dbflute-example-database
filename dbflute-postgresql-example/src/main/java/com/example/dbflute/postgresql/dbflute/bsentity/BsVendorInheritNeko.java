@@ -206,7 +206,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param inuId The value of the column 'inu_id'. (basically NotNull if update: for the constraint)
      */
     public void setInuId(Integer inuId) {
-        __modifiedProperties.addPropertyName("inuId");
+        registerModifiedProperty("inuId");
         _inuId = inuId;
     }
 
@@ -224,7 +224,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param inuName The value of the column 'inu_name'. (basically NotNull if update: for the constraint)
      */
     public void setInuName(String inuName) {
-        __modifiedProperties.addPropertyName("inuName");
+        registerModifiedProperty("inuName");
         _inuName = inuName;
     }
 
@@ -242,7 +242,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param inuDate The value of the column 'inu_date'. (NullAllowed: null update allowed for no constraint)
      */
     public void setInuDate(java.util.Date inuDate) {
-        __modifiedProperties.addPropertyName("inuDate");
+        registerModifiedProperty("inuDate");
         _inuDate = inuDate;
     }
 
@@ -260,7 +260,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param nekoId The value of the column 'neko_id'. (basically NotNull if update: for the constraint)
      */
     public void setNekoId(Integer nekoId) {
-        __modifiedProperties.addPropertyName("nekoId");
+        registerModifiedProperty("nekoId");
         _nekoId = nekoId;
     }
 
@@ -278,7 +278,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param nekoName The value of the column 'neko_name'. (basically NotNull if update: for the constraint)
      */
     public void setNekoName(String nekoName) {
-        __modifiedProperties.addPropertyName("nekoName");
+        registerModifiedProperty("nekoName");
         _nekoName = nekoName;
     }
 
@@ -296,7 +296,7 @@ public abstract class BsVendorInheritNeko extends AbstractEntity {
      * @param nekoDate The value of the column 'neko_date'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNekoDate(java.util.Date nekoDate) {
-        __modifiedProperties.addPropertyName("nekoDate");
+        registerModifiedProperty("nekoDate");
         _nekoDate = nekoDate;
     }
 }

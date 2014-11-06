@@ -206,7 +206,7 @@ public abstract class BsSpResultSetParameterCurMember extends AbstractEntity {
      * @param memberId The value of the column 'member_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -224,7 +224,7 @@ public abstract class BsSpResultSetParameterCurMember extends AbstractEntity {
      * @param memberName The value of the column 'member_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -242,7 +242,7 @@ public abstract class BsSpResultSetParameterCurMember extends AbstractEntity {
      * @param birthdate The value of the column 'birthdate'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -260,7 +260,7 @@ public abstract class BsSpResultSetParameterCurMember extends AbstractEntity {
      * @param formalizedDatetime The value of the column 'formalized_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -278,7 +278,7 @@ public abstract class BsSpResultSetParameterCurMember extends AbstractEntity {
      * @param memberStatusCode The value of the column 'member_status_code'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 }

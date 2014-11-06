@@ -239,7 +239,7 @@ public abstract class BsWhiteUqClassification extends AbstractEntity {
      * @param uqClsId The value of the column 'UQ_CLS_ID'. (basically NotNull if update: for the constraint)
      */
     public void setUqClsId(Long uqClsId) {
-        __modifiedProperties.addPropertyName("uqClsId");
+        registerModifiedProperty("uqClsId");
         _uqClsId = uqClsId;
     }
 
@@ -257,7 +257,7 @@ public abstract class BsWhiteUqClassification extends AbstractEntity {
      * @param uqClsCode The value of the column 'UQ_CLS_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setUqClsCode(String uqClsCode) {
-        __modifiedProperties.addPropertyName("uqClsCode");
+        registerModifiedProperty("uqClsCode");
         _uqClsCode = uqClsCode;
     }
 

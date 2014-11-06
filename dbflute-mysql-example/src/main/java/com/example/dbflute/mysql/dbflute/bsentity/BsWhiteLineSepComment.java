@@ -288,7 +288,7 @@ public abstract class BsWhiteLineSepComment extends AbstractEntity {
      * @param lineSepCommentCode The value of the column 'LINE_SEP_COMMENT_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setLineSepCommentCode(String lineSepCommentCode) {
-        __modifiedProperties.addPropertyName("lineSepCommentCode");
+        registerModifiedProperty("lineSepCommentCode");
         _lineSepCommentCode = lineSepCommentCode;
     }
 
@@ -306,7 +306,7 @@ public abstract class BsWhiteLineSepComment extends AbstractEntity {
      * @param lineSepCommentName The value of the column 'LINE_SEP_COMMENT_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setLineSepCommentName(String lineSepCommentName) {
-        __modifiedProperties.addPropertyName("lineSepCommentName");
+        registerModifiedProperty("lineSepCommentName");
         _lineSepCommentName = lineSepCommentName;
     }
 

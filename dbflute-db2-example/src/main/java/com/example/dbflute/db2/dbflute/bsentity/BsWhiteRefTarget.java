@@ -180,7 +180,8 @@ public abstract class BsWhiteRefTarget extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteTarget != null) { sb.append(dm).append("whiteTarget"); }
+        if (_whiteTarget != null)
+        { sb.append(dm).append("whiteTarget"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -209,7 +210,7 @@ public abstract class BsWhiteRefTarget extends AbstractEntity {
      * @param refTargetId The value of the column 'REF_TARGET_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefTargetId(Long refTargetId) {
-        __modifiedProperties.addPropertyName("refTargetId");
+        registerModifiedProperty("refTargetId");
         _refTargetId = refTargetId;
     }
 
@@ -227,7 +228,7 @@ public abstract class BsWhiteRefTarget extends AbstractEntity {
      * @param targetId The value of the column 'TARGET_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTargetId(Long targetId) {
-        __modifiedProperties.addPropertyName("targetId");
+        registerModifiedProperty("targetId");
         _targetId = targetId;
     }
 }

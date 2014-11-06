@@ -226,7 +226,7 @@ public abstract class BsWhitePerrottaOverProductNested extends AbstractEntity {
      * @param productNestedCode The value of the column 'PRODUCT_NESTED_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductNestedCode(String productNestedCode) {
-        __modifiedProperties.addPropertyName("productNestedCode");
+        registerModifiedProperty("productNestedCode");
         _productNestedCode = productNestedCode;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhitePerrottaOverProductNested extends AbstractEntity {
      * @param productNestedName The value of the column 'PRODUCT_NESTED_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductNestedName(String productNestedName) {
-        __modifiedProperties.addPropertyName("productNestedName");
+        registerModifiedProperty("productNestedName");
         _productNestedName = productNestedName;
     }
 }

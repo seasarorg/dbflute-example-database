@@ -223,7 +223,8 @@ public abstract class BsWhiteSuppressJoinSqManyOne extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSuppressJoinSqManyOneOne != null) { sb.append(dm).append("whiteSuppressJoinSqManyOneOne"); }
+        if (_whiteSuppressJoinSqManyOneOne != null)
+        { sb.append(dm).append("whiteSuppressJoinSqManyOneOne"); }
         if (_whiteSuppressJoinSqManyList != null && !_whiteSuppressJoinSqManyList.isEmpty())
         { sb.append(dm).append("whiteSuppressJoinSqManyList"); }
         if (sb.length() > dm.length()) {
@@ -254,7 +255,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne extends AbstractEntity {
      * @param manyOneId The value of the column 'MANY_ONE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setManyOneId(Integer manyOneId) {
-        __modifiedProperties.addPropertyName("manyOneId");
+        registerModifiedProperty("manyOneId");
         _manyOneId = manyOneId;
     }
 
@@ -272,7 +273,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne extends AbstractEntity {
      * @param manyOneName The value of the column 'MANY_ONE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setManyOneName(String manyOneName) {
-        __modifiedProperties.addPropertyName("manyOneName");
+        registerModifiedProperty("manyOneName");
         _manyOneName = manyOneName;
     }
 
@@ -290,7 +291,7 @@ public abstract class BsWhiteSuppressJoinSqManyOne extends AbstractEntity {
      * @param manyOneOneId The value of the column 'MANY_ONE_ONE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setManyOneOneId(Integer manyOneOneId) {
-        __modifiedProperties.addPropertyName("manyOneOneId");
+        registerModifiedProperty("manyOneOneId");
         _manyOneOneId = manyOneOneId;
     }
 }

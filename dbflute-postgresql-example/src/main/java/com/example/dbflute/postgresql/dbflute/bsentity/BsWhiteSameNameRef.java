@@ -186,7 +186,8 @@ public abstract class BsWhiteSameNameRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSameName != null) { sb.append(dm).append("whiteSameName"); }
+        if (_whiteSameName != null)
+        { sb.append(dm).append("whiteSameName"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -215,7 +216,7 @@ public abstract class BsWhiteSameNameRef extends AbstractEntity {
      * @param sameNameRefId The value of the column 'same_name_ref_id'. (basically NotNull if update: for the constraint)
      */
     public void setSameNameRefId(Integer sameNameRefId) {
-        __modifiedProperties.addPropertyName("sameNameRefId");
+        registerModifiedProperty("sameNameRefId");
         _sameNameRefId = sameNameRefId;
     }
 
@@ -233,7 +234,7 @@ public abstract class BsWhiteSameNameRef extends AbstractEntity {
      * @param sameNameId The value of the column 'same_name_id'. (basically NotNull if update: for the constraint)
      */
     public void setSameNameId(Long sameNameId) {
-        __modifiedProperties.addPropertyName("sameNameId");
+        registerModifiedProperty("sameNameId");
         _sameNameId = sameNameId;
     }
 
@@ -251,7 +252,7 @@ public abstract class BsWhiteSameNameRef extends AbstractEntity {
      * @param nextSameNameId The value of the column 'next_same_name_id'. (basically NotNull if update: for the constraint)
      */
     public void setNextSameNameId(Long nextSameNameId) {
-        __modifiedProperties.addPropertyName("nextSameNameId");
+        registerModifiedProperty("nextSameNameId");
         _nextSameNameId = nextSameNameId;
     }
 }

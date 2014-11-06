@@ -195,7 +195,8 @@ public abstract class BsWhiteQuotedRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteQuoted != null) { sb.append(dm).append("whiteQuoted"); }
+        if (_whiteQuoted != null)
+        { sb.append(dm).append("whiteQuoted"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhiteQuotedRef extends AbstractEntity {
      * @param where The value of the column 'WHERE'. (basically NotNull if update: for the constraint)
      */
     public void setWhere(Integer where) {
-        __modifiedProperties.addPropertyName("where");
+        registerModifiedProperty("where");
         _where = where;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhiteQuotedRef extends AbstractEntity {
      * @param order The value of the column 'ORDER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setOrder(Integer order) {
-        __modifiedProperties.addPropertyName("order");
+        registerModifiedProperty("order");
         _order = order;
     }
 }

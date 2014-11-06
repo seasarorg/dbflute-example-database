@@ -226,7 +226,7 @@ public abstract class BsWhiteQuoted extends AbstractEntity {
      * @param select The value of the column 'SELECT'. (basically NotNull if update: for the constraint)
      */
     public void setSelect(Integer select) {
-        __modifiedProperties.addPropertyName("select");
+        registerModifiedProperty("select");
         _select = select;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhiteQuoted extends AbstractEntity {
      * @param from The value of the column 'FROM'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFrom(String from) {
-        __modifiedProperties.addPropertyName("from");
+        registerModifiedProperty("from");
         _from = from;
     }
 }

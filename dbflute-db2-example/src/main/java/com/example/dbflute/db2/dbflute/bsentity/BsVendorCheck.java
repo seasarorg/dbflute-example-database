@@ -308,7 +308,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param vendorCheckId The value of the column 'VENDOR_CHECK_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendorCheckId(Long vendorCheckId) {
-        __modifiedProperties.addPropertyName("vendorCheckId");
+        registerModifiedProperty("vendorCheckId");
         _vendorCheckId = vendorCheckId;
     }
 
@@ -326,7 +326,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfChar The value of the column 'TYPE_OF_CHAR'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfChar(String typeOfChar) {
-        __modifiedProperties.addPropertyName("typeOfChar");
+        registerModifiedProperty("typeOfChar");
         _typeOfChar = typeOfChar;
     }
 
@@ -344,7 +344,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfCharForBitData The value of the column 'TYPE_OF_CHAR_FOR_BIT_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfCharForBitData(byte[] typeOfCharForBitData) {
-        __modifiedProperties.addPropertyName("typeOfCharForBitData");
+        registerModifiedProperty("typeOfCharForBitData");
         _typeOfCharForBitData = typeOfCharForBitData;
     }
 
@@ -362,7 +362,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfVarchar The value of the column 'TYPE_OF_VARCHAR'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfVarchar(String typeOfVarchar) {
-        __modifiedProperties.addPropertyName("typeOfVarchar");
+        registerModifiedProperty("typeOfVarchar");
         _typeOfVarchar = typeOfVarchar;
     }
 
@@ -380,7 +380,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfVarcharForBitData The value of the column 'TYPE_OF_VARCHAR_FOR_BIT_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfVarcharForBitData(byte[] typeOfVarcharForBitData) {
-        __modifiedProperties.addPropertyName("typeOfVarcharForBitData");
+        registerModifiedProperty("typeOfVarcharForBitData");
         _typeOfVarcharForBitData = typeOfVarcharForBitData;
     }
 
@@ -398,7 +398,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfClob The value of the column 'TYPE_OF_CLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfClob(String typeOfClob) {
-        __modifiedProperties.addPropertyName("typeOfClob");
+        registerModifiedProperty("typeOfClob");
         _typeOfClob = typeOfClob;
     }
 
@@ -416,7 +416,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDbclob The value of the column 'TYPE_OF_DBCLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDbclob(String typeOfDbclob) {
-        __modifiedProperties.addPropertyName("typeOfDbclob");
+        registerModifiedProperty("typeOfDbclob");
         _typeOfDbclob = typeOfDbclob;
     }
 
@@ -434,7 +434,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDecimalDecimal The value of the column 'TYPE_OF_DECIMAL_DECIMAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDecimalDecimal(java.math.BigDecimal typeOfDecimalDecimal) {
-        __modifiedProperties.addPropertyName("typeOfDecimalDecimal");
+        registerModifiedProperty("typeOfDecimalDecimal");
         _typeOfDecimalDecimal = typeOfDecimalDecimal;
     }
 
@@ -452,7 +452,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDecimalInteger The value of the column 'TYPE_OF_DECIMAL_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDecimalInteger(Integer typeOfDecimalInteger) {
-        __modifiedProperties.addPropertyName("typeOfDecimalInteger");
+        registerModifiedProperty("typeOfDecimalInteger");
         _typeOfDecimalInteger = typeOfDecimalInteger;
     }
 
@@ -470,7 +470,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDecimalBigint The value of the column 'TYPE_OF_DECIMAL_BIGINT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDecimalBigint(Long typeOfDecimalBigint) {
-        __modifiedProperties.addPropertyName("typeOfDecimalBigint");
+        registerModifiedProperty("typeOfDecimalBigint");
         _typeOfDecimalBigint = typeOfDecimalBigint;
     }
 
@@ -488,7 +488,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfSmallint The value of the column 'TYPE_OF_SMALLINT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfSmallint(Integer typeOfSmallint) {
-        __modifiedProperties.addPropertyName("typeOfSmallint");
+        registerModifiedProperty("typeOfSmallint");
         _typeOfSmallint = typeOfSmallint;
     }
 
@@ -506,7 +506,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfInteger The value of the column 'TYPE_OF_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfInteger(Integer typeOfInteger) {
-        __modifiedProperties.addPropertyName("typeOfInteger");
+        registerModifiedProperty("typeOfInteger");
         _typeOfInteger = typeOfInteger;
     }
 
@@ -524,7 +524,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfBigint The value of the column 'TYPE_OF_BIGINT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfBigint(Long typeOfBigint) {
-        __modifiedProperties.addPropertyName("typeOfBigint");
+        registerModifiedProperty("typeOfBigint");
         _typeOfBigint = typeOfBigint;
     }
 
@@ -542,7 +542,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfFloat The value of the column 'TYPE_OF_FLOAT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfFloat(java.math.BigDecimal typeOfFloat) {
-        __modifiedProperties.addPropertyName("typeOfFloat");
+        registerModifiedProperty("typeOfFloat");
         _typeOfFloat = typeOfFloat;
     }
 
@@ -560,7 +560,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDouble The value of the column 'TYPE_OF_DOUBLE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDouble(java.math.BigDecimal typeOfDouble) {
-        __modifiedProperties.addPropertyName("typeOfDouble");
+        registerModifiedProperty("typeOfDouble");
         _typeOfDouble = typeOfDouble;
     }
 
@@ -578,7 +578,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfReal The value of the column 'TYPE_OF_REAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfReal(java.math.BigDecimal typeOfReal) {
-        __modifiedProperties.addPropertyName("typeOfReal");
+        registerModifiedProperty("typeOfReal");
         _typeOfReal = typeOfReal;
     }
 
@@ -596,7 +596,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfDate The value of the column 'TYPE_OF_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDate(java.util.Date typeOfDate) {
-        __modifiedProperties.addPropertyName("typeOfDate");
+        registerModifiedProperty("typeOfDate");
         _typeOfDate = typeOfDate;
     }
 
@@ -614,7 +614,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfTime The value of the column 'TYPE_OF_TIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfTime(java.sql.Time typeOfTime) {
-        __modifiedProperties.addPropertyName("typeOfTime");
+        registerModifiedProperty("typeOfTime");
         _typeOfTime = typeOfTime;
     }
 
@@ -632,7 +632,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfTimestamp The value of the column 'TYPE_OF_TIMESTAMP'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfTimestamp(java.sql.Timestamp typeOfTimestamp) {
-        __modifiedProperties.addPropertyName("typeOfTimestamp");
+        registerModifiedProperty("typeOfTimestamp");
         _typeOfTimestamp = typeOfTimestamp;
     }
 
@@ -650,7 +650,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfBlob The value of the column 'TYPE_OF_BLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfBlob(byte[] typeOfBlob) {
-        __modifiedProperties.addPropertyName("typeOfBlob");
+        registerModifiedProperty("typeOfBlob");
         _typeOfBlob = typeOfBlob;
     }
 
@@ -668,7 +668,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfGraphic The value of the column 'TYPE_OF_GRAPHIC'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfGraphic(String typeOfGraphic) {
-        __modifiedProperties.addPropertyName("typeOfGraphic");
+        registerModifiedProperty("typeOfGraphic");
         _typeOfGraphic = typeOfGraphic;
     }
 
@@ -686,7 +686,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfVargraphic The value of the column 'TYPE_OF_VARGRAPHIC'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfVargraphic(String typeOfVargraphic) {
-        __modifiedProperties.addPropertyName("typeOfVargraphic");
+        registerModifiedProperty("typeOfVargraphic");
         _typeOfVargraphic = typeOfVargraphic;
     }
 
@@ -704,7 +704,7 @@ public abstract class BsVendorCheck extends AbstractEntity {
      * @param typeOfLongVargraphic The value of the column 'TYPE_OF_LONG_VARGRAPHIC'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfLongVargraphic(String typeOfLongVargraphic) {
-        __modifiedProperties.addPropertyName("typeOfLongVargraphic");
+        registerModifiedProperty("typeOfLongVargraphic");
         _typeOfLongVargraphic = typeOfLongVargraphic;
     }
 }

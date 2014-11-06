@@ -174,7 +174,7 @@ public abstract class BsVendorNumericIntegerSum extends AbstractEntity {
      * @param integerNonDigitSum The value of the column 'integer_non_digit_sum'. (NullAllowed: null update allowed for no constraint)
      */
     public void setIntegerNonDigitSum(java.math.BigDecimal integerNonDigitSum) {
-        __modifiedProperties.addPropertyName("integerNonDigitSum");
+        registerModifiedProperty("integerNonDigitSum");
         _integerNonDigitSum = integerNonDigitSum;
     }
 }

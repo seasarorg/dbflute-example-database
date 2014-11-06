@@ -211,7 +211,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param productId The value of the column 'product_id'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Integer productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsNextSchemaProduct extends AbstractEntity {
      * @param productName The value of the column 'product_name'. (basically NotNull if update: for the constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 }

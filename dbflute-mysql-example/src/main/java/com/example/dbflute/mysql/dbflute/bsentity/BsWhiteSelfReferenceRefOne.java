@@ -240,8 +240,10 @@ public abstract class BsWhiteSelfReferenceRefOne extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSelfReference != null) { sb.append(dm).append("whiteSelfReference"); }
-        if (_whiteSelfReferenceAsDirectParent != null) { sb.append(dm).append("whiteSelfReferenceAsDirectParent"); }
+        if (_whiteSelfReference != null)
+        { sb.append(dm).append("whiteSelfReference"); }
+        if (_whiteSelfReferenceAsDirectParent != null)
+        { sb.append(dm).append("whiteSelfReferenceAsDirectParent"); }
         if (_whiteSelfReferenceByParentIdList != null && !_whiteSelfReferenceByParentIdList.isEmpty())
         { sb.append(dm).append("whiteSelfReferenceByParentIdList"); }
         if (sb.length() > dm.length()) {
@@ -272,7 +274,7 @@ public abstract class BsWhiteSelfReferenceRefOne extends AbstractEntity {
      * @param selfReferenceId The value of the column 'SELF_REFERENCE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setSelfReferenceId(Long selfReferenceId) {
-        __modifiedProperties.addPropertyName("selfReferenceId");
+        registerModifiedProperty("selfReferenceId");
         _selfReferenceId = selfReferenceId;
     }
 
@@ -290,7 +292,7 @@ public abstract class BsWhiteSelfReferenceRefOne extends AbstractEntity {
      * @param selfReferenceRefOneName The value of the column 'SELF_REFERENCE_REF_ONE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setSelfReferenceRefOneName(String selfReferenceRefOneName) {
-        __modifiedProperties.addPropertyName("selfReferenceRefOneName");
+        registerModifiedProperty("selfReferenceRefOneName");
         _selfReferenceRefOneName = selfReferenceRefOneName;
     }
 }

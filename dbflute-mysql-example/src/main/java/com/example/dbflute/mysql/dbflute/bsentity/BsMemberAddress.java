@@ -423,8 +423,10 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null) { sb.append(dm).append("member"); }
-        if (_region != null) { sb.append(dm).append("region"); }
+        if (_member != null)
+        { sb.append(dm).append("member"); }
+        if (_region != null)
+        { sb.append(dm).append("region"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -457,7 +459,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param memberAddressId The value of the column 'MEMBER_ADDRESS_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberAddressId(Integer memberAddressId) {
-        __modifiedProperties.addPropertyName("memberAddressId");
+        registerModifiedProperty("memberAddressId");
         _memberAddressId = memberAddressId;
     }
 
@@ -479,7 +481,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -501,7 +503,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param validBeginDate The value of the column 'VALID_BEGIN_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setValidBeginDate(java.util.Date validBeginDate) {
-        __modifiedProperties.addPropertyName("validBeginDate");
+        registerModifiedProperty("validBeginDate");
         _validBeginDate = validBeginDate;
     }
 
@@ -525,7 +527,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param validEndDate The value of the column 'VALID_END_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setValidEndDate(java.util.Date validEndDate) {
-        __modifiedProperties.addPropertyName("validEndDate");
+        registerModifiedProperty("validEndDate");
         _validEndDate = validEndDate;
     }
 
@@ -545,7 +547,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param address The value of the column 'ADDRESS'. (basically NotNull if update: for the constraint)
      */
     public void setAddress(String address) {
-        __modifiedProperties.addPropertyName("address");
+        registerModifiedProperty("address");
         _address = address;
     }
 
@@ -567,7 +569,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param regionId The value of the column 'REGION_ID'. (basically NotNull if update: for the constraint)
      */
     protected void setRegionId(Integer regionId) {
-        __modifiedProperties.addPropertyName("regionId");
+        registerModifiedProperty("regionId");
         _regionId = regionId;
     }
 
@@ -585,7 +587,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -603,7 +605,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -621,7 +623,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -639,7 +641,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -657,7 +659,7 @@ public abstract class BsMemberAddress extends AbstractEntity implements EntityDe
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 

@@ -195,7 +195,8 @@ public abstract class BsWhiteCompoundPkRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteCompoundPk != null) { sb.append(dm).append("whiteCompoundPk"); }
+        if (_whiteCompoundPk != null)
+        { sb.append(dm).append("whiteCompoundPk"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhiteCompoundPkRef extends AbstractEntity {
      * @param multipleFirstId The value of the column 'multiple_first_id'. (basically NotNull if update: for the constraint)
      */
     public void setMultipleFirstId(Integer multipleFirstId) {
-        __modifiedProperties.addPropertyName("multipleFirstId");
+        registerModifiedProperty("multipleFirstId");
         _multipleFirstId = multipleFirstId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhiteCompoundPkRef extends AbstractEntity {
      * @param multipleSecondId The value of the column 'multiple_second_id'. (basically NotNull if update: for the constraint)
      */
     public void setMultipleSecondId(Integer multipleSecondId) {
-        __modifiedProperties.addPropertyName("multipleSecondId");
+        registerModifiedProperty("multipleSecondId");
         _multipleSecondId = multipleSecondId;
     }
 
@@ -260,7 +261,7 @@ public abstract class BsWhiteCompoundPkRef extends AbstractEntity {
      * @param refFirstId The value of the column 'ref_first_id'. (basically NotNull if update: for the constraint)
      */
     public void setRefFirstId(Integer refFirstId) {
-        __modifiedProperties.addPropertyName("refFirstId");
+        registerModifiedProperty("refFirstId");
         _refFirstId = refFirstId;
     }
 
@@ -278,7 +279,7 @@ public abstract class BsWhiteCompoundPkRef extends AbstractEntity {
      * @param refSecondId The value of the column 'ref_second_id'. (basically NotNull if update: for the constraint)
      */
     public void setRefSecondId(Integer refSecondId) {
-        __modifiedProperties.addPropertyName("refSecondId");
+        registerModifiedProperty("refSecondId");
         _refSecondId = refSecondId;
     }
 }

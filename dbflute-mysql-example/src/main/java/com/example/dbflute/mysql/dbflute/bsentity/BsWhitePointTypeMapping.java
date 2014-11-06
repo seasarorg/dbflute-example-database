@@ -215,7 +215,7 @@ public abstract class BsWhitePointTypeMapping extends AbstractEntity {
      * @param pointTypeMappingId The value of the column 'POINT_TYPE_MAPPING_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPointTypeMappingId(Long pointTypeMappingId) {
-        __modifiedProperties.addPropertyName("pointTypeMappingId");
+        registerModifiedProperty("pointTypeMappingId");
         _pointTypeMappingId = pointTypeMappingId;
     }
 
@@ -233,7 +233,7 @@ public abstract class BsWhitePointTypeMapping extends AbstractEntity {
      * @param pointTypeMappingMemberName The value of the column 'POINT_TYPE_MAPPING_MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPointTypeMappingMemberName(com.example.dbflute.mysql.mytype.MyMemberName pointTypeMappingMemberName) {
-        __modifiedProperties.addPropertyName("pointTypeMappingMemberName");
+        registerModifiedProperty("pointTypeMappingMemberName");
         _pointTypeMappingMemberName = pointTypeMappingMemberName;
     }
 
@@ -251,7 +251,7 @@ public abstract class BsWhitePointTypeMapping extends AbstractEntity {
      * @param pointTypeMappingPriceCount The value of the column 'POINT_TYPE_MAPPING_PRICE_COUNT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPointTypeMappingPriceCount(com.example.dbflute.mysql.mytype.MyPriceCount pointTypeMappingPriceCount) {
-        __modifiedProperties.addPropertyName("pointTypeMappingPriceCount");
+        registerModifiedProperty("pointTypeMappingPriceCount");
         _pointTypeMappingPriceCount = pointTypeMappingPriceCount;
     }
 
@@ -269,7 +269,7 @@ public abstract class BsWhitePointTypeMapping extends AbstractEntity {
      * @param pointTypeMappingSaleDate The value of the column 'POINT_TYPE_MAPPING_SALE_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPointTypeMappingSaleDate(com.example.dbflute.mysql.mytype.MySaleDate pointTypeMappingSaleDate) {
-        __modifiedProperties.addPropertyName("pointTypeMappingSaleDate");
+        registerModifiedProperty("pointTypeMappingSaleDate");
         _pointTypeMappingSaleDate = pointTypeMappingSaleDate;
     }
 
@@ -287,7 +287,7 @@ public abstract class BsWhitePointTypeMapping extends AbstractEntity {
      * @param pointTypeMappingWantedDatetime The value of the column 'POINT_TYPE_MAPPING_WANTED_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPointTypeMappingWantedDatetime(java.util.Date pointTypeMappingWantedDatetime) {
-        __modifiedProperties.addPropertyName("pointTypeMappingWantedDatetime");
+        registerModifiedProperty("pointTypeMappingWantedDatetime");
         _pointTypeMappingWantedDatetime = pointTypeMappingWantedDatetime;
     }
 }

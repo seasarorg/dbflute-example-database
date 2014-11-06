@@ -294,7 +294,7 @@ public abstract class BsWhiteVariantRelationMasterQux extends AbstractEntity {
      * @param masterQuxId The value of the column 'MASTER_QUX_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMasterQuxId(Long masterQuxId) {
-        __modifiedProperties.addPropertyName("masterQuxId");
+        registerModifiedProperty("masterQuxId");
         _masterQuxId = masterQuxId;
     }
 
@@ -312,7 +312,7 @@ public abstract class BsWhiteVariantRelationMasterQux extends AbstractEntity {
      * @param masterQuxName The value of the column 'MASTER_QUX_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMasterQuxName(String masterQuxName) {
-        __modifiedProperties.addPropertyName("masterQuxName");
+        registerModifiedProperty("masterQuxName");
         _masterQuxName = masterQuxName;
     }
 
@@ -331,7 +331,7 @@ public abstract class BsWhiteVariantRelationMasterQux extends AbstractEntity {
      */
     protected void setQuxTypeCode(String quxTypeCode) {
         checkClassificationCode("QUX_TYPE_CODE", CDef.DefMeta.VariantRelationQuxType, quxTypeCode);
-        __modifiedProperties.addPropertyName("quxTypeCode");
+        registerModifiedProperty("quxTypeCode");
         _quxTypeCode = quxTypeCode;
     }
 

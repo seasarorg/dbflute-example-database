@@ -226,7 +226,7 @@ public abstract class BsWhiteVariantRelationMasterBar extends AbstractEntity {
      * @param masterBarId The value of the column 'MASTER_BAR_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMasterBarId(Long masterBarId) {
-        __modifiedProperties.addPropertyName("masterBarId");
+        registerModifiedProperty("masterBarId");
         _masterBarId = masterBarId;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhiteVariantRelationMasterBar extends AbstractEntity {
      * @param masterBarName The value of the column 'MASTER_BAR_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMasterBarName(String masterBarName) {
-        __modifiedProperties.addPropertyName("masterBarName");
+        registerModifiedProperty("masterBarName");
         _masterBarName = masterBarName;
     }
 }

@@ -257,8 +257,10 @@ public abstract class BsVendor_non_compilable extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendor_non_compilableByNextParentidSelf != null) { sb.append(dm).append("vendor_non_compilableByNextParentidSelf"); }
-        if (_vendor_non_compilableByParent_idSelf != null) { sb.append(dm).append("vendor_non_compilableByParent_idSelf"); }
+        if (_vendor_non_compilableByNextParentidSelf != null)
+        { sb.append(dm).append("vendor_non_compilableByNextParentidSelf"); }
+        if (_vendor_non_compilableByParent_idSelf != null)
+        { sb.append(dm).append("vendor_non_compilableByParent_idSelf"); }
         if (_vendor_non_compilableByNextParentidSelfList != null && !_vendor_non_compilableByNextParentidSelfList.isEmpty())
         { sb.append(dm).append("vendor_non_compilableByNextParentidSelfList"); }
         if (_vendor_non_compilableByParent_idSelfList != null && !_vendor_non_compilableByParent_idSelfList.isEmpty())
@@ -291,7 +293,7 @@ public abstract class BsVendor_non_compilable extends AbstractEntity {
      * @param non_compilable_id The value of the column 'NON-COMPILABLE ID'. (basically NotNull if update: for the constraint)
      */
     public void setNon_compilable_id(Integer non_compilable_id) {
-        __modifiedProperties.addPropertyName("non_compilable_id");
+        registerModifiedProperty("non_compilable_id");
         _non_compilable_id = non_compilable_id;
     }
 
@@ -309,7 +311,7 @@ public abstract class BsVendor_non_compilable extends AbstractEntity {
      * @param non_compilable_name The value of the column 'NON COMPILABLE-NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNon_compilable_name(String non_compilable_name) {
-        __modifiedProperties.addPropertyName("non_compilable_name");
+        registerModifiedProperty("non_compilable_name");
         _non_compilable_name = non_compilable_name;
     }
 
@@ -327,7 +329,7 @@ public abstract class BsVendor_non_compilable extends AbstractEntity {
      * @param parent_id The value of the column 'PARENT-ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setParent_id(Integer parent_id) {
-        __modifiedProperties.addPropertyName("parent_id");
+        registerModifiedProperty("parent_id");
         _parent_id = parent_id;
     }
 
@@ -345,7 +347,7 @@ public abstract class BsVendor_non_compilable extends AbstractEntity {
      * @param nextParentid The value of the column 'Next_ParentID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNextParentid(Integer nextParentid) {
-        __modifiedProperties.addPropertyName("nextParentid");
+        registerModifiedProperty("nextParentid");
         _nextParentid = nextParentid;
     }
 }

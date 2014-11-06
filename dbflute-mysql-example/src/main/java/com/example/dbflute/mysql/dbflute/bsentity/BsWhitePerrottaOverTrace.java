@@ -241,8 +241,10 @@ public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whitePerrottaOverProductByNextProductId != null) { sb.append(dm).append("whitePerrottaOverProductByNextProductId"); }
-        if (_whitePerrottaOverProductByPreviousProductId != null) { sb.append(dm).append("whitePerrottaOverProductByPreviousProductId"); }
+        if (_whitePerrottaOverProductByNextProductId != null)
+        { sb.append(dm).append("whitePerrottaOverProductByNextProductId"); }
+        if (_whitePerrottaOverProductByPreviousProductId != null)
+        { sb.append(dm).append("whitePerrottaOverProductByPreviousProductId"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -271,7 +273,7 @@ public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
      * @param traceId The value of the column 'TRACE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTraceId(Long traceId) {
-        __modifiedProperties.addPropertyName("traceId");
+        registerModifiedProperty("traceId");
         _traceId = traceId;
     }
 
@@ -289,7 +291,7 @@ public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
      * @param previousProductId The value of the column 'PREVIOUS_PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPreviousProductId(Long previousProductId) {
-        __modifiedProperties.addPropertyName("previousProductId");
+        registerModifiedProperty("previousProductId");
         _previousProductId = previousProductId;
     }
 
@@ -307,7 +309,7 @@ public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
      * @param nextProductId The value of the column 'NEXT_PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setNextProductId(Long nextProductId) {
-        __modifiedProperties.addPropertyName("nextProductId");
+        registerModifiedProperty("nextProductId");
         _nextProductId = nextProductId;
     }
 
@@ -325,7 +327,7 @@ public abstract class BsWhitePerrottaOverTrace extends AbstractEntity {
      * @param traceTypeCode The value of the column 'TRACE_TYPE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setTraceTypeCode(String traceTypeCode) {
-        __modifiedProperties.addPropertyName("traceTypeCode");
+        registerModifiedProperty("traceTypeCode");
         _traceTypeCode = traceTypeCode;
     }
 }

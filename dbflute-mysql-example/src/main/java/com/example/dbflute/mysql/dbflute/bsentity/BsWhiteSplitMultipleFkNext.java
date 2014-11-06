@@ -226,7 +226,7 @@ public abstract class BsWhiteSplitMultipleFkNext extends AbstractEntity {
      * @param nextId The value of the column 'NEXT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setNextId(Long nextId) {
-        __modifiedProperties.addPropertyName("nextId");
+        registerModifiedProperty("nextId");
         _nextId = nextId;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhiteSplitMultipleFkNext extends AbstractEntity {
      * @param secondCode The value of the column 'SECOND_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setSecondCode(String secondCode) {
-        __modifiedProperties.addPropertyName("secondCode");
+        registerModifiedProperty("secondCode");
         _secondCode = secondCode;
     }
 }

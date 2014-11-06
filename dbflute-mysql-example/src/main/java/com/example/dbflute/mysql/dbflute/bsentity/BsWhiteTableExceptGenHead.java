@@ -203,7 +203,7 @@ public abstract class BsWhiteTableExceptGenHead extends AbstractEntity {
      * @param genHeadId The value of the column 'GEN_HEAD_ID'. (basically NotNull if update: for the constraint)
      */
     public void setGenHeadId(Long genHeadId) {
-        __modifiedProperties.addPropertyName("genHeadId");
+        registerModifiedProperty("genHeadId");
         _genHeadId = genHeadId;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsWhiteTableExceptGenHead extends AbstractEntity {
      * @param genHeadName The value of the column 'GEN_HEAD_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setGenHeadName(String genHeadName) {
-        __modifiedProperties.addPropertyName("genHeadName");
+        registerModifiedProperty("genHeadName");
         _genHeadName = genHeadName;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsWhiteTableExceptGenHead extends AbstractEntity {
      * @param nometaId The value of the column 'NOMETA_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNometaId(Long nometaId) {
-        __modifiedProperties.addPropertyName("nometaId");
+        registerModifiedProperty("nometaId");
         _nometaId = nometaId;
     }
 }

@@ -182,7 +182,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param vendorCheckId The value of the column 'VENDOR_CHECK_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVendorCheckId(Long vendorCheckId) {
-        __modifiedProperties.addPropertyName("vendorCheckId");
+        registerModifiedProperty("vendorCheckId");
         _vendorCheckId = vendorCheckId;
     }
 
@@ -200,7 +200,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfVarchar The value of the column 'TYPE_OF_VARCHAR'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfVarchar(String typeOfVarchar) {
-        __modifiedProperties.addPropertyName("typeOfVarchar");
+        registerModifiedProperty("typeOfVarchar");
         _typeOfVarchar = typeOfVarchar;
     }
 }

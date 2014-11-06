@@ -195,7 +195,8 @@ public abstract class BsWhiteOnlyOneToOneFrom extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteOnlyOneToOneToAsOne != null) { sb.append(dm).append("whiteOnlyOneToOneToAsOne"); }
+        if (_whiteOnlyOneToOneToAsOne != null)
+        { sb.append(dm).append("whiteOnlyOneToOneToAsOne"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -224,7 +225,7 @@ public abstract class BsWhiteOnlyOneToOneFrom extends AbstractEntity {
      * @param fromId The value of the column 'FROM_ID'. (basically NotNull if update: for the constraint)
      */
     public void setFromId(Long fromId) {
-        __modifiedProperties.addPropertyName("fromId");
+        registerModifiedProperty("fromId");
         _fromId = fromId;
     }
 
@@ -242,7 +243,7 @@ public abstract class BsWhiteOnlyOneToOneFrom extends AbstractEntity {
      * @param fromName The value of the column 'FROM_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setFromName(String fromName) {
-        __modifiedProperties.addPropertyName("fromName");
+        registerModifiedProperty("fromName");
         _fromName = fromName;
     }
 }

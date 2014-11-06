@@ -180,7 +180,8 @@ public abstract class BsAliasRefExcept extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_aliasExcept != null) { sb.append(dm).append("aliasExcept"); }
+        if (_aliasExcept != null)
+        { sb.append(dm).append("aliasExcept"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -209,7 +210,7 @@ public abstract class BsAliasRefExcept extends AbstractEntity {
      * @param refExceptId The value of the column 'REF_EXCEPT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefExceptId(Long refExceptId) {
-        __modifiedProperties.addPropertyName("refExceptId");
+        registerModifiedProperty("refExceptId");
         _refExceptId = refExceptId;
     }
 
@@ -227,7 +228,7 @@ public abstract class BsAliasRefExcept extends AbstractEntity {
      * @param exceptId The value of the column 'EXCEPT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setExceptId(Long exceptId) {
-        __modifiedProperties.addPropertyName("exceptId");
+        registerModifiedProperty("exceptId");
         _exceptId = exceptId;
     }
 }

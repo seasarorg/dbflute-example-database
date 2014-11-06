@@ -27,6 +27,7 @@ public class WxBhvQueryUpdatePostgreSQLTest extends UnitContainerTestCase {
     public void test_queryUpdate_basic() {
         // ## Arrange ##
         Member member = new Member();
+        member.setMemberName("queryUpdate()");
         member.setMemberStatusCode_Provisional();
         member.setFormalizedDatetime(null);
 
@@ -39,6 +40,7 @@ public class WxBhvQueryUpdatePostgreSQLTest extends UnitContainerTestCase {
         // ## Assert ##
         assertNotSame(0, updatedCount);
         MemberCB actualCB = new MemberCB();
+        actualCB.query().setMemberName_Equal("queryUpdate()");
         actualCB.query().setMemberStatusCode_Equal_Provisional();
         actualCB.query().setFormalizedDatetime_IsNull();
         actualCB.query().setUpdateUser_Equal(getAccessContext().getAccessUser()); // common column

@@ -199,7 +199,7 @@ public abstract class BsSummaryProduct extends AbstractEntity {
      * @param productId The value of the column 'product_id'. (NullAllowed: null update allowed for no constraint)
      */
     public void setProductId(Integer productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -217,7 +217,7 @@ public abstract class BsSummaryProduct extends AbstractEntity {
      * @param productName The value of the column 'product_name'. (NullAllowed: null update allowed for no constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 
@@ -235,7 +235,7 @@ public abstract class BsSummaryProduct extends AbstractEntity {
      * @param productStatusCode The value of the column 'product_status_code'. (NullAllowed: null update allowed for no constraint)
      */
     public void setProductStatusCode(String productStatusCode) {
-        __modifiedProperties.addPropertyName("productStatusCode");
+        registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
@@ -253,7 +253,7 @@ public abstract class BsSummaryProduct extends AbstractEntity {
      * @param latestPurchaseDatetime The value of the column 'latest_purchase_datetime'. (NullAllowed: null update allowed for no constraint)
      */
     public void setLatestPurchaseDatetime(java.sql.Timestamp latestPurchaseDatetime) {
-        __modifiedProperties.addPropertyName("latestPurchaseDatetime");
+        registerModifiedProperty("latestPurchaseDatetime");
         _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 }

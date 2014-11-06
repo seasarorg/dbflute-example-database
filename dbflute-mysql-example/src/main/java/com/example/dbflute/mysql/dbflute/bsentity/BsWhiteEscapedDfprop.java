@@ -297,7 +297,7 @@ public abstract class BsWhiteEscapedDfprop extends AbstractEntity {
      * @param escapedDfpropCode The value of the column 'ESCAPED_DFPROP_CODE'. (basically NotNull if update: for the constraint)
      */
     protected void setEscapedDfpropCode(String escapedDfpropCode) {
-        __modifiedProperties.addPropertyName("escapedDfpropCode");
+        registerModifiedProperty("escapedDfpropCode");
         _escapedDfpropCode = escapedDfpropCode;
     }
 
@@ -315,7 +315,7 @@ public abstract class BsWhiteEscapedDfprop extends AbstractEntity {
      * @param escapedDfpropName The value of the column 'ESCAPED_DFPROP_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEscapedDfpropName(String escapedDfpropName) {
-        __modifiedProperties.addPropertyName("escapedDfpropName");
+        registerModifiedProperty("escapedDfpropName");
         _escapedDfpropName = escapedDfpropName;
     }
 

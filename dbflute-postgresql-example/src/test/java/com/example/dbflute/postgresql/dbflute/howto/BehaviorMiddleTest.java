@@ -231,6 +231,7 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
     public void test_queryUpdate() {
         // ## Arrange ##
         Member member = new Member();
+        member.setMemberName("queryUpdate()");
         member.setMemberStatusCode_Provisional();// 会員ステータスを「仮会員」に
         member.setFormalizedDatetime(null);// 正式会員日時を「null」に
 
@@ -243,6 +244,7 @@ public class BehaviorMiddleTest extends UnitContainerTestCase {
         // ## Assert ##
         assertNotSame(0, updatedCount);
         MemberCB actualCB = new MemberCB();
+        actualCB.query().setMemberName_Equal("queryUpdate()");
         actualCB.query().setMemberStatusCode_Equal_Provisional();
         actualCB.query().setFormalizedDatetime_IsNull();
         actualCB.query().setUpdateUser_Equal(getAccessContext().getAccessUser());// Common Column

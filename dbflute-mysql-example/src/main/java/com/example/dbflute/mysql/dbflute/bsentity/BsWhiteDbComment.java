@@ -199,7 +199,7 @@ public abstract class BsWhiteDbComment extends AbstractEntity {
      * @param dbCommentCode The value of the column 'DB_COMMENT_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setDbCommentCode(String dbCommentCode) {
-        __modifiedProperties.addPropertyName("dbCommentCode");
+        registerModifiedProperty("dbCommentCode");
         _dbCommentCode = dbCommentCode;
     }
 
@@ -219,7 +219,7 @@ public abstract class BsWhiteDbComment extends AbstractEntity {
      * @param dbCommentName The value of the column 'DB_COMMENT_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDbCommentName(String dbCommentName) {
-        __modifiedProperties.addPropertyName("dbCommentName");
+        registerModifiedProperty("dbCommentName");
         _dbCommentName = dbCommentName;
     }
 }

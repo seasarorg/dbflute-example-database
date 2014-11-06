@@ -228,7 +228,8 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteCompoundPkToPK != null) { sb.append(dm).append("whiteCompoundPkToPK"); }
+        if (_whiteCompoundPkToPK != null)
+        { sb.append(dm).append("whiteCompoundPkToPK"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -257,7 +258,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param multipleFirstId The value of the column 'MULTIPLE_FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMultipleFirstId(Integer multipleFirstId) {
-        __modifiedProperties.addPropertyName("multipleFirstId");
+        registerModifiedProperty("multipleFirstId");
         _multipleFirstId = multipleFirstId;
     }
 
@@ -275,7 +276,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param multipleSecondId The value of the column 'MULTIPLE_SECOND_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMultipleSecondId(Integer multipleSecondId) {
-        __modifiedProperties.addPropertyName("multipleSecondId");
+        registerModifiedProperty("multipleSecondId");
         _multipleSecondId = multipleSecondId;
     }
 
@@ -293,7 +294,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param refManyFirstId The value of the column 'REF_MANY_FIRST_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefManyFirstId(Integer refManyFirstId) {
-        __modifiedProperties.addPropertyName("refManyFirstId");
+        registerModifiedProperty("refManyFirstId");
         _refManyFirstId = refManyFirstId;
     }
 
@@ -311,7 +312,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param refManySecondId The value of the column 'REF_MANY_SECOND_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefManySecondId(Integer refManySecondId) {
-        __modifiedProperties.addPropertyName("refManySecondId");
+        registerModifiedProperty("refManySecondId");
         _refManySecondId = refManySecondId;
     }
 
@@ -329,7 +330,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param refManyCode The value of the column 'REF_MANY_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setRefManyCode(String refManyCode) {
-        __modifiedProperties.addPropertyName("refManyCode");
+        registerModifiedProperty("refManyCode");
         _refManyCode = refManyCode;
     }
 
@@ -347,7 +348,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param refManyName The value of the column 'REF_MANY_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setRefManyName(String refManyName) {
-        __modifiedProperties.addPropertyName("refManyName");
+        registerModifiedProperty("refManyName");
         _refManyName = refManyName;
     }
 
@@ -365,7 +366,7 @@ public abstract class BsWhiteCompoundPkRefMany extends AbstractEntity {
      * @param refManyDatetime The value of the column 'REF_MANY_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRefManyDatetime(java.sql.Timestamp refManyDatetime) {
-        __modifiedProperties.addPropertyName("refManyDatetime");
+        registerModifiedProperty("refManyDatetime");
         _refManyDatetime = refManyDatetime;
     }
 }

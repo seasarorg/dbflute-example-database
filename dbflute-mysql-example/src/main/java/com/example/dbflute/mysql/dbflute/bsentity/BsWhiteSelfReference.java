@@ -267,9 +267,12 @@ public abstract class BsWhiteSelfReference extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteSelfReferenceSelf != null) { sb.append(dm).append("whiteSelfReferenceSelf"); }
-        if (_whiteSelfReferenceRefOneByParentId != null) { sb.append(dm).append("whiteSelfReferenceRefOneByParentId"); }
-        if (_whiteSelfReferenceRefOneAsOne != null) { sb.append(dm).append("whiteSelfReferenceRefOneAsOne"); }
+        if (_whiteSelfReferenceSelf != null)
+        { sb.append(dm).append("whiteSelfReferenceSelf"); }
+        if (_whiteSelfReferenceRefOneByParentId != null)
+        { sb.append(dm).append("whiteSelfReferenceRefOneByParentId"); }
+        if (_whiteSelfReferenceRefOneAsOne != null)
+        { sb.append(dm).append("whiteSelfReferenceRefOneAsOne"); }
         if (_whiteSelfReferenceSelfList != null && !_whiteSelfReferenceSelfList.isEmpty())
         { sb.append(dm).append("whiteSelfReferenceSelfList"); }
         if (sb.length() > dm.length()) {
@@ -300,7 +303,7 @@ public abstract class BsWhiteSelfReference extends AbstractEntity {
      * @param selfReferenceId The value of the column 'SELF_REFERENCE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setSelfReferenceId(Long selfReferenceId) {
-        __modifiedProperties.addPropertyName("selfReferenceId");
+        registerModifiedProperty("selfReferenceId");
         _selfReferenceId = selfReferenceId;
     }
 
@@ -318,7 +321,7 @@ public abstract class BsWhiteSelfReference extends AbstractEntity {
      * @param selfReferenceName The value of the column 'SELF_REFERENCE_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setSelfReferenceName(String selfReferenceName) {
-        __modifiedProperties.addPropertyName("selfReferenceName");
+        registerModifiedProperty("selfReferenceName");
         _selfReferenceName = selfReferenceName;
     }
 
@@ -336,7 +339,7 @@ public abstract class BsWhiteSelfReference extends AbstractEntity {
      * @param parentId The value of the column 'PARENT_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setParentId(Long parentId) {
-        __modifiedProperties.addPropertyName("parentId");
+        registerModifiedProperty("parentId");
         _parentId = parentId;
     }
 }

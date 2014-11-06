@@ -226,7 +226,7 @@ public abstract class BsWhitePerrottaOverMemberMacho extends AbstractEntity {
      * @param machoCode The value of the column 'MACHO_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setMachoCode(String machoCode) {
-        __modifiedProperties.addPropertyName("machoCode");
+        registerModifiedProperty("machoCode");
         _machoCode = machoCode;
     }
 
@@ -244,7 +244,7 @@ public abstract class BsWhitePerrottaOverMemberMacho extends AbstractEntity {
      * @param machoName The value of the column 'MACHO_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMachoName(String machoName) {
-        __modifiedProperties.addPropertyName("machoName");
+        registerModifiedProperty("machoName");
         _machoName = machoName;
     }
 }

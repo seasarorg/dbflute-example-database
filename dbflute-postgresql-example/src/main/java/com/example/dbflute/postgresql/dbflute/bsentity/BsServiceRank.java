@@ -340,7 +340,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param serviceRankCode The value of the column 'service_rank_code'. (basically NotNull if update: for the constraint)
      */
     public void setServiceRankCode(String serviceRankCode) {
-        __modifiedProperties.addPropertyName("serviceRankCode");
+        registerModifiedProperty("serviceRankCode");
         _serviceRankCode = serviceRankCode;
     }
 
@@ -362,7 +362,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param serviceRankName The value of the column 'service_rank_name'. (basically NotNull if update: for the constraint)
      */
     public void setServiceRankName(String serviceRankName) {
-        __modifiedProperties.addPropertyName("serviceRankName");
+        registerModifiedProperty("serviceRankName");
         _serviceRankName = serviceRankName;
     }
 
@@ -386,7 +386,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param servicePointIncidence The value of the column 'service_point_incidence'. (basically NotNull if update: for the constraint)
      */
     public void setServicePointIncidence(java.math.BigDecimal servicePointIncidence) {
-        __modifiedProperties.addPropertyName("servicePointIncidence");
+        registerModifiedProperty("servicePointIncidence");
         _servicePointIncidence = servicePointIncidence;
     }
 
@@ -406,7 +406,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param newAcceptableFlg The value of the column 'new_acceptable_flg'. (basically NotNull if update: for the constraint)
      */
     protected void setNewAcceptableFlg(Integer newAcceptableFlg) {
-        __modifiedProperties.addPropertyName("newAcceptableFlg");
+        registerModifiedProperty("newAcceptableFlg");
         _newAcceptableFlg = newAcceptableFlg;
     }
 
@@ -426,7 +426,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param description The value of the column 'description'. (basically NotNull if update: for the constraint)
      */
     public void setDescription(String description) {
-        __modifiedProperties.addPropertyName("description");
+        registerModifiedProperty("description");
         _description = description;
     }
 
@@ -446,7 +446,7 @@ public abstract class BsServiceRank extends AbstractEntity {
      * @param displayOrder The value of the column 'display_order'. (basically NotNull if update: for the constraint)
      */
     public void setDisplayOrder(Integer displayOrder) {
-        __modifiedProperties.addPropertyName("displayOrder");
+        registerModifiedProperty("displayOrder");
         _displayOrder = displayOrder;
     }
 
