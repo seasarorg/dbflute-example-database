@@ -193,7 +193,7 @@ public abstract class BsWhiteSameNameRefRef extends AbstractEntity {
      * @param refRefId The value of the column 'REF_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefRefId(Long refRefId) {
-        __modifiedProperties.addPropertyName("refRefId");
+        registerModifiedProperty("refRefId");
         _refRefId = refRefId;
     }
 
@@ -211,7 +211,7 @@ public abstract class BsWhiteSameNameRefRef extends AbstractEntity {
      * @param refRefName The value of the column 'REF_REF_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setRefRefName(String refRefName) {
-        __modifiedProperties.addPropertyName("refRefName");
+        registerModifiedProperty("refRefName");
         _refRefName = refRefName;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsWhiteSameNameRefRef extends AbstractEntity {
      * @param refRefDate The value of the column 'REF_REF_DATE'. (basically NotNull if update: for the constraint)
      */
     public void setRefRefDate(java.util.Date refRefDate) {
-        __modifiedProperties.addPropertyName("refRefDate");
+        registerModifiedProperty("refRefDate");
         _refRefDate = refRefDate;
     }
 }

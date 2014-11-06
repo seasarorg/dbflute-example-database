@@ -193,7 +193,7 @@ public abstract class BsSynonymNextSameNameFk extends AbstractEntity {
      * @param refId The value of the column 'REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefId(Long refId) {
-        __modifiedProperties.addPropertyName("refId");
+        registerModifiedProperty("refId");
         _refId = refId;
     }
 
@@ -211,7 +211,7 @@ public abstract class BsSynonymNextSameNameFk extends AbstractEntity {
      * @param refName The value of the column 'REF_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setRefName(String refName) {
-        __modifiedProperties.addPropertyName("refName");
+        registerModifiedProperty("refName");
         _refName = refName;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsSynonymNextSameNameFk extends AbstractEntity {
      * @param sameNameId The value of the column 'SAME_NAME_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSameNameId(Long sameNameId) {
-        __modifiedProperties.addPropertyName("sameNameId");
+        registerModifiedProperty("sameNameId");
         _sameNameId = sameNameId;
     }
 }

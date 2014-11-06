@@ -216,7 +216,7 @@ public abstract class BsVendorLargeName901234567890 extends AbstractEntity {
      * @param vendorLargeName901234567Id The value of the column 'VENDOR_LARGE_NAME_901234567_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendorLargeName901234567Id(Long vendorLargeName901234567Id) {
-        __modifiedProperties.addPropertyName("vendorLargeName901234567Id");
+        registerModifiedProperty("vendorLargeName901234567Id");
         _vendorLargeName901234567Id = vendorLargeName901234567Id;
     }
 
@@ -234,7 +234,7 @@ public abstract class BsVendorLargeName901234567890 extends AbstractEntity {
      * @param vendorLargeName9012345Name The value of the column 'VENDOR_LARGE_NAME_9012345_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setVendorLargeName9012345Name(String vendorLargeName9012345Name) {
-        __modifiedProperties.addPropertyName("vendorLargeName9012345Name");
+        registerModifiedProperty("vendorLargeName9012345Name");
         _vendorLargeName9012345Name = vendorLargeName9012345Name;
     }
 }

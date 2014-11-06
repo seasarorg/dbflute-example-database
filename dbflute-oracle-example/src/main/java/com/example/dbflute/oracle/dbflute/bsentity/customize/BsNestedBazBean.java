@@ -203,7 +203,7 @@ public abstract class BsNestedBazBean extends AbstractEntity {
      * @param bazId The value of the column 'BAZ_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBazId(Integer bazId) {
-        __modifiedProperties.addPropertyName("bazId");
+        registerModifiedProperty("bazId");
         _bazId = bazId;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsNestedBazBean extends AbstractEntity {
      * @param bazName The value of the column 'BAZ_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBazName(String bazName) {
-        __modifiedProperties.addPropertyName("bazName");
+        registerModifiedProperty("bazName");
         _bazName = bazName;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsNestedBazBean extends AbstractEntity {
      * @param bazDate The value of the column 'BAZ_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBazDate(java.util.Date bazDate) {
-        __modifiedProperties.addPropertyName("bazDate");
+        registerModifiedProperty("bazDate");
         _bazDate = bazDate;
     }
 
@@ -257,7 +257,7 @@ public abstract class BsNestedBazBean extends AbstractEntity {
      * @param bazList The value of the column 'BAZ_LIST'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBazList(List<List<BarBean>> bazList) {
-        __modifiedProperties.addPropertyName("bazList");
+        registerModifiedProperty("bazList");
         _bazList = bazList;
     }
 }

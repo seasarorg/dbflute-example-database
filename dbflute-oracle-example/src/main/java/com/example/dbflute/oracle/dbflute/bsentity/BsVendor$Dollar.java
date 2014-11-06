@@ -187,7 +187,7 @@ public abstract class BsVendor$Dollar extends AbstractEntity {
      * @param vendor$DollarId The value of the column 'VENDOR_$_DOLLAR_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendor$DollarId(Long vendor$DollarId) {
-        __modifiedProperties.addPropertyName("vendor$DollarId");
+        registerModifiedProperty("vendor$DollarId");
         _vendor$DollarId = vendor$DollarId;
     }
 
@@ -205,7 +205,7 @@ public abstract class BsVendor$Dollar extends AbstractEntity {
      * @param vendor$DollarName The value of the column 'VENDOR_$_DOLLAR_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setVendor$DollarName(String vendor$DollarName) {
-        __modifiedProperties.addPropertyName("vendor$DollarName");
+        registerModifiedProperty("vendor$DollarName");
         _vendor$DollarName = vendor$DollarName;
     }
 }

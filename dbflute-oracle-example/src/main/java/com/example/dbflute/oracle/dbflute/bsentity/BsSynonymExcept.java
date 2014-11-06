@@ -216,7 +216,7 @@ public abstract class BsSynonymExcept extends AbstractEntity {
      * @param exceptId The value of the column 'EXCEPT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setExceptId(Long exceptId) {
-        __modifiedProperties.addPropertyName("exceptId");
+        registerModifiedProperty("exceptId");
         _exceptId = exceptId;
     }
 
@@ -234,7 +234,7 @@ public abstract class BsSynonymExcept extends AbstractEntity {
      * @param exceptName The value of the column 'EXCEPT_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setExceptName(String exceptName) {
-        __modifiedProperties.addPropertyName("exceptName");
+        registerModifiedProperty("exceptName");
         _exceptName = exceptName;
     }
 }

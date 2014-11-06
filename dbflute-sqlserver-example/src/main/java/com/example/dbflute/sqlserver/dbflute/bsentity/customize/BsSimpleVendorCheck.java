@@ -238,7 +238,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param vendorCheckId The value of the column 'VENDOR_CHECK_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVendorCheckId(Long vendorCheckId) {
-        __modifiedProperties.addPropertyName("vendorCheckId");
+        registerModifiedProperty("vendorCheckId");
         _vendorCheckId = vendorCheckId;
     }
 
@@ -256,7 +256,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfNumericDecimal The value of the column 'TYPE_OF_NUMERIC_DECIMAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfNumericDecimal(java.math.BigDecimal typeOfNumericDecimal) {
-        __modifiedProperties.addPropertyName("typeOfNumericDecimal");
+        registerModifiedProperty("typeOfNumericDecimal");
         _typeOfNumericDecimal = typeOfNumericDecimal;
     }
 
@@ -274,7 +274,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfNumericInteger The value of the column 'TYPE_OF_NUMERIC_INTEGER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfNumericInteger(Integer typeOfNumericInteger) {
-        __modifiedProperties.addPropertyName("typeOfNumericInteger");
+        registerModifiedProperty("typeOfNumericInteger");
         _typeOfNumericInteger = typeOfNumericInteger;
     }
 
@@ -292,7 +292,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfNumericBigint The value of the column 'TYPE_OF_NUMERIC_BIGINT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfNumericBigint(Long typeOfNumericBigint) {
-        __modifiedProperties.addPropertyName("typeOfNumericBigint");
+        registerModifiedProperty("typeOfNumericBigint");
         _typeOfNumericBigint = typeOfNumericBigint;
     }
 
@@ -310,7 +310,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfText The value of the column 'TYPE_OF_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfText(String typeOfText) {
-        __modifiedProperties.addPropertyName("typeOfText");
+        registerModifiedProperty("typeOfText");
         _typeOfText = typeOfText;
     }
 
@@ -328,7 +328,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfDatetime The value of the column 'TYPE_OF_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfDatetime(java.sql.Timestamp typeOfDatetime) {
-        __modifiedProperties.addPropertyName("typeOfDatetime");
+        registerModifiedProperty("typeOfDatetime");
         _typeOfDatetime = typeOfDatetime;
     }
 
@@ -346,7 +346,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfSmalldatetime The value of the column 'TYPE_OF_SMALLDATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfSmalldatetime(java.sql.Timestamp typeOfSmalldatetime) {
-        __modifiedProperties.addPropertyName("typeOfSmalldatetime");
+        registerModifiedProperty("typeOfSmalldatetime");
         _typeOfSmalldatetime = typeOfSmalldatetime;
     }
 
@@ -364,7 +364,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfBit The value of the column 'TYPE_OF_BIT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfBit(Boolean typeOfBit) {
-        __modifiedProperties.addPropertyName("typeOfBit");
+        registerModifiedProperty("typeOfBit");
         _typeOfBit = typeOfBit;
     }
 
@@ -382,7 +382,7 @@ public abstract class BsSimpleVendorCheck extends AbstractEntity {
      * @param typeOfUniqueidentifier The value of the column 'TYPE_OF_UNIQUEIDENTIFIER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTypeOfUniqueidentifier(java.util.UUID typeOfUniqueidentifier) {
-        __modifiedProperties.addPropertyName("typeOfUniqueidentifier");
+        registerModifiedProperty("typeOfUniqueidentifier");
         _typeOfUniqueidentifier = typeOfUniqueidentifier;
     }
 }

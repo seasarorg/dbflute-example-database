@@ -227,7 +227,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param fooId The value of the column 'FOO_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooId(Integer fooId) {
-        __modifiedProperties.addPropertyName("fooId");
+        registerModifiedProperty("fooId");
         _fooId = fooId;
     }
 
@@ -245,7 +245,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param fooName The value of the column 'FOO_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooName(String fooName) {
-        __modifiedProperties.addPropertyName("fooName");
+        registerModifiedProperty("fooName");
         _fooName = fooName;
     }
 
@@ -263,7 +263,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param fooDate The value of the column 'FOO_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooDate(java.util.Date fooDate) {
-        __modifiedProperties.addPropertyName("fooDate");
+        registerModifiedProperty("fooDate");
         _fooDate = fooDate;
     }
 
@@ -281,7 +281,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param barBean The value of the column 'BAR_BEAN'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarBean(NestedBarBean barBean) {
-        __modifiedProperties.addPropertyName("barBean");
+        registerModifiedProperty("barBean");
         _barBean = barBean;
     }
 
@@ -299,7 +299,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param quxList The value of the column 'QUX_LIST'. (NullAllowed: null update allowed for no constraint)
      */
     public void setQuxList(List<java.math.BigDecimal> quxList) {
-        __modifiedProperties.addPropertyName("quxList");
+        registerModifiedProperty("quxList");
         _quxList = quxList;
     }
 
@@ -317,7 +317,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param quuxList The value of the column 'QUUX_LIST'. (NullAllowed: null update allowed for no constraint)
      */
     public void setQuuxList(List<java.math.BigDecimal> quuxList) {
-        __modifiedProperties.addPropertyName("quuxList");
+        registerModifiedProperty("quuxList");
         _quuxList = quuxList;
     }
 
@@ -335,7 +335,7 @@ public abstract class BsNestedFooBean extends AbstractEntity {
      * @param corgeList The value of the column 'CORGE_LIST'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeList(List<CorgeBean> corgeList) {
-        __modifiedProperties.addPropertyName("corgeList");
+        registerModifiedProperty("corgeList");
         _corgeList = corgeList;
     }
 }

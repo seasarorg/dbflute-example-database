@@ -220,7 +220,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooId The value of the column 'FOO_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooId(Integer fooId) {
-        __modifiedProperties.addPropertyName("fooId");
+        registerModifiedProperty("fooId");
         _fooId = fooId;
     }
 
@@ -238,7 +238,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooName The value of the column 'FOO_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooName(String fooName) {
-        __modifiedProperties.addPropertyName("fooName");
+        registerModifiedProperty("fooName");
         _fooName = fooName;
     }
 
@@ -256,7 +256,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooDecimal The value of the column 'FOO_DECIMAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooDecimal(java.math.BigDecimal fooDecimal) {
-        __modifiedProperties.addPropertyName("fooDecimal");
+        registerModifiedProperty("fooDecimal");
         _fooDecimal = fooDecimal;
     }
 
@@ -274,7 +274,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooDate The value of the column 'FOO_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooDate(java.util.Date fooDate) {
-        __modifiedProperties.addPropertyName("fooDate");
+        registerModifiedProperty("fooDate");
         _fooDate = fooDate;
     }
 
@@ -292,7 +292,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooTimestamp The value of the column 'FOO_TIMESTAMP'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooTimestamp(java.sql.Timestamp fooTimestamp) {
-        __modifiedProperties.addPropertyName("fooTimestamp");
+        registerModifiedProperty("fooTimestamp");
         _fooTimestamp = fooTimestamp;
     }
 
@@ -311,7 +311,7 @@ public abstract class BsFooBean extends AbstractEntity {
      * @param fooClob The value of the column 'FOO_CLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFooClob(String fooClob) {
-        __modifiedProperties.addPropertyName("fooClob");
+        registerModifiedProperty("fooClob");
         _fooClob = fooClob;
     }
 }

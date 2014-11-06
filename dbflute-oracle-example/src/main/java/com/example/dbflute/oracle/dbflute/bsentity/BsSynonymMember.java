@@ -426,8 +426,10 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_memberStatus != null) { sb.append(dm).append("memberStatus"); }
-        if (_synonymMemberWithdrawalAsOne != null) { sb.append(dm).append("synonymMemberWithdrawalAsOne"); }
+        if (_memberStatus != null)
+        { sb.append(dm).append("memberStatus"); }
+        if (_synonymMemberWithdrawalAsOne != null)
+        { sb.append(dm).append("synonymMemberWithdrawalAsOne"); }
         if (_synonymMemberLoginList != null && !_synonymMemberLoginList.isEmpty())
         { sb.append(dm).append("synonymMemberLoginList"); }
         if (sb.length() > dm.length()) {
@@ -460,7 +462,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -480,7 +482,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param memberName The value of the column 'MEMBER_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -502,7 +504,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param memberAccount The value of the column 'MEMBER_ACCOUNT'. (basically NotNull if update: for the constraint)
      */
     public void setMemberAccount(String memberAccount) {
-        __modifiedProperties.addPropertyName("memberAccount");
+        registerModifiedProperty("memberAccount");
         _memberAccount = memberAccount;
     }
 
@@ -520,7 +522,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -540,7 +542,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param formalizedDatetime The value of the column 'FORMALIZED_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setFormalizedDatetime(java.sql.Timestamp formalizedDatetime) {
-        __modifiedProperties.addPropertyName("formalizedDatetime");
+        registerModifiedProperty("formalizedDatetime");
         _formalizedDatetime = formalizedDatetime;
     }
 
@@ -560,7 +562,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param birthdate The value of the column 'BIRTHDATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBirthdate(java.util.Date birthdate) {
-        __modifiedProperties.addPropertyName("birthdate");
+        registerModifiedProperty("birthdate");
         _birthdate = birthdate;
     }
 
@@ -578,7 +580,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -596,7 +598,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -614,7 +616,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -632,7 +634,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -650,7 +652,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -668,7 +670,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 
@@ -688,7 +690,7 @@ public abstract class BsSynonymMember extends AbstractEntity implements EntityDe
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 }

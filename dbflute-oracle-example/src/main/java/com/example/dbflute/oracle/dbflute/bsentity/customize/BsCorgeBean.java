@@ -220,7 +220,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeId The value of the column 'CORGE_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeId(Integer corgeId) {
-        __modifiedProperties.addPropertyName("corgeId");
+        registerModifiedProperty("corgeId");
         _corgeId = corgeId;
     }
 
@@ -238,7 +238,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeName The value of the column 'CORGE_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeName(String corgeName) {
-        __modifiedProperties.addPropertyName("corgeName");
+        registerModifiedProperty("corgeName");
         _corgeName = corgeName;
     }
 
@@ -256,7 +256,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeDecimal The value of the column 'CORGE_DECIMAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeDecimal(java.math.BigDecimal corgeDecimal) {
-        __modifiedProperties.addPropertyName("corgeDecimal");
+        registerModifiedProperty("corgeDecimal");
         _corgeDecimal = corgeDecimal;
     }
 
@@ -274,7 +274,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeDate The value of the column 'CORGE_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeDate(java.util.Date corgeDate) {
-        __modifiedProperties.addPropertyName("corgeDate");
+        registerModifiedProperty("corgeDate");
         _corgeDate = corgeDate;
     }
 
@@ -292,7 +292,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeTimestamp The value of the column 'CORGE_TIMESTAMP'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeTimestamp(java.sql.Timestamp corgeTimestamp) {
-        __modifiedProperties.addPropertyName("corgeTimestamp");
+        registerModifiedProperty("corgeTimestamp");
         _corgeTimestamp = corgeTimestamp;
     }
 
@@ -311,7 +311,7 @@ public abstract class BsCorgeBean extends AbstractEntity {
      * @param corgeClob The value of the column 'CORGE_CLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setCorgeClob(String corgeClob) {
-        __modifiedProperties.addPropertyName("corgeClob");
+        registerModifiedProperty("corgeClob");
         _corgeClob = corgeClob;
     }
 }

@@ -185,7 +185,8 @@ public abstract class BsWhiteRefNextTarget extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_nextSchemaProductStatus != null) { sb.append(dm).append("nextSchemaProductStatus"); }
+        if (_nextSchemaProductStatus != null)
+        { sb.append(dm).append("nextSchemaProductStatus"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -214,7 +215,7 @@ public abstract class BsWhiteRefNextTarget extends AbstractEntity {
      * @param refNextTargetId The value of the column 'REF_NEXT_TARGET_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefNextTargetId(Long refNextTargetId) {
-        __modifiedProperties.addPropertyName("refNextTargetId");
+        registerModifiedProperty("refNextTargetId");
         _refNextTargetId = refNextTargetId;
     }
 
@@ -232,7 +233,7 @@ public abstract class BsWhiteRefNextTarget extends AbstractEntity {
      * @param nextTargetCode The value of the column 'NEXT_TARGET_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setNextTargetCode(String nextTargetCode) {
-        __modifiedProperties.addPropertyName("nextTargetCode");
+        registerModifiedProperty("nextTargetCode");
         _nextTargetCode = nextTargetCode;
     }
 }

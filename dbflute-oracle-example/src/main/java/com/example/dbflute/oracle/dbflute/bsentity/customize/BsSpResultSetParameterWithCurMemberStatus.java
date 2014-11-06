@@ -203,7 +203,7 @@ public abstract class BsSpResultSetParameterWithCurMemberStatus extends Abstract
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -221,7 +221,7 @@ public abstract class BsSpResultSetParameterWithCurMemberStatus extends Abstract
      * @param memberStatusName The value of the column 'MEMBER_STATUS_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 
@@ -239,7 +239,7 @@ public abstract class BsSpResultSetParameterWithCurMemberStatus extends Abstract
      * @param description The value of the column 'DESCRIPTION'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDescription(String description) {
-        __modifiedProperties.addPropertyName("description");
+        registerModifiedProperty("description");
         _description = description;
     }
 
@@ -257,7 +257,7 @@ public abstract class BsSpResultSetParameterWithCurMemberStatus extends Abstract
      * @param displayOrder The value of the column 'DISPLAY_ORDER'. (NullAllowed: null update allowed for no constraint)
      */
     public void setDisplayOrder(Long displayOrder) {
-        __modifiedProperties.addPropertyName("displayOrder");
+        registerModifiedProperty("displayOrder");
         _displayOrder = displayOrder;
     }
 }

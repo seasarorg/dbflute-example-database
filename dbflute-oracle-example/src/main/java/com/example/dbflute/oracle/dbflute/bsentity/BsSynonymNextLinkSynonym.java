@@ -272,7 +272,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Long productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -290,7 +290,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param productName The value of the column 'PRODUCT_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductName(String productName) {
-        __modifiedProperties.addPropertyName("productName");
+        registerModifiedProperty("productName");
         _productName = productName;
     }
 
@@ -308,7 +308,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param productHandleCode The value of the column 'PRODUCT_HANDLE_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductHandleCode(String productHandleCode) {
-        __modifiedProperties.addPropertyName("productHandleCode");
+        registerModifiedProperty("productHandleCode");
         _productHandleCode = productHandleCode;
     }
 
@@ -326,7 +326,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductStatusCode(String productStatusCode) {
-        __modifiedProperties.addPropertyName("productStatusCode");
+        registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
@@ -344,7 +344,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -362,7 +362,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -380,7 +380,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -398,7 +398,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -416,7 +416,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -434,7 +434,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 
@@ -452,7 +452,7 @@ public abstract class BsSynonymNextLinkSynonym extends AbstractEntity implements
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(java.math.BigDecimal versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 }

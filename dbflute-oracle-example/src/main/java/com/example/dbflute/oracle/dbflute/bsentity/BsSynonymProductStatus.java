@@ -234,7 +234,7 @@ public abstract class BsSynonymProductStatus extends AbstractEntity {
      * @param productStatusCode The value of the column 'PRODUCT_STATUS_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setProductStatusCode(String productStatusCode) {
-        __modifiedProperties.addPropertyName("productStatusCode");
+        registerModifiedProperty("productStatusCode");
         _productStatusCode = productStatusCode;
     }
 
@@ -252,7 +252,7 @@ public abstract class BsSynonymProductStatus extends AbstractEntity {
      * @param productStatusName The value of the column 'PRODUCT_STATUS_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setProductStatusName(String productStatusName) {
-        __modifiedProperties.addPropertyName("productStatusName");
+        registerModifiedProperty("productStatusName");
         _productStatusName = productStatusName;
     }
 
@@ -270,7 +270,7 @@ public abstract class BsSynonymProductStatus extends AbstractEntity {
      * @param displayOrder The value of the column 'DISPLAY_ORDER'. (basically NotNull if update: for the constraint)
      */
     public void setDisplayOrder(java.math.BigDecimal displayOrder) {
-        __modifiedProperties.addPropertyName("displayOrder");
+        registerModifiedProperty("displayOrder");
         _displayOrder = displayOrder;
     }
 }

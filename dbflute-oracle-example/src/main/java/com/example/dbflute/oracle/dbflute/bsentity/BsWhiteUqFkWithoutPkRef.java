@@ -186,7 +186,8 @@ public abstract class BsWhiteUqFkWithoutPkRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_whiteUqFkWithoutPk != null) { sb.append(dm).append("whiteUqFkWithoutPk"); }
+        if (_whiteUqFkWithoutPk != null)
+        { sb.append(dm).append("whiteUqFkWithoutPk"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -215,7 +216,7 @@ public abstract class BsWhiteUqFkWithoutPkRef extends AbstractEntity {
      * @param uqFkRefId The value of the column 'UQ_FK_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setUqFkRefId(Long uqFkRefId) {
-        __modifiedProperties.addPropertyName("uqFkRefId");
+        registerModifiedProperty("uqFkRefId");
         _uqFkRefId = uqFkRefId;
     }
 
@@ -233,7 +234,7 @@ public abstract class BsWhiteUqFkWithoutPkRef extends AbstractEntity {
      * @param fkToUqCode The value of the column 'FK_TO_UQ_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setFkToUqCode(String fkToUqCode) {
-        __modifiedProperties.addPropertyName("fkToUqCode");
+        registerModifiedProperty("fkToUqCode");
         _fkToUqCode = fkToUqCode;
     }
 }

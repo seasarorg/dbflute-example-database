@@ -302,8 +302,10 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null) { sb.append(dm).append("member"); }
-        if (_serviceRank != null) { sb.append(dm).append("serviceRank"); }
+        if (_member != null)
+        { sb.append(dm).append("member"); }
+        if (_serviceRank != null)
+        { sb.append(dm).append("serviceRank"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -332,7 +334,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param memberServiceId The value of the column 'MEMBER_SERVICE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberServiceId(Long memberServiceId) {
-        __modifiedProperties.addPropertyName("memberServiceId");
+        registerModifiedProperty("memberServiceId");
         _memberServiceId = memberServiceId;
     }
 
@@ -350,7 +352,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -368,7 +370,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param servicePointCount The value of the column 'SERVICE_POINT_COUNT'. (basically NotNull if update: for the constraint)
      */
     public void setServicePointCount(Integer servicePointCount) {
-        __modifiedProperties.addPropertyName("servicePointCount");
+        registerModifiedProperty("servicePointCount");
         _servicePointCount = servicePointCount;
     }
 
@@ -386,7 +388,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param serviceRankCode The value of the column 'SERVICE_RANK_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setServiceRankCode(String serviceRankCode) {
-        __modifiedProperties.addPropertyName("serviceRankCode");
+        registerModifiedProperty("serviceRankCode");
         _serviceRankCode = serviceRankCode;
     }
 
@@ -404,7 +406,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.util.Date registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -422,7 +424,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -440,7 +442,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -458,7 +460,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.util.Date updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -476,7 +478,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 
@@ -494,7 +496,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -512,7 +514,7 @@ public abstract class BsMemberService extends AbstractEntity implements EntityDe
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 }

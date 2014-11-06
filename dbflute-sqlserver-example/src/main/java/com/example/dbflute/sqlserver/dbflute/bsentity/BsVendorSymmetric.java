@@ -188,7 +188,7 @@ public abstract class BsVendorSymmetric extends AbstractEntity {
      * @param vendorSymmetricId The value of the column 'VENDOR_SYMMETRIC_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendorSymmetricId(Long vendorSymmetricId) {
-        __modifiedProperties.addPropertyName("vendorSymmetricId");
+        registerModifiedProperty("vendorSymmetricId");
         _vendorSymmetricId = vendorSymmetricId;
     }
 
@@ -206,7 +206,7 @@ public abstract class BsVendorSymmetric extends AbstractEntity {
      * @param plainText The value of the column 'PLAIN_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPlainText(String plainText) {
-        __modifiedProperties.addPropertyName("plainText");
+        registerModifiedProperty("plainText");
         _plainText = plainText;
     }
 
@@ -224,7 +224,7 @@ public abstract class BsVendorSymmetric extends AbstractEntity {
      * @param encryptedData The value of the column 'ENCRYPTED_DATA'. (NullAllowed: null update allowed for no constraint)
      */
     public void setEncryptedData(String encryptedData) {
-        __modifiedProperties.addPropertyName("encryptedData");
+        registerModifiedProperty("encryptedData");
         _encryptedData = encryptedData;
     }
 }

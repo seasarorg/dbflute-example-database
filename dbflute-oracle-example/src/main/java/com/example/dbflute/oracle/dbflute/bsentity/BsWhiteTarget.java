@@ -216,7 +216,7 @@ public abstract class BsWhiteTarget extends AbstractEntity {
      * @param targetId The value of the column 'TARGET_ID'. (basically NotNull if update: for the constraint)
      */
     public void setTargetId(Long targetId) {
-        __modifiedProperties.addPropertyName("targetId");
+        registerModifiedProperty("targetId");
         _targetId = targetId;
     }
 
@@ -234,7 +234,7 @@ public abstract class BsWhiteTarget extends AbstractEntity {
      * @param targetName The value of the column 'TARGET_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setTargetName(String targetName) {
-        __modifiedProperties.addPropertyName("targetName");
+        registerModifiedProperty("targetName");
         _targetName = targetName;
     }
 }

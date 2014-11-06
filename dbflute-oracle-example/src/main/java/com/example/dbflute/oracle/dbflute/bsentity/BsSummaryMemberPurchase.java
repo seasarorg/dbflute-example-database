@@ -197,7 +197,7 @@ public abstract class BsSummaryMemberPurchase extends AbstractEntity {
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Long memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -215,7 +215,7 @@ public abstract class BsSummaryMemberPurchase extends AbstractEntity {
      * @param allsumPurchasePrice The value of the column 'ALLSUM_PURCHASE_PRICE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setAllsumPurchasePrice(java.math.BigDecimal allsumPurchasePrice) {
-        __modifiedProperties.addPropertyName("allsumPurchasePrice");
+        registerModifiedProperty("allsumPurchasePrice");
         _allsumPurchasePrice = allsumPurchasePrice;
     }
 
@@ -233,7 +233,7 @@ public abstract class BsSummaryMemberPurchase extends AbstractEntity {
      * @param latestPurchaseDatetime The value of the column 'LATEST_PURCHASE_DATETIME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setLatestPurchaseDatetime(java.sql.Timestamp latestPurchaseDatetime) {
-        __modifiedProperties.addPropertyName("latestPurchaseDatetime");
+        registerModifiedProperty("latestPurchaseDatetime");
         _latestPurchaseDatetime = latestPurchaseDatetime;
     }
 }

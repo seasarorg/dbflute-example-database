@@ -270,8 +270,10 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendorLargeData != null) { sb.append(dm).append("vendorLargeData"); }
-        if (_vendorLargeDataRefSelf != null) { sb.append(dm).append("vendorLargeDataRefSelf"); }
+        if (_vendorLargeData != null)
+        { sb.append(dm).append("vendorLargeData"); }
+        if (_vendorLargeDataRefSelf != null)
+        { sb.append(dm).append("vendorLargeDataRefSelf"); }
         if (_vendorLargeDataRefSelfList != null && !_vendorLargeDataRefSelfList.isEmpty())
         { sb.append(dm).append("vendorLargeDataRefSelfList"); }
         if (sb.length() > dm.length()) {
@@ -302,7 +304,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param largeDataRefId The value of the column 'LARGE_DATA_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setLargeDataRefId(Long largeDataRefId) {
-        __modifiedProperties.addPropertyName("largeDataRefId");
+        registerModifiedProperty("largeDataRefId");
         _largeDataRefId = largeDataRefId;
     }
 
@@ -320,7 +322,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param largeDataId The value of the column 'LARGE_DATA_ID'. (basically NotNull if update: for the constraint)
      */
     public void setLargeDataId(Long largeDataId) {
-        __modifiedProperties.addPropertyName("largeDataId");
+        registerModifiedProperty("largeDataId");
         _largeDataId = largeDataId;
     }
 
@@ -338,7 +340,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param dateIndex The value of the column 'DATE_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setDateIndex(java.util.Date dateIndex) {
-        __modifiedProperties.addPropertyName("dateIndex");
+        registerModifiedProperty("dateIndex");
         _dateIndex = dateIndex;
     }
 
@@ -356,7 +358,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param dateNoIndex The value of the column 'DATE_NO_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setDateNoIndex(java.util.Date dateNoIndex) {
-        __modifiedProperties.addPropertyName("dateNoIndex");
+        registerModifiedProperty("dateNoIndex");
         _dateNoIndex = dateNoIndex;
     }
 
@@ -374,7 +376,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param timestampIndex The value of the column 'TIMESTAMP_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setTimestampIndex(java.sql.Timestamp timestampIndex) {
-        __modifiedProperties.addPropertyName("timestampIndex");
+        registerModifiedProperty("timestampIndex");
         _timestampIndex = timestampIndex;
     }
 
@@ -392,7 +394,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param timestampNoIndex The value of the column 'TIMESTAMP_NO_INDEX'. (basically NotNull if update: for the constraint)
      */
     public void setTimestampNoIndex(java.sql.Timestamp timestampNoIndex) {
-        __modifiedProperties.addPropertyName("timestampNoIndex");
+        registerModifiedProperty("timestampNoIndex");
         _timestampNoIndex = timestampNoIndex;
     }
 
@@ -410,7 +412,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param nullableDecimalIndex The value of the column 'NULLABLE_DECIMAL_INDEX'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNullableDecimalIndex(java.math.BigDecimal nullableDecimalIndex) {
-        __modifiedProperties.addPropertyName("nullableDecimalIndex");
+        registerModifiedProperty("nullableDecimalIndex");
         _nullableDecimalIndex = nullableDecimalIndex;
     }
 
@@ -428,7 +430,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param nullableDecimalNoIndex The value of the column 'NULLABLE_DECIMAL_NO_INDEX'. (NullAllowed: null update allowed for no constraint)
      */
     public void setNullableDecimalNoIndex(java.math.BigDecimal nullableDecimalNoIndex) {
-        __modifiedProperties.addPropertyName("nullableDecimalNoIndex");
+        registerModifiedProperty("nullableDecimalNoIndex");
         _nullableDecimalNoIndex = nullableDecimalNoIndex;
     }
 
@@ -446,7 +448,7 @@ public abstract class BsVendorLargeDataRef extends AbstractEntity {
      * @param selfParentId The value of the column 'SELF_PARENT_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSelfParentId(Long selfParentId) {
-        __modifiedProperties.addPropertyName("selfParentId");
+        registerModifiedProperty("selfParentId");
         _selfParentId = selfParentId;
     }
 }

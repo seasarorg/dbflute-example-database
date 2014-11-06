@@ -187,7 +187,7 @@ public abstract class BsWhiteDiffWorld extends AbstractEntity {
      * @param diffWorldId The value of the column 'DIFF_WORLD_ID'. (basically NotNull if update: for the constraint)
      */
     public void setDiffWorldId(Long diffWorldId) {
-        __modifiedProperties.addPropertyName("diffWorldId");
+        registerModifiedProperty("diffWorldId");
         _diffWorldId = diffWorldId;
     }
 
@@ -205,7 +205,7 @@ public abstract class BsWhiteDiffWorld extends AbstractEntity {
      * @param diffWorldName The value of the column 'DIFF_WORLD_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setDiffWorldName(String diffWorldName) {
-        __modifiedProperties.addPropertyName("diffWorldName");
+        registerModifiedProperty("diffWorldName");
         _diffWorldName = diffWorldName;
     }
 }

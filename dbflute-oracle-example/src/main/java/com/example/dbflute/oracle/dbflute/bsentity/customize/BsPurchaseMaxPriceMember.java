@@ -211,7 +211,7 @@ public abstract class BsPurchaseMaxPriceMember extends AbstractEntity {
      * @param memberId The value of the column 'MEMBER_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberId(Long memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -229,7 +229,7 @@ public abstract class BsPurchaseMaxPriceMember extends AbstractEntity {
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -247,7 +247,7 @@ public abstract class BsPurchaseMaxPriceMember extends AbstractEntity {
      * @param purchaseMaxPrice The value of the column 'PURCHASE_MAX_PRICE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setPurchaseMaxPrice(java.math.BigDecimal purchaseMaxPrice) {
-        __modifiedProperties.addPropertyName("purchaseMaxPrice");
+        registerModifiedProperty("purchaseMaxPrice");
         _purchaseMaxPrice = purchaseMaxPrice;
     }
 
@@ -265,7 +265,7 @@ public abstract class BsPurchaseMaxPriceMember extends AbstractEntity {
      * @param memberStatusName The value of the column 'MEMBER_STATUS_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 
@@ -283,7 +283,7 @@ public abstract class BsPurchaseMaxPriceMember extends AbstractEntity {
      * @param rn The value of the column 'RN'. (NullAllowed: null update allowed for no constraint)
      */
     public void setRn(java.math.BigDecimal rn) {
-        __modifiedProperties.addPropertyName("rn");
+        registerModifiedProperty("rn");
         _rn = rn;
     }
 }

@@ -348,7 +348,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -366,7 +366,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param memberName The value of the column 'MEMBER_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberName(String memberName) {
-        __modifiedProperties.addPropertyName("memberName");
+        registerModifiedProperty("memberName");
         _memberName = memberName;
     }
 
@@ -384,7 +384,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param withdrawalReasonCode The value of the column 'WITHDRAWAL_REASON_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWithdrawalReasonCode(String withdrawalReasonCode) {
-        __modifiedProperties.addPropertyName("withdrawalReasonCode");
+        registerModifiedProperty("withdrawalReasonCode");
         _withdrawalReasonCode = withdrawalReasonCode;
     }
 
@@ -402,7 +402,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param withdrawalReasonText The value of the column 'WITHDRAWAL_REASON_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWithdrawalReasonText(String withdrawalReasonText) {
-        __modifiedProperties.addPropertyName("withdrawalReasonText");
+        registerModifiedProperty("withdrawalReasonText");
         _withdrawalReasonText = withdrawalReasonText;
     }
 
@@ -420,7 +420,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param withdrawalReasonInputText The value of the column 'WITHDRAWAL_REASON_INPUT_TEXT'. (NullAllowed: null update allowed for no constraint)
      */
     public void setWithdrawalReasonInputText(String withdrawalReasonInputText) {
-        __modifiedProperties.addPropertyName("withdrawalReasonInputText");
+        registerModifiedProperty("withdrawalReasonInputText");
         _withdrawalReasonInputText = withdrawalReasonInputText;
     }
 
@@ -438,7 +438,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param withdrawalDatetime The value of the column 'WITHDRAWAL_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setWithdrawalDatetime(java.sql.Timestamp withdrawalDatetime) {
-        __modifiedProperties.addPropertyName("withdrawalDatetime");
+        registerModifiedProperty("withdrawalDatetime");
         _withdrawalDatetime = withdrawalDatetime;
     }
 
@@ -456,7 +456,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param memberStatusCode The value of the column 'MEMBER_STATUS_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusCode(String memberStatusCode) {
-        __modifiedProperties.addPropertyName("memberStatusCode");
+        registerModifiedProperty("memberStatusCode");
         _memberStatusCode = memberStatusCode;
     }
 
@@ -474,7 +474,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param memberStatusName The value of the column 'MEMBER_STATUS_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMemberStatusName(String memberStatusName) {
-        __modifiedProperties.addPropertyName("memberStatusName");
+        registerModifiedProperty("memberStatusName");
         _memberStatusName = memberStatusName;
     }
 
@@ -492,7 +492,7 @@ public abstract class BsSummaryWithdrawal extends AbstractEntity {
      * @param maxPurchasePrice The value of the column 'MAX_PURCHASE_PRICE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setMaxPurchasePrice(Integer maxPurchasePrice) {
-        __modifiedProperties.addPropertyName("maxPurchasePrice");
+        registerModifiedProperty("maxPurchasePrice");
         _maxPurchasePrice = maxPurchasePrice;
     }
 }

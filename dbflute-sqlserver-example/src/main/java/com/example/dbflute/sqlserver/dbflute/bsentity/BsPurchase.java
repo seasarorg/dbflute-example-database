@@ -394,8 +394,10 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_member != null) { sb.append(dm).append("member"); }
-        if (_product != null) { sb.append(dm).append("product"); }
+        if (_member != null)
+        { sb.append(dm).append("member"); }
+        if (_product != null)
+        { sb.append(dm).append("product"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -424,7 +426,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param purchaseId The value of the column 'PURCHASE_ID'. (basically NotNull if update: for the constraint)
      */
     public void setPurchaseId(Long purchaseId) {
-        __modifiedProperties.addPropertyName("purchaseId");
+        registerModifiedProperty("purchaseId");
         _purchaseId = purchaseId;
     }
 
@@ -442,7 +444,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param memberId The value of the column 'MEMBER_ID'. (basically NotNull if update: for the constraint)
      */
     public void setMemberId(Integer memberId) {
-        __modifiedProperties.addPropertyName("memberId");
+        registerModifiedProperty("memberId");
         _memberId = memberId;
     }
 
@@ -460,7 +462,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param productId The value of the column 'PRODUCT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setProductId(Integer productId) {
-        __modifiedProperties.addPropertyName("productId");
+        registerModifiedProperty("productId");
         _productId = productId;
     }
 
@@ -478,7 +480,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param purchaseDatetime The value of the column 'PURCHASE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setPurchaseDatetime(java.sql.Timestamp purchaseDatetime) {
-        __modifiedProperties.addPropertyName("purchaseDatetime");
+        registerModifiedProperty("purchaseDatetime");
         _purchaseDatetime = purchaseDatetime;
     }
 
@@ -496,7 +498,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param purchaseCount The value of the column 'PURCHASE_COUNT'. (basically NotNull if update: for the constraint)
      */
     public void setPurchaseCount(Integer purchaseCount) {
-        __modifiedProperties.addPropertyName("purchaseCount");
+        registerModifiedProperty("purchaseCount");
         _purchaseCount = purchaseCount;
     }
 
@@ -514,7 +516,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param purchasePrice The value of the column 'PURCHASE_PRICE'. (basically NotNull if update: for the constraint)
      */
     public void setPurchasePrice(Integer purchasePrice) {
-        __modifiedProperties.addPropertyName("purchasePrice");
+        registerModifiedProperty("purchasePrice");
         _purchasePrice = purchasePrice;
     }
 
@@ -532,7 +534,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param paymentCompleteFlg The value of the column 'PAYMENT_COMPLETE_FLG'. (basically NotNull if update: for the constraint)
      */
     public void setPaymentCompleteFlg(Integer paymentCompleteFlg) {
-        __modifiedProperties.addPropertyName("paymentCompleteFlg");
+        registerModifiedProperty("paymentCompleteFlg");
         _paymentCompleteFlg = paymentCompleteFlg;
     }
 
@@ -550,7 +552,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param registerDatetime The value of the column 'REGISTER_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterDatetime(java.sql.Timestamp registerDatetime) {
-        __modifiedProperties.addPropertyName("registerDatetime");
+        registerModifiedProperty("registerDatetime");
         _registerDatetime = registerDatetime;
     }
 
@@ -568,7 +570,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param registerUser The value of the column 'REGISTER_USER'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterUser(String registerUser) {
-        __modifiedProperties.addPropertyName("registerUser");
+        registerModifiedProperty("registerUser");
         _registerUser = registerUser;
     }
 
@@ -586,7 +588,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param registerProcess The value of the column 'REGISTER_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setRegisterProcess(String registerProcess) {
-        __modifiedProperties.addPropertyName("registerProcess");
+        registerModifiedProperty("registerProcess");
         _registerProcess = registerProcess;
     }
 
@@ -604,7 +606,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param updateDatetime The value of the column 'UPDATE_DATETIME'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateDatetime(java.sql.Timestamp updateDatetime) {
-        __modifiedProperties.addPropertyName("updateDatetime");
+        registerModifiedProperty("updateDatetime");
         _updateDatetime = updateDatetime;
     }
 
@@ -622,7 +624,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param updateUser The value of the column 'UPDATE_USER'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateUser(String updateUser) {
-        __modifiedProperties.addPropertyName("updateUser");
+        registerModifiedProperty("updateUser");
         _updateUser = updateUser;
     }
 
@@ -640,7 +642,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param updateProcess The value of the column 'UPDATE_PROCESS'. (basically NotNull if update: for the constraint)
      */
     public void setUpdateProcess(String updateProcess) {
-        __modifiedProperties.addPropertyName("updateProcess");
+        registerModifiedProperty("updateProcess");
         _updateProcess = updateProcess;
     }
 
@@ -658,7 +660,7 @@ public abstract class BsPurchase extends AbstractEntity implements EntityDefined
      * @param versionNo The value of the column 'VERSION_NO'. (basically NotNull if update: for the constraint)
      */
     public void setVersionNo(Long versionNo) {
-        __modifiedProperties.addPropertyName("versionNo");
+        registerModifiedProperty("versionNo");
         _versionNo = versionNo;
     }
 }

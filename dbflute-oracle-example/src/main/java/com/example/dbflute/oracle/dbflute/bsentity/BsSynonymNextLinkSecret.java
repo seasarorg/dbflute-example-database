@@ -204,7 +204,7 @@ public abstract class BsSynonymNextLinkSecret extends AbstractEntity {
      * @param secretCode The value of the column 'SECRET_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setSecretCode(String secretCode) {
-        __modifiedProperties.addPropertyName("secretCode");
+        registerModifiedProperty("secretCode");
         _secretCode = secretCode;
     }
 
@@ -222,7 +222,7 @@ public abstract class BsSynonymNextLinkSecret extends AbstractEntity {
      * @param secretName The value of the column 'SECRET_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setSecretName(String secretName) {
-        __modifiedProperties.addPropertyName("secretName");
+        registerModifiedProperty("secretName");
         _secretName = secretName;
     }
 
@@ -240,7 +240,7 @@ public abstract class BsSynonymNextLinkSecret extends AbstractEntity {
      * @param secretAuthCode The value of the column 'SECRET_AUTH_CODE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setSecretAuthCode(String secretAuthCode) {
-        __modifiedProperties.addPropertyName("secretAuthCode");
+        registerModifiedProperty("secretAuthCode");
         _secretAuthCode = secretAuthCode;
     }
 }

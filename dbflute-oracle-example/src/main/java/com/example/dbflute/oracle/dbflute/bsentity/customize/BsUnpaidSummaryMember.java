@@ -253,7 +253,7 @@ public abstract class BsUnpaidSummaryMember extends AbstractEntity {
      * @param unpaidManId The value of the column 'UNPAID_MAN_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUnpaidManId(Long unpaidManId) {
-        __modifiedProperties.addPropertyName("unpaidManId");
+        registerModifiedProperty("unpaidManId");
         _unpaidManId = unpaidManId;
     }
 
@@ -271,7 +271,7 @@ public abstract class BsUnpaidSummaryMember extends AbstractEntity {
      * @param unpaidManName The value of the column 'UNPAID_MAN_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUnpaidManName(String unpaidManName) {
-        __modifiedProperties.addPropertyName("unpaidManName");
+        registerModifiedProperty("unpaidManName");
         _unpaidManName = unpaidManName;
     }
 
@@ -289,7 +289,7 @@ public abstract class BsUnpaidSummaryMember extends AbstractEntity {
      * @param unpaidPriceSummary The value of the column 'UNPAID_PRICE_SUMMARY'. (NullAllowed: null update allowed for no constraint)
      */
     public void setUnpaidPriceSummary(java.math.BigDecimal unpaidPriceSummary) {
-        __modifiedProperties.addPropertyName("unpaidPriceSummary");
+        registerModifiedProperty("unpaidPriceSummary");
         _unpaidPriceSummary = unpaidPriceSummary;
     }
 
@@ -307,7 +307,7 @@ public abstract class BsUnpaidSummaryMember extends AbstractEntity {
      * @param statusName The value of the column 'STATUS_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setStatusName(String statusName) {
-        __modifiedProperties.addPropertyName("statusName");
+        registerModifiedProperty("statusName");
         _statusName = statusName;
     }
 }

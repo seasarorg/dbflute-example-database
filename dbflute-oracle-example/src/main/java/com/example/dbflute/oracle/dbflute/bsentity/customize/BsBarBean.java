@@ -220,7 +220,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barId The value of the column 'BAR_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarId(Integer barId) {
-        __modifiedProperties.addPropertyName("barId");
+        registerModifiedProperty("barId");
         _barId = barId;
     }
 
@@ -238,7 +238,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barName The value of the column 'BAR_NAME'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarName(String barName) {
-        __modifiedProperties.addPropertyName("barName");
+        registerModifiedProperty("barName");
         _barName = barName;
     }
 
@@ -256,7 +256,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barDecimal The value of the column 'BAR_DECIMAL'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarDecimal(java.math.BigDecimal barDecimal) {
-        __modifiedProperties.addPropertyName("barDecimal");
+        registerModifiedProperty("barDecimal");
         _barDecimal = barDecimal;
     }
 
@@ -274,7 +274,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barDate The value of the column 'BAR_DATE'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarDate(java.util.Date barDate) {
-        __modifiedProperties.addPropertyName("barDate");
+        registerModifiedProperty("barDate");
         _barDate = barDate;
     }
 
@@ -292,7 +292,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barTimestamp The value of the column 'BAR_TIMESTAMP'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarTimestamp(java.sql.Timestamp barTimestamp) {
-        __modifiedProperties.addPropertyName("barTimestamp");
+        registerModifiedProperty("barTimestamp");
         _barTimestamp = barTimestamp;
     }
 
@@ -311,7 +311,7 @@ public abstract class BsBarBean extends AbstractEntity {
      * @param barClob The value of the column 'BAR_CLOB'. (NullAllowed: null update allowed for no constraint)
      */
     public void setBarClob(String barClob) {
-        __modifiedProperties.addPropertyName("barClob");
+        registerModifiedProperty("barClob");
         _barClob = barClob;
     }
 }

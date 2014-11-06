@@ -187,7 +187,7 @@ public abstract class BsWhiteRefNextExcept extends AbstractEntity {
      * @param refNextExceptId The value of the column 'REF_NEXT_EXCEPT_ID'. (basically NotNull if update: for the constraint)
      */
     public void setRefNextExceptId(Long refNextExceptId) {
-        __modifiedProperties.addPropertyName("refNextExceptId");
+        registerModifiedProperty("refNextExceptId");
         _refNextExceptId = refNextExceptId;
     }
 
@@ -205,7 +205,7 @@ public abstract class BsWhiteRefNextExcept extends AbstractEntity {
      * @param nextExceptCode The value of the column 'NEXT_EXCEPT_CODE'. (basically NotNull if update: for the constraint)
      */
     public void setNextExceptCode(String nextExceptCode) {
-        __modifiedProperties.addPropertyName("nextExceptCode");
+        registerModifiedProperty("nextExceptCode");
         _nextExceptCode = nextExceptCode;
     }
 }

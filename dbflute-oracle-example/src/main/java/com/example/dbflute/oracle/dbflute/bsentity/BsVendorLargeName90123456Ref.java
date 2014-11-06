@@ -191,7 +191,8 @@ public abstract class BsVendorLargeName90123456Ref extends AbstractEntity {
     @Override
     protected String doBuildRelationString(String dm) {
         StringBuilder sb = new StringBuilder();
-        if (_vendorLargeName901234567890 != null) { sb.append(dm).append("vendorLargeName901234567890"); }
+        if (_vendorLargeName901234567890 != null)
+        { sb.append(dm).append("vendorLargeName901234567890"); }
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length()).insert(0, "(").append(")");
         }
@@ -220,7 +221,7 @@ public abstract class BsVendorLargeName90123456Ref extends AbstractEntity {
      * @param vendorLargeName90123RefId The value of the column 'VENDOR_LARGE_NAME_90123_REF_ID'. (basically NotNull if update: for the constraint)
      */
     public void setVendorLargeName90123RefId(Long vendorLargeName90123RefId) {
-        __modifiedProperties.addPropertyName("vendorLargeName90123RefId");
+        registerModifiedProperty("vendorLargeName90123RefId");
         _vendorLargeName90123RefId = vendorLargeName90123RefId;
     }
 
@@ -238,7 +239,7 @@ public abstract class BsVendorLargeName90123456Ref extends AbstractEntity {
      * @param vendorLargeName901RefName The value of the column 'VENDOR_LARGE_NAME_901_REF_NAME'. (basically NotNull if update: for the constraint)
      */
     public void setVendorLargeName901RefName(String vendorLargeName901RefName) {
-        __modifiedProperties.addPropertyName("vendorLargeName901RefName");
+        registerModifiedProperty("vendorLargeName901RefName");
         _vendorLargeName901RefName = vendorLargeName901RefName;
     }
 
@@ -256,7 +257,7 @@ public abstract class BsVendorLargeName90123456Ref extends AbstractEntity {
      * @param vendorLargeName901234567Id The value of the column 'VENDOR_LARGE_NAME_901234567_ID'. (NullAllowed: null update allowed for no constraint)
      */
     public void setVendorLargeName901234567Id(Long vendorLargeName901234567Id) {
-        __modifiedProperties.addPropertyName("vendorLargeName901234567Id");
+        registerModifiedProperty("vendorLargeName901234567Id");
         _vendorLargeName901234567Id = vendorLargeName901234567Id;
     }
 }
