@@ -290,7 +290,7 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
     protected void invalid_now() throws Exception {
         final int dataSize = 300; // *the real test is on PostgreSQL and Oracle
         final int refSize = 1000;
-        //final int dataSize = 30000;
+        //final int dataSize = 120003;
         //final int refSize = 1000000;
         final String outputDir;
         {

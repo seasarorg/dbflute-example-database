@@ -39,16 +39,21 @@ public class WxCursorSelectMySQLTest extends UnitContainerTestCase {
         DBFluteConfig.getInstance().unlock();
         DBFluteConfig.getInstance().setCursorSelectFetchSize(Integer.MIN_VALUE);
         super.setUp();
-        memberBhv.getFetchSizeMap().clear();
-        memberBhv.getRowDataClassMap().clear();
     }
 
     @Override
     public void tearDown() throws Exception {
+        memberBhv.getFetchSizeMap().clear();
+        memberBhv.getRowDataClassMap().clear();
         super.tearDown();
         DBFluteConfig.getInstance().unlock();
         DBFluteConfig.getInstance().setCursorSelectFetchSize(null);
         DBFluteConfig.getInstance().lock();
+    }
+
+    @Override
+    protected boolean isUseOneTimeContainer() {
+        return true;
     }
 
     @Override

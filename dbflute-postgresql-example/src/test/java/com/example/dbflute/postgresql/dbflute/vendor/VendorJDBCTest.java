@@ -140,6 +140,46 @@ public class VendorJDBCTest extends UnitContainerTestCase {
         return memberBhv.selectCount(new MemberCB());
     }
 
+    public void test_ResultSet_rowData_largeData() {
+        // ## Arrange ##
+        PurchaseSummaryMemberPmb pmb = new PurchaseSummaryMemberPmb();
+
+        // ## Act ##
+        PurchaseSummaryMemberCursorHandler handler = new PurchaseSummaryMemberCursorHandler() {
+            @Override
+            protected Object fetchCursor(PurchaseSummaryMemberCursor cursor) throws SQLException {
+                // ## Assert ##
+                ResultSet rs = cursor.cursor();
+                assertDbAccess();
+                rs.next(); // 1
+                assertDbAccess();
+                Set<Integer> memberIdList = new LinkedHashSet<Integer>();
+                memberIdList.add(cursor.getMemberId());
+
+                log("ResultSet   = " + rs.getClass());
+                org.postgresql.jdbc3.Jdbc3ResultSet physicalRs = extractPhysicalRs(rs);
+                log("Physical    = " + physicalRs.getClass());
+                Vector<?> rows = extractRowsOnResultSet(physicalRs);
+
+                log("1: rows.size() = " + rows.size());
+                assertEquals(20, rows.size());
+                rs.next(); // 2
+                memberIdList.add(cursor.getMemberId());
+                rs.next(); // 3
+                memberIdList.add(cursor.getMemberId());
+                rs.next(); // 4
+                memberIdList.add(cursor.getMemberId());
+                log("2: rows.size() = " + rows.size());
+                assertEquals(20, rows.size());
+
+                log("memberIdList = " + memberIdList);
+                assertEquals(4, memberIdList.size());
+                return null;
+            }
+        };
+        memberBhv.outsideSql().cursorHandling().selectCursor(pmb, handler);
+    }
+
     protected org.postgresql.jdbc3.Jdbc3ResultSet extractPhysicalRs(ResultSet rs) { // nested
         Field field = DfReflectionUtil.getWholeField(org.apache.commons.dbcp.DelegatingResultSet.class, "_res");
         ResultSet firstRs = (ResultSet) DfReflectionUtil.getValueForcedly(field, rs);
