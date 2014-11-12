@@ -1,4 +1,46 @@
 map:{
+    ; 2014/11/13 01:14:30 = map:{
+        ; diffDate = 2014/11/13 01:14:30
+        ; tableCount = map:{
+            ; next = 50
+            ; previous = 47
+        }
+        ; tableDiff = map:{
+            ; SYNONYM_NEXT_LINK_SECRET = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SECRET
+                ; diffType = ADD
+            }
+            ; SYNONYM_NEXT_LINK_SYNONYM = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SYNONYM
+                ; diffType = ADD
+            }
+            ; SYNONYM_NEXT_LINK_TABLE = map:{
+                ; tableName = SYNONYM_NEXT_LINK_TABLE
+                ; diffType = ADD
+            }
+        }
+    }
+    ; 2014/11/13 00:33:33 = map:{
+        ; diffDate = 2014/11/13 00:33:33
+        ; tableCount = map:{
+            ; next = 47
+            ; previous = 50
+        }
+        ; tableDiff = map:{
+            ; SYNONYM_NEXT_LINK_SECRET = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SECRET
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_LINK_SYNONYM = map:{
+                ; tableName = SYNONYM_NEXT_LINK_SYNONYM
+                ; diffType = DELETE
+            }
+            ; SYNONYM_NEXT_LINK_TABLE = map:{
+                ; tableName = SYNONYM_NEXT_LINK_TABLE
+                ; diffType = DELETE
+            }
+        }
+    }
     ; 2013/11/04 21:36:08 = map:{
         ; diffDate = 2013/11/04 21:36:08
         ; tableDiff = map:{
