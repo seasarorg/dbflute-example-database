@@ -994,6 +994,19 @@ public abstract class BsWhiteSuppressJoinSqOneAddiBhv extends AbstractBehaviorWr
     }
 
     // ===================================================================================
+    //                                                                         Hyper Patch
+    //                                                                         ===========
+    @Override
+    protected <RESULT extends WhiteSuppressJoinSqOneAddi> org.seasar.dbflute.bhv.core.command.SelectListCBCommand<RESULT> newSelectListCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectListCBCommandHyperPatch<RESULT>();
+    }
+
+    @Override
+    protected <RESULT extends WhiteSuppressJoinSqOneAddi> org.seasar.dbflute.bhv.core.command.SelectCursorCBCommand<RESULT> newSelectCursorCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectCursorCBCommandHyperPatch<RESULT>();
+    }
+
+    // ===================================================================================
     //                                                                         Type Helper
     //                                                                         ===========
     protected Class<? extends WhiteSuppressJoinSqOneAddi> typeOfSelectedEntity() { return WhiteSuppressJoinSqOneAddi.class; }

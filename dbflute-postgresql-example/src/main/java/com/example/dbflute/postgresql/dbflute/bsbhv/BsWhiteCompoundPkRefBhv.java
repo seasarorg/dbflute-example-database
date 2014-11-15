@@ -889,6 +889,19 @@ public abstract class BsWhiteCompoundPkRefBhv extends AbstractBehaviorWritable<W
     }
 
     // ===================================================================================
+    //                                                                         Hyper Patch
+    //                                                                         ===========
+    @Override
+    protected <RESULT extends WhiteCompoundPkRef> org.seasar.dbflute.bhv.core.command.SelectListCBCommand<RESULT> newSelectListCBCommand() {
+        return new com.example.dbflute.postgresql.dbflute.allcommon.DBFluteConfig.SelectListCBCommandHyperPatch<RESULT>();
+    }
+
+    @Override
+    protected <RESULT extends WhiteCompoundPkRef> org.seasar.dbflute.bhv.core.command.SelectCursorCBCommand<RESULT> newSelectCursorCBCommand() {
+        return new com.example.dbflute.postgresql.dbflute.allcommon.DBFluteConfig.SelectCursorCBCommandHyperPatch<RESULT>();
+    }
+
+    // ===================================================================================
     //                                                                         Type Helper
     //                                                                         ===========
     protected Class<? extends WhiteCompoundPkRef> typeOfSelectedEntity() { return WhiteCompoundPkRef.class; }

@@ -914,6 +914,19 @@ public abstract class BsWhiteAllInOneClsNormalColRefBhv extends AbstractBehavior
     }
 
     // ===================================================================================
+    //                                                                         Hyper Patch
+    //                                                                         ===========
+    @Override
+    protected <RESULT extends WhiteAllInOneClsNormalColRef> org.seasar.dbflute.bhv.core.command.SelectListCBCommand<RESULT> newSelectListCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectListCBCommandHyperPatch<RESULT>();
+    }
+
+    @Override
+    protected <RESULT extends WhiteAllInOneClsNormalColRef> org.seasar.dbflute.bhv.core.command.SelectCursorCBCommand<RESULT> newSelectCursorCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectCursorCBCommandHyperPatch<RESULT>();
+    }
+
+    // ===================================================================================
     //                                                                         Type Helper
     //                                                                         ===========
     protected Class<? extends WhiteAllInOneClsNormalColRef> typeOfSelectedEntity() { return WhiteAllInOneClsNormalColRef.class; }

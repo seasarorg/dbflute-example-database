@@ -288,17 +288,29 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
     // (The TSV files are SVN-ignored)
     //public void test_making_TSV() throws Exception {
     protected void invalid_now() throws Exception {
-        final int dataSize = 300; // *the real test is on PostgreSQL and Oracle
-        final int refSize = 1000;
-        //final int dataSize = 120003;
-        //final int refSize = 1000000;
+        // for base data
+        //final int dataSize = 1203;
+        //final int dataInitialBaseId = 0;
+        //final String dataPrefixNumber = "90";
+        //final int refSize = 30000;
+        //final int refInitialBaseId = 0;
+        //final String refPrefixNumber = "91";
+        // for super large data
+        final int dataSize = 120003;
+        final int dataInitialBaseId = 1203;
+        final String dataPrefixNumber = "92";
+        final int refSize = 1000000;
+        final int refInitialBaseId = 30000;
+        final String refPrefixNumber = "93";
+
         final String outputDir;
         {
             String canonicalPath = DfResourceUtil.getBuildDir(this.getClass()).getCanonicalPath();
-            outputDir = canonicalPath + "/../../dbflute_exampledb/playsql/data/ut/tsv/UTF-8";
+            outputDir = canonicalPath + "/../../dbflute_maihamadb/playsql/data/ut/tsv/UTF-8";
         }
         final List<VendorLargeData> dataList = new ArrayList<VendorLargeData>();
-        for (int i = 0; i < dataSize; i++) {
+        final int loopLimitCount = dataSize + dataInitialBaseId;
+        for (int i = dataInitialBaseId; i < loopLimitCount; i++) {
             int currentId = (i + 1);
             VendorLargeData data = new VendorLargeData();
             data.setLargeDataId(Long.valueOf(currentId));
@@ -310,12 +322,13 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
             data.setNumericIntegerNoIndex(data.getNumericIntegerIndex());
             dataList.add(data);
         }
-        writeLargeData(dataList, outputDir, dataSize);
-        writeLargeDataRef(dataList, outputDir, dataSize, refSize);
+        writeLargeData(dataList, outputDir, dataPrefixNumber, dataSize);
+        writeLargeDataRef(dataList, outputDir, refPrefixNumber, dataSize, refSize, refInitialBaseId);
     }
 
-    protected void writeLargeData(List<VendorLargeData> dataList, String outputDir, int dataSize) throws Exception {
-        final String path = outputDir + "/90-VENDOR_LARGE_DATA.tsv";
+    protected void writeLargeData(List<VendorLargeData> dataList, String outputDir, String dataPrefixNumber,
+            int dataSize) throws Exception {
+        final String path = outputDir + "/" + dataPrefixNumber + "-VENDOR_LARGE_DATA.tsv";
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
@@ -336,11 +349,11 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
         }
     }
 
-    protected void writeLargeDataRef(List<VendorLargeData> dataList, String outputDir, int dataSize, int refSize)
-            throws Exception {
+    protected void writeLargeDataRef(List<VendorLargeData> dataList, String outputDir, String refPrefixNumber,
+            int dataSize, int refSize, int refInitialBaseId) throws Exception {
         final Calendar baseDateCal = DfTypeUtil.toCalendar("1900/01/01");
         final Calendar baseTimestampCal = DfTypeUtil.toCalendar("1970/01/01 00:00:00");
-        final String path = outputDir + "/92-VENDOR_LARGE_DATA_REF.tsv";
+        final String path = outputDir + "/" + refPrefixNumber + "-VENDOR_LARGE_DATA_REF.tsv";
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
@@ -352,7 +365,8 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
             }
             log("...Writing LargeDataRef(" + refSize + ")");
             Long selfParentId = null;
-            for (int i = 0; i < refSize; i++) {
+            final int loopLimitCount = refSize + refInitialBaseId;
+            for (int i = refInitialBaseId; i < loopLimitCount; i++) {
                 int currentId = (i + 1);
                 VendorLargeDataRef ref = new VendorLargeDataRef();
                 ref.setLargeDataRefId(Long.valueOf(currentId));
@@ -372,6 +386,9 @@ public class VendorLargeDataTest extends UnitContainerTestCase {
                 }
                 bw.write(ln() + buildRecord(VendorLargeDataRefDbm.getInstance().extractAllColumnMap(ref)));
 
+                if (baseDateCal.get(Calendar.YEAR) > 9990) {
+                    baseDateCal.set(Calendar.YEAR, 1970);
+                }
                 baseDateCal.add(Calendar.DATE, 1);
                 baseTimestampCal.add(Calendar.HOUR, 4);
                 baseTimestampCal.add(Calendar.SECOND, 20);

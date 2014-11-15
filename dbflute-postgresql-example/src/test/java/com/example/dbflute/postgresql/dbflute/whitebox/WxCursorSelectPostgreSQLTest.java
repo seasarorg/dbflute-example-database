@@ -60,11 +60,13 @@ public class WxCursorSelectPostgreSQLTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                               Basic
     //                                                                               =====
+    public void test_pagingSynchronizedFetchSize_DBFluteConfig() throws Exception {
+        assertEquals(4, DBFluteConfig.getInstance().getCursorSelectFetchSize());
+    }
+
     public void test_cursorSelectFetchSize_basic() {
         // ## Arrange ##
         PurchaseSummaryMemberPmb pmb = new PurchaseSummaryMemberPmb();
-        assertEquals(4, DBFluteConfig.getInstance().getCursorSelectFetchSize());
-
         PurchaseSummaryMemberCursorHandler handler = new PurchaseSummaryMemberCursorHandler() {
             @Override
             protected Object fetchCursor(PurchaseSummaryMemberCursor cursor) throws SQLException {

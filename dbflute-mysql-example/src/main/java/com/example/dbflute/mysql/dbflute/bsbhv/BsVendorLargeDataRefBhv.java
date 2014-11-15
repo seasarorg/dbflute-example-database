@@ -68,6 +68,10 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable<V
     //                                                                          Definition
     //                                                                          ==========
     /*df:beginQueryPath*/
+    /** Large Data with AutoPaging */
+    public static final String PATH_whitebox_vendorcheck_selectLargeAutoPaging = "whitebox:vendorcheck:selectLargeAutoPaging";
+    /** Large Data with ManualPaging */
+    public static final String PATH_whitebox_vendorcheck_selectLargeManualPaging = "whitebox:vendorcheck:selectLargeManualPaging";
     /*df:endQueryPath*/
 
     // ===================================================================================
@@ -1007,6 +1011,19 @@ public abstract class BsVendorLargeDataRefBhv extends AbstractBehaviorWritable<V
     public OutsideSqlBasicExecutor<VendorLargeDataRefBhv> outsideSql() {
         OutsideSqlAllFacadeExecutor<VendorLargeDataRefBhv> facadeExecutor = doOutsideSql();
         return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
+    }
+
+    // ===================================================================================
+    //                                                                         Hyper Patch
+    //                                                                         ===========
+    @Override
+    protected <RESULT extends VendorLargeDataRef> org.seasar.dbflute.bhv.core.command.SelectListCBCommand<RESULT> newSelectListCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectListCBCommandHyperPatch<RESULT>();
+    }
+
+    @Override
+    protected <RESULT extends VendorLargeDataRef> org.seasar.dbflute.bhv.core.command.SelectCursorCBCommand<RESULT> newSelectCursorCBCommand() {
+        return new com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig.SelectCursorCBCommandHyperPatch<RESULT>();
     }
 
     // ===================================================================================

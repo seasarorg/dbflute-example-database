@@ -4,6 +4,7 @@ import org.seasar.dbflute.cbean.ListResultBean;
 import org.seasar.dbflute.exception.EntityAlreadyDeletedException;
 import org.seasar.dbflute.exception.EntityDuplicatedException;
 
+import com.example.dbflute.mysql.dbflute.allcommon.DBFluteConfig;
 import com.example.dbflute.mysql.dbflute.cbean.VendorLargeDataRefCB;
 import com.example.dbflute.mysql.dbflute.exbhv.VendorLargeDataRefBhv;
 import com.example.dbflute.mysql.dbflute.exentity.VendorLargeDataRef;
@@ -35,6 +36,10 @@ public class WxEntitySelectMySQLTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                          Fetch Size
     //                                                                          ==========
+    public void test_pagingSynchronizedFetchSize_DBFluteConfig() throws Exception {
+        assertEquals(Integer.MIN_VALUE, DBFluteConfig.getInstance().getEntitySelectFetchSize());
+    }
+
     public void test_entitySelectFetchSize_defaultFetchSize() throws Exception {
         VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
         cb.query().setLargeDataRefId_IsNotNull(); // to avoid no condition exception

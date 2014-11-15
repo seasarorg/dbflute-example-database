@@ -1,7 +1,6 @@
 package com.example.dbflute.postgresql.dbflute.whitebox;
 
 import org.seasar.dbflute.cbean.ListResultBean;
-import org.seasar.dbflute.exception.EntityAlreadyDeletedException;
 import org.seasar.dbflute.exception.EntityDuplicatedException;
 
 import com.example.dbflute.postgresql.dbflute.allcommon.DBFluteConfig;
@@ -52,6 +51,10 @@ public class WxEntitySelectPostgreSQLTest extends UnitContainerTestCase {
     // ===================================================================================
     //                                                                          Fetch Size
     //                                                                          ==========
+    public void test_pagingSynchronizedFetchSize_DBFluteConfig() throws Exception {
+        assertEquals(1, DBFluteConfig.getInstance().getEntitySelectFetchSize());
+    }
+
     public void test_entitySelectFetchSize_defaultFetchSize() throws Exception {
         VendorLargeDataRefCB cb = new VendorLargeDataRefCB();
         cb.query().setLargeDataRefId_IsNotNull(); // to avoid no condition exception
@@ -59,8 +62,6 @@ public class WxEntitySelectPostgreSQLTest extends UnitContainerTestCase {
         try {
             vendorLargeDataRefBhv.selectEntity(cb);
             fail();
-        } catch (EntityAlreadyDeletedException e) { // because large data is not required 
-            log(e.getMessage());
         } catch (EntityDuplicatedException e) { // needs manual test by large data
             log(e.getMessage());
         }
@@ -78,8 +79,7 @@ public class WxEntitySelectPostgreSQLTest extends UnitContainerTestCase {
         ListResultBean<VendorLargeDataRef> memberList = vendorLargeDataRefBhv.selectList(cb);
 
         // ## Assert ##
-        // because large data is not required
-        //assertHasAnyElement(memberList);
+        assertHasAnyElement(memberList);
         assertEquals(countAll, memberList.size());
         assertEquals(0, vendorLargeDataRefBhv.getFetchSizeMap().get("selectList"));
         assertEquals(countAll, vendorLargeDataRefBhv.getRowDataClassMap().get("selectList").size());

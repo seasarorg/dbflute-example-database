@@ -4506,6 +4506,7 @@ VENDOR_LARGE_DATA
   <h2 id="vendor_large_data_ref" title="type=TABLE, primaryKey={LARGE_DATA_REF_ID}, nameLength=21, columnCount=9">
 VENDOR_LARGE_DATA_REF
 &nbsp;<span class="tableschema">on exampledb</span>
+&nbsp;<span class="bqpcount"><a href="#vendor_large_data_ref_sql">(outsideSql=2)</a></span>
 </h2>
 <table summary="Columns in VENDOR_LARGE_DATA_REF">
 	<thead>
@@ -13470,6 +13471,27 @@ WHITE_XLS_MAN
 	<dd class="subinfo">
 		<span class="file">VendorCheckBhv_selectVendorNumericIntegerSum.sql</span>
 		<span class="ctet">(VendorCheckIntegerSum)</span>
+	</dd>
+</dl>
+<h3 id="vendor_large_data_ref_sql"><a href="#vendor_large_data_ref">VENDOR_LARGE_DATA_REF</a></h3>
+<dl class="bqplist">
+	<dt>(Large&nbsp;Data&nbsp;with&nbsp;AutoPaging)whitebox_vendorcheck_selectLargeAutoPaging</dt>
+	<dd>
+		<pre class="commentdesc"> test of large data</pre>
+	</dd>
+	<dd class="subinfo">
+		<span class="file">VendorLargeDataRefBhv_selectLargeAutoPaging.sql</span>
+		<span class="ctet">(df:entity)</span>
+		<span class="pmb">(df:pmb extends Paging)</span>
+	</dd>
+	<dt>(Large&nbsp;Data&nbsp;with&nbsp;ManualPaging)whitebox_vendorcheck_selectLargeManualPaging</dt>
+	<dd>
+		<pre class="commentdesc"> test of large data</pre>
+	</dd>
+	<dd class="subinfo">
+		<span class="file">VendorLargeDataRefBhv_selectLargeManualPaging.sql</span>
+		<span class="ctet">(df:entity)</span>
+		<span class="pmb">(df:pmb extends Paging)</span>
 	</dd>
 </dl>
 <h2 id="procedure">Procedure</h2>
