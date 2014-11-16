@@ -10,7 +10,7 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  * The referrer loader of (商品のさまりびゅー)SUMMARY_PRODUCT as VIEW. <br />
  * <pre>
  * [primary key]
- *     
+ *     PRODUCT_ID
  *
  * [column]
  *     PRODUCT_ID, PRODUCT_NAME, PRODUCT_STATUS_CODE, LATEST_PURCHASE_DATETIME

@@ -10,7 +10,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * The referrer loader of SUMMARY_PRODUCT as VIEW. <br />
  * <pre>
  * [primary key]
- *     
+ *     PRODUCT_ID
  *
  * [column]
  *     PRODUCT_ID, PRODUCT_NAME, PRODUCT_HANDLE_CODE, PRODUCT_STATUS_CODE, LATEST_PURCHASE_DATETIME
