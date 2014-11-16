@@ -5,8 +5,8 @@
     <table comment="隣のスキーマ:隣のベーシックなテーブル" name="NEXT_SCHEMA_PRODUCT"
         schema="NEXTEXAMPLEDB" type="TABLE">
         <column comment="隣の商品ID:隣のベーシックなPK" dbType="NUMBER"
-            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0047690"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0048894"
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="隣の商品名称:隣のベーシックなName" dbType="VARCHAR2"
             javaType="String" name="PRODUCT_NAME" required="true"
             size="50" type="VARCHAR"/>
@@ -36,8 +36,8 @@
     <table comment="隣のスキステ:これのみえてよい" name="NEXT_SCHEMA_PRODUCT_STATUS"
         schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" pkName="SYS_C0047693"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            name="PRODUCT_STATUS_CODE" pkName="SYS_C0048897"
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
         <unique name="UQ_NEXT_SCHEMA_PRODUCT_STATUS">
@@ -47,8 +47,8 @@
     <table comment="隣の秘密で権限なし:隣から見えちゃだめ。だけどデータリンクならしょうがない"
         name="NEXT_SCHEMA_SECRET" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String" name="SECRET_CODE"
-            pkName="SYS_C0047696" primaryKey="true" required="true"
-            size="3" type="CHAR"/>
+            pkName="SYS_C0048900" pkPosition="1" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String" name="SECRET_NAME"
             required="true" size="50" type="VARCHAR"/>
         <column dbType="CHAR" javaType="String" name="SECRET_AUTH_CODE"
@@ -65,16 +65,16 @@
         name="NEXT_SCHEMA_SECRET_AUTH" schema="NEXTEXAMPLEDB" type="TABLE">
         <column comment="隣の秘密２コード:隣の商品を秘密するかもしれない" dbType="CHAR"
             javaType="String" name="SECRET_AUTH_CODE"
-            pkName="SYS_C0047699" primaryKey="true" required="true"
-            size="3" type="CHAR"/>
+            pkName="SYS_C0048903" pkPosition="1" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
         <column comment="隣の秘密２名称:" dbType="VARCHAR2" javaType="String"
             name="SECRET_AUTH_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table comment="隣のスキーマ:隣のベーシックなテーブル" name="NEXT_SYNONYM_PRODUCT"
         schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column comment="隣の商品ID:隣のベーシックなPK" dbType="NUMBER"
-            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0047690"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0048894"
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="隣の商品名称:隣のベーシックなName" dbType="VARCHAR2"
             javaType="String" name="PRODUCT_NAME" required="true"
             size="50" type="VARCHAR"/>
@@ -104,8 +104,8 @@
     <table comment="隣の秘密で権限なし:隣から見えちゃだめ。だけどデータリンクならしょうがない"
         name="NEXT_SYNONYM_SECRET" schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column dbType="CHAR" javaType="String" name="SECRET_CODE"
-            pkName="SYS_C0047696" primaryKey="true" required="true"
-            size="3" type="CHAR"/>
+            pkName="SYS_C0048900" pkPosition="1" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String" name="SECRET_NAME"
             required="true" size="50" type="VARCHAR"/>
         <column dbType="CHAR" javaType="String" name="SECRET_AUTH_CODE"
@@ -122,22 +122,22 @@
         name="NEXT_SYNONYM_SECRET_AUTH" schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column comment="隣の秘密２コード:隣の商品を秘密するかもしれない" dbType="CHAR"
             javaType="String" name="SECRET_AUTH_CODE"
-            pkName="SYS_C0047699" primaryKey="true" required="true"
-            size="3" type="CHAR"/>
+            pkName="SYS_C0048903" pkPosition="1" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
         <column comment="隣の秘密２名称:" dbType="VARCHAR2" javaType="String"
             name="SECRET_AUTH_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_SAME_NAME" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="SAME_NAME_ID"
-            pkName="SYS_C0047706" primaryKey="true" required="true"
-            size="16" type="DECIMAL"/>
+            pkName="SYS_C0048910" pkPosition="1" primaryKey="true"
+            required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="SAME_NAME_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_SAME_NAME_REF" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_ID"
-            pkName="SYS_C0047709" primaryKey="true" required="true"
-            size="16" type="DECIMAL"/>
+            pkName="SYS_C0048913" pkPosition="1" primaryKey="true"
+            required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REF_NAME"
             required="true" size="50" type="VARCHAR"/>
         <column dbType="NUMBER" javaType="Long" name="SAME_NAME_ID"
@@ -149,8 +149,8 @@
     </table>
     <table name="WHITE_SAME_NAME_REF_REF" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_REF_ID"
-            pkName="SYS_C0047713" primaryKey="true" required="true"
-            size="16" type="DECIMAL"/>
+            pkName="SYS_C0048917" pkPosition="1" primaryKey="true"
+            required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REF_REF_NAME"
             required="true" size="50" type="VARCHAR"/>
         <column dbType="NUMBER" javaType="java.math.BigDecimal"

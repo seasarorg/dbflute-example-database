@@ -12,7 +12,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * The entity of SUMMARY_PRODUCT as VIEW. <br />
  * <pre>
  * [primary-key]
- *     PRODUCT_ID
+ *     
  * 
  * [column]
  *     PRODUCT_ID, PRODUCT_NAME, PRODUCT_HANDLE_CODE, PRODUCT_STATUS_CODE, LATEST_PURCHASE_DATETIME
@@ -117,8 +117,7 @@ public abstract class BsSummaryProduct extends AbstractEntity {
      * {@inheritDoc}
      */
     public boolean hasPrimaryKeyValue() {
-        if (getProductId() == null) { return false; }
-        return true;
+        return false;
     }
 
     // ===================================================================================
@@ -139,6 +138,10 @@ public abstract class BsSummaryProduct extends AbstractEntity {
         if (obj instanceof BsSummaryProduct) {
             BsSummaryProduct other = (BsSummaryProduct)obj;
             if (!xSV(_productId, other._productId)) { return false; }
+            if (!xSV(_productName, other._productName)) { return false; }
+            if (!xSV(_productHandleCode, other._productHandleCode)) { return false; }
+            if (!xSV(_productStatusCode, other._productStatusCode)) { return false; }
+            if (!xSV(_latestPurchaseDatetime, other._latestPurchaseDatetime)) { return false; }
             return true;
         } else {
             return false;
@@ -150,6 +153,10 @@ public abstract class BsSummaryProduct extends AbstractEntity {
         int hs = initial;
         hs = xCH(hs, getTableDbName());
         hs = xCH(hs, _productId);
+        hs = xCH(hs, _productName);
+        hs = xCH(hs, _productHandleCode);
+        hs = xCH(hs, _productStatusCode);
+        hs = xCH(hs, _latestPurchaseDatetime);
         return hs;
     }
 

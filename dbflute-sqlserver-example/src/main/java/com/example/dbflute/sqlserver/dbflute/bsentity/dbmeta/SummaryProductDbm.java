@@ -131,8 +131,10 @@ public class SummaryProductDbm extends AbstractDBMeta {
     // -----------------------------------------------------
     //                                       Primary Element
     //                                       ---------------
-    protected UniqueInfo cpui() { return hpcpui(columnProductId()); }
-    public boolean hasPrimaryKey() { return true; }
+    protected UniqueInfo cpui() {
+        throw new UnsupportedOperationException("The table does not have primary key: " + getTableDbName());
+    }
+    public boolean hasPrimaryKey() { return false; }
     public boolean hasCompoundPrimaryKey() { return false; }
 
     // ===================================================================================

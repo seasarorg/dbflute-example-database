@@ -157,6 +157,17 @@ map:{
             ; tableExceptList = list:{}
             ; tableTargetList = list:{}
             ; isDropAllTable = true
+            ; isSuppressConnectionFailure = true
+        }
+        ; map:{
+            #; url = ... // same as main
+            ; user = diffworlddb
+            ; password = diffworlddb
+            ; propertiesMap = map:{includeSynonyms=true}
+            ; schema = DIFFWORLDDB
+            ; objectTypeTargetList = list:{TABLE;VIEW;SYNONYM}
+            ; isDropAllTable = true
+            ; isSuppressConnectionFailure = true
         }
     }
     # - - - - - - - - - -/

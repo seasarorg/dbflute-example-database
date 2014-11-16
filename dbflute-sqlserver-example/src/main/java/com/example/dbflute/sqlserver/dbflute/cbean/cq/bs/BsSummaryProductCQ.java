@@ -228,30 +228,6 @@ public class BsSummaryProductCQ extends AbstractBsSummaryProductCQ {
     public String keepScalarCondition(SummaryProductCQ sq) { return xkeepSQue("scalarCondition", sq); }
 
     // ===================================================================================
-    //                                                                       MyselfDerived
-    //                                                                       =============
-    public Map<String, SummaryProductCQ> getSpecifyMyselfDerived() { return xgetSQueMap("specifyMyselfDerived"); }
-    public String keepSpecifyMyselfDerived(SummaryProductCQ sq) { return xkeepSQue("specifyMyselfDerived", sq); }
-
-    public Map<String, SummaryProductCQ> getQueryMyselfDerived() { return xgetSQueMap("queryMyselfDerived"); }
-    public String keepQueryMyselfDerived(SummaryProductCQ sq) { return xkeepSQue("queryMyselfDerived", sq); }
-    public Map<String, Object> getQueryMyselfDerivedParameter() { return xgetSQuePmMap("queryMyselfDerived"); }
-    public String keepQueryMyselfDerivedParameter(Object pm) { return xkeepSQuePm("queryMyselfDerived", pm); }
-
-    // ===================================================================================
-    //                                                                        MyselfExists
-    //                                                                        ============
-    protected Map<String, SummaryProductCQ> _myselfExistsMap;
-    public Map<String, SummaryProductCQ> getMyselfExists() { return xgetSQueMap("myselfExists"); }
-    public String keepMyselfExists(SummaryProductCQ sq) { return xkeepSQue("myselfExists", sq); }
-
-    // ===================================================================================
-    //                                                                       MyselfInScope
-    //                                                                       =============
-    public Map<String, SummaryProductCQ> getMyselfInScope() { return xgetSQueMap("myselfInScope"); }
-    public String keepMyselfInScope(SummaryProductCQ sq) { return xkeepSQue("myselfInScope", sq); }
-
-    // ===================================================================================
     //                                                                       Very Internal
     //                                                                       =============
     // very internal (for suppressing warn about 'Not Use Import')

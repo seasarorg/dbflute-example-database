@@ -80,36 +80,14 @@ public class BsSummaryProductCB extends AbstractConditionBean {
     // ===================================================================================
     //                                                                 PrimaryKey Handling
     //                                                                 ===================
-    /**
-     * Accept the query condition of primary key as equal.
-     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
-     * @return this. (NotNull)
-     */
-    public SummaryProductCB acceptPK(Long productId) {
-        assertObjectNotNull("productId", productId);
-        BsSummaryProductCB cb = this;
-        cb.query().setProductId_Equal(productId);
-        return (SummaryProductCB)this;
-    }
-
-    /**
-     * Accept the query condition of primary key as equal. (old style)
-     * @param productId : PK, NotNull, NUMBER(16). (NotNull)
-     */
-    public void acceptPrimaryKey(Long productId) {
-        assertObjectNotNull("productId", productId);
-        BsSummaryProductCB cb = this;
-        cb.query().setProductId_Equal(productId);
-    }
-
     public ConditionBean addOrderBy_PK_Asc() {
-        query().addOrderBy_ProductId_Asc();
-        return this;
+        String msg = "The table has no primary-keys: " + getTableDbName();
+        throw new UnsupportedOperationException(msg);
     }
 
     public ConditionBean addOrderBy_PK_Desc() {
-        query().addOrderBy_ProductId_Desc();
-        return this;
+        String msg = "The table has no primary-keys: " + getTableDbName();
+        throw new UnsupportedOperationException(msg);
     }
 
     // ===================================================================================
@@ -368,7 +346,6 @@ public class BsSummaryProductCB extends AbstractConditionBean {
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override
         protected void doSpecifyRequiredColumn() {
-            columnProductId(); // PK
             if (qyCall().qy().hasConditionQueryProductStatus()
                     || qyCall().qy().xgetReferrerQuery() instanceof ProductStatusCQ) {
                 columnProductStatusCode(); // FK or one-to-one referrer
@@ -396,16 +373,6 @@ public class BsSummaryProductCB extends AbstractConditionBean {
                 }
             }
             return _productStatus;
-        }
-        /**
-         * Prepare for (Specify)MyselfDerived (SubQuery).
-         * @return The object to set up a function for myself table. (NotNull)
-         */
-        public HpSDRFunction<SummaryProductCB, SummaryProductCQ> myselfDerived() {
-            assertDerived("myselfDerived"); if (xhasSyncQyCall()) { xsyncQyCall().qy(); } // for sync (for example, this in ColumnQuery)
-            return new HpSDRFunction<SummaryProductCB, SummaryProductCQ>(_baseCB, _qyCall.qy(), new HpSDRSetupper<SummaryProductCB, SummaryProductCQ>() {
-                public void setup(String fn, SubQuery<SummaryProductCB> sq, SummaryProductCQ cq, String al, DerivedReferrerOption op) {
-                    cq.xsmyselfDerive(fn, sq, al, op); } }, _dbmetaProvider);
         }
     }
 
