@@ -4,19 +4,42 @@
 * Load Data Reverse *
 *                   *
 * * * * * * * * * * *
-...Outputting load data: tables=34
+...Outputting load data: tables=35
   isReplaceSchemaDirectUse = false
   isOverrideExistingDataFile = true
   isSynchronizeOriginDate = false
 
-[reverse-data-99-added-table.xls]: tables=6
-  vendor_inherit_inu (0)
-  vendor_inherit_neko (0)
-...Outputting the over-xls-limit table: vendor_large_data
- -> ./output/doc/data/big-data/vendor_large_data.tsv (120003)
-...Outputting the over-xls-limit table: vendor_large_data_ref
- -> ./output/doc/data/big-data/vendor_large_data_ref.tsv (1000000)
-  vendor_part_man (0)
-  vendor_part_man_high (0)
+[reverse-data-99-added-table.xls]: tables=31
+  VENDOR-NON COMPILABLE (0)
+  member_status (3)
+  product_category (5)
+  product_status (3)
+  region (4)
+  service_rank (5)
+  vendor_$_dollar (0)
+  vendor_check (8)
+  vendor_date_pk (0)
+  vendor_large_data (1203)
+  vendor_large_data_ref (30000)
+  vendor_uuid_bar (0)
+  vendor_uuid_foo (0)
+  white_compound_pk (0)
+  white_compound_pk_ref (0)
+  white_compound_pk_wrong_order (0)
+  white_not_pk (0)
+  white_same_name (0)
+  white_same_name_ref (0)
+  white_xls_man (6)
+  withdrawal_reason (4)
+  product (20)
+  member (20)
+  member_address (20)
+  member_login (56)
+  member_security (20)
+  member_service (20)
+  member_withdrawal (4)
+  purchase (70)
+  purchase_payment (100)
+  vendor_date_fk (0)
 
-Output Date: 2014/11/13 10:03:11
+Output Date: 2014/11/16 20:11:06

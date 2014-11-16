@@ -4,8 +4,8 @@
 <database name="">
     <table name="MEMBER" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="MEMBER_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="MEMBER_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String" name="MEMBER_NAME"
             required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String" name="MEMBER_ACCOUNT"
@@ -47,8 +47,8 @@
     </table>
     <table name="MEMBER_ADDRESS" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="MEMBER_ADDRESS_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="MEMBER_ADDRESS_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
             required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="DATE" javaType="java.util.Date"
@@ -86,8 +86,8 @@
     </table>
     <table name="MEMBER_LOGIN" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="MEMBER_LOGIN_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="MEMBER_LOGIN_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
             required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="DATETIME" javaType="java.sql.Timestamp"
@@ -109,7 +109,8 @@
     </table>
     <table name="MEMBER_SECURITY" type="TABLE">
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
-            primaryKey="true" required="true" size="2000000000, 10" type="INTEGER"/>
+            pkPosition="0" primaryKey="true" required="true"
+            size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String" name="LOGIN_PASSWORD"
             required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String" name="REMINDER_QUESTION"
@@ -138,8 +139,8 @@
     </table>
     <table name="MEMBER_SERVICE" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="MEMBER_SERVICE_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="MEMBER_SERVICE_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
             required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer"
@@ -169,8 +170,8 @@
     </table>
     <table name="MEMBER_STATUS" type="TABLE">
         <column dbType="TEXT" javaType="String"
-            name="MEMBER_STATUS_CODE" primaryKey="true" required="true"
-            size="2000000000, 10" type="VARCHAR"/>
+            name="MEMBER_STATUS_CODE" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
             name="MEMBER_STATUS_NAME" required="true"
             size="2000000000, 10" type="VARCHAR"/>
@@ -181,7 +182,8 @@
     </table>
     <table name="MEMBER_WITHDRAWAL" type="TABLE">
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
-            primaryKey="true" required="true" size="2000000000, 10" type="INTEGER"/>
+            pkPosition="0" primaryKey="true" required="true"
+            size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String"
             name="WITHDRAWAL_REASON_CODE" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
@@ -215,8 +217,8 @@
     </table>
     <table name="PRODUCT" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="PRODUCT_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="PRODUCT_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String" name="PRODUCT_NAME"
             required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
@@ -247,8 +249,8 @@
     </table>
     <table name="PRODUCT_CATEGORY" type="TABLE">
         <column dbType="TEXT" javaType="String"
-            name="PRODUCT_CATEGORY_CODE" primaryKey="true"
-            required="true" size="2000000000, 10" type="VARCHAR"/>
+            name="PRODUCT_CATEGORY_CODE" pkPosition="0"
+            primaryKey="true" required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
             name="PRODUCT_CATEGORY_NAME" required="true"
             size="2000000000, 10" type="VARCHAR"/>
@@ -257,16 +259,16 @@
     </table>
     <table name="PRODUCT_STATUS" type="TABLE">
         <column dbType="TEXT" javaType="String"
-            name="PRODUCT_STATUS_CODE" primaryKey="true" required="true"
-            size="2000000000, 10" type="VARCHAR"/>
+            name="PRODUCT_STATUS_CODE" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true"
             size="2000000000, 10" type="VARCHAR"/>
     </table>
     <table name="PURCHASE" type="TABLE">
         <column autoIncrement="true" dbType="INTEGER" javaType="Integer"
-            name="PURCHASE_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="PURCHASE_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer" name="MEMBER_ID"
             required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="INTEGER" javaType="Integer" name="PRODUCT_ID"
@@ -312,13 +314,15 @@
     </table>
     <table name="REGION" type="TABLE">
         <column dbType="INTEGER" javaType="Integer" name="REGION_ID"
-            primaryKey="true" required="true" size="2000000000, 10" type="INTEGER"/>
+            pkPosition="0" primaryKey="true" required="true"
+            size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String" name="REGION_NAME"
             required="true" size="2000000000, 10" type="VARCHAR"/>
     </table>
     <table name="SERVICE_RANK" type="TABLE">
         <column dbType="TEXT" javaType="String" name="SERVICE_RANK_CODE"
-            primaryKey="true" required="true" size="2000000000, 10" type="VARCHAR"/>
+            pkPosition="0" primaryKey="true" required="true"
+            size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String" name="SERVICE_RANK_NAME"
             required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="REAL" javaType="String"
@@ -344,8 +348,8 @@
     </table>
     <table name="VENDOR_CHECK" type="TABLE">
         <column dbType="INTEGER" javaType="Integer"
-            name="VENDOR_CHECK_ID" primaryKey="true" required="true"
-            size="2000000000, 10" type="INTEGER"/>
+            name="VENDOR_CHECK_ID" pkPosition="0" primaryKey="true"
+            required="true" size="2000000000, 10" type="INTEGER"/>
         <column dbType="TEXT" javaType="String" name="TYPE_OF_TEXT"
             size="2000000000, 10" type="VARCHAR"/>
         <column dbType="INTEGER" javaType="Integer"
@@ -355,8 +359,8 @@
     </table>
     <table name="WITHDRAWAL_REASON" type="TABLE">
         <column dbType="TEXT" javaType="String"
-            name="WITHDRAWAL_REASON_CODE" primaryKey="true"
-            required="true" size="2000000000, 10" type="VARCHAR"/>
+            name="WITHDRAWAL_REASON_CODE" pkPosition="0"
+            primaryKey="true" required="true" size="2000000000, 10" type="VARCHAR"/>
         <column dbType="TEXT" javaType="String"
             name="WITHDRAWAL_REASON_TEXT" required="true"
             size="2000000000, 10" type="VARCHAR"/>

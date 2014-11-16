@@ -1,4 +1,17 @@
 map:{
+    ; 2014/11/16 20:10:29 = map:{
+        ; diffDate = 2014/11/16 20:10:29
+        ; tableCount = map:{
+            ; next = 39
+            ; previous = 38
+        }
+        ; tableDiff = map:{
+            ; white_compound_pk_wrong_order = map:{
+                ; tableName = white_compound_pk_wrong_order
+                ; diffType = ADD
+            }
+        }
+    }
     ; 2014/09/13 20:11:07 = map:{
         ; diffDate = 2014/09/13 20:11:07
         ; tableDiff = map:{

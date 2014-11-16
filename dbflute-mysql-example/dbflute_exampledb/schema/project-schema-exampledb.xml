@@ -8,7 +8,8 @@
         <column autoIncrement="true"
             comment="会員ID: 会員を識別するID。連番として基本的に自動採番される。&#xa;（会員IDだけに限らず）採番方法はDBMSによって変わる。"
             dbType="INT" javaType="Integer" name="MEMBER_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="会員名称: 会員のフルネームの名称。" dbType="VARCHAR"
             javaType="String" name="MEMBER_NAME" required="true"
             size="180" type="VARCHAR"/>
@@ -61,7 +62,8 @@
         <column autoIncrement="true"
             comment="会員住所ID: 会員住所を識別するID。&#xa;履歴分も含むテーブルなので、これ自体はFKではない。"
             dbType="INT" javaType="Integer" name="MEMBER_ADDRESS_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column
             comment="会員ID: 会員を参照するID。&#xa;履歴分を含むため、これだけではユニークにはならない。"
             dbType="INT" javaType="Integer" name="MEMBER_ID"
@@ -111,7 +113,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="会員ログインID" dbType="BIGINT"
             javaType="Long" name="MEMBER_LOGIN_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="会員ID" dbType="INT" javaType="Integer"
             name="MEMBER_ID" required="true" size="10" type="INTEGER"/>
         <column comment="ログイン日時: ログインした瞬間の日時。" dbType="DATETIME"
@@ -147,7 +149,8 @@
         name="member_security" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="会員ID: そのまま one-to-one を構成するためのFKとなる。"
             dbType="INT" javaType="Integer" name="MEMBER_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column
             comment="ログインパスワード: ログイン時に利用するパスワード。&#xa;本当は良くないが、Exampleなのでひとまず暗号化していない。"
             dbType="VARCHAR" javaType="String" name="LOGIN_PASSWORD"
@@ -184,7 +187,8 @@
         <column autoIncrement="true"
             comment="会員サービスID: 独立した主キーとなるが、実質的に会員IDとは one-to-one である。"
             dbType="INT" javaType="Integer" name="MEMBER_SERVICE_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="会員ID: 会員を参照するID。ユニークなので、会員とは one-to-one の関係に。"
             dbType="INT" javaType="Integer" name="MEMBER_ID"
             required="true" size="10" type="INTEGER"/>
@@ -230,7 +234,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="会員ステータスコード: 会員ステータスを識別するコード。" dbType="CHAR"
             javaType="String" name="MEMBER_STATUS_CODE" pkName="PRIMARY"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="会員ステータス名称" dbType="VARCHAR" javaType="String"
             name="MEMBER_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
         <column
@@ -248,8 +252,8 @@
     <table comment="会員退会情報: 退会会員の退会に関する詳細な情報。&#xa;退会会員のみデータが存在する。"
         name="member_withdrawal" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MEMBER_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MEMBER_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="退会理由コード: 退会した定型理由を参照するコード。&#xa;何も言わずに退会する会員もいるので必須項目ではない。"
             dbType="CHAR" javaType="String"
@@ -289,7 +293,7 @@
         name="product" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="商品ID" dbType="INT"
             javaType="Integer" name="PRODUCT_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="商品名称" dbType="VARCHAR" javaType="String"
             name="PRODUCT_NAME" required="true" size="50" type="VARCHAR"/>
         <column comment="商品ハンドルコード: 商品を識別する業務上のコード。" dbType="VARCHAR"
@@ -338,7 +342,7 @@
     <table comment="商品カテゴリ: 商品のカテゴリを表現するマスタ。&#xa;自己参照の階層になっている。"
         name="product_category" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="商品カテゴリコード" dbType="CHAR" javaType="String"
-            name="PRODUCT_CATEGORY_CODE" pkName="PRIMARY"
+            name="PRODUCT_CATEGORY_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="商品カテゴリ名称" dbType="VARCHAR" javaType="String"
             name="PRODUCT_CATEGORY_NAME" required="true" size="50" type="VARCHAR"/>
@@ -355,7 +359,7 @@
     <table comment="商品ステータス" name="product_status"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="商品ステータスコード" dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" pkName="PRIMARY"
+            name="PRODUCT_STATUS_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="商品ステータス名称" dbType="VARCHAR" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -370,7 +374,7 @@
         name="purchase" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="購入ID: 連番" dbType="BIGINT"
             javaType="Long" name="PURCHASE_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column
             comment="会員ID: 会員を参照するID。&#xa;購入を識別する自然キー（複合ユニーク制約）の筆頭要素。"
             dbType="INT" javaType="Integer" name="MEMBER_ID"
@@ -439,7 +443,8 @@
         name="purchase_payment" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="購入支払ID: 連番"
             dbType="BIGINT" javaType="Long" name="PURCHASE_PAYMENT_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="購入ID: 支払い対象の購入へのID" dbType="BIGINT"
             javaType="Long" name="PURCHASE_ID" required="true" size="19" type="BIGINT"/>
         <column comment="支払金額: 支払った金額。さて、小数点なのはなぜでしょう？" dbType="DECIMAL"
@@ -476,8 +481,8 @@
     <table comment="地域: 主に会員の住所に対応する地域。&#xa;かなりざっくりした感じではある。"
         name="region" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="地域ID" dbType="INT" javaType="Integer"
-            name="REGION_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="REGION_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="地域名称" dbType="VARCHAR" javaType="String"
             name="REGION_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
@@ -485,7 +490,7 @@
         name="service_rank" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="サービスランクコード: サービスランクを識別するコード。" dbType="CHAR"
             javaType="String" name="SERVICE_RANK_CODE" pkName="PRIMARY"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column
             comment="サービスランク名称: サービスランクの名称。&#xa;（ゴールドとかプラチナとか基本的には威厳のある名前）"
             dbType="VARCHAR" javaType="String" name="SERVICE_RANK_NAME"
@@ -552,8 +557,8 @@
     </table>
     <table name="vendor_check" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="VENDOR_CHECK_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="VENDOR_CHECK_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="TYPE_OF_CHAR" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -625,7 +630,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="CONSTRAINT_NAME_AUTO_BAR_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CONSTRAINT_NAME_AUTO_BAR_NAME" required="true"
             size="50" type="VARCHAR"/>
@@ -637,7 +642,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="CONSTRAINT_NAME_AUTO_FOO_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CONSTRAINT_NAME_AUTO_FOO_NAME" required="true"
             size="50" type="VARCHAR"/>
@@ -649,7 +654,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="CONSTRAINT_NAME_AUTO_QUX_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CONSTRAINT_NAME_AUTO_QUX_NAME" required="true"
             size="50" type="VARCHAR"/>
@@ -661,7 +666,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="CONSTRAINT_NAME_AUTO_REF_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="16" type="DECIMAL"/>
+            pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="CONSTRAINT_NAME_AUTO_FOO_ID" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
@@ -700,8 +705,8 @@
     </table>
     <table name="vendor_large_data" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="LARGE_DATA_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="LARGE_DATA_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="STRING_INDEX" required="true" size="180" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -727,8 +732,8 @@
     <table name="vendor_large_data_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="LARGE_DATA_REF_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="LARGE_DATA_REF_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="LARGE_DATA_ID" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="DATE" javaType="java.util.Date"
@@ -777,7 +782,8 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
             name="THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="THE_LONG_AND_WINDING_TABLE_AND_COLUMN_NAME"
             required="true" size="180" type="VARCHAR"/>
@@ -794,7 +800,8 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
             name="THE_LONG_AND_WINDING_TABLE_AND_COLUMN_REF_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="THE_LONG_AND_WINDING_TABLE_AND_COLUMN_ID"
             required="true" size="19" type="BIGINT"/>
@@ -816,8 +823,8 @@
     <table name="white_all_in_one_cls_category"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="CLS_CATEGORY_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="CLS_CATEGORY_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CLS_CATEGORY_NAME" required="true" size="20" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -826,23 +833,23 @@
     <table name="white_all_in_one_cls_compound_pk_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="FOO_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="FOO_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="BAR_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="BAR_CODE" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="QUX_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="QUX_CODE" pkName="PRIMARY" pkPosition="3"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
     </table>
     <table name="white_all_in_one_cls_element"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="CLS_CATEGORY_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="CLS_CATEGORY_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="CLS_ELEMENT_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="CLS_ELEMENT_CODE" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="CLS_ELEMENT_NAME" required="true" size="20" type="VARCHAR"/>
         <column comment="" dbType="TEXT" javaType="String"
@@ -857,19 +864,19 @@
         <column comment="" dbType="INT" javaType="Integer"
             name="CLS_REF_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="FOO_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="FOO_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="BAR_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="BAR_CODE" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="QUX_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="QUX_CODE" pkName="PRIMARY" pkPosition="3"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
     </table>
     <table name="white_binary" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="BINARY_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BINARY" javaType="byte[]"
             name="BINARY_DATA" size="1" type="BINARY"/>
         <column comment="" dbType="BLOB" javaType="byte[]"
@@ -878,16 +885,16 @@
     <table name="white_column_except"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="EXCEPT_COLUMN_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="EXCEPT_COLUMN_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="COLUMN_EXCEPT_TEST" size="10" type="INTEGER"/>
     </table>
     <table name="white_column_except_gen_only"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="GEN_ONLY_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="GEN_ONLY_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="GEN_ONLY_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -895,11 +902,11 @@
     </table>
     <table name="white_compound_pk" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="PK_FIRST_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="PK_FIRST_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
-            name="PK_SECOND_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="PK_SECOND_ID" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PK_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -916,11 +923,11 @@
     <table name="white_compound_pk_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MULTIPLE_FIRST_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MULTIPLE_FIRST_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
-            name="MULTIPLE_SECOND_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MULTIPLE_SECOND_ID" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="REF_FIRST_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -940,11 +947,11 @@
     <table name="white_compound_pk_ref_many"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MULTIPLE_FIRST_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MULTIPLE_FIRST_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
-            name="MULTIPLE_SECOND_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MULTIPLE_SECOND_ID" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="REF_MANY_FIRST_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -961,7 +968,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
             name="COMPOUND_PK_REF_NEST_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="FOO_MULTIPLE_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -989,27 +996,41 @@
             <index-column name="BAR_MULTIPLE_ID" position="2"/>
         </index>
     </table>
+    <table name="white_compound_pk_wrong_order"
+        schema="exampledb.$$NoNameSchema$$" type="TABLE">
+        <column comment="" dbType="INT" javaType="Integer"
+            name="FIRST_ID" pkName="PRIMARY" pkPosition="3"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="SECOND_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="INT" javaType="Integer"
+            name="THIRD_ID" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column comment="" dbType="VARCHAR" javaType="String"
+            name="WRONG_NAME" required="true" size="200" type="VARCHAR"/>
+    </table>
     <table name="white_compound_referred_normally"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="REFERRED_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="REFERRED_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REFERRED_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_compound_referred_primary"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="REFERRED_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="REFERRED_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REFERRED_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_date_adjustment"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="DATE_ADJUSTMENT_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="DATE_ADJUSTMENT_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="adjusted" dbType="DATE"
             javaType="java.util.Date" name="ADJUSTED_DATE" size="10" type="DATE"/>
         <column comment="" dbType="DATETIME"
@@ -1035,7 +1056,7 @@
     <table name="white_db_comment" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="Normal: this is normal comment." dbType="CHAR"
             javaType="String" name="DB_COMMENT_CODE" pkName="PRIMARY"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column
             comment="JavaDocHeadache: e.g. /*BEGIN*/, @ @foo &lt;br />"
             dbType="VARCHAR" javaType="String" name="DB_COMMENT_NAME"
@@ -1044,7 +1065,7 @@
     <table name="white_delimiter" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="DELIMITER_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="NUMBER_NULLABLE" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1058,14 +1079,14 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
             name="DEPRECATED_CLS_ELEMENT_CODE" pkName="PRIMARY"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="DEPRECATED_CLS_ELEMENT_NAME" size="20" type="VARCHAR"/>
     </table>
     <table name="white_escaped_dfprop"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="ESCAPED_DFPROP_CODE" pkName="PRIMARY"
+            name="ESCAPED_DFPROP_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ESCAPED_DFPROP_NAME" size="20" type="VARCHAR"/>
@@ -1073,7 +1094,7 @@
     <table name="white_escaped_java_doc"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="ESCAPED_JAVA_DOC_CODE" pkName="PRIMARY"
+            name="ESCAPED_JAVA_DOC_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ESCAPED_JAVA_DOC_NAME" size="20" type="VARCHAR"/>
@@ -1081,7 +1102,7 @@
     <table name="white_escaped_number_initial"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="NUMBER_INITIAL_CODE" pkName="PRIMARY"
+            name="NUMBER_INITIAL_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="NUMBER_INITIAL_NAME" size="20" type="VARCHAR"/>
@@ -1090,7 +1111,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="CIPHER_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="Integer"
             name="CIPHER_INTEGER" size="100" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1105,7 +1126,8 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="GROUPING_REFERENCE_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="GROUPING_REFERENCE_CODE" required="true" size="3" type="CHAR"/>
     </table>
@@ -1113,7 +1135,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
             name="IMPLICIT_CONV_INTEGER_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="IMPLICIT_CONV_NUMERIC_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1126,7 +1148,7 @@
         <column comment="" dbType="DECIMAL"
             javaType="java.math.BigDecimal"
             name="IMPLICIT_CONV_NUMERIC_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="20" type="DECIMAL"/>
+            pkPosition="1" primaryKey="true" required="true" size="20" type="DECIMAL"/>
         <column comment="" dbType="DECIMAL"
             javaType="java.math.BigDecimal"
             name="IMPLICIT_CONV_INTEGER_ID" required="true" size="20" type="DECIMAL"/>
@@ -1140,7 +1162,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="VARCHAR" javaType="String"
             name="IMPLICIT_CONV_STRING_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="10" type="VARCHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="IMPLICIT_CONV_INTEGER_ID" required="true" size="10" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1152,7 +1174,8 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="INT"
             javaType="Integer" name="WHITE_IMPLICIT_REVERSE_FK_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="WHITE_IMPLICIT_REVERSE_FK_NAME" required="true"
             size="200" type="VARCHAR"/>
@@ -1161,7 +1184,8 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="INT"
             javaType="Integer" name="WHITE_IMPLICIT_REVERSE_FK_REF_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="WHITE_IMPLICIT_REVERSE_FK_ID" required="true"
             size="10" type="INTEGER"/>
@@ -1179,7 +1203,8 @@
         <column autoIncrement="true" comment="" dbType="INT"
             javaType="Integer"
             name="WHITE_IMPLICIT_REVERSE_FK_SUPPRESS_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="WHITE_IMPLICIT_REVERSE_FK_ID" required="true"
             size="10" type="INTEGER"/>
@@ -1196,7 +1221,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="INCLUDE_QUERY_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="INCLUDE_QUERY_VARCHAR" size="100" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1210,29 +1235,29 @@
     <table name="white_line_sep_comment"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="LINE_SEP_COMMENT_CODE" pkName="PRIMARY"
+            name="LINE_SEP_COMMENT_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="LINE_SEP_COMMENT_NAME" size="20" type="VARCHAR"/>
     </table>
     <table name="white_load_data" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="LOAD_DATA_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="LOAD_DATA_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="LOAD_DATA_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_myself" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MYSELF_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MYSELF_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MYSELF_NAME" required="true" size="80" type="VARCHAR"/>
     </table>
     <table name="white_myself_check" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MYSELF_CHECK_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MYSELF_CHECK_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MYSELF_CHECK_NAME" required="true" size="80" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1273,14 +1298,14 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="FROM_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FROM_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_only_one_to_one_to"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
-            javaType="Long" name="TO_ID" pkName="PRIMARY"
+            javaType="Long" name="TO_ID" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="TO_NAME" required="true" size="200" type="VARCHAR"/>
@@ -1297,8 +1322,8 @@
     <table name="white_perrotta_over_member"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="MEMBER_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="MEMBER_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MEMBER_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -1325,16 +1350,16 @@
     <table name="white_perrotta_over_member_macho"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="MACHO_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="MACHO_CODE" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MACHO_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_perrotta_over_product"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="PRODUCT_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="PRODUCT_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PRODUCT_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1350,7 +1375,7 @@
     <table name="white_perrotta_over_product_nested"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="CHAR" javaType="String"
-            name="PRODUCT_NESTED_CODE" pkName="PRIMARY"
+            name="PRODUCT_NESTED_CODE" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PRODUCT_NESTED_NAME" required="true" size="200" type="VARCHAR"/>
@@ -1358,8 +1383,8 @@
     <table name="white_perrotta_over_trace"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="TRACE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="TRACE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="PREVIOUS_PRODUCT_ID" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -1384,7 +1409,8 @@
     </table>
     <table name="white_pg_reserv" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="CLASS"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer" name="CASE"
             size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1427,7 +1453,8 @@
     <table name="white_pg_reserv_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="REF_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer" name="CLASS"
             size="10" type="INTEGER"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
@@ -1441,7 +1468,7 @@
     <table name="white_point_type_mapping"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="POINT_TYPE_MAPPING_ID" pkName="PRIMARY"
+            name="POINT_TYPE_MAPPING_ID" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR"
             javaType="com.example.dbflute.mysql.mytype.MyMemberName"
@@ -1459,7 +1486,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="PURCHASE_REFERRER_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PURCHASE_REFERRER_NAME" required="true" size="200" type="VARCHAR"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
@@ -1469,13 +1496,15 @@
     </table>
     <table name="white_quoted" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="SELECT"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FROM" size="200" type="VARCHAR"/>
     </table>
     <table name="white_quoted_ref" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="WHERE"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="INT" javaType="Integer" name="ORDER"
             size="10" type="INTEGER"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
@@ -1489,8 +1518,8 @@
     <table name="white_self_reference"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="SELF_REFERENCE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="SELF_REFERENCE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="SELF_REFERENCE_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
@@ -1506,8 +1535,8 @@
     <table name="white_self_reference_ref_one"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="SELF_REFERENCE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="SELF_REFERENCE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="SELF_REFERENCE_REF_ONE_NAME" required="true"
             size="200" type="VARCHAR"/>
@@ -1519,8 +1548,8 @@
     <table name="white_split_multiple_fk_base"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="BASE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="BASE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="INT" javaType="Integer"
             name="FIRST_ID" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="BIGINT" javaType="Long"
@@ -1538,8 +1567,8 @@
     <table name="white_split_multiple_fk_child"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="CHILD_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="CHILD_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="BASE_ID" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1555,27 +1584,27 @@
     <table name="white_split_multiple_fk_next"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="NEXT_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="NEXT_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="SECOND_CODE" required="true" size="3" type="CHAR"/>
     </table>
     <table name="white_split_multiple_fk_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="FIRST_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="FIRST_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="CHAR" javaType="String"
-            name="SECOND_CODE" pkName="PRIMARY" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            name="SECOND_CODE" pkName="PRIMARY" pkPosition="2"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="REF_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_stiletto_alias"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="STILETTO_ALIAS_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="STILETTO_ALIAS_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String" name="FOO"
             size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1596,7 +1625,8 @@
     <table name="white_stiletto_alias_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="REF_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="FOO0" size="200" type="VARCHAR"/>
         <column comment="" dbType="VARCHAR" javaType="String"
@@ -1630,15 +1660,15 @@
     <table name="white_suppress_def_check"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="DEF_CHECK_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="DEF_CHECK_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="DEF_CHECK_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_suppress_join_sq"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="SUPPRESS_JOIN_SQ_ID" pkName="PRIMARY"
+            name="SUPPRESS_JOIN_SQ_ID" pkName="PRIMARY" pkPosition="1"
             primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="SUPPRESS_JOIN_SQ_NAME" required="true" size="200" type="VARCHAR"/>
@@ -1646,8 +1676,8 @@
     <table name="white_suppress_join_sq_many"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MANY_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MANY_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MANY_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1672,8 +1702,8 @@
     <table name="white_suppress_join_sq_many_one"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MANY_ONE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MANY_ONE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MANY_ONE_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1689,15 +1719,16 @@
     <table name="white_suppress_join_sq_many_one_one"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="MANY_ONE_ONE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="MANY_ONE_ONE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MANY_ONE_ONE_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_suppress_join_sq_one"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer" name="ONE_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ONE_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"
@@ -1715,16 +1746,16 @@
     <table name="white_suppress_join_sq_one_addi"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="INT" javaType="Integer"
-            name="ONE_ADDI_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            name="ONE_ADDI_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="ONE_ADDI_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_table_except_gen_head"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="GEN_HEAD_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="GEN_HEAD_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="GEN_HEAD_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
@@ -1736,8 +1767,8 @@
     <table name="white_table_except_gen_only"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="GEN_ONLY_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="GEN_ONLY_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="GEN_ONLY_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
@@ -1758,8 +1789,8 @@
     <table name="white_table_except_gen_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="GEN_REF_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="GEN_REF_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="GEN_REF_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
@@ -1775,8 +1806,8 @@
     <table name="white_uq_classification"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_CLS_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="UQ_CLS_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="UQ_CLS_CODE" required="true" size="3" type="CHAR"/>
         <unique name="UQ_CLS_CODE">
@@ -1785,8 +1816,8 @@
     </table>
     <table name="white_uq_fk" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_FK_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="UQ_FK_CODE" required="true" size="3" type="CHAR"/>
         <unique name="UQ_FK_CODE">
@@ -1795,8 +1826,8 @@
     </table>
     <table name="white_uq_fk_ref" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_FK_REF_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_REF_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="DECIMAL" javaType="Long"
             name="FK_TO_PK_ID" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1827,8 +1858,8 @@
     <table name="white_uq_fk_ref_nest"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="DECIMAL" javaType="Long"
-            name="UQ_FK_REF_NEST_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="16" type="DECIMAL"/>
+            name="UQ_FK_REF_NEST_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="COMPOUND_UQ_FIRST_CODE" required="true" size="3" type="CHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1871,23 +1902,23 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
             name="REVERSEFK_SUPPRESSED_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="CHAR" javaType="String"
             name="MASTER_TYPE_CODE" required="true" size="3" type="CHAR"/>
     </table>
     <table name="white_variant_relation_master_bar"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="MASTER_BAR_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="MASTER_BAR_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MASTER_BAR_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_variant_relation_master_corge"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="MASTER_CORGE_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="MASTER_CORGE_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MASTER_CORGE_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1896,16 +1927,16 @@
     <table name="white_variant_relation_master_foo"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="MASTER_FOO_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="MASTER_FOO_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MASTER_FOO_NAME" required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_variant_relation_master_qux"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="MASTER_QUX_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="MASTER_QUX_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="MASTER_QUX_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1914,8 +1945,8 @@
     <table name="white_variant_relation_referrer"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long"
-            name="REFERRER_ID" pkName="PRIMARY" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            name="REFERRER_ID" pkName="PRIMARY" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="VARIANT_MASTER_ID" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="CHAR" javaType="String"
@@ -1924,7 +1955,8 @@
     <table name="white_variant_relation_referrer_ref"
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="" dbType="BIGINT" javaType="Long" name="REF_ID"
-            pkName="PRIMARY" primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkName="PRIMARY" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="BIGINT" javaType="Long"
             name="REFERRER_ID" required="true" size="19" type="BIGINT"/>
         <foreign-key foreignSchema="exampledb.$$NoNameSchema$$"
@@ -1938,7 +1970,7 @@
     <table name="white_xls_man" schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="XLS_MAN_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="STRING_CONVERTED" size="200" type="VARCHAR"/>
         <column comment="" dbType="DATETIME"
@@ -1949,7 +1981,7 @@
         schema="exampledb.$$NoNameSchema$$" type="TABLE">
         <column comment="退会理由コード" dbType="CHAR" javaType="String"
             name="WITHDRAWAL_REASON_CODE" pkName="PRIMARY"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column
             comment="退会理由テキスト: 退会理由の内容。テキスト形式なので目いっぱい書けるが、&#xa;そうするとUI側できれいに見せるのが大変でしょうね。"
             dbType="TEXT" javaType="String"
@@ -1964,7 +1996,7 @@
         schema="nextexampledb.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="BIGINT"
             javaType="Long" name="PRODUCT_ID" pkName="PRIMARY"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="" dbType="VARCHAR" javaType="String"
             name="PRODUCT_NAME" required="true" size="200" type="VARCHAR"/>
         <column comment="" dbType="INT" javaType="Integer"

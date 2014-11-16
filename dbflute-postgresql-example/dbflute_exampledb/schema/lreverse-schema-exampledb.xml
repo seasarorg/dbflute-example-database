@@ -5,7 +5,7 @@
     <table name="VENDOR-NON COMPILABLE" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer"
             name="NON-COMPILABLE ID" pkName="VENDOR-NON COMPILABLE_pkey"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String"
             name="NON COMPILABLE-NAME" size="64" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer" name="PARENT-ID"
@@ -32,7 +32,7 @@
             dbType="serial"
             default="nextval('member_member_id_seq'::regclass)"
             javaType="Integer" name="member_id" pkName="member_pkey"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="会員名称: 会員のフルネームの名称。&#xa;苗字と名前を分けて管理することも多いが、ここでは Example なので単純にひとまとめ。"
             dbType="varchar" javaType="String" name="member_name"
@@ -95,8 +95,8 @@
             dbType="serial"
             default="nextval('member_address_member_address_id_seq'::regclass)"
             javaType="Integer" name="member_address_id"
-            pkName="member_address_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="member_address_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="会員ID: 会員を参照するID。&#xa;履歴分を含むため、これだけではユニークにはならない。&#xa;有効開始日と合わせて複合ユニーク制約となるが、&#xa;厳密には完全な制約にはなっていない。&#xa;有効期間の概念はRDBでは表現しきれないのである。"
             dbType="int4" javaType="Integer" name="member_id"
@@ -147,8 +147,8 @@
             dbType="bigserial"
             default="nextval('member_login_member_login_id_seq'::regclass)"
             javaType="Long" name="member_login_id"
-            pkName="member_login_pkey" primaryKey="true" required="true"
-            size="19" type="BIGINT"/>
+            pkName="member_login_pkey" pkPosition="1" primaryKey="true"
+            required="true" size="19" type="BIGINT"/>
         <column comment="会員ID: " dbType="int4" javaType="Integer"
             name="member_id" required="true" size="10" type="INTEGER"/>
         <column comment="ログイン日時: ログインした瞬間の日時。" dbType="timestamp"
@@ -179,8 +179,8 @@
         name="member_security" schema="exampledb.public" type="TABLE">
         <column comment="会員ID: そのまま one-to-one を構成するためのFKとなる。"
             dbType="int4" javaType="Integer" name="member_id"
-            pkName="member_security_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="member_security_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="ログインパスワード: ログイン時に利用するパスワード。&#xa;本当は良くないが、Exampleなのでひとまず暗号化していない。"
             dbType="varchar" javaType="String" name="login_password"
@@ -221,8 +221,8 @@
             dbType="serial"
             default="nextval('member_service_member_service_id_seq'::regclass)"
             javaType="Integer" name="member_service_id"
-            pkName="member_service_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="member_service_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column comment="会員ID: 会員を参照するID。ユニークなので、会員とは one-to-one の関係に。"
             dbType="int4" javaType="Integer" name="member_id"
             required="true" size="10" type="INTEGER"/>
@@ -267,7 +267,7 @@
         <column
             comment="会員ステータスコード: 会員ステータスを識別するコード。&#xa;固定的なデータなので、連番とか番号にはせず、&#xa;データを直接見たときも人が直感的にわかるように、&#xa;このような３桁のコード形式にしている。&#xa;"
             dbType="bpchar" javaType="String" name="member_status_code"
-            pkName="member_status_pkey" primaryKey="true"
+            pkName="member_status_pkey" pkPosition="1" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column comment="会員ステータス名称: " dbType="varchar" javaType="String"
             name="member_status_name" required="true" size="50" type="VARCHAR"/>
@@ -287,8 +287,8 @@
         comment="会員退会情報: 退会会員の退会に関する詳細な情報。&#xa;退会会員のみデータが存在する。（&quot;1 : 0...1&quot; のパターンの one-to-one）&#xa;共通カラムがあってバージョンNOがないパターン。基本的に更新が入ることはないが、登録ユーザを保持したいのと、重要なデータなので更新系の情報も。"
         name="member_withdrawal" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="member_id"
-            pkName="member_withdrawal_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="member_withdrawal_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="退会理由コード: 退会した定型理由を参照するコード。&#xa;何も言わずに退会する会員もいるので必須項目ではない。"
             dbType="bpchar" javaType="String"
@@ -325,7 +325,7 @@
         <column autoIncrement="true" dbType="serial"
             default="nextval('product_product_id_seq'::regclass)"
             javaType="Integer" name="product_id" pkName="product_pkey"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column
             comment="商品名称: ExampleDBとして、コメントの少ないケースを表現するため、&#xa;あえてコメントを控えている。実業務ではしっかりとコメントを&#xa;入れることが強く強く推奨される。"
             dbType="varchar" javaType="String" name="product_name"
@@ -372,7 +372,7 @@
         name="product_category" schema="exampledb.public" type="TABLE">
         <column comment="商品カテゴリコード: " dbType="bpchar" javaType="String"
             name="product_category_code" pkName="product_category_pkey"
-            primaryKey="true" required="true" size="3" type="CHAR"/>
+            pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column comment="商品カテゴリ名称: " dbType="varchar" javaType="String"
             name="product_category_name" required="true" size="50" type="VARCHAR"/>
         <column comment="親カテゴリコード: 最上位の場合はデータなし。" dbType="bpchar"
@@ -386,8 +386,8 @@
         name="product_status" schema="exampledb.public" type="TABLE">
         <column comment="商品ステータスコード: 商品ステータスを識別するコード。" dbType="bpchar"
             javaType="String" name="product_status_code"
-            pkName="product_status_pkey" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            pkName="product_status_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="varchar" javaType="String"
             name="product_status_name" required="true" size="50" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer" name="display_order"
@@ -402,7 +402,7 @@
         <column autoIncrement="true" dbType="bigserial"
             default="nextval('purchase_purchase_id_seq'::regclass)"
             javaType="Long" name="purchase_id" pkName="purchase_pkey"
-            primaryKey="true" required="true" size="19" type="BIGINT"/>
+            pkPosition="1" primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column
             comment="会員ID: 会員を参照するID。&#xa;購入を識別する自然キー（複合ユニーク制約）の筆頭要素。"
             dbType="int4" javaType="Integer" name="member_id"
@@ -467,8 +467,8 @@
             dbType="bigserial"
             default="nextval('purchase_payment_purchase_payment_id_seq'::regclass)"
             javaType="Long" name="purchase_payment_id"
-            pkName="purchase_payment_pkey" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            pkName="purchase_payment_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column comment="購入ID: 支払い対象の購入へのID" dbType="int8"
             javaType="Long" name="purchase_id" required="true" size="19" type="BIGINT"/>
         <column comment="支払金額: 支払った金額。さて、小数点なのはなぜでしょう？" dbType="numeric"
@@ -502,8 +502,8 @@
         <column
             comment="地域ID: 地域を識別するID。&#xa;珍しく(固定的な)マスタテーブルとしては数値だが、&#xa;Exampleなのでやはり色々なパターンがないと。"
             dbType="int4" javaType="Integer" name="region_id"
-            pkName="region_pkey" primaryKey="true" required="true"
-            size="10" type="INTEGER"/>
+            pkName="region_pkey" pkPosition="1" primaryKey="true"
+            required="true" size="10" type="INTEGER"/>
         <column comment="地域名称: 地域を表す名称。" dbType="varchar"
             javaType="String" name="region_name" required="true"
             size="50" type="VARCHAR"/>
@@ -512,8 +512,8 @@
         name="service_rank" schema="exampledb.public" type="TABLE">
         <column comment="サービスランクコード: サービスランクを識別するコード。" dbType="bpchar"
             javaType="String" name="service_rank_code"
-            pkName="service_rank_pkey" primaryKey="true" required="true"
-            size="3" type="CHAR"/>
+            pkName="service_rank_pkey" pkPosition="1" primaryKey="true"
+            required="true" size="3" type="CHAR"/>
         <column
             comment="サービスランク名称: サービスランクの名称。&#xa;（ゴールドとかプラチナとか基本的には威厳のある名前）"
             dbType="varchar" javaType="String" name="service_rank_name"
@@ -548,14 +548,14 @@
     <table name="vendor_$_dollar" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer"
             name="vendor_$_dollar_id" pkName="vendor_$_dollar_pkey"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String"
             name="vendor_$_dollar_name" size="64" type="VARCHAR"/>
     </table>
     <table name="vendor_check" schema="exampledb.public" type="TABLE">
         <column dbType="numeric" javaType="Long" name="vendor_check_id"
-            pkName="vendor_check_pkey" primaryKey="true" required="true"
-            size="16" type="NUMERIC"/>
+            pkName="vendor_check_pkey" pkPosition="1" primaryKey="true"
+            required="true" size="16" type="NUMERIC"/>
         <column dbType="bpchar" javaType="String" name="type_of_char"
             size="3" type="CHAR"/>
         <column dbType="varchar" javaType="String"
@@ -614,8 +614,8 @@
     </table>
     <table name="vendor_date_fk" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="bar_id"
-            pkName="vendor_date_fk_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="vendor_date_fk_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="date" javaType="java.util.Date" name="bar_date"
             required="true" size="13" type="DATE"/>
         <foreign-key foreignSchema="public"
@@ -625,15 +625,15 @@
     </table>
     <table name="vendor_date_pk" schema="exampledb.public" type="TABLE">
         <column dbType="date" javaType="java.util.Date" name="foo_date"
-            pkName="vendor_date_pk_pkey" primaryKey="true"
-            required="true" size="13" type="DATE"/>
+            pkName="vendor_date_pk_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="13" type="DATE"/>
         <column dbType="varchar" javaType="String" name="foo_name"
             required="true" size="2147483647" type="VARCHAR"/>
     </table>
     <table name="vendor_inherit_inu" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="inu_id"
-            pkName="vendor_inherit_inu_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="vendor_inherit_inu_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String" name="inu_name"
             required="true" size="2147483647" type="VARCHAR"/>
         <column dbType="date" javaType="java.util.Date" name="inu_date"
@@ -647,8 +647,8 @@
         <column dbType="date" javaType="java.util.Date" name="inu_date"
             size="13" type="DATE"/>
         <column dbType="int4" javaType="Integer" name="neko_id"
-            pkName="vendor_inherit_neko_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="vendor_inherit_neko_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String" name="neko_name"
             required="true" size="2147483647" type="VARCHAR"/>
         <column dbType="date" javaType="java.util.Date" name="neko_date"
@@ -656,8 +656,8 @@
     </table>
     <table name="vendor_large_data" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="large_data_id"
-            pkName="vendor_large_data_pkey" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            pkName="vendor_large_data_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column dbType="varchar" javaType="String" name="string_index"
             required="true" size="200" type="VARCHAR"/>
         <column dbType="varchar" javaType="String"
@@ -682,8 +682,8 @@
     </table>
     <table name="vendor_large_data_ref" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="large_data_ref_id"
-            pkName="vendor_large_data_ref_pkey" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            pkName="vendor_large_data_ref_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column dbType="int8" javaType="Long" name="large_data_id"
             required="true" size="19" type="BIGINT"/>
         <column dbType="date" javaType="java.util.Date"
@@ -720,8 +720,8 @@
     </table>
     <table name="vendor_part_man" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="part_man_id"
-            pkName="vendor_part_man_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="vendor_part_man_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String" name="part_man_name"
             required="true" size="2147483647" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer" name="part_man_point"
@@ -731,8 +731,8 @@
     </table>
     <table name="vendor_part_man_high" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="part_man_id"
-            pkName="vendor_part_man_high_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="vendor_part_man_high_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String" name="part_man_name"
             required="true" size="2147483647" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer" name="part_man_point"
@@ -742,15 +742,15 @@
     </table>
     <table name="vendor_uuid_bar" schema="exampledb.public" type="TABLE">
         <column dbType="uuid" javaType="java.util.UUID" name="bar_id"
-            pkName="vendor_uuid_bar_pkey" primaryKey="true"
-            required="true" size="2147483647" type="UUID"/>
+            pkName="vendor_uuid_bar_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="2147483647" type="UUID"/>
         <column dbType="varchar" javaType="String" name="bar_name"
             required="true" size="2147483647" type="VARCHAR"/>
     </table>
     <table name="vendor_uuid_foo" schema="exampledb.public" type="TABLE">
         <column dbType="uuid" javaType="java.util.UUID" name="foo_id"
-            pkName="vendor_uuid_foo_pkey" primaryKey="true"
-            required="true" size="2147483647" type="UUID"/>
+            pkName="vendor_uuid_foo_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="2147483647" type="UUID"/>
         <column dbType="varchar" javaType="String" name="foo_name"
             required="true" size="2147483647" type="VARCHAR"/>
         <column dbType="uuid" javaType="java.util.UUID" name="bar_id"
@@ -762,22 +762,22 @@
     </table>
     <table name="white_compound_pk" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="pk_first_id"
-            pkName="white_compound_pk_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="white_compound_pk_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="int4" javaType="Integer" name="pk_second_id"
-            pkName="white_compound_pk_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="white_compound_pk_pkey" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="varchar" javaType="String" name="pk_name"
             required="true" size="200" type="VARCHAR"/>
     </table>
     <table name="white_compound_pk_ref" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer"
             name="multiple_first_id" pkName="white_compound_pk_ref_pkey"
-            primaryKey="true" required="true" size="10" type="INTEGER"/>
+            pkPosition="1" primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="int4" javaType="Integer"
             name="multiple_second_id"
-            pkName="white_compound_pk_ref_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="white_compound_pk_ref_pkey" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="int4" javaType="Integer" name="ref_first_id"
             required="true" size="10" type="INTEGER"/>
         <column dbType="int4" javaType="Integer" name="ref_second_id"
@@ -787,6 +787,20 @@
             <reference foreign="pk_first_id" local="ref_first_id"/>
             <reference foreign="pk_second_id" local="ref_second_id"/>
         </foreign-key>
+    </table>
+    <table name="white_compound_pk_wrong_order"
+        schema="exampledb.public" type="TABLE">
+        <column dbType="int4" javaType="Integer" name="first_id"
+            pkName="white_compound_pk_wrong_order_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column dbType="int4" javaType="Integer" name="second_id"
+            pkName="white_compound_pk_wrong_order_pkey" pkPosition="3"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column dbType="int4" javaType="Integer" name="third_id"
+            pkName="white_compound_pk_wrong_order_pkey" pkPosition="2"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
+        <column dbType="varchar" javaType="String" name="wrong_name"
+            size="200" type="VARCHAR"/>
     </table>
     <table name="white_not_pk" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="not_pk_id"
@@ -798,8 +812,8 @@
     </table>
     <table name="white_same_name" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="same_name_id"
-            pkName="white_same_name_pkey" primaryKey="true"
-            required="true" size="19" type="BIGINT"/>
+            pkName="white_same_name_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="19" type="BIGINT"/>
         <column dbType="varchar" javaType="String" name="same_name_name"
             size="200" type="VARCHAR"/>
         <column dbType="int4" javaType="Integer"
@@ -809,8 +823,8 @@
     </table>
     <table name="white_same_name_ref" schema="exampledb.public" type="TABLE">
         <column dbType="int4" javaType="Integer" name="same_name_ref_id"
-            pkName="white_same_name_ref_pkey" primaryKey="true"
-            required="true" size="10" type="INTEGER"/>
+            pkName="white_same_name_ref_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="10" type="INTEGER"/>
         <column dbType="int8" javaType="Long" name="same_name_id"
             required="true" size="19" type="BIGINT"/>
         <column dbType="int8" javaType="Long" name="next_same_name_id"
@@ -822,7 +836,7 @@
     </table>
     <table name="white_xls_man" schema="exampledb.public" type="TABLE">
         <column dbType="int8" javaType="Long" name="xls_man_id"
-            pkName="white_xls_man_pkey" primaryKey="true"
+            pkName="white_xls_man_pkey" pkPosition="1" primaryKey="true"
             required="true" size="19" type="BIGINT"/>
         <column dbType="varchar" javaType="String"
             name="string_converted" size="2147483647" type="VARCHAR"/>
@@ -837,8 +851,8 @@
         schema="exampledb.public" type="TABLE">
         <column comment="退会理由コード: " dbType="bpchar" javaType="String"
             name="withdrawal_reason_code"
-            pkName="withdrawal_reason_pkey" primaryKey="true"
-            required="true" size="3" type="CHAR"/>
+            pkName="withdrawal_reason_pkey" pkPosition="1"
+            primaryKey="true" required="true" size="3" type="CHAR"/>
         <column
             comment="退会理由テキスト: 退会理由の内容。テキスト形式なので目いっぱい書けるが、&#xa;そうするとUI側できれいに見せるのが大変でしょうね。"
             dbType="text" javaType="String"
@@ -852,9 +866,9 @@
     </table>
     <sequenceGroup>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_member_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="member_address_member_address_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="member_login_member_login_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
@@ -866,14 +880,14 @@
             name="purchase_payment_purchase_payment_id_seq" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="product_product_id_seq" schema="exampledb.public"/>
+        <sequence incrementSize="1" maximumValue="9223372036854775807"
+            minimumValue="1" name="seq_not_related_to_table" schema="exampledb.public"/>
         <sequence incrementSize="6" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_purchase" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_sub_display_order" schema="exampledb.public"/>
         <sequence incrementSize="1" maximumValue="9223372036854775807"
             minimumValue="1" name="seq_sub_purchase_count" schema="exampledb.public"/>
-        <sequence incrementSize="1" maximumValue="9223372036854775807"
-            minimumValue="1" name="seq_not_related_to_table" schema="exampledb.public"/>
     </sequenceGroup>
     <procedureGroup>
         <procedure name="part_man_insert_trigger"
