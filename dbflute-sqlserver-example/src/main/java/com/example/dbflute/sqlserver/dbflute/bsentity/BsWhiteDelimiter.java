@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.DomainEntity;
 import com.example.dbflute.sqlserver.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.sqlserver.dbflute.exentity.*;
 
@@ -54,7 +55,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsWhiteDelimiter extends AbstractEntity {
+public abstract class BsWhiteDelimiter extends AbstractEntity implements DomainEntity {
 
     // ===================================================================================
     //                                                                          Definition

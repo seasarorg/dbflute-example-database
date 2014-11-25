@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import com.example.dbflute.db2.dbflute.allcommon.CDef;
 import com.example.dbflute.db2.dbflute.exentity.customize.*;
 
@@ -52,7 +53,7 @@ import com.example.dbflute.db2.dbflute.exentity.customize.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsSpReturnResultSetMoreNotParamResult2 extends AbstractEntity {
+public abstract class BsSpReturnResultSetMoreNotParamResult2 extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition

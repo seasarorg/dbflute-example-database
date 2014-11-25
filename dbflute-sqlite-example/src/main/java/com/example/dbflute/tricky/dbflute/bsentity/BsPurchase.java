@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.DomainEntity;
 import com.example.dbflute.tricky.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.tricky.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.tricky.dbflute.allcommon.CDef;
@@ -74,7 +75,7 @@ import com.example.dbflute.tricky.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsPurchase extends AbstractEntity implements EntityDefinedCommonColumn {
+public abstract class BsPurchase extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition

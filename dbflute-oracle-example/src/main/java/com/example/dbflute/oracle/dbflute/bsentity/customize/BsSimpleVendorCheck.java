@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import org.seasar.dbflute.dbmeta.accessory.MappingValueType;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
@@ -104,7 +105,7 @@ import com.example.dbflute.oracle.dbflute.exentity.customize.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSimpleVendorCheck extends AbstractEntity {
+public abstract class BsSimpleVendorCheck extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition

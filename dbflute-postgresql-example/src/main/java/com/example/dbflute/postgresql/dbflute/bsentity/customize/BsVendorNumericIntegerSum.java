@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import com.example.dbflute.postgresql.dbflute.exentity.customize.*;
 
 /**
@@ -45,7 +46,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.customize.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsVendorNumericIntegerSum extends AbstractEntity {
+public abstract class BsVendorNumericIntegerSum extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition

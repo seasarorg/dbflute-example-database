@@ -928,7 +928,7 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable<AliasExc
     /**
      * Delete the several entities by query with varying requests non-strictly. <br />
      * For example, allowNonQueryDelete(). <br />
-     * Other specifications are same as batchUpdateNonstrict(entityList).
+     * Other specifications are same as queryDelete(cb).
      * @param cb The condition-bean of AliasExcept. (NotNull)
      * @param option The option of delete for varying requests. (NotNull)
      * @return The deleted count.
@@ -976,19 +976,6 @@ public abstract class BsAliasExceptBhv extends AbstractBehaviorWritable<AliasExc
     public OutsideSqlBasicExecutor<AliasExceptBhv> outsideSql() {
         OutsideSqlAllFacadeExecutor<AliasExceptBhv> facadeExecutor = doOutsideSql();
         return facadeExecutor.xbasicExecutor(); // variable to resolve generic type
-    }
-
-    // ===================================================================================
-    //                                                                         Hyper Patch
-    //                                                                         ===========
-    @Override
-    protected <RESULT extends AliasExcept> org.seasar.dbflute.bhv.core.command.SelectCursorCBCommand<RESULT> newSelectCursorCBCommand() {
-        return new com.example.dbflute.db2.dbflute.allcommon.DBFluteConfig.SelectCursorCBCommandHyperPatch<RESULT>();
-    }
-
-    @Override
-    protected <RESULT extends AliasExcept> org.seasar.dbflute.bhv.core.command.SelectListCBCommand<RESULT> newSelectListCBCommand() {
-        return new com.example.dbflute.db2.dbflute.allcommon.DBFluteConfig.SelectListCBCommandHyperPatch<RESULT>();
     }
 
     // ===================================================================================

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.DomainEntity;
 import org.seasar.dbflute.dbmeta.accessory.MappingValueType;
 import com.example.dbflute.oracle.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.oracle.dbflute.allcommon.DBMetaInstanceHandler;
@@ -69,7 +70,7 @@ import com.example.dbflute.oracle.dbflute.exentity.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsSynonymMemberWithdrawal extends AbstractEntity implements EntityDefinedCommonColumn {
+public abstract class BsSynonymMemberWithdrawal extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition

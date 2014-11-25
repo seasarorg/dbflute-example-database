@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.DomainEntity;
 import com.example.dbflute.mysql.dbflute.allcommon.EntityDefinedCommonColumn;
 import com.example.dbflute.mysql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.mysql.dbflute.allcommon.CDef;
@@ -87,7 +88,7 @@ import com.example.dbflute.mysql.dbflute.nogen.cache.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsMember extends AbstractEntity implements EntityDefinedCommonColumn {
+public abstract class BsMember extends AbstractEntity implements DomainEntity, EntityDefinedCommonColumn {
 
     // ===================================================================================
     //                                                                          Definition

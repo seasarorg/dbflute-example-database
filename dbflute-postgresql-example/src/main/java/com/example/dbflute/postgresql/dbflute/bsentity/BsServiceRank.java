@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.DomainEntity;
 import com.example.dbflute.postgresql.dbflute.allcommon.DBMetaInstanceHandler;
 import com.example.dbflute.postgresql.dbflute.allcommon.CDef;
 import com.example.dbflute.postgresql.dbflute.exentity.*;
@@ -59,7 +60,7 @@ import com.example.dbflute.postgresql.dbflute.exentity.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsServiceRank extends AbstractEntity {
+public abstract class BsServiceRank extends AbstractEntity implements DomainEntity {
 
     // ===================================================================================
     //                                                                          Definition

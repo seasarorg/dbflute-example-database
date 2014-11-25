@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import com.example.dbflute.sqlserver.dbflute.exentity.customize.*;
 
 /**
@@ -61,7 +62,7 @@ import com.example.dbflute.sqlserver.dbflute.exentity.customize.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsSimpleVendorCheck extends AbstractEntity {
+public abstract class BsSimpleVendorCheck extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition

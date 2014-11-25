@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import com.example.dbflute.mysql.dbflute.exentity.customize.*;
 
 /**
@@ -62,7 +63,7 @@ import com.example.dbflute.mysql.dbflute.exentity.customize.*;
  * </pre>
  * @author DBFlute(AutoGenerator)
  */
-public abstract class BsNonEntitySql2Entity extends AbstractEntity {
+public abstract class BsNonEntitySql2Entity extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition

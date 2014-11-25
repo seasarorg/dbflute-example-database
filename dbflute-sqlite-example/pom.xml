@@ -12,7 +12,7 @@
 
 	<properties>
 		<guice.version>3.0</guice.version>
-		<dbflute.version>1.0.5M</dbflute.version>
+		<dbflute.version>1.0.5N</dbflute.version>
 		<sqlite.jdbc.version>3.7.2</sqlite.jdbc.version>
 		<utflute.version>0.4.6</utflute.version>
 	</properties>

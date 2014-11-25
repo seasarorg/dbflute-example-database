@@ -12,7 +12,7 @@
 
 	<properties>
 		<seasar.version>2.4.46</seasar.version>
-		<dbflute.version>1.0.5M</dbflute.version>
+		<dbflute.version>1.0.5N</dbflute.version>
 		<mssql.jdbc.version>1.0.0</mssql.jdbc.version>
 		<utflute.version>0.4.7</utflute.version>
 	</properties>

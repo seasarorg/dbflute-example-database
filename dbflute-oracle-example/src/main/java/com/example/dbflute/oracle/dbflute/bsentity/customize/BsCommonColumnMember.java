@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.seasar.dbflute.dbmeta.DBMeta;
 import org.seasar.dbflute.dbmeta.AbstractEntity;
+import org.seasar.dbflute.dbmeta.accessory.CustomizeEntity;
 import com.example.dbflute.oracle.dbflute.exentity.customize.*;
 
 /**
@@ -59,7 +60,7 @@ import com.example.dbflute.oracle.dbflute.exentity.customize.*;
  * </pre>
  * @author oracleman
  */
-public abstract class BsCommonColumnMember extends AbstractEntity {
+public abstract class BsCommonColumnMember extends AbstractEntity implements CustomizeEntity {
 
     // ===================================================================================
     //                                                                          Definition
