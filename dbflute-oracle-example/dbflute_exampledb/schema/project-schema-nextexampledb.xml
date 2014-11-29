@@ -5,7 +5,7 @@
     <table comment="隣のスキーマ:隣のベーシックなテーブル" name="NEXT_SCHEMA_PRODUCT"
         schema="NEXTEXAMPLEDB" type="TABLE">
         <column comment="隣の商品ID:隣のベーシックなPK" dbType="NUMBER"
-            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0057074"
+            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0060839"
             pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="隣の商品名称:隣のベーシックなName" dbType="VARCHAR2"
             javaType="String" name="PRODUCT_NAME" required="true"
@@ -36,7 +36,7 @@
     <table comment="隣のスキステ:これのみえてよい" name="NEXT_SCHEMA_PRODUCT_STATUS"
         schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String"
-            name="PRODUCT_STATUS_CODE" pkName="SYS_C0057077"
+            name="PRODUCT_STATUS_CODE" pkName="SYS_C0060842"
             pkPosition="1" primaryKey="true" required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String"
             name="PRODUCT_STATUS_NAME" required="true" size="50" type="VARCHAR"/>
@@ -47,7 +47,7 @@
     <table comment="隣の秘密で権限なし:隣から見えちゃだめ。だけどデータリンクならしょうがない"
         name="NEXT_SCHEMA_SECRET" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="CHAR" javaType="String" name="SECRET_CODE"
-            pkName="SYS_C0057080" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060845" pkPosition="1" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String" name="SECRET_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -65,7 +65,7 @@
         name="NEXT_SCHEMA_SECRET_AUTH" schema="NEXTEXAMPLEDB" type="TABLE">
         <column comment="隣の秘密２コード:隣の商品を秘密するかもしれない" dbType="CHAR"
             javaType="String" name="SECRET_AUTH_CODE"
-            pkName="SYS_C0057083" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060848" pkPosition="1" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column comment="隣の秘密２名称:" dbType="VARCHAR2" javaType="String"
             name="SECRET_AUTH_NAME" required="true" size="50" type="VARCHAR"/>
@@ -73,7 +73,7 @@
     <table comment="隣のスキーマ:隣のベーシックなテーブル" name="NEXT_SYNONYM_PRODUCT"
         schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column comment="隣の商品ID:隣のベーシックなPK" dbType="NUMBER"
-            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0057074"
+            javaType="Long" name="PRODUCT_ID" pkName="SYS_C0060839"
             pkPosition="1" primaryKey="true" required="true" size="16" type="DECIMAL"/>
         <column comment="隣の商品名称:隣のベーシックなName" dbType="VARCHAR2"
             javaType="String" name="PRODUCT_NAME" required="true"
@@ -104,7 +104,7 @@
     <table comment="隣の秘密で権限なし:隣から見えちゃだめ。だけどデータリンクならしょうがない"
         name="NEXT_SYNONYM_SECRET" schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column dbType="CHAR" javaType="String" name="SECRET_CODE"
-            pkName="SYS_C0057080" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060845" pkPosition="1" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column dbType="VARCHAR2" javaType="String" name="SECRET_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -122,21 +122,21 @@
         name="NEXT_SYNONYM_SECRET_AUTH" schema="NEXTEXAMPLEDB" type="SYNONYM">
         <column comment="隣の秘密２コード:隣の商品を秘密するかもしれない" dbType="CHAR"
             javaType="String" name="SECRET_AUTH_CODE"
-            pkName="SYS_C0057083" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060848" pkPosition="1" primaryKey="true"
             required="true" size="3" type="CHAR"/>
         <column comment="隣の秘密２名称:" dbType="VARCHAR2" javaType="String"
             name="SECRET_AUTH_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_SAME_NAME" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="SAME_NAME_ID"
-            pkName="SYS_C0057090" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060855" pkPosition="1" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String"
             name="SAME_NAME_NAME" required="true" size="50" type="VARCHAR"/>
     </table>
     <table name="WHITE_SAME_NAME_REF" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_ID"
-            pkName="SYS_C0057093" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060858" pkPosition="1" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REF_NAME"
             required="true" size="50" type="VARCHAR"/>
@@ -149,7 +149,7 @@
     </table>
     <table name="WHITE_SAME_NAME_REF_REF" schema="NEXTEXAMPLEDB" type="TABLE">
         <column dbType="NUMBER" javaType="Long" name="REF_REF_ID"
-            pkName="SYS_C0057097" pkPosition="1" primaryKey="true"
+            pkName="SYS_C0060862" pkPosition="1" primaryKey="true"
             required="true" size="16" type="DECIMAL"/>
         <column dbType="VARCHAR2" javaType="String" name="REF_REF_NAME"
             required="true" size="50" type="VARCHAR"/>
