@@ -51,6 +51,7 @@ public class DBMetaInstanceHandler implements DBMetaProvider {
         tmpMap.put("SERVICE_RANK", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.ServiceRankDbm");
         tmpMap.put("SUMMARY_PRODUCT", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.SummaryProductDbm");
         tmpMap.put("VENDOR_CHECK", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.VendorCheckDbm");
+        tmpMap.put("VENDOR_DEFAULT_VALUE", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.VendorDefaultValueDbm");
         tmpMap.put("WHITE_REF_TARGET", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WhiteRefTargetDbm");
         tmpMap.put("WHITE_TARGET", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WhiteTargetDbm");
         tmpMap.put("WITHDRAWAL_REASON", "com.example.dbflute.db2.dbflute.bsentity.dbmeta.WithdrawalReasonDbm");
